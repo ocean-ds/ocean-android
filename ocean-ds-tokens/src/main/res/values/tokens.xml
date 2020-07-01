@@ -34,21 +34,21 @@
     <dimen name="border_width_thin" category="radius">2dp</dimen>
     <dimen name="border_width_thick" category="radius">4dp</dimen>
     <dimen name="border_width_heavy" category="radius">8dp</dimen>
-    <integer name="opacity_level_semiopaque" category="opacity">0.8</integer>
-    <integer name="opacity_level_intense" category="opacity">0.64</integer>
-    <integer name="opacity_level_medium" category="opacity">0.4</integer>
-    <integer name="opacity_level_light" category="opacity">0.16</integer>
-    <integer name="opacity_level_semitransparent" category="opacity">0.08</integer>
+<!--    <integer name="opacity_level_semiopaque" category="opacity">0.8</integer>-->
+<!--    <integer name="opacity_level_intense" category="opacity">0.64</integer>-->
+<!--    <integer name="opacity_level_medium" category="opacity">0.4</integer>-->
+<!--    <integer name="opacity_level_light" category="opacity">0.16</integer>-->
+<!--    <integer name="opacity_level_semitransparent" category="opacity">0.08</integer>-->
     <dimen name="border_radius_none" category="radius">0dp</dimen>
     <dimen name="border_radius_sm" category="radius">4dp</dimen>
     <dimen name="border_radius_md" category="radius">8dp</dimen>
     <dimen name="border_radius_lg" category="radius">16dp</dimen>
     <dimen name="border_radius_pill" category="radius">500dp</dimen>
-    <dimen name="border_radius_circular" category="radius">50%dp</dimen>
-    <dimen name="shadow_level_1" category="box-shadow">0 4px 8px rgba(12, 13, 20, 0.08)</dimen>
-    <dimen name="shadow_level_2" category="box-shadow">0 8px 16px rgba(12, 13, 20, 0.08)</dimen>
-    <dimen name="shadow_level_3" category="box-shadow">0 16px 32px rgba(12, 13, 20, 0.08)</dimen>
-    <dimen name="shadow_level_4" category="box-shadow">0 16px 48px rgba(12, 13, 20, 0.08)</dimen>
+<!--    <dimen name="border_radius_circular" category="radius">50%dp</dimen>-->
+<!--    <dimen name="shadow_level_1" category="box-shadow">0 4px 8px rgba(12, 13, 20, 0.08)</dimen>-->
+<!--    <dimen name="shadow_level_2" category="box-shadow">0 8px 16px rgba(12, 13, 20, 0.08)</dimen>-->
+<!--    <dimen name="shadow_level_3" category="box-shadow">0 16px 32px rgba(12, 13, 20, 0.08)</dimen>-->
+<!--    <dimen name="shadow_level_4" category="box-shadow">0 16px 48px rgba(12, 13, 20, 0.08)</dimen>-->
     <dimen name="spacing_inline_xxxs" category="spacing">4dp</dimen>
     <dimen name="spacing_inline_xxs" category="spacing">8dp</dimen>
     <dimen name="spacing_inline_xs" category="spacing">16dp</dimen>

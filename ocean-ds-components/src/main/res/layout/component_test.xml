@@ -9,8 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
-        android:padding="@dimen/spacing_inline_xl"
-        android:fontFamily="@font/font_family_highlight_heavy"
+        android:padding="@dimen/ocean_spacing_inline_xl"
+        android:fontFamily="@font/font_family_highlight"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

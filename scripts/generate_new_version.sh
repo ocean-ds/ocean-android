@@ -1,4 +1,10 @@
-LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/tokens version`
+LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/tokens@beta version`
+
+echo '\033[1;31m Getting new version and saving on version.properties file. \033[0m'
+sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM/g" "ocean-ds-components/version.properties"
+
+echo '\033[1;31m Deleting unnecessary temp file. \033[0m'
+rm -f "ocean-ds-components/version.properties-e"
 
 echo '\033[1;31m Downloading tokens into npm lib…\033[0m'
 npm install @useblu/tokens@beta --save-dev

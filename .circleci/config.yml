@@ -1,4 +1,10 @@
 version: 2.1
+
+executors:
+  mac_exe:
+    macos:
+      xcode: "11.4.1"
+
 orbs:
   node: circleci/node@3.0.1
 

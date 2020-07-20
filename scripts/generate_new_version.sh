@@ -38,7 +38,13 @@ pwd
 echo '\033[1;31m Show git status \033[0m'
 git status
 
+echo '\033[1;31m Show git status \033[0m'
+./gradlew clean assembleRelease publish --stacktrace --info --debug
+
 echo '\033[1;31m Add and Commit new classes \033[0m'
-#git add . #&& git commit -am "Generating classes based on @useblu/tokens npm lib version: $LATEST_VERSION_TOKENS_LIB_NPM"
+git add . && git commit -am "Generating classes based on @useblu/tokens npm lib version: $LATEST_VERSION_TOKENS_LIB_NPM" #&& git
+
+echo '\033[1;31m Show git status after commands \033[0m'
+git status
 
 

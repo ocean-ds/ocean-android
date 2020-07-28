@@ -1,12 +1,11 @@
 version: 2.1
+orbs:
+  node: circleci/node@3.0.1
 
 executors:
   mac_exe:
     macos:
       xcode: "11.4.1"
-
-orbs:
-  node: circleci/node@3.0.1
 
 references:
   ## Workspace
@@ -26,6 +25,9 @@ commands:
   shell-script-command:
     description: "Testing command"
     steps:
+      - run:
+          name: Install Yarn
+          command: yarn install
       - run: sh ./scripts/generate_new_version.sh
 
 jobs:
@@ -33,10 +35,6 @@ jobs:
     <<: *android_config
     steps:
       - checkout
-      - run:
-          name: Install Yarn
-          command: yarn install
-      - run: node --version
       - shell-script-command
 
 workflows:

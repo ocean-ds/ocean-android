@@ -25,7 +25,7 @@ commands:
   shell-script-command:
     description: "Testing command"
     steps:
-      - run: sh scripts/generate_new_version.sh
+      - run: sh ./scripts/generate_new_version.sh
 
 jobs:
 

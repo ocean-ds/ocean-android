@@ -29,7 +29,7 @@ commands:
       - run: sh ./scripts/generate_new_version.sh
 
 jobs:
-  android-test-job:
+  deploy-ocean-tokens:
     <<: *android_config
     steps:
       - checkout
@@ -42,7 +42,7 @@ jobs:
 workflows:
   android-test-workflow:
     jobs:
-      - android-test-job:
+      - deploy-ocean-tokens:
         filters:
           branches:
             only: DSO-33-ocean-ds-lib-gen-automation

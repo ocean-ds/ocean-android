@@ -36,6 +36,8 @@ jobs:
       - shell-script-command
 
   install-node-example:
+    docker:
+      - image: 'cimg/base:stable'
     steps:
       - checkout
       - node/install:
@@ -46,6 +48,11 @@ jobs:
 workflows:
   android-test-workflow:
     jobs:
+      - install-node-example:
+          filters:
+          branches:
+            only: DSO-33-ocean-ds-lib-gen-automation
+            
       - deploy-ocean-tokens:
         requires:
             - install-node-example

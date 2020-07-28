@@ -56,7 +56,7 @@ jobs:
       - image: 'cimg/base:stable'
     steps:
       - checkout
-      - run: curl -o- -L https://yarnpkg.com/install.sh | bash
+      #- run: curl -o- -L https://yarnpkg.com/install.sh | bash
       # - node/install:
       #     install-yarn: true
       # - run: node --version

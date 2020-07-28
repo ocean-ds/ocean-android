@@ -25,22 +25,6 @@ commands:
   shell-script-command:
     description: "Testing command"
     steps:
-
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-
-      - run:
-          name: Install Dependencies
-          command: yarn install --immutable
-
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-
       - run: sh ./scripts/generate_new_version.sh
 
 jobs:
@@ -53,13 +37,17 @@ jobs:
 
   install-node-example:
     docker:
-      - image: 'cimg/base:stable'
+      - image: circleci/ruby:2.4.2-jessie-node
     steps:
       - checkout
-      #- run: curl -o- -L https://yarnpkg.com/install.sh | bash
-      # - node/install:
-      #     install-yarn: true
-      # - run: node --version
+      - run:
+          name: "Update Node.js and npm"
+          command: |
+            curl -sSL "https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.0-linux-x64/bin/node
+            curl https://www.npmjs.com/install.sh | sudo bash
+      - run:
+          name: Check current version of node
+          command: node -v
 
 workflows:
   android-test-workflow:

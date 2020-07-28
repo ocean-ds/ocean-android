@@ -25,6 +25,22 @@ commands:
   shell-script-command:
     description: "Testing command"
     steps:
+
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install Dependencies
+          command: yarn install --immutable
+
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
       - run: sh ./scripts/generate_new_version.sh
 
 jobs:
@@ -36,13 +52,14 @@ jobs:
       - shell-script-command
 
   install-node-example:
-    docker:
-      - image: 'cimg/base:stable'
+    # docker:
+    #   - image: 'cimg/base:stable'
     steps:
       - checkout
-      - node/install:
-          install-yarn: true
-      - run: node --version
+      - run: curl -o- -L https://yarnpkg.com/install.sh | bash
+      # - node/install:
+      #     install-yarn: true
+      # - run: node --version
 
 workflows:
   android-test-workflow:

@@ -25,14 +25,14 @@ commands:
   shell-script-command:
     description: "Testing command"
     steps:
-      - run: sh ./scripts/generate_new_version.sh
+      - run: sh scripts/generate_new_version.sh
 
 jobs:
 
   deploy-ocean-tokens:
     <<: *android_config
     steps:
-      - checkout
+      #- checkout
       - shell-script-command
 
   install-node-example:
@@ -48,8 +48,9 @@ jobs:
 workflows:
   android-test-workflow:
     jobs:
-      - install-node-example
       - deploy-ocean-tokens:
+        requires:
+            - install-node-example
         filters:
           branches:
             only: DSO-33-ocean-ds-lib-gen-automation

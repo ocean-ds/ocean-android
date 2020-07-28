@@ -33,9 +33,9 @@ jobs:
     <<: *android_config
     steps:
       - checkout
-      - node/install:
-          install-yarn: true
-          node-version: latest
+      - run:
+          name: Install Yarn
+          command: yarn install
       - run: node --version
       - shell-script-command
 

@@ -25,6 +25,17 @@ commands:
   shell-script-command:
     description: "Testing command"
     steps:
+      
+      - run:
+          name: "Update Node.js and npm"
+          command: |
+            curl -sSL "https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.0-linux-x64/bin/node
+            curl https://www.npmjs.com/install.sh | sudo bash
+
+      - run:
+          name: Check current version of node
+          command: node -v
+
       - run: sh ./scripts/generate_new_version.sh
 
 jobs:
@@ -32,34 +43,26 @@ jobs:
   deploy-ocean-tokens:
     <<: *android_config
     steps:
-      #- checkout
+      - checkout
       - shell-script-command
 
-  install-node-example:
-    docker:
-      - image: circleci/ruby:2.4.2-jessie-node
-    steps:
-      - checkout
-      - run:
-          name: "Update Node.js and npm"
-          command: |
-            curl -sSL "https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.0-linux-x64/bin/node
-            curl https://www.npmjs.com/install.sh | sudo bash
-      - run:
-          name: Check current version of node
-          command: node -v
+  # install-node-example:
+  #   docker:
+  #     - image: circleci/ruby:2.4.2-jessie-node
+  #   steps:
+  #     - checkout
 
 workflows:
   android-test-workflow:
     jobs:
-      - install-node-example:
-          filters:
-            branches:
-              only: DSO-33-ocean-ds-lib-gen-automation
+      # - install-node-example:
+      #     filters:
+      #       branches:
+      #         only: DSO-33-ocean-ds-lib-gen-automation
 
       - deploy-ocean-tokens:
-          requires:
-              - install-node-example
+          # requires:
+          #     - install-node-example
           filters:
             branches:
               only: DSO-33-ocean-ds-lib-gen-automation

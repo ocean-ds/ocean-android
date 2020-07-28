@@ -42,7 +42,6 @@ jobs:
       - checkout
       - node/install:
           install-yarn: true
-          node-version: latest
       - run: node --version
 
 workflows:

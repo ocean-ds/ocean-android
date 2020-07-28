@@ -25,21 +25,30 @@ commands:
   shell-script-command:
     description: "Testing command"
     steps:
-      - run:
-          name: Install Yarn
-          command: yarn install
       - run: sh ./scripts/generate_new_version.sh
 
 jobs:
+
   deploy-ocean-tokens:
     <<: *android_config
     steps:
       - checkout
       - shell-script-command
 
+  install-node-example:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
+      - node/install:
+          install-yarn: true
+          node-version: latest
+      - run: node --version
+
 workflows:
   android-test-workflow:
     jobs:
+      - install-node-example
       - deploy-ocean-tokens:
         filters:
           branches:

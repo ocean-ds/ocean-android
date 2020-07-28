@@ -52,8 +52,8 @@ jobs:
       - shell-script-command
 
   install-node-example:
-    # docker:
-    #   - image: 'cimg/base:stable'
+    docker:
+      - image: 'cimg/base:stable'
     steps:
       - checkout
       - run: curl -o- -L https://yarnpkg.com/install.sh | bash

@@ -50,9 +50,9 @@ workflows:
     jobs:
       - install-node-example:
           filters:
-          branches:
-            only: DSO-33-ocean-ds-lib-gen-automation
-            
+            branches:
+              only: DSO-33-ocean-ds-lib-gen-automation
+
       - deploy-ocean-tokens:
         requires:
             - install-node-example

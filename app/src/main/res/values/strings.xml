@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Ocean DS Android</string>
+    <string name="ocean_sample_text_heading_1">This is a sample of a heading 1 component.</string>
+    <string name="ocean_sample_text_heading_2">This is a sample of a heading 2 component.</string>
+    <string name="ocean_sample_text_heading_3">This is a sample of a heading 3 component.</string>
+    <string name="ocean_sample_text_heading_4">This is a sample of a heading 4 component.</string>
 </resources>

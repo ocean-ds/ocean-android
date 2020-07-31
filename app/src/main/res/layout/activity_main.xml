@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.text.InputType" />
+
         <import type="android.view.View" />
     </data>
 
@@ -50,13 +52,47 @@
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                 android:text="@{@string/ocean_sample_text_heading_4}" />
 
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:layout_marginVertical="@dimen/ocean_spacing_inline_sm"
+                android:layout_height="wrap_content"
                 android:background="@color/ocean_color_brand_primary_pure"
-                />
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
 
+                <include
+                    android:id="@+id/textHeading1Inverse"
+                    layout="@layout/ocean_heading_1_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_1}" />
+
+                <include
+                    android:id="@+id/textHeading2Inverse"
+                    layout="@layout/ocean_heading_2_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_2}" />
+
+                <include
+                    android:id="@+id/textHeading3Inverse"
+                    layout="@layout/ocean_heading_3_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_3}" />
+
+                <include
+                    android:id="@+id/textHeading4Inverse"
+                    layout="@layout/ocean_heading_4_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_4}" />
+
+            </LinearLayout>
+            
             <include
                 android:id="@+id/textSubtitle1"
                 layout="@layout/ocean_subtitle_1"
@@ -77,8 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="4px"
                 android:layout_marginVertical="@dimen/ocean_spacing_inline_sm"
-                android:background="@color/ocean_color_brand_primary_pure"
-                />
+                android:background="@color/ocean_color_brand_primary_pure" />
 
             <include
                 android:id="@+id/textParagraph"
@@ -92,8 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="4px"
                 android:layout_marginVertical="@dimen/ocean_spacing_inline_sm"
-                android:background="@color/ocean_color_brand_primary_pure"
-                />
+                android:background="@color/ocean_color_brand_primary_pure" />
 
             <include
                 android:id="@+id/textDescription"
@@ -107,8 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="4px"
                 android:layout_marginVertical="@dimen/ocean_spacing_inline_sm"
-                android:background="@color/ocean_color_brand_primary_pure"
-                />
+                android:background="@color/ocean_color_brand_primary_pure" />
 
             <include
                 android:id="@+id/textCaption"

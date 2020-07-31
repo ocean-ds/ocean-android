@@ -59,6 +59,24 @@
     </style>
 
 
+    <!-- HEADING.INVERSE -->
+    <style name="Ocean.Heading.1.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+    <style name="Ocean.Heading.2.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+    <style name="Ocean.Heading.3.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+    <style name="Ocean.Heading.4.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+
     <!-- SUBTITLE -->
     <style name="Ocean.Subtitle.1">
         <item name="android:textSize">@dimen/ocean_font_size_md</item>

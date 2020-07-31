@@ -9,7 +9,7 @@
     </data>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textInputLayout"
+        android:id="@+id/textOceanHeading4"
         style="@style/Ocean.Heading4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

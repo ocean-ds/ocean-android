@@ -3,25 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <import type="android.text.InputType" />
-
-        <import type="android.view.View" />
-    </data>
-
+    <data />
+        
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
             android:paddingVertical="@dimen/ocean_spacing_inline_xs">
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -58,9 +53,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                     android:text="@{@string/ocean_sample_text_heading_4}" />
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/ocean_color_brand_primary_pure"
@@ -98,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{@string/ocean_sample_text_heading_4}" />
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -123,7 +118,7 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/ocean_color_brand_primary_pure"
@@ -145,9 +140,9 @@
                     android:layout_height="wrap_content"
                     android:text="@{@string/ocean_sample_text_subtitle_2}" />
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -160,9 +155,9 @@
                     android:layout_height="wrap_content"
                     android:text="@{@string/ocean_sample_text_paragraph}" />
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/ocean_color_brand_primary_pure"
@@ -176,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{@string/ocean_sample_text_paragraph}" />
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -224,7 +219,7 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/ocean_color_brand_primary_pure"
@@ -238,8 +233,8 @@
                     android:layout_height="wrap_content"
                     android:text="@{@string/ocean_sample_text_caption}" />
 
-            </LinearLayout>
-        </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>
 </layout>

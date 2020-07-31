@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- BASE -->
+    <style name="Ocean.Paragraph.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_down</item>
+    </style>
+
+    <style name="Ocean.Description.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_down</item>
+    </style>
+
+    <style name="Ocean.Caption.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_down</item>
+    </style>
+
+
+    <!-- HEADING.INVERSE -->
+    <style name="Ocean.Heading.1.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+    <style name="Ocean.Heading.2.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+    <style name="Ocean.Heading.3.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+    <style name="Ocean.Heading.4.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+    <!-- SUBTITLE.INVERSE -->
+    <style name="Ocean.Subtitle.1.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_down</item>
+    </style>
+
+    <style name="Ocean.Subtitle.2.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_down</item>
+    </style>
+
+</resources>

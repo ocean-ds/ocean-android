@@ -50,6 +50,29 @@
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                 android:text="@{@string/ocean_sample_text_heading_4}" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:layout_marginVertical="@dimen/ocean_spacing_inline_sm"
+                android:background="@color/ocean_color_brand_primary_pure"
+                />
+
+            <include
+                android:id="@+id/textSubtitle1"
+                layout="@layout/ocean_subtitle_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text="@{@string/ocean_sample_text_subtitle_1}" />
+
+            <include
+                android:id="@+id/textSubtitle2"
+                layout="@layout/ocean_subtitle_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text="@{@string/ocean_sample_text_subtitle_2}" />
+
         </LinearLayout>
 
     </ScrollView>

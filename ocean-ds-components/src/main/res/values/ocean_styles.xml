@@ -8,6 +8,13 @@
         <item name="android:lineSpacingMultiplier">@dimen/ocean_line_height_medium</item>
         <item name="android:fontFamily">@font/font_family_highlight_extrabold</item>
         <item name="android:textColor">@color/ocean_color_interface_dark_pure</item>
+
+    <style name="Ocean.Subtitle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/font_family_base_regular</item>
+        <item name="android:lineSpacingMultiplier">@dimen/ocean_line_height_medium</item>
+        <item name="android:textColor">@color/ocean_color_interface_dark_down</item>
+    </style>
+
     </style>
 
     <style name="Ocean.Heading1" parent="Ocean.Heading">
@@ -25,6 +32,16 @@
     <style name="Ocean.Heading4" parent="Ocean.Heading">
         <item name="android:textSize">@dimen/ocean_font_size_xs</item>
         <item name="android:fontFamily">@font/font_family_highlight_bold</item>
+    </style>
+
+
+    <!-- SUBTITLE -->
+    <style name="Ocean.Subtitle.1">
+        <item name="android:textSize">@dimen/ocean_font_size_md</item>
+    </style>
+
+    <style name="Ocean.Subtitle.2">
+        <item name="android:textSize">@dimen/ocean_font_size_sm</item>
     </style>
 
 </resources>

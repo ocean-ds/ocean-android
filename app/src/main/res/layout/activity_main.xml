@@ -105,6 +105,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingHorizontal="@dimen/ocean_spacing_inline_xs">
+
                 <include
                     android:id="@+id/textSubtitle1"
                     layout="@layout/ocean_subtitle_1"
@@ -148,8 +149,6 @@
 
             </LinearLayout>
 
-
-
             <include
                 android:id="@+id/textParagraph"
                 layout="@layout/ocean_paragraph"
@@ -158,11 +157,20 @@
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                 android:text="@{@string/ocean_sample_text_paragraph}" />
 
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:layout_marginVertical="@dimen/ocean_spacing_inline_sm"
-                android:background="@color/ocean_color_brand_primary_pure" />
+                android:layout_height="wrap_content"
+                android:background="@color/ocean_color_brand_primary_pure"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/textParagraphInverse"
+                    layout="@layout/ocean_paragraph_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_paragraph}" />
+            </LinearLayout>
 
             <include
                 android:id="@+id/textDescription"
@@ -185,7 +193,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                 android:text="@{@string/ocean_sample_text_caption}" />
-
 
         </LinearLayout>
 

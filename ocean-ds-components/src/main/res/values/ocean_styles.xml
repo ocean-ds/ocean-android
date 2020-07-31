@@ -25,6 +25,10 @@
         <item name="android:textSize">@dimen/ocean_font_size_xs</item>
     </style>
 
+    <style name="Ocean.Paragraph.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
     <style name="Ocean.Description" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/font_family_base_regular</item>
         <item name="android:lineSpacingMultiplier">@dimen/ocean_line_height_comfy</item>

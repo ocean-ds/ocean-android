@@ -26,29 +26,29 @@
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                 android:text="@{@string/ocean_sample_text_heading_1}" />
 
-            <TextView
+            <include
+                android:id="@+id/textHeading2"
+                layout="@layout/ocean_heading_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-                android:fontFamily="@font/font_family_highlight_bold"
-                android:text="@string/ocean_sample_text_heading_2"
-                android:textSize="@dimen/ocean_font_size_md" />
+                android:text="@{@string/ocean_sample_text_heading_2}" />
 
-            <TextView
+            <include
+                android:id="@+id/textHeading3"
+                layout="@layout/ocean_heading_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-                android:fontFamily="@font/font_family_highlight_bold"
-                android:text="@string/ocean_sample_text_heading_3"
-                android:textSize="@dimen/ocean_font_size_md" />
+                android:text="@{@string/ocean_sample_text_heading_3}" />
 
-            <TextView
+            <include
+                android:id="@+id/textHeading4"
+                layout="@layout/ocean_heading_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-                android:fontFamily="@font/font_family_highlight_bold"
-                android:text="@string/ocean_sample_text_heading_4"
-                android:textSize="@dimen/ocean_font_size_md" />
+                android:text="@{@string/ocean_sample_text_heading_4}" />
 
         </LinearLayout>
 

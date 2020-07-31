@@ -86,4 +86,14 @@
         <item name="android:textSize">@dimen/ocean_font_size_sm</item>
     </style>
 
+
+    <!-- SUBTITLE.INVERSE -->
+    <style name="Ocean.Subtitle.1.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+    <style name="Ocean.Subtitle.2.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
 </resources>

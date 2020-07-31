@@ -12,4 +12,6 @@
 
     <string name="ocean_sample_text_paragraph">This is a sample of a PARAGRAPH component.</string>
 
+    <string name="ocean_sample_text_description">This is a sample of a DESCRIPTION component.</string>
+
 </resources>

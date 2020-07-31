@@ -41,19 +41,19 @@
 
 
     <!-- HEADING -->
-    <style name="Ocean.Heading1" parent="Ocean.Heading">
+    <style name="Ocean.Heading.1">
         <item name="android:textSize">@dimen/ocean_font_size_lg</item>
     </style>
 
-    <style name="Ocean.Heading2" parent="Ocean.Heading">
+    <style name="Ocean.Heading.2">
         <item name="android:textSize">@dimen/ocean_font_size_md</item>
     </style>
 
-    <style name="Ocean.Heading3" parent="Ocean.Heading">
+    <style name="Ocean.Heading.3">
         <item name="android:textSize">@dimen/ocean_font_size_sm</item>
     </style>
 
-    <style name="Ocean.Heading4" parent="Ocean.Heading">
+    <style name="Ocean.Heading.4">
         <item name="android:textSize">@dimen/ocean_font_size_xs</item>
         <item name="android:fontFamily">@font/font_family_highlight_bold</item>
     </style>

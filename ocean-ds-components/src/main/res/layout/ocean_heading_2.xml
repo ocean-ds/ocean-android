@@ -10,7 +10,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textOceanHeading2"
-        style="@style/Ocean.Heading2"
+        style="@style/Ocean.Heading.2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@{text}" />

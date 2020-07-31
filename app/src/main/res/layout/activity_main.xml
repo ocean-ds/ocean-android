@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                 android:text="@{@string/ocean_sample_text_caption}" />
-            
+
 
         </LinearLayout>
 

@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="text"
             type="String" />
@@ -9,10 +10,9 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textInputLayout"
+        style="@style/Ocean.Heading1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/font_family_highlight_bold"
-        android:text="@{text}"
-        android:textSize="@dimen/ocean_font_size_md" />
+        android:text="@{text}" />
 
 </layout>

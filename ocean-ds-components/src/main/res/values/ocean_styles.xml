@@ -1,0 +1,14 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Ocean" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    </style>
+
+    <style name="Ocean.Heading1" parent="Widget.MaterialComponents.TextView">
+        <item name="android:lineSpacingMultiplier">@dimen/ocean_line_height_medium</item>
+        <item name="android:fontFamily">@font/font_family_highlight_extrabold</item>
+        <item name="android:textColor">@color/ocean_color_interface_dark_pure</item>
+        <item name="android:textSize">@dimen/ocean_font_size_lg</item>
+    </style>
+
+</resources>

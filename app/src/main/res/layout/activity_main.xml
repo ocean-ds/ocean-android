@@ -103,6 +103,22 @@
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                 android:text="@{@string/ocean_sample_text_description}" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:layout_marginVertical="@dimen/ocean_spacing_inline_sm"
+                android:background="@color/ocean_color_brand_primary_pure"
+                />
+
+            <include
+                android:id="@+id/textCaption"
+                layout="@layout/ocean_caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text="@{@string/ocean_sample_text_caption}" />
+            
+
         </LinearLayout>
 
     </ScrollView>

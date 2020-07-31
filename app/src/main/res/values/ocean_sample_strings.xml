@@ -14,4 +14,5 @@
 
     <string name="ocean_sample_text_description">This is a sample of a DESCRIPTION component.</string>
 
+    <string name="ocean_sample_text_caption">This is a sample of a CAPTION component.</string>
 </resources>

@@ -15,6 +15,12 @@
         <item name="android:textColor">@color/ocean_color_interface_dark_down</item>
     </style>
 
+    <style name="Ocean.Paragraph" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/font_family_base_regular</item>
+        <item name="android:lineSpacingMultiplier">@dimen/ocean_line_height_comfy</item>
+        <item name="android:textColor">@color/ocean_color_interface_dark_down</item>
+        <item name="android:textSize">@dimen/ocean_font_size_xs</item>
+    </style>
     </style>
 
     <style name="Ocean.Heading1" parent="Ocean.Heading">

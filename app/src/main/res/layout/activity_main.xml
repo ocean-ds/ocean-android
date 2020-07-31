@@ -73,6 +73,21 @@
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                 android:text="@{@string/ocean_sample_text_subtitle_2}" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:layout_marginVertical="@dimen/ocean_spacing_inline_sm"
+                android:background="@color/ocean_color_brand_primary_pure"
+                />
+
+            <include
+                android:id="@+id/textParagraph"
+                layout="@layout/ocean_paragraph"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text="@{@string/ocean_sample_text_paragraph}" />
+
         </LinearLayout>
 
     </ScrollView>

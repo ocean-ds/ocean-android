@@ -39,6 +39,17 @@
         <item name="android:textSize">@dimen/ocean_font_size_xxxs</item>
     </style>
 
+    <style name="Ocean.Button" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/ocean_button_primary_states</item>
+        <item name="android:fontFamily">@font/font_family_base_bold</item>
+        <item name="android:paddingLeft">@dimen/ocean_spacing_stack_sm</item>
+        <item name="android:paddingTop">@dimen/ocean_spacing_stack_xxs</item>
+        <item name="android:paddingRight">@dimen/ocean_spacing_stack_sm</item>
+        <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxs</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
 
     <!-- HEADING -->
     <style name="Ocean.Heading.1">
@@ -66,6 +77,28 @@
 
     <style name="Ocean.Subtitle.2">
         <item name="android:textSize">@dimen/ocean_font_size_sm</item>
+    </style>
+
+
+    <!-- BUTTON -->
+    <style name="Ocean.Button.SM">
+        <item name="android:textSize">@dimen/ocean_font_size_xxs</item>
+        <item name="android:paddingLeft">@dimen/ocean_spacing_stack_xs</item>
+        <item name="android:paddingRight">@dimen/ocean_spacing_stack_xs</item>
+        <item name="android:paddingTop">@dimen/ocean_spacing_stack_xxxs</item>
+        <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxxs</item>
+    </style>
+
+    <style name="Ocean.Button.MD">
+        <item name="android:textSize">@dimen/ocean_font_size_xs</item>
+        <item name="android:paddingLeft">@dimen/ocean_spacing_stack_sm</item>
+        <item name="android:paddingRight">@dimen/ocean_spacing_stack_sm</item>
+    </style>
+
+    <style name="Ocean.Button.LG">
+        <item name="android:textSize">@dimen/ocean_font_size_sm</item>
+        <item name="android:paddingLeft">@dimen/ocean_spacing_stack_md</item>
+        <item name="android:paddingRight">@dimen/ocean_spacing_stack_md</item>
     </style>
 
 </resources>

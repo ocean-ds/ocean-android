@@ -6,6 +6,7 @@
         <variable
             name="text"
             type="String" />
+
     </data>
 
     <androidx.appcompat.widget.AppCompatTextView

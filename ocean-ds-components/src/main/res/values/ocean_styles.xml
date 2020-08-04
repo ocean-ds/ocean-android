@@ -48,7 +48,6 @@
         <item name="android:minWidth">0dp</item>
     </style>
 
-
     <!-- HEADING -->
     <style name="Ocean.Heading.1">
         <item name="android:textSize">@dimen/ocean_font_size_lg</item>
@@ -101,6 +100,21 @@
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_md</item>
         <item name="android:paddingTop">@dimen/ocean_spacing_stack_xs</item>
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xs</item>
+    </style>
+
+    <style name="Ocean.Button.SM.Secondary">
+        <item name="android:background">@drawable/ocean_button_secondary</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+    <style name="Ocean.Button.MD.Secondary">
+        <item name="android:background">@drawable/ocean_button_secondary</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+    <style name="Ocean.Button.LG.Secondary">
+        <item name="android:background">@drawable/ocean_button_secondary</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
     </style>
 
 </resources>

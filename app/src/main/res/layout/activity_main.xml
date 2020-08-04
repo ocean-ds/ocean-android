@@ -267,6 +267,39 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ocean_color_brand_primary_pure"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/ocean_spacing_inline_xs">
+
+            <include
+                android:id="@+id/buttonSecondarySmall"
+                layout="@layout/ocean_button_secondary_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text="@{@string/ocean_sample_button_secondary_small}" />
+
+            <include
+                android:id="@+id/buttonSecondaryMedium"
+                layout="@layout/ocean_button_secondary_md"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text="@{@string/ocean_sample_button_secondary_medium}" />
+
+            <include
+                android:id="@+id/buttonSecondaryLarge"
+                layout="@layout/ocean_button_secondary_lg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/ocean_sample_button_secondary_large}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>

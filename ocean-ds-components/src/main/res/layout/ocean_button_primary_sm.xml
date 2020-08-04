@@ -11,7 +11,7 @@
     </data>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonOceanSmallPrimary"
+        android:id="@+id/buttonOceanPrimarySmall"
         style="@style/Ocean.Button.SM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

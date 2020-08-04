@@ -12,7 +12,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonOceanPrimarySmall"
-        style="@style/Ocean.Button.SM"
+        style="@style/Ocean.Button.SM.Primary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@{text}"

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="text"
+            type="String" />
+
+    </data>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonOceanPrimaryInverseMedium"
+        style="@style/Ocean.Button.MD.Primary.Inverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{text}"
+        tools:text="Medium" />
+
+</layout>

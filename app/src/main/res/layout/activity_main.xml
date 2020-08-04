@@ -332,6 +332,55 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/buttonPrimaryInverseSmall"
+                    layout="@layout/ocean_button_primary_inverse_sm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_inverse_small}" />
+
+                <include
+                    android:id="@+id/buttonPrimaryInverseMedium"
+                    layout="@layout/ocean_button_primary_inverse_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_inverse_medium}" />
+
+                <include
+                    android:id="@+id/buttonPrimaryInverseLarge"
+                    layout="@layout/ocean_button_primary_inverse_lg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_button_primary_inverse_large}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/buttonPrimaryBlockedMedium"
+                    layout="@layout/ocean_button_primary_md"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_blocked}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>

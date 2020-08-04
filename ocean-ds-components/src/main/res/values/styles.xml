@@ -3,7 +3,7 @@
 
 
     <style name="Test">
-        <item name="android:background">@drawable/ocean_button_primary_states</item>
+        <item name="android:background">@drawable/ocean_button_primary</item>
         <item name="android:fontFamily">@font/font_family_base_bold</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_sm</item>
         <item name="android:paddingTop">@dimen/ocean_spacing_stack_xxs</item>

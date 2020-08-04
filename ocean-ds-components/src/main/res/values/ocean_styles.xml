@@ -117,4 +117,19 @@
         <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
     </style>
 
+    <style name="Ocean.Button.SM.Text">
+        <item name="android:background">@drawable/ocean_button_text</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+    <style name="Ocean.Button.MD.Text">
+        <item name="android:background">@drawable/ocean_button_text</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+    <style name="Ocean.Button.LG.Text">
+        <item name="android:background">@drawable/ocean_button_text</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
 </resources>

@@ -145,16 +145,4 @@
         <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
     </style>
 
-    <style name="Ocean.Button.SM.Primary.Inverse">
-        <item name="android:background">@drawable/ocean_button_primary_inverse</item>
-    </style>
-
-    <style name="Ocean.Button.MD.Primary.Inverse">
-        <item name="android:background">@drawable/ocean_button_primary_inverse</item>
-    </style>
-
-    <style name="Ocean.Button.LG.Primary.Inverse">
-        <item name="android:background">@drawable/ocean_button_primary_inverse</item>
-    </style>
-
 </resources>

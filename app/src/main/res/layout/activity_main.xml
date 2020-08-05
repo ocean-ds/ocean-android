@@ -373,8 +373,8 @@
 
                 <include
                     android:id="@+id/buttonPrimaryBlockedMedium"
-                    layout="@layout/ocean_button_primary_md"
-                    android:layout_width="match_parent"
+                    layout="@layout/ocean_button_primary_blocked"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                     android:text="@{@string/ocean_sample_button_primary_blocked}" />

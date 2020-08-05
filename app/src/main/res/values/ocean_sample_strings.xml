@@ -18,14 +18,18 @@
     <string name="ocean_sample_button_small">Primary Small</string>
     <string name="ocean_sample_button_medium">Primary Medium</string>
     <string name="ocean_sample_button_large">Primary Large</string>
+
     <string name="ocean_sample_button_secondary_small">Secondary Small</string>
     <string name="ocean_sample_button_secondary_medium">Secondary Medium</string>
     <string name="ocean_sample_button_secondary_large">Secondary Large</string>
+
     <string name="ocean_sample_button_text_small">Text Small</string>
     <string name="ocean_sample_button_text_medium">Text Medium</string>
     <string name="ocean_sample_button_text_large">Text Large</string>
+
     <string name="ocean_sample_button_primary_inverse_small">Primary Inverse Small</string>
     <string name="ocean_sample_button_primary_inverse_medium">Primary Inverse Medium</string>
     <string name="ocean_sample_button_primary_inverse_large">Primary Inverse Large</string>
+
     <string name="ocean_sample_button_primary_blocked">Primary Blocked</string>
 </resources>

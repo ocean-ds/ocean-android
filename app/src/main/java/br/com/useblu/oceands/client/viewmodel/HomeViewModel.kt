@@ -9,7 +9,7 @@ class HomeViewModel : ViewModel() {
     private val _showProgress = MutableLiveData<Boolean>()
     val showProgress: LiveData<Boolean> get() = _showProgress
 
-    fun onClickButtonPrimaryMedium() {
+    fun onClickButton() {
         showProgress.let {
             _showProgress.value = true != it.value
         }

@@ -253,25 +253,30 @@
                     layout="@layout/ocean_button_primary_sm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:click="@{viewmodel::onClickButton}"
+                    app:showProgress="@{viewmodel.showProgress}"
                     android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-                    android:text="@{@string/ocean_sample_button_small}" />
+                    android:text="@{@string/ocean_sample_button_primary_small}" />
 
                 <include
                     android:id="@+id/buttonPrimaryMedium"
                     layout="@layout/ocean_button_primary_md"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:click="@{viewmodel::onClickButtonPrimaryMedium}"
+                    app:click="@{viewmodel::onClickButton}"
                     app:showProgress="@{viewmodel.showProgress}"
                     android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-                    android:text="@{@string/ocean_sample_button_medium}" />
+                    android:text="@{@string/ocean_sample_button_primary_medium}" />
 
                 <include
                     android:id="@+id/buttonPrimaryLarge"
                     layout="@layout/ocean_button_primary_lg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/ocean_sample_button_large}" />
+                    app:click="@{viewmodel::onClickButton}"
+                    app:showProgress="@{viewmodel.showProgress}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_large}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

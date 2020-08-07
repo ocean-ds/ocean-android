@@ -21,10 +21,14 @@
             name="showProgress"
             type="Boolean" />
 
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatButton
@@ -32,6 +36,8 @@
             style="@style/Ocean.Button.LG.Primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@{showProgress ? @drawable/icon_no_image_1dp : icon}"
+            android:drawablePadding="@dimen/ocean_spacing_stack_xxs"
             android:onClick="@{() -> click.invoke()}"
             android:text="@{showProgress ? @string/ocean_button_empty : text}"
             app:layout_constraintBottom_toBottomOf="parent"

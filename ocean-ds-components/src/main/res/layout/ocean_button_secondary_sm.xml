@@ -8,6 +8,10 @@
             name="text"
             type="String" />
 
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
     </data>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -15,6 +19,8 @@
         style="@style/Ocean.Button.SM.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableStart="@{icon}"
+        android:drawablePadding="@dimen/ocean_spacing_stack_xxs"
         android:text="@{text}"
         tools:text="Small" />
 

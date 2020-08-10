@@ -249,6 +249,33 @@
                 android:padding="@dimen/ocean_spacing_inline_xs">
 
                 <include
+                    layout="@layout/ocean_button_primary_sm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:click="@{viewmodel::onClickButton}"
+                    app:showProgress="@{viewmodel.showProgress}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_small}" />
+
+                <include
+                    layout="@layout/ocean_button_primary_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:click="@{viewmodel::onClickButton}"
+                    app:showProgress="@{viewmodel.showProgress}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_medium}" />
+
+                <include
+                    layout="@layout/ocean_button_primary_lg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:click="@{viewmodel::onClickButton}"
+                    app:showProgress="@{viewmodel.showProgress}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_large}" />
+
+                <include
                     android:id="@+id/buttonPrimarySmall"
                     layout="@layout/ocean_button_primary_sm"
                     android:layout_width="wrap_content"

@@ -11,7 +11,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradleBuildToolsVersion"
+        classpath "com.android.tools.build:gradle:${gradleBuildToolsVersion}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath 'com.kezong:fat-aar:1.2.15'
         // NOTE: Do not place your application dependencies here; they belong

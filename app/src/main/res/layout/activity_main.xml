@@ -425,7 +425,7 @@
 
                 <include
                     android:id="@+id/buttonPrimaryBlockedMedium"
-                    layout="@layout/ocean_button_primary_blocked"
+                    layout="@layout/ocean_button_primary_md"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"

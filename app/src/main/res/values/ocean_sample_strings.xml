@@ -1,0 +1,35 @@
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ExtraTranslation"
+    >
+
+    <!-- TYPOGRAPHY -->
+    <string name="ocean_sample_text_heading_1">This is a sample of a HEADING 1 component.</string>
+    <string name="ocean_sample_text_heading_2">This is a sample of a HEADING 2 component.</string>
+    <string name="ocean_sample_text_heading_3">This is a sample of a HEADING 3 component.</string>
+    <string name="ocean_sample_text_heading_4">This is a sample of a HEADING 4 component.</string>
+    <string name="ocean_sample_text_subtitle_1">This is a sample of a SUBTITLE 1 component.</string>
+    <string name="ocean_sample_text_subtitle_2">This is a sample of a SUBTITLE 1 component.</string>
+    <string name="ocean_sample_text_paragraph">This is a sample of a PARAGRAPH component.</string>
+    <string name="ocean_sample_text_description">This is a sample of a DESCRIPTION component.</string>
+    <string name="ocean_sample_text_caption">This is a sample of a CAPTION component.</string>
+
+    <!-- BUTTONS -->
+    <string name="ocean_sample_button_primary_small">Primary Small</string>
+    <string name="ocean_sample_button_primary_medium">Primary Medium</string>
+    <string name="ocean_sample_button_primary_large">Primary Large</string>
+
+    <string name="ocean_sample_button_secondary_small">Secondary Small</string>
+    <string name="ocean_sample_button_secondary_medium">Secondary Medium</string>
+    <string name="ocean_sample_button_secondary_large">Secondary Large</string>
+
+    <string name="ocean_sample_button_text_small">Text Small</string>
+    <string name="ocean_sample_button_text_medium">Text Medium</string>
+    <string name="ocean_sample_button_text_large">Text Large</string>
+
+    <string name="ocean_sample_button_primary_inverse_small">Primary Inverse Small</string>
+    <string name="ocean_sample_button_primary_inverse_medium">Primary Inverse Medium</string>
+    <string name="ocean_sample_button_primary_inverse_large">Primary Inverse Large</string>
+
+    <string name="ocean_sample_button_primary_blocked">Primary Blocked</string>
+</resources>

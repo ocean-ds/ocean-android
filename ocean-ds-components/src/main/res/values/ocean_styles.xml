@@ -1,0 +1,148 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Ocean" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    </style>
+
+
+    <!-- BASE -->
+    <style name="Ocean.Heading" parent="Widget.MaterialComponents.TextView">
+        <item name="android:fontFamily">@font/font_family_highlight_extrabold</item>
+        <item name="android:textColor">@color/ocean_color_interface_dark_pure</item>
+        <item name="android:lineSpacingMultiplier">@dimen/ocean_line_height_medium</item>
+    </style>
+
+    <style name="Ocean.Subtitle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/font_family_base_regular</item>
+        <item name="android:lineSpacingMultiplier">@dimen/ocean_line_height_medium</item>
+        <item name="android:textColor">@color/ocean_color_interface_dark_down</item>
+    </style>
+
+    <style name="Ocean.Paragraph" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/font_family_base_regular</item>
+        <item name="android:lineSpacingMultiplier">@dimen/ocean_line_height_comfy</item>
+        <item name="android:textColor">@color/ocean_color_interface_dark_down</item>
+        <item name="android:textSize">@dimen/ocean_font_size_xs</item>
+    </style>
+
+    <style name="Ocean.Description" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/font_family_base_regular</item>
+        <item name="android:lineSpacingMultiplier">@dimen/ocean_line_height_comfy</item>
+        <item name="android:textColor">@color/ocean_color_interface_dark_down</item>
+        <item name="android:textSize">@dimen/ocean_font_size_xxs</item>
+    </style>
+
+    <style name="Ocean.Caption" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/font_family_base_regular</item>
+        <item name="android:lineSpacingMultiplier">@dimen/ocean_line_height_comfy</item>
+        <item name="android:textColor">@color/ocean_color_interface_dark_down</item>
+        <item name="android:textSize">@dimen/ocean_font_size_xxxs</item>
+    </style>
+
+    <style name="Ocean.Button" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/font_family_base_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
+
+    <!-- HEADING -->
+    <style name="Ocean.Heading.1">
+        <item name="android:textSize">@dimen/ocean_font_size_lg</item>
+    </style>
+
+    <style name="Ocean.Heading.2">
+        <item name="android:textSize">@dimen/ocean_font_size_md</item>
+    </style>
+
+    <style name="Ocean.Heading.3">
+        <item name="android:textSize">@dimen/ocean_font_size_sm</item>
+    </style>
+
+    <style name="Ocean.Heading.4">
+        <item name="android:textSize">@dimen/ocean_font_size_xs</item>
+        <item name="android:fontFamily">@font/font_family_highlight_bold</item>
+    </style>
+
+
+    <!-- SUBTITLE -->
+    <style name="Ocean.Subtitle.1">
+        <item name="android:textSize">@dimen/ocean_font_size_md</item>
+    </style>
+
+    <style name="Ocean.Subtitle.2">
+        <item name="android:textSize">@dimen/ocean_font_size_sm</item>
+    </style>
+
+
+    <!-- BUTTON -->
+    <style name="Ocean.Button.SM">
+        <item name="android:textSize">@dimen/ocean_font_size_xxs</item>
+        <item name="android:paddingLeft">@dimen/ocean_spacing_stack_xs</item>
+        <item name="android:paddingRight">@dimen/ocean_spacing_stack_xs</item>
+        <item name="android:paddingTop">@dimen/ocean_spacing_stack_xxxs</item>
+        <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxxs</item>
+    </style>
+
+    <style name="Ocean.Button.MD">
+        <item name="android:textSize">@dimen/ocean_font_size_xs</item>
+        <item name="android:paddingLeft">@dimen/ocean_spacing_stack_sm</item>
+        <item name="android:paddingRight">@dimen/ocean_spacing_stack_sm</item>
+        <item name="android:paddingTop">@dimen/ocean_spacing_stack_xxs</item>
+        <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxs</item>
+    </style>
+
+    <style name="Ocean.Button.LG">
+        <item name="android:textSize">@dimen/ocean_font_size_sm</item>
+        <item name="android:paddingLeft">@dimen/ocean_spacing_stack_md</item>
+        <item name="android:paddingRight">@dimen/ocean_spacing_stack_md</item>
+        <item name="android:paddingTop">@dimen/ocean_spacing_stack_xs</item>
+        <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xs</item>
+    </style>
+
+    <style name="Ocean.Button.SM.Primary">
+        <item name="android:background">@drawable/ocean_button_primary</item>
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+    <style name="Ocean.Button.MD.Primary">
+        <item name="android:background">@drawable/ocean_button_primary</item>
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+    <style name="Ocean.Button.LG.Primary">
+        <item name="android:background">@drawable/ocean_button_primary</item>
+        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+    </style>
+
+    <style name="Ocean.Button.SM.Secondary">
+        <item name="android:background">@drawable/ocean_button_secondary</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+    <style name="Ocean.Button.MD.Secondary">
+        <item name="android:background">@drawable/ocean_button_secondary</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+    <style name="Ocean.Button.LG.Secondary">
+        <item name="android:background">@drawable/ocean_button_secondary</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+    <style name="Ocean.Button.SM.Text">
+        <item name="android:background">@drawable/ocean_button_text</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+    <style name="Ocean.Button.MD.Text">
+        <item name="android:background">@drawable/ocean_button_text</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+    <style name="Ocean.Button.LG.Text">
+        <item name="android:background">@drawable/ocean_button_text</item>
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+</resources>

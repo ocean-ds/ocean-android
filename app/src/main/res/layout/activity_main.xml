@@ -1,20 +1,440 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:textSize="@dimen/ocean_font_size_giant"
-        android:fontFamily="@font/font_family_highlight_black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.viewmodel.HomeViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/ocean_spacing_inline_xs">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/textHeading1"
+                    layout="@layout/ocean_heading_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_1}" />
+
+                <include
+                    android:id="@+id/textHeading2"
+                    layout="@layout/ocean_heading_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_2}" />
+
+                <include
+                    android:id="@+id/textHeading3"
+                    layout="@layout/ocean_heading_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_3}" />
+
+                <include
+                    android:id="@+id/textHeading4"
+                    layout="@layout/ocean_heading_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_4}" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ocean_color_brand_primary_pure"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/textHeading1Inverse"
+                    layout="@layout/ocean_heading_1_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_1}" />
+
+                <include
+                    android:id="@+id/textHeading2Inverse"
+                    layout="@layout/ocean_heading_2_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_2}" />
+
+                <include
+                    android:id="@+id/textHeading3Inverse"
+                    layout="@layout/ocean_heading_3_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_3}" />
+
+                <include
+                    android:id="@+id/textHeading4Inverse"
+                    layout="@layout/ocean_heading_4_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_heading_4}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/textSubtitle1"
+                    layout="@layout/ocean_subtitle_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_subtitle_1}" />
+
+                <include
+                    android:id="@+id/textSubtitle2"
+                    layout="@layout/ocean_subtitle_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_subtitle_2}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ocean_color_brand_primary_pure"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/textSubtitle1Inverse"
+                    layout="@layout/ocean_subtitle_1_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_subtitle_1}" />
+
+                <include
+                    android:id="@+id/textSubtitle2Inverse"
+                    layout="@layout/ocean_subtitle_2_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_subtitle_2}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/textParagraph"
+                    layout="@layout/ocean_paragraph"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_paragraph}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ocean_color_brand_primary_pure"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/textParagraphInverse"
+                    layout="@layout/ocean_paragraph_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_paragraph}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/textDescription"
+                    layout="@layout/ocean_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_description}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ocean_color_brand_primary_pure"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/textDescriptionInverse"
+                    layout="@layout/ocean_description_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_description}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/textCaption"
+                    layout="@layout/ocean_caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_caption}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ocean_color_brand_primary_pure"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/textCaptionInverse"
+                    layout="@layout/ocean_caption_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_caption}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    layout="@layout/ocean_button_primary_sm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:click="@{viewmodel::onClickButton}"
+                    app:showProgress="@{viewmodel.showProgress}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_small}" />
+
+                <include
+                    layout="@layout/ocean_button_primary_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:click="@{viewmodel::onClickButton}"
+                    app:showProgress="@{viewmodel.showProgress}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_medium}" />
+
+                <include
+                    layout="@layout/ocean_button_primary_lg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:click="@{viewmodel::onClickButton}"
+                    app:showProgress="@{viewmodel.showProgress}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_large}" />
+
+                <include
+                    android:id="@+id/buttonPrimarySmall"
+                    layout="@layout/ocean_button_primary_sm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_white_16dp}"
+                    app:click="@{viewmodel::onClickButton}"
+                    app:showProgress="@{viewmodel.showProgress}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_small}" />
+
+                <include
+                    android:id="@+id/buttonPrimaryMedium"
+                    layout="@layout/ocean_button_primary_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_white_24dp}"
+                    app:click="@{viewmodel::onClickButton}"
+                    app:showProgress="@{viewmodel.showProgress}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_medium}" />
+
+                <include
+                    android:id="@+id/buttonPrimaryLarge"
+                    layout="@layout/ocean_button_primary_lg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_white_32dp}"
+                    app:click="@{viewmodel::onClickButton}"
+                    app:showProgress="@{viewmodel.showProgress}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_large}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ocean_color_brand_primary_pure"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/buttonSecondarySmall"
+                    layout="@layout/ocean_button_secondary_sm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_blue_16dp}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_secondary_small}" />
+
+                <include
+                    android:id="@+id/buttonSecondaryMedium"
+                    layout="@layout/ocean_button_secondary_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_blue_24dp}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_secondary_medium}" />
+
+                <include
+                    android:id="@+id/buttonSecondaryLarge"
+                    layout="@layout/ocean_button_secondary_lg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_blue_32dp}"
+                    android:text="@{@string/ocean_sample_button_secondary_large}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/buttonTextSmall"
+                    layout="@layout/ocean_button_text_sm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_blue_16dp}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_text_small}" />
+
+                <include
+                    android:id="@+id/buttonTextMedium"
+                    layout="@layout/ocean_button_text_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_blue_24dp}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_text_medium}" />
+
+                <include
+                    android:id="@+id/buttonTextLarge"
+                    layout="@layout/ocean_button_text_lg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_blue_32dp}"
+                    android:text="@{@string/ocean_sample_button_text_large}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/buttonPrimaryInverseSmall"
+                    layout="@layout/ocean_button_primary_inverse_sm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_white_16dp}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_inverse_small}" />
+
+                <include
+                    android:id="@+id/buttonPrimaryInverseMedium"
+                    layout="@layout/ocean_button_primary_inverse_md"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_white_24dp}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_inverse_medium}" />
+
+                <include
+                    android:id="@+id/buttonPrimaryInverseLarge"
+                    layout="@layout/ocean_button_primary_inverse_lg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@{@drawable/icon_plus_white_32dp}"
+                    android:text="@{@string/ocean_sample_button_primary_inverse_large}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    android:id="@+id/buttonPrimaryBlockedMedium"
+                    layout="@layout/ocean_button_primary_md"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_button_primary_blocked}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</layout>

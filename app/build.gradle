@@ -13,8 +13,6 @@ android {
         targetSdkVersion rootProject.ext.targetSDK
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -41,9 +39,5 @@ dependencies {
 
     implementation project(path: ':ocean-ds-components')
     //implementation 'br.com.useblu:ocean-ds-components:0.0.2'
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 }

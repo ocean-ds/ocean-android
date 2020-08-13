@@ -78,6 +78,7 @@
 
     <!-- BUTTON -->
     <style name="Ocean.Button.SM">
+        <item name="android:minHeight">32dp</item>
         <item name="android:textSize">@dimen/ocean_font_size_xxs</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_xs</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_xs</item>
@@ -86,6 +87,7 @@
     </style>
 
     <style name="Ocean.Button.MD">
+        <item name="android:minHeight">48dp</item>
         <item name="android:textSize">@dimen/ocean_font_size_xs</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_sm</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_sm</item>
@@ -94,6 +96,7 @@
     </style>
 
     <style name="Ocean.Button.LG">
+        <item name="android:minHeight">56dp</item>
         <item name="android:textSize">@dimen/ocean_font_size_sm</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_md</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_md</item>

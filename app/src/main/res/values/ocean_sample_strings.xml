@@ -31,5 +31,5 @@
     <string name="ocean_sample_button_primary_inverse_medium">Primary Inverse Medium</string>
     <string name="ocean_sample_button_primary_inverse_large">Primary Inverse Large</string>
 
-    <string name="ocean_sample_button_primary_blocked">Primary Blocked</string>
+    <string name="ocean_sample_button_blocked">Blocked</string>
 </resources>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Ocean DS Android</string>
+    <string name="all_button_cancel">Cancel</string>
+    <string name="all_button_confirm">Confirm</string>
 </resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="textNegative"
+            type="String" />
+
+        <variable
+            name="textPositive"
+            type="String" />
+
+        <variable
+            name="showProgress"
+            type="Boolean" />
+
+        <variable
+            name="clickNegative"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="clickPositive"
+            type="Function0&lt;Unit>" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <include
+            layout="@layout/ocean_button_secondary_md"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:click="@{clickNegative::invoke}"
+            app:text="@{textNegative}" />
+
+        <Space
+            android:layout_width="@dimen/ocean_spacing_stack_xxs"
+            android:layout_height="match_parent" />
+
+        <include
+            layout="@layout/ocean_button_primary_md"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:click="@{clickPositive::invoke}"
+            app:showProgress="@{showProgress}"
+            app:text="@{textPositive}" />
+    </LinearLayout>
+</layout>

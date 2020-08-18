@@ -27,6 +27,24 @@
 
     </data>
 
+    <!-- TEST DOC -->
+    <!--
+    <variable
+            name="text"
+            type="String" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="showProgress"
+            type="Boolean" />
+
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+    -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

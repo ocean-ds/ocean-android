@@ -360,6 +360,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                     android:text="@{@string/ocean_sample_button_text_small}"
+                    app:click="@{viewmodel::showToast}"
                     app:icon="@{@drawable/icon_plus_blue_16dp}" />
 
                 <include
@@ -369,6 +370,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                     android:text="@{@string/ocean_sample_button_text_medium}"
+                    app:click="@{viewmodel::showToast}"
                     app:icon="@{@drawable/icon_plus_blue_24dp}" />
 
                 <include
@@ -377,6 +379,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{@string/ocean_sample_button_text_large}"
+                    app:click="@{viewmodel::showToast}"
                     app:icon="@{@drawable/icon_plus_blue_24dp}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>

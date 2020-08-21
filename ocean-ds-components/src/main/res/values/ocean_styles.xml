@@ -106,47 +106,47 @@
 
     <style name="Ocean.Button.SM.Primary">
         <item name="android:background">@drawable/ocean_button_primary</item>
-        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+        <item name="android:textColor">@drawable/ocean_button_primary_text_color</item>
     </style>
 
     <style name="Ocean.Button.MD.Primary">
         <item name="android:background">@drawable/ocean_button_primary</item>
-        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+        <item name="android:textColor">@drawable/ocean_button_primary_text_color</item>
     </style>
 
     <style name="Ocean.Button.LG.Primary">
         <item name="android:background">@drawable/ocean_button_primary</item>
-        <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
+        <item name="android:textColor">@drawable/ocean_button_primary_text_color</item>
     </style>
 
     <style name="Ocean.Button.SM.Secondary">
         <item name="android:background">@drawable/ocean_button_secondary</item>
-        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+        <item name="android:textColor">@drawable/ocean_button_secondary_text_color</item>
     </style>
 
     <style name="Ocean.Button.MD.Secondary">
         <item name="android:background">@drawable/ocean_button_secondary</item>
-        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+        <item name="android:textColor">@drawable/ocean_button_secondary_text_color</item>
     </style>
 
     <style name="Ocean.Button.LG.Secondary">
         <item name="android:background">@drawable/ocean_button_secondary</item>
-        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+        <item name="android:textColor">@drawable/ocean_button_secondary_text_color</item>
     </style>
 
     <style name="Ocean.Button.SM.Text">
         <item name="android:background">@drawable/ocean_button_text</item>
-        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+        <item name="android:textColor">@drawable/ocean_button_text_text_color</item>
     </style>
 
     <style name="Ocean.Button.MD.Text">
         <item name="android:background">@drawable/ocean_button_text</item>
-        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+        <item name="android:textColor">@drawable/ocean_button_text_text_color</item>
     </style>
 
     <style name="Ocean.Button.LG.Text">
         <item name="android:background">@drawable/ocean_button_text</item>
-        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+        <item name="android:textColor">@drawable/ocean_button_text_text_color</item>
     </style>
 
 </resources>

@@ -35,6 +35,7 @@
             android:id="@+id/button"
             style="@style/Ocean.Button.MD.Secondary"
             android:layout_width="match_parent"
+            android:enabled="false"
             android:layout_height="wrap_content"
             android:drawableStart="@{showProgress ? @drawable/icon_no_image_1dp : icon}"
             android:drawablePadding="@dimen/ocean_spacing_stack_xxs"

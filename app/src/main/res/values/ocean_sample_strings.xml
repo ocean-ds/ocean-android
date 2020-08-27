@@ -11,6 +11,7 @@
     <string name="ocean_sample_text_subtitle_1">This is a sample of a SUBTITLE 1 component.</string>
     <string name="ocean_sample_text_subtitle_2">This is a sample of a SUBTITLE 2 component.</string>
     <string name="ocean_sample_text_paragraph">This is a sample of a PARAGRAPH component.</string>
+    <string name="ocean_sample_text_paragraph_with_span_bold"><![CDATA[This is a sample of a <b>PARAGRAPH</b> component.]]></string>
     <string name="ocean_sample_text_description">This is a sample of a DESCRIPTION component.</string>
     <string name="ocean_sample_text_description_with_span_bold"><![CDATA[This is a sample of a <b>DESCRIPTION</b> component.]]></string>
     <string name="ocean_sample_text_caption">This is a sample of a CAPTION component.</string>

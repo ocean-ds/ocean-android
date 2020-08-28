@@ -161,6 +161,13 @@
                     android:layout_height="wrap_content"
                     android:text="@{@string/ocean_sample_text_paragraph}" />
 
+                <include
+                    android:id="@+id/textParagraphWithSpanBold"
+                    layout="@layout/ocean_paragraph"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_paragraph_with_span_bold}" />
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -177,6 +184,13 @@
                     android:layout_height="wrap_content"
                     android:text="@{@string/ocean_sample_text_paragraph}" />
 
+                <include
+                    android:id="@+id/textParagraphInverseWithSpanBold"
+                    layout="@layout/ocean_paragraph_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_paragraph_with_span_bold}" />
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -191,6 +205,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{@string/ocean_sample_text_description}" />
+
+                <include
+                    android:id="@+id/textDescriptionWithSpanBold"
+                    layout="@layout/ocean_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_description_with_span_bold}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -207,6 +228,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{@string/ocean_sample_text_description}" />
+
+                <include
+                    android:id="@+id/textDescriptionInverseWithSpanBold"
+                    layout="@layout/ocean_description_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/ocean_sample_text_description_with_span_bold}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

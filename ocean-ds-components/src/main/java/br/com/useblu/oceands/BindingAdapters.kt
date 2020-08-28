@@ -12,5 +12,5 @@ fun setVisibleOrInvisible(view: View, status: Boolean) {
 
 @BindingAdapter("app:ocean_text_span_bold")
 fun setTextSpanBold(view: TextView, text: String?) {
-    view.text = HtmlCompat.fromHtml("<html><body>$text</body></html>", HtmlCompat.FROM_HTML_MODE_LEGACY)
+    view.text = HtmlCompat.fromHtml(text ?: "", HtmlCompat.FROM_HTML_MODE_LEGACY)
 }

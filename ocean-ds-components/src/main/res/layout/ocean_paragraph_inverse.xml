@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="@{text}"
         android:gravity="@{gravity}"
-        app:ocean_text_span_bold="@{text}"
+        app:ocean_text_from_html="@{text}"
         tools:text="Paragraph Inverse" />
 
 </layout>

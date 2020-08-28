@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@{text}"
-        app:ocean_text_span_bold="@{text}"
+        app:ocean_text_from_html="@{text}"
         android:gravity="@{gravity}"
         tools:text="Description" />
 

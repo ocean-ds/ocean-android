@@ -7,6 +7,11 @@
         <variable
             name="text"
             type="String" />
+
+        <variable
+            name="gravity"
+            type="Integer" />
+
     </data>
 
     <com.google.android.material.textview.MaterialTextView
@@ -14,6 +19,7 @@
         style="@style/Ocean.Heading.1.Inverse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="@{gravity}"
         android:text="@{text}"
         tools:text="Heading 1 Inverse" />
 

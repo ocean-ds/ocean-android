@@ -8,6 +8,10 @@
             name="text"
             type="String" />
 
+        <variable
+            name="gravity"
+            type="Integer" />
+
     </data>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -15,6 +19,7 @@
         style="@style/Ocean.Subtitle.2.Inverse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="@{gravity}"
         android:text="@{text}"
         tools:text="Subtitle 2 Inverse" />
 

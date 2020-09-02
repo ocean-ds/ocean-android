@@ -1,7 +1,5 @@
-<resources
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="ExtraTranslation"
-    >
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
 
     <!-- TYPOGRAPHY -->
     <string name="ocean_sample_text_heading_1">HEADING 1 - Soluções de negócios inovadoras e que beneficiam toda a cadeia, do varejo à indústria.</string>

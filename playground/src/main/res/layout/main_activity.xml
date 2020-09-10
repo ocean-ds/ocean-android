@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.playground.ui.main.HomeViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="TIGHT" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="MEDIUM" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="COMFY" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                android:weightSum="3">
+
+                <EditText
+                    android:id="@+id/editSpacingDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="1.0" />
+
+                <EditText
+                    android:id="@+id/editSpacingMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="1.1" />
+
+                <EditText
+                    android:id="@+id/editSpacingLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="1.5" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:id="@+id/buttonClick"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:onClick="@{() -> viewmodel.onClickButton()}"-->
+<!--                android:text="CLICK ME" />-->
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textValue"
+                style="@style/Ocean.Paragraph"
+                android:layout_width="match_parent"
+                android:padding="8dp"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="@{viewmodel.spacingDefault}"
+                android:layout_marginBottom="16dp"
+                android:background="#33AAAAAA"
+                android:text="@{viewmodel.textValue}" />
+
+            <TextView
+                android:id="@+id/textValueMedium"
+                style="@style/Ocean.Paragraph"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="#33AAAAAA"
+                android:lineSpacingMultiplier="@{viewmodel.spacingMedium}"
+                android:text="@{viewmodel.textValueMedium}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textValueLarge"
+                style="@style/Ocean.Paragraph"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:lineSpacingMultiplier="@{viewmodel.spacingLarge}"
+                android:background="#33AAAAAA"
+                android:text="@{viewmodel.textValueLarge}" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

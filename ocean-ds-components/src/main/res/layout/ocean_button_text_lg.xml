@@ -29,8 +29,8 @@
         android:layout_height="wrap_content"
         android:drawableStart="@{icon}"
         android:drawablePadding="@dimen/ocean_spacing_stack_xxs"
+        android:onClick="@{() -> click.invoke()}"
         android:text="@{text}"
-        tools:text="Large"
-        android:onClick="@{() -> click.invoke()}"/>
+        tools:text="Large" />
 
 </layout>

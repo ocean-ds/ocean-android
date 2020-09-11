@@ -13,6 +13,7 @@
     <string name="ocean_sample_text_description">DESCRIPTION - Soluções de negócios inovadoras e que beneficiam toda a cadeia, do varejo à indústria.</string>
     <string name="ocean_sample_text_description_with_span_bold"><![CDATA[<b>DESCRIPTION</b> - Soluções de negócios inovadoras e que beneficiam toda a cadeia, do varejo à indústria.]]></string>
     <string name="ocean_sample_text_caption">CAPTION - Soluções de negócios inovadoras e que beneficiam toda a cadeia, do varejo à indústria.</string>
+    <string name="ocean_sample_text_lead">LEAD - Soluções de negócios inovadoras e que beneficiam toda a cadeia, do varejo à indústria.</string>
 
     <!-- BUTTONS -->
     <string name="ocean_sample_button_primary_small">Primary Small</string>

@@ -13,6 +13,10 @@
         <item name="android:textColor">@color/ocean_color_brand_primary_up</item>
     </style>
 
+    <style name="Ocean.Lead.Inverse">
+        <item name="android:textColor">@color/ocean_color_interface_light_down</item>
+    </style>
+
 
     <!-- HEADING.INVERSE -->
     <style name="Ocean.Heading.1.Inverse">

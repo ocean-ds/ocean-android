@@ -39,6 +39,13 @@
         <item name="android:textSize">@dimen/ocean_font_size_xxxs</item>
     </style>
 
+    <style name="Ocean.Lead" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/font_family_base_bold</item>
+        <item name="android:lineSpacingMultiplier">@dimen/ocean_line_height_comfy</item>
+        <item name="android:textColor">@color/ocean_color_interface_dark_down</item>
+        <item name="android:textSize">@dimen/ocean_font_size_sm</item>
+    </style>
+
     <style name="Ocean.Button" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/font_family_base_bold</item>
         <item name="android:textAllCaps">false</item>

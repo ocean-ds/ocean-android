@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.main.ButtonsViewModel" />
+        <import type="android.view.View"/>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.main.ButtonsFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.buttonType}"
+            android:visibility="gone"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Secondary"
+            android:visibility="gone"/>
+
+        <include
+            layout="@layout/ocean_button_primary_sm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+            android:text="@{@string/ocean_sample_button_primary_small}"
+            android:visibility='@{viewmodel.buttonType == "Primary.small.unblocked" ? View.VISIBLE : View.GONE}'/>
+
+        <include
+            layout="@layout/ocean_button_primary_md"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+            android:text="@{@string/ocean_sample_button_primary_medium}"
+            android:visibility='@{viewmodel.buttonType == "Primary.medium.unblocked" ? View.VISIBLE : View.GONE}'/>
+
+    </LinearLayout>
+</layout>

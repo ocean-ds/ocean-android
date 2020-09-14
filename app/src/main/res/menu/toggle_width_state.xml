@@ -3,11 +3,11 @@
 
     <item
         android:id="@+id/toggle_width_default"
-        android:title="DEFAULT"
+        android:title="Unblocked"
         />
 
     <item
         android:id="@+id/toggle_width_blocked"
-        android:title="BLOCKED"/>
+        android:title="Blocked"/>
 
 </menu>

@@ -7,12 +7,12 @@
         />
 
     <item
-        android:id="@+id/toggle_type_inverse"
-        android:title="Inverse"/>
-
-    <item
         android:id="@+id/toggle_type_secondary"
         android:title="Secondary" />
+
+    <item
+        android:id="@+id/toggle_type_inverse"
+        android:title="Inverse"/>
 
     <item
         android:id="@+id/toggle_type_text"

@@ -4,11 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.com.useblu.oceands.client.R
 
 class ButtonsViewModel : ViewModel() {
 
     private val _buttonType = MutableLiveData<String>()
     val buttonType: LiveData<String> get() = _buttonType
+
+    private val _isIconEnabled = MutableLiveData<Boolean>()
+    val isIconEnabled: LiveData<Boolean> get() = _isIconEnabled
 
     private val _buttonSize = MutableLiveData<String>()
     val buttonSize: LiveData<String> get() = _buttonSize
@@ -19,26 +23,34 @@ class ButtonsViewModel : ViewModel() {
     private val _isWidthStateBlocked = MutableLiveData<Boolean>()
     val isWidthStateBlocked: LiveData<Boolean> get() = _isWidthStateBlocked
 
-    /**
-     * Primary.Small
-     * Primary.Medium
-     * Primary.Large
-     * Secondary.Small
-     * Secondary.Medium
-     * Secondary.Large
-     *
-     */
+    private val _backgroundColorId = MutableLiveData<Int>()
+    val backgroundColorId: LiveData<Int> get() = _backgroundColorId
 
     fun setButtonType(name: String) {
         _buttonType.value = name
-        Log.d("TEST_LUIS", "${buttonType.value}${buttonSize.value}")
-        Log.d("TEST_LUIS", "${_buttonType.value}${_buttonSize.value}")
+
+        when(name) {
+            "Primary" -> {
+                _backgroundColorId.value = R.color.ocean_color_interface_light_up
+            }
+            "Secondary" -> {
+                _backgroundColorId.value = R.color.ocean_color_interface_light_deep
+            }
+            "Inverse" -> {
+                _backgroundColorId.value = R.color.ocean_color_brand_primary_pure
+            }
+            else -> {
+                _backgroundColorId.value = R.color.ocean_color_interface_light_up
+            }
+        }
+    }
+
+    fun setIconEnabled(isIconEnabled: Boolean) {
+        _isIconEnabled.value = isIconEnabled
     }
 
     fun setButtonSize(name: String) {
         _buttonSize.value = name
-        Log.d("TEST_LUIS", "${buttonType.value}${buttonSize.value}")
-        Log.d("TEST_LUIS", "${_buttonType.value}${_buttonSize.value}")
     }
 
     fun setWidthStateBlocked(isBlocked: Boolean) {
@@ -48,5 +60,4 @@ class ButtonsViewModel : ViewModel() {
     fun setState(value: String) {
         _buttonState.value = value
     }
-
 }

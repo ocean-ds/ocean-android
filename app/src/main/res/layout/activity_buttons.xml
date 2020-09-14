@@ -2,10 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
 
-        <import type="android.view.View"/>
-        <import type="android.view.ViewGroup"/>
+        <import type="android.view.View" />
+
+        <import type="android.view.ViewGroup" />
+
+        <import type="br.com.useblu.oceands.client.R" />
 
         <variable
             name="viewmodel"
@@ -13,137 +17,214 @@
 
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#FFF"
-        android:gravity="center_horizontal"
-        android:padding="@dimen/ocean_spacing_stack_xs"
-        tools:context=".ui.main.ButtonsFragment">
+        app:backgroundResource="@{viewmodel.backgroundColorId != null ? viewmodel.backgroundColorId : R.color.ocean_color_interface_light_up}"
+        tools:context=".ui.buttons.ButtonsActivity">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewmodel.buttonType + viewmodel.buttonSize}"
-            android:layout_marginBottom="30dp"
-            />
+            android:layout_height="0dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/ocean_spacing_stack_xs">
 
-        <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
-            android:id="@+id/toggleType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
-            app:customLayout="@layout/toggle_button"
-            app:dividerColor="@android:color/darker_gray"
-            app:selectedColor="@color/ocean_color_brand_primary_up"
-            app:menu="@menu/toggle_type" />
+            <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
+                android:id="@+id/toggleType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+                app:customLayout="@layout/toggle_button"
+                app:dividerColor="@android:color/darker_gray"
+                app:menu="@menu/toggle_type"
+                app:selectedColor="@color/ocean_color_brand_primary_up"
+                />
 
-        <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
-            android:id="@+id/toggleSize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
-            app:customLayout="@layout/toggle_button"
-            app:dividerColor="@android:color/darker_gray"
-            app:selectedColor="@color/ocean_color_brand_primary_up"
-            app:menu="@menu/toggle_size" />
+            <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
+                android:id="@+id/toggleIconState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+                app:customLayout="@layout/toggle_button"
+                app:dividerColor="@android:color/darker_gray"
+                app:menu="@menu/toggle_icon_state"
+                app:selectedColor="@color/ocean_color_brand_primary_up" />
 
-        <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
-            android:id="@+id/toggleState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
-            app:customLayout="@layout/toggle_button"
-            app:dividerColor="@android:color/darker_gray"
-            app:selectedColor="@color/ocean_color_brand_primary_up"
-            app:menu="@menu/toggle_state" />
+            <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
+                android:id="@+id/toggleBlockedState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+                app:customLayout="@layout/toggle_button"
+                app:dividerColor="@android:color/darker_gray"
+                app:menu="@menu/toggle_width_state"
+                app:selectedColor="@color/ocean_color_brand_primary_up" />
 
-        <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
-            android:id="@+id/toggleBlockedState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
-            app:customLayout="@layout/toggle_button"
-            app:dividerColor="@android:color/darker_gray"
-            app:selectedColor="@color/ocean_color_brand_primary_up"
-            app:menu="@menu/toggle_width_state" />
+            <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
+                android:id="@+id/toggleState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+                app:customLayout="@layout/toggle_button"
+                app:dividerColor="@android:color/darker_gray"
+                app:menu="@menu/toggle_state"
+                app:selectedColor="@color/ocean_color_brand_primary_up" />
 
-        <include
-            layout="@layout/ocean_button_primary_sm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-            android:text="@{@string/ocean_sample_button_primary_small}"
-            android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimarySmall") ? View.VISIBLE : View.GONE}'
-            app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
-            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
-            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
-            />
 
-        <include
-            layout="@layout/ocean_button_primary_md"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-            android:text="@{@string/ocean_sample_button_primary_medium}"
-            android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimaryMedium") ? View.VISIBLE : View.GONE}'
-            app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
-            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
-            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
-            />
+            <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
+                android:id="@+id/toggleSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+                app:customLayout="@layout/toggle_button"
+                app:dividerColor="@android:color/darker_gray"
+                app:menu="@menu/toggle_size"
+                app:selectedColor="@color/ocean_color_brand_primary_up" />
 
-        <include
-            layout="@layout/ocean_button_primary_lg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-            android:text="@{@string/ocean_sample_button_primary_medium}"
-            android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimaryLarge") ? View.VISIBLE : View.GONE}'
-            app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
-            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
-            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
-            />
+            <include
+                layout="@layout/ocean_button_primary_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimarySmall") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_white_16dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+                app:showProgress='@{viewmodel.buttonState.equals("Loading")}' />
 
-        <include
-            layout="@layout/ocean_button_secondary_sm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-            android:text="@{@string/ocean_sample_button_primary_small}"
-            android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("SecondarySmall") ? View.VISIBLE : View.GONE}'
-            app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
-            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
-            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
-            />
+            <include
+                layout="@layout/ocean_button_primary_md"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimaryMedium") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_white_24dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+                app:showProgress='@{viewmodel.buttonState.equals("Loading")}' />
 
-        <include
-            layout="@layout/ocean_button_secondary_md"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-            android:text="@{@string/ocean_sample_button_primary_medium}"
-            android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("SecondaryMedium") ? View.VISIBLE : View.GONE}'
-            app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
-            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
-            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
-            />
+            <include
+                layout="@layout/ocean_button_primary_lg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimaryLarge") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_white_24dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+                app:showProgress='@{viewmodel.buttonState.equals("Loading")}' />
 
-        <include
-            layout="@layout/ocean_button_secondary_lg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-            android:text="@{@string/ocean_sample_button_primary_medium}"
-            android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("SecondaryLarge") ? View.VISIBLE : View.GONE}'
-            app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
-            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
-            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
-            />
+            <include
+                layout="@layout/ocean_button_secondary_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("SecondarySmall") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_blue_16dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
 
-    </LinearLayout>
+            <include
+                layout="@layout/ocean_button_secondary_md"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("SecondaryMedium") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_blue_24dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
+
+            <include
+                layout="@layout/ocean_button_secondary_lg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("SecondaryLarge") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_blue_24dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
+
+            <include
+                layout="@layout/ocean_button_primary_inverse_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("InverseSmall") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_white_16dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+                app:showProgress='@{viewmodel.buttonState.equals("Loading")}' />
+
+            <include
+                layout="@layout/ocean_button_primary_inverse_md"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("InverseMedium") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_white_24dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+                app:showProgress='@{viewmodel.buttonState.equals("Loading")}' />
+
+            <include
+                layout="@layout/ocean_button_primary_inverse_lg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("InverseLarge") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_white_24dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+                app:showProgress='@{viewmodel.buttonState.equals("Loading")}' />
+
+            <include
+                layout="@layout/ocean_button_text_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("TextSmall") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_blue_16dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
+
+            <include
+                layout="@layout/ocean_button_text_md"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("TextMedium") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_blue_24dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
+
+            <include
+                layout="@layout/ocean_button_text_lg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("TextLarge") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_blue_24dp : @drawable/icon_no_image_1dp}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
+
+        </LinearLayout>
+    </ScrollView>
 </layout>

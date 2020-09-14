@@ -26,7 +26,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-
+        maven { url "https://jitpack.io" }
         maven {
             name = "github-packages-maven-repo"
             url = uri("$gprBaseUrl/$gprRepoOwner/$gprRepoId")

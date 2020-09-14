@@ -3,18 +3,18 @@
 
     <item
         android:id="@+id/toggle_type_primary"
-        android:title="PRIMARY"
+        android:title="Primary"
         />
 
     <item
         android:id="@+id/toggle_type_inverse"
-        android:title="INVERSE"/>
+        android:title="Inverse"/>
 
     <item
         android:id="@+id/toggle_type_secondary"
-        android:title="SECONDARY" />
+        android:title="Secondary" />
 
     <item
         android:id="@+id/toggle_type_text"
-        android:title="TEXT" />
+        android:title="Text" />
 </menu>

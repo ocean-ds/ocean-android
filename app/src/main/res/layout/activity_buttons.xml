@@ -20,6 +20,13 @@
         android:gravity="center_horizontal"
         tools:context=".ui.main.ButtonsFragment">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.buttonType + viewmodel.buttonSize}"
+            android:layout_marginBottom="30dp"
+            />
+
         <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
             android:id="@+id/toggleType"
             android:layout_width="wrap_content"
@@ -32,6 +39,17 @@
             app:menu="@menu/toggle_type" />
 
         <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
+            android:id="@+id/toggleSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            app:customLayout="@layout/toggle_button"
+            app:dividerColor="@android:color/darker_gray"
+            app:selectedColor="@color/ocean_color_brand_primary_up"
+            app:menu="@menu/toggle_size" />
+
+        <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
             android:id="@+id/toggleBlockedState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,27 +60,13 @@
             app:selectedColor="@color/ocean_color_brand_primary_up"
             app:menu="@menu/toggle_width_state" />
 
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewmodel.buttonType}"
-            android:visibility="gone"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Secondary"
-            android:visibility="gone"/>
-
         <include
             layout="@layout/ocean_button_primary_sm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
             android:text="@{@string/ocean_sample_button_primary_small}"
-            android:visibility='@{viewmodel.buttonType == "Primary.small.unblocked" ? View.VISIBLE : View.GONE}'
-            app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+            android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize) == "PrimarySmall" ? View.VISIBLE : View.GONE}'
             />
 
         <include
@@ -71,7 +75,17 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
             android:text="@{@string/ocean_sample_button_primary_medium}"
-            android:visibility='@{viewmodel.buttonType == "Primary.medium.unblocked" ? View.VISIBLE : View.GONE}'
+            android:visibility='@{viewmodel.buttonType == "PrimaryMedium" ? View.VISIBLE : View.GONE}'
+            app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+            />
+
+        <include
+            layout="@layout/ocean_button_primary_lg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+            android:text="@{@string/ocean_sample_button_primary_medium}"
+            android:visibility='@{viewmodel.buttonType == "PrimaryLarge" ? View.VISIBLE : View.GONE}'
             app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
             />
 

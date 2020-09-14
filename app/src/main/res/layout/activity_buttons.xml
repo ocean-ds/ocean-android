@@ -81,6 +81,8 @@
             android:text="@{@string/ocean_sample_button_primary_small}"
             android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimarySmall") ? View.VISIBLE : View.GONE}'
             app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
+            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
             />
 
         <include
@@ -91,6 +93,8 @@
             android:text="@{@string/ocean_sample_button_primary_medium}"
             android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimaryMedium") ? View.VISIBLE : View.GONE}'
             app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
+            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
             />
 
         <include
@@ -101,6 +105,8 @@
             android:text="@{@string/ocean_sample_button_primary_medium}"
             android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimaryLarge") ? View.VISIBLE : View.GONE}'
             app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
+            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
             />
 
         <include
@@ -111,6 +117,8 @@
             android:text="@{@string/ocean_sample_button_primary_small}"
             android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("SecondarySmall") ? View.VISIBLE : View.GONE}'
             app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
+            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
             />
 
         <include
@@ -121,6 +129,8 @@
             android:text="@{@string/ocean_sample_button_primary_medium}"
             android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("SecondaryMedium") ? View.VISIBLE : View.GONE}'
             app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
+            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
             />
 
         <include
@@ -131,6 +141,8 @@
             android:text="@{@string/ocean_sample_button_primary_medium}"
             android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("SecondaryLarge") ? View.VISIBLE : View.GONE}'
             app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+            app:showProgress='@{viewmodel.buttonState.equals("Progress")}'
+            app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
             />
 
     </LinearLayout>

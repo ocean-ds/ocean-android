@@ -20,6 +20,10 @@
             name="click"
             type="Function0&lt;Unit>" />
 
+        <variable
+            name="disabled"
+            type="Boolean" />
+
     </data>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -29,6 +33,7 @@
         android:layout_height="wrap_content"
         android:drawableStart="@{icon}"
         android:drawablePadding="@dimen/ocean_spacing_stack_xxs"
+        android:enabled="@{!disabled}"
         android:onClick="@{() -> click.invoke()}"
         android:text="@{text}"
         tools:text="Large" />

@@ -316,6 +316,7 @@
                     android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                     android:text="@{@string/ocean_sample_button_primary_small}"
                     app:click="@{viewmodel::onClickButton}"
+                    app:disabled="@{true}"
                     app:showProgress="@{viewmodel.showProgress}" />
 
                 <include
@@ -420,7 +421,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                     android:text="@{@string/ocean_sample_button_text_small}"
-                    app:click="@{viewmodel::showToast}" />
+                    app:click="@{viewmodel::showToast}"
+                    app:disabled="@{true}" />
 
                 <include
                     layout="@layout/ocean_button_text_md"

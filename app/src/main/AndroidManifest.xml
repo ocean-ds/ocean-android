@@ -13,17 +13,17 @@
         <activity android:name=".DescriptionActivity" />
         <activity android:name=".ParagraphActivity" />
         <activity android:name=".SubtitlesActivity" />
-        <activity android:name=".HomeActivity">
+        <activity android:name=".ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ButtonsActivity" />
+        <activity android:name=".ui.buttons.ButtonsActivity" />
         <activity android:name=".HeadingsActivity" />
         <activity android:name=".TypographyActivity" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".ui.main.MainActivity"/>
     </application>
 
 </manifest>

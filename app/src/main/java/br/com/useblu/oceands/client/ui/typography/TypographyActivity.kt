@@ -1,9 +1,15 @@
-package br.com.useblu.oceands.client
+package br.com.useblu.oceands.client.ui.typography
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import br.com.useblu.oceands.client.R
+import br.com.useblu.oceands.client.ui.caption.CaptionActivity
+import br.com.useblu.oceands.client.ui.description.DescriptionActivity
+import br.com.useblu.oceands.client.ui.headings.HeadingsActivity
+import br.com.useblu.oceands.client.ui.paragraph.ParagraphActivity
+import br.com.useblu.oceands.client.ui.subtitles.SubtitlesActivity
 
 class TypographyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

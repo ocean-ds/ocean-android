@@ -6,7 +6,7 @@
 
         <variable
             name="viewmodel"
-            type="br.com.useblu.oceands.client.ui.main.ButtonsViewModel" />
+            type="br.com.useblu.oceands.client.ui.buttons.ButtonsViewModel" />
         <import type="android.view.View"/>
 
     </data>

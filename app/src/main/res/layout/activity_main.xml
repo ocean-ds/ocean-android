@@ -7,14 +7,14 @@
 
         <variable
             name="viewmodel"
-            type="br.com.useblu.oceands.client.viewmodel.HomeViewModel" />
+            type="br.com.useblu.oceands.client.ui.home.HomeViewModel" />
 
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.main.MainActivity">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"

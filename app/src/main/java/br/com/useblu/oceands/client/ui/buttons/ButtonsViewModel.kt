@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.client.ui.main
+package br.com.useblu.oceands.client.ui.buttons
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

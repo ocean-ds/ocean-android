@@ -1,11 +1,14 @@
-package br.com.useblu.oceands.client
+package br.com.useblu.oceands.client.ui.home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
+import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityMainBinding
+import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
+import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 
 class HomeActivity : AppCompatActivity() {
     val titles = arrayOf<String>("Typography","Buttons")

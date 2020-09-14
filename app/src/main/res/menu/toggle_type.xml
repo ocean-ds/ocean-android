@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/toggle_type_primary"
+        android:title="PRIMARY"
+        />
+
+    <item
+        android:id="@+id/toggle_type_inverse"
+        android:title="INVERSE"/>
+
+    <item
+        android:id="@+id/toggle_type_secondary"
+        android:title="SECONDARY" />
+
+    <item
+        android:id="@+id/toggle_type_text"
+        android:title="TEXT" />
+</menu>

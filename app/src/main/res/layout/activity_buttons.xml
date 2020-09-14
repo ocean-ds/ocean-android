@@ -4,35 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
 
+        <import type="android.view.View"/>
+        <import type="android.view.ViewGroup"/>
+
         <variable
             name="viewmodel"
             type="br.com.useblu.oceands.client.ui.buttons.ButtonsViewModel" />
-        <import type="android.view.View"/>
 
     </data>
 
     <LinearLayout
-        android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
         tools:context=".ui.main.ButtonsFragment">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
+            android:id="@+id/toggleType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            app:customLayout="@layout/toggle_button"
+            app:dividerColor="@android:color/darker_gray"
+            app:selectedColor="@color/ocean_color_brand_primary_up"
+            app:menu="@menu/toggle_type" />
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-
-
-        </LinearLayout>
+        <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
+            android:id="@+id/toggleBlockedState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            app:customLayout="@layout/toggle_button"
+            app:dividerColor="@android:color/darker_gray"
+            app:selectedColor="@color/ocean_color_brand_primary_up"
+            app:menu="@menu/toggle_width_state" />
 
 
         <Button
@@ -53,7 +61,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
             android:text="@{@string/ocean_sample_button_primary_small}"
-            android:visibility='@{viewmodel.buttonType == "Primary.small.unblocked" ? View.VISIBLE : View.GONE}'/>
+            android:visibility='@{viewmodel.buttonType == "Primary.small.unblocked" ? View.VISIBLE : View.GONE}'
+            app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+            />
 
         <include
             layout="@layout/ocean_button_primary_md"
@@ -61,7 +71,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
             android:text="@{@string/ocean_sample_button_primary_medium}"
-            android:visibility='@{viewmodel.buttonType == "Primary.medium.unblocked" ? View.VISIBLE : View.GONE}'/>
+            android:visibility='@{viewmodel.buttonType == "Primary.medium.unblocked" ? View.VISIBLE : View.GONE}'
+            app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }"
+            />
 
     </LinearLayout>
 </layout>

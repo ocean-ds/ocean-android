@@ -6,6 +6,12 @@ import androidx.lifecycle.ViewModel
 
 class ButtonsViewModel : ViewModel() {
 
+    private val _buttonType = MutableLiveData<String>()
+    val buttonType: LiveData<String> get() = _buttonType
+
+    private val _isWidthStateBlocked = MutableLiveData<Boolean>()
+    val isWidthStateBlocked: LiveData<Boolean> get() = _isWidthStateBlocked
+
     /**
      * Primary.small.unblocked
      * Primary.small.blocked
@@ -18,9 +24,8 @@ class ButtonsViewModel : ViewModel() {
         _buttonType.value = name
     }
 
-    private val _buttonType = MutableLiveData<String>()
-    val buttonType: LiveData<String> get() = _buttonType
-
-
+    fun setWidthStateBlocked(isBlocked: Boolean) {
+        _isWidthStateBlocked.value = isBlocked
+    }
 
 }

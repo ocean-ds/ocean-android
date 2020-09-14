@@ -25,6 +25,10 @@
             name="icon"
             type="android.graphics.drawable.Drawable" />
 
+        <variable
+            name="disabled"
+            type="Boolean" />
+
     </data>
 
     <FrameLayout
@@ -38,6 +42,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@{showProgress ? @drawable/icon_no_image_1dp : icon}"
             android:drawablePadding="@dimen/ocean_spacing_stack_xxs"
+            android:enabled="@{!disabled}"
             android:gravity="center"
             android:onClick="@{() -> click.invoke()}"
             android:text="@{showProgress ? @string/ocean_button_empty : text}"

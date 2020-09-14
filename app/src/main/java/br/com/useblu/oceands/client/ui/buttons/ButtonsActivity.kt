@@ -36,6 +36,10 @@ class ButtonsActivity : AppCompatActivity() {
             viewModel.setButtonSize(toggle.title.toString())
         }
 
+        binding.toggleState.onToggledListener = { _: ToggleButtonLayout, toggle: Toggle, _: Boolean ->
+            viewModel.setState(toggle.title.toString())
+        }
+
         binding.toggleBlockedState.onToggledListener = { _: ToggleButtonLayout, toggle: Toggle, _: Boolean ->
             viewModel.setWidthStateBlocked(toggle.id == R.id.toggle_width_blocked && toggle.isSelected)
         }

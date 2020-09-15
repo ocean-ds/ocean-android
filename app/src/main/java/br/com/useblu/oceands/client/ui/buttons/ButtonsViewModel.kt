@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.client.ui.buttons
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,7 +28,7 @@ class ButtonsViewModel : ViewModel() {
     fun setButtonType(name: String) {
         _buttonType.value = name
 
-        when(name) {
+        when (name) {
             "Primary" -> {
                 _backgroundColorId.value = R.color.ocean_color_interface_light_up
             }

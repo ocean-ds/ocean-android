@@ -1,11 +1,10 @@
 package br.com.useblu.oceands.client.ui.description
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityDescriptionBinding
-import br.com.useblu.oceands.client.databinding.ActivityParagraphBinding
 
 class DescriptionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDescriptionBinding

@@ -1,11 +1,10 @@
 package br.com.useblu.oceands.client.ui.caption
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityCaptionBinding
-import br.com.useblu.oceands.client.databinding.ActivityHeadingsBinding
 
 class CaptionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCaptionBinding

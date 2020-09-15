@@ -2,7 +2,9 @@ package br.com.useblu.oceands
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.DimenRes
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 
@@ -21,4 +23,15 @@ fun setLayoutWidth(view: View, width: Int) {
     val params = view?.layoutParams as ViewGroup.LayoutParams
     params.width = width
     view?.layoutParams = params
+}
+
+@BindingAdapter("app:ocean_drawable_padding")
+fun setOceanDrawablePadding(button: Button, @DimenRes dimenId: Int) {
+    var dimensionPixelSize = 0
+
+    if (dimenId != 0) {
+        dimensionPixelSize = button.context.resources.getDimensionPixelSize(dimenId)
+    }
+
+    button.compoundDrawablePadding = dimensionPixelSize
 }

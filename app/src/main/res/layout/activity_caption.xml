@@ -24,7 +24,7 @@
                     layout="@layout/ocean_caption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/ocean_sample_text_heading_1}" />
+                    android:text="@{@string/ocean_sample_text_caption}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -39,7 +39,7 @@
                     layout="@layout/ocean_caption_inverse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/ocean_sample_text_heading_1}" />
+                    android:text="@{@string/ocean_sample_text_caption}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

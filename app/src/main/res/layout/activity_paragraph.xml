@@ -1,41 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.paragraph.ParagraphActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <data />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#333FFFBB"
-        android:orientation="vertical"
-        android:paddingVertical="@dimen/ocean_spacing_inline_xs">
+        android:layout_height="match_parent"
+        tools:context=".ui.paragraph.ParagraphActivity">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#333AAFCC"
+            android:layout_height="0dp"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/ocean_spacing_inline_xs">
+            android:paddingVertical="@dimen/ocean_spacing_inline_xs">
 
-            <include
-                layout="@layout/ocean_paragraph"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-                android:text="@{@string/ocean_sample_text_heading_1}" />
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/ocean_spacing_inline_xs">
 
-            <include
-                layout="@layout/ocean_paragraph_inverse"
+                <include
+                    layout="@layout/ocean_paragraph"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_paragraph}" />
+
+                <include
+                    layout="@layout/ocean_lead"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_lead}" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-                android:text="@{@string/ocean_sample_text_heading_1}" />
+                android:background="@color/ocean_color_brand_primary_pure"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_inline_xs">
+
+                <include
+                    layout="@layout/ocean_paragraph_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_paragraph}" />
+
+                <include
+                    layout="@layout/ocean_lead_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_lead}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

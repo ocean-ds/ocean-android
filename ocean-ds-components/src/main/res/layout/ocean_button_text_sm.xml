@@ -29,16 +29,16 @@
 
     </data>
 
-    <androidx.appcompat.widget.AppCompatButton
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonOceanTextSmall"
         style="@style/Ocean.Button.SM.Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@{icon}"
-        android:drawablePadding="@dimen/ocean_spacing_stack_xxs"
         android:enabled="@{!disabled}"
         android:onClick="@{() -> click.invoke()}"
         android:text="@{text}"
+        app:icon="@{icon}"
         app:ocean_drawable_padding="@{icon == null ? 0 : R.dimen.ocean_spacing_stack_xxs}"
         tools:text="Small" />
 

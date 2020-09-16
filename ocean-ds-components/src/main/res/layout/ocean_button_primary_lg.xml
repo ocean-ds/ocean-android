@@ -37,18 +37,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonOceanPrimaryLarge"
             style="@style/Ocean.Button.LG.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@{showProgress ? null : icon}"
             android:enabled="@{!disabled}"
             android:gravity="center"
             android:onClick="@{() -> click.invoke()}"
             android:text="@{showProgress ? @string/ocean_button_empty : text}"
+            app:icon="@{showProgress ? null : icon}"
             app:ocean_drawable_padding="@{icon == null ? 0 : R.dimen.ocean_spacing_stack_xxs}"
-            tools:text="Medium" />
+            tools:text="Large" />
 
         <ProgressBar
             android:id="@+id/progress"

@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Ocean" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Ocean" parent="Theme.MaterialComponents.Light.DarkActionBar">
 
     </style>
 
@@ -46,12 +46,19 @@
         <item name="android:textSize">@dimen/ocean_font_size_sm</item>
     </style>
 
-    <style name="Ocean.Button" parent="Widget.AppCompat.TextView">
+    <style name="Ocean.Button" parent="Widget.AppCompat.Button">
         <item name="android:fontFamily">@font/font_family_base_bold</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:stateListAnimator">@null</item>
+        <item name="backgroundTint">@null</item>
+        <item name="iconTint">@null</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="iconGravity">textStart</item>
     </style>
 
     <!-- HEADING -->
@@ -114,46 +121,55 @@
     <style name="Ocean.Button.SM.Primary">
         <item name="android:background">@drawable/ocean_button_primary</item>
         <item name="android:textColor">@color/ocean_button_primary_text_color</item>
+        <item name="iconTint">@color/ocean_button_primary_text_color</item>
     </style>
 
     <style name="Ocean.Button.MD.Primary">
         <item name="android:background">@drawable/ocean_button_primary</item>
         <item name="android:textColor">@color/ocean_button_primary_text_color</item>
+        <item name="iconTint">@color/ocean_button_primary_text_color</item>
     </style>
 
     <style name="Ocean.Button.LG.Primary">
         <item name="android:background">@drawable/ocean_button_primary</item>
         <item name="android:textColor">@color/ocean_button_primary_text_color</item>
+        <item name="iconTint">@color/ocean_button_primary_text_color</item>
     </style>
 
     <style name="Ocean.Button.SM.Secondary">
         <item name="android:background">@drawable/ocean_button_secondary</item>
         <item name="android:textColor">@color/ocean_button_secondary_text_color</item>
+        <item name="iconTint">@color/ocean_button_secondary_text_color</item>
     </style>
 
     <style name="Ocean.Button.MD.Secondary">
         <item name="android:background">@drawable/ocean_button_secondary</item>
         <item name="android:textColor">@color/ocean_button_secondary_text_color</item>
+        <item name="iconTint">@color/ocean_button_secondary_text_color</item>
     </style>
 
     <style name="Ocean.Button.LG.Secondary">
         <item name="android:background">@drawable/ocean_button_secondary</item>
         <item name="android:textColor">@color/ocean_button_secondary_text_color</item>
+        <item name="iconTint">@color/ocean_button_secondary_text_color</item>
     </style>
 
     <style name="Ocean.Button.SM.Text">
         <item name="android:background">@drawable/ocean_button_text</item>
         <item name="android:textColor">@drawable/ocean_button_text_text_color</item>
+        <item name="iconTint">@color/ocean_button_secondary_text_color</item>
     </style>
 
     <style name="Ocean.Button.MD.Text">
         <item name="android:background">@drawable/ocean_button_text</item>
         <item name="android:textColor">@drawable/ocean_button_text_text_color</item>
+        <item name="iconTint">@color/ocean_button_secondary_text_color</item>
     </style>
 
     <style name="Ocean.Button.LG.Text">
         <item name="android:background">@drawable/ocean_button_text</item>
         <item name="android:textColor">@drawable/ocean_button_text_text_color</item>
+        <item name="iconTint">@color/ocean_button_secondary_text_color</item>
     </style>
 
 </resources>

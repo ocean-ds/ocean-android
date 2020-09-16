@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.client.viewmodel
+package br.com.useblu.oceands.client.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

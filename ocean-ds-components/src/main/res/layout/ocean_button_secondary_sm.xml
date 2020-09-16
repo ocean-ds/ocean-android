@@ -9,6 +9,8 @@
 
         <import type="kotlin.Unit" />
 
+        <import type="br.com.useblu.oceands.R" />
+
         <variable
             name="text"
             type="String" />
@@ -40,13 +42,13 @@
             style="@style/Ocean.Button.SM.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@{showProgress ? @drawable/icon_no_image_1dp : icon}"
-            android:drawablePadding="@dimen/ocean_spacing_stack_xxs"
+            android:drawableStart="@{showProgress ? null : icon}"
             android:enabled="@{!disabled}"
             android:gravity="center"
             android:onClick="@{() -> click.invoke()}"
             android:text="@{showProgress ? @string/ocean_button_empty : text}"
-            tools:text="Button Text" />
+            app:ocean_drawable_padding="@{icon == null ? 0 : R.dimen.ocean_spacing_stack_xxs}"
+            tools:text="Button Secondary" />
 
         <ProgressBar
             android:id="@+id/progress"

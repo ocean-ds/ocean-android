@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.typography.TypographyActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Headings"
+            android:padding="16dp"
+            android:textSize="24sp"
+            android:onClick="onClickHeadings"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#E7E7E7"
+            android:layout_marginStart="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="SubTitles"
+            android:padding="16dp"
+            android:textSize="24sp"
+            android:onClick="onClickSubtitles"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#E7E7E7"
+            android:layout_marginStart="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Paragraph"
+            android:padding="16dp"
+            android:textSize="24sp"
+            android:onClick="onClickParagraph"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#E7E7E7"
+            android:layout_marginStart="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:text="Description"
+            android:textSize="24sp"
+            android:onClick="onClickDescription"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#E7E7E7"
+            android:layout_marginStart="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:text="Caption"
+            android:textSize="24sp"
+            android:onClick="onClickCaption"/>
+
+    </LinearLayout>
+
+</ScrollView>

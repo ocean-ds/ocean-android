@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.annotation.DimenRes
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
+import com.google.android.material.button.MaterialButton
 
 @BindingAdapter("app:ocean_visible_or_invisible")
 fun setVisibleOrInvisible(view: View, status: Boolean) {
@@ -33,5 +34,9 @@ fun setOceanDrawablePadding(button: Button, @DimenRes dimenId: Int) {
         dimensionPixelSize = button.context.resources.getDimensionPixelSize(dimenId)
     }
 
-    button.compoundDrawablePadding = dimensionPixelSize
+    if (button is MaterialButton) {
+        button.iconPadding = dimensionPixelSize
+    } else {
+        button.compoundDrawablePadding = dimensionPixelSize
+    }
 }

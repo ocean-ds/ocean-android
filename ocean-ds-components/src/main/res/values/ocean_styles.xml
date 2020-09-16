@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Ocean" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Ocean" parent="Theme.MaterialComponents.Light.NoActionBar">
 
     </style>
 

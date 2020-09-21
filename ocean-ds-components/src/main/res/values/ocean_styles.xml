@@ -46,7 +46,7 @@
         <item name="android:textSize">@dimen/ocean_font_size_sm</item>
     </style>
 
-    <style name="Ocean.Button" parent="Widget.AppCompat.Button">
+    <style name="Ocean.Button">
         <item name="android:fontFamily">@font/font_family_base_bold</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:minHeight">0dp</item>
@@ -128,6 +128,15 @@
         <item name="android:background">@drawable/ocean_button_primary</item>
         <item name="android:textColor">@color/ocean_button_primary_text_color</item>
         <item name="iconTint">@color/ocean_button_primary_text_color</item>
+    </style>
+
+    <style name="OceanButtonText">
+        <item name="android:fontFamily">@font/font_family_base_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:textColor">@color/ocean_button_primary_text_color</item>
+        <item name="android:textSize">@dimen/ocean_font_size_xs</item>
     </style>
 
     <style name="Ocean.Button.LG.Primary">

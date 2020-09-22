@@ -29,16 +29,44 @@
 
     </data>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonOceanTextLarge"
-        style="@style/Ocean.Button.LG.Text"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Ocean.Button2.Background.Text.LG"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="@{!disabled}"
         android:enabled="@{!disabled}"
-        android:onClick="@{() -> click.invoke()}"
-        android:text="@{text}"
-        app:icon="@{icon}"
-        app:ocean_drawable_padding="@{icon == null ? 0 : R.dimen.ocean_spacing_stack_xxs}"
-        tools:text="Large" />
+        android:focusable="true"
+        android:onClick="@{() -> click.invoke()}">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
+            android:background="@{icon}"
+            android:enabled="@{!disabled}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonText"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:ocean_visible_or_gone="@{(icon != null)}"
+            tools:background="#FFF" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/buttonText"
+            style="@style/Ocean.Button2.TextView.Text.LG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="@{!disabled}"
+            android:text="@{text}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Large" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

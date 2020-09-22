@@ -3,7 +3,7 @@
     android:width="24dp"
     android:height="24dp"
     android:tint="@color/ocean_button_secondary_text_color"
-    android:tintMode="multiply"
+    android:tintMode="src_in"
     android:viewportWidth="24.0"
     android:viewportHeight="24.0">
     <path

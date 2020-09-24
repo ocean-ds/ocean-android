@@ -34,7 +34,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/Ocean.Button2.Background.Secondary.MD"
+        style="@style/Ocean.Button.Background.Secondary.MD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="@{(!showProgress &amp;&amp; !disabled)}"
@@ -60,7 +60,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/buttonText"
-            style="@style/Ocean.Button2.TextView.Secondary.MD"
+            style="@style/Ocean.Button.TextView.Secondary.MD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="@{!disabled}"

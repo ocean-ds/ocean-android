@@ -224,8 +224,7 @@
     </style>
 
     <style name="Ocean.Button.TextView.Text">
-        <!-- Revisar se precisa de drawable -->
-        <item name="android:textColor">@drawable/ocean_button_text_text_color</item>
+        <item name="android:textColor">@color/ocean_button_text_text_color</item>
     </style>
 
     <style name="Ocean.Button.TextView.Primary.SM">

@@ -100,7 +100,7 @@
                 app:showProgress='@{viewmodel.buttonState.equals("Loading")}' />
 
             <include
-                layout="@layout/ocean_button_primary_md_test"
+                layout="@layout/ocean_button_primary_md"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"

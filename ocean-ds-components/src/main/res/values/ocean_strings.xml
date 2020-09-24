@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ocean_button_empty" />
+    <string name="ocean_button_ok" >OK</string>
 </resources>

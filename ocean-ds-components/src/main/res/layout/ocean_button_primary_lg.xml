@@ -33,34 +33,59 @@
 
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Ocean.Button.Background.Primary.LG"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="@{(!showProgress &amp;&amp; !disabled)}"
+        android:enabled="@{!disabled}"
+        android:focusable="true"
+        android:onClick="@{() -> click.invoke()}">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonOceanPrimaryLarge"
-            style="@style/Ocean.Button.LG.Primary"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
+            android:background="@{icon}"
+            android:enabled="@{!disabled}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonText"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:ocean_visible_or_gone="@{(!showProgress &amp;&amp; icon != null)}"
+            tools:background="#FFF" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/buttonText"
+            style="@style/Ocean.Button.TextView.Primary.LG"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="@{!disabled}"
-            android:gravity="center"
-            android:onClick="@{() -> click.invoke()}"
             android:text="@{showProgress ? @string/ocean_button_empty : text}"
-            app:icon="@{showProgress ? null : icon}"
-            app:ocean_drawable_padding="@{icon == null ? 0 : R.dimen.ocean_spacing_stack_xxs}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageIcon"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Large" />
 
         <ProgressBar
-            android:id="@+id/progress"
+            android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_gravity="center"
             android:elevation="5dp"
             android:indeterminateTint="@color/ocean_color_interface_light_pure"
             android:progressTint="@color/ocean_color_interface_light_pure"
-            app:ocean_visible_or_invisible="@{showProgress}" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:ocean_visible_or_invisible="@{showProgress}"
+            tools:visibility="gone" />
 
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

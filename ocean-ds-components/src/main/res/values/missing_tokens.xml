@@ -5,4 +5,10 @@
     <dimen name="ocean_border_radius_lg">16dp</dimen>
     <dimen name="ocean_border_radius_pill">500dp</dimen>
     <dimen name="ocean_border_width_thin">2dp</dimen>
+
+    <!-- NEW TOKENS PROPOSAL - ONLY ANDROID -->
+    <dimen name="ocean_button_text_view_bottom_padding_adjustment">2dp</dimen>
+    <dimen name="ocean_button_min_height_small">32dp</dimen>
+    <dimen name="ocean_button_min_height_medium">48dp</dimen>
+    <dimen name="ocean_button_min_height_large">56dp</dimen>
 </resources>

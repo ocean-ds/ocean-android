@@ -54,7 +54,7 @@ dependencies {
     //implementation 'androidx.core:core-ktx:1.3.1'
     //api 'androidx.appcompat:appcompat:1.1.0'
     //api 'androidx.constraintlayout:constraintlayout:1.1.3'
-    api 'com.google.android.material:material:1.3.0-alpha02'
+    api 'com.google.android.material:material:1.3.0-alpha03'
 
     embed project(path: ':ocean-ds-tokens')
 }

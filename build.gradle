@@ -6,7 +6,7 @@ def gprRepoId = "ocean-ds-android"
 buildscript {
     apply from: 'dependencies.gradle'
     ext {
-        kotlin_version = '1.4.10'
+        kotlin_version = '1.4.30'
     }
 
     repositories {

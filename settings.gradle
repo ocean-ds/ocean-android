@@ -2,4 +2,4 @@ include ':playground'
 include ':ocean-ds-tokens'
 include ':ocean-ds-components'
 include ':app'
-rootProject.name = "ocean-ds-android"
+rootProject.name = "ocean-android"

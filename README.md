@@ -1,2 +1,3 @@
-# ocean-ds-android
+# ocean-android
+
 Design System for Android

@@ -62,15 +62,15 @@ dependencies {
 afterEvaluate {
     publishing {
         def gprBaseUrl = "https://maven.pkg.github.com"
-        def gprRepoOwner = "Pagnet"
-        def gprRepoId = "ocean-ds-android"
+        def gprRepoOwner = "ocean-ds"
+        def gprRepoId = "ocean-android"
 
         def gprUser = System.getenv("GPR_USER")
         def gprApiKey = System.getenv("GPR_API_KEY")
 
         repositories {
             maven {
-                name = "ocean-ds-android"
+                name = "ocean-android"
                 url = uri("$gprBaseUrl/$gprRepoOwner/$gprRepoId")
                 credentials {
                     username = gprUser

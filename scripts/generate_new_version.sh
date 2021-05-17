@@ -16,15 +16,15 @@ echo '\033[1;31m >>>> Downloading tokens into npm lib…\033[0m'
 npm install @useblu/tokens@beta --save-dev
 
 echo '\033[1;31m >>>> Copying resources XML file \033[0m'
-cp node_modules/@useblu/tokens/dist/android/tokens.xml ocean-ds-tokens/src/main/res/values/tokens.xml
+cp node_modules/@useblu/tokens/dist/android/tokens.xml ocean-tokens/src/main/res/values/tokens.xml
 
 echo '\033[1;31m >>>> Deleting all old font files \033[0m'
-rm -rf ocean-ds-tokens/src/main/res/font/*.ttf
+rm -rf ocean-tokens/src/main/res/font/*.ttf
 
 echo '\033[1;31m >>>> Copying all font files \033[0m'
-cp node_modules/@useblu/tokens/dist/assets/fonts/*/*.ttf ocean-ds-tokens/src/main/res/font
+cp node_modules/@useblu/tokens/dist/assets/fonts/*/*.ttf ocean-tokens/src/main/res/font
 
-cd ocean-ds-tokens/src/main/res/font
+cd ocean-tokens/src/main/res/font
 
 echo '\033[1;31m >>>> Renaming all font files. \033[0m'
 for f in *.ttf

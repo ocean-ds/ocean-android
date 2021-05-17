@@ -1,5 +1,5 @@
 include ':playground'
 include ':ocean-tokens'
-include ':ocean-ds-components'
+include ':ocean-components'
 include ':app'
 rootProject.name = "ocean-android"

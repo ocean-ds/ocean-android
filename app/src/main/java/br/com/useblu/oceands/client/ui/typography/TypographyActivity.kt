@@ -18,27 +18,27 @@ class TypographyActivity : AppCompatActivity() {
     }
 
     fun onClickHeadings(view: View) {
-        val headingsIntent = Intent(TypographyActivity@ this, HeadingsActivity::class.java)
+        val headingsIntent = Intent(this, HeadingsActivity::class.java)
         startActivity(headingsIntent)
     }
 
     fun onClickSubtitles(view: View) {
-        val subtitlesIntent = Intent(TypographyActivity@ this, SubtitlesActivity::class.java)
+        val subtitlesIntent = Intent(this, SubtitlesActivity::class.java)
         startActivity(subtitlesIntent)
     }
 
     fun onClickParagraph(view: View) {
-        val paragraphIntent = Intent(TypographyActivity@ this, ParagraphActivity::class.java)
+        val paragraphIntent = Intent(this, ParagraphActivity::class.java)
         startActivity(paragraphIntent)
     }
 
     fun onClickDescription(view: View) {
-        val descriptionIntent = Intent(TypographyActivity@ this, DescriptionActivity::class.java)
+        val descriptionIntent = Intent(this, DescriptionActivity::class.java)
         startActivity(descriptionIntent)
     }
 
     fun onClickCaption(view: View) {
-        val captionIntent = Intent(TypographyActivity@ this, CaptionActivity::class.java)
+        val captionIntent = Intent(this, CaptionActivity::class.java)
         startActivity(captionIntent)
     }
 }

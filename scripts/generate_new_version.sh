@@ -4,10 +4,10 @@ LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/tokens@beta version`
 echo "\033[1;31m >>>> Current version is '$LATEST_VERSION_TOKENS_LIB_NPM'. \033[0m"
 
 echo '\033[1;31m >>>> Getting new version and saving on version.properties file. \033[0m'
-sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM/g" "ocean-ds-components/version.properties"
+sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM/g" "ocean-components/version.properties"
 
 echo '\033[1;31m >>>> Deleting unnecessary temp file. \033[0m'
-rm -f "ocean-ds-components/version.properties-e"
+rm -f "ocean-components/version.properties-e"
 
 echo '\033[1;31m >>>> What is the current DIR?\033[0m'
 pwd
@@ -16,15 +16,15 @@ echo '\033[1;31m >>>> Downloading tokens into npm lib…\033[0m'
 npm install @useblu/tokens@beta --save-dev
 
 echo '\033[1;31m >>>> Copying resources XML file \033[0m'
-cp node_modules/@useblu/tokens/dist/android/tokens.xml ocean-ds-tokens/src/main/res/values/tokens.xml
+cp node_modules/@useblu/tokens/dist/android/tokens.xml ocean-tokens/src/main/res/values/tokens.xml
 
 echo '\033[1;31m >>>> Deleting all old font files \033[0m'
-rm -rf ocean-ds-tokens/src/main/res/font/*.ttf
+rm -rf ocean-tokens/src/main/res/font/*.ttf
 
 echo '\033[1;31m >>>> Copying all font files \033[0m'
-cp node_modules/@useblu/tokens/dist/assets/fonts/*/*.ttf ocean-ds-tokens/src/main/res/font
+cp node_modules/@useblu/tokens/dist/assets/fonts/*/*.ttf ocean-tokens/src/main/res/font
 
-cd ocean-ds-tokens/src/main/res/font
+cd ocean-tokens/src/main/res/font
 
 echo '\033[1;31m >>>> Renaming all font files. \033[0m'
 for f in *.ttf

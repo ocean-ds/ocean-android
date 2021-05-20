@@ -11,7 +11,6 @@ import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 
 class HomeActivity : AppCompatActivity() {
-    val titles = arrayOf<String>("Typography", "Buttons")
 
     private lateinit var binding: ActivityMainBinding
 
@@ -25,12 +24,12 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun onClickTypography(view: View) {
-        val typographyIntent = Intent(HomeActivity@ this, TypographyActivity::class.java)
+        val typographyIntent = Intent(this, TypographyActivity::class.java)
         startActivity(typographyIntent)
     }
 
     fun onClickButtons(view: View) {
-        val buttonsIntent = Intent(HomeActivity@ this, ButtonsActivity::class.java)
+        val buttonsIntent = Intent(this, ButtonsActivity::class.java)
         startActivity(buttonsIntent)
     }
 }

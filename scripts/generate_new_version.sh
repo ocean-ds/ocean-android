@@ -1,6 +1,7 @@
 set -e
 
-LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/tokens version`
+#LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/tokens version`
+LATEST_VERSION_TOKENS_LIB_NPM='2.0.2'
 echo "\033[1;31m >>>> Current version is '$LATEST_VERSION_TOKENS_LIB_NPM'. \033[0m"
 
 echo '\033[1;31m >>>> Getting new version and saving on version.properties file. \033[0m'
@@ -55,8 +56,8 @@ git status
 echo '\033[1;31m >>>> Running gradlew build \033[0m'
 ./gradlew clean assembleRelease publish --stacktrace --info --debug
 
-echo '\033[1;31m >>>> Setting upstream branch: '${CIRCLE_BRANCH}'. \033[0m'
-git push --set-upstream origin ${CIRCLE_BRANCH}
+#echo '\033[1;31m >>>> Setting upstream branch: '${CIRCLE_BRANCH}'. \033[0m'
+#git push --set-upstream origin ${CIRCLE_BRANCH}
 
 echo '\033[1;31m >>>> Setting user & email. \033[0m'
 git config user.email "mario.feles@useblu.com.br"

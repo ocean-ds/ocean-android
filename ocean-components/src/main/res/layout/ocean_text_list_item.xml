@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="subtitle"
+            type="String" />
+
+
+        <variable
+            name="badgeTitle"
+            type="String" />
+
+        <variable
+            name="badgeVisible"
+            type="Boolean" />
+
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:enabled="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{() -> click.invoke()}">
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@{icon}"
+            app:layout_constraintBottom_toBottomOf="@+id/include4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/include5"
+            tools:src="@drawable/icon_generic_primary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/include5"
+            style="@style/Ocean.Paragraph.Highlight.Interface.DarkDeep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{title}"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/imageView18"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Paragraph" />
+
+        <include
+            android:id="@+id/include4"
+            layout="@layout/ocean_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/include"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintStart_toStartOf="@+id/include5"
+            app:layout_constraintTop_toBottomOf="@+id/include5"
+            app:text="@{subtitle}" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/include4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/include5"
+            app:srcCompat="@drawable/icon_chevron_right" />
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/ocean_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <include
+            android:id="@+id/include6"
+            layout="@layout/ocean_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/include5"
+            app:layout_constraintStart_toEndOf="@+id/include5"
+            app:layout_constraintTop_toTopOf="@+id/include5"
+            app:layout_constraintVertical_bias="0.0"
+            app:text="@{badgeTitle}"
+            app:visible="@{badgeVisible}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

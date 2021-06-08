@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="text"
+            type="String" />
+
+        <variable
+            name="visible"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/badge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ocean_badge"
+        android:fontFamily="@font/font_family_base_bold"
+        android:gravity="center"
+        android:text="@{text}"
+        android:textColor="#FFF"
+        android:textSize="@dimen/ocean_font_size_xxxs"
+        android:textStyle="bold"
+        android:visibility="@{visible ? View.VISIBLE : View.GONE}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Badge" />
+
+</layout>

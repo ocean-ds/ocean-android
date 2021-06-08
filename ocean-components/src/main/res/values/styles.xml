@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
     <style name="Test">
         <item name="android:background">@drawable/ocean_button_primary</item>
         <item name="android:fontFamily">@font/font_family_base_bold</item>
@@ -12,5 +10,51 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/ocean_color_interface_light_pure</item>
         <item name="android:textSize">@dimen/ocean_font_size_xs</item>
+    </style>
+
+    <style name="Ocean.Paragraph.Highlight" parent="Ocean.Paragraph">
+        <item name="android:fontFamily">@font/font_family_base_bold</item>
+    </style>
+
+    <style name="Ocean.Lead.Highlight" parent="Ocean.Lead">
+        <item name="android:fontFamily">@font/font_family_base_bold</item>
+        <item name="android:textColor">@color/ocean_color_interface_dark_down</item>
+    </style>
+
+    <style name="Ocean.Caption.Complementary" parent="Ocean.Caption">
+        <item name="android:textColor">@color/ocean_color_complementary_deep</item>
+    </style>
+
+    <style name="Ocean.Heading.3.Blue" parent="Ocean.Heading.3">
+        <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+    <style name="Ocean.Description.DarkUp" parent="Ocean.Description">
+        <item name="android:textColor">@color/ocean_color_interface_dark_up</item>
+    </style>
+
+    <style name="Ocean.Description.BradPrimaryUp" parent="Ocean.Description">
+        <item name="android:textColor">@color/ocean_color_brand_primary_up</item>
+    </style>
+
+    <style name="Ocean.Heading.DarkUp" parent="Ocean.Heading.4">
+        <item name="android:textColor">@color/ocean_color_interface_dark_up</item>
+    </style>
+
+    <style name="Ocean.Caption.BradPrimaryUp" parent="Ocean.Caption">
+        <item name="android:textColor">@color/ocean_color_brand_primary_up</item>
+    </style>
+
+    <style name="Ocean.Button.TextView.Text.MD.Complementary" parent="Ocean.Button.TextView.Text.MD">
+        <item name="android:textColor">@color/ocean_color_complementary_pure</item>
+    </style>
+
+    <style name="Ocean.Heading.4.Interface.DarkDown" parent="Ocean.Heading.4">
+        <item name="android:textColor">@color/ocean_color_interface_dark_down</item>
+    </style>
+
+    <style name="Ocean.Paragraph.Highlight.Interface.DarkDeep" parent="Ocean.Paragraph">
+        <item name="android:fontFamily">@font/font_family_base_bold</item>
+        <item name="android:textColor">@color/ocean_color_interface_dark_deep</item>
     </style>
 </resources>

@@ -65,7 +65,7 @@ echo '\033[1;31m >>>> Running gradlew build \033[0m'
 #git config user.name "XXX"
 
 echo '\033[1;31m >>>> Add and Commit new classes. \033[0m'
-git add . && git commit -am "Generating classes based on @useblu/tokens npm lib version: $LATEST_VERSION_TOKENS_LIB_NPM" && git push
+git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM" && git push
 
 echo '\033[1;31m >>>> Show git status after commands.  \033[0m'
 git status

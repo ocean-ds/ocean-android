@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="kotlin.jvm.functions.Function1" />
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="gravity"
+            type="Integer" />
+
+        <variable
+            name="checked"
+            type="Boolean" />
+
+        <variable
+            name="click"
+            type="Function1&lt;Boolean, Unit>"/>
+
+    </data>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swtich"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:thumb="@drawable/ocean_switch"
+        android:padding="@dimen/ocean_spacing_inset_xxs"
+        android:checked="@{checked}"
+        android:onCheckedChanged="@{(switch, isChecked) -> click.invoke(isChecked)}"
+        app:showText="false"
+        app:track="@drawable/ocean_switch_track"/>
+
+</layout>

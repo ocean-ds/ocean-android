@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="@color/ocean_color_interface_light_pure"/>
+    <corners android:radius="@dimen/ocean_border_radius_sm" />
+    <stroke
+        android:color="@color/ocean_color_status_negative_pure"
+        android:width="@dimen/ocean_border_width_thin"
+        />
+</shape>

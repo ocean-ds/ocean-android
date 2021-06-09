@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <size android:width="1dp" />
+    <solid android:color="@color/ocean_color_brand_primary_pure"  />
+    <corners android:radius="@dimen/ocean_border_radius_sm"/>
+</shape>

@@ -2,4 +2,7 @@
     <string name="app_name">Ocean DS Android</string>
     <string name="all_button_cancel">Cancel</string>
     <string name="all_button_confirm">Confirm</string>
+    <string name="all_hint">Hint</string>
+    <string name="all_label">label</string>
+    <string name="all_help">Sample Help</string>
 </resources>

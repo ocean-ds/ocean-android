@@ -24,6 +24,7 @@
         <activity android:name=".ui.headings.HeadingsActivity" />
         <activity android:name=".ui.typography.TypographyActivity" />
         <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.input.InputActivity"/>
     </application>
 
 </manifest>

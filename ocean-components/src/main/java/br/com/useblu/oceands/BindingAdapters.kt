@@ -1,5 +1,6 @@
 package br.com.useblu.oceands
 
+import android.text.InputType
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -8,6 +9,8 @@ import androidx.annotation.DimenRes
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 @BindingAdapter("app:ocean_visible_or_invisible")
 fun setVisibleOrInvisible(view: View, status: Boolean) {
@@ -43,5 +46,34 @@ fun setOceanDrawablePadding(button: Button, @DimenRes dimenId: Int) {
         button.iconPadding = dimensionPixelSize
     } else {
         button.compoundDrawablePadding = dimensionPixelSize
+    }
+}
+
+@BindingAdapter("app:ocean_background")
+fun setOceanBackground(input: TextInputEditText, erro: Boolean) {
+    input.setBackgroundResource(R.drawable.ocean_input_text_field_states)
+
+    if (erro) input.setBackgroundResource(R.drawable.ocean_input_text_field_error)
+
+    input.setOnFocusChangeListener { _, hasFocus ->
+        when {
+            erro -> input.setBackgroundResource(R.drawable.ocean_input_text_field_error)
+            hasFocus -> input.setBackgroundResource(R.drawable.ocean_input_text_field_focused)
+            !input.text.isNullOrBlank() -> input.setBackgroundResource(R.drawable.ocean_input_text_field_activated)
+            else -> input.setBackgroundResource(R.drawable.ocean_input_text_field_inactive)
+        }
+    }
+}
+
+@BindingAdapter("app:ocean_inputType")
+fun setOceanInputType(inputText: TextInputEditText, inputType: Int) {
+    val typeFace = inputText.typeface
+    inputText.inputType = inputType
+
+    if (inputType == (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+        val textInputLayout = inputText.parent.parent as TextInputLayout
+        textInputLayout.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
+        textInputLayout.setEndIconDrawable(R.drawable.ocean_selector_eye)
+        inputText.typeface = typeFace
     }
 }

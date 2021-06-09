@@ -225,6 +225,12 @@
                 app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_blue_24dp : null}'
                 app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
 
+            <include
+                layout="@layout/ocean_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:checked="@{false}"
+                app:click="@{viewmodel::executeOnStatusChanged}"/>
         </LinearLayout>
     </ScrollView>
 </layout>

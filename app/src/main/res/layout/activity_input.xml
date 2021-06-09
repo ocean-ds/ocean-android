@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.InputType" />
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.input.InputViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        tools:context=".ui.paragraph.ParagraphActivity">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/ocean_spacing_inline_xs">
+
+            <include
+                android:id="@+id/input"
+                layout="@layout/ocean_input_text_field_with_icon"
+                app:error="@{viewmodel.error}"
+                app:help="@{@string/all_help}"
+                app:hint="@{@string/all_hint}"
+                app:label="@{@string/all_label}"
+                app:type="@{InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS}" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <include
+                layout="@layout/ocean_button_primary_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{@string/button_error}'
+                app:click="@{viewmodel::clickError}"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</layout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toastContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ocean_toast_background"
+    android:gravity="center_vertical"
+    android:padding="@dimen/ocean_spacing_inline_xs">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
+        tools:src="@drawable/icon_generic" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_family_base_regular"
+        android:textColor="@color/ocean_color_interface_light_pure"
+        android:textSize="@dimen/ocean_font_size_xxs"
+        tools:layout_conversion_absoluteHeight="24dp"
+        tools:layout_conversion_absoluteWidth="345dp"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:text="Mensagem" />
+</LinearLayout>

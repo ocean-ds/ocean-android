@@ -11,4 +11,8 @@
     <dimen name="ocean_button_min_height_small">32dp</dimen>
     <dimen name="ocean_button_min_height_medium">48dp</dimen>
     <dimen name="ocean_button_min_height_large">56dp</dimen>
+
+    <!-- NEW TOKENS PROPOSAL - ONLY ANDROID -->
+    <dimen name="ocean_spacing_inline_xx" category="spacing">56dp</dimen>
+    <dimen name="ocean_border_width_hairline" category="spacing">1dp</dimen>
 </resources>

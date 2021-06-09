@@ -10,4 +10,6 @@
     <string name="message">Message</string>
     <string name="positive">Positive</string>
     <string name="negative">Negative</string>
+    <string name="help">Help</string>
+    <string name="button_error">Set Error</string>
 </resources>

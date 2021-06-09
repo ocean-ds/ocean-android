@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,23 +14,44 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Typography"
+            android:onClick="onClickTypography"
             android:padding="16dp"
-            android:textSize="24sp"
-            android:onClick="onClickTypography"/>
+            android:text="Typography"
+            android:textSize="24sp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="3px"
-            android:background="#E7E7E7"
-            android:layout_marginStart="10dp" />
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Buttons"
+            android:onClick="onClickButtons"
             android:padding="16dp"
-            android:textSize="24sp"
-            android:onClick="onClickButtons"/>
+            android:text="Buttons"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickInputs"
+            android:padding="16dp"
+            android:text="Input"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
 
     </LinearLayout>
 </ScrollView>

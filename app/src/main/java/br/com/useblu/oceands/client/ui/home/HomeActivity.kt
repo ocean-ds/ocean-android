@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityMainBinding
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
+import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 
 class HomeActivity : AppCompatActivity() {
@@ -31,5 +32,10 @@ class HomeActivity : AppCompatActivity() {
     fun onClickButtons(view: View) {
         val buttonsIntent = Intent(this, ButtonsActivity::class.java)
         startActivity(buttonsIntent)
+    }
+
+    fun onClickInputs(view: View) {
+        val inputIntent = Intent(this, InputActivity::class.java)
+        startActivity(inputIntent)
     }
 }

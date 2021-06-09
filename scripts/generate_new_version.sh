@@ -1,6 +1,7 @@
 set -e
 
 #LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/tokens version`
+
 LATEST_VERSION_TOKENS_LIB_NPM='2.0.3'
 echo "\033[1;31m >>>> Current version is '$LATEST_VERSION_TOKENS_LIB_NPM'. \033[0m"
 

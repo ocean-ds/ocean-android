@@ -7,6 +7,6 @@
     <corners android:radius="@dimen/ocean_border_radius_sm" />
     <stroke
         android:color="@color/ocean_color_brand_primary_pure"
-        android:width="@dimen/ocean_border_width_thin"
+        android:width="@dimen/ocean_border_width_hairline"
         />
 </shape>

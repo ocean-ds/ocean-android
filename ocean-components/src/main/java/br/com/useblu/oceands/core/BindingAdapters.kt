@@ -1,13 +1,18 @@
-package br.com.useblu.oceands
+package br.com.useblu.oceands.core
 
+import android.graphics.drawable.Drawable
 import android.text.InputType
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DimenRes
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import br.com.useblu.oceands.R
+import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -29,9 +34,9 @@ fun setTextFromHtml(view: TextView, text: String?) {
 
 @BindingAdapter("app:ocean_layout_width")
 fun setLayoutWidth(view: View, width: Int) {
-    val params = view?.layoutParams as ViewGroup.LayoutParams
+    val params = view.layoutParams as ViewGroup.LayoutParams
     params.width = width
-    view?.layoutParams = params
+    view.layoutParams = params
 }
 
 @BindingAdapter("app:ocean_drawable_padding")
@@ -75,5 +80,30 @@ fun setOceanInputType(inputText: TextInputEditText, inputType: Int) {
         textInputLayout.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
         textInputLayout.setEndIconDrawable(R.drawable.ocean_selector_eye)
         inputText.typeface = typeFace
+    }
+}
+
+@BindingAdapter("app:ocean_text", "app:ocean_text_format")
+fun setFormatType(view: TextView, text: String?, type: Formatter?) {
+
+    if (type != null && !text.isNullOrBlank()) {
+        view.text = type.format(text)
+    }
+}
+
+@BindingAdapter("imageUrl", "placeHolder")
+fun loadImage(view: ImageView, url: String?, placeHolder: Drawable) {
+    if (url.isNullOrEmpty().not()) {
+        Glide.with(view.context).load(url).placeholder(placeHolder).into(view)
+    } else {
+        view.setImageDrawable(placeHolder)
+    }
+}
+
+@BindingAdapter("setAdapter")
+fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
+    this.run {
+        this.setHasFixedSize(true)
+        this.adapter = adapter
     }
 }

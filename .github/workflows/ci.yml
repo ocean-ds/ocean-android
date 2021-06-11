@@ -30,3 +30,6 @@ jobs:
 
       - name: Lint commit message
         uses: wagoid/commitlint-github-action@v3
+
+      - name: Run tests
+        run: ./gradlew test

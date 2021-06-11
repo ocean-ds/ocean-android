@@ -7,6 +7,7 @@
     tools:context=".ui.home.HomeActivity">
 
     <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -45,6 +46,63 @@
             android:onClick="onClickInputs"
             android:padding="16dp"
             android:text="Input"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickBottomSheet"
+            android:padding="16dp"
+            android:text="BottomSheet"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickToast"
+            android:padding="16dp"
+            android:text="Toast"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickSnackBar"
+            android:padding="16dp"
+            android:text="SnackBar"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:id="@+id/tooltip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickTooltip"
+            android:padding="16dp"
+            android:text="Tooltip"
             android:textSize="24sp" />
 
         <View

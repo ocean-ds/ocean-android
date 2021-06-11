@@ -25,5 +25,8 @@ jobs:
       - name: Build the app
         run: ./gradlew build
 
+      - name: Runs linter
+        run: ./gradlew lint
+
       - name: Lint commit message
         uses: wagoid/commitlint-github-action@v3

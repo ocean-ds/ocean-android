@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "ocean-ds/core-android"
+    assignees:
+      - "mariofelesdossantosjunior"
+    commit-message:
+      prefix: "chore"

@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="type"
-            type="Integer" />
-
-        <variable
             name="label"
             type="String" />
 
@@ -28,6 +24,7 @@
         <variable
             name="help"
             type="String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,24 +56,27 @@
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label"
-            app:passwordToggleTint="@color/ocean_color_interface_light_deep">
+            app:layout_constraintTop_toBottomOf="@+id/label">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@{(error.length() > 0) ? @drawable/ocean_input_text_field_error  : @drawable/ocean_input_text_field_states }"
                 android:fontFamily="@font/font_family_base_regular"
+                android:gravity="start"
                 android:hint="@{hint}"
                 android:imeOptions="actionGo"
+                android:maxLines="5"
+                android:minHeight="72dp"
+                android:minLines="2"
                 android:padding="@dimen/ocean_spacing_inline_xs"
+                android:singleLine="false"
                 android:text="@={value}"
                 android:textColor="@color/ocean_color_interface_dark_deep"
                 android:textColorHint="@color/ocean_color_interface_light_deep"
                 android:textCursorDrawable="@drawable/ocean_cursor"
-                android:textSize="@dimen/ocean_font_size_xs"
-                app:ocean_background="@{error.length() > 0}"
-                app:ocean_inputType='@{type}' />
+                android:textSize="@dimen/ocean_font_size_xs" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView

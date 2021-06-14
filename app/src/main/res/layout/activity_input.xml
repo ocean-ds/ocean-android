@@ -36,7 +36,52 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="20dp" />
+
+            <include
+                layout="@layout/ocean_divider"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <include
+                android:id="@+id/input_text_area"
+                layout="@layout/ocean_input_text_area"
+                app:error="@{viewmodel.error}"
+                app:help="@{@string/all_help}"
+                app:hint="@{@string/all_hint}"
+                app:label="@{@string/all_label}" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <include
+                layout="@layout/ocean_divider"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <include
+                android:id="@+id/input_text_area_numeric"
+                layout="@layout/ocean_input_text_area_numeric"
+                app:error="@{viewmodel.error}"
+                app:help="@{@string/all_help}"
+                app:hint="@{@string/all_hint}"
+                app:label="@{@string/all_label}" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <include
+                layout="@layout/ocean_divider"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
             <include
                 layout="@layout/ocean_button_primary_sm"

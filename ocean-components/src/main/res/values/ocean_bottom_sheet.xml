@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ThemeOverlay.BottomSheetDialog" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.BottomSheet</item>
+    </style>
+
+    <style name="Widget.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.BottomSheet</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.BottomSheet" parent="">
+        <item name="cornerSize">@dimen/ocean_border_radius_lg</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+</resources>

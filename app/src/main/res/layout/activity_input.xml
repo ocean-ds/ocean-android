@@ -38,8 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <include
-                layout="@layout/ocean_divider"/>
+            <include layout="@layout/ocean_divider" />
 
             <Space
                 android:layout_width="match_parent"
@@ -57,8 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <include
-                layout="@layout/ocean_divider"/>
+            <include layout="@layout/ocean_divider" />
 
             <Space
                 android:layout_width="match_parent"
@@ -76,8 +74,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
+            <include layout="@layout/ocean_divider" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
             <include
-                layout="@layout/ocean_divider"/>
+                layout="@layout/ocean_dropdown_menu"
+                app:entries="@{viewmodel.items}"
+                app:error="@{viewmodel.error}"
+                app:help="@{@string/all_help}"
+                app:hint="@{@string/all_hint}"
+                app:itemSelect="@{viewmodel.itemSelect}"
+                app:label="@{@string/all_label}" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <include layout="@layout/ocean_divider" />
 
             <Space
                 android:layout_width="match_parent"
@@ -90,7 +106,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                 android:text='@{@string/button_error}'
-                app:click="@{viewmodel::clickError}"/>
+                app:click="@{viewmodel::clickError}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

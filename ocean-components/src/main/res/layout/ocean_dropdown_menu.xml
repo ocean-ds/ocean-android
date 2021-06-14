@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function1" />
+        <import type="kotlin.Unit" />
+        <import type="java.util.List"/>
+        <import type="androidx.lifecycle.MutableLiveData"/>
+
+        <variable
+            name="label"
+            type="String" />
+
+        <variable
+            name="hint"
+            type="String" />
+
+        <variable
+            name="error"
+            type="String" />
+
+        <variable
+            name="help"
+            type="String" />
+
+        <variable
+            name="entries"
+            type="List&lt;String>" />
+
+        <variable
+            name="itemSelect"
+            type="MutableLiveData&lt;Integer>"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+            android:fontFamily="@font/font_family_base_regular"
+            android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
+            android:text="@{label}"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            android:textSize="@dimen/ocean_font_size_xxs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/label" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+            android:background="@{(error.length() > 0) ? @drawable/ocean_input_text_field_error  : @drawable/ocean_input_text_field_states }"
+            android:fontFamily="@font/font_family_base_regular"
+            android:textColor="@color/ocean_color_interface_dark_deep"
+            android:textSize="@dimen/ocean_font_size_xs"
+            android:entries="@{ entries }"
+            android:selectedItemPosition="@={itemSelect}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label"
+            tools:listitem="@layout/ocean_dropdown_menu_item" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocean_spacing_inline_xxxs"
+            android:fontFamily="@font/font_family_base_medium"
+            android:text="@{error}"
+            android:visibility="invisible"
+            android:textSize="@dimen/ocean_font_size_xxxs"
+            android:textColor="@color/ocean_color_status_negative_pure"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner"
+            app:ocean_visible_or_invisible="@{(error.length() > 0)}"
+            tools:text="@string/error" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_family_base_medium"
+            android:text="@{help}"
+            android:textColor="@color/ocean_color_interface_dark_up"
+            android:textSize="@dimen/ocean_font_size_xxxs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner"
+            app:ocean_visible_or_invisible="@{(help.length() > 0 &amp;&amp; (error.length() == 0))}"
+            tools:text="@string/help" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
+            android:tintMode="src_atop"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner"
+            app:layout_constraintEnd_toEndOf="@+id/spinner"
+            app:layout_constraintTop_toTopOf="@+id/spinner"
+            app:srcCompat="@drawable/icon_chevron_down"
+            app:tint="@color/ocean_color_interface_dark_deep" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

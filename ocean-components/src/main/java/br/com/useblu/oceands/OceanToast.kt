@@ -25,7 +25,7 @@ class OceanToast(
         type?.let {
             when (type) {
                 is OceanToastType.Information -> {
-                    binding.icon.setImageResource(R.drawable.icon_information_snackbar)
+                    binding.icon.setImageResource(R.drawable.icon_information_snack)
                 }
                 is OceanToastType.Error -> {
                     binding.icon.setImageResource(R.drawable.icon_error_snackbar)

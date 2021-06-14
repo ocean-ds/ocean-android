@@ -11,6 +11,7 @@ import br.com.useblu.oceands.OceanToast
 import br.com.useblu.oceands.OceanTooltip
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
+import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
@@ -43,6 +44,11 @@ class HomeActivity : AppCompatActivity() {
     fun onClickInputs(view: View) {
         val inputIntent = Intent(this, InputActivity::class.java)
         startActivity(inputIntent)
+    }
+
+    fun onClickAlert(view: View) {
+        val buttonsIntent = Intent(this, AlertActivity::class.java)
+        startActivity(buttonsIntent)
     }
 
     fun onClickBottomSheet(view: View) {

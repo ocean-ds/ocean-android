@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DimenRes
 import androidx.core.text.HtmlCompat
@@ -105,5 +106,42 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
     this.run {
         this.setHasFixedSize(true)
         this.adapter = adapter
+    }
+}
+
+@BindingAdapter("app:ocean_alert_background")
+fun setOceanBackground(layout: LinearLayout, type: OceanAlertType) {
+    when (type) {
+        OceanAlertType.Information -> {
+            layout.setBackgroundResource(R.drawable.ocean_alert_info_background)
+        }
+        OceanAlertType.Error -> {
+            layout.setBackgroundResource(R.drawable.ocean_alert_error_background)
+
+        }
+        OceanAlertType.Success -> {
+            layout.setBackgroundResource(R.drawable.ocean_alert_success_background)
+        }
+        OceanAlertType.Warning -> {
+            layout.setBackgroundResource(R.drawable.ocean_alert_warning_background)
+        }
+    }
+}
+
+@BindingAdapter("app:ocean_alert_src")
+fun setOceanSrc(imageView: ImageView, type: OceanAlertType) {
+    when (type) {
+        OceanAlertType.Information -> {
+            imageView.setBackgroundResource(R.drawable.icon_information_snack_primary)
+        }
+        OceanAlertType.Error -> {
+            imageView.setBackgroundResource(R.drawable.icon_error_snackbar)
+        }
+        OceanAlertType.Success -> {
+            imageView.setBackgroundResource(R.drawable.icon_sucess_snackbar)
+        }
+        OceanAlertType.Warning -> {
+            imageView.setBackgroundResource(R.drawable.icon_warning_snackbar)
+        }
     }
 }

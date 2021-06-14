@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="type"
+            type="br.com.useblu.oceands.core.OceanAlertType" />
+
+        <variable
+            name="text"
+            type="String" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/ocean_spacing_inline_xs"
+        android:paddingEnd="@dimen/ocean_spacing_inline_xs"
+        app:ocean_alert_background="@{type}">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ocean_alert_src="@{type}"
+            tools:src="@drawable/icon_generic"
+            tools:tint="@color/ocean_color_interface_dark_pure"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
+            android:fontFamily="@font/font_family_base_regular"
+            android:text="@{text}"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            android:textSize="@dimen/ocean_font_size_xxxs"
+            tools:text="@string/lorem_ipsum" />
+    </LinearLayout>
+</layout>

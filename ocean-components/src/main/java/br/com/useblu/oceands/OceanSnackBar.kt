@@ -21,7 +21,7 @@ class OceanSnackBar(
                 when (type) {
                     is OceanSnackBarType.Information -> {
                         setCompoundDrawablesWithIntrinsicBounds(
-                            R.drawable.icon_information_snackbar,
+                            R.drawable.icon_information_snack,
                             0,
                             0,
                             0

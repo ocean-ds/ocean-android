@@ -1,13 +1,12 @@
 package br.com.useblu.oceands.client.ui.input
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityInputBinding
-import br.com.useblu.oceands.client.databinding.ActivityParagraphBinding
-import br.com.useblu.oceands.client.ui.buttons.ButtonsViewModel
 
 class InputActivity : AppCompatActivity() {
     private lateinit var binding: ActivityInputBinding
@@ -21,5 +20,13 @@ class InputActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[InputViewModel::class.java]
         binding.viewmodel = viewModel
+
+        initObservers()
+    }
+
+    private fun initObservers() {
+        viewModel.itemSelect.observe(this, {
+            Toast.makeText(this, "Item selecionado na posição $it", Toast.LENGTH_SHORT).show()
+        })
     }
 }

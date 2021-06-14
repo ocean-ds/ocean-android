@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="android.view.View" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="iconInvisible"
+            type="java.lang.Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/ocean_color_complementary_pure"
+        android:paddingStart="@dimen/ocean_spacing_inline_xs"
+        android:paddingEnd="@dimen/ocean_spacing_inline_xs">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> click.invoke()}"
+            android:src="@{icon}"
+            android:visibility="@{iconInvisible ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/ocean_color_interface_light_pure"
+            tools:src="@drawable/icon_generic" />
+
+        <Space
+            android:id="@+id/space4"
+            android:layout_width="@dimen/ocean_spacing_inline_md"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_family_highlight_extrabold"
+            android:text="@{title}"
+            android:textColor="@color/ocean_color_interface_light_pure"
+            android:textSize="@dimen/ocean_font_size_sm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/space4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/title" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

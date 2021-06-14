@@ -65,4 +65,8 @@ class ButtonsViewModel : ViewModel() {
     fun executeOnStatusChanged(isChecked: Boolean) {
         println("On Change State $isChecked")
     }
+
+    fun clickRadio(){
+        println("On Click Radio Button")
+    }
 }

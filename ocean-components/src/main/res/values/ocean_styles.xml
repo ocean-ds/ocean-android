@@ -1,7 +1,7 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Ocean" parent="Theme.MaterialComponents.Light.NoActionBar">
-
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.BottomSheetDialog</item>
     </style>
 
 
@@ -87,23 +87,23 @@
         <item name="android:insetLeft">0dp</item>
     </style>
 
-    <style name="Ocean.Button.Background.Primary" >
+    <style name="Ocean.Button.Background.Primary">
         <item name="android:background">@drawable/ocean_button_primary</item>
     </style>
 
-    <style name="Ocean.Button.Background.Secondary" >
+    <style name="Ocean.Button.Background.Secondary">
         <item name="android:background">@drawable/ocean_button_secondary</item>
     </style>
 
-    <style name="Ocean.Button.Background.PrimaryInverse" >
+    <style name="Ocean.Button.Background.PrimaryInverse">
         <item name="android:background">@drawable/ocean_button_primary_inverse</item>
     </style>
 
-    <style name="Ocean.Button.Background.Text" >
+    <style name="Ocean.Button.Background.Text">
         <item name="android:background">@drawable/ocean_button_text</item>
     </style>
 
-    <style name="Ocean.Button.Background.Primary.SM" >
+    <style name="Ocean.Button.Background.Primary.SM">
         <item name="android:minHeight">@dimen/ocean_button_min_height_small</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_xs</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_xs</item>
@@ -111,7 +111,7 @@
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxxs</item>
     </style>
 
-    <style name="Ocean.Button.Background.Primary.MD" >
+    <style name="Ocean.Button.Background.Primary.MD">
         <item name="android:minHeight">@dimen/ocean_button_min_height_medium</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_sm</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_sm</item>
@@ -119,7 +119,7 @@
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxs</item>
     </style>
 
-    <style name="Ocean.Button.Background.Primary.LG" >
+    <style name="Ocean.Button.Background.Primary.LG">
         <item name="android:minHeight">@dimen/ocean_button_min_height_large</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_md</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_md</item>
@@ -127,7 +127,7 @@
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xs</item>
     </style>
 
-    <style name="Ocean.Button.Background.Secondary.SM" >
+    <style name="Ocean.Button.Background.Secondary.SM">
         <item name="android:minHeight">@dimen/ocean_button_min_height_small</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_xs</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_xs</item>
@@ -135,7 +135,7 @@
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxxs</item>
     </style>
 
-    <style name="Ocean.Button.Background.Secondary.MD" >
+    <style name="Ocean.Button.Background.Secondary.MD">
         <item name="android:minHeight">@dimen/ocean_button_min_height_medium</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_sm</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_sm</item>
@@ -143,7 +143,7 @@
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxs</item>
     </style>
 
-    <style name="Ocean.Button.Background.Secondary.LG" >
+    <style name="Ocean.Button.Background.Secondary.LG">
         <item name="android:minHeight">@dimen/ocean_button_min_height_large</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_md</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_md</item>
@@ -151,7 +151,7 @@
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xs</item>
     </style>
 
-    <style name="Ocean.Button.Background.PrimaryInverse.SM" >
+    <style name="Ocean.Button.Background.PrimaryInverse.SM">
         <item name="android:minHeight">@dimen/ocean_button_min_height_small</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_xs</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_xs</item>
@@ -159,7 +159,7 @@
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxxs</item>
     </style>
 
-    <style name="Ocean.Button.Background.PrimaryInverse.MD" >
+    <style name="Ocean.Button.Background.PrimaryInverse.MD">
         <item name="android:minHeight">@dimen/ocean_button_min_height_medium</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_sm</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_sm</item>
@@ -167,7 +167,7 @@
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxs</item>
     </style>
 
-    <style name="Ocean.Button.Background.PrimaryInverse.LG" >
+    <style name="Ocean.Button.Background.PrimaryInverse.LG">
         <item name="android:minHeight">@dimen/ocean_button_min_height_large</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_md</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_md</item>
@@ -175,7 +175,7 @@
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xs</item>
     </style>
 
-    <style name="Ocean.Button.Background.Text.SM" >
+    <style name="Ocean.Button.Background.Text.SM">
         <item name="android:minHeight">@dimen/ocean_button_min_height_small</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_xs</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_xs</item>
@@ -183,7 +183,7 @@
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxxs</item>
     </style>
 
-    <style name="Ocean.Button.Background.Text.MD" >
+    <style name="Ocean.Button.Background.Text.MD">
         <item name="android:minHeight">@dimen/ocean_button_min_height_medium</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_sm</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_sm</item>
@@ -191,7 +191,7 @@
         <item name="android:paddingBottom">@dimen/ocean_spacing_stack_xxs</item>
     </style>
 
-    <style name="Ocean.Button.Background.Text.LG" >
+    <style name="Ocean.Button.Background.Text.LG">
         <item name="android:minHeight">@dimen/ocean_button_min_height_large</item>
         <item name="android:paddingLeft">@dimen/ocean_spacing_stack_md</item>
         <item name="android:paddingRight">@dimen/ocean_spacing_stack_md</item>
@@ -208,7 +208,8 @@
         <item name="android:textColor">@color/ocean_button_primary_text_color</item>
         <item name="android:textSize">@dimen/ocean_font_size_xs</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:paddingBottom">@dimen/ocean_button_text_view_bottom_padding_adjustment</item>
+        <item name="android:paddingBottom">@dimen/ocean_button_text_view_bottom_padding_adjustment
+        </item>
     </style>
 
     <style name="Ocean.Button.TextView.Primary">

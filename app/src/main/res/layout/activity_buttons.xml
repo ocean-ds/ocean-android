@@ -39,8 +39,7 @@
                 app:customLayout="@layout/toggle_button"
                 app:dividerColor="@android:color/darker_gray"
                 app:menu="@menu/toggle_type"
-                app:selectedColor="@color/ocean_color_brand_primary_up"
-                />
+                app:selectedColor="@color/ocean_color_brand_primary_up" />
 
             <com.savvyapps.togglebuttonlayout.ToggleButtonLayout
                 android:id="@+id/toggleIconState"
@@ -230,7 +229,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:checked="@{false}"
-                app:click="@{viewmodel::executeOnStatusChanged}"/>
+                app:click="@{viewmodel::executeOnStatusChanged}" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include
+                    android:id="@+id/radio_one"
+                    layout="@layout/ocean_radio_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:click="@{viewmodel::clickRadio}"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:label="@{@string/text}" />
+
+                <include
+                    android:id="@+id/radio_two"
+                    layout="@layout/ocean_radio_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:click="@{viewmodel::clickRadio}"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:label="@{@string/text}" />
+            </RadioGroup>
         </LinearLayout>
     </ScrollView>
 </layout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.drawable.Drawable" />
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="label"
+            type="String" />
+
+        <variable
+            name="icon"
+            type="Drawable" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+
+    </data>
+
+    <androidx.appcompat.widget.AppCompatRadioButton
+        android:id="@+id/radio"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/ocean_color_interface_light_pure"
+        android:button="@drawable/ocean_radio_button_states"
+        android:drawableEnd="@{icon}"
+        android:fontFamily="@font/font_family_base_regular"
+        android:onClick="@{() -> click.invoke()}"
+        android:paddingEnd="@dimen/ocean_spacing_inline_xs"
+        android:paddingLeft="@dimen/ocean_spacing_inline_xs"
+        android:paddingRight="@dimen/ocean_spacing_inline_xs"
+        android:paddingStart="@dimen/ocean_spacing_inline_xs"
+        android:drawablePadding="@dimen/ocean_spacing_inline_xs"
+        android:text="@{label}"
+        android:textColor="@drawable/ocean_radio_button_text_color_states"
+        android:textSize="@dimen/ocean_font_size_xs"
+        tools:drawableEnd="@drawable/icon_generic"
+        tools:drawableTint="@color/ocean_color_interface_dark_pure"
+        tools:text="Option" />
+
+</layout>

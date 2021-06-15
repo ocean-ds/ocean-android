@@ -14,7 +14,7 @@ class InputViewModel : ViewModel() {
 
     val itemSelect = MutableLiveData<Int>()
 
-    private val selectItem
+    val selectItem
         get() = itemSelect.value?.let {
             items.value?.get(it)
         }

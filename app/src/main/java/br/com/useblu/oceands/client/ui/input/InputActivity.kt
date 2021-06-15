@@ -27,6 +27,7 @@ class InputActivity : AppCompatActivity() {
     private fun initObservers() {
         viewModel.itemSelect.observe(this, {
             Toast.makeText(this, "Item selecionado na posição $it", Toast.LENGTH_SHORT).show()
+            println("Item selecionado ${viewModel.selectItem}")
         })
     }
 }

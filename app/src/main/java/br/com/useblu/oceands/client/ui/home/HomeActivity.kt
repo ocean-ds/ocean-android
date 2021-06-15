@@ -15,7 +15,6 @@ import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
-import kotlinx.coroutines.*
 
 class HomeActivity : AppCompatActivity() {
 

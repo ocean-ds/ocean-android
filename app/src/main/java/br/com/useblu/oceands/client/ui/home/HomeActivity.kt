@@ -82,11 +82,13 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickTooltip(view: View) {
         val message = getString(R.string.message)
-        OceanTooltip(
+        val tooltip = OceanTooltip(
             context = this,
             lifecycle = this
         ).withMessage(message)
             .build()
-            .show(binding.tooltip)
+
+        tooltip.show(binding.tooltip)
+        tooltip.dismissWithDelay(1000)
     }
 }

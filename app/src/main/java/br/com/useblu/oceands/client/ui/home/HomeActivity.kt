@@ -15,6 +15,7 @@ import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
+import kotlinx.coroutines.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -82,11 +83,13 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickTooltip(view: View) {
         val message = getString(R.string.message)
-        OceanTooltip(
+        val tooltip = OceanTooltip(
             context = this,
             lifecycle = this
         ).withMessage(message)
             .build()
-            .show(binding.tooltip)
+
+        tooltip.show(binding.tooltip)
+        tooltip.dismissWithDelay(1000)
     }
 }

@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:onClick="@{() -> click.invoke()}"
-            android:src="@{icon}"
+            android:src="@{icon == null ? @drawable/icon_back : icon}"
             android:visibility="@{iconInvisible ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

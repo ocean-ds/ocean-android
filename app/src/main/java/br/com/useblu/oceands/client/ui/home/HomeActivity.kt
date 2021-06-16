@@ -14,6 +14,7 @@ import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
+import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 
 class HomeActivity : AppCompatActivity() {
@@ -32,24 +33,30 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun onClickTypography(view: View) {
-        val typographyIntent = Intent(this, TypographyActivity::class.java)
-        startActivity(typographyIntent)
+        val intent = Intent(this, TypographyActivity::class.java)
+        startActivity(intent)
     }
 
     fun onClickButtons(view: View) {
-        val buttonsIntent = Intent(this, ButtonsActivity::class.java)
-        startActivity(buttonsIntent)
+        val intent = Intent(this, ButtonsActivity::class.java)
+        startActivity(intent)
     }
 
     fun onClickInputs(view: View) {
-        val inputIntent = Intent(this, InputActivity::class.java)
-        startActivity(inputIntent)
+        val intent = Intent(this, InputActivity::class.java)
+        startActivity(intent)
     }
 
     fun onClickAlert(view: View) {
-        val buttonsIntent = Intent(this, AlertActivity::class.java)
-        startActivity(buttonsIntent)
+        val intent = Intent(this, AlertActivity::class.java)
+        startActivity(intent)
     }
+
+    fun topBarClick(view: View) {
+        val intent = Intent(this, TopbarActivity::class.java)
+        startActivity(intent)
+    }
+
 
     fun onClickBottomSheet(view: View) {
         OceanBottomSheet(this)

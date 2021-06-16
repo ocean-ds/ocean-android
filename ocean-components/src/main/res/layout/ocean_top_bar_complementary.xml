@@ -24,6 +24,10 @@
             type="Function0&lt;Unit>" />
 
         <variable
+            name="clickToolbar"
+            type="Function0&lt;Unit>" />
+
+        <variable
             name="iconInvisible"
             type="java.lang.Boolean" />
 
@@ -34,14 +38,17 @@
         android:layout_height="56dp"
         android:background="@color/ocean_color_complementary_pure"
         android:paddingStart="@dimen/ocean_spacing_inline_xs"
-        android:paddingEnd="@dimen/ocean_spacing_inline_xs">
+        android:paddingEnd="@dimen/ocean_spacing_inline_xs"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> clickToolbar.invoke()}">
 
         <ImageView
             android:id="@+id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{() -> click.invoke()}"
-            android:src="@{icon}"
+            android:src="@{icon == null ? @drawable/icon_back : icon}"
             android:visibility="@{iconInvisible ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

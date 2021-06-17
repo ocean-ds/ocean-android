@@ -26,8 +26,16 @@ jobs:
             git config --global user.name "Blu Release Bot"
             git config --global user.email "devs@useblu.com.br"
 
+      - name: Increment Version
+      - run: |
+            sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER/g" "../ocean-components/version.properties"
+
       - name: Update Tokens
-      - run: ./scripts/generate_new_version.sh
+      - run: ./scripts/update_tokens.sh
+
+      - name: Commit changes
+      - run: |
+           git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM" && git push
 
       - name: Publish new version lib
       - run: ./gradlew clean assembleRelease publish

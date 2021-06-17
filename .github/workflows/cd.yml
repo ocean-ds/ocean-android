@@ -21,6 +21,11 @@ jobs:
           node-version: '14'
       - run: npm install
 
+      - name: Set git identity
+      - run: |
+            git config --global user.name "Blu Release Bot"
+            git config --global user.email "devs@useblu.com.br"
+
       - name: Update Tokens
       - run: ./scripts/generate_new_version.sh
 

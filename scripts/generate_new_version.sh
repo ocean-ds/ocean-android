@@ -50,12 +50,6 @@ cd ../../../../..
 echo '\033[1;31m >>>> What is the current DIR?\033[0m'
 pwd
 
-echo '\033[1;31m >>>> Show git status. \033[0m'
-git status
-
-echo '\033[1;31m >>>> Running gradlew build \033[0m'
-./gradlew clean assembleRelease publish --stacktrace --info --debug
-
 echo '\033[1;31m >>>> Add and Commit new classes. \033[0m'
 git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM" && git push
 

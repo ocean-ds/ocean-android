@@ -1,0 +1,28 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+        with:
+          # we actually need "github.event.pull_request.commits + 1" commit
+          fetch-depth: 0
+
+      - name: Install Npm
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install
+
+      - name: Update Tokens
+      - run: ./scripts/generate_new_version.sh
+
+      - name: Publish new version lib
+      - run: ./gradlew clean assembleRelease publish

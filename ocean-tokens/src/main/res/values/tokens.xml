@@ -21,14 +21,17 @@
   <color name="ocean_color_interface_dark_down" category="background-color">#67697A</color>
   <color name="ocean_color_interface_dark_deep" category="background-color">#393B47</color>
   <color name="ocean_color_status_positive_pure" category="background-color">#3DCC64</color>
-  <color name="ocean_color_status_positive_up" category="background-color">#D7FAE0</color>
-  <color name="ocean_color_status_positive_down" category="background-color">#1C9E3F</color>
+  <color name="ocean_color_status_positive_up" category="background-color">#F2FDF5</color>
+  <color name="ocean_color_status_positive_down" category="background-color">#7ADC94</color>
+  <color name="ocean_color_status_positive_deep" category="background-color">#2DA94F</color>
   <color name="ocean_color_status_neutral_pure" category="background-color">#FFA347</color>
-  <color name="ocean_color_status_neutral_up" category="background-color">#FFE8D1</color>
-  <color name="ocean_color_status_neutral_down" category="background-color">#FA8714</color>
+  <color name="ocean_color_status_neutral_up" category="background-color">#FFF7F0</color>
+  <color name="ocean_color_status_neutral_down" category="background-color">#FFBD7A</color>
+  <color name="ocean_color_status_neutral_deep" category="background-color">#FF8A14</color>
   <color name="ocean_color_status_negative_pure" category="background-color">#F5456E</color>
-  <color name="ocean_color_status_negative_up" category="background-color">#FFEDF1</color>
-  <color name="ocean_color_status_negative_down" category="background-color">#E00D3F</color>
+  <color name="ocean_color_status_negative_up" category="background-color">#FFF1F4</color>
+  <color name="ocean_color_status_negative_down" category="background-color">#F27592</color>
+  <color name="ocean_color_status_negative_deep" category="background-color">#D31441</color>
   <dimen name="ocean_spacing_inline_xxxs" category="spacing">4dp</dimen>
   <dimen name="ocean_spacing_inline_xxs" category="spacing">8dp</dimen>
   <dimen name="ocean_spacing_inline_xs" category="spacing">16dp</dimen>

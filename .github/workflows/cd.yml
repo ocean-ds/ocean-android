@@ -45,4 +45,7 @@ jobs:
           git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM [skip ci]" && git push
 
       - name: Publish new version lib
+        env:
+          GPR_USER: mariofelesdossantosjunior
+          GPR_API_KEY: ${{ secrets.GPR_API_KEY }}
         run: ./gradlew clean assembleRelease publish

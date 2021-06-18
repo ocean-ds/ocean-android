@@ -22,22 +22,13 @@ jobs:
           git config --global user.name "Blu Release Bot"
           git config --global user.email "devs@useblu.com.br"
 
-      - name: Current Directory
-        run: pwd
-
       - name: Update Tokens
         run: cd scripts && ./update_tokens.sh
-
-      - name: Current Directory
-        run: pwd
 
       - name: Increment Version
         run: |
           LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/ocean-tokens version`
           sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER/g" "ocean-components/version.properties"
-
-      - name: Current Directory
-        run: pwd
 
       - name: Commit changes
         run: |
@@ -45,7 +36,7 @@ jobs:
           git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM [skip ci]" && git push
 
       - name: Publish new version lib
+        run: ./gradlew clean assembleRelease publish
         env:
           GPR_USER: mariofelesdossantosjunior
           GPR_API_KEY: ${{ secrets.GPR_API_KEY }}
-        run: ./gradlew clean assembleRelease publish

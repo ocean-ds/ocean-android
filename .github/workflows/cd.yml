@@ -28,9 +28,15 @@ jobs:
       - name: Update Tokens
         run: cd scripts && ./update_tokens.sh
 
+      - name: Current Directory
+        run: pwd
+
       - name: Increment Version
         run: |
-          sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER/g" "../ocean-components/version.properties"
+          sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER/g" "ocean-components/version.properties"
+
+      - name: Current Directory
+        run: pwd
 
       - name: Current Directory
         run: pwd

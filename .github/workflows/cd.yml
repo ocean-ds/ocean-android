@@ -33,16 +33,15 @@ jobs:
 
       - name: Increment Version
         run: |
+          LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/ocean-tokens version`
           sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER/g" "ocean-components/version.properties"
-
-      - name: Current Directory
-        run: pwd
 
       - name: Current Directory
         run: pwd
 
       - name: Commit changes
         run: |
+          LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/ocean-tokens version`
           git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM [skip ci]" && git push
 
       - name: Publish new version lib

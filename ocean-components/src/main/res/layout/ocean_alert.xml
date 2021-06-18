@@ -17,11 +17,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
         android:gravity="center_vertical"
-        android:paddingStart="@dimen/ocean_spacing_inline_xs"
-        android:paddingEnd="@dimen/ocean_spacing_inline_xs"
+        android:padding="@dimen/ocean_spacing_inline_xs"
         app:ocean_alert_background="@{type}">
 
         <ImageView

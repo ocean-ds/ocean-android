@@ -43,7 +43,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM" && git push
+          git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM [skip ci]" && git push
 
       - name: Publish new version lib
         run: ./gradlew clean assembleRelease publish

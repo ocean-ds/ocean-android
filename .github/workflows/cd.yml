@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+env:
+  GH_TOKEN: ${{ secrets.GH_PAT }}
+  CI: true
 
 jobs:
   build:
@@ -12,30 +15,44 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
         with:
-          # we actually need "github.event.pull_request.commits + 1" commit
+          # Check out as an admin to allow for pushing back to master
+          token: ${{ secrets.GH_PAT }}
+          # We need to fetch all tags and branches
           fetch-depth: 0
 
-      - name: Install Npm
-      - uses: actions/setup-node@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
         with:
           node-version: '14'
-      - run: npm install
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+            ${{ runner.OS }}-
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Set git identity
-      - run: |
+        run: |
             git config --global user.name "Blu Release Bot"
             git config --global user.email "devs@useblu.com.br"
 
       - name: Update Tokens
-      - run: ./scripts/update_tokens.sh
+        run: ./scripts/update_tokens.sh
 
       - name: Increment Version
-      - run: |
+        run: |
           sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER/g" "../ocean-components/version.properties"
 
       - name: Commit changes
-      - run: |
+        run: |
            git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM" && git push
 
       - name: Publish new version lib
-      - run: ./gradlew clean assembleRelease publish
+        run: ./gradlew clean assembleRelease publish

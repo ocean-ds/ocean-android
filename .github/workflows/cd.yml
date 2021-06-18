@@ -38,6 +38,9 @@ jobs:
       - name: Current Directory
         run: pwd
 
+      - name: Current Directory
+        run: pwd
+
       - name: Commit changes
         run: |
           git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM" && git push

@@ -33,7 +33,7 @@ jobs:
           sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER/g" "../ocean-components/version.properties"
 
       - name: Current Directory
-          run: pwd
+        run: pwd
 
       - name: Commit changes
         run: |

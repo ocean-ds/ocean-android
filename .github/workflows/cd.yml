@@ -22,12 +22,18 @@ jobs:
           git config --global user.name "Blu Release Bot"
           git config --global user.email "devs@useblu.com.br"
 
+      - name: Current Directory
+        run: pwd
+
       - name: Update Tokens
-        run: ./scripts/update_tokens.sh
+        run: cd scripts && ./update_tokens.sh
 
       - name: Increment Version
         run: |
           sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER/g" "../ocean-components/version.properties"
+
+      - name: Current Directory
+          run: pwd
 
       - name: Commit changes
         run: |

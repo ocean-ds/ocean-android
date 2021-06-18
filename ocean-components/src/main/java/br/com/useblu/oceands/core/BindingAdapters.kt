@@ -130,16 +130,16 @@ fun setOceanBackground(layout: LinearLayout, type: OceanAlertType) {
 fun setOceanSrc(imageView: ImageView, type: OceanAlertType) {
     when (type) {
         OceanAlertType.Information -> {
-            imageView.setBackgroundResource(R.drawable.icon_information_snack_primary)
+            imageView.setBackgroundResource(R.drawable.icon_information)
         }
         OceanAlertType.Error -> {
-            imageView.setBackgroundResource(R.drawable.icon_error_snackbar)
+            imageView.setBackgroundResource(R.drawable.icon_error)
         }
         OceanAlertType.Success -> {
-            imageView.setBackgroundResource(R.drawable.icon_sucess_snackbar)
+            imageView.setBackgroundResource(R.drawable.icon_success)
         }
         OceanAlertType.Warning -> {
-            imageView.setBackgroundResource(R.drawable.icon_warning_snackbar)
+            imageView.setBackgroundResource(R.drawable.icon_warning)
         }
     }
 }

@@ -25,16 +25,16 @@ class OceanToast(
         type?.let {
             when (type) {
                 is OceanToastType.Information -> {
-                    binding.icon.setImageResource(R.drawable.icon_information_snack)
+                    binding.icon.setImageResource(R.drawable.icon_information)
                 }
                 is OceanToastType.Error -> {
-                    binding.icon.setImageResource(R.drawable.icon_error_snackbar)
+                    binding.icon.setImageResource(R.drawable.icon_error)
                 }
                 is OceanToastType.Success -> {
-                    binding.icon.setImageResource(R.drawable.icon_sucess_snackbar)
+                    binding.icon.setImageResource(R.drawable.icon_success)
                 }
                 is OceanToastType.Warning -> {
-                    binding.icon.setImageResource(R.drawable.icon_warning_snackbar)
+                    binding.icon.setImageResource(R.drawable.icon_warning)
                 }
             }
         }

@@ -21,7 +21,7 @@ class OceanSnackBar(
                 when (type) {
                     is OceanSnackBarType.Information -> {
                         setCompoundDrawablesWithIntrinsicBounds(
-                            R.drawable.icon_information_snack,
+                            R.drawable.icon_information,
                             0,
                             0,
                             0
@@ -29,7 +29,7 @@ class OceanSnackBar(
                     }
                     is OceanSnackBarType.Error -> {
                         setCompoundDrawablesWithIntrinsicBounds(
-                            R.drawable.icon_error_snackbar,
+                            R.drawable.icon_error,
                             0,
                             0,
                             0
@@ -37,7 +37,7 @@ class OceanSnackBar(
                     }
                     is OceanSnackBarType.Success -> {
                         setCompoundDrawablesWithIntrinsicBounds(
-                            R.drawable.icon_sucess_snackbar,
+                            R.drawable.icon_success,
                             0,
                             0,
                             0
@@ -45,7 +45,7 @@ class OceanSnackBar(
                     }
                     is OceanSnackBarType.Warning -> {
                         setCompoundDrawablesWithIntrinsicBounds(
-                            R.drawable.icon_warning_snackbar,
+                            R.drawable.icon_warning,
                             0,
                             0,
                             0

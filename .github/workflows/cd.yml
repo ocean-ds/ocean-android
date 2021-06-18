@@ -17,24 +17,6 @@ jobs:
           # We need to fetch all tags and branches
           fetch-depth: 0
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "14"
-
-      - name: Cache Node.js modules
-        uses: actions/cache@v2
-        with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/.npm
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}-
-
-      - name: Install dependencies
-        run: npm ci
-
       - name: Set git identity
         run: |
           git config --global user.name "Blu Release Bot"

@@ -9,7 +9,7 @@ class InputViewModel : ViewModel() {
     private val _error = MutableLiveData("")
     val error: LiveData<String> get() = _error
 
-    private val _items = MutableLiveData(listOf("Blu", "Red", "Green", "Yellow"))
+    private val _items = MutableLiveData(listOf("Selecione uma opção","Blu", "Red", "Green", "Yellow"))
     val items: LiveData<List<String>> get() = _items
 
     val itemSelect = MutableLiveData<Int>()

@@ -6,7 +6,7 @@ echo "\033[1;31m >>>> Current version is '$LATEST_VERSION_TOKENS_LIB_NPM'. \033[
 
 echo '\033[1;31m >>>> Getting new version and saving on version.properties file. \033[0m'
 
-sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM/g" "../ocean-components/version.properties"
+sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-/g" "../ocean-components/version.properties"
 
 echo '\033[1;31m >>>> Deleting unnecessary temp file. \033[0m'
 rm -f "ocean-components/version.properties-e"
@@ -41,23 +41,3 @@ do
   sed -e 's/Black/Extrabold/g' |
 	tr '[:upper:]' '[:lower:]')
 done
-
-echo '\033[1;31m >>>> What is the current DIR?\033[0m'
-pwd
-
-cd ../../../../..
-
-echo '\033[1;31m >>>> What is the current DIR?\033[0m'
-pwd
-
-echo '\033[1;31m >>>> Show git status. \033[0m'
-git status
-
-echo '\033[1;31m >>>> Running gradlew build \033[0m'
-./gradlew clean assembleRelease publish --stacktrace --info --debug
-
-echo '\033[1;31m >>>> Add and Commit new classes. \033[0m'
-git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM" && git push
-
-echo '\033[1;31m >>>> Show git status after commands.  \033[0m'
-git status

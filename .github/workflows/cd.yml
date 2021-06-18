@@ -1,0 +1,41 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+        with:
+          # we actually need "github.event.pull_request.commits + 1" commit
+          fetch-depth: 0
+
+      - name: Install Npm
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install
+
+      - name: Set git identity
+      - run: |
+            git config --global user.name "Blu Release Bot"
+            git config --global user.email "devs@useblu.com.br"
+
+      - name: Update Tokens
+      - run: ./scripts/update_tokens.sh
+
+      - name: Increment Version
+      - run: |
+          sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER/g" "../ocean-components/version.properties"
+
+      - name: Commit changes
+      - run: |
+           git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM" && git push
+
+      - name: Publish new version lib
+      - run: ./gradlew clean assembleRelease publish

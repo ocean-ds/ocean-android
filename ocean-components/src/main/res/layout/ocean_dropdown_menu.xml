@@ -56,16 +56,15 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/label" />
 
-        <Spinner
+        <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
             android:background="@{(error.length() > 0) ? @drawable/ocean_input_text_field_error  : @drawable/ocean_input_text_field_states }"
             android:fontFamily="@font/font_family_base_regular"
-            android:textColor="@color/ocean_color_interface_dark_deep"
             android:textSize="@dimen/ocean_font_size_xs"
-            android:entries="@{ entries }"
+            app:setAdapterSpinner="@{ entries }"
             android:selectedItemPosition="@={itemSelect}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

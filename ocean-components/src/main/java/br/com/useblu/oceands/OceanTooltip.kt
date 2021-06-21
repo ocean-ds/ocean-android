@@ -2,14 +2,11 @@ package br.com.useblu.oceands
 
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
-import com.skydoves.balloon.ArrowOrientation
-import com.skydoves.balloon.Balloon
-import com.skydoves.balloon.BalloonSizeSpec
-import com.skydoves.balloon.createBalloon
+import com.skydoves.balloon.*
 
 class OceanTooltip(
     val context: Context,
-    val lifecycle: LifecycleOwner?
+    val lifecycle: LifecycleOwner? = null
 ) {
     private var message: String? = null
 
@@ -22,13 +19,14 @@ class OceanTooltip(
             setArrowSize(12)
             setArrowOrientation(ArrowOrientation.BOTTOM)
             setArrowPosition(0.5f)
+            setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
             setPadding(16)
             setCornerRadius(4f)
             setBalloonAnimationStyle(R.style.Fade_Balloon_Library)
             setBackgroundColorResource(R.color.ocean_color_interface_dark_deep)
-            setDismissWhenClicked(false)
-            setDismissWhenTouchOutside(false)
-            setLifecycleOwner(lifecycleOwner)
+            setDismissWhenClicked(true)
+            setDismissWhenTouchOutside(true)
+            setLifecycleOwner(lifecycle)
         }
     }
 

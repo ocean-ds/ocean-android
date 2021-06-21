@@ -28,6 +28,10 @@
         <variable
             name="help"
             type="String" />
+
+        <variable
+            name="information"
+            type="String" />
     </data>
 
     <merge
@@ -41,15 +45,13 @@
 
             <TextView
                 android:id="@+id/label"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
                 android:fontFamily="@font/font_family_base_regular"
                 android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
                 android:text="@{label}"
                 android:textColor="@color/ocean_color_interface_dark_down"
                 android:textSize="@dimen/ocean_font_size_xxs"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/label" />
@@ -109,6 +111,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
                 app:ocean_visible_or_invisible="@{(help.length() > 0 &amp;&amp; (error.length() == 0))}"
                 tools:text="@string/help" />
+
+            <ImageView
+                android:id="@+id/iconInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/label"
+                app:layout_constraintStart_toEndOf="@+id/label"
+                app:layout_constraintTop_toTopOf="@+id/label"
+                app:ocean_visible_or_gone="@{(information.length() > 0)}"
+                app:showTooltip="@{information}"
+                app:srcCompat="@drawable/icon_information_help" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

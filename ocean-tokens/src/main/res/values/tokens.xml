@@ -56,9 +56,9 @@
   <dimen name="ocean_spacing_stack_xl" category="spacing">80dp</dimen>
   <dimen name="ocean_spacing_stack_xxl" category="spacing">128dp</dimen>
   <dimen name="ocean_spacing_stack_xxxl" category="spacing">200dp</dimen>
-  <dimen name="ocean_line_height_tight" category="font-line-height">1</dimen>
-  <dimen name="ocean_line_height_medium" category="font-line-height">1.1</dimen>
-  <dimen name="ocean_line_height_comfy" category="font-line-height">1.5</dimen>
+  <dimen name="ocean_line_height_tight" category="font-line-height">0.9</dimen>
+  <dimen name="ocean_line_height_medium" category="font-line-height">0.92</dimen>
+  <dimen name="ocean_line_height_comfy" category="font-line-height">1.0</dimen>
   <dimen name="ocean_font_size_xxxs" category="font-size">12sp</dimen>
   <dimen name="ocean_font_size_xxs" category="font-size">14sp</dimen>
   <dimen name="ocean_font_size_xs" category="font-size">16sp</dimen>

@@ -53,50 +53,50 @@
         android:onClick="@{() -> click.invoke()}">
 
         <ImageView
-            android:id="@+id/imageView18"
+            android:id="@+id/imageView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:src="@{icon}"
             app:layout_constraintBottom_toBottomOf="@+id/include4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/include5"
+            app:layout_constraintTop_toTopOf="@+id/include10"
             tools:src="@drawable/icon_generic_primary" />
 
-        <TextView
-            android:id="@+id/include5"
-            style="@style/Ocean.Paragraph"
+        <include
+            android:id="@+id/include10"
+            layout="@layout/ocean_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@{title}"
-            app:highlight="@{highlight}"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/imageView18"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Paragraph" />
+            app:layout_constraintStart_toEndOf="@+id/imageView19"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <include
+        <TextView
             android:id="@+id/include4"
-            layout="@layout/ocean_description"
+            style="@style/Ocean.Paragraph"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:text="@{subtitle}"
             app:layout_constraintBottom_toTopOf="@+id/include"
-            app:layout_constraintEnd_toStartOf="@+id/imageView4"
-            app:layout_constraintStart_toStartOf="@+id/include5"
-            app:layout_constraintTop_toBottomOf="@+id/include5"
-            app:text="@{subtitle}" />
+            app:layout_constraintEnd_toStartOf="@+id/imageView9"
+            app:layout_constraintStart_toStartOf="@+id/include10"
+            app:layout_constraintTop_toBottomOf="@+id/include10"
+            app:highlight="@{highlight}"
+            tools:text="Paragraph" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/include4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/include5"
+            app:layout_constraintTop_toTopOf="@+id/include10"
             app:srcCompat="@drawable/icon_chevron_right"
             app:ocean_visible_or_invisible="@{arrowVisible}" />
 
@@ -115,9 +115,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/include5"
-            app:layout_constraintStart_toEndOf="@+id/include5"
-            app:layout_constraintTop_toTopOf="@+id/include5"
+            app:layout_constraintBottom_toBottomOf="@+id/include10"
+            app:layout_constraintStart_toEndOf="@+id/include10"
+            app:layout_constraintTop_toTopOf="@+id/include10"
             app:layout_constraintVertical_bias="0.0"
             app:text="@{badgeTitle}"
             app:visible="@{badgeVisible}" />

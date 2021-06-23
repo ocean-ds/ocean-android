@@ -4,9 +4,12 @@ import android.graphics.drawable.Drawable
 import android.text.InputType
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.annotation.DimenRes
-import androidx.core.content.ContextCompat
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -141,4 +144,11 @@ fun setOceanSrc(imageView: ImageView, type: OceanAlertType) {
             imageView.setBackgroundResource(R.drawable.icon_warning)
         }
     }
+}
+
+@BindingAdapter("app:marginStart")
+fun setCustomMarginStart(view: TextView, margin: Int) {
+    val params = view.layoutParams as ConstraintLayout.LayoutParams
+    params.marginStart = margin.dp
+    view.layoutParams = params
 }

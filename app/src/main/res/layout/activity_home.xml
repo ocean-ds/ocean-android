@@ -154,7 +154,7 @@
             android:background="#E7E7E7" />
 
         <TextView
-            android:id="@+id/lsitItems"
+            android:id="@+id/listItems"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="listItems"

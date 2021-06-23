@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.core
 
+import android.content.res.Resources
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,3 +19,9 @@ fun Date.oceanFormat(pattern: String): String =
 fun Double.oceanFormatWithCurrency() = FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(this.toString())
 
 fun String.clearSpacing() = replace("\\s+".toRegex(), "").trim()
+
+val Int.dp: Int
+    get() = (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()
+
+val Float.dp: Int
+    get() = (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()

@@ -85,7 +85,7 @@
             style="@style/Ocean.Paragraph"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            app:marginStart="@{icon != null ? 16 : 0}"
             android:text="@{title}"
             app:highlight="@{highlight}"
             app:ocean_text="@{title}"

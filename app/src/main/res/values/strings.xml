@@ -5,5 +5,8 @@
     <string name="all_hint">Placeholder</string>
     <string name="all_label">Label</string>
     <string name="all_help">Help Text</string>
+    <string name="all_title">Title</string>
+    <string name="all_subtitle">SubTitle</string>
+    <string name="all_badge">Badge</string>
     <string name="all_information">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
 </resources>

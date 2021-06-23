@@ -14,6 +14,7 @@ import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
+import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 
@@ -57,6 +58,11 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+
+    fun listItems(view: View) {
+        val intent = Intent(this, ListItemActivity::class.java)
+        startActivity(intent)
+    }
 
     fun onClickBottomSheet(view: View) {
         OceanBottomSheet(this)

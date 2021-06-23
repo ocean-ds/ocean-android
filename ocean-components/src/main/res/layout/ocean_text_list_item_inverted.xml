@@ -88,6 +88,7 @@
             app:layout_constraintEnd_toStartOf="@+id/imageView9"
             app:layout_constraintStart_toStartOf="@+id/include10"
             app:layout_constraintTop_toBottomOf="@+id/include10"
+            app:highlight="@{highlight}"
             tools:text="Paragraph" />
 
         <ImageView
@@ -100,6 +101,8 @@
             app:layout_constraintTop_toTopOf="@+id/include10"
             app:ocean_visible_or_invisible="@{arrowVisible}"
             app:srcCompat="@drawable/icon_chevron_right" />
+            app:srcCompat="@drawable/icon_chevron_right"
+            app:ocean_visible_or_invisible="@{arrowVisible}" />
 
         <include
             android:id="@+id/include"

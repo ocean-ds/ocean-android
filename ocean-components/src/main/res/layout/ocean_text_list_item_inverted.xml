@@ -14,8 +14,24 @@
             type="String" />
 
         <variable
+            name="formatTypeTitle"
+            type="br.com.useblu.oceands.core.Formatter" />
+
+        <variable
             name="subtitle"
             type="String" />
+
+        <variable
+            name="formatTypeSubTitle"
+            type="br.com.useblu.oceands.core.Formatter" />
+
+        <variable
+            name="description"
+            type="String" />
+
+        <variable
+            name="formatTypeDescription"
+            type="br.com.useblu.oceands.core.Formatter" />
 
         <variable
             name="badgeTitle"
@@ -50,65 +66,74 @@
         android:enabled="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        android:onClick="@{() -> click.invoke()}">
+        android:onClick="@{() -> click.invoke()}"
+        android:padding="@dimen/ocean_spacing_stack_xs">
 
         <ImageView
             android:id="@+id/imageView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:src="@{icon}"
-            app:layout_constraintBottom_toBottomOf="@+id/include4"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/include10"
             app:ocean_visible_or_gone="@{icon != null}"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/icon_generic_primary" />
 
-        <include
+        <TextView
             android:id="@+id/include10"
-            layout="@layout/ocean_description"
+            style="@style/Ocean.Description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:text="@{title}"
+            app:ocean_text="@{title}"
+            app:ocean_text_format="@{formatTypeTitle}"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/imageView19"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title"/>
 
         <TextView
             android:id="@+id/include4"
             style="@style/Ocean.Paragraph"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
             android:text="@{subtitle}"
             app:highlight="@{highlight}"
-            app:layout_constraintBottom_toTopOf="@+id/include"
+            app:ocean_text="@{subtitle}"
+            app:ocean_text_format="@{formatTypeSubTitle}"
             app:layout_constraintEnd_toStartOf="@+id/imageView9"
             app:layout_constraintStart_toStartOf="@+id/include10"
             app:layout_constraintTop_toBottomOf="@+id/include10"
-            tools:text="Paragraph" />
+            tools:text="Subtitle" />
+
+        <TextView
+            android:id="@+id/include20"
+            style="@style/Ocean.Paragraph"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:highlight="@{highlight}"
+            app:layout_constraintEnd_toEndOf="@+id/include4"
+            app:layout_constraintStart_toStartOf="@+id/include4"
+            app:layout_constraintTop_toBottomOf="@+id/include4"
+            app:ocean_visible_or_gone="@{description != null}"
+            android:text="@{description}"
+            app:ocean_text="@{description}"
+            app:ocean_text_format="@{formatTypeDescription}"
+            tools:text="Description" />
 
         <ImageView
             android:id="@+id/imageView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/include4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/include10"
-            app:ocean_visible_or_invisible="@{arrowVisible}"
-            app:srcCompat="@drawable/icon_chevron_right" />
-
-        <include
-            android:id="@+id/include"
-            layout="@layout/ocean_divider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:ocean_visible_or_invisible="@{arrowVisible}"
+            app:srcCompat="@drawable/icon_chevron_right" />
 
         <include
             android:id="@+id/include6"

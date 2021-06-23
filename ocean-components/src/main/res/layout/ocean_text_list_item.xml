@@ -58,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:src="@{icon}"
+            app:ocean_visible_or_gone="@{icon != null}"
             app:layout_constraintBottom_toBottomOf="@+id/include4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/include5"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/ocean_spacing_inline_xs"
+    android:paddingTop="@dimen/ocean_spacing_inline_xxs"
+    android:paddingEnd="@dimen/ocean_spacing_inline_xs"
+    android:paddingBottom="@dimen/ocean_spacing_inline_xxs">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textOceanSubtitle1"
+        style="@style/Ocean.Subtitle.1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_family_base_regular"
+        android:textColor="@color/ocean_color_interface_dark_deep"
+        android:textSize="@dimen/ocean_font_size_xs"
+        tools:text="Subtitle 1" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

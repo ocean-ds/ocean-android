@@ -3,12 +3,10 @@ package br.com.useblu.oceands.client.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import br.com.useblu.oceands.OceanBottomSheet
-import br.com.useblu.oceands.OceanSnackBar
-import br.com.useblu.oceands.OceanToast
-import br.com.useblu.oceands.OceanTooltip
+import br.com.useblu.oceands.*
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
@@ -76,6 +74,21 @@ class HomeActivity : AppCompatActivity() {
             .withActionNegative(R.string.all_button_cancel) {
             }
             .show()
+    }
+
+    fun onOceanBottomListSheet(view: View) {
+        val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+        OceanBottomListSheet(this)
+            .withTitle("Title")
+            .withList(
+                items = options,
+                onItemSelect = {
+                    Toast.makeText(this,
+                        "O Item selecionado foi \"${options[it]}\"",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            ).show()
     }
 
     fun onClickToast(view: View) {

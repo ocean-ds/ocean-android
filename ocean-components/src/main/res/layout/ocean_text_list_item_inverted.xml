@@ -76,8 +76,8 @@
             android:src="@{icon}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:ocean_visible_or_gone="@{icon != null}"
             app:layout_constraintTop_toTopOf="parent"
+            app:ocean_visible_or_gone="@{icon != null}"
             tools:src="@drawable/icon_generic_primary" />
 
         <TextView
@@ -85,14 +85,15 @@
             style="@style/Ocean.Description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:marginStart="@{icon != null ? 16 : 0}"
             android:text="@{title}"
-            app:ocean_text="@{title}"
-            app:ocean_text_format="@{formatTypeTitle}"
+            android:textColor="@color/ocean_color_interface_dark_deep"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/imageView19"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Title"/>
+            app:marginStart="@{icon != null ? 16 : 0}"
+            app:ocean_text="@{title}"
+            app:ocean_text_format="@{formatTypeTitle}"
+            tools:text="Title" />
 
         <TextView
             android:id="@+id/include4"
@@ -101,12 +102,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@{subtitle}"
+            android:textColor="@color/ocean_color_interface_dark_deep"
             app:highlight="@{highlight}"
-            app:ocean_text="@{subtitle}"
-            app:ocean_text_format="@{formatTypeSubTitle}"
             app:layout_constraintEnd_toStartOf="@+id/imageView9"
             app:layout_constraintStart_toStartOf="@+id/include10"
             app:layout_constraintTop_toBottomOf="@+id/include10"
+            app:ocean_text="@{subtitle}"
+            app:ocean_text_format="@{formatTypeSubTitle}"
             tools:text="Subtitle" />
 
         <TextView
@@ -115,14 +117,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:text="@{description}"
+            android:textColor="@color/ocean_color_interface_dark_deep"
             app:highlight="@{highlight}"
             app:layout_constraintEnd_toEndOf="@+id/include4"
             app:layout_constraintStart_toStartOf="@+id/include4"
             app:layout_constraintTop_toBottomOf="@+id/include4"
-            app:ocean_visible_or_gone="@{description != null}"
-            android:text="@{description}"
             app:ocean_text="@{description}"
             app:ocean_text_format="@{formatTypeDescription}"
+            app:ocean_visible_or_gone="@{description != null}"
             tools:text="Description" />
 
         <ImageView

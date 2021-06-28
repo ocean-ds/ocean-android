@@ -31,6 +31,10 @@
             type="List&lt;String>" />
 
         <variable
+            name="hasBottomSheetBehavior"
+            type="Boolean" />
+
+        <variable
             name="itemSelect"
             type="MutableLiveData&lt;Integer>"/>
 
@@ -64,7 +68,8 @@
             android:background="@{(error.length() > 0) ? @drawable/ocean_input_text_field_error  : @drawable/ocean_input_text_field_states }"
             android:fontFamily="@font/font_family_base_regular"
             android:textSize="@dimen/ocean_font_size_xs"
-            app:setAdapterSpinner="@{ entries }"
+            app:setAdapterSpinner="@{ !hasBottomSheetBehavior ? entries : null }"
+            app:setAdapterBottomSheet="@{ hasBottomSheetBehavior ? entries : null}"
             android:selectedItemPosition="@={itemSelect}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

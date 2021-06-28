@@ -19,6 +19,16 @@ class InputViewModel : ViewModel() {
             items.value?.get(it)
         }
 
+    private val _items2 = MutableLiveData(listOf("Selecione uma opção", "Blu", "Red", "Green", "Yellow"))
+    val items2: LiveData<List<String>> get() = _items2
+
+    val itemSelect2 = MutableLiveData<Int>()
+
+    val selectItem2
+        get() = itemSelect2.value?.let {
+            items2.value?.get(it)
+        }
+
     fun clickError() {
         if (_error.value!!.isNotBlank()) {
             _error.postValue("")

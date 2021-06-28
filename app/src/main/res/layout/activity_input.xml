@@ -94,6 +94,16 @@
                 app:itemSelect="@{viewmodel.itemSelect}"
                 app:label="@{@string/all_label}" />
 
+            <include
+                layout="@layout/ocean_dropdown_menu"
+                app:entries="@{viewmodel.items2}"
+                app:error="@{viewmodel.error}"
+                app:help="@{@string/all_help}"
+                app:hint="@{@string/all_hint}"
+                app:itemSelect="@{viewmodel.itemSelect2}"
+                app:label="@{@string/all_title}"
+                app:hasBottomSheetBehavior="@{true}"/>
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />

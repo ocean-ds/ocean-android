@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:orientation="horizontal"
-    android:paddingStart="@dimen/ocean_spacing_inline_xs"
-    android:paddingTop="@dimen/ocean_spacing_inline_xxs"
-    android:paddingEnd="@dimen/ocean_spacing_inline_xs"
-    android:paddingBottom="@dimen/ocean_spacing_inline_xxs">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="isSelected"
+            type="Boolean" />
+    </data>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textOceanSubtitle1"
-        style="@style/Ocean.Subtitle.1"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/font_family_base_regular"
-        android:textColor="@color/ocean_color_interface_dark_deep"
-        android:textSize="@dimen/ocean_font_size_xs"
-        tools:text="Subtitle 1" />
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:background="@{isSelected ? @color/ocean_color_interface_light_up : @android:color/white}"
+        android:padding="@dimen/ocean_spacing_inline_xs">
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textOceanParagraph"
+            style="@style/Ocean.Paragraph"
+            android:textColor="@{isSelected ? @color/ocean_color_brand_primary_pure : @color/ocean_color_interface_dark_deep}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Paragraph" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

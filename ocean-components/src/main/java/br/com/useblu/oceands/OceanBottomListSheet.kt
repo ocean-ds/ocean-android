@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -62,9 +63,10 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         return this
     }
 
-    fun withList(items: List<String>, onItemSelect: (Int) -> Unit): OceanBottomListSheet {
+    fun withList(items: List<String>, selectedPosition: Int = -1, onItemSelect: (Int) -> Unit): OceanBottomListSheet {
         adapter = OceanBottomListSheetAdapter(
             items = items,
+            selected = selectedPosition,
             onSelect = {
                 onItemSelect(it)
                 dismiss()
@@ -77,7 +79,8 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
 
 class OceanBottomListSheetAdapter(
     private val items: List<String>,
-    private val onSelect: (Int) -> Unit
+    private val onSelect: (Int) -> Unit,
+    private val selected: Int = -1
 ): RecyclerView.Adapter<OceanBottomListSheetAdapter.OceanBottomListSheetViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -100,8 +103,9 @@ class OceanBottomListSheetAdapter(
     ) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bindView(position: Int) {
-            itemBinding.textOceanSubtitle1.text = items[position]
+            itemBinding.textOceanParagraph.text = items[position]
             itemBinding.root.setOnClickListener { onSelect(position) }
+            itemBinding.isSelected = position == selected
         }
 
     }

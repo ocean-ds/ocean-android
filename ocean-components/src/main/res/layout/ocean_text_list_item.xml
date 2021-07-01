@@ -103,6 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@{subtitle}"
+            app:ocean_visible_or_gone="@{subtitle != null}"
             android:textColor="@color/ocean_color_interface_dark_deep"
             app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintStart_toStartOf="@+id/include5"

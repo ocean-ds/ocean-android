@@ -113,7 +113,7 @@
 
             <include
                 layout="@layout/ocean_text_list_item_inverted"
-                app:icon="@{@drawable/icon_generic_primary}"
+                app:icon="@{@drawable/icon_phone}"
                 app:arrowVisible="@{true}"
                 app:title="@{@string/all_title}" />
 

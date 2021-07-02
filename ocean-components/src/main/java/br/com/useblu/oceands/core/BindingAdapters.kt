@@ -147,7 +147,7 @@ fun setOceanSrc(imageView: ImageView, type: OceanAlertType) {
 }
 
 @BindingAdapter("app:marginStart")
-fun setCustomMarginStart(view: TextView, margin: Int) {
+fun setCustomMarginStart(view: View, margin: Int) {
     val params = view.layoutParams as ConstraintLayout.LayoutParams
     params.marginStart = margin.dp
     view.layoutParams = params

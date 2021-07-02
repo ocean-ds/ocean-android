@@ -103,7 +103,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{title}"
-                    android:textColor="@color/ocean_color_interface_dark_deep"
                     app:ocean_text="@{title}"
                     app:ocean_text_format="@{formatTypeTitle}"
                     android:layout_marginBottom="@dimen/ocean_spacing_stack_xxxs"

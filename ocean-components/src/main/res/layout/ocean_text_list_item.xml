@@ -140,7 +140,7 @@
 
             <TextView
                 android:id="@+id/include20"
-                style="@style/Ocean.Description"
+                style="@style/Ocean.Caption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{description}"

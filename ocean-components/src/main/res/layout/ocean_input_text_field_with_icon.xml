@@ -5,6 +5,10 @@
 
     <data>
 
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.Unit" />
+
         <variable
             name="type"
             type="Integer" />
@@ -32,6 +36,14 @@
         <variable
             name="information"
             type="String" />
+
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="iconClick"
+            type="Function0&lt;Unit>" />
     </data>
 
     <merge
@@ -75,7 +87,10 @@
                     android:fontFamily="@font/font_family_base_regular"
                     android:hint="@{hint}"
                     android:imeOptions="actionGo"
-                    android:padding="@dimen/ocean_spacing_inline_xs"
+                    android:paddingStart="@dimen/ocean_spacing_inline_xs"
+                    android:paddingTop="@dimen/ocean_spacing_inline_xs"
+                    android:paddingEnd="@{(icon != null) ? @dimen/ocean_spacing_inline_xx : @dimen/ocean_spacing_inline_xs}"
+                    android:paddingBottom="@dimen/ocean_spacing_inline_xs"
                     android:text="@={value}"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textColorHint="@color/ocean_color_interface_light_deep"
@@ -124,6 +139,21 @@
                 app:ocean_visible_or_gone="@{(information.length() > 0)}"
                 app:showTooltip="@{information}"
                 app:srcCompat="@drawable/icon_information_help" />
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> iconClick.invoke()}"
+                android:src="@{icon}"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayout"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayout"
+                app:ocean_visible_or_gone="@{icon != null}"
+                tools:src="@drawable/icon_generic_primary" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

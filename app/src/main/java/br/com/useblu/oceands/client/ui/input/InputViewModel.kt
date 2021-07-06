@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.client.ui.input
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,8 @@ class InputViewModel : ViewModel() {
     private val _error = MutableLiveData("")
     val error: LiveData<String> get() = _error
 
-    private val _items = MutableLiveData(listOf("Selecione uma opção","Blu", "Red", "Green", "Yellow"))
+    private val _items =
+        MutableLiveData(listOf("Selecione uma opção", "Blu", "Red", "Green", "Yellow"))
     val items: LiveData<List<String>> get() = _items
 
     val itemSelect = MutableLiveData<Int>()
@@ -19,7 +21,8 @@ class InputViewModel : ViewModel() {
             items.value?.get(it)
         }
 
-    private val _items2 = MutableLiveData(listOf("Selecione uma opção", "Blu", "Red", "Green", "Yellow"))
+    private val _items2 =
+        MutableLiveData(listOf("Selecione uma opção", "Blu", "Red", "Green", "Yellow"))
     val items2: LiveData<List<String>> get() = _items2
 
     val itemSelect2 = MutableLiveData<Int>()
@@ -35,5 +38,9 @@ class InputViewModel : ViewModel() {
         } else {
             _error.postValue("Sample Message Error")
         }
+    }
+
+    fun clickIcon() {
+        Log.d("BLU", "Click no icone")
     }
 }

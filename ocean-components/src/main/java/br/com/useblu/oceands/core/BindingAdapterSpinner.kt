@@ -109,7 +109,7 @@ fun setAdapterBottomSheet(spinner: Spinner, list: List<String>?) {
                         }
                     ).show()
             }
-            false
+            true
         }
     }
 }

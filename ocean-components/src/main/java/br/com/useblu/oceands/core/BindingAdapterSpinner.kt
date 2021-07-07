@@ -101,7 +101,7 @@ fun setAdapterBottomSheet(spinner: Spinner, list: List<String>?) {
                     spinner.selectedItemPosition - 1
                 OceanBottomListSheet(spinner.context)
                     .withTitle(title)
-                    .withList(
+                    .withSimpleList(
                         items = items.drop(1),
                         selectedPosition = selectedItemPosition,
                         onItemSelect = { posSelected ->

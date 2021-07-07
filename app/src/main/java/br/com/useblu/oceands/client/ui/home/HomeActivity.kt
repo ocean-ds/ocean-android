@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import br.com.useblu.oceands.*
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
@@ -80,11 +81,31 @@ class HomeActivity : AppCompatActivity() {
         val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
         OceanBottomListSheet(this)
             .withTitle("Title")
-            .withList(
+            .withSimpleList(
                 items = options,
                 onItemSelect = {
                     Toast.makeText(this,
                         "O Item selecionado foi \"${options[it]}\"",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            ).show()
+    }
+
+    fun onOceanBottomListSheetIcon(view: View) {
+        val drawableIcon = ContextCompat.getDrawable(this, R.drawable.icon_generic_primary)!!
+        val options = listOf(
+            OceanBottomListSheetUIModel(drawableIcon, "Title 1", "description 1"),
+            OceanBottomListSheetUIModel(drawableIcon, "Title 2", "description 2"),
+            OceanBottomListSheetUIModel(drawableIcon, "Title 3", "description 3"),
+        )
+        OceanBottomListSheet(this)
+            .withTitle("Title")
+            .withCustomList(
+                items = options,
+                onItemSelect = {
+                    Toast.makeText(this,
+                        "O Item selecionado foi \"${options[it].title}\"",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -16,7 +16,7 @@
             android:paddingStart="6dp"
             android:paddingEnd="16dp"
             app:contentInsetStartWithNavigation="0dp"
-            app:navigationIcon="@drawable/icon_back_primary" />
+            app:navigationIcon="@drawable/icon_close" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

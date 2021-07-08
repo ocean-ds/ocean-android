@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Ocean.FullScreenDialog" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorPrimaryDark">@color/ocean_color_interface_light_pure</item>
+        <item name="colorAccent">@color/ocean_color_brand_primary_pure</item>
+        <item name="colorPrimary">@color/ocean_color_interface_light_pure</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@color/ocean_color_interface_light_pure</item>
+        <item name="actionMenuTextColor">@color/ocean_color_brand_primary_pure</item>
+    </style>
+
+    <style name="Ocean.Slide">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+</resources>

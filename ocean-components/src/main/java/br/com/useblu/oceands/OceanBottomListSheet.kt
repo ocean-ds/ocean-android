@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.OceanBottomListSheetBinding
@@ -22,6 +23,9 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     private var isDismiss: Boolean = true
     private var adapter: OceanBottomListSheetAdapter? = null
     private var adapterWithIcon: OceanBottomListSheetWithIconAdapter? = null
+    private var manager: FragmentManager? = null
+    private var limit: Int? = null
+
     private lateinit var binding: OceanBottomListSheetBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +63,11 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         behavior.peekHeight = context.resources.displayMetrics.heightPixels
     }
 
+    fun withDismiss(dismiss: Boolean): OceanBottomListSheet {
+        this.isDismiss = dismiss
+        return this
+    }
+
     fun withTitle(title: String): OceanBottomListSheet {
         this.title = title
         return this
@@ -69,10 +78,16 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         return this
     }
 
+    fun withSearch(manager: FragmentManager, limit: Int): OceanBottomListSheet {
+        this.limit = limit
+        this.manager = manager
+        return this
+    }
+
     fun withSimpleList(
         items: List<String>,
         selectedPosition: Int = -1,
-        onItemSelect: (Int) -> Unit
+        onItemSelect: (Int) -> Unit,
     ): OceanBottomListSheet {
         adapter = OceanBottomListSheetAdapter(
             items = items,
@@ -80,7 +95,10 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
             onSelect = {
                 onItemSelect(it)
                 dismiss()
-            }
+            },
+            limit = limit,
+            title = title,
+            manager = manager
         )
         return this
     }
@@ -109,11 +127,36 @@ data class OceanBottomListSheetUIModel(
     val description: String
 )
 
-internal class OceanBottomListSheetAdapter(
+class OceanBottomListSheetAdapter(
     private val items: List<String>,
     private val onSelect: (Int) -> Unit,
-    private val selected: Int = -1
+    private val selected: Int = -1,
+    private val limit: Int? = null,
+    private val title: String? = null,
+    private val manager: FragmentManager? = null
 ) : RecyclerView.Adapter<OceanBottomListSheetAdapter.OceanBottomListSheetViewHolder>() {
+
+    private lateinit var oceanSearchDialog: OceanSearchDialog
+    private val itemsAll by lazy { mutableListOf<String>() }
+
+    init {
+        itemsAll.addAll(items)
+        addItemSeeAll()
+    }
+
+    private fun addItemSeeAll() {
+        limit?.let {
+            if (items.size >= limit) {
+                replaceList(items.subList(0, limit))
+                itemsAll.add(SEE_ALL)
+            }
+        }
+    }
+
+    private fun replaceList(items: List<String>) {
+        itemsAll.clear()
+        itemsAll.addAll(items)
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -128,18 +171,45 @@ internal class OceanBottomListSheetAdapter(
         holder.bindView(position)
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = itemsAll.size
 
     inner class OceanBottomListSheetViewHolder(
         private val itemBinding: OceanBottomListSheetItemBinding
     ) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bindView(position: Int) {
-            itemBinding.textOceanParagraph.text = items[position]
-            itemBinding.root.setOnClickListener { onSelect(position) }
-            itemBinding.isSelected = position == selected
+            itemBinding.textOceanParagraph.text = itemsAll[position]
+            itemBinding.root.setOnClickListener {
+                if (isItemSeeAll(position)) {
+                    replaceList(items)
+                    showOceanDialog()
+                } else {
+                    hideOceanDialog()
+                    onSelect(position)
+                    itemBinding.isSelected = position == selected
+                }
+            }
         }
 
+        private fun isItemSeeAll(position: Int) = itemsAll[position] == SEE_ALL
+
+        private fun showOceanDialog() {
+            oceanSearchDialog = OceanSearchDialog(title, this@OceanBottomListSheetAdapter)
+            oceanSearchDialog.show(
+                manager!!,
+                "dialog_search"
+            )
+        }
+
+        private fun hideOceanDialog() {
+            if (::oceanSearchDialog.isInitialized && oceanSearchDialog.isVisible) {
+                oceanSearchDialog.dismiss()
+            }
+        }
+    }
+
+    companion object {
+        const val SEE_ALL = "Ver Todos"
     }
 
 }

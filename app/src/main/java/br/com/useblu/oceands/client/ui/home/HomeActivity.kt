@@ -84,7 +84,8 @@ class HomeActivity : AppCompatActivity() {
             .withSimpleList(
                 items = options,
                 onItemSelect = {
-                    Toast.makeText(this,
+                    Toast.makeText(
+                        this,
                         "O Item selecionado foi \"${options[it]}\"",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -104,8 +105,29 @@ class HomeActivity : AppCompatActivity() {
             .withCustomList(
                 items = options,
                 onItemSelect = {
-                    Toast.makeText(this,
+                    Toast.makeText(
+                        this,
                         "O Item selecionado foi \"${options[it].title}\"",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            ).show()
+    }
+
+    fun onOceanBottomListSheetWithSearch(view: View) {
+        val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+        OceanBottomListSheet(this)
+            .withTitle("Title")
+            .withSearch(
+                manager = supportFragmentManager,
+                limit = 3,
+            )
+            .withSimpleList(
+                items = options,
+                onItemSelect = {
+                    Toast.makeText(
+                        this,
+                        "O Item selecionado foi \"${options[it]}\"",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

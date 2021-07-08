@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -110,11 +109,11 @@ data class OceanBottomListSheetUIModel(
     val description: String
 )
 
-class OceanBottomListSheetAdapter(
+internal class OceanBottomListSheetAdapter(
     private val items: List<String>,
     private val onSelect: (Int) -> Unit,
     private val selected: Int = -1
-): RecyclerView.Adapter<OceanBottomListSheetAdapter.OceanBottomListSheetViewHolder>() {
+) : RecyclerView.Adapter<OceanBottomListSheetAdapter.OceanBottomListSheetViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -145,11 +144,11 @@ class OceanBottomListSheetAdapter(
 
 }
 
-class OceanBottomListSheetWithIconAdapter(
+internal class OceanBottomListSheetWithIconAdapter(
     private val items: List<OceanBottomListSheetUIModel>,
     private val onSelect: (Int) -> Unit,
     private val selected: Int = -1
-): RecyclerView.Adapter<OceanBottomListSheetWithIconAdapter.OceanBottomListSheetWithIconViewHolder>() {
+) : RecyclerView.Adapter<OceanBottomListSheetWithIconAdapter.OceanBottomListSheetWithIconViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

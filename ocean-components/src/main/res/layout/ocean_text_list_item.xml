@@ -53,10 +53,6 @@
             name="arrowVisible"
             type="Boolean" />
 
-        <variable
-            name="highlight"
-            type="Boolean" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -102,12 +98,12 @@
                     style="@style/Ocean.Paragraph"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:highlight="@{highlight}"
+                    android:layout_marginBottom="@dimen/ocean_spacing_stack_xxxs"
+                    android:fontFamily="@font/font_family_base_medium"
                     android:text="@{title}"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     app:ocean_text="@{title}"
                     app:ocean_text_format="@{formatTypeTitle}"
-                    android:layout_marginBottom="@dimen/ocean_spacing_stack_xxxs"
                     tools:text="Title" />
 
                 <Space
@@ -130,8 +126,8 @@
                 style="@style/Ocean.Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{subtitle}"
                 android:layout_marginBottom="@dimen/ocean_spacing_stack_xxxs"
+                android:text="@{subtitle}"
                 app:ocean_text="@{subtitle}"
                 app:ocean_text_format="@{formatTypeSubTitle}"
                 app:ocean_visible_or_gone="@{subtitle != null}"

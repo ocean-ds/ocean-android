@@ -20,14 +20,12 @@ class HomeViewModel : ViewModel() {
             _showProgress.value = true != it.value
         }
 
-        Thread(
-            Runnable {
-                Thread.sleep(1500)
-                showProgress.let {
-                    _showProgress.postValue(true != it.value)
-                }
+        Thread {
+            Thread.sleep(1500)
+            showProgress.let {
+                _showProgress.postValue(true != it.value)
             }
-        ).start()
+        }.start()
     }
 
     fun showToast() {

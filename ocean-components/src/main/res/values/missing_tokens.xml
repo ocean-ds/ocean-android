@@ -15,4 +15,8 @@
     <!-- NEW TOKENS PROPOSAL - ONLY ANDROID -->
     <dimen name="ocean_spacing_inline_xx" category="spacing">56dp</dimen>
     <dimen name="ocean_border_width_hairline" category="spacing">1dp</dimen>
+
+    <dimen name="ocean_line_height_tight" category="font-line-height">0.9</dimen>
+    <dimen name="ocean_line_height_medium" category="font-line-height">0.92</dimen>
+    <dimen name="ocean_line_height_comfy" category="font-line-height">1.0</dimen>
 </resources>

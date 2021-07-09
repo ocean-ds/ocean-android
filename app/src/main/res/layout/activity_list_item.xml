@@ -33,7 +33,6 @@
                 app:badgeTitle="@{@string/all_badge}"
                 app:badgeVisible="@{true}"
                 app:description="@{@string/all_description}"
-                app:highlight="@{true}"
                 app:icon="@{@drawable/icon_generic_primary}"
                 app:subtitle="@{@string/all_subtitle}"
                 app:title="@{@string/all_title}" />
@@ -79,7 +78,6 @@
                 app:badgeTitle="@{@string/all_badge}"
                 app:badgeVisible="@{true}"
                 app:description="@{@string/all_description}"
-                app:highlight="@{true}"
                 app:icon="@{@drawable/icon_generic_primary}"
                 app:subtitle="@{@string/all_subtitle}"
                 app:title="@{@string/all_title}" />

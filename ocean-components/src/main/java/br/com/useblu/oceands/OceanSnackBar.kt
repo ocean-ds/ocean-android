@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.snackbar.Snackbar
 
 class OceanSnackBar(
@@ -55,6 +56,7 @@ class OceanSnackBar(
                 compoundDrawablePadding =
                     resources.getDimension(R.dimen.ocean_spacing_inline_xs).toInt()
                 this.setTextColor(getColor(context, R.color.ocean_color_interface_light_pure))
+                this.typeface = ResourcesCompat.getFont(context, R.font.font_family_base_regular)
             }
 
             show()

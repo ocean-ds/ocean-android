@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
 import br.com.useblu.oceands.databinding.OceanDialogBinding
 
 class OceanSearchDialog(
     private val title: String?,
+    private val hint: String?,
     private val adapter: OceanBottomListSheetAdapter,
 ) : DialogFragment() {
 
@@ -43,14 +45,22 @@ class OceanSearchDialog(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupToolbar()
+        setupSearch()
+        setupRecycleView()
+    }
+
+    private fun setupSearch() {
+        binding.inputSearch.hint = hint
+    }
+
+    private fun setupToolbar() {
         binding.toolbar.setNavigationOnClickListener { dismiss() }
         binding.toolbar.title = title
         binding.toolbar.setOnMenuItemClickListener {
             dismiss()
             true
         }
-
-        setupRecycleView()
     }
 
     private fun setupRecycleView() {

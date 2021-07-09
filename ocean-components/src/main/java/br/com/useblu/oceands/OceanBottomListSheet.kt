@@ -11,15 +11,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
+import br.com.useblu.oceands.adapter.OceanBottomListSheetWithIconAdapter
 import br.com.useblu.oceands.databinding.OceanBottomListSheetBinding
-import br.com.useblu.oceands.databinding.OceanBottomListSheetItemBinding
-import br.com.useblu.oceands.databinding.OceanBottomListSheetWithIconItemBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
 
     private var title: String? = null
+    private var hint: String? = null
     private var isDismiss: Boolean = true
     private var adapter: OceanBottomListSheetAdapter? = null
     private var adapterWithIcon: OceanBottomListSheetWithIconAdapter? = null
@@ -78,6 +78,16 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         return this
     }
 
+    fun withHint(hint: String): OceanBottomListSheet {
+        this.hint = hint
+        return this
+    }
+
+    fun withHint(hint: Int): OceanBottomListSheet {
+        this.hint = context.getString(hint)
+        return this
+    }
+
     fun withSearch(manager: FragmentManager, limit: Int): OceanBottomListSheet {
         this.limit = limit
         this.manager = manager
@@ -90,6 +100,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         onItemSelect: (Int) -> Unit,
     ): OceanBottomListSheet {
         adapter = OceanBottomListSheetAdapter(
+            oceanBottomSheet = this,
             items = items,
             selected = selectedPosition,
             onSelect = {
@@ -98,6 +109,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
             },
             limit = limit,
             title = title,
+            hint = hint,
             manager = manager
         )
         return this
@@ -118,7 +130,6 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         )
         return this
     }
-
 }
 
 data class OceanBottomListSheetUIModel(
@@ -126,125 +137,3 @@ data class OceanBottomListSheetUIModel(
     val title: String,
     val description: String
 )
-
-class OceanBottomListSheetAdapter(
-    private val items: List<String>,
-    private val onSelect: (Int) -> Unit,
-    private val selected: Int = -1,
-    private val limit: Int? = null,
-    private val title: String? = null,
-    private val manager: FragmentManager? = null
-) : RecyclerView.Adapter<OceanBottomListSheetAdapter.OceanBottomListSheetViewHolder>() {
-
-    private lateinit var oceanSearchDialog: OceanSearchDialog
-    private val itemsAll by lazy { mutableListOf<String>() }
-
-    init {
-        itemsAll.addAll(items)
-        addItemSeeAll()
-    }
-
-    private fun addItemSeeAll() {
-        limit?.let {
-            if (items.size >= limit) {
-                replaceList(items.subList(0, limit))
-                itemsAll.add(SEE_ALL)
-            }
-        }
-    }
-
-    private fun replaceList(items: List<String>) {
-        itemsAll.clear()
-        itemsAll.addAll(items)
-    }
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): OceanBottomListSheetViewHolder {
-        val itemBinding = OceanBottomListSheetItemBinding
-            .inflate(LayoutInflater.from(parent.context), parent, false)
-        return OceanBottomListSheetViewHolder(itemBinding)
-    }
-
-    override fun onBindViewHolder(holder: OceanBottomListSheetViewHolder, position: Int) {
-        holder.bindView(position)
-    }
-
-    override fun getItemCount(): Int = itemsAll.size
-
-    inner class OceanBottomListSheetViewHolder(
-        private val itemBinding: OceanBottomListSheetItemBinding
-    ) : RecyclerView.ViewHolder(itemBinding.root) {
-
-        fun bindView(position: Int) {
-            itemBinding.textOceanParagraph.text = itemsAll[position]
-            itemBinding.root.setOnClickListener {
-                if (isItemSeeAll(position)) {
-                    replaceList(items)
-                    showOceanDialog()
-                } else {
-                    hideOceanDialog()
-                    onSelect(position)
-                    itemBinding.isSelected = position == selected
-                }
-            }
-        }
-
-        private fun isItemSeeAll(position: Int) = itemsAll[position] == SEE_ALL
-
-        private fun showOceanDialog() {
-            oceanSearchDialog = OceanSearchDialog(title, this@OceanBottomListSheetAdapter)
-            oceanSearchDialog.show(
-                manager!!,
-                "dialog_search"
-            )
-        }
-
-        private fun hideOceanDialog() {
-            if (::oceanSearchDialog.isInitialized && oceanSearchDialog.isVisible) {
-                oceanSearchDialog.dismiss()
-            }
-        }
-    }
-
-    companion object {
-        const val SEE_ALL = "Ver Todos"
-    }
-
-}
-
-internal class OceanBottomListSheetWithIconAdapter(
-    private val items: List<OceanBottomListSheetUIModel>,
-    private val onSelect: (Int) -> Unit,
-    private val selected: Int = -1
-) : RecyclerView.Adapter<OceanBottomListSheetWithIconAdapter.OceanBottomListSheetWithIconViewHolder>() {
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): OceanBottomListSheetWithIconViewHolder {
-        val itemBinding = OceanBottomListSheetWithIconItemBinding
-            .inflate(LayoutInflater.from(parent.context), parent, false)
-        return OceanBottomListSheetWithIconViewHolder(itemBinding)
-    }
-
-    override fun onBindViewHolder(holder: OceanBottomListSheetWithIconViewHolder, position: Int) {
-        holder.bindView(position)
-    }
-
-    override fun getItemCount(): Int = items.size
-
-    inner class OceanBottomListSheetWithIconViewHolder(
-        private val itemBinding: OceanBottomListSheetWithIconItemBinding
-    ) : RecyclerView.ViewHolder(itemBinding.root) {
-
-        fun bindView(position: Int) {
-            itemBinding.item = items[position]
-            itemBinding.root.setOnClickListener { onSelect(position) }
-            itemBinding.isSelected = position == selected
-        }
-
-    }
-
-}

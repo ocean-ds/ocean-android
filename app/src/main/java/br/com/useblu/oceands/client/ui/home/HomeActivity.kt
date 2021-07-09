@@ -118,6 +118,7 @@ class HomeActivity : AppCompatActivity() {
         val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
         OceanBottomListSheet(this)
             .withTitle("Title")
+            .withHint("Hint Sample")
             .withSearch(
                 manager = supportFragmentManager,
                 limit = 3,

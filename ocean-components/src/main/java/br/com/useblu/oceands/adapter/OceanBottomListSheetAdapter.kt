@@ -36,11 +36,6 @@ class OceanBottomListSheetAdapter(
         }
     }
 
-    private fun replaceList(items: List<String>) {
-        itemsAll.clear()
-        itemsAll.addAll(items)
-    }
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -59,6 +54,23 @@ class OceanBottomListSheetAdapter(
 
     override fun getItemCount(): Int = itemsAll.size
 
+    fun updateList(list: List<String>) {
+        replaceList(list)
+        notifyDataSetChanged()
+    }
+
+    private fun replaceList(items: List<String>) {
+        itemsAll.clear()
+        itemsAll.addAll(items)
+    }
+
+    fun filter(text: String?) {
+        text?.let {
+            val filtered = items.filter { it.contains(text, ignoreCase = true) }
+            updateList(filtered)
+        }
+    }
+
     inner class OceanBottomListSheetViewHolder(
         private val itemBinding: OceanBottomListSheetItemBinding
     ) : RecyclerView.ViewHolder(itemBinding.root) {
@@ -72,16 +84,21 @@ class OceanBottomListSheetAdapter(
                     oceanBottomSheet.dismiss()
                 } else {
                     hideOceanDialog()
-                    onSelect(position)
-                    itemBinding.isSelected = position == selected
+                    setSelectItem(position)
                 }
             }
         }
 
         private fun isItemSeeAll(position: Int) = itemsAll[position] == SEE_ALL
 
+        private fun setSelectItem(position: Int) {
+            val positionItemSelect = items.indexOf(itemsAll[position])
+            onSelect(positionItemSelect)
+            itemBinding.isSelected = positionItemSelect == selected
+        }
+
         private fun showOceanDialog() {
-            oceanSearchDialog = OceanSearchDialog(title, hint,this@OceanBottomListSheetAdapter)
+            oceanSearchDialog = OceanSearchDialog(title, hint, this@OceanBottomListSheetAdapter)
             oceanSearchDialog.show(
                 manager!!,
                 "dialog_search"

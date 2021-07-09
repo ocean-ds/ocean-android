@@ -1,6 +1,8 @@
 package br.com.useblu.oceands
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +54,16 @@ class OceanSearchDialog(
 
     private fun setupSearch() {
         binding.inputSearch.hint = hint
+
+        binding.inputSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(text: Editable?) {
+                adapter.filter(text.toString())
+            }
+        })
     }
 
     private fun setupToolbar() {

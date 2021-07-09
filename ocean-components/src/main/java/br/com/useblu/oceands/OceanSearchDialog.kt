@@ -64,6 +64,10 @@ class OceanSearchDialog(
                 adapter.filter(text.toString())
             }
         })
+
+        binding.textInputLayout.setEndIconOnClickListener {
+            binding.inputSearch.setText("")
+        }
     }
 
     private fun setupToolbar() {

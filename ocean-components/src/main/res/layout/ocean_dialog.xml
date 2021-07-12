@@ -16,6 +16,8 @@
             android:paddingStart="6dp"
             android:paddingEnd="16dp"
             app:contentInsetStartWithNavigation="0dp"
+            android:theme="@style/Ocean.ToolBar"
+            app:titleTextColor="@color/ocean_color_brand_primary_pure"
             app:navigationIcon="@drawable/icon_close" />
 
     </com.google.android.material.appbar.AppBarLayout>

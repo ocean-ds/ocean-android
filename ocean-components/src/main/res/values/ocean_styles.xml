@@ -276,4 +276,9 @@
         <item name="android:textSize">@dimen/ocean_font_size_sm</item>
     </style>
 
+    <!--TOOLBAR-->
+    <style name="Ocean.ToolBar" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/font_family_highlight_extrabold</item>
+    </style>
+
 </resources>

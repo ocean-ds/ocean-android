@@ -15,6 +15,10 @@
             type="String" />
 
         <variable
+            name="title"
+            type="String" />
+
+        <variable
             name="hint"
             type="String" />
 
@@ -29,6 +33,10 @@
         <variable
             name="entries"
             type="List&lt;String>" />
+
+        <variable
+            name="limit"
+            type="Integer" />
 
         <variable
             name="hasBottomSheetBehavior"
@@ -70,6 +78,9 @@
             android:textSize="@dimen/ocean_font_size_xs"
             app:setAdapterSpinner="@{ !hasBottomSheetBehavior ? entries : null }"
             app:setAdapterBottomSheet="@{ hasBottomSheetBehavior ? entries : null}"
+            app:limit="@{limit}"
+            app:title="@{title}"
+            app:hint="@{hint}"
             android:selectedItemPosition="@={itemSelect}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

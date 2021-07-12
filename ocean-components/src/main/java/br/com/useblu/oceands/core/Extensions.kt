@@ -1,6 +1,9 @@
 package br.com.useblu.oceands.core
 
+import android.content.Context
 import android.content.res.Resources
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,3 +28,8 @@ val Int.dp: Int
 
 val Float.dp: Int
     get() = (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()
+
+fun Context.getSupportFragmentManager() = when (this) {
+    is Fragment -> this.requireActivity().supportFragmentManager
+    else -> (this as AppCompatActivity).supportFragmentManager
+}

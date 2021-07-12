@@ -12,6 +12,7 @@ import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.OceanBottomListSheet
 import br.com.useblu.oceands.R
 
+
 @BindingAdapter("setAdapterSpinner")
 fun setAdapterSpinner(spinner: Spinner, list: List<String>?) {
     list?.let { items ->
@@ -84,8 +85,14 @@ fun setAdapterSpinner(spinner: Spinner, list: List<String>?) {
 
 
 @SuppressLint("ClickableViewAccessibility")
-@BindingAdapter("setAdapterBottomSheet")
-fun setAdapterBottomSheet(spinner: Spinner, list: List<String>?) {
+@BindingAdapter("setAdapterBottomSheet", "limit", "title", "hint")
+fun setAdapterBottomSheet(
+    spinner: Spinner,
+    list: List<String>?,
+    limit: Int?,
+    title: String?,
+    hint: String?
+) {
     list?.let { items ->
         spinner.adapter = ArrayAdapter(
             spinner.context,
@@ -94,22 +101,38 @@ fun setAdapterBottomSheet(spinner: Spinner, list: List<String>?) {
         )
         spinner.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
-                val title = items.first()
-                val selectedItemPosition = if (spinner.selectedItemPosition == 0)
+
+                val selectedItemPosition = if (spinner.selectedItemPosition == 0) {
                     -1
-                else
+                } else {
                     spinner.selectedItemPosition - 1
-                OceanBottomListSheet(spinner.context)
-                    .withTitle(title)
-                    .withSimpleList(
-                        items = items.drop(1),
-                        selectedPosition = selectedItemPosition,
-                        onItemSelect = { posSelected ->
-                            spinner.setSelection(posSelected+1)
-                        }
-                    ).show()
+                }
+
+                val bottomSheet = OceanBottomListSheet(spinner.context)
+                    .withTitle(title.toString())
+                    .withHint(hint.toString())
+
+                limit?.let {
+                    if (it > 0) {
+                        bottomSheet
+
+                            .withSearch(
+                                manager = spinner.context.getSupportFragmentManager(),
+                                limit = limit,
+                            )
+                    }
+                }
+
+                bottomSheet.withSimpleList(
+                    items = items.drop(1),
+                    selectedPosition = selectedItemPosition,
+                    onItemSelect = { posSelected ->
+                        spinner.setSelection(posSelected + 1)
+                    }
+                ).show()
             }
             true
         }
     }
 }
+

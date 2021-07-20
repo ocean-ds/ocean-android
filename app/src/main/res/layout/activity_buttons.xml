@@ -127,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:text='@{(viewmodel.buttonType + " Critical " + viewmodel.buttonSize)}'
                 android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimarySmall") ? View.VISIBLE : View.GONE}'
                 app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
                 app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_white_16dp : null}'
@@ -139,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:text='@{(viewmodel.buttonType + " Critical " + viewmodel.buttonSize)}'
                 android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimaryMedium") ? View.VISIBLE : View.GONE}'
                 app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
                 app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_white_24dp : null}'
@@ -151,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:text='@{(viewmodel.buttonType + " Critical " + viewmodel.buttonSize)}'
                 android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("PrimaryLarge") ? View.VISIBLE : View.GONE}'
                 app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
                 app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_white_24dp : null}'

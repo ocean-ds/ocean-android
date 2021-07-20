@@ -27,6 +27,8 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
     private var icon: Drawable? = null
     private var actionPositive: (() -> Unit?)? = null
     private var actionNegative: (() -> Unit?)? = null
+    private var isCritical: Boolean = false
+
     private lateinit var binding: OceanBottomSheetBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,6 +79,7 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
         }
 
         binding.cancelabled = isDismiss
+        binding.isCritical = isCritical
         binding.orientationButtons = orientationButtons
 
         setCancelable(isDismiss)
@@ -151,6 +154,11 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
     fun withActionNegative(text: Int, callBack: () -> Unit): OceanBottomSheet {
         this.textNegative = context.getString(text)
         this.actionNegative = callBack
+        return this
+    }
+
+    fun withCritical(isCritical: Boolean): OceanBottomSheet {
+        this.isCritical = isCritical
         return this
     }
 

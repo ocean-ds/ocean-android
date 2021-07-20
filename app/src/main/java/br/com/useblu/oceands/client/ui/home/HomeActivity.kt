@@ -63,13 +63,42 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun onClickBottomSheet(view: View) {
+    fun onClickBottomSheetVertical(view: View) {
         OceanBottomSheet(this)
             .withTitle("Title")
             .withMessage("Message")
-            .withIcon(R.drawable.icon_generic_primary)
+            .withIcon(R.drawable.icon_generic_black)
             .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
             .withDismiss(true)
+            .withActionPositive(R.string.all_button_confirm) {
+            }
+            .withActionNegative(R.string.all_button_cancel) {
+            }
+            .show()
+    }
+
+    fun onClickBottomSheetHorizontal(view: View) {
+        OceanBottomSheet(this)
+            .withTitle("Title")
+            .withMessage("Message")
+            .withIcon(R.drawable.icon_generic_black)
+            .withOrientationButtons(OceanBottomSheet.Orientation.Horizontal)
+            .withDismiss(true)
+            .withActionPositive(R.string.all_button_confirm) {
+            }
+            .withActionNegative(R.string.all_button_cancel) {
+            }
+            .show()
+    }
+
+    fun onClickBottomSheetCritical(view: View) {
+        OceanBottomSheet(this)
+            .withTitle("Title")
+            .withMessage("Message")
+            .withIcon(R.drawable.icon_generic_black)
+            .withOrientationButtons(OceanBottomSheet.Orientation.Horizontal)
+            .withDismiss(true)
+            .withCritical(true)
             .withActionPositive(R.string.all_button_confirm) {
             }
             .withActionNegative(R.string.all_button_cancel) {

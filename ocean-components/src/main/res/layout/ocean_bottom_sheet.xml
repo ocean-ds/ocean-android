@@ -41,6 +41,10 @@
             type="Boolean" />
 
         <variable
+            name="isCritical"
+            type="Boolean" />
+
+        <variable
             name="icon"
             type="android.graphics.drawable.Drawable" />
 
@@ -129,10 +133,11 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textTitle"
-            style="@style/Ocean.Heading.3.Blue"
+            style="@style/Ocean.Heading.3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{title}"
+            android:textColor="@{isCritical ? @color/ocean_color_status_negative_pure : @color/ocean_color_brand_primary_pure}"
             app:gravity="@{Gravity.CENTER}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -219,14 +224,32 @@
                     android:layout_height="@dimen/ocean_spacing_stack_xs"
                     app:ocean_visible_or_gone="@{textNegative.length() > 0}" />
 
-                <include
-                    android:id="@+id/container_positive_horizontal"
-                    layout="@layout/ocean_button_primary_md"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:click="@{clickPositive::invoke}"
-                    app:text="@{textPositive}" />
+                    android:orientation="vertical">
+
+                    <include
+                        android:id="@+id/primary_positive_button"
+                        layout="@layout/ocean_button_primary_md"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:click="@{clickPositive::invoke}"
+                        app:ocean_visible_or_gone="@{!isCritical}"
+                        app:text="@{textPositive}" />
+
+                    <include
+                        android:id="@+id/primary_critical_positive_button"
+                        layout="@layout/ocean_button_primary_critical_md"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:click="@{clickPositive::invoke}"
+                        app:ocean_visible_or_gone="@{isCritical}"
+                        app:text="@{textPositive}" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <include

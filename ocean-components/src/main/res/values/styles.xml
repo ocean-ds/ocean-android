@@ -29,6 +29,10 @@
         <item name="android:textColor">@color/ocean_color_brand_primary_pure</item>
     </style>
 
+    <style name="Ocean.Heading.3.NegativePure" parent="Ocean.Heading.3">
+        <item name="android:textColor">@color/ocean_color_status_negative_pure</item>
+    </style>
+
     <style name="Ocean.Description.DarkUp" parent="Ocean.Description">
         <item name="android:textColor">@color/ocean_color_interface_dark_up</item>
     </style>
@@ -57,4 +61,5 @@
         <item name="android:fontFamily">@font/font_family_base_bold</item>
         <item name="android:textColor">@color/ocean_color_interface_dark_deep</item>
     </style>
+
 </resources>

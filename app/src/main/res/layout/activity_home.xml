@@ -57,9 +57,37 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="onClickBottomSheet"
+            android:onClick="onClickBottomSheetVertical"
             android:padding="16dp"
-            android:text="BottomSheet"
+            android:text="BottomSheet Vertical"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickBottomSheetHorizontal"
+            android:padding="16dp"
+            android:text="BottomSheet Horizontal"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickBottomSheetCritical"
+            android:padding="16dp"
+            android:text="BottomSheet Critical"
             android:textSize="24sp" />
 
         <View

@@ -259,35 +259,6 @@
                 app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
                 app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_blue_24dp : null}'
                 app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
-
-            <include
-                layout="@layout/ocean_switch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:checked="@{false}"
-                app:click="@{viewmodel::executeOnStatusChanged}" />
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <include
-                    android:id="@+id/radio_one"
-                    layout="@layout/ocean_radio_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:click="@{viewmodel::clickRadio}"
-                    app:icon="@{@drawable/icon_generic_primary}"
-                    app:label="@{@string/text}" />
-
-                <include
-                    android:id="@+id/radio_two"
-                    layout="@layout/ocean_radio_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:click="@{viewmodel::clickRadio}"
-                    app:icon="@{@drawable/icon_generic_primary}"
-                    app:label="@{@string/text}" />
-            </RadioGroup>
         </LinearLayout>
     </ScrollView>
 </layout>

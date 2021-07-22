@@ -12,12 +12,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
         <TextView
+            android:id="@+id/alert"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="onClickTypography"
+            android:onClick="onClickAlert"
             android:padding="16dp"
-            android:text="Typography"
+            android:text="Alerts"
             android:textSize="24sp" />
 
         <View
@@ -32,20 +39,6 @@
             android:onClick="onClickButtons"
             android:padding="16dp"
             android:text="Buttons"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onClickInputs"
-            android:padding="16dp"
-            android:text="Input"
             android:textSize="24sp" />
 
         <View
@@ -141,80 +134,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="onClickToast"
+            android:onClick="onClickInputs"
             android:padding="16dp"
-            android:text="Toast"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onClickSnackBar"
-            android:padding="16dp"
-            android:text="SnackBar"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:id="@+id/tooltip"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onClickTooltip"
-            android:padding="16dp"
-            android:text="Tooltip"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:id="@+id/alert"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onClickAlert"
-            android:padding="16dp"
-            android:text="Alerts"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:id="@+id/topbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="topBarClick"
-            android:padding="16dp"
-            android:text="TopBar"
+            android:text="Input"
             android:textSize="24sp" />
 
         <View
@@ -238,9 +160,105 @@
             android:layout_marginStart="10dp"
             android:background="#E7E7E7" />
 
+        <TextView
+            android:id="@+id/radio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickRadio"
+            android:padding="16dp"
+            android:text="Radio"
+            android:textSize="24sp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickSnackBar"
+            android:padding="16dp"
+            android:text="SnackBar"
+            android:textSize="24sp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickSwitch"
+            android:padding="16dp"
+            android:text="Switch"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickToast"
+            android:padding="16dp"
+            android:text="Toast"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:id="@+id/tooltip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickTooltip"
+            android:padding="16dp"
+            android:text="Tooltip"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:id="@+id/topbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="topBarClick"
+            android:padding="16dp"
+            android:text="TopBar"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickTypography"
+            android:padding="16dp"
+            android:text="Typography"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
     </LinearLayout>
 </ScrollView>

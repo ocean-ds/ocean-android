@@ -28,6 +28,8 @@
         <activity android:name=".ui.alert.AlertActivity"/>
         <activity android:name=".ui.toobar.TopbarActivity"/>
         <activity android:name=".ui.listitem.ListItemActivity"/>
+        <activity android:name=".ui.switchs.SwitchsActivity"/>
+        <activity android:name=".ui.radio.RadioActivity"/>
     </application>
 
 </manifest>

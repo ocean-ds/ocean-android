@@ -11,11 +11,7 @@
 
     <corners android:radius="@dimen/ocean_border_radius_pill" />
     <stroke
-        android:width="@dimen/ocean_border_width_thin"
+        android:width="@dimen/ocean_border_width_hairline"
         android:color="@color/ocean_color_interface_dark_up" />
-
-    <padding
-        android:left="2dp"
-        android:right="2dp"/>
 
 </shape>

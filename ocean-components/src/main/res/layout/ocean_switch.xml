@@ -24,6 +24,7 @@
         android:id="@+id/swtich"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:thumb="@drawable/ocean_switch"
         android:padding="@dimen/ocean_spacing_inset_xxs"
         android:checked="@{checked}"

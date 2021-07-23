@@ -14,6 +14,8 @@ import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
+import br.com.useblu.oceands.client.ui.radio.RadioActivity
+import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 
@@ -60,6 +62,16 @@ class HomeActivity : AppCompatActivity() {
 
     fun listItems(view: View) {
         val intent = Intent(this, ListItemActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickSwitch(view: View) {
+        val intent = Intent(this, SwitchsActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickRadio(view: View) {
+        val intent = Intent(this, RadioActivity::class.java)
         startActivity(intent)
     }
 

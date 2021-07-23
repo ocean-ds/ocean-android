@@ -10,11 +10,7 @@
         android:width="44dp"
         android:height="24dp" />
     <stroke
-        android:width="@dimen/ocean_border_width_thin"
+        android:width="@dimen/ocean_border_width_hairline"
         android:color="@color/ocean_color_complementary_pure" />
-
-    <padding
-        android:left="2dp"
-        android:right="2dp"/>
 
 </shape>

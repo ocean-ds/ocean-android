@@ -1,7 +1,5 @@
 package br.com.useblu.oceands.client.ui.buttons
 
-import android.widget.CompoundButton
-import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -60,13 +58,5 @@ class ButtonsViewModel : ViewModel() {
 
     fun setState(value: String) {
         _buttonState.value = value
-    }
-
-    fun executeOnStatusChanged(isChecked: Boolean) {
-        println("On Change State $isChecked")
-    }
-
-    fun clickRadio(){
-        println("On Click Radio Button")
     }
 }

@@ -13,31 +13,67 @@
             name="text"
             type="String" />
 
+        <variable
+            name="title"
+            type="String" />
+
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
         android:gravity="center_vertical"
-        android:padding="@dimen/ocean_spacing_inline_xs"
+        android:padding="@dimen/ocean_spacing_stack_xs"
         app:ocean_alert_background="@{type}">
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:ocean_alert_src="@{type}"
             tools:src="@drawable/icon_generic"
-            tools:tint="@color/ocean_color_interface_dark_pure"/>
+            tools:tint="@color/ocean_color_interface_dark_pure" />
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
-            android:fontFamily="@font/font_family_base_regular"
-            android:text="@{text}"
-            android:textColor="@color/ocean_color_interface_dark_down"
-            android:textSize="@dimen/ocean_font_size_xxxs"
-            tools:text="@string/lorem_ipsum" />
-    </LinearLayout>
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_bold"
+                android:text="@{title}"
+                app:ocean_alert_text_color="@{type}"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textSize="@dimen/ocean_font_size_xxs"
+                app:ocean_visible_or_gone="@{title != null}"
+                tools:text="@string/title" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_spacing_stack_xxxs" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@{text}"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textSize="@dimen/ocean_font_size_xxxs"
+                tools:text="@string/lorem_ipsum" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

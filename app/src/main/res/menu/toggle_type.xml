@@ -15,6 +15,14 @@
         android:title="Inverse"/>
 
     <item
+        android:id="@+id/toggle_type_critical"
+        android:title="Critical"/>
+
+    <item
         android:id="@+id/toggle_type_text"
         android:title="Text" />
+
+    <item
+        android:id="@+id/toggle_type_text_critical"
+        android:title="Text Critical" />
 </menu>

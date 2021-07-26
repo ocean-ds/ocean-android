@@ -30,6 +30,7 @@
         <activity android:name=".ui.listitem.ListItemActivity"/>
         <activity android:name=".ui.switchs.SwitchsActivity"/>
         <activity android:name=".ui.radio.RadioActivity"/>
+        <activity android:name=".ui.textlink.TextLinkActivity"/>
     </application>
 
 </manifest>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/ocean_color_interface_light_down" />
+            <corners android:radius="@dimen/ocean_border_radius_md" />
+            <stroke
+                android:width="@dimen/ocean_border_width_hairline"
+                android:color="@color/ocean_color_brand_primary_up" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/layer_recommend" />
+</layer-list>

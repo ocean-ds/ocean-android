@@ -30,6 +30,9 @@ jobs:
           LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/ocean-tokens version`
           sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER/g" "ocean-components/version.properties"
 
+      - name: Command Update Branch
+        run: git pull
+
       - name: Commit changes
         run: |
           LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/ocean-tokens version`

@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DimenRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -110,7 +110,7 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
 }
 
 @BindingAdapter("app:ocean_alert_background")
-fun setOceanBackground(layout: LinearLayout, type: OceanAlertType) {
+fun setOceanBackground(layout: ConstraintLayout, type: OceanAlertType) {
     when (type) {
         OceanAlertType.Information -> {
             layout.setBackgroundResource(R.drawable.ocean_alert_info_background)
@@ -142,6 +142,46 @@ fun setOceanSrc(imageView: ImageView, type: OceanAlertType) {
         }
         OceanAlertType.Warning -> {
             imageView.setBackgroundResource(R.drawable.icon_warning)
+        }
+    }
+}
+
+@BindingAdapter("app:ocean_alert_text_color")
+fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType) {
+    val context = textView.context
+    when (type) {
+        OceanAlertType.Information -> {
+            textView.setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    (R.color.ocean_color_brand_primary_down)
+                )
+            )
+        }
+        OceanAlertType.Error -> {
+            textView.setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    (R.color.ocean_color_status_negative_pure)
+                )
+            )
+
+        }
+        OceanAlertType.Success -> {
+            textView.setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    (R.color.ocean_color_status_positive_deep)
+                )
+            )
+        }
+        OceanAlertType.Warning -> {
+            textView.setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    (R.color.ocean_color_status_neutral_deep)
+                )
+            )
         }
     }
 }

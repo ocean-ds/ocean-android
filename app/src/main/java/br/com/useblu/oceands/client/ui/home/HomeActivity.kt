@@ -16,6 +16,7 @@ import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
 import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
+import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 
@@ -72,6 +73,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickRadio(view: View) {
         val intent = Intent(this, RadioActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickTextLink(view: View) {
+        val intent = Intent(this, TextLinkActivity::class.java)
         startActivity(intent)
     }
 

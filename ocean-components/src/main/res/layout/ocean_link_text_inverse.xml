@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="kotlin.jvm.functions.Function0" />
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="text"
+            type="String" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="@font/font_family_base_regular"
+            android:gravity="center_vertical"
+            android:lineSpacingMultiplier="@dimen/ocean_line_height_tight"
+            android:onClick="@{() -> click.invoke()}"
+            android:text="@{text}"
+            android:textColor="@color/ocean_color_complementary_down"
+            android:textSize="@dimen/ocean_font_size_xs"
+            tools:text="@string/text" />
+
+    </LinearLayout>
+</layout>

@@ -2,7 +2,12 @@ package br.com.useblu.oceands.core
 
 import android.content.Context
 import android.content.res.Resources
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,4 +37,14 @@ val Float.dp: Int
 fun Context.getSupportFragmentManager() = when (this) {
     is Fragment -> this.requireActivity().supportFragmentManager
     else -> (this as AppCompatActivity).supportFragmentManager
+}
+
+fun MenuItem.setTitleColor(color: Int) {
+    val hexColor = Integer.toHexString(color).uppercase(Locale.ROOT).substring(2)
+    val html = "<font color='#$hexColor'>$title</font>"
+    this.title = html.parseAsHtml()
+}
+
+fun String.parseAsHtml(): Spanned {
+   return HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)
 }

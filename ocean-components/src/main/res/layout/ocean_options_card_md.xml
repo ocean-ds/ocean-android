@@ -57,7 +57,6 @@
         android:onClick="@{() -> click.invoke()}"
         android:padding="@dimen/ocean_spacing_stack_sm"
         android:textColor="@color/ocean_card_text_color"
-        android:textStyle="bold"
         app:ocean_title="@{title}"
         app:ocean_subtitle="@{subtitle}"
         app:ocean_disabled="@{disabled}"

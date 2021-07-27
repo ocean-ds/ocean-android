@@ -25,9 +25,9 @@ fun setTitleAndSubtitle(
     )
 
     val html = if (disabled) {
-        "<font color='$darkUp'>$title</font><br><font color='$darkUp'>$subtitle</font>"
+        "<b><font color='$darkUp'>$title</font></b><br/><font color='$darkUp'>$subtitle</font>"
     } else {
-        "<font color='$primaryDown'>$title</font><br><font color='$darkUp'>$subtitle</font>"
+        "<b><font color='$primaryDown'>$title</b></font><br/><font color='$darkUp'>$subtitle</font>"
     }
 
     radioButton.text = html.parseAsHtml()

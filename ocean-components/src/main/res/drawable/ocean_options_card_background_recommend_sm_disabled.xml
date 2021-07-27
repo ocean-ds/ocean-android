@@ -10,5 +10,10 @@
                 android:color="@color/ocean_color_interface_light_down" />
         </shape>
     </item>
-    <item android:drawable="@drawable/layer_blocked"/>
+    <item
+        android:bottom="2dp"
+        android:drawable="@drawable/layer_blocked_sm"
+        android:gravity="right"
+        android:right="2dp"
+        android:top="2dp" />
 </layer-list>

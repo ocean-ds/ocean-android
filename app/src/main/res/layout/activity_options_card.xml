@@ -42,29 +42,35 @@
                     android:layout_height="20dp" />
 
                 <include
+                    android:id="@+id/card_options_one"
                     layout="@layout/ocean_options_card_md"
                     app:checked="@{true}"
+                    app:click="@{viewmodel::onOptionsCardClicked}"
                     app:icon="@{@drawable/icon_generic_primary}"
                     app:subtitle="@{@string/all_subtitle}"
-                    app:title="@{@string/all_title}" />
+                    app:title="@{@string/all_title}"/>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
                 <include
+                    android:id="@+id/card_options_two"
                     layout="@layout/ocean_options_card_md"
+                    app:click="@{viewmodel::onOptionsCardClicked}"
                     app:icon="@{@drawable/icon_generic_primary}"
                     app:subtitle="@{@string/all_subtitle}"
                     app:disabled="@{true}"
-                    app:title="@{@string/all_title}" />
+                    app:title="@{@string/all_title}"/>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
                 <include
+                    android:id="@+id/card_options_thee"
                     layout="@layout/ocean_options_card_md"
+                    app:click="@{viewmodel::onOptionsCardClicked}"
                     app:icon="@{@drawable/icon_generic_primary}"
                     app:subtitle="@{@string/all_subtitle}"
                     app:title="@{@string/all_title}" />
@@ -74,6 +80,21 @@
                     android:layout_height="20dp" />
 
                 <include
+                    android:id="@+id/card_options_for"
+                    app:click="@{viewmodel::onOptionsCardClicked}"
+                    layout="@layout/ocean_options_card_md"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:subtitle="@{@string/all_subtitle}"
+                    app:recommend="@{true}"
+                    app:title="@{@string/all_title}"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     layout="@layout/ocean_options_card_md"
                     app:icon="@{@drawable/icon_generic_primary}"
                     app:subtitle="@{@string/all_subtitle}"
@@ -84,7 +105,105 @@
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/ocean_options_card_md"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:subtitle="@{@string/all_subtitle}"
+                    app:disabled="@{true}"
+                    app:title="@{@string/all_title}" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
             </RadioGroup>
+
+            <include layout="@layout/ocean_divider"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <include
+                    android:id="@+id/card_options_one_sm"
+                    layout="@layout/ocean_options_card_sm"
+                    app:checked="@{true}"
+                    app:click="@{viewmodel::onOptionsCardClickedSM}"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:title="@{@string/all_title}"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <include
+                    android:id="@+id/card_options_two_sm"
+                    layout="@layout/ocean_options_card_sm"
+                    app:click="@{viewmodel::onOptionsCardClickedSM}"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:disabled="@{true}"
+                    app:title="@{@string/all_title}"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <include
+                    android:id="@+id/card_options_thee_sm"
+                    layout="@layout/ocean_options_card_sm"
+                    app:click="@{viewmodel::onOptionsCardClickedSM}"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:title="@{@string/all_title}" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <include
+                    android:id="@+id/card_options_for_sm"
+                    app:click="@{viewmodel::onOptionsCardClickedSM}"
+                    layout="@layout/ocean_options_card_sm"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:recommend="@{true}"
+                    app:title="@{@string/all_title}"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/ocean_options_card_sm"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:recommend="@{true}"
+                    app:title="@{@string/all_title}" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/ocean_options_card_sm"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:disabled="@{true}"
+                    app:title="@{@string/all_title}" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+            </RadioGroup>
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

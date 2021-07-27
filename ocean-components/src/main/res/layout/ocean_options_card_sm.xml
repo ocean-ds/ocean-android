@@ -18,10 +18,6 @@
             type="android.graphics.drawable.Drawable" />
 
         <variable
-            name="subtitle"
-            type="String" />
-
-        <variable
             name="title"
             type="String" />
 
@@ -46,7 +42,7 @@
     <androidx.appcompat.widget.AppCompatRadioButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@{recommend ? @drawable/ocean_options_card_background_recommend_md_states : @drawable/ocean_options_card_background_states_md}"
+        android:background="@{recommend ? @drawable/ocean_options_card_background_recommend_sm_states : @drawable/ocean_options_card_background_states_sm}"
         android:button="@null"
         android:checked="@{checked}"
         android:drawableStart="@{icon}"
@@ -55,9 +51,10 @@
         android:enabled="@{!disabled}"
         android:gravity="center_vertical"
         android:minWidth="200dp"
-        android:minHeight="96dp"
+        android:minHeight="64dp"
         android:onClick="@{(view) -> click.invoke(view)}"
         android:padding="@dimen/ocean_spacing_stack_sm"
+        android:text="@{title}"
         android:textColor="@color/ocean_card_text_color"
         app:drawableTint="@color/ocean_card_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,10 +63,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:ocean_animation_blocked="@{disabled}"
         app:ocean_disabled="@{disabled}"
-        app:ocean_subtitle="@{subtitle}"
-        app:ocean_title="@{title}"
         app:ocean_icon="@{icon}"
-        app:ocean_options_card_size="@{OptionsCardSize.MD}"
+        app:ocean_options_card_size="@{OptionsCardSize.SM}"
+        app:ocean_subtitle="@{null}"
+        app:ocean_title="@{title}"
         tools:drawableStart="@drawable/icon_generic_primary"
         tools:text="@string/title" />
 </layout>

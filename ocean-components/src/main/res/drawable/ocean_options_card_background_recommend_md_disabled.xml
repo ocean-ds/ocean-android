@@ -3,12 +3,17 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/ocean_color_interface_light_up" />
+            <solid android:color="@color/ocean_color_interface_light_pure" />
             <corners android:radius="@dimen/ocean_border_radius_md" />
             <stroke
                 android:width="@dimen/ocean_border_width_hairline"
-                android:color="@color/ocean_color_brand_primary_up" />
+                android:color="@color/ocean_color_interface_light_down" />
         </shape>
     </item>
-    <item android:drawable="@drawable/layer_recommend" />
+    <item
+        android:bottom="2dp"
+        android:drawable="@drawable/layer_blocked_md"
+        android:gravity="right"
+        android:right="2dp"
+        android:top="2dp" />
 </layer-list>

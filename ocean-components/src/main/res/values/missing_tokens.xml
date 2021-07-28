@@ -19,4 +19,9 @@
     <dimen name="ocean_line_height_tight_android" category="font-line-height">0.9</dimen>
     <dimen name="ocean_line_height_medium_android" category="font-line-height">0.92</dimen>
     <dimen name="ocean_line_height_comfy_android" category="font-line-height">1.0</dimen>
+
+    <dimen name="shadow_level_1">1dp</dimen>
+    <dimen name="shadow_level_2">2dp</dimen>
+    <dimen name="shadow_level_3">3dp</dimen>
+    <dimen name="shadow_level_4">4dp</dimen>
 </resources>

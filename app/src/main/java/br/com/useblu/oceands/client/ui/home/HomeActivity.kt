@@ -14,6 +14,7 @@ import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
+import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
 import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
@@ -78,6 +79,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickTextLink(view: View) {
         val intent = Intent(this, TextLinkActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun clickOptionsCard(view: View) {
+        val intent = Intent(this, OptionsCardActivity::class.java)
         startActivity(intent)
     }
 

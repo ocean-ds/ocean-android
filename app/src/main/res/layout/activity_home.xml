@@ -161,6 +161,21 @@
             android:background="#E7E7E7" />
 
         <TextView
+            android:id="@+id/optionsCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="clickOptionsCard"
+            android:padding="16dp"
+            android:text="Options Card"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
             android:id="@+id/radio"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

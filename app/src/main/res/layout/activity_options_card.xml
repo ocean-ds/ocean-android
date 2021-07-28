@@ -58,7 +58,7 @@
                     android:id="@+id/card_options_two"
                     layout="@layout/ocean_options_card_md"
                     app:click="@{viewmodel::onOptionsCardClicked}"
-                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:icon="@{@drawable/icon_generic_gray}"
                     app:subtitle="@{@string/all_subtitle}"
                     app:disabled="@{true}"
                     app:title="@{@string/all_title}"/>
@@ -109,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     layout="@layout/ocean_options_card_md"
-                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:icon="@{@drawable/icon_generic_gray}"
                     app:subtitle="@{@string/all_subtitle}"
                     app:disabled="@{true}"
                     app:title="@{@string/all_title}" />
@@ -147,7 +147,7 @@
                     android:id="@+id/card_options_two_sm"
                     layout="@layout/ocean_options_card_sm"
                     app:click="@{viewmodel::onOptionsCardClickedSM}"
-                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:icon="@{@drawable/icon_generic_gray}"
                     app:disabled="@{true}"
                     app:title="@{@string/all_title}"/>
 
@@ -194,7 +194,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     layout="@layout/ocean_options_card_sm"
-                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:icon="@{@drawable/icon_generic_gray}"
                     app:disabled="@{true}"
                     app:title="@{@string/all_title}" />
 

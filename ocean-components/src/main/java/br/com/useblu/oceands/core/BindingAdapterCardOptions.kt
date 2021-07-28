@@ -1,12 +1,10 @@
 package br.com.useblu.oceands.core
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.view.MotionEvent
 import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 
@@ -47,11 +45,10 @@ fun setTitleAndSubtitle(
 }
 
 @SuppressLint("ClickableViewAccessibility")
-@BindingAdapter("app:ocean_animation_blocked", "app:ocean_icon", "app:ocean_options_card_size")
+@BindingAdapter("app:ocean_animation_blocked", "app:ocean_options_card_size")
 fun setAnimationBlocked(
     view: AppCompatRadioButton,
     disabled: Boolean,
-    icon: Drawable,
     size: OptionsCardSize
 ) {
     view.isEnabled = true
@@ -71,12 +68,6 @@ fun setAnimationBlocked(
                 )
             }
         }
-
-
-        DrawableCompat.setTint(
-            DrawableCompat.wrap(icon),
-            ContextCompat.getColor(view.context, R.color.ocean_color_interface_dark_down)
-        )
     }
 
     view.setOnTouchListener { _, event ->

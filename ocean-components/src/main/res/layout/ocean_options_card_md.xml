@@ -7,7 +7,7 @@
 
         <import type="android.view.View" />
 
-        <import type="kotlin.jvm.functions.Function1" />
+        <import type="kotlin.jvm.functions.Function0" />
 
         <import type="kotlin.Unit" />
 
@@ -27,7 +27,7 @@
 
         <variable
             name="click"
-            type="Function1&lt;View, Unit>" />
+            type="Function0&lt;Unit>" />
 
         <variable
             name="checked"
@@ -56,7 +56,7 @@
         android:gravity="center_vertical"
         android:minWidth="200dp"
         android:minHeight="96dp"
-        android:onClick="@{(view) -> click.invoke(view)}"
+        android:onClick="@{() -> click.invoke()}"
         android:padding="@dimen/ocean_spacing_stack_sm"
         android:textColor="@color/ocean_card_text_color"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.client.ui.optionscard
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -18,5 +19,27 @@ class OptionsCardActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this)[OptionsCardViewModel::class.java]
         binding.viewmodel = viewModel
+
+        initObservers()
+    }
+
+    private fun initObservers() {
+        viewModel.itemSelect.observe(this, {
+            when (it) {
+                R.id.card_options_one -> {
+                    Toast.makeText(this, "Item selecionado 1", Toast.LENGTH_SHORT).show()
+                }
+                R.id.card_options_two -> {
+                    Toast.makeText(this, "Item selecionado 2", Toast.LENGTH_SHORT).show()
+                }
+                R.id.card_options_thee -> {
+                    Toast.makeText(this, "Item selecionado 3", Toast.LENGTH_SHORT).show()
+
+                }
+                R.id.card_options_for -> {
+                    Toast.makeText(this, "Item selecionado 4", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 }

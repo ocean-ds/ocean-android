@@ -128,20 +128,24 @@ fun setOceanBackground(layout: ConstraintLayout, type: OceanAlertType) {
     }
 }
 
-@BindingAdapter("app:ocean_alert_src")
-fun setOceanSrc(imageView: ImageView, type: OceanAlertType) {
-    when (type) {
-        OceanAlertType.Information -> {
-            imageView.setBackgroundResource(R.drawable.icon_information)
-        }
-        OceanAlertType.Error -> {
-            imageView.setBackgroundResource(R.drawable.icon_error)
-        }
-        OceanAlertType.Success -> {
-            imageView.setBackgroundResource(R.drawable.icon_success)
-        }
-        OceanAlertType.Warning -> {
-            imageView.setBackgroundResource(R.drawable.icon_warning)
+@BindingAdapter("app:ocean_alert_src", "app:ocean_alert_icon")
+fun setOceanSrc(imageView: ImageView, type: OceanAlertType, icon: Drawable?) {
+    if (icon != null) {
+        imageView.setImageDrawable(icon)
+    } else {
+        when (type) {
+            OceanAlertType.Information -> {
+                imageView.setBackgroundResource(R.drawable.icon_information)
+            }
+            OceanAlertType.Error -> {
+                imageView.setBackgroundResource(R.drawable.icon_error)
+            }
+            OceanAlertType.Success -> {
+                imageView.setBackgroundResource(R.drawable.icon_success)
+            }
+            OceanAlertType.Warning -> {
+                imageView.setBackgroundResource(R.drawable.icon_warning)
+            }
         }
     }
 }

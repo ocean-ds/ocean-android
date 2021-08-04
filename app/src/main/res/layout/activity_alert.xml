@@ -30,7 +30,9 @@
             <include
                 android:id="@+id/alertInfo"
                 layout="@layout/ocean_alert"
-                app:text="@{@string/lorem_ipsum}"
+                app:title="@{@string/custom_icon}"
+                app:text="@{@string/custom_icon}"
+                app:icon="@{@drawable/icon_phone}"
                 app:type="@{OceanAlertType.Information}" />
 
             <Space

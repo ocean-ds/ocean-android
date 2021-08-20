@@ -31,13 +31,13 @@ fun setTitleAndSubtitle(
         if (subtitle.isNullOrEmpty()) {
             "<b><font color='$darkUp'>$title</font></b>"
         } else {
-            "<b><font color='$darkUp'>$title</font></b><br/><font color='$darkUp'>$subtitle</font>"
+            "<b><font color='$darkUp'>$title</font></b><br/><font color='$darkUp'><small>$subtitle</small></font>"
         }
     } else {
         if (subtitle.isNullOrEmpty()) {
-            "<b><font color='$primaryDown'>$title</b></font>"
+            "<b><font color='$primaryDown'>$title</font></b>"
         } else {
-            "<b><font color='$primaryDown'>$title</b></font><br/><font color='$darkUp'>$subtitle</font>"
+            "<b><font color='$primaryDown'>$title</font></b><br/><font color='$darkUp'><small>$subtitle</small></font>"
         }
     }
 

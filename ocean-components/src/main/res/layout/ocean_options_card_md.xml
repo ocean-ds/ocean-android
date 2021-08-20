@@ -61,6 +61,7 @@
         android:textColor="@color/ocean_card_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/font_family_base_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:ocean_animation_blocked="@{disabled}"

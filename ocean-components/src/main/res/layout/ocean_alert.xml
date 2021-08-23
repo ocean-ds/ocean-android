@@ -23,52 +23,64 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:orientation="vertical"
         android:padding="@dimen/ocean_spacing_stack_xs"
         app:ocean_alert_background="@{type}">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:ocean_alert_src="@{type}"
-            app:ocean_alert_icon="@{icon}"
-            tools:src="@drawable/icon_generic"
-            tools:tint="@color/ocean_color_interface_dark_pure" />
-
         <LinearLayout
             android:id="@+id/linearLayout4"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            app:ocean_visible_or_gone="@{title != null}">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/ocean_spacing_inline_xxs"
+                app:ocean_alert_icon="@{icon}"
+                app:ocean_alert_src="@{type}"
+                tools:src="@drawable/icon_generic"
+                tools:tint="@color/ocean_color_interface_dark_pure" />
 
             <TextView
                 android:id="@+id/textTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/font_family_base_bold"
                 android:text="@{title}"
-                app:ocean_alert_text_color="@{type}"
+                android:gravity="center_vertical"
                 android:textColor="@color/ocean_color_interface_dark_down"
                 android:textSize="@dimen/ocean_font_size_xxs"
+                app:ocean_alert_text_color="@{type}"
                 app:ocean_visible_or_gone="@{title != null}"
                 tools:text="@string/title" />
+        </LinearLayout>
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/ocean_spacing_stack_xxxs" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageViewSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/ocean_spacing_inline_xxs"
+                app:ocean_alert_icon="@{icon}"
+                app:ocean_alert_src="@{type}"
+                android:layout_gravity="center"
+                app:ocean_visible_or_gone="@{title == null}"
+                tools:src="@drawable/icon_generic"
+                tools:tint="@color/ocean_color_interface_dark_pure" />
 
             <TextView
                 android:id="@+id/textView"
@@ -80,5 +92,5 @@
                 android:textSize="@dimen/ocean_font_size_xxxs"
                 tools:text="@string/lorem_ipsum" />
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

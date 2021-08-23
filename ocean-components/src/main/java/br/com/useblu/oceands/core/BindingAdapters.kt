@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DimenRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -110,7 +111,7 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
 }
 
 @BindingAdapter("app:ocean_alert_background")
-fun setOceanBackground(layout: ConstraintLayout, type: OceanAlertType) {
+fun setOceanBackground(layout: LinearLayout, type: OceanAlertType) {
     when (type) {
         OceanAlertType.Information -> {
             layout.setBackgroundResource(R.drawable.ocean_alert_info_background)

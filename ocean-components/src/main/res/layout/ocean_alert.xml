@@ -79,6 +79,7 @@
                 app:ocean_alert_src="@{type}"
                 android:layout_gravity="center"
                 app:ocean_visible_or_gone="@{title == null}"
+                android:visibility="gone"
                 tools:src="@drawable/icon_generic"
                 tools:tint="@color/ocean_color_interface_dark_pure" />
 

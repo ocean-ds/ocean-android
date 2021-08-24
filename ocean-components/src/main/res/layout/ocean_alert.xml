@@ -18,6 +18,10 @@
             type="String" />
 
         <variable
+            name="shortText"
+            type="Boolean" />
+
+        <variable
             name="icon"
             type="android.graphics.drawable.Drawable" />
 
@@ -36,9 +40,10 @@
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center_horizontal"
-            app:ocean_visible_or_gone="@{title != null}">
+            android:orientation="horizontal"
+            app:ocean_visible_or_gone="@{title != null &amp;&amp; !shortText }"
+            tools:visibility="visible">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -55,12 +60,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/font_family_base_bold"
-                android:text="@{title}"
                 android:gravity="center_vertical"
+                android:text="@{title}"
                 android:textColor="@color/ocean_color_interface_dark_down"
                 android:textSize="@dimen/ocean_font_size_xxs"
                 app:ocean_alert_text_color="@{type}"
-                app:ocean_visible_or_gone="@{title != null}"
                 tools:text="@string/title" />
         </LinearLayout>
 
@@ -74,24 +78,43 @@
                 android:id="@+id/imageViewSubTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/ocean_spacing_inline_xxs"
                 app:ocean_alert_icon="@{icon}"
                 app:ocean_alert_src="@{type}"
-                android:layout_gravity="center"
-                app:ocean_visible_or_gone="@{title == null}"
-                tools:visibility="gone"
+                app:ocean_visible_or_gone="@{title == null || shortText}"
                 tools:src="@drawable/icon_generic"
-                tools:tint="@color/ocean_color_interface_dark_pure" />
+                tools:tint="@color/ocean_color_interface_dark_pure"
+                tools:visibility="gone" />
 
-            <TextView
-                android:id="@+id/textView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_family_base_regular"
-                android:text="@{text}"
-                android:textColor="@color/ocean_color_interface_dark_down"
-                android:textSize="@dimen/ocean_font_size_xxxs"
-                tools:text="@string/lorem_ipsum" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_family_base_bold"
+                    android:gravity="center_vertical"
+                    android:text="@{title}"
+                    android:textColor="@color/ocean_color_interface_dark_down"
+                    android:textSize="@dimen/ocean_font_size_xxs"
+                    app:ocean_alert_text_color="@{type}"
+                    app:ocean_visible_or_gone="@{shortText}"
+                    tools:text="@string/title"
+                    tools:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_family_base_regular"
+                    android:text="@{text}"
+                    android:textColor="@color/ocean_color_interface_dark_down"
+                    android:textSize="@dimen/ocean_font_size_xxxs"
+                    tools:text="@string/lorem_ipsum" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>

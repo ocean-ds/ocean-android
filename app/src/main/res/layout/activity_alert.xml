@@ -48,6 +48,7 @@
             <include
                 android:id="@+id/alertInfoWithTitle"
                 layout="@layout/ocean_alert"
+                app:shortText="@{true}"
                 app:text="@{@string/lorem_ipsum}"
                 app:title="@{@string/title}"
                 app:type="@{OceanAlertType.Information}" />

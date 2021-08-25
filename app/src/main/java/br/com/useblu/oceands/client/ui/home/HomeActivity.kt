@@ -12,6 +12,7 @@ import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
+import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
@@ -64,6 +65,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun listItems(view: View) {
         val intent = Intent(this, ListItemActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun carousel(view: View) {
+        val intent = Intent(this, CarouselActivity::class.java)
         startActivity(intent)
     }
 

@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.carousel.CarouselActivity" />
         <activity android:name=".ui.caption.CaptionActivity" />
         <activity android:name=".ui.description.DescriptionActivity" />
         <activity android:name=".ui.paragraph.ParagraphActivity" />
@@ -23,15 +24,15 @@
         <activity android:name=".ui.buttons.ButtonsActivity" />
         <activity android:name=".ui.headings.HeadingsActivity" />
         <activity android:name=".ui.typography.TypographyActivity" />
-        <activity android:name=".ui.main.MainActivity"/>
-        <activity android:name=".ui.input.InputActivity"/>
-        <activity android:name=".ui.alert.AlertActivity"/>
-        <activity android:name=".ui.toobar.TopbarActivity"/>
-        <activity android:name=".ui.listitem.ListItemActivity"/>
-        <activity android:name=".ui.switchs.SwitchsActivity"/>
-        <activity android:name=".ui.radio.RadioActivity"/>
-        <activity android:name=".ui.textlink.TextLinkActivity"/>
-        <activity android:name=".ui.optionscard.OptionsCardActivity"/>
+        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.input.InputActivity" />
+        <activity android:name=".ui.alert.AlertActivity" />
+        <activity android:name=".ui.toobar.TopbarActivity" />
+        <activity android:name=".ui.listitem.ListItemActivity" />
+        <activity android:name=".ui.switchs.SwitchsActivity" />
+        <activity android:name=".ui.radio.RadioActivity" />
+        <activity android:name=".ui.textlink.TextLinkActivity" />
+        <activity android:name=".ui.optionscard.OptionsCardActivity" />
     </application>
 
 </manifest>

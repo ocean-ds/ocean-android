@@ -21,12 +21,16 @@
         <variable
             name="itemSelect"
             type="Function1&lt;Integer,Unit>" />
+        
+        <variable
+            name="highlighted"
+            type="Boolean" />
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
@@ -36,6 +40,7 @@
             android:paddingStart="@dimen/ocean_spacing_inline_xxs"
             android:paddingEnd="@dimen/ocean_spacing_inline_xxs"
             app:entries="@{entries}"
+            app:isHighlight="@{highlighted}"
             app:itemSelected="@{itemSelect}"/>
 
     </LinearLayout>

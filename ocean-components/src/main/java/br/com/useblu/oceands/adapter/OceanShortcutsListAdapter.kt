@@ -4,32 +4,60 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.ItemShortcutsAdapterOceanBinding
+import br.com.useblu.oceands.databinding.ItemShortcutsHighlightAdapterOceanBinding
 
 class OceanShortcutsListAdapter(
     private val items: List<OceanShortcutItem>,
+    private val isHighlight: Boolean,
     private val onClickItem: (Int) -> Unit
-) : RecyclerView.Adapter<OceanShortcutsListAdapter.OceanShortcutsListViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): OceanShortcutsListAdapter.OceanShortcutsListViewHolder {
-        val itemBinding = ItemShortcutsAdapterOceanBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return OceanShortcutsListViewHolder(itemBinding)
+    ): RecyclerView.ViewHolder {
+        return if (isHighlight) {
+            val itemBinding = ItemShortcutsHighlightAdapterOceanBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+            OceanShortcutsHighlightListViewHolder(itemBinding)
+        } else {
+            val itemBinding = ItemShortcutsAdapterOceanBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+            OceanShortcutsListViewHolder(itemBinding)
+        }
     }
 
     override fun onBindViewHolder(
-        holder: OceanShortcutsListAdapter.OceanShortcutsListViewHolder,
+        holder: RecyclerView.ViewHolder,
         position: Int
     ) {
-        holder.bindView(position)
+        if (isHighlight) {
+            (holder as OceanShortcutsHighlightListViewHolder).bindView(position)
+        } else {
+            (holder as OceanShortcutsListViewHolder).bindView(position)
+        }
     }
 
     override fun getItemCount(): Int = items.size
+
+    inner class OceanShortcutsHighlightListViewHolder(
+        private val itemBinding: ItemShortcutsHighlightAdapterOceanBinding
+    ) : RecyclerView.ViewHolder(itemBinding.root) {
+
+        fun bindView(position: Int) {
+            itemBinding.label.text = items[position].label
+            itemBinding.icon.setImageResource(items[position].icon)
+            itemBinding.cardView.setOnClickListener {
+                onClickItem(position)
+            }
+        }
+    }
 
     inner class OceanShortcutsListViewHolder(
         private val itemBinding: ItemShortcutsAdapterOceanBinding

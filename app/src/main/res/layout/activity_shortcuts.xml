@@ -27,12 +27,29 @@
             android:text="Shortcuts"
             android:textSize="18sp"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="8dp"/>
 
         <include
             layout="@layout/ocean_shortcut_list"
             app:entries="@{viewmodel.items}"
+            app:highlighted="@{false}"
             app:itemSelect="@{viewmodel::itemSelect}"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shortcuts Highlight"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <include
+            layout="@layout/ocean_shortcut_list"
+            app:entries="@{viewmodel.items2}"
+            app:highlighted="@{true}"
+            app:itemSelect="@{viewmodel::itemSelect2}"
             />
     </LinearLayout>
 </layout>

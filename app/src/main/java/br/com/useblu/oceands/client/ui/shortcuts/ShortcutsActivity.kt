@@ -32,6 +32,10 @@ class ShortcutsActivity : AppCompatActivity() {
         viewModel.itemSelected.observe(this, {
             Toast.makeText(this, "Item \"${it.label}\" selecionado", Toast.LENGTH_SHORT).show()
         })
+
+        viewModel.itemSelected2.observe(this, {
+            Toast.makeText(this, "Item \"${it.label}\" selecionado", Toast.LENGTH_SHORT).show()
+        })
     }
 
 }

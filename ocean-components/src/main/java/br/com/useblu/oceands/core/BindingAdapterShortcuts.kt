@@ -6,16 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.adapter.OceanShortcutItem
 import br.com.useblu.oceands.adapter.OceanShortcutsListAdapter
 
-@BindingAdapter("entries", "itemSelected")
+@BindingAdapter("entries", "isHighlight", "itemSelected")
 fun setShortcutsAdapter(
     recyclerView: RecyclerView,
     entries: List<OceanShortcutItem>?,
+    isHighlight: Boolean = false,
     itemSelected: (Int) -> Unit = {}
 ) {
     entries?.let { list ->
         val oceanShortcutsListAdapter =
             OceanShortcutsListAdapter(
                 items = list,
+                isHighlight = isHighlight,
                 onClickItem = {
                     itemSelected.invoke(it)
                 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="kotlin.Unit" />
+
+        <import type="java.util.List" />
+
+        <import type="androidx.lifecycle.MutableLiveData" />
+
+        <import type="kotlin.jvm.functions.Function1" />
+
+        <import type="br.com.useblu.oceands.adapter.OceanShortcutItem"/>
+
+        <variable
+            name="entries"
+            type="List&lt;OceanShortcutItem>" />
+
+        <variable
+            name="itemSelect"
+            type="Function1&lt;Integer,Unit>" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/ocean_spacing_inline_xxs"
+            android:paddingEnd="@dimen/ocean_spacing_inline_xxs"
+            app:entries="@{entries}"
+            app:itemSelected="@{itemSelect}"/>
+
+    </LinearLayout>
+</layout>

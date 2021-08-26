@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view"
+        android:layout_width="104dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
+        android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+        android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
+        android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+        android:clickable="true"
+        android:focusable="true"
+        app:rippleColor="@color/ocean_color_interface_light_down"
+        app:cardBackgroundColor="@color/ocean_color_interface_light_pure"
+        app:cardCornerRadius="@dimen/ocean_border_radius_sm"
+        app:cardElevation="@dimen/shadow_level_1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
+                android:layout_marginTop="@dimen/ocean_spacing_inline_xs"
+                android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/icon_generic_primary"/>
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_family_base_bold"
+                android:gravity="bottom"
+                android:maxLines="2"
+                android:textAlignment="textStart"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textSize="@dimen/ocean_font_size_xxs"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/icon"
+                app:layout_goneMarginTop="@dimen/ocean_spacing_inline_xxs"
+                tools:text="Label" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

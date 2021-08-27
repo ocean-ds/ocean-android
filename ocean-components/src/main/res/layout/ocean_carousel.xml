@@ -18,10 +18,6 @@
             type="Boolean" />
 
         <variable
-            name="infiniteLoop"
-            type="Boolean" />
-
-        <variable
             name="autoCycle"
             type="Boolean" />
 
@@ -50,10 +46,39 @@
             app:carouselPaddingStart="16dp"
             app:carouselType="BLOCK"
             app:imageScaleType="centerCrop"
-            app:infiniteCarousel="@{infiniteLoop}"
+            app:infiniteCarousel="false"
+            app:ocean_visible_or_gone="@{!autoCycle}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:showBottomShadow="false"
+            app:showCaption="false"
+            app:showIndicator="false"
+            app:showNavigationButtons="false"
+            app:showTopShadow="false"
+            app:touchToPause="false"
+            app:entries="@{entries}"
+            app:itemSelected="@{itemSelect}" />
+
+        <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+            android:id="@+id/carousel_view2"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+            android:translationZ="8dp"
+            app:autoPlay="@{autoCycle}"
+            app:autoPlayDelay="5000"
+            app:carouselGravity="START"
+            app:carouselPaddingEnd="16dp"
+            app:carouselPaddingStart="16dp"
+            app:carouselType="BLOCK"
+            app:imageScaleType="centerCrop"
+            app:ocean_visible_or_gone="@{autoCycle}"
+            app:infiniteCarousel="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/carousel_view"
             app:showBottomShadow="false"
             app:showCaption="false"
             app:showIndicator="false"
@@ -74,7 +99,8 @@
             app:ci_drawable_unselected="@drawable/ocean_page_indicator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carousel_view"
+            app:layout_constraintTop_toBottomOf="@id/carousel_view2"
+            app:autoCycleCarousel="@{autoCycle}"
             app:setIndicator="@{true}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

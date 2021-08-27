@@ -43,11 +43,12 @@ fun setAdapterCarousel(carousel: ImageCarousel, entries: List<String>?, itemSele
     carousel.setData(entries?.map { CarouselItem(it) } ?: emptyList())
 }
 
-@BindingAdapter("setIndicator")
-fun setCircleIndicator(circleIndicator: CircleIndicator2, setIndicator: Boolean) {
+@BindingAdapter("setIndicator", "autoCycleCarousel")
+fun setCircleIndicator(circleIndicator: CircleIndicator2, setIndicator: Boolean, autoCycleCarousel: Boolean) {
     if (setIndicator) {
         val constraintLayout = (circleIndicator.parent as ConstraintLayout)
-        val imageCarousel = constraintLayout.findViewById<ImageCarousel>(R.id.carousel_view)
+        val carouselId = if (autoCycleCarousel) R.id.carousel_view2 else R.id.carousel_view
+        val imageCarousel = constraintLayout.findViewById<ImageCarousel>(carouselId)
         imageCarousel.setIndicator(circleIndicator)
     }
 }

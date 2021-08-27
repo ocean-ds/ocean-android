@@ -79,7 +79,7 @@
             <include
                 layout="@layout/ocean_carousel"
                 app:entries="@{viewmodel.entries3}"
-                app:withoutIndicator="@{true}"
+                app:withoutIndicator="@{false}"
                 app:autoCycle="@{true}"
                 app:itemSelect="@{viewmodel::itemSelect3}" />
 

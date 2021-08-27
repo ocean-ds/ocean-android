@@ -132,6 +132,21 @@
             android:background="#E7E7E7" />
 
         <TextView
+            android:id="@+id/carousel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="carousel"
+            android:padding="16dp"
+            android:text="Carousel"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="onClickInputs"
@@ -152,21 +167,6 @@
             android:onClick="listItems"
             android:padding="16dp"
             android:text="List Items"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:id="@+id/carousel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="carousel"
-            android:padding="16dp"
-            android:text="Carousel"
             android:textSize="24sp" />
 
         <View
@@ -211,6 +211,21 @@
             android:onClick="onClickSnackBar"
             android:padding="16dp"
             android:text="SnackBar"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:id="@+id/shortcuts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="shortcuts"
+            android:padding="16dp"
+            android:text="Shortcuts"
             android:textSize="24sp" />
 
         <View

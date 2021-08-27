@@ -17,6 +17,7 @@ import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
+import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
 import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
@@ -70,6 +71,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun carousel(view: View) {
         val intent = Intent(this, CarouselActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun shortcuts(view: View) {
+        val intent = Intent(this, ShortcutsActivity::class.java)
         startActivity(intent)
     }
 

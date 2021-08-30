@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -52,7 +53,7 @@ class OceanShortcutsListAdapter(
 
         fun bindView(position: Int) {
             itemBinding.label.text = items[position].label
-            itemBinding.icon.setImageResource(items[position].icon)
+            itemBinding.icon.setImageDrawable(items[position].icon)
             itemBinding.cardView.setOnClickListener {
                 onClickItem(position)
             }
@@ -65,7 +66,7 @@ class OceanShortcutsListAdapter(
 
         fun bindView(position: Int) {
             itemBinding.label.text = items[position].label
-            itemBinding.icon.setImageResource(items[position].icon)
+            itemBinding.icon.setImageDrawable(items[position].icon)
             itemBinding.cardView.setOnClickListener {
                 onClickItem(position)
             }
@@ -75,6 +76,6 @@ class OceanShortcutsListAdapter(
 }
 
 data class OceanShortcutItem(
-    val icon: Int,
+    val icon: Drawable?,
     val label: String
 )

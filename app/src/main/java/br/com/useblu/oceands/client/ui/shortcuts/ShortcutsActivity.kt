@@ -25,7 +25,7 @@ class ShortcutsActivity : AppCompatActivity() {
 
         initObservers()
 
-        viewModel.loadData()
+        viewModel.loadData(this)
     }
 
     private fun initObservers() {

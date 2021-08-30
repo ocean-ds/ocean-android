@@ -1,12 +1,16 @@
 package br.com.useblu.oceands.client.ui.shortcuts
 
+import android.app.Application
+import android.content.Context
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.adapter.OceanShortcutItem
 import br.com.useblu.oceands.client.R
 
-class ShortcutsViewModel: ViewModel() {
+class ShortcutsViewModel(application: Application): AndroidViewModel(application) {
 
     private val _items = MutableLiveData<List<OceanShortcutItem>>()
     val items: LiveData<List<OceanShortcutItem>> get() = _items
@@ -20,7 +24,7 @@ class ShortcutsViewModel: ViewModel() {
     private val _itemSelected2 = MutableLiveData<OceanShortcutItem>()
     val itemSelected2: LiveData<OceanShortcutItem> get() = _itemSelected2
 
-    fun loadData() {
+    fun loadData(context: Context) {
         _items.postValue(getItems())
         _items2.postValue(getItemsHighlighted())
     }
@@ -38,19 +42,19 @@ class ShortcutsViewModel: ViewModel() {
     }
 
     private fun getItems() = listOf(
-        OceanShortcutItem(R.drawable.icon_generic_primary, "Shortcut 1"),
-        OceanShortcutItem(R.drawable.icon_generic_primary, "Shortcut 2"),
-        OceanShortcutItem(R.drawable.icon_generic_primary, "Shortcut 3"),
-        OceanShortcutItem(R.drawable.icon_generic_primary, "Shortcut 4"),
-        OceanShortcutItem(R.drawable.icon_generic_primary, "Shortcut 5"),
+        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic_primary), "Shortcut 1"),
+        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic_primary), "Shortcut 2"),
+        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic_primary), "Shortcut 3"),
+        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic_primary), "Shortcut 4"),
+        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic_primary), "Shortcut 5"),
     )
 
     private fun getItemsHighlighted() = listOf(
-        OceanShortcutItem(R.drawable.icon_generic, "Shortcut 1"),
-        OceanShortcutItem(R.drawable.icon_generic, "Shortcut 2"),
-        OceanShortcutItem(R.drawable.icon_generic, "Shortcut 3"),
-        OceanShortcutItem(R.drawable.icon_generic, "Shortcut 4"),
-        OceanShortcutItem(R.drawable.icon_generic, "Shortcut 5"),
+        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic), "Shortcut 1"),
+        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic), "Shortcut 2"),
+        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic), "Shortcut 3"),
+        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic), "Shortcut 4"),
+        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic), "Shortcut 5"),
     )
 
 }

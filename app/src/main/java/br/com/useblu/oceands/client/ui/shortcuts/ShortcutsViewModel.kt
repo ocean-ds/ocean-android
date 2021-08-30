@@ -24,7 +24,7 @@ class ShortcutsViewModel(application: Application): AndroidViewModel(application
     private val _itemSelected2 = MutableLiveData<OceanShortcutItem>()
     val itemSelected2: LiveData<OceanShortcutItem> get() = _itemSelected2
 
-    fun loadData(context: Context) {
+    fun loadData() {
         _items.postValue(getItems())
         _items2.postValue(getItemsHighlighted())
     }

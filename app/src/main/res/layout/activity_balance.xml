@@ -25,15 +25,15 @@
             layout="@layout/ocean_balance"
             app:isContentHidden="@{viewmodel.contentIsHidden}"
             app:clickIcon="@{viewmodel::clickIconContentVisibility}"
-            app:headerTitle="@{`header`}"
-            app:firstLabel="@{`Label 1`}"
-            app:firstValue="@{`Value 1`}"
-            app:secondLabel="@{`Label 2`}"
-            app:secondValue="@{`Value 2`}"
-            app:thirdLabel="@{`Label 3`}"
-            app:thirdValue="@{`Value 3`}"
-            app:fourthLabel="@{`Label 4`}"
-            app:fourthValue="@{`Value 4`}"/>
+            app:headerTitle="@{viewmodel.headerTitle}"
+            app:firstLabel="@{viewmodel.labels.get(0)}"
+            app:firstValue="@{viewmodel.values.get(0)}"
+            app:secondLabel="@{viewmodel.labels.get(1)}"
+            app:secondValue="@{viewmodel.values.get(1)}"
+            app:thirdLabel="@{viewmodel.labels.get(2)}"
+            app:thirdValue="@{viewmodel.values.get(2)}"
+            app:fourthLabel="@{viewmodel.labels.get(3)}"
+            app:fourthValue="@{viewmodel.values.get(3)}"/>
 
     </LinearLayout>
 </layout>

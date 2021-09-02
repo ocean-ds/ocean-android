@@ -71,6 +71,14 @@ class FormatTypes {
         }
 
         @JvmField
+        val FORMAT_VALUE_WITH_SYMBOL_HIDDEN = object : Formatter {
+            override fun format(text: String): String {
+                val result = format(Formatador.VALOR_COM_SIMBOLO, text)
+                return result.replace(Regex("[0-9-,.]"), "•")
+            }
+        }
+
+        @JvmField
         val FORMAT_PHONE = object : Formatter {
             override fun format(text: String): String {
                 return format(Formatador.TELEFONE, text)

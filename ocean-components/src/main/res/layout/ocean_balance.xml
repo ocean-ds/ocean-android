@@ -118,8 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:fontFamily="@font/font_family_base_medium"
-                    android:text="@{firstValue}"
+                    android:fontFamily="@font/font_family_base_bold"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textSize="@dimen/ocean_font_size_xxs"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -127,6 +126,8 @@
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toEndOf="@id/icon"
                     app:layout_constraintTop_toBottomOf="@+id/text_view_header_label"
+                    app:ocean_text="@{firstValue}"
+                    app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                     tools:text="First value" />
 
                 <TextView
@@ -136,9 +137,9 @@
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                     android:fontFamily="@font/font_family_base_medium"
                     android:text="@{headerTitle}"
-                    android:visibility="invisible"
                     android:textColor="@color/ocean_color_brand_primary_pure"
                     android:textSize="@dimen/ocean_font_size_xs"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/header_indicator"
                     app:layout_constraintHorizontal_bias="0"
@@ -181,7 +182,7 @@
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="12dp"
-                    android:fontFamily="@font/font_family_base_medium"
+                    android:fontFamily="@font/font_family_base_bold"
                     android:text="@{firstLabel}"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textSize="@dimen/ocean_font_size_xs"
@@ -195,8 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                     android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-                    android:fontFamily="@font/font_family_base_medium"
-                    android:text="@{firstValue}"
+                    android:fontFamily="@font/font_family_base_bold"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:layout_constraintBottom_toBottomOf="@id/text_view_first_label"
@@ -204,14 +204,16 @@
                     app:layout_constraintHorizontal_bias="1"
                     app:layout_constraintStart_toEndOf="@id/text_view_first_label"
                     app:layout_constraintTop_toTopOf="@id/text_view_first_label"
+                    app:ocean_text="@{firstValue}"
+                    app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                     tools:text="First value" />
 
                 <View
                     android:id="@+id/divider1"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/ocean_color_interface_light_down"
                     android:layout_marginTop="12dp"
+                    android:background="@color/ocean_color_interface_light_down"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_view_first_label" />
@@ -238,7 +240,6 @@
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                     android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                     android:fontFamily="@font/font_family_base_medium"
-                    android:text="@{secondValue}"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:layout_constraintBottom_toBottomOf="@id/text_view_second_label"
@@ -246,14 +247,16 @@
                     app:layout_constraintHorizontal_bias="1"
                     app:layout_constraintStart_toEndOf="@id/text_view_second_label"
                     app:layout_constraintTop_toTopOf="@id/text_view_second_label"
+                    app:ocean_text="@{secondValue}"
+                    app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                     tools:text="Second value" />
 
                 <View
                     android:id="@+id/divider2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/ocean_color_interface_light_down"
                     android:layout_marginTop="12dp"
+                    android:background="@color/ocean_color_interface_light_down"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_view_second_label" />
@@ -280,7 +283,6 @@
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                     android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                     android:fontFamily="@font/font_family_base_medium"
-                    android:text="@{thirdValue}"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:layout_constraintBottom_toBottomOf="@id/text_view_third_label"
@@ -288,14 +290,16 @@
                     app:layout_constraintHorizontal_bias="1"
                     app:layout_constraintStart_toEndOf="@id/text_view_third_label"
                     app:layout_constraintTop_toTopOf="@id/text_view_third_label"
+                    app:ocean_text="@{thirdValue}"
+                    app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                     tools:text="Third value" />
 
                 <View
                     android:id="@+id/divider3"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/ocean_color_interface_light_down"
                     android:layout_marginTop="12dp"
+                    android:background="@color/ocean_color_interface_light_down"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_view_third_label" />
@@ -309,6 +313,7 @@
                     android:layout_marginBottom="12dp"
                     android:fontFamily="@font/font_family_base_medium"
                     android:text="@{fourthLabel}"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:layout_constraintStart_toStartOf="parent"
@@ -322,7 +327,6 @@
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                     android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                     android:fontFamily="@font/font_family_base_medium"
-                    android:text="@{fourthValue}"
                     android:textColor="@color/ocean_color_interface_dark_up"
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:layout_constraintBottom_toBottomOf="@id/text_view_fourth_label"
@@ -330,34 +334,12 @@
                     app:layout_constraintHorizontal_bias="1"
                     app:layout_constraintStart_toEndOf="@id/text_view_fourth_label"
                     app:layout_constraintTop_toTopOf="@id/text_view_fourth_label"
+                    app:ocean_text="@{fourthValue}"
+                    app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                     tools:text="Third value" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.github.florent37.expansionpanel.ExpansionLayout>
     </LinearLayout>
 
-    <!--    <androidx.appcompat.widget.Toolbar-->
-    <!--        android:id="@+id/toolbar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="56dp"-->
-    <!--        android:background="@color/ocean_color_brand_primary_pure"-->
-    <!--        android:clickable="true"-->
-    <!--        android:focusable="true"-->
-    <!--        android:onClick="@{() -> clickToolbar.invoke()}"-->
-    <!--        android:visibility="@{iconInvisible ? View.INVISIBLE : View.VISIBLE}"-->
-    <!--        app:navigationIcon="@{icon == null ? @drawable/icon_back : icon}"-->
-    <!--        app:setNavigationOnClick="@{click::invoke}"-->
-    <!--        android:theme="@style/Ocean.ToolBar.Option.Light"-->
-    <!--        tools:navigationIcon="@drawable/icon_generic">-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/toolbar_title"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:fontFamily="@font/font_family_highlight_extrabold"-->
-    <!--            android:text="@{title}"-->
-    <!--            android:textColor="@color/ocean_color_interface_light_pure"-->
-    <!--            android:textSize="@dimen/ocean_font_size_sm"-->
-    <!--            tools:text="Title" />-->
-    <!--    </androidx.appcompat.widget.Toolbar>-->
 </layout>

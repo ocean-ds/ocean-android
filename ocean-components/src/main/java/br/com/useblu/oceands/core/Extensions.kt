@@ -6,6 +6,10 @@ import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import android.view.MenuItem
+import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
@@ -47,4 +51,38 @@ fun MenuItem.setTitleColor(color: Int) {
 
 fun String.parseAsHtml(): Spanned {
    return HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)
+}
+
+fun View.animateFadeIn() {
+    this.clearAnimation()
+    AlphaAnimation(0.0f, 1.0f).run {
+        interpolator = DecelerateInterpolator() //add this
+        duration = 150
+        setAnimationListener(object: Animation.AnimationListener {
+            override fun onAnimationRepeat(animation: Animation?) {}
+            override fun onAnimationStart(animation: Animation?) {}
+            override fun onAnimationEnd(animation: Animation?) {
+                this@animateFadeIn.visibility = View.VISIBLE
+            }
+        })
+        this@animateFadeIn.animation = this
+        this@animateFadeIn.animate()
+    }
+}
+
+fun View.animateFadeOut() {
+    this.clearAnimation()
+    AlphaAnimation(1.0f, 0.0f).run {
+        interpolator = DecelerateInterpolator() //add this
+        duration = 150
+        setAnimationListener(object: Animation.AnimationListener {
+            override fun onAnimationRepeat(animation: Animation?) {}
+            override fun onAnimationStart(animation: Animation?) {}
+            override fun onAnimationEnd(animation: Animation?) {
+                this@animateFadeOut.visibility = View.INVISIBLE
+            }
+        })
+        this@animateFadeOut.animation = this
+        this@animateFadeOut.animate()
+    }
 }

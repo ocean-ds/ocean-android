@@ -29,6 +29,7 @@ class OceanTooltip(
             setBackgroundColorResource(R.color.ocean_color_interface_dark_deep)
             setDismissWhenClicked(true)
             setDismissWhenTouchOutside(true)
+            setAutoDismissDuration(5000)
             setLifecycleOwner(lifecycle)
         }
     }

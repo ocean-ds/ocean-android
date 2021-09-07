@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="br.com.useblu.oceands.core.OceanTagType"/>
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.tag.TagViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:fillViewport="true"
+        tools:context=".ui.tag.TagActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <!--Custom-->
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tagCustom1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/tagCustom2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:icon="@{@drawable/icon_generic}"
+                    app:title="@{`Custom`}"
+                    app:type="@{OceanTagType.Positive}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tagCustom2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/tagCustom1"
+                app:layout_constraintEnd_toStartOf="@+id/tagCustom3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tagCustom1"
+                app:layout_constraintTop_toTopOf="@id/tagCustom1"
+                tools:layout_editor_absoluteY="16dp">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:icon="@{@drawable/icon_generic}"
+                    app:title="@{`Custom`}"
+                    app:type="@{OceanTagType.Warning}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tagCustom3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/tagCustom1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tagCustom2"
+                app:layout_constraintTop_toTopOf="@id/tagCustom1"
+                tools:layout_editor_absoluteY="16dp">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:icon="@{@drawable/icon_generic}"
+                    app:title="@{`Custom`}"
+                    app:type="@{OceanTagType.Negative}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tagCustom4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/tagCustom5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tagCustom1">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:icon="@{@drawable/icon_generic}"
+                    app:title="@{`Custom`}"
+                    app:type="@{OceanTagType.Neutral1}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tagCustom5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/tagCustom4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tagCustom4"
+                app:layout_constraintTop_toTopOf="@+id/tagCustom4">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:icon="@{@drawable/icon_generic}"
+                    app:title="@{`Custom`}"
+                    app:type="@{OceanTagType.Neutral2}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!--Positive-->
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tag3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/tag4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tagCustom4">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:hideIcon="@{true}"
+                    app:title="@{`Positive`}"
+                    app:type="@{OceanTagType.Positive}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tag4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/tag3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tag3"
+                app:layout_constraintTop_toTopOf="@id/tag3">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:title="@{`Positive`}"
+                    app:type="@{OceanTagType.Positive}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!--Warning-->
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tag5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/tag6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tag3">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:hideIcon="@{true}"
+                    app:title="@{`Warning`}"
+                    app:type="@{OceanTagType.Warning}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tag6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/tag5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tag5"
+                app:layout_constraintTop_toTopOf="@id/tag5">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:title="@{`Warning`}"
+                    app:type="@{OceanTagType.Warning}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!--Negative-->
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tag7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/tag8"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tag5">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:hideIcon="@{true}"
+                    app:title="@{`Negative`}"
+                    app:type="@{OceanTagType.Negative}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tag8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/tag7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tag7"
+                app:layout_constraintTop_toTopOf="@id/tag7">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:title="@{`Negative`}"
+                    app:type="@{OceanTagType.Negative}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!--Neutral 1-->
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tag9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/tag10"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tag7">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:hideIcon="@{true}"
+                    app:title="@{`Neutral 1`}"
+                    app:type="@{OceanTagType.Neutral1}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tag10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/tag9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tag9"
+                app:layout_constraintTop_toTopOf="@id/tag9">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:title="@{`Neutral 1`}"
+                    app:type="@{OceanTagType.Neutral1}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <!--Neutral 2-->
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tag11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/tag12"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tag9">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:hideIcon="@{true}"
+                    app:title="@{`Neutral 2`}"
+                    app:type="@{OceanTagType.Neutral2}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/tag12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/tag11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tag11"
+                app:layout_constraintTop_toTopOf="@id/tag11">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:title="@{`Neutral 2`}"
+                    app:type="@{OceanTagType.Neutral2}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

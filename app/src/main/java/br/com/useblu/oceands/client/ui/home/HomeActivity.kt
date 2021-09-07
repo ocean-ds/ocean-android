@@ -20,6 +20,7 @@ import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
 import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
 import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
+import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
@@ -87,6 +88,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickSwitch(view: View) {
         val intent = Intent(this, SwitchsActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickTags(view: View) {
+        val intent = Intent(this, TagActivity::class.java)
         startActivity(intent)
     }
 

@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.badges.BadgesActivity"
-            android:exported="true" />
+        <activity android:name=".ui.badges.BadgesActivity"/>
         <activity android:name=".ui.tag.TagActivity" />
         <activity android:name=".ui.balance.BalanceActivity" />
         <activity android:name=".ui.shortcuts.ShortcutsActivity" />

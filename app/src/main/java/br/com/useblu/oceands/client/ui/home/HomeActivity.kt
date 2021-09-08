@@ -11,6 +11,7 @@ import br.com.useblu.oceands.*
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
+import br.com.useblu.oceands.client.ui.badges.BadgesActivity
 import br.com.useblu.oceands.client.ui.balance.BalanceActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
@@ -57,6 +58,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickAlert(view: View) {
         val intent = Intent(this, AlertActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickBadges(view: View) {
+        val intent = Intent(this, BadgesActivity::class.java)
         startActivity(intent)
     }
 

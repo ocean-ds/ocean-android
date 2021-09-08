@@ -7,6 +7,8 @@
 
         <import type="android.view.View" />
 
+        <import type="br.com.useblu.oceands.core.OceanBadgeType" />
+
         <variable
             name="text"
             type="String" />
@@ -15,24 +17,90 @@
             name="visible"
             type="Boolean" />
 
+        <variable
+            name="isSmall"
+            type="Boolean" />
+
+        <variable
+            name="type"
+            type="OceanBadgeType" />
+
     </data>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/badge"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ocean_badge"
-        android:fontFamily="@font/font_family_base_bold"
-        android:gravity="center"
-        android:text="@{text}"
-        android:textColor="#FFF"
-        android:textSize="@dimen/ocean_font_size_xxxs"
-        android:textStyle="bold"
-        android:visibility="@{visible ? View.VISIBLE : View.GONE}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Badge" />
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/badge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_family_base_extrabold"
+            android:gravity="center"
+            android:textColor="@color/ocean_color_interface_light_pure"
+            android:textSize="@dimen/ocean_font_size_xxxs"
+            android:textStyle="bold"
+            android:visibility="@{visible &amp; !isSmall &amp; text != null ? View.VISIBLE : View.GONE}"
+            app:badge_text="@{text}"
+            app:badge_type="@{type}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Badge" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/badgeSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_family_base_extrabold"
+            android:gravity="center"
+            android:textColor="@color/ocean_color_interface_light_pure"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:visibility="@{visible &amp; isSmall &amp; text != null ? View.VISIBLE : View.GONE}"
+            app:badge_text="@{text}"
+            app:badge_type="@{type}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Badge" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/badgeNone"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:fontFamily="@font/font_family_base_extrabold"
+            android:gravity="center"
+            android:textColor="@color/ocean_color_interface_light_pure"
+            android:textSize="@dimen/ocean_font_size_xxxs"
+            android:textStyle="bold"
+            android:visibility="@{visible &amp; !isSmall &amp; text == null ? View.VISIBLE : View.GONE}"
+            app:badge_type="@{type}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Badge" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/badgeNoneSmall"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:fontFamily="@font/font_family_base_extrabold"
+            android:gravity="center"
+            android:textColor="@color/ocean_color_interface_light_pure"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:visibility="@{visible &amp; isSmall &amp; text == null ? View.VISIBLE : View.GONE}"
+            app:badge_type="@{type}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Badge" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>

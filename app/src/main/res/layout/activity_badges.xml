@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.InputType" />
+
+        <import type="br.com.useblu.oceands.core.OceanBadgeType" />
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.badges.BadgesViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.badges.BadgesActivity">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:visible="@{true}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toEndOf="@id/badge3"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:isSmall="@{true}"
+                app:visible="@{true}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/badge1">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`Badge`}"
+                app:visible="@{true}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toEndOf="@id/badge3"
+            app:layout_constraintTop_toTopOf="@id/badge3">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:isSmall="@{true}"
+                app:text="@{`Badge`}"
+                app:visible="@{true}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/badge3">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`Badge`}"
+                app:visible="@{true}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toEndOf="@id/badge5"
+            app:layout_constraintTop_toTopOf="@id/badge5">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`7`}"
+                app:visible="@{true}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toEndOf="@id/badge6"
+            app:layout_constraintTop_toTopOf="@id/badge5">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`99`}"
+                app:visible="@{true}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge7_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toEndOf="@id/badge7"
+            app:layout_constraintTop_toTopOf="@id/badge7">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`140`}"
+                app:visible="@{true}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/badge5">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`Badge`}"
+                app:visible="@{true}"
+                app:type="@{OceanBadgeType.BRAND_DEFAULT}"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toEndOf="@id/badge8"
+            app:layout_constraintTop_toTopOf="@id/badge8">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`Badge`}"
+                app:visible="@{true}"
+                app:type="@{OceanBadgeType.COMPLEMENTARY}"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toEndOf="@id/badge9"
+            app:layout_constraintTop_toTopOf="@id/badge9">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`Badge`}"
+                app:visible="@{true}"
+                app:type="@{OceanBadgeType.ALERT}"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toEndOf="@id/badge10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toTopOf="@id/badge10">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`Badge`}"
+                app:visible="@{true}"
+                app:type="@{OceanBadgeType.NEUTRAL}"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

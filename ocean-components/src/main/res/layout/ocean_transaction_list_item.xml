@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="br.com.useblu.oceands.core.FormatTypes" />
+
+        <import type="br.com.useblu.oceands.core.OceanTagType" />
+
+        <variable
+            name="highlightedLabel"
+            type="String" />
+
+        <variable
+            name="primaryLabel"
+            type="String" />
+
+        <variable
+            name="secondaryLabel"
+            type="String" />
+
+        <variable
+            name="dimmedLabel"
+            type="String" />
+
+        <variable
+            name="value"
+            type="String" />
+
+        <variable
+            name="valueIsHighlighted"
+            type="Boolean" />
+
+        <variable
+            name="tagTitle"
+            type="String" />
+
+        <variable
+            name="time"
+            type="String" />
+
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Space
+            android:id="@+id/space1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ocean_spacing_stack_xs" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/ocean_spacing_stack_xs"
+            android:paddingEnd="@dimen/ocean_spacing_stack_xs">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="@dimen/ocean_spacing_stack_md"
+                android:layout_height="@dimen/ocean_spacing_stack_md"
+                android:src="@{icon}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{icon != null}"
+                app:tint="@color/ocean_color_interface_dark_up"
+                tools:src="@drawable/icon_generic_primary" />
+
+            <Space
+                android:id="@+id/space2"
+                android:layout_width="@dimen/ocean_spacing_stack_xs"
+                android:layout_height="0dp"
+                app:ocean_visible_or_gone="@{icon != null}"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintEnd_toStartOf="@id/linearLayoutLabel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linearLayoutLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/space3"
+                app:layout_constraintStart_toEndOf="@id/space2"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/text_view_level_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/font_family_base_medium"
+                    android:maxLines="1"
+                    android:text="@{highlightedLabel}"
+                    android:textColor="@color/ocean_color_brand_primary_deep"
+                    android:textSize="@dimen/ocean_font_size_xxxs"
+                    app:ocean_visible_or_gone="@{highlightedLabel != null}"
+                    tools:text="Level 4" />
+
+                <Space
+                    android:id="@+id/space4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_stack_xxs"
+                    app:ocean_visible_or_gone="@{highlightedLabel != null}"/>
+
+                <TextView
+                    android:id="@+id/text_view_level_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/font_family_base_medium"
+                    android:maxLines="2"
+                    android:text="@{primaryLabel}"
+                    android:textColor="@color/ocean_color_interface_dark_deep"
+                    android:textSize="@dimen/ocean_font_size_xs"
+                    app:ocean_visible_or_gone="@{primaryLabel != null}"
+                    tools:text="Level 1" />
+
+                <Space
+                    android:id="@+id/space5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_stack_xxxs"
+                    app:ocean_visible_or_gone="@{primaryLabel != null}"/>
+
+                <TextView
+                    android:id="@+id/text_view_level_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/font_family_base_regular"
+                    android:maxLines="1"
+                    android:text="@{secondaryLabel}"
+                    android:textColor="@color/ocean_color_interface_dark_deep"
+                    android:textSize="@dimen/ocean_font_size_xxs"
+                    app:ocean_visible_or_gone="@{secondaryLabel != null}"
+                    tools:text="Level 2" />
+
+                <Space
+                    android:id="@+id/space6"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_stack_xxs"
+                    app:ocean_visible_or_gone="@{secondaryLabel != null}"/>
+
+                <TextView
+                    android:id="@+id/text_view_level_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/font_family_highlight_regular"
+                    android:maxLines="1"
+                    android:text="@{dimmedLabel}"
+                    android:textColor="@color/ocean_color_interface_dark_up"
+                    android:textSize="@dimen/ocean_font_size_xxxs"
+                    app:ocean_visible_or_gone="@{dimmedLabel != null}"
+                    tools:text="Level 3" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <Space
+                android:id="@+id/space3"
+                android:layout_width="@dimen/ocean_spacing_stack_xs"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toStartOf="@id/linearLayoutValue"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linearLayoutValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/text_view_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_family_base_bold"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/ocean_color_interface_dark_deep"
+                    android:textSize="@dimen/ocean_font_size_xs"
+                    app:ocean_text="@{value}"
+                    app:ocean_text_format="@{FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
+                    app:ocean_visible_or_gone="@{value != null}"
+                    tools:text="-R$ 1.000.000,00" />
+
+                <Space
+                    android:id="@+id/space7"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_stack_xxxs"
+                    app:ocean_visible_or_gone="@{value != null}"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/linear_layout_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    app:ocean_visible_or_gone="@{tagTitle != null}">
+
+                    <include
+                        layout="@layout/ocean_tag"
+                        app:title="@{tagTitle}"
+                        app:type="@{OceanTagType.Warning}" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <Space
+                    android:id="@+id/space8"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_stack_xxxs"
+                    app:ocean_visible_or_gone="@{tagTitle != null}"/>
+
+                <TextView
+                    android:id="@+id/text_view_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
+                    android:text="@{time}"
+                    android:textColor="@color/ocean_color_interface_dark_down"
+                    app:ocean_visible_or_gone="@{time != null}"
+                    tools:text="Time" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            android:background="@color/ocean_color_interface_light_down"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

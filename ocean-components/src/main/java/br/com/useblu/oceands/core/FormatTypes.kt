@@ -66,7 +66,12 @@ class FormatTypes {
         @JvmField
         val FORMAT_VALUE_WITH_SYMBOL = object : Formatter {
             override fun format(text: String): String {
-                return format(Formatador.VALOR_COM_SIMBOLO, text)
+                val valueDouble = text.toDoubleOrNull()
+                return if (valueDouble != null && valueDouble < 0) {
+                    val formattedValue = format(Formatador.VALOR_COM_SIMBOLO, (valueDouble * -1).toString())
+                    "- $formattedValue"
+                } else
+                    format(Formatador.VALOR_COM_SIMBOLO, text)
             }
         }
 

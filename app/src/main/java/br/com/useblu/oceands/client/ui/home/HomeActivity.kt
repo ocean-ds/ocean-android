@@ -24,6 +24,7 @@ import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
+import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 
 class HomeActivity : AppCompatActivity() {
@@ -76,6 +77,10 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun transactionListItemClick(view: View) {
+        val intent = Intent(this, TransactionListItemActivity::class.java)
+        startActivity(intent)
+    }
 
     fun listItems(view: View) {
         val intent = Intent(this, ListItemActivity::class.java)

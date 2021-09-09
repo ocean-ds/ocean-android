@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.InputType" />
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.transactionlistitem.TransactionListItemActivity">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/item1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Default" />
+
+                <include
+                    layout="@layout/ocean_transaction_list_item"
+                    app:dimmedLabel="@{`Label 3`}"
+                    app:highlightedLabel="@{`Label 4`}"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:primaryLabel="@{`Label 1`}"
+                    app:secondaryLabel="@{`Label 2`}"
+                    app:tagTitle="@{`Pendente`}"
+                    app:time="@{`9:00`}"
+                    app:value="@{`1000000.00`}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/item2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Variation 1" />
+
+                <include
+                    layout="@layout/ocean_transaction_list_item"
+                    app:dimmedLabel="@{`Label 3`}"
+                    app:highlightedLabel="@{`Label 4`}"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:primaryLabel="@{`Label 1`}"
+                    app:secondaryLabel="@{`Label 2`}"
+                    app:time="@{`9:00`}"
+                    app:value="@{`1000000.00`}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/item3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Variation 2" />
+
+                <include
+                    layout="@layout/ocean_transaction_list_item"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:primaryLabel="@{`Label 1`}"
+                    app:secondaryLabel="@{`Label 2`}"
+                    app:time="@{`9:00`}"
+                    app:value="@{`-1000000.00`}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/item4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Variation 3" />
+
+                <include
+                    layout="@layout/ocean_transaction_list_item"
+                    app:primaryLabel="@{`Label 1`}"
+                    app:secondaryLabel="@{`Label 2`}"
+                    app:tagTitle="@{`Pendente`}"
+                    app:value="@{`-1000000.00`}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/item5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Variation 4" />
+
+                <include
+                    layout="@layout/ocean_transaction_list_item"
+                    app:icon="@{@drawable/icon_generic_primary}"
+                    app:primaryLabel="@{`Label 1`}"
+                    app:valueIsHighlighted="@{true}"
+                    app:value="@{`1000000.00`}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

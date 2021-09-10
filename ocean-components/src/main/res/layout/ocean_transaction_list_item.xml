@@ -34,6 +34,10 @@
             type="Boolean" />
 
         <variable
+            name="valueWithSignal"
+            type="Boolean" />
+
+        <variable
             name="tagTitle"
             type="String" />
 
@@ -193,8 +197,10 @@
                     android:textAlignment="textEnd"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textSize="@dimen/ocean_font_size_xs"
-                    app:ocean_text="@{value}"
-                    app:ocean_text_format="@{FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
+                    app:ocean_text_value="@{value}"
+                    app:ocean_text_format_value="@{FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
+                    app:highlighted_text="@{valueIsHighlighted}"
+                    app:show_signal="@{valueWithSignal}"
                     app:ocean_visible_or_gone="@{value != null}"
                     tools:text="-R$ 1.000.000,00" />
 

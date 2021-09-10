@@ -105,7 +105,8 @@
                     app:primaryLabel="@{`Label 1`}"
                     app:secondaryLabel="@{`Label 2`}"
                     app:time="@{`9:00`}"
-                    app:value="@{`-1000000.00`}" />
+                    app:valueWithSignal="@{true}"
+                    app:value="@{`0.00`}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -131,6 +132,7 @@
                     app:primaryLabel="@{`Label 1`}"
                     app:secondaryLabel="@{`Label 2`}"
                     app:tagTitle="@{`Pendente`}"
+                    app:valueWithSignal="@{true}"
                     app:value="@{`-1000000.00`}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -157,6 +159,7 @@
                     app:icon="@{@drawable/icon_generic_primary}"
                     app:primaryLabel="@{`Label 1`}"
                     app:valueIsHighlighted="@{true}"
+                    app:valueWithSignal="@{true}"
                     app:value="@{`1000000.00`}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>

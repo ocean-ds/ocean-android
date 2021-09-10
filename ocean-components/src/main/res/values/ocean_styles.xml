@@ -355,14 +355,22 @@
     <!--TOOLBAR-->
     <style name="Ocean.ToolBar" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:fontFamily">@font/font_family_highlight_extrabold</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
     </style>
 
     <style name="Ocean.ToolBar.Option.Primary" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textColorSecondary">@color/ocean_color_brand_primary_pure</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
     </style>
 
     <style name="Ocean.ToolBar.Option.Light" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textColorSecondary">@color/ocean_color_interface_light_pure</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
+    </style>
+
+    <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:overlapAnchor">false</item>
     </style>
 
 </resources>

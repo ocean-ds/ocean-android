@@ -2,6 +2,7 @@ package br.com.useblu.oceands
 
 import android.content.Context
 import android.view.Gravity
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.LifecycleOwner
 import com.skydoves.balloon.*
 
@@ -18,6 +19,9 @@ class OceanTooltip(
             setText(message.toString())
             setTextSize(14f)
             setTextIsHtml(true)
+            ResourcesCompat.getFont(context, R.font.font_family_base_regular)?.let {
+                setTextTypeface(it)
+            }
             setTextGravity(Gravity.LEFT)
             setArrowSize(12)
             setArrowOrientation(ArrowOrientation.BOTTOM)

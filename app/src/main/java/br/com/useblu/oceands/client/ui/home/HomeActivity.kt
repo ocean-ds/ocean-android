@@ -14,6 +14,7 @@ import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.badges.BadgesActivity
 import br.com.useblu.oceands.client.ui.balance.BalanceActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
+import br.com.useblu.oceands.client.ui.cardcontent.CardContentActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
@@ -77,13 +78,18 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun transactionListItemClick(view: View) {
+    fun transactionListClick(view: View) {
         val intent = Intent(this, TransactionListItemActivity::class.java)
         startActivity(intent)
     }
 
     fun listItems(view: View) {
         val intent = Intent(this, ListItemActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun cardContentClick(view: View) {
+        val intent = Intent(this, CardContentActivity::class.java)
         startActivity(intent)
     }
 

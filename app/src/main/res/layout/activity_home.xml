@@ -162,6 +162,21 @@
             android:background="#E7E7E7" />
 
         <TextView
+            android:id="@+id/cardContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="cardContentClick"
+            android:padding="16dp"
+            android:text="Card Content"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
             android:id="@+id/carousel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -354,9 +369,9 @@
             android:id="@+id/transaction_list_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="transactionListItemClick"
+            android:onClick="transactionListClick"
             android:padding="16dp"
-            android:text="TransactionListItem"
+            android:text="Transaction List"
             android:textSize="24sp" />
 
         <View

@@ -17,9 +17,9 @@ fun setTitleAndSubtitle(
     disabled: Boolean
 ) {
 
-    val darkUp = ContextCompat.getColor(
+    val darkDown = ContextCompat.getColor(
         radioButton.context,
-        R.color.ocean_color_interface_dark_up
+        R.color.ocean_color_interface_dark_down
     )
 
     val primaryDown = ContextCompat.getColor(
@@ -29,15 +29,15 @@ fun setTitleAndSubtitle(
 
     val html = if (disabled) {
         if (subtitle.isNullOrEmpty()) {
-            "<b><font color='$darkUp'>$title</font></b>"
+            "<b><font color='$darkDown'>$title</font></b>"
         } else {
-            "<b><font color='$darkUp'>$title</font></b><br/><font color='$darkUp'><small>$subtitle</small></font>"
+            "<b><font color='$darkDown'>$title</font></b><br/><font color='$darkDown'><small>$subtitle</small></font>"
         }
     } else {
         if (subtitle.isNullOrEmpty()) {
             "<b><font color='$primaryDown'>$title</font></b>"
         } else {
-            "<b><font color='$primaryDown'>$title</font></b><br/><font color='$darkUp'><small>$subtitle</small></font>"
+            "<b><font color='$primaryDown'>$title</font></b><br/><font color='$darkDown'><small>$subtitle</small></font>"
         }
     }
 

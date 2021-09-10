@@ -13,9 +13,32 @@ class CardContentViewModel: ViewModel() {
     private val _items2 = MutableLiveData<List<OceanTransactionListUIModel>>()
     val items2: LiveData<List<OceanTransactionListUIModel>> get() = _items2
 
+    private val _shouldShowMessage = MutableLiveData<String>()
+    val shouldShowMessage: LiveData<String> get() = _shouldShowMessage
+
     fun loadData() {
         _items.postValue(mockItems())
         _items2.postValue(mockItems2())
+    }
+
+    fun actionClickHeader() {
+        _shouldShowMessage.postValue("Click Action Header")
+    }
+
+    fun actionClickFooter() {
+        _shouldShowMessage.postValue("Click Action Footer")
+    }
+
+    fun itemSelectedCard1(position: Int) {
+        _items.value?.let {
+            _shouldShowMessage.postValue("Click Item $position: ${it[position].primaryLabel}")
+        }
+    }
+
+    fun itemSelectedCard2(position: Int) {
+        _items2.value?.let {
+            _shouldShowMessage.postValue("Click Item $position: ${it[position].primaryLabel}")
+        }
     }
 
     private fun mockItems() = listOf(

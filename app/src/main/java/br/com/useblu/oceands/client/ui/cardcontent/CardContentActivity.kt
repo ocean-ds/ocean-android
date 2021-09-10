@@ -2,6 +2,7 @@ package br.com.useblu.oceands.client.ui.cardcontent
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
@@ -22,7 +23,15 @@ class CardContentActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[CardContentViewModel::class.java]
         binding.viewmodel = viewModel
 
+        initObservables()
+
         viewModel.loadData()
+    }
+
+    private fun initObservables() {
+        viewModel.shouldShowMessage.observe(this, {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        })
     }
 
 }

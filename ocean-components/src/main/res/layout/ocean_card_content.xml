@@ -6,11 +6,17 @@
     <data>
 
         <import type="br.com.useblu.oceands.core.OceanBadgeType" />
-        
+
+        <import type="kotlin.Unit" />
+
         <import type="br.com.useblu.oceands.core.OceanTransactionListUIModel" />
-        
+
         <import type="java.util.List" />
-        
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.jvm.functions.Function1" />
+
         <variable
             name="headerIcon"
             type="android.graphics.drawable.Drawable" />
@@ -38,10 +44,22 @@
         <variable
             name="limitItems"
             type="Integer" />
-        
+
         <variable
             name="transactionListItems"
             type="List&lt;OceanTransactionListUIModel>" />
+
+        <variable
+            name="actionHeaderClick"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="actionFooterClick"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="itemSelect"
+            type="Function1&lt;Integer,Unit>" />
 
     </data>
 
@@ -134,6 +152,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
+                        android:onClick="@{() -> actionHeaderClick.invoke()}"
                         android:paddingStart="@dimen/ocean_spacing_stack_xxs"
                         android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
                         app:ocean_visible_or_gone="@{actionHeaderTitle != null}">
@@ -185,51 +204,60 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/layout_content"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <include
+                    android:id="@+id/item1"
                     layout="@layout/ocean_transaction_list_item"
+                    app:click="@{itemSelect}"
+                    app:index="@{0}"
+                    app:dimmedLabel="@{transactionListItems.get(0).dimmedLabel}"
                     app:highlightedLabel="@{transactionListItems.get(0).highlightedLabel}"
+                    app:icon="@{transactionListItems.get(0).icon}"
+                    app:ocean_visible_or_gone="@{transactionListItems.size() > 0 &amp;&amp; limitItems > 0}"
                     app:primaryLabel="@{transactionListItems.get(0).primaryLabel}"
                     app:secondaryLabel="@{transactionListItems.get(0).secondaryLabel}"
-                    app:dimmedLabel="@{transactionListItems.get(0).dimmedLabel}"
-                    app:value="@{transactionListItems.get(0).value}"
-                    app:valueIsHighlighted="@{transactionListItems.get(0).valueIsHighlighted}"
-                    app:valueWithSignal="@{transactionListItems.get(0).valueWithSignal}"
                     app:tagTitle="@{transactionListItems.get(0).tagTitle}"
                     app:time="@{transactionListItems.get(0).time}"
-                    app:icon="@{transactionListItems.get(0).icon}"
-                    app:ocean_visible_or_gone="@{transactionListItems.size() > 0 &amp;&amp; limitItems > 0}" />
+                    app:value="@{transactionListItems.get(0).value}"
+                    app:valueIsHighlighted="@{transactionListItems.get(0).valueIsHighlighted}"
+                    app:valueWithSignal="@{transactionListItems.get(0).valueWithSignal}" />
 
                 <include
+                    android:id="@+id/item2"
                     layout="@layout/ocean_transaction_list_item"
+                    app:index="@{1}"
+                    app:click="@{itemSelect}"
+                    app:dimmedLabel="@{transactionListItems.get(1).dimmedLabel}"
                     app:highlightedLabel="@{transactionListItems.get(1).highlightedLabel}"
+                    app:icon="@{transactionListItems.get(1).icon}"
+                    app:ocean_visible_or_gone="@{transactionListItems.size() > 1 &amp;&amp; limitItems > 1}"
                     app:primaryLabel="@{transactionListItems.get(1).primaryLabel}"
                     app:secondaryLabel="@{transactionListItems.get(1).secondaryLabel}"
-                    app:dimmedLabel="@{transactionListItems.get(1).dimmedLabel}"
-                    app:value="@{transactionListItems.get(1).value}"
-                    app:valueIsHighlighted="@{transactionListItems.get(1).valueIsHighlighted}"
-                    app:valueWithSignal="@{transactionListItems.get(1).valueWithSignal}"
                     app:tagTitle="@{transactionListItems.get(1).tagTitle}"
                     app:time="@{transactionListItems.get(1).time}"
-                    app:icon="@{transactionListItems.get(1).icon}"
-                    app:ocean_visible_or_gone="@{transactionListItems.size() > 1 &amp;&amp; limitItems > 1}" />
+                    app:value="@{transactionListItems.get(1).value}"
+                    app:valueIsHighlighted="@{transactionListItems.get(1).valueIsHighlighted}"
+                    app:valueWithSignal="@{transactionListItems.get(1).valueWithSignal}" />
 
                 <include
+                    android:id="@+id/item3"
                     layout="@layout/ocean_transaction_list_item"
+                    app:index="@{2}"
+                    app:click="@{itemSelect}"
+                    app:dimmedLabel="@{transactionListItems.get(2).dimmedLabel}"
                     app:highlightedLabel="@{transactionListItems.get(2).highlightedLabel}"
+                    app:icon="@{transactionListItems.get(2).icon}"
+                    app:ocean_visible_or_gone="@{transactionListItems.size() > 2 &amp;&amp; limitItems > 2}"
                     app:primaryLabel="@{transactionListItems.get(2).primaryLabel}"
                     app:secondaryLabel="@{transactionListItems.get(2).secondaryLabel}"
-                    app:dimmedLabel="@{transactionListItems.get(2).dimmedLabel}"
-                    app:value="@{transactionListItems.get(2).value}"
-                    app:valueIsHighlighted="@{transactionListItems.get(2).valueIsHighlighted}"
-                    app:valueWithSignal="@{transactionListItems.get(2).valueWithSignal}"
                     app:tagTitle="@{transactionListItems.get(2).tagTitle}"
                     app:time="@{transactionListItems.get(2).time}"
-                    app:icon="@{transactionListItems.get(2).icon}"
-                    app:ocean_visible_or_gone="@{transactionListItems.size() > 2 &amp;&amp; limitItems > 2}" />
+                    app:value="@{transactionListItems.get(2).value}"
+                    app:valueIsHighlighted="@{transactionListItems.get(2).valueIsHighlighted}"
+                    app:valueWithSignal="@{transactionListItems.get(2).valueWithSignal}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -240,6 +268,7 @@
                 android:background="@drawable/ocean_background_ripple_light_deep"
                 android:clickable="true"
                 android:focusable="true"
+                android:onClick="@{() -> actionFooterClick.invoke()}"
                 app:ocean_visible_or_gone="@{footerActionTitle != null}">
 
                 <TextView

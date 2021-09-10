@@ -69,6 +69,7 @@
                 <include
                     layout="@layout/ocean_card_content"
                     app:actionHeaderTitle="@{`Select`}"
+                    app:actionHeaderClick="@{viewmodel::actionClickHeader}"
                     app:headerTitle="@{`Header`}"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -118,6 +119,8 @@
                     app:footerActionTitle="@{`Call To Action`}"
                     app:limitItems="@{3}"
                     app:transactionListItems="@{viewmodel.items}"
+                    app:actionFooterClick="@{viewmodel::actionClickFooter}"
+                    app:itemSelect="@{viewmodel::itemSelectedCard1}"
                     app:headerTitle="@{`Header`}"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -143,7 +146,9 @@
                     app:footerActionTitle="@{`Call To Action`}"
                     app:limitItems="@{2}"
                     app:transactionListItems="@{viewmodel.items2}"
-                    app:headerTitle="@{`Header`}"/>
+                    app:actionFooterClick="@{viewmodel::actionClickFooter}"
+                    app:headerTitle="@{`Header`}"
+                    app:itemSelect="@{viewmodel::itemSelectedCard2}"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

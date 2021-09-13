@@ -29,6 +29,7 @@
         android:paddingStart="@{hideIcon == true ? @dimen/ocean_spacing_inline_xxs : 0F}"
         android:paddingEnd="@dimen/ocean_spacing_inline_xxs"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         app:ocean_tag_background="@{type}">
 
         <ImageView
@@ -44,7 +45,10 @@
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginBottom="1dp"
             android:fontFamily="@font/font_family_base_medium"
             android:text="@{title}"
             android:textSize="@dimen/ocean_font_size_xxxs"

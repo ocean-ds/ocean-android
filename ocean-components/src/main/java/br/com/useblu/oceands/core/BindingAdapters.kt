@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.core
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.text.InputType
 import android.view.View
@@ -90,6 +91,49 @@ fun setOceanInputType(inputText: TextInputEditText, inputType: Int) {
 fun setFormatType(view: TextView, text: String?, type: Formatter?) {
     if (type != null && !text.isNullOrBlank()) {
         view.text = type.format(text)
+    }
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter(
+    "app:ocean_text_value",
+    "app:ocean_text_format_value",
+    "app:highlighted_text",
+    "app:show_signal"
+)
+fun setFormatTypeCurrency(
+    view: TextView,
+    text: String?,
+    type: Formatter?,
+    highlightedText: Boolean?,
+    hideSignal: Boolean?
+) {
+    if (type != null && !text.isNullOrBlank()) {
+        view.text = type.format(text)
+
+        text.toDoubleOrNull()?.let { value ->
+            when {
+                value > 0 -> {
+                    if (highlightedText == true)
+                        view.setTextColor(
+                            ContextCompat.getColor(
+                                view.context,
+                                R.color.ocean_color_status_positive_deep
+                            )
+                        )
+                    if (hideSignal == true)
+                        view.text = "+ ${view.text}"
+                }
+                value < 0 -> {
+                    if (hideSignal == false)
+                        view.text = view.text.toString().replace("- ", "")
+                }
+                else -> {
+                    if (hideSignal == true)
+                        view.text = "- ${view.text}"
+                }
+            }
+        }
     }
 }
 

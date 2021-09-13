@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/ocean_color_interface_light_down">
+    <item
+        android:id="@android:id/mask"
+        android:gravity="center">
+        <shape android:shape="rectangle">
+            <corners
+                android:bottomLeftRadius="@dimen/ocean_spacing_stack_xxxs"
+                android:bottomRightRadius="@dimen/ocean_spacing_stack_xxxs"
+                android:topLeftRadius="@dimen/ocean_spacing_stack_xxxs"
+                android:topRightRadius="@dimen/ocean_spacing_stack_xxxs" />
+            <solid android:color="@color/ocean_color_interface_light_pure" />
+        </shape>
+    </item>
+</ripple>

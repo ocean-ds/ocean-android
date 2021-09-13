@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="br.com.useblu.oceands.core.OceanBadgeType" />
+
+        <import type="kotlin.Unit" />
+
+        <import type="br.com.useblu.oceands.core.OceanTransactionListUIModel" />
+
+        <import type="java.util.List" />
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="headerIcon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="headerTitle"
+            type="String" />
+
+        <variable
+            name="actionHeaderTitle"
+            type="String" />
+
+        <variable
+            name="badgeText"
+            type="String" />
+
+        <variable
+            name="badgeType"
+            type="OceanBadgeType" />
+
+        <variable
+            name="footerActionTitle"
+            type="String" />
+
+        <variable
+            name="limitItems"
+            type="Integer" />
+
+        <variable
+            name="transactionListItems"
+            type="List&lt;OceanTransactionListUIModel>" />
+
+        <variable
+            name="actionHeaderClick"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="actionFooterClick"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="itemSelect"
+            type="Function1&lt;Integer,Unit>" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ocean_spacing_stack_xxs"
+        android:elevation="@dimen/shadow_level_1"
+        android:minWidth="288dp"
+        app:cardBackgroundColor="@color/ocean_color_interface_light_pure"
+        app:cardCornerRadius="@dimen/ocean_border_radius_md">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Space
+                    android:id="@+id/space1"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ocean_spacing_stack_xs"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Space
+                    android:id="@id/space3"
+                    android:layout_width="@dimen/ocean_spacing_stack_xs"
+                    android:layout_height="@dimen/ocean_spacing_inset_md"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/space1" />
+
+                <ImageView
+                    android:id="@+id/icon_header"
+                    android:layout_width="@dimen/ocean_spacing_inset_md"
+                    android:layout_height="@dimen/ocean_spacing_inset_md"
+                    android:src="@{headerIcon}"
+                    app:layout_constraintStart_toEndOf="@id/space3"
+                    app:layout_constraintTop_toBottomOf="@id/space1"
+                    app:ocean_visible_or_gone="@{headerIcon != null}"
+                    app:tint="@color/ocean_color_interface_dark_deep" />
+
+                <Space
+                    android:id="@+id/space4"
+                    android:layout_width="@dimen/ocean_spacing_stack_xs"
+                    android:layout_height="@dimen/ocean_spacing_inset_md"
+                    app:layout_constraintStart_toEndOf="@id/icon_header"
+                    app:layout_constraintTop_toBottomOf="@id/space1"
+                    app:ocean_visible_or_gone="@{headerIcon != null}" />
+
+                <TextView
+                    android:id="@+id/text_header"
+                    style="@style/Ocean.Heading.4"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ocean_spacing_inset_md"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="@{headerTitle}"
+                    android:textColor="@color/ocean_color_interface_dark_deep"
+                    app:layout_constraintEnd_toStartOf="@id/space5"
+                    app:layout_constraintStart_toEndOf="@id/space4"
+                    app:layout_constraintTop_toBottomOf="@id/space1"
+                    tools:text="Header" />
+
+                <Space
+                    android:id="@+id/space5"
+                    android:layout_width="@dimen/ocean_spacing_stack_xs"
+                    android:layout_height="@dimen/ocean_spacing_inset_md"
+                    app:layout_constraintEnd_toStartOf="@id/layout_action_header"
+                    app:layout_constraintTop_toBottomOf="@id/space1" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layout_action_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/ocean_spacing_inset_md"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toStartOf="@id/space6"
+                    app:layout_constraintTop_toBottomOf="@id/space1">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ocean_background_ripple_light_down"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:onClick="@{() -> actionHeaderClick.invoke()}"
+                        android:paddingStart="@dimen/ocean_spacing_stack_xxs"
+                        android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
+                        app:ocean_visible_or_gone="@{actionHeaderTitle != null}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/font_family_base_extrabold"
+                            android:text="@{actionHeaderTitle}"
+                            android:textColor="@color/ocean_color_interface_dark_up"
+                            tools:text="Select" />
+
+                        <ImageView
+                            android:layout_width="@dimen/ocean_spacing_stack_xs"
+                            android:layout_height="@dimen/ocean_spacing_stack_xs"
+                            android:layout_marginStart="@dimen/ocean_spacing_stack_xxxs"
+                            android:src="@drawable/icon_chevron_down"
+                            app:tint="@color/ocean_color_interface_dark_up" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <include
+                        layout="@layout/ocean_badge"
+                        app:text="@{badgeText}"
+                        app:type="@{badgeType}"
+                        app:visible="@{badgeText != null}" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <Space
+                    android:id="@+id/space6"
+                    android:layout_width="@dimen/ocean_spacing_stack_xs"
+                    android:layout_height="@dimen/ocean_spacing_inset_md"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/space1" />
+
+                <Space
+                    android:id="@+id/space2"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ocean_spacing_stack_xs"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_header" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include layout="@layout/ocean_divider" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/item1"
+                    layout="@layout/ocean_transaction_list_item"
+                    app:click="@{itemSelect}"
+                    app:index="@{0}"
+                    app:dimmedLabel="@{transactionListItems.get(0).dimmedLabel}"
+                    app:highlightedLabel="@{transactionListItems.get(0).highlightedLabel}"
+                    app:icon="@{transactionListItems.get(0).icon}"
+                    app:ocean_visible_or_gone="@{transactionListItems.size() > 0 &amp;&amp; limitItems > 0}"
+                    app:primaryLabel="@{transactionListItems.get(0).primaryLabel}"
+                    app:secondaryLabel="@{transactionListItems.get(0).secondaryLabel}"
+                    app:tagTitle="@{transactionListItems.get(0).tagTitle}"
+                    app:time="@{transactionListItems.get(0).time}"
+                    app:value="@{transactionListItems.get(0).value}"
+                    app:valueIsHighlighted="@{transactionListItems.get(0).valueIsHighlighted}"
+                    app:valueWithSignal="@{transactionListItems.get(0).valueWithSignal}" />
+
+                <include
+                    android:id="@+id/item2"
+                    layout="@layout/ocean_transaction_list_item"
+                    app:index="@{1}"
+                    app:click="@{itemSelect}"
+                    app:dimmedLabel="@{transactionListItems.get(1).dimmedLabel}"
+                    app:highlightedLabel="@{transactionListItems.get(1).highlightedLabel}"
+                    app:icon="@{transactionListItems.get(1).icon}"
+                    app:ocean_visible_or_gone="@{transactionListItems.size() > 1 &amp;&amp; limitItems > 1}"
+                    app:primaryLabel="@{transactionListItems.get(1).primaryLabel}"
+                    app:secondaryLabel="@{transactionListItems.get(1).secondaryLabel}"
+                    app:tagTitle="@{transactionListItems.get(1).tagTitle}"
+                    app:time="@{transactionListItems.get(1).time}"
+                    app:value="@{transactionListItems.get(1).value}"
+                    app:valueIsHighlighted="@{transactionListItems.get(1).valueIsHighlighted}"
+                    app:valueWithSignal="@{transactionListItems.get(1).valueWithSignal}" />
+
+                <include
+                    android:id="@+id/item3"
+                    layout="@layout/ocean_transaction_list_item"
+                    app:index="@{2}"
+                    app:click="@{itemSelect}"
+                    app:dimmedLabel="@{transactionListItems.get(2).dimmedLabel}"
+                    app:highlightedLabel="@{transactionListItems.get(2).highlightedLabel}"
+                    app:icon="@{transactionListItems.get(2).icon}"
+                    app:ocean_visible_or_gone="@{transactionListItems.size() > 2 &amp;&amp; limitItems > 2}"
+                    app:primaryLabel="@{transactionListItems.get(2).primaryLabel}"
+                    app:secondaryLabel="@{transactionListItems.get(2).secondaryLabel}"
+                    app:tagTitle="@{transactionListItems.get(2).tagTitle}"
+                    app:time="@{transactionListItems.get(2).time}"
+                    app:value="@{transactionListItems.get(2).value}"
+                    app:valueIsHighlighted="@{transactionListItems.get(2).valueIsHighlighted}"
+                    app:valueWithSignal="@{transactionListItems.get(2).valueWithSignal}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ocean_background_ripple_light_deep"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> actionFooterClick.invoke()}"
+                app:ocean_visible_or_gone="@{footerActionTitle != null}">
+
+                <TextView
+                    android:id="@+id/text_footer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                    android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/font_family_base_bold"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="@{footerActionTitle}"
+                    android:textColor="@color/ocean_color_brand_primary_pure"
+                    android:textSize="@dimen/ocean_font_size_xxs"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/icon_footer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Call To Action" />
+
+                <ImageView
+                    android:id="@+id/icon_footer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                    android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                    android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+                    android:src="@drawable/icon_chevron_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/ocean_color_brand_primary_pure" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

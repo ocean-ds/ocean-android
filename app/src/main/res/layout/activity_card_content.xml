@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.InputType" />
+
+        <import type="br.com.useblu.oceands.core.OceanBadgeType" />
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.cardcontent.CardContentViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.cardcontent.CardContentActivity"
+            android:padding="@dimen/ocean_spacing_stack_xxs">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/cardContent1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                    android:text="Default" />
+
+                <include
+                    layout="@layout/ocean_card_content"
+                    app:headerIcon="@{@drawable/icon_generic_primary}"
+                    app:headerTitle="@{`Header`}"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/cardContent2"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardContent1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                    android:text="Action Header" />
+
+                <include
+                    layout="@layout/ocean_card_content"
+                    app:actionHeaderTitle="@{`Select`}"
+                    app:actionHeaderClick="@{viewmodel::actionClickHeader}"
+                    app:headerTitle="@{`Header`}"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/cardContent3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                app:layout_constraintTop_toBottomOf="@id/cardContent2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                    android:text="Badge" />
+
+                <include
+                    layout="@layout/ocean_card_content"
+                    app:headerIcon="@{@drawable/icon_generic_primary}"
+                    app:badgeText="@{`9`}"
+                    app:badgeType="@{OceanBadgeType.ALERT}"
+                    app:headerTitle="@{`Header`}"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/cardContent4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                app:layout_constraintTop_toBottomOf="@id/cardContent3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                    android:text="Transaction List" />
+
+                <include
+                    layout="@layout/ocean_card_content"
+                    app:headerIcon="@{@drawable/icon_generic_primary}"
+                    app:footerActionTitle="@{`Call To Action`}"
+                    app:limitItems="@{3}"
+                    app:transactionListItems="@{viewmodel.items}"
+                    app:actionFooterClick="@{viewmodel::actionClickFooter}"
+                    app:itemSelect="@{viewmodel::itemSelectedCard1}"
+                    app:headerTitle="@{`Header`}"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/cardContent5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                app:layout_constraintTop_toBottomOf="@id/cardContent4">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                    android:text="Transaction List variation" />
+
+                <include
+                    layout="@layout/ocean_card_content"
+                    app:headerIcon="@{@drawable/icon_generic_primary}"
+                    app:footerActionTitle="@{`Call To Action`}"
+                    app:limitItems="@{2}"
+                    app:transactionListItems="@{viewmodel.items2}"
+                    app:actionFooterClick="@{viewmodel::actionClickFooter}"
+                    app:headerTitle="@{`Header`}"
+                    app:itemSelect="@{viewmodel::itemSelectedCard2}"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

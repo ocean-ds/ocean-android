@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.listsubheader.ListSubheaderActivity">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/listSubeHeader1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+                android:text="Default" />
+
+            <include
+                layout="@layout/ocean_list_subheader"
+                app:highlighted="@{`5000.0`}"
+                app:subtitle="@{`Saldo do dia`}"
+                app:title="@{`Title`}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/listSubeHeader2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listSubeHeader1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+                android:text="Small" />
+
+
+            <include
+                layout="@layout/ocean_list_subheader"
+                app:isSmall="@{true}"
+                app:subtitle="@{`Subtitle`}"
+                app:title="@{`Title`}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/listSubeHeader3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listSubeHeader2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+                android:text="Only title" />
+
+
+            <include
+                layout="@layout/ocean_list_subheader"
+                app:title="@{`Title`}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

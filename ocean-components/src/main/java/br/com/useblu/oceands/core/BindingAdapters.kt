@@ -3,6 +3,7 @@ package br.com.useblu.oceands.core
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -240,4 +241,9 @@ fun setCustomMarginStart(view: View, margin: Int) {
     val params = view.layoutParams as ConstraintLayout.LayoutParams
     params.marginStart = margin.dp
     view.layoutParams = params
+}
+
+@BindingAdapter("app:customMinHeight")
+fun setCustomMinHeight(constraintLayout: ConstraintLayout, minHeight: Float) {
+    constraintLayout.minHeight = minHeight.toInt()
 }

@@ -60,7 +60,6 @@
                 android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
                 android:text="Small" />
 
-
             <include
                 layout="@layout/ocean_list_subheader"
                 app:isSmall="@{true}"
@@ -87,10 +86,34 @@
                 android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
                 android:text="Only title" />
 
-
             <include
                 layout="@layout/ocean_list_subheader"
                 app:title="@{`Title`}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/listSubeHeader4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listSubeHeader3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+                android:text="With icon" />
+
+            <include
+                layout="@layout/ocean_list_subheader"
+                app:title="@{`Title`}"
+                app:icon="@{@drawable/icon_generic_primary}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

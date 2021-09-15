@@ -23,6 +23,10 @@
             name="isSmall"
             type="Boolean" />
 
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,9 +34,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/ocean_color_interface_light_up"
-        android:paddingStart="@dimen/ocean_spacing_stack_xs"
+        android:paddingStart="@dimen/ocean_spacing_stack_xxs"
         android:paddingEnd="@dimen/ocean_spacing_stack_xs"
         app:customMinHeight="@{isSmall ? @dimen/ocean_spacing_inset_lg : @dimen/ocean_spacing_inset_xl}">
+
+        <ImageView
+            android:id="@+id/image_view_icon"
+            android:layout_width="@dimen/ocean_spacing_inset_sm"
+            android:layout_height="@dimen/ocean_spacing_inset_sm"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
+            android:src="@{icon}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:ocean_visible_or_gone="@{icon != null}"
+            app:tint="@color/ocean_color_interface_dark_up"
+            tools:src="@drawable/icon_generic_primary" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_title"
@@ -40,27 +57,28 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_family_base_regular"
             android:text="@{title}"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
             android:textColor="@color/ocean_color_interface_dark_down"
             android:textSize="@dimen/ocean_font_size_xs"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/text_view_subtitle"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image_view_icon"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Title" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_subtitle"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxxs"
             android:fontFamily="@font/font_family_base_regular"
             android:text="@{subtitle}"
-            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxxs"
-            app:layout_constraintEnd_toStartOf="@id/text_view_subtitle_highlighted"
             android:textColor="@color/ocean_color_interface_dark_down"
             android:textSize="@dimen/ocean_font_size_xs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/text_view_subtitle_highlighted"
+            app:layout_constraintTop_toTopOf="parent"
             app:ocean_visible_or_gone="@{subtitle != null}"
             tools:layout_editor_absoluteX="337dp"
             tools:text="Value" />
@@ -68,13 +86,13 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_subtitle_highlighted"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_family_base_extrabold"
             android:textColor="@color/ocean_color_interface_dark_down"
             android:textSize="@dimen/ocean_font_size_xs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:ocean_text="@{highlighted}"
             app:ocean_text_format="@{FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
             app:ocean_visible_or_gone="@{highlighted != null}"

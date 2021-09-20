@@ -67,8 +67,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/ocean_spacing_stack_xxs"
-        android:elevation="@dimen/shadow_level_1"
+        app:cardElevation="@dimen/shadow_level_4"
         android:minWidth="288dp"
+        app:strokeWidth="0.5dp"
+        app:strokeColor="@color/ocean_color_interface_light_down"
         app:cardBackgroundColor="@color/ocean_color_interface_light_pure"
         app:cardCornerRadius="@dimen/ocean_border_radius_md">
 

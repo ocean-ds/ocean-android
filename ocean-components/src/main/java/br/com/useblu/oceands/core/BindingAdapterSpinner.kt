@@ -85,13 +85,14 @@ fun setAdapterSpinner(spinner: Spinner, list: List<String>?) {
 
 
 @SuppressLint("ClickableViewAccessibility")
-@BindingAdapter("setAdapterBottomSheet", "limit", "title", "hint")
+@BindingAdapter("setAdapterBottomSheet", "limit", "title", "hint", "valueSelected")
 fun setAdapterBottomSheet(
     spinner: Spinner,
     list: List<String>?,
     limit: Int?,
     title: String?,
-    hint: String?
+    hint: String?,
+    valueSelected: Int?
 ) {
     list?.let { items ->
         spinner.adapter = ArrayAdapter(
@@ -132,6 +133,10 @@ fun setAdapterBottomSheet(
                 ).show()
             }
             true
+        }
+
+        valueSelected?.let {
+            spinner.setSelection(it)
         }
     }
 }

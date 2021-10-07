@@ -46,6 +46,10 @@
             name="itemSelect"
             type="MutableLiveData&lt;Integer>"/>
 
+        <variable
+            name="setSelected"
+            type="Integer" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,6 +85,7 @@
             app:limit="@{limit}"
             app:title="@{title}"
             app:hint="@{hint}"
+            app:valueSelected="@{setSelected}"
             android:selectedItemPosition="@={itemSelect}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

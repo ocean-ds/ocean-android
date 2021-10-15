@@ -64,7 +64,7 @@
         android:foreground="?attr/selectableItemBackground"
         android:onClick="@{() -> click.invoke()}"
         android:paddingBottom="@dimen/ocean_spacing_stack_xs"
-        android:paddingTop="@dimen/ocean_spacing_stack_xs">
+        android:paddingTop="12dp">
 
         <ImageView
             android:id="@+id/imageView19"

@@ -4,6 +4,6 @@ ext {
     compileSDK = 30
     buildToolsVersion = '30.0.1'
 
-    gradleBuildToolsVersion = '4.0.1'
+    gradleBuildToolsVersion = '7.0.3'
     kotlinVersion = "1.5.30"
 }

@@ -23,6 +23,8 @@
             android:textColor="@{isSelected ? @color/ocean_color_brand_primary_pure : @color/ocean_color_interface_dark_deep}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
             tools:text="Paragraph" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

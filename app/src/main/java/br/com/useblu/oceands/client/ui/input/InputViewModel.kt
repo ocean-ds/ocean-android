@@ -22,7 +22,7 @@ class InputViewModel : ViewModel() {
         }
 
     private val _items2 =
-        MutableLiveData(listOf("Selecione uma opção", "Blu", "Red", "Green", "Yellow"))
+        MutableLiveData(listOf("Selecione uma opção", "Blu", "Red", "Green", "Yellow", "Texto com o valor bem grande para testar o comportamento"))
     val items2: LiveData<List<String>> get() = _items2
 
     val itemSelect2 = MutableLiveData<Int>()

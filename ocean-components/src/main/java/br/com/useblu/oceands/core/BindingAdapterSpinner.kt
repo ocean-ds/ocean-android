@@ -115,9 +115,7 @@ fun setAdapterBottomSheet(
 
                 limit?.let {
                     if (it > 0) {
-                        bottomSheet
-
-                            .withSearch(
+                        bottomSheet.withSearch(
                                 manager = spinner.context.getSupportFragmentManager(),
                                 limit = limit,
                             )

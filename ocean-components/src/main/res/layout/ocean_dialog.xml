@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:drawableStart="@drawable/icon_search"
                 android:drawablePadding="@dimen/ocean_spacing_stack_xs"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:background="@drawable/ocean_input_text_field_states"
                 android:fontFamily="@font/font_family_base_regular"
                 android:padding="@dimen/ocean_spacing_inline_xs"

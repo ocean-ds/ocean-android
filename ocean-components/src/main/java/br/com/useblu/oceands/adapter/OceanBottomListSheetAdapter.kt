@@ -114,6 +114,6 @@ class OceanBottomListSheetAdapter(
 
 
     companion object {
-        const val SEE_ALL = "Ver Todos"
+        const val SEE_ALL = "Ver todos"
     }
 }

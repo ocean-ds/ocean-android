@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
+import br.com.useblu.oceands.core.setTextFromHtml
 import br.com.useblu.oceands.databinding.OceanDialogBinding
 
 class OceanSearchDialog(
@@ -61,7 +62,20 @@ class OceanSearchDialog(
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(text: Editable?) {
-                adapter.filter(text.toString())
+                val find = text.toString()
+                val countFiltered = adapter.filter(find)
+
+                if (countFiltered == 0) {
+                    setTextFromHtml(
+                        binding.textNotFoundResults,
+                        getString(R.string.not_found_results, find)
+                    )
+                    binding.textNotFoundResults.visibility = View.VISIBLE
+                    binding.recyclerViewItems.visibility = View.GONE
+                } else {
+                    binding.textNotFoundResults.visibility = View.GONE
+                    binding.recyclerViewItems.visibility = View.VISIBLE
+                }
             }
         })
 

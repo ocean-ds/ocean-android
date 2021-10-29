@@ -10,7 +10,7 @@
 
         <import type="kotlin.jvm.functions.Function0" />
 
-        <import type="java.util.List"/>
+        <import type="java.util.List" />
 
         <variable
             name="title"
@@ -32,75 +32,49 @@
         android:layout_height="match_parent"
         android:background="@drawable/ocean_bottom_sheet_background"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="@dimen/ocean_spacing_stack_xs">
 
         <Space
             android:id="@+id/space"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_xxs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="@dimen/ocean_spacing_stack_xxs" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_handle"
             android:layout_gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space"
+            android:src="@drawable/icon_handle"
             app:ocean_visible_or_gone="@{cancelabled}" />
 
         <Space
             android:id="@+id/space1"
             android:layout_width="0dp"
-            android:layout_height="@dimen/ocean_spacing_stack_xxxs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            android:layout_height="@dimen/ocean_spacing_stack_xxxs" />
 
         <Space
             android:id="@+id/space2"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_sm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space1" />
+            android:layout_height="@dimen/ocean_spacing_stack_sm" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textTitle"
             style="@style/Ocean.Heading.3.Blue"
-            android:paddingStart="@dimen/ocean_spacing_inline_xs"
-            android:paddingEnd="@dimen/ocean_spacing_inline_xs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{title}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space2"
             tools:text="Heading 3" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_xs"/>
+            android:layout_height="@dimen/ocean_spacing_stack_xs" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textTitle" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_sm"/>
 
     </LinearLayout>
 

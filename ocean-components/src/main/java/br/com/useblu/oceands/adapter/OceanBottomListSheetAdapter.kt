@@ -64,11 +64,13 @@ class OceanBottomListSheetAdapter(
         itemsAll.addAll(items)
     }
 
-    fun filter(text: String?) {
+    fun filter(text: String?): Int {
         text?.let {
             val filtered = items.filter { it.contains(text, ignoreCase = true) }
             updateList(filtered)
+            return filtered.size
         }
+        return 0
     }
 
     inner class OceanBottomListSheetViewHolder(

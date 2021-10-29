@@ -14,8 +14,7 @@
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:orientation="horizontal"
-        android:background="@{isSelected ? @color/ocean_color_interface_light_up : @android:color/white}"
-        android:padding="@dimen/ocean_spacing_inline_xs">
+        android:background="@{isSelected ? @color/ocean_color_interface_light_up : @android:color/white}">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textOceanParagraph"
@@ -24,6 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
+            android:paddingTop="@dimen/ocean_spacing_inline_xs"
+            android:paddingBottom="@dimen/ocean_spacing_inline_xs"
             android:ellipsize="end"
             tools:text="Paragraph" />
 

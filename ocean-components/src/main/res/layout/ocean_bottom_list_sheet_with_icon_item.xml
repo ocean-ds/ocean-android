@@ -21,7 +21,9 @@
         android:enabled="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        android:padding="@dimen/ocean_spacing_stack_xs">
+        android:paddingTop="@dimen/ocean_spacing_stack_xs"
+        android:paddingBottom="@dimen/ocean_spacing_stack_xs"
+        >
 
         <ImageView
             android:id="@+id/imageViewIcon"

@@ -7,8 +7,7 @@ import androidx.lifecycle.ViewModel
 
 class InputViewModel : ViewModel() {
 
-    private val _error = MutableLiveData("")
-    val error: LiveData<String> get() = _error
+    val error = MutableLiveData("")
 
     private val _items =
         MutableLiveData(listOf("Selecione uma opção", "Blu", "Red", "Green", "Yellow"))
@@ -22,7 +21,16 @@ class InputViewModel : ViewModel() {
         }
 
     private val _items2 =
-        MutableLiveData(listOf("Selecione uma opção", "Blu", "Red", "Green", "Yellow", "Texto com o valor bem grande para testar o comportamento"))
+        MutableLiveData(
+            listOf(
+                "Selecione uma opção",
+                "Blu",
+                "Red",
+                "Green",
+                "Yellow",
+                "Texto com o valor bem grande para testar o comportamento"
+            )
+        )
     val items2: LiveData<List<String>> get() = _items2
 
     val itemSelect2 = MutableLiveData<Int>()
@@ -32,11 +40,13 @@ class InputViewModel : ViewModel() {
             items2.value?.get(it)
         }
 
+    val tokenValue = MutableLiveData<String>()
+
     fun clickError() {
-        if (_error.value!!.isNotBlank()) {
-            _error.postValue("")
+        if (error.value!!.isNotBlank()) {
+            error.postValue("")
         } else {
-            _error.postValue("Sample Message Error")
+            error.postValue("Sample Message Error")
         }
     }
 

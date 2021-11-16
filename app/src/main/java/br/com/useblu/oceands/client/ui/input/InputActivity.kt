@@ -22,6 +22,8 @@ class InputActivity : AppCompatActivity() {
         binding.viewmodel = viewModel
 
         initObservers()
+
+        binding.containerInput2
     }
 
     private fun initObservers() {

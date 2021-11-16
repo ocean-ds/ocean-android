@@ -62,4 +62,25 @@
         <item name="android:textColor">@color/ocean_color_interface_dark_deep</item>
     </style>
 
+    <style name="StepView">
+        <item name="sv_selectedCircleColor">@color/ocean_color_complementary_pure</item>
+        <item name="sv_selectedCircleRadius">14dp</item>
+        <item name="sv_selectedTextColor">@color/white</item>
+        <item name="sv_selectedStepNumberColor">@color/ocean_color_interface_dark_down</item>
+        <item name="sv_stepNumberTextSize">12sp</item>
+        <item name="sv_doneStepMarkColor">@color/white</item>
+        <item name="sv_doneCircleColor">@color/ocean_color_complementary_pure</item>
+        <item name="sv_doneCircleRadius">14dp</item>
+        <item name="sv_doneTextColor">@color/ocean_color_interface_light_down</item>
+        <item name="sv_nextTextColor">@color/ocean_color_interface_light_down</item>
+        <item name="sv_nextStepLineColor">@color/ocean_color_interface_light_down</item>
+        <item name="sv_doneStepLineColor">@color/ocean_color_complementary_pure</item>
+        <item name="sv_stepPadding">0dp</item>
+        <item name="sv_textPadding">12dp</item>
+        <item name="sv_stepLineWidth">2dp</item>
+        <item name="sv_animationDuration">100</item>
+        <item name="sv_textSize">14sp</item>
+        <item name="sv_animationType">All</item>
+    </style>
+
 </resources>

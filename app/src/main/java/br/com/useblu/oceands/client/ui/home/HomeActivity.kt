@@ -22,6 +22,7 @@ import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
 import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
+import br.com.useblu.oceands.client.ui.step.StepViewActivity
 import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
@@ -106,6 +107,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun shortcuts(view: View) {
         val intent = Intent(this, ShortcutsActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun stepview(view: View) {
+        val intent = Intent(this, StepViewActivity::class.java)
         startActivity(intent)
     }
 

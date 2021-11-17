@@ -17,18 +17,14 @@ fun setOceanInputTokenFocus(
     currentPosition: Int,
     error: MutableLiveData<String>?
 ) {
-    val linearLayout = inputText.parent.parent.parent as LinearLayout
-    val inputOne = linearLayout.findViewById<TextInputEditText>(R.id.inputOne)
-    val inputTwo = linearLayout.findViewById<TextInputEditText>(R.id.inputTwo)
-    val inputThree = linearLayout.findViewById<TextInputEditText>(R.id.inputThree)
-    val inputFour = linearLayout.findViewById<TextInputEditText>(R.id.inputFour)
+    val components = bindingComponents(inputText)
 
     inputText.addTextChangedListener(
         inputTextWatcher {
             if (inputText.text.isNullOrBlank()) {
-                backSpaceFocus(error, currentPosition, inputOne, inputTwo, inputThree)
+                backSpaceFocus(error, currentPosition, components)
             } else {
-                nextFocus(currentPosition, inputTwo, inputThree, inputFour)
+                nextFocus(currentPosition, components)
             }
         }
     )
@@ -41,20 +37,19 @@ fun setOceanInputTokenValue(
     inputText: TextInputEditText,
     value: MutableLiveData<String>?,
 ) {
-    val linearLayout = inputText.parent.parent.parent as LinearLayout
-    val inputOne = linearLayout.findViewById<TextInputEditText>(R.id.inputOne)
-    val inputTwo = linearLayout.findViewById<TextInputEditText>(R.id.inputTwo)
-    val inputThree = linearLayout.findViewById<TextInputEditText>(R.id.inputThree)
-    val inputFour = linearLayout.findViewById<TextInputEditText>(R.id.inputFour)
+    val components = bindingComponents(inputText)
+    val lastComponent = components.last()
 
-    inputFour.addTextChangedListener(
+    lastComponent.addTextChangedListener(
         inputTextWatcher {
-            if (inputFour.text.toString().isNotBlank()) {
+            if (lastComponent.text.toString().isNotBlank()) {
                 value?.postValue(
-                    inputOne.text.toString()
-                            + inputTwo.text.toString()
-                            + inputThree.text.toString()
-                            + inputFour.text.toString()
+                    components.fold(
+                        "",
+                        { token, textInputEditText ->
+                            token + textInputEditText.text.toString()
+                        }
+                    )
                 )
             }
         }
@@ -68,85 +63,64 @@ fun setOceanInputTokenAutocompleted(
     inputText: TextInputEditText,
     autocomplete: MutableLiveData<String>?
 ) {
-    val linearLayout = inputText.parent.parent.parent as LinearLayout
-    val inputOne = linearLayout.findViewById<TextInputEditText>(R.id.inputOne)
-    val inputTwo = linearLayout.findViewById<TextInputEditText>(R.id.inputTwo)
-    val inputThree = linearLayout.findViewById<TextInputEditText>(R.id.inputThree)
-    val inputFour = linearLayout.findViewById<TextInputEditText>(R.id.inputFour)
-
+    val components = bindingComponents(inputText)
     val value = autocomplete?.value ?: ""
+
     if (value.isNotBlank() && value.length == 4) {
-        tokenAutoComplete(value, inputOne, inputTwo, inputThree, inputFour)
+        tokenAutoComplete(value, components)
     } else {
         inputText.addTextChangedListener(
             inputTextWatcher {
                 tokenAutoComplete(
                     inputText.text.toString(),
-                    inputOne,
-                    inputTwo,
-                    inputThree,
-                    inputFour
+                    components
                 )
             }
         )
     }
 }
 
+fun bindingComponents(inputText: TextInputEditText): List<TextInputEditText> {
+    val linearLayout = inputText.parent.parent.parent as LinearLayout
+    return listOf(
+        linearLayout.findViewById(R.id.inputOne),
+        linearLayout.findViewById(R.id.inputTwo),
+        linearLayout.findViewById(R.id.inputThree),
+        linearLayout.findViewById(R.id.inputFour)
+    )
+}
+
 private fun nextFocus(
     currentPosition: Int,
-    inputTwo: TextInputEditText,
-    inputThree: TextInputEditText,
-    inputFour: TextInputEditText
+    components: List<TextInputEditText>,
 ) {
-    when (currentPosition) {
-        1 -> if (inputFour.text.toString().isNotBlank()) inputFour.requestFocus()
-        else inputTwo.requestFocus()
-        2 -> inputThree.requestFocus()
-        3 -> inputFour.requestFocus()
+    if ((components.size - 1) == currentPosition) return
+    if (components.last().text.toString().isNotBlank()) {
+        components.last().requestFocus()
+        return
     }
+    components[currentPosition + 1].requestFocus()
 }
 
 private fun backSpaceFocus(
     error: MutableLiveData<String>?,
     currentPosition: Int,
-    inputOne: TextInputEditText,
-    inputTwo: TextInputEditText,
-    inputThree: TextInputEditText
+    components: List<TextInputEditText>,
 ) {
+    if (currentPosition == 0) return
     error?.postValue("")
-    when (currentPosition) {
-        2 -> inputOne.requestFocus()
-        3 -> inputTwo.requestFocus()
-        4 -> inputThree.requestFocus()
-    }
+    components[currentPosition - 1].requestFocus()
 }
 
 private fun tokenAutoComplete(
     valueInput: String,
-    inputOne: TextInputEditText,
-    inputTwo: TextInputEditText,
-    inputThree: TextInputEditText,
-    inputFour: TextInputEditText
+    components: List<TextInputEditText>
 ) {
     if (valueInput.isNotBlank() && valueInput.length == 4) {
-        val lastPosition = 1
-
-        inputOne.setText(valueInput[0].toString())
-        inputOne.setSelection(lastPosition)
-
-        inputTwo.setText(valueInput[1].toString())
-        inputTwo.setSelection(lastPosition)
-
-        inputThree.setText(valueInput[2].toString())
-        inputThree.setSelection(lastPosition)
-
-        inputFour.setText(valueInput[3].toString())
-        inputFour.setSelection(lastPosition)
-
-        inputOne.clearFocus()
-        inputTwo.clearFocus()
-        inputThree.clearFocus()
-        inputFour.requestFocus()
+        components.forEachIndexed { index, textInputEditText ->
+            textInputEditText.setText(valueInput[index].toString())
+            textInputEditText.setSelection(1)
+        }
     }
 }
 

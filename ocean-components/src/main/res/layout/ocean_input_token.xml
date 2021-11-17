@@ -74,7 +74,7 @@
                     app:ocean_background="@{error.length() > 0}"
                     app:ocean_input_token_error="@{error}"
                     app:ocean_input_token_autocompleted="@{autocomplete}"
-                    app:ocean_input_token_focus="@{1}" />
+                    app:ocean_input_token_focus="@{0}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -103,7 +103,7 @@
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:ocean_background="@{error.length() > 0}"
                     app:ocean_input_token_error="@{error}"
-                    app:ocean_input_token_focus="@{2}" />
+                    app:ocean_input_token_focus="@{1}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -132,7 +132,7 @@
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:ocean_background="@{error.length() > 0}"
                     app:ocean_input_token_error="@{error}"
-                    app:ocean_input_token_focus="@{3}" />
+                    app:ocean_input_token_focus="@{2}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -161,7 +161,7 @@
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:ocean_background="@{error.length() > 0}"
                     app:ocean_input_token_error="@{error}"
-                    app:ocean_input_token_focus="@{4}"
+                    app:ocean_input_token_focus="@{3}"
                     app:ocean_input_token_value="@{value}" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>

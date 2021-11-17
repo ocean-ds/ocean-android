@@ -7,13 +7,16 @@
 
         <import type="androidx.lifecycle.MutableLiveData" />
 
-
         <variable
             name="label"
             type="String" />
 
         <variable
             name="value"
+            type="MutableLiveData&lt;String>" />
+
+        <variable
+            name="autocomplete"
             type="MutableLiveData&lt;String>" />
 
         <variable
@@ -63,18 +66,15 @@
                     android:fontFamily="@font/font_family_base_regular"
                     android:gravity="center"
                     android:inputType="textVisiblePassword|text"
-                    android:maxEms="1"
-                    android:maxLength="1"
-                    android:minEms="1"
                     android:padding="@dimen/ocean_spacing_stack_xxs"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textColorHint="@color/ocean_color_interface_light_deep"
                     android:textCursorDrawable="@drawable/cursor_background"
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:ocean_background="@{error.length() > 0}"
-                    app:ocean_current_position="@{1}"
-                    app:ocean_error="@{error}"
-                    app:ocean_value="@{value}" />
+                    app:ocean_input_token_error="@{error}"
+                    app:ocean_input_token_autocompleted="@{autocomplete}"
+                    app:ocean_input_token_focus="@{1}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -102,9 +102,8 @@
                     android:textCursorDrawable="@drawable/cursor_background"
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:ocean_background="@{error.length() > 0}"
-                    app:ocean_current_position="@{2}"
-                    app:ocean_error="@{error}"
-                    app:ocean_value="@{value}" />
+                    app:ocean_input_token_error="@{error}"
+                    app:ocean_input_token_focus="@{2}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -132,9 +131,8 @@
                     android:textCursorDrawable="@drawable/cursor_background"
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:ocean_background="@{error.length() > 0}"
-                    app:ocean_current_position="@{3}"
-                    app:ocean_error="@{error}"
-                    app:ocean_value="@{value}" />
+                    app:ocean_input_token_error="@{error}"
+                    app:ocean_input_token_focus="@{3}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -162,9 +160,9 @@
                     android:textCursorDrawable="@drawable/cursor_background"
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:ocean_background="@{error.length() > 0}"
-                    app:ocean_current_position="@{4}"
-                    app:ocean_error="@{error}"
-                    app:ocean_value="@{value}" />
+                    app:ocean_input_token_error="@{error}"
+                    app:ocean_input_token_focus="@{4}"
+                    app:ocean_input_token_value="@{value}" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 

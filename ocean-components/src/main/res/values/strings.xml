@@ -13,6 +13,7 @@
     <string name="negative">Negative</string>
     <string name="help">Help</string>
     <string name="button_error">Set Error</string>
+    <string name="button_token">Set Token</string>
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
     <string name="custom_icon">Custom icon</string>
     <string name="not_found_results"><![CDATA[Não foram econtrados resultados para <br> ”<b>%s</b>”]]></string>

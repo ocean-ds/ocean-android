@@ -152,16 +152,27 @@
                 android:gravity="center">
             <include layout="@layout/ocean_input_token"
                 app:value="@{viewmodel.tokenValue}"
+                app:autocomplete="@{viewmodel.tokenAutocomplete}"
                 app:label="@{@string/all_label}"
                 app:error="@{viewmodel.error}" />
             </LinearLayout>
+
+            <include
+                layout="@layout/ocean_button_primary_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{@string/button_token}'
+                app:click="@{viewmodel::setToken}" />
+
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
             <include
-                layout="@layout/ocean_button_primary_sm"
+                layout="@layout/ocean_button_primary_critical_sm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

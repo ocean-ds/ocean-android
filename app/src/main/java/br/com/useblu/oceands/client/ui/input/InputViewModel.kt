@@ -40,8 +40,6 @@ class InputViewModel : ViewModel() {
             items2.value?.get(it)
         }
 
-    val tokenValue = MutableLiveData<String>()
-
     fun clickError() {
         if (error.value!!.isNotBlank()) {
             error.postValue("")
@@ -52,5 +50,12 @@ class InputViewModel : ViewModel() {
 
     fun clickIcon() {
         Log.d("BLU", "Click no icone")
+    }
+
+    val tokenValue = MutableLiveData("")
+    val tokenAutocomplete = MutableLiveData("")
+
+    fun setToken() {
+        tokenAutocomplete.postValue("1234")
     }
 }

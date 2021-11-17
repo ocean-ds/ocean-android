@@ -3,7 +3,6 @@ package br.com.useblu.oceands.core
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -60,14 +59,14 @@ fun setOceanDrawablePadding(button: Button, @DimenRes dimenId: Int) {
 }
 
 @BindingAdapter("app:ocean_background")
-fun setOceanBackground(input: TextInputEditText, erro: Boolean) {
+fun setOceanBackground(input: TextInputEditText, error: Boolean) {
     input.setBackgroundResource(R.drawable.ocean_input_text_field_states)
 
-    if (erro) input.setBackgroundResource(R.drawable.ocean_input_text_field_error)
+    if (error) input.setBackgroundResource(R.drawable.ocean_input_text_field_error)
 
     input.setOnFocusChangeListener { _, hasFocus ->
         when {
-            erro -> input.setBackgroundResource(R.drawable.ocean_input_text_field_error)
+            error -> input.setBackgroundResource(R.drawable.ocean_input_text_field_error)
             hasFocus -> input.setBackgroundResource(R.drawable.ocean_input_text_field_focused)
             !input.text.isNullOrBlank() -> input.setBackgroundResource(R.drawable.ocean_input_text_field_activated)
             else -> input.setBackgroundResource(R.drawable.ocean_input_text_field_inactive)

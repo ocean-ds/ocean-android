@@ -6,6 +6,7 @@
     <data>
 
         <import type="kotlin.jvm.functions.Function0" />
+        <import type="androidx.lifecycle.MutableLiveData" />
 
         <import type="kotlin.Unit" />
 
@@ -23,7 +24,7 @@
 
         <variable
             name="value"
-            type="String" />
+            type="MutableLiveData&lt;String>" />
 
         <variable
             name="error"

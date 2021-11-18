@@ -150,7 +150,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-            <include layout="@layout/ocean_input_token"
+            <include
+                android:id="@+id/inputToken"
+                layout="@layout/ocean_input_token"
                 app:value="@{viewmodel.tokenValue}"
                 app:autocomplete="@{viewmodel.tokenAutocomplete}"
                 app:label="@{@string/all_label}"

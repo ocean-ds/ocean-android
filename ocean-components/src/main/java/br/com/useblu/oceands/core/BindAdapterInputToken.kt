@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.databinding.OceanInputTokenBinding
 import com.google.android.material.textfield.TextInputEditText
 
 @BindingAdapter(
@@ -132,4 +133,12 @@ private fun inputTextWatcher(
     override fun afterTextChanged(s: Editable?) {
         action.invoke()
     }
+}
+
+fun OceanInputTokenBinding.clear() {
+    val components = bindingComponents(this.inputOne)
+    components.forEach {
+        it.setText("")
+    }
+    this.inputOne.requestFocus()
 }

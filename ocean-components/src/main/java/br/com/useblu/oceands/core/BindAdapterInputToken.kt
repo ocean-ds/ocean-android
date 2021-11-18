@@ -137,8 +137,8 @@ private fun inputTextWatcher(
 
 fun OceanInputTokenBinding.clear() {
     val components = bindingComponents(this.inputOne)
-    components.forEach {
-        it.setText("")
+    components.forEach { input ->
+        input.setText("")
     }
     this.inputOne.requestFocus()
 }

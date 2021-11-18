@@ -1,20 +1,19 @@
 package br.com.useblu.oceands.core
 
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import br.com.useblu.oceands.OceanStepView
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.StepView
 
 @BindingAdapter("currentStep", "totalAmountSteps")
-fun setupStepView(stepView: StepView, currentStep: Int?, totalAmountSteps: Int?) {
+fun setupStepView(oceanStepView: OceanStepView, currentStep: Int?, totalAmountSteps: Int?) {
     if (currentStep != null && totalAmountSteps != null) {
-        if (stepView.stepCount == 0 && totalAmountSteps > 1) {
-            stepView.setStepsNumber(totalAmountSteps)
+        if (oceanStepView.stepCount == 0 && totalAmountSteps > 1) {
+            oceanStepView.setStepsNumber(totalAmountSteps)
 
             val nextStepColor =
-                ContextCompat.getColor(stepView.context, R.color.ocean_color_interface_light_down)
-            stepView.state
+                ContextCompat.getColor(oceanStepView.context, R.color.ocean_color_interface_light_down)
+            oceanStepView.State()
                 .nextStepCircleColor(nextStepColor)
                 .nextStepCircleEnabled(true)
                 .numberCurrentStepEnabled(false)
@@ -25,8 +24,19 @@ fun setupStepView(stepView: StepView, currentStep: Int?, totalAmountSteps: Int?)
         }
 
 
-        if (currentStep < stepView.stepCount && currentStep >= 0) {
-            stepView.go(currentStep, true)
+        if (currentStep < oceanStepView.stepCount && currentStep >= 0) {
+            oceanStepView.go(currentStep, true)
         }
+    }
+}
+
+@BindingAdapter("withAnimation")
+fun setupWithAnimation(oceanStepView: OceanStepView, withAnimation: Boolean?) {
+    withAnimation?.let {
+        val animationType = if (it)
+            OceanStepView.ANIMATION_LINE
+        else
+            OceanStepView.ANIMATION_NONE
+        oceanStepView.State().animationType(animationType).commit()
     }
 }

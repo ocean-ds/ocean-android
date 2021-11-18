@@ -80,7 +80,7 @@
         <item name="sv_stepLineWidth">2dp</item>
         <item name="sv_animationDuration">100</item>
         <item name="sv_textSize">14sp</item>
-        <item name="sv_animationType">All</item>
+        <item name="sv_animationType">Line</item>
     </style>
 
 </resources>

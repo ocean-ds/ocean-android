@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="androidx.lifecycle.MutableLiveData" />
+
+        <variable
+            name="label"
+            type="String" />
+
+        <variable
+            name="value"
+            type="MutableLiveData&lt;String>" />
+
+        <variable
+            name="autocomplete"
+            type="MutableLiveData&lt;String>" />
+
+        <variable
+            name="error"
+            type="MutableLiveData&lt;String>" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+            android:fontFamily="@font/font_family_base_regular"
+            android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
+            android:text="@{label}"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            android:textSize="@dimen/ocean_font_size_xxs"
+            app:ocean_visible_or_invisible="@{(label.length() > 0)}"
+            tools:text="@string/label" />
+
+        <LinearLayout
+            android:id="@+id/containerTokens"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutOne"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="@dimen/ocean_spacing_stack_xxs"
+                android:tag="tag3"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false"
+                app:passwordToggleTint="@color/ocean_color_interface_light_deep">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputOne"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:fontFamily="@font/font_family_base_regular"
+                    android:gravity="center"
+                    android:inputType="textVisiblePassword|text"
+                    android:padding="@dimen/ocean_spacing_stack_xxs"
+                    android:textColor="@color/ocean_color_interface_dark_deep"
+                    android:textColorHint="@color/ocean_color_interface_light_deep"
+                    android:textCursorDrawable="@drawable/cursor_background"
+                    android:textSize="@dimen/ocean_font_size_xs"
+                    app:ocean_background="@{error.length() > 0}"
+                    app:ocean_input_token_error="@{error}"
+                    app:ocean_input_token_autocompleted="@{autocomplete}"
+                    app:ocean_input_token_focus="@{0}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTwo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="@dimen/ocean_spacing_stack_xxs"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false"
+                app:passwordToggleTint="@color/ocean_color_interface_light_deep">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTwo"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:fontFamily="@font/font_family_base_regular"
+                    android:gravity="center"
+                    android:inputType="textVisiblePassword|text"
+                    android:maxEms="1"
+                    android:maxLength="1"
+                    android:minEms="1"
+                    android:padding="@dimen/ocean_spacing_stack_xxs"
+                    android:textColor="@color/ocean_color_interface_dark_deep"
+                    android:textColorHint="@color/ocean_color_interface_light_deep"
+                    android:textCursorDrawable="@drawable/cursor_background"
+                    android:textSize="@dimen/ocean_font_size_xs"
+                    app:ocean_background="@{error.length() > 0}"
+                    app:ocean_input_token_error="@{error}"
+                    app:ocean_input_token_focus="@{1}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutThree"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="@dimen/ocean_spacing_stack_xxs"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false"
+                app:passwordToggleTint="@color/ocean_color_interface_light_deep">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputThree"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:fontFamily="@font/font_family_base_regular"
+                    android:gravity="center"
+                    android:inputType="textVisiblePassword|text"
+                    android:maxEms="1"
+                    android:maxLength="1"
+                    android:minEms="1"
+                    android:padding="@dimen/ocean_spacing_stack_xxs"
+                    android:textColor="@color/ocean_color_interface_dark_deep"
+                    android:textColorHint="@color/ocean_color_interface_light_deep"
+                    android:textCursorDrawable="@drawable/cursor_background"
+                    android:textSize="@dimen/ocean_font_size_xs"
+                    app:ocean_background="@{error.length() > 0}"
+                    app:ocean_input_token_error="@{error}"
+                    app:ocean_input_token_focus="@{2}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutFour"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="@dimen/ocean_spacing_stack_xxs"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false"
+                app:passwordToggleTint="@color/ocean_color_interface_light_deep">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputFour"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:fontFamily="@font/font_family_base_regular"
+                    android:gravity="center"
+                    android:inputType="textVisiblePassword|text"
+                    android:maxEms="1"
+                    android:maxLength="1"
+                    android:minEms="1"
+                    android:padding="@dimen/ocean_spacing_stack_xxs"
+                    android:textColor="@color/ocean_color_interface_dark_deep"
+                    android:textColorHint="@color/ocean_color_interface_light_deep"
+                    android:textCursorDrawable="@drawable/cursor_background"
+                    android:textSize="@dimen/ocean_font_size_xs"
+                    app:ocean_background="@{error.length() > 0}"
+                    app:ocean_input_token_error="@{error}"
+                    app:ocean_input_token_focus="@{3}"
+                    app:ocean_input_token_value="@{value}" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
+            android:fontFamily="@font/font_family_base_medium"
+            android:text="@{error}"
+            android:textColor="@color/ocean_color_status_negative_pure"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+            app:ocean_visible_or_invisible="@{(error.length() > 0)}"
+            tools:text="@string/error" />
+
+    </LinearLayout>
+</layout>

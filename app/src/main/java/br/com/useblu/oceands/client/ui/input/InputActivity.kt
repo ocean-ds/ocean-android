@@ -35,5 +35,8 @@ class InputActivity : AppCompatActivity() {
             Toast.makeText(this, "Item selecionado na posição $it", Toast.LENGTH_SHORT).show()
             println("Item selecionado ${viewModel.selectItem2}")
         })
+        viewModel.tokenValue.observe(this, {
+            Toast.makeText(this, "Token value $it", Toast.LENGTH_SHORT).show()
+        })
     }
 }

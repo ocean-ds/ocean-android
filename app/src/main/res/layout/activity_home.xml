@@ -295,6 +295,21 @@
             android:background="#E7E7E7" />
 
         <TextView
+            android:id="@+id/steps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="stepview"
+            android:padding="16dp"
+            android:text="Step"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="onClickSwitch"

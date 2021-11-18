@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.step.StepViewActivity" />
         <activity android:name=".ui.listsubheader.ListSubheaderActivity" />
         <activity android:name=".ui.cardcontent.CardContentActivity" />
         <activity android:name=".ui.transactionlistitem.TransactionListItemActivity" />

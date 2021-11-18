@@ -133,7 +133,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
 }
 
 data class OceanBottomListSheetUIModel(
-    val drawableIcon: Drawable,
+    val drawableIcon: Drawable?,
     val title: String,
     val description: String
 )

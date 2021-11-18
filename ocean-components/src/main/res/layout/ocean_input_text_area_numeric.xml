@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="androidx.lifecycle.MutableLiveData" />
+
         <variable
             name="label"
             type="String" />
@@ -15,7 +17,7 @@
 
         <variable
             name="value"
-            type="String" />
+            type="MutableLiveData&lt;String>" />
 
         <variable
             name="error"
@@ -26,86 +28,86 @@
             type="String" />
     </data>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+            android:fontFamily="@font/font_family_base_regular"
+            android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
+            android:text="@{label}"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            android:textSize="@dimen/ocean_font_size_xxs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/label" />
 
-            <TextView
-                android:id="@+id/label"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
+            app:boxBackgroundMode="none"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+                android:background="@{(error.length() > 0) ? @drawable/ocean_input_text_field_error  : @drawable/ocean_input_text_field_states }"
+                android:digits="0,1,2,3,4,5,6,7,8,9"
                 android:fontFamily="@font/font_family_base_regular"
-                android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
-                android:text="@{label}"
-                android:textColor="@color/ocean_color_interface_dark_down"
-                android:textSize="@dimen/ocean_font_size_xxs"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/label" />
+                android:gravity="start"
+                android:hint="@{hint}"
+                android:imeOptions="actionGo"
+                android:inputType="number"
+                android:maxLines="2"
+                android:minHeight="72dp"
+                android:minLines="2"
+                android:padding="@dimen/ocean_spacing_inline_xs"
+                android:singleLine="false"
+                android:text="@={value}"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                android:textColorHint="@color/ocean_color_interface_light_deep"
+                android:textCursorDrawable="@drawable/ocean_cursor"
+                android:textSize="@dimen/ocean_font_size_xs" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
-                app:boxBackgroundMode="none"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/label">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_family_base_medium"
+            android:text="@{error}"
+            android:textColor="@color/ocean_color_status_negative_pure"
+            android:textSize="@dimen/ocean_font_size_xxxs"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+            app:ocean_visible_or_invisible="@{(error.length() > 0)}"
+            tools:text="@string/error" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@{(error.length() > 0) ? @drawable/ocean_input_text_field_error  : @drawable/ocean_input_text_field_states }"
-                    android:digits="0,1,2,3,4,5,6,7,8,9"
-                    android:fontFamily="@font/font_family_base_regular"
-                    android:gravity="start"
-                    android:hint="@{hint}"
-                    android:imeOptions="actionGo"
-                    android:inputType="number"
-                    android:maxLines="2"
-                    android:minHeight="72dp"
-                    android:minLines="2"
-                    android:padding="@dimen/ocean_spacing_inline_xs"
-                    android:singleLine="false"
-                    android:text="@={value}"
-                    android:textColor="@color/ocean_color_interface_dark_deep"
-                    android:textColorHint="@color/ocean_color_interface_light_deep"
-                    android:textCursorDrawable="@drawable/ocean_cursor"
-                    android:textSize="@dimen/ocean_font_size_xs" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_family_base_medium"
+            android:text="@{help}"
+            android:textColor="@color/ocean_color_interface_dark_up"
+            android:textSize="@dimen/ocean_font_size_xxxs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+            app:ocean_visible_or_invisible="@{(help.length() > 0 &amp;&amp; (error.length() == 0))}"
+            tools:text="@string/help" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_family_base_medium"
-                android:text="@{error}"
-                android:textColor="@color/ocean_color_status_negative_pure"
-                android:textSize="@dimen/ocean_font_size_xxxs"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-                app:ocean_visible_or_invisible="@{(error.length() > 0)}"
-                tools:text="@string/error" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_family_base_medium"
-                android:text="@{help}"
-                android:textColor="@color/ocean_color_interface_dark_up"
-                android:textSize="@dimen/ocean_font_size_xxxs"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-                app:ocean_visible_or_invisible="@{(help.length() > 0 &amp;&amp; (error.length() == 0))}"
-                tools:text="@string/help" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

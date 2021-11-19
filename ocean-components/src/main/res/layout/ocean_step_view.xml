@@ -13,7 +13,7 @@
 
         <variable
             name="currentStep"
-            type="MutableLiveData&lt;Integer>" />
+            type="Integer" />
 
         <variable
             name="withAnimation"

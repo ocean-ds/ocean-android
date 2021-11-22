@@ -12,6 +12,10 @@
             name="gravity"
             type="Integer" />
 
+        <variable
+            name="color"
+            type="Integer" />
+
     </data>
 
     <com.google.android.material.textview.MaterialTextView
@@ -21,6 +25,7 @@
         android:layout_height="wrap_content"
         android:gravity="@{gravity}"
         android:text="@{text}"
+        android:textColor="@{(color != null) ? color : @color/ocean_color_interface_dark_pure}"
         tools:text="Heading 1" />
 
 </layout>

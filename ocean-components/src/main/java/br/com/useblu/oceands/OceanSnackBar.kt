@@ -57,6 +57,7 @@ class OceanSnackBar(
                     resources.getDimension(R.dimen.ocean_spacing_inline_xs).toInt()
                 this.setTextColor(getColor(context, R.color.ocean_color_interface_light_pure))
                 this.typeface = ResourcesCompat.getFont(context, R.font.font_family_base_regular)
+                this.setPadding(0,0,0,0)
             }
 
             show()

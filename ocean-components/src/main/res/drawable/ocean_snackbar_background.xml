@@ -10,10 +10,10 @@
             <solid android:color="@color/ocean_color_interface_dark_deep" />
             <corners android:radius="@dimen/ocean_border_radius_sm" />
             <padding
-                android:bottom="@dimen/ocean_spacing_inline_xs"
+                android:bottom="@dimen/ocean_spacing_inline_xxxs"
                 android:left="@dimen/ocean_spacing_inline_sm"
                 android:right="@dimen/ocean_spacing_inline_xs"
-                android:top="@dimen/ocean_spacing_inline_xs" />
+                android:top="@dimen/ocean_spacing_inline_xxxs" />
         </shape>
     </item>
 </layer-list>

@@ -306,7 +306,7 @@
                 android:layout_height="wrap_content"
                 app:clickNegative="@{viewmodel::clickButton}"
                 app:clickPositive="@{viewmodel::clickButton}"
-                app:negativeInvisible="@{true}"
+                app:negativeIsInvisible="@{true}"
                 app:textNegative="@{@string/negative}"
                 app:textPositive="@{@string/positive}" />
         </LinearLayout>

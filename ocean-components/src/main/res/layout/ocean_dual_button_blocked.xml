@@ -31,7 +31,7 @@
             type="Function0&lt;Unit>" />
 
         <variable
-            name="negativeInvisible"
+            name="negativeIsInvisible"
             type="Boolean" />
 
         <variable
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:visibility="@{negativeInvisible ? View.GONE : View.VISIBLE}"
+            android:visibility="@{negativeIsInvisible ? View.GONE : View.VISIBLE}"
             app:click="@{clickNegative::invoke}"
             app:text="@{textNegative}" />
 

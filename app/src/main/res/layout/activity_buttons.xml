@@ -298,6 +298,17 @@
                 app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
                 app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_critical_24dp : null}'
                 app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
+
+            <include
+                android:id="@+id/dualButtonBlocked"
+                layout="@layout/ocean_dual_button_blocked"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:clickNegative="@{viewmodel::clickButton}"
+                app:clickPositive="@{viewmodel::clickButton}"
+                app:negativeInvisible="@{true}"
+                app:textNegative="@{@string/negative}"
+                app:textPositive="@{@string/positive}" />
         </LinearLayout>
     </ScrollView>
 </layout>

@@ -8,6 +8,8 @@
 
         <import type="kotlin.Unit" />
 
+        <import type="android.view.View" />
+
         <variable
             name="textNegative"
             type="String" />
@@ -27,6 +29,14 @@
         <variable
             name="clickPositive"
             type="Function0&lt;Unit>" />
+
+        <variable
+            name="negativeInvisible"
+            type="Boolean" />
+
+        <variable
+            name="positiveIsInvisible"
+            type="Boolean" />
     </data>
 
     <LinearLayout
@@ -39,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:visibility="@{negativeInvisible ? View.GONE : View.VISIBLE}"
             app:click="@{clickNegative::invoke}"
             app:text="@{textNegative}" />
 
@@ -51,6 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:visibility="@{positiveIsInvisible ? View.GONE : View.VISIBLE}"
             app:click="@{clickPositive::invoke}"
             app:showProgress="@{showProgress}"
             app:text="@{textPositive}" />

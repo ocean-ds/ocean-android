@@ -59,4 +59,6 @@ class ButtonsViewModel : ViewModel() {
     fun setState(value: String) {
         _buttonState.value = value
     }
+
+    fun clickButton() {}
 }

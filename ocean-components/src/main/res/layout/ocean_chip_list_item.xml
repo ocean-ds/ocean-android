@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.Unit" />
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="br.com.useblu.oceands.adapter.OceanChipItem" />
+
+        <import type="br.com.useblu.oceands.adapter.OceanChipItemState" />
+
+        <import type="br.com.useblu.oceands.core.OceanBadgeType" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="onClick"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="item"
+            type="OceanChipItem" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/chip_list_item_background"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:clickable="@{item.state != OceanChipItemState.DISABLED}"
+        android:gravity="center"
+        android:onClick="@{() -> onClick.invoke()}"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        tools:background="@drawable/ocean_chip_selected">
+
+        <include
+            android:id="@+id/badge"
+            layout="@layout/ocean_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/ocean_spacing_inline_xxxs"
+            app:text="@{item.badge != null ? Integer.toString(item.badge.text) : @string/empty}"
+            app:type="@{item.badge != null ? OceanBadgeType.DEFAULT : OceanBadgeType.DEFAULT}"
+            app:isSmall="@{true}"
+            app:visible="@{item.badge != null}" />
+
+        <ImageView
+            android:id="@+id/leftIcon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/ocean_spacing_inline_xxxs"
+            android:src="@{item.icon != null ? item.icon : @drawable/icon_information}"
+            android:visibility="@{item.icon != null ? View.VISIBLE : View.GONE}"
+            tools:src="@drawable/icon_information"
+            tools:tint="@color/ocean_color_interface_light_up" />
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:fontFamily="@font/font_family_base_medium"
+            android:gravity="center"
+            android:text="@{item.label}"
+            android:textSize="@dimen/ocean_font_size_xxs"
+            tools:text="Todos"
+            tools:textColor="@color/ocean_color_interface_light_up" />
+
+        <ImageView
+            android:scaleType="center"
+            android:id="@+id/closeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/icon_clear"
+            android:visibility="@{item.hasClose ? View.VISIBLE : View.GONE}"
+            app:tint="@color/ocean_color_brand_primary_down"
+            tools:tint="@color/ocean_color_interface_light_up" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

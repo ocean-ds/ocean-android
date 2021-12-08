@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+        <import type="android.view.ViewGroup" />
+        <import type="br.com.useblu.oceands.client.R" />
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.chips.ChipsViewModel" />
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/ocean_spacing_stack_xs">
+
+        <include
+            app:chips="@{viewmodel.chips}"
+            app:selectedItem="@{viewmodel.selectedItem}"
+            app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
+            layout="@layout/ocean_chip_list"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+            android:layout_height="wrap_content" />
+
+        <include
+            app:chips="@{viewmodel.chipsWithIcon}"
+            app:selectedItem="@{viewmodel.selectedItem}"
+            app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
+            layout="@layout/ocean_chip_list"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+            android:layout_height="wrap_content" />
+
+        <include
+            app:chips="@{viewmodel.chipsWithBadge}"
+            app:selectedItem="@{viewmodel.selectedItem}"
+            app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
+            layout="@layout/ocean_chip_list"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+            android:layout_height="wrap_content" />
+
+        <include
+            app:chips="@{viewmodel.chipsWithClose}"
+            app:selectedItem="@{viewmodel.selectedItem}"
+            app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
+            layout="@layout/ocean_chip_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

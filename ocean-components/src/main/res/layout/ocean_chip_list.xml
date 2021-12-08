@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="100dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <data>
+
+        <import type="java.util.ArrayList" />
+
+        <import type="br.com.useblu.oceands.adapter.OceanChipItem" />
+
+        <import type="androidx.lifecycle.MutableLiveData" />
+
+        <variable
+            name="chips"
+            type="ArrayList&lt;OceanChipItem>" />
+
+        <variable
+            name="selectedItem"
+            type="MutableLiveData&lt;OceanChipItem>" />
+
+        <variable
+            name="itemsSpacing"
+            type="Float" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ocean_bottom_sheet_background">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:chips="@{chips}"
+            app:selectedItem="@{selectedItem}"
+            app:itemsSpacing="@{itemsSpacing}"/>
+
+    </LinearLayout>
+</layout>

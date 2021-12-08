@@ -19,6 +19,7 @@
         <activity android:name=".ui.shortcuts.ShortcutsActivity" />
         <activity android:name=".ui.carousel.CarouselActivity" />
         <activity android:name=".ui.caption.CaptionActivity" />
+        <activity android:name=".ui.chips.ChipsActivity" />
         <activity android:name=".ui.description.DescriptionActivity" />
         <activity android:name=".ui.paragraph.ParagraphActivity" />
         <activity android:name=".ui.subtitles.SubtitlesActivity" />

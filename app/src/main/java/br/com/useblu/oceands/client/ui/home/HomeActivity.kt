@@ -16,6 +16,7 @@ import br.com.useblu.oceands.client.ui.balance.BalanceActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.cardcontent.CardContentActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
+import br.com.useblu.oceands.client.ui.chips.ChipsActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
@@ -67,6 +68,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickBadges(view: View) {
         val intent = Intent(this, BadgesActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickChips(view: View) {
+        val intent = Intent(this, ChipsActivity::class.java)
         startActivity(intent)
     }
 

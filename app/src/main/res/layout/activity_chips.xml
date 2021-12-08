@@ -3,11 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
-        <import type="android.view.View" />
-        <import type="android.view.ViewGroup" />
-        <import type="br.com.useblu.oceands.client.R" />
-
         <variable
             name="viewmodel"
             type="br.com.useblu.oceands.client.ui.chips.ChipsViewModel" />

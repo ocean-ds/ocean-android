@@ -169,6 +169,18 @@
                 app:error="@{viewmodel.error}" />
             </LinearLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <include
+                layout="@layout/ocean_input_text_search"
+                app:value="@={viewmodel.search}"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
             <include
                 layout="@layout/ocean_button_primary_sm"
                 android:layout_width="wrap_content"

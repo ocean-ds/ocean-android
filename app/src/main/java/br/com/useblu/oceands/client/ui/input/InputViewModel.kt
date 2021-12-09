@@ -54,6 +54,7 @@ class InputViewModel : ViewModel() {
 
     val tokenValue = MutableLiveData("")
     val tokenAutocomplete = MutableLiveData("")
+    val search = MutableLiveData("")
 
     fun setToken() {
         tokenAutocomplete.postValue("1234")

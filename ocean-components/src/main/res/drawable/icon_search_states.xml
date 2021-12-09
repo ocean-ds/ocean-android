@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false"
+        android:drawable="@drawable/icon_search_disabled"/>
+    <item android:state_focused="true"
+        android:drawable="@drawable/icon_search_activated"/>
+    <item android:state_hovered="true"
+    android:drawable="@drawable/icon_search_disabled"/>
+    <item  android:state_activated="true"
+        android:drawable="@drawable/icon_search_activated"/>
+    <item android:state_activated="false"
+        android:drawable="@drawable/icon_search_disabled"/>
+    <item android:drawable="@drawable/icon_search_disabled"/>
+</selector>

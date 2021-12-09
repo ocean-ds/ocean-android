@@ -16,6 +16,7 @@ import br.com.useblu.oceands.client.ui.balance.BalanceActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.cardcontent.CardContentActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
+import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
 import br.com.useblu.oceands.client.ui.chips.ChipsActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
@@ -143,6 +144,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun clickOptionsCard(view: View) {
         val intent = Intent(this, OptionsCardActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun checkbox(view: View) {
+        val intent = Intent(this, CheckBoxActivity::class.java)
         startActivity(intent)
     }
 

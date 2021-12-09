@@ -28,8 +28,8 @@ class InputActivity : AppCompatActivity() {
 
     private fun initObservers() {
         viewModel.itemSelect.observe(this, {
-                Toast.makeText(this, "Item selecionado na posição $it", Toast.LENGTH_SHORT).show()
-                println("Item selecionado ${viewModel.selectItem}")
+            Toast.makeText(this, "Item selecionado na posição $it", Toast.LENGTH_SHORT).show()
+            println("Item selecionado ${viewModel.selectItem}")
         })
         viewModel.itemSelect2.observe(this, {
             Toast.makeText(this, "Item selecionado na posição $it", Toast.LENGTH_SHORT).show()
@@ -37,6 +37,9 @@ class InputActivity : AppCompatActivity() {
         })
         viewModel.tokenValue.observe(this, {
             Toast.makeText(this, "Token value $it", Toast.LENGTH_SHORT).show()
+        })
+        viewModel.search.observe(this, {
+            Toast.makeText(this, "Search value $it", Toast.LENGTH_SHORT).show()
         })
     }
 }

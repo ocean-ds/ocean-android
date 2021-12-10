@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function1" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="text"
+            type="String" />
+
+        <variable
+            name="checked"
+            type="Boolean" />
+
+        <variable
+            name="click"
+            type="Function1&lt;Boolean, Unit>" />
+
+    </data>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:checked="@{checked}"
+        android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
+        android:text="@{text, default = Text}"
+        android:textColor="@color/ocean_color_interface_dark_down"
+        android:theme="@style/Ocean.CheckBox"
+        />
+</layout>

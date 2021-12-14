@@ -14,9 +14,9 @@
     </data>
 
     <ScrollView
-        android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -105,8 +105,8 @@
                     app:primaryLabel="@{`Label 1`}"
                     app:secondaryLabel="@{`Label 2`}"
                     app:time="@{`9:00`}"
-                    app:valueWithSignal="@{true}"
-                    app:value="@{`0.00`}" />
+                    app:value="@{`0.00`}"
+                    app:valueWithSignal="@{true}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -132,8 +132,8 @@
                     app:primaryLabel="@{`Label 1`}"
                     app:secondaryLabel="@{`Label 2`}"
                     app:tagTitle="@{`Pendente`}"
-                    app:valueWithSignal="@{true}"
-                    app:value="@{`-1000000.00`}" />
+                    app:value="@{`-1000000.00`}"
+                    app:valueWithSignal="@{true}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -158,15 +158,40 @@
                     layout="@layout/ocean_transaction_list_item"
                     app:icon="@{@drawable/icon_generic_primary}"
                     app:primaryLabel="@{`Label 1`}"
+                    app:value="@{`1000000.00`}"
                     app:valueIsHighlighted="@{true}"
-                    app:valueWithSignal="@{true}"
-                    app:value="@{`1000000.00`}" />
+                    app:valueWithSignal="@{true}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/item6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item5">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Variation 5" />
+
+                <include
+                    layout="@layout/ocean_transaction_list_item"
+                    android:onLongClick="@{(view) -> viewmodel.showCheckbox(view)}"
+                    app:checkboxClick="@{viewmodel::checkboxClick}"
+                    app:hasCheckbox="@{viewmodel.hasCheckbox}"
+                    app:primaryLabel="@{`A LABEL WHICH IS VERY LARGE`}"
+                    app:tagTitle="@{`Tag 1`}"
+                    app:value="@{`-1000000.00`}"
+                    app:valueWithSignal="@{true}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-
 </layout>

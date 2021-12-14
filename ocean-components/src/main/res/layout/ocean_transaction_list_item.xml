@@ -6,11 +6,9 @@
     <data>
 
         <import type="kotlin.jvm.functions.Function1" />
-
+        <import type="android.view.View" />
         <import type="kotlin.Unit" />
-
         <import type="br.com.useblu.oceands.core.FormatTypes" />
-
         <import type="br.com.useblu.oceands.core.OceanTagType" />
 
         <variable
@@ -58,6 +56,14 @@
             type="android.graphics.drawable.Drawable" />
 
         <variable
+            name="hasCheckbox"
+            type="Boolean" />
+
+        <variable
+            name="checkboxClick"
+            type="Function1&lt;Boolean, Unit>" />
+
+        <variable
             name="click"
             type="Function1&lt;Integer,Unit>" />
 
@@ -66,9 +72,9 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/ocean_background_ripple_light_deep"
         android:clickable="true"
         android:focusable="true"
-        android:background="@drawable/ocean_background_ripple_light_deep"
         android:onClick="@{() -> click.invoke(index)}"
         android:orientation="vertical">
 
@@ -84,27 +90,46 @@
             android:paddingStart="@dimen/ocean_spacing_stack_xs"
             android:paddingEnd="@dimen/ocean_spacing_stack_xs">
 
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="@dimen/ocean_spacing_stack_md"
-                android:layout_height="@dimen/ocean_spacing_stack_md"
-                android:src="@{icon}"
+            <LinearLayout
+                android:id="@+id/iconLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:ocean_visible_or_gone="@{icon != null}"
-                app:tint="@color/ocean_color_interface_dark_up"
-                tools:src="@drawable/icon_generic_primary" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="@dimen/ocean_spacing_stack_md"
+                    android:layout_height="@dimen/ocean_spacing_stack_md"
+                    android:src="@{icon}"
+                    app:ocean_visible_or_gone="@{icon != null &amp; !hasCheckbox }"
+                    app:tint="@color/ocean_color_interface_dark_up"
+                    tools:src="@drawable/icon_generic_primary" />
+
+                <include
+                    android:id="@+id/checkbox"
+                    app:click="@{checkboxClick}"
+                    layout="@layout/ocean_checkbox"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:ocean_visible_or_gone="@{hasCheckbox}"
+                    tools:visibility="gone" />
+            </LinearLayout>
 
             <Space
                 android:id="@+id/space2"
                 android:layout_width="@dimen/ocean_spacing_stack_xs"
                 android:layout_height="0dp"
-                app:ocean_visible_or_gone="@{icon != null}"
-                app:layout_constraintStart_toEndOf="@id/icon"
-                app:layout_constraintEnd_toStartOf="@id/linearLayoutLabel"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintEnd_toStartOf="@id/linearLayoutLabel"
+                app:layout_constraintStart_toEndOf="@id/iconLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{icon != null}" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linearLayoutLabel"
@@ -133,7 +158,7 @@
                     android:id="@+id/space4"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ocean_spacing_stack_xxs"
-                    app:ocean_visible_or_gone="@{highlightedLabel != null}"/>
+                    app:ocean_visible_or_gone="@{highlightedLabel != null}" />
 
                 <TextView
                     android:id="@+id/text_view_level_1"
@@ -152,7 +177,7 @@
                     android:id="@+id/space5"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ocean_spacing_stack_xxxs"
-                    app:ocean_visible_or_gone="@{primaryLabel != null}"/>
+                    app:ocean_visible_or_gone="@{primaryLabel != null}" />
 
                 <TextView
                     android:id="@+id/text_view_level_2"
@@ -171,7 +196,7 @@
                     android:id="@+id/space6"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ocean_spacing_stack_xxs"
-                    app:ocean_visible_or_gone="@{secondaryLabel != null}"/>
+                    app:ocean_visible_or_gone="@{secondaryLabel != null}" />
 
                 <TextView
                     android:id="@+id/text_view_level_3"
@@ -192,9 +217,9 @@
                 android:id="@+id/space3"
                 android:layout_width="@dimen/ocean_spacing_stack_xs"
                 android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/linearLayoutValue"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linearLayoutValue"
@@ -213,18 +238,18 @@
                     android:textAlignment="textEnd"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textSize="@dimen/ocean_font_size_xs"
-                    app:ocean_text_value="@{value}"
-                    app:ocean_text_format_value="@{FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                     app:highlighted_text="@{valueIsHighlighted}"
-                    app:show_signal="@{valueWithSignal}"
+                    app:ocean_text_format_value="@{FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
+                    app:ocean_text_value="@{value}"
                     app:ocean_visible_or_gone="@{value != null}"
+                    app:show_signal="@{valueWithSignal}"
                     tools:text="-R$ 1.000.000,00" />
 
                 <Space
                     android:id="@+id/space7"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ocean_spacing_stack_xxxs"
-                    app:ocean_visible_or_gone="@{value != null}"/>
+                    app:ocean_visible_or_gone="@{value != null}" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/linear_layout_tag"
@@ -244,7 +269,7 @@
                     android:id="@+id/space8"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ocean_spacing_stack_xxxs"
-                    app:ocean_visible_or_gone="@{tagTitle != null}"/>
+                    app:ocean_visible_or_gone="@{tagTitle != null}" />
 
                 <TextView
                     android:id="@+id/text_view_time"

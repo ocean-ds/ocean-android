@@ -182,12 +182,38 @@
                     android:text="Variation 5" />
 
                 <include
+                    android:id="@+id/checkbox1"
                     layout="@layout/ocean_transaction_list_item"
-                    android:onLongClick="@{(view) -> viewmodel.showCheckbox(view)}"
-                    app:checkboxClick="@{viewmodel::checkboxClick}"
-                    app:hasCheckbox="@{viewmodel.hasCheckbox}"
+                    app:click="@{viewmodel::click}"
+                    app:hasCheckbox="@{true}"
+                    app:index="@{0}"
                     app:primaryLabel="@{`A LABEL WHICH IS VERY LARGE`}"
+                    app:selectionMode="@{viewmodel.selectionMode}"
                     app:tagTitle="@{`Tag 1`}"
+                    app:value="@{`-1000000.00`}"
+                    app:valueWithSignal="@{true}" />
+
+                <include
+                    android:id="@+id/checkbox2"
+                    layout="@layout/ocean_transaction_list_item"
+                    app:click="@{viewmodel::click}"
+                    app:hasCheckbox="@{true}"
+                    app:index="@{1}"
+                    app:primaryLabel="@{`A LABEL WHICH IS VERY LARGE`}"
+                    app:selectionMode="@{viewmodel.selectionMode}"
+                    app:tagTitle="@{`Tag 2`}"
+                    app:value="@{`-1000000.00`}"
+                    app:valueWithSignal="@{true}" />
+
+                <include
+                    android:id="@+id/checkbox3"
+                    layout="@layout/ocean_transaction_list_item"
+                    app:click="@{viewmodel::click}"
+                    app:hasCheckbox="@{true}"
+                    app:index="@{2}"
+                    app:primaryLabel="@{`A LABEL WHICH IS VERY LARGE`}"
+                    app:selectionMode="@{viewmodel.selectionMode}"
+                    app:tagTitle="@{`Tag 3`}"
                     app:value="@{`-1000000.00`}"
                     app:valueWithSignal="@{true}" />
 

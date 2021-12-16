@@ -6,10 +6,16 @@
     <data>
 
         <import type="kotlin.jvm.functions.Function1" />
+
         <import type="android.view.View" />
+
         <import type="kotlin.Unit" />
+
         <import type="br.com.useblu.oceands.core.FormatTypes" />
+
         <import type="br.com.useblu.oceands.core.OceanTagType" />
+
+        <import type="androidx.lifecycle.MutableLiveData" />
 
         <variable
             name="index"
@@ -60,8 +66,8 @@
             type="Boolean" />
 
         <variable
-            name="checkboxClick"
-            type="Function1&lt;Boolean, Unit>" />
+            name="selectionMode"
+            type="MutableLiveData&lt;Boolean>" />
 
         <variable
             name="click"
@@ -75,8 +81,12 @@
         android:background="@drawable/ocean_background_ripple_light_deep"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="@{() -> click.invoke(index)}"
-        android:orientation="vertical">
+        android:animateLayoutChanges="true"
+        android:orientation="vertical"
+        app:click="@{click}"
+        app:hasCheckbox="@{hasCheckbox}"
+        app:index="@{index}"
+        app:selectionMode="@{selectionMode}">
 
         <Space
             android:id="@+id/space1"
@@ -87,14 +97,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingStart="@dimen/ocean_spacing_stack_xs"
             android:paddingEnd="@dimen/ocean_spacing_stack_xs">
 
             <LinearLayout
                 android:id="@+id/iconLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:animateLayoutChanges="true"
+                android:layout_marginStart="@dimen/ocean_spacing_inset_sm"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -104,41 +113,33 @@
                     android:layout_width="@dimen/ocean_spacing_stack_md"
                     android:layout_height="@dimen/ocean_spacing_stack_md"
                     android:src="@{icon}"
-                    app:ocean_visible_or_gone="@{icon != null &amp; !hasCheckbox }"
+                    app:ocean_visible_or_gone="@{icon != null &amp;&amp; !hasCheckbox }"
                     app:tint="@color/ocean_color_interface_dark_up"
                     tools:src="@drawable/icon_generic_primary" />
 
                 <include
                     android:id="@+id/checkbox"
-                    app:click="@{checkboxClick}"
                     layout="@layout/ocean_checkbox"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:clickable="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:ocean_visible_or_gone="@{hasCheckbox}"
+                    app:ocean_visible_or_gone="@{selectionMode}"
                     tools:visibility="gone" />
             </LinearLayout>
 
-            <Space
-                android:id="@+id/space2"
-                android:layout_width="@dimen/ocean_spacing_stack_xs"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/linearLayoutLabel"
-                app:layout_constraintStart_toEndOf="@id/iconLayout"
-                app:layout_constraintTop_toTopOf="parent"
-                app:ocean_visible_or_gone="@{icon != null}" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linearLayoutLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ocean_spacing_inset_sm"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/space3"
-                app:layout_constraintStart_toEndOf="@id/space2"
+                app:layout_constraintStart_toEndOf="@id/iconLayout"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView

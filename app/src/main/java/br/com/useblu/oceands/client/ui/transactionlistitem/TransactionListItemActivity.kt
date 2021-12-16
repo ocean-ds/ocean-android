@@ -30,7 +30,7 @@ class TransactionListItemActivity : AppCompatActivity() {
             with(selectedItems) {
                 if (contains(index)) remove(index) else add(index)
 
-                if (isEmpty()) viewModel.selectionMode.postValue(false)
+                if (isEmpty()) viewModel.selectionMode.postValue(false to index)
             }
         }
     }

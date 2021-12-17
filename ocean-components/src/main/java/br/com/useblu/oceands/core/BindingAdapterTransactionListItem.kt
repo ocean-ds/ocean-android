@@ -40,8 +40,12 @@ private fun setOnClickListeners(
     click: ((Int) -> Unit)?
 ) {
     layout.setOnClickListener {
-        oceanCheckboxBinding(checkbox)?.let {
-            it.checked = it.checked?.not() ?: true
+        if(hasCheckbox == true) {
+            oceanCheckboxBinding(checkbox)?.let {
+                it.checked = it.checked?.not() ?: true
+            }
+        } else {
+            click?.invoke(index ?: -1)
         }
     }
     oceanCheckboxBinding(checkbox)?.let {

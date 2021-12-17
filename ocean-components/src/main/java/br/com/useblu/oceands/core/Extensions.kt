@@ -2,8 +2,6 @@ package br.com.useblu.oceands.core
 
 import android.content.Context
 import android.content.res.Resources
-import android.os.Build
-import android.text.Html
 import android.text.Spanned
 import android.view.MenuItem
 import android.view.View
@@ -50,19 +48,20 @@ fun MenuItem.setTitleColor(color: Int) {
 }
 
 fun String.parseAsHtml(): Spanned {
-   return HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)
+    return HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)
 }
 
-fun View.animateFadeIn() {
+fun View.animateFadeIn(animationDuration: Long = 150, callbackEnd: () -> Unit = {}) {
     this.clearAnimation()
     AlphaAnimation(0.0f, 1.0f).run {
         interpolator = DecelerateInterpolator() //add this
-        duration = 150
-        setAnimationListener(object: Animation.AnimationListener {
+        duration = animationDuration
+        setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
             override fun onAnimationStart(animation: Animation?) {}
             override fun onAnimationEnd(animation: Animation?) {
                 this@animateFadeIn.visibility = View.VISIBLE
+                callbackEnd.invoke()
             }
         })
         this@animateFadeIn.animation = this
@@ -70,16 +69,17 @@ fun View.animateFadeIn() {
     }
 }
 
-fun View.animateFadeOut() {
+fun View.animateFadeOut(animationDuration: Long = 150, callbackEnd: () -> Unit = {}) {
     this.clearAnimation()
     AlphaAnimation(1.0f, 0.0f).run {
         interpolator = DecelerateInterpolator() //add this
-        duration = 150
-        setAnimationListener(object: Animation.AnimationListener {
+        duration = animationDuration
+        setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
             override fun onAnimationStart(animation: Animation?) {}
             override fun onAnimationEnd(animation: Animation?) {
                 this@animateFadeOut.visibility = View.INVISIBLE
+                callbackEnd.invoke()
             }
         })
         this@animateFadeOut.animation = this

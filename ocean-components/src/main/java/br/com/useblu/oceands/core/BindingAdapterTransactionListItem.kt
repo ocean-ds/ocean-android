@@ -16,16 +16,32 @@ fun setClickListener(
     index: Int?,
     selectionMode: MutableLiveData<Boolean>?
 ) {
+    val checkbox = layout.findViewById<View>(R.id.checkbox)
     layout.setOnClickListener {
         if (hasCheckbox == true) {
-            selectionMode?.postValue(true)
-            val view = layout.findViewById<View>(R.id.checkbox)
-            DataBindingUtil.getBinding<OceanCheckboxBinding>(view).let {
-                it ?: return@let
+            if (!alreadyOnSelectionMode(checkbox)) {
+                selectionMode?.postValue(true)
+            }
+            oceanCheckboxBinding(checkbox)?.let {
                 it.checked = it.checked?.not() ?: true
             }
+        } else {
+            click?.invoke(index ?: -1)
         }
+    }
+    oceanCheckboxBinding(checkbox)?.let {
+        it.click = {
+            oceanCheckboxBinding(checkbox)?.let { binding ->
+                binding.checked = it
+            }
 
-        click?.invoke(index ?: -1)
+            click?.invoke(index ?: -1)
+        }
     }
 }
+
+private fun alreadyOnSelectionMode(checkbox: View) =
+    checkbox.visibility == View.VISIBLE
+
+private fun oceanCheckboxBinding(checkbox: View) =
+    DataBindingUtil.getBinding<OceanCheckboxBinding>(checkbox)

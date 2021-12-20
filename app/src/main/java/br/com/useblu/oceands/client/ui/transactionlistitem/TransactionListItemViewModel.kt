@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 class TransactionListItemViewModel(application: Application): AndroidViewModel(application) {
-    val selectionMode: MutableLiveData<Pair<Boolean, Int>> = MutableLiveData()
+    val selectionMode = MutableLiveData(false)
 
     private val _clickedItem: MutableLiveData<Int> = MutableLiveData()
     val clickedItem: LiveData<Int> get() = _clickedItem

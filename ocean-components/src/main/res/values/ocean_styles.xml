@@ -374,6 +374,7 @@
     </style>
 
     <style name="Ocean.CheckBox" parent="Ocean">
+        <item name="colorControlNormal">@color/ocean_color_interface_dark_up</item>
         <item name="colorAccent">@color/ocean_color_complementary_pure</item>
         <item name="android:textColorSecondary">@color/ocean_color_interface_light_pure</item>
     </style>

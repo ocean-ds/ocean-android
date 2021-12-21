@@ -18,4 +18,8 @@ class TransactionListItemViewModel(application: Application): AndroidViewModel(a
     fun click(index: Int) {
         _clickedItem.postValue(index)
     }
+
+    fun clear() {
+        selectionMode.postValue(false)
+    }
 }

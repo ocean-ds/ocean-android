@@ -186,8 +186,13 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/transactionListRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
 
+                <Button
+                    android:onClick="@{() -> viewmodel.clear()}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{`Clear`}"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

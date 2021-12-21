@@ -36,6 +36,9 @@ class TransactionListItemActivity : AppCompatActivity() {
     }
 
     private fun initObservers() {
+        viewModel.selectionMode.observe(this) { isEntering ->
+            if(!isEntering) selectedItems.clear()
+        }
         viewModel.clickedItem.observe(this) { index ->
             with(selectedItems) {
                 if (isEmpty()) {

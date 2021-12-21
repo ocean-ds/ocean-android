@@ -4,6 +4,7 @@ import android.view.View
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanCheckboxBinding
@@ -17,30 +18,54 @@ fun setClickListener(
     selectionMode: MutableLiveData<Boolean>?
 ) {
     val checkbox = layout.findViewById<View>(R.id.checkbox)
-    layout.setOnClickListener {
-        if (hasCheckbox == true) {
-            if (!alreadyOnSelectionMode(checkbox)) {
-                selectionMode?.postValue(true)
-            }
-            oceanCheckboxBinding(checkbox)?.let {
-                it.checked = it.checked?.not() ?: true
-            }
-        } else {
-            click?.invoke(index ?: -1)
+    val checkboxBinding = oceanCheckboxBinding(checkbox)
+    if (hasCheckbox == true) {
+        layout.setOnClickListener {
+            setCheckboxVisibleIfNot(checkbox)
+            checkboxBinding?.checked = checkboxBinding?.checked?.not() ?: true
         }
-    }
-    oceanCheckboxBinding(checkbox)?.let {
-        it.click = {
-            oceanCheckboxBinding(checkbox)?.let { binding ->
-                binding.checked = it
-            }
-
+        enterOrLeaveSelectionMode(selectionMode, layout, checkbox, checkboxBinding)
+        setCheckboxClick(checkboxBinding, click, index)
+    } else {
+        layout.setOnClickListener {
             click?.invoke(index ?: -1)
         }
     }
 }
 
-private fun alreadyOnSelectionMode(checkbox: View) =
+private fun setCheckboxClick(
+    checkboxBinding: OceanCheckboxBinding?,
+    click: ((Int) -> Unit)?,
+    index: Int?
+) {
+    checkboxBinding?.let { binding ->
+        binding.click = {
+            click?.invoke(index ?: -1)
+        }
+    }
+}
+
+private fun enterOrLeaveSelectionMode(
+    selectionMode: MutableLiveData<Boolean>?,
+    layout: LinearLayoutCompat,
+    checkbox: View,
+    checkboxBinding: OceanCheckboxBinding?
+) {
+    selectionMode?.observe(layout.context as LifecycleOwner) { isEntering ->
+        if (isEntering) {
+            setCheckboxVisibleIfNot(checkbox)
+        } else {
+            checkbox.visibility = View.GONE
+            checkboxBinding?.checked = false
+        }
+    }
+}
+
+private fun setCheckboxVisibleIfNot(checkbox: View) {
+    if (!checkboxVisible(checkbox)) checkbox.visibility = View.VISIBLE
+}
+
+private fun checkboxVisible(checkbox: View) =
     checkbox.visibility == View.VISIBLE
 
 private fun oceanCheckboxBinding(checkbox: View) =

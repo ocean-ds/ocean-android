@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/ocean_spacing_inline_xxxs"
             app:text="@{item.badge != null ? Integer.toString(item.badge.text) : @string/empty}"
-            app:type="@{item.badge != null ? OceanBadgeType.DEFAULT : OceanBadgeType.DEFAULT}"
+            app:type="@{item.badge != null ? item.badge.type : OceanBadgeType.DEFAULT}"
             app:isSmall="@{true}"
             app:visible="@{item.badge != null}" />
 

@@ -71,17 +71,17 @@ class ChipsViewModel(application: Application): AndroidViewModel(application) {
         OceanChipItem(
             label = Chips.ALL.label,
             id = Chips.ALL.ordinal,
-            badge = Badge(9, OceanBadgeType.ALERT)
+            badge = Badge(100, OceanBadgeType.ALERT)
         ),
         OceanChipItem(
             label = Chips.TO_DUE.label,
             id = Chips.TO_DUE.ordinal,
-            badge = Badge(9, OceanBadgeType.ALERT)
+            badge = Badge(50, OceanBadgeType.ALERT)
         ),
         OceanChipItem(
             label = Chips.OVER_DUE.label,
             id = Chips.OVER_DUE.ordinal,
-            badge = Badge(9, OceanBadgeType.ALERT)
+            badge = Badge(0, OceanBadgeType.ALERT)
         ),
         OceanChipItem(
             label = Chips.UNAVAILABLE.label,

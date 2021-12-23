@@ -29,12 +29,12 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/chip_list_item_background"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="32dp"
         android:clickable="@{item.state != OceanChipItemState.DISABLED}"
         android:gravity="center"
         android:onClick="@{() -> onClick.invoke()}"
         android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="12dp"
         tools:background="@drawable/ocean_chip_selected">
 
         <include
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/ocean_spacing_inline_xxxs"
             app:text="@{item.badge != null ? Integer.toString(item.badge.text) : @string/empty}"
-            app:type="@{item.badge != null ? OceanBadgeType.DEFAULT : OceanBadgeType.DEFAULT}"
+            app:type="@{item.badge != null ? item.badge.type : OceanBadgeType.DEFAULT}"
             app:isSmall="@{true}"
             app:visible="@{item.badge != null}" />
 
@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="@dimen/ocean_spacing_inline_xxxs"
             android:src="@drawable/icon_clear"
             android:visibility="@{item.hasClose ? View.VISIBLE : View.GONE}"
             app:tint="@color/ocean_color_brand_primary_down"

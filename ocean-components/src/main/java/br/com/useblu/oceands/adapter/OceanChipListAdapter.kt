@@ -51,8 +51,9 @@ class OceanChipListAdapter(
             setItemBackground(item)
             setItemTextColor(item)
             setIconTint(item)
+            setBadge(item)
             itemBinding.onClick = {
-                if(item != currentSelectedItem) {
+                if (item != currentSelectedItem) {
                     if (item.hasClose) {
                         items.remove(item)
                         notifyItemRemoved(items.indexOf(item))
@@ -133,6 +134,13 @@ class OceanChipListAdapter(
             itemBinding.leftIcon.setColorFilter(iconColor)
         }
 
+        private fun setBadge(item: OceanChipItem) {
+            item.badge ?: return
+            if (item.badge.text > 0) return
+            
+            item.badge.type = OceanBadgeType.NEUTRAL
+        }
+
         private fun selectItem(item: OceanChipItem) {
             val selectedItem = items.find { it.id == item.id }
             selectedItem?.state = OceanChipItemState.SELECTED
@@ -155,7 +163,7 @@ data class OceanChipItem(
 
 data class Badge(
     val text: Int,
-    val type: OceanBadgeType
+    var type: OceanBadgeType
 )
 
 enum class OceanChipItemState {

@@ -8,60 +8,80 @@ import br.com.useblu.oceands.adapter.Badge
 import br.com.useblu.oceands.adapter.OceanChipItem
 import br.com.useblu.oceands.adapter.OceanChipItemState
 import br.com.useblu.oceands.client.R
-import br.com.useblu.oceands.client.ui.chips.model.Chips
+import br.com.useblu.oceands.client.ui.chips.model.ChipModel
 import br.com.useblu.oceands.core.OceanBadgeType
 
 class ChipsViewModel(application: Application): AndroidViewModel(application) {
+    private val allChip = ChipModel(
+        id = "all",
+        label = "Todos"
+    )
+    private val toDueChip = ChipModel(
+        id = "scheduled",
+        label = "A vencer"
+    )
+    private val overDueChip = ChipModel(
+        id = "overdue",
+        label = "Vencidos"
+    )
+    private val unavailableChip = ChipModel(
+        id = "unavailable",
+        label = "Indisponível"
+    )
+    private val errorChip = ChipModel(
+        id = "error",
+        label = "Erro"
+    )
     val chips: ArrayList<OceanChipItem> = arrayListOf(
         OceanChipItem(
-            label = Chips.ALL.label,
-            id = Chips.ALL.ordinal
+            label = allChip.label,
+            id = allChip.id
         ),
         OceanChipItem(
-            label = Chips.TO_DUE.label,
-            id = Chips.TO_DUE.ordinal
+            label = toDueChip.label,
+            id = toDueChip.id
         ),
         OceanChipItem(
-            label = Chips.OVER_DUE.label,
-            id = Chips.OVER_DUE.ordinal
+            label = overDueChip.label,
+            id = overDueChip.id
         ),
         OceanChipItem(
-            label = Chips.UNAVAILABLE.label,
-            id = Chips.UNAVAILABLE.ordinal,
+            label = unavailableChip.label,
+            id = unavailableChip.id,
             state = OceanChipItemState.DISABLED
         ),
         OceanChipItem(
-            label = Chips.ERROR.label,
-            id = Chips.ERROR.ordinal,
+            label = errorChip.label,
+            id = errorChip.id,
             state = OceanChipItemState.ERROR
         )
     )
 
     val chipsWithIcon: ArrayList<OceanChipItem> = arrayListOf(
         OceanChipItem(
-            label = Chips.ALL.label,
-            id = Chips.ALL.ordinal,
+            label = allChip.label,
+            id = allChip.id,
             icon = ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_information)
         ),
         OceanChipItem(
-            label = Chips.TO_DUE.label,
-            id = Chips.TO_DUE.ordinal,
+            label = toDueChip.label,
+            id = toDueChip.id,
             icon = ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_information)
         ),
         OceanChipItem(
-            label = Chips.OVER_DUE.label,
-            id = Chips.OVER_DUE.ordinal,
+            label = overDueChip.label,
+            id = overDueChip.id,
             icon = ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_information)
         ),
         OceanChipItem(
-            label = Chips.UNAVAILABLE.label,
-            id = Chips.UNAVAILABLE.ordinal,
+            label = unavailableChip.label,
+            id = unavailableChip.id,
             state = OceanChipItemState.DISABLED,
             icon = ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_information)
         ),
         OceanChipItem(
-            label = Chips.ERROR.label,
-            id = Chips.ERROR.ordinal,
+            label = errorChip.label,
+            id = errorChip.id,
             state = OceanChipItemState.ERROR,
             icon = ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_information)
         )
@@ -69,29 +89,29 @@ class ChipsViewModel(application: Application): AndroidViewModel(application) {
 
     val chipsWithBadge: ArrayList<OceanChipItem> = arrayListOf(
         OceanChipItem(
-            label = Chips.ALL.label,
-            id = Chips.ALL.ordinal,
+            label = allChip.label,
+            id = allChip.id,
             badge = Badge(100, OceanBadgeType.ALERT)
         ),
         OceanChipItem(
-            label = Chips.TO_DUE.label,
-            id = Chips.TO_DUE.ordinal,
+            label = toDueChip.label,
+            id = toDueChip.id,
             badge = Badge(50, OceanBadgeType.ALERT)
         ),
         OceanChipItem(
-            label = Chips.OVER_DUE.label,
-            id = Chips.OVER_DUE.ordinal,
+            label = overDueChip.label,
+            id = overDueChip.id,
             badge = Badge(0, OceanBadgeType.ALERT)
         ),
         OceanChipItem(
-            label = Chips.UNAVAILABLE.label,
-            id = Chips.UNAVAILABLE.ordinal,
+            label = unavailableChip.label,
+            id = unavailableChip.id,
             state = OceanChipItemState.DISABLED,
             badge = Badge(9, OceanBadgeType.ALERT)
         ),
         OceanChipItem(
-            label = Chips.ERROR.label,
-            id = Chips.ERROR.ordinal,
+            label = errorChip.label,
+            id = errorChip.id,
             state = OceanChipItemState.ERROR,
             badge = Badge(9, OceanBadgeType.ALERT)
         )
@@ -99,29 +119,29 @@ class ChipsViewModel(application: Application): AndroidViewModel(application) {
 
     val chipsWithClose: ArrayList<OceanChipItem> = arrayListOf(
         OceanChipItem(
-            label = Chips.ALL.label,
-            id = Chips.ALL.ordinal,
+            label = allChip.label,
+            id = allChip.id,
             hasClose = true
         ),
         OceanChipItem(
-            label = Chips.TO_DUE.label,
-            id = Chips.TO_DUE.ordinal,
+            label = toDueChip.label,
+            id = toDueChip.id,
             hasClose = true
         ),
         OceanChipItem(
-            label = Chips.OVER_DUE.label,
-            id = Chips.OVER_DUE.ordinal,
+            label = overDueChip.label,
+            id = overDueChip.id,
             hasClose = true
         ),
         OceanChipItem(
-            label = Chips.UNAVAILABLE.label,
-            id = Chips.UNAVAILABLE.ordinal,
+            label = unavailableChip.label,
+            id = unavailableChip.id,
             state = OceanChipItemState.DISABLED,
             hasClose = true
         ),
         OceanChipItem(
-            label = Chips.ERROR.label,
-            id = Chips.ERROR.ordinal,
+            label = errorChip.label,
+            id = errorChip.id,
             state = OceanChipItemState.ERROR,
             hasClose = true
         )

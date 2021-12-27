@@ -154,7 +154,7 @@ class OceanChipListAdapter(
 
 data class OceanChipItem(
     val label: String,
-    val id: Int,
+    val id: String,
     val badge: Badge? = null,
     val icon: Drawable? = null,
     val hasClose: Boolean = false,

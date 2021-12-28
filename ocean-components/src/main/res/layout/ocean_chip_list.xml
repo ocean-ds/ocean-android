@@ -15,7 +15,7 @@
 
         <variable
             name="chips"
-            type="ArrayList&lt;OceanChipItem>" />
+            type="MutableLiveData&lt;ArrayList&lt;OceanChipItem>>" />
 
         <variable
             name="selectedItem"

@@ -20,6 +20,7 @@ class ChipsActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[ChipsViewModel::class.java]
         binding.viewmodel = viewModel
         initObservers()
+        viewModel.loadData()
     }
 
     private fun initObservers() {

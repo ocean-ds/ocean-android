@@ -5,6 +5,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,12 +17,18 @@ import br.com.useblu.oceands.adapter.OceanChipListAdapter
 @BindingAdapter("chips", "selectedItem", "itemsSpacing")
 fun setChipsAdapter(
     recyclerView: RecyclerView,
-    chips: ArrayList<OceanChipItem>,
+    chips: MutableLiveData<ArrayList<OceanChipItem>>,
     selectedItem: MutableLiveData<OceanChipItem>,
     itemsSpacing: Float
 ) {
+    chips.observe(recyclerView.context as LifecycleOwner) { newChips ->
+        (recyclerView.adapter as OceanChipListAdapter?)?.setData(newChips)
+    }
     if (recyclerView.adapter == null) {
-        val adapter = OceanChipListAdapter(chips, selectedItem)
+        val adapter = OceanChipListAdapter(
+            chips.value ?: ArrayList(),
+            selectedItem
+        )
         val layoutManager =
             LinearLayoutManager(recyclerView.context, LinearLayoutManager.HORIZONTAL, false)
         val divider = ItemsDivider(recyclerView.context, layoutManager.orientation, itemsSpacing)
@@ -35,7 +42,11 @@ fun setChipsAdapter(
     }
 }
 
-class ItemsDivider(private val context: Context, orientation: Int, private val itemsSpacing: Float) :
+class ItemsDivider(
+    context: Context,
+    orientation: Int,
+    private val itemsSpacing: Float
+) :
     DividerItemDecoration(context, orientation) {
     override fun getItemOffsets(
         outRect: Rect,

@@ -12,7 +12,7 @@ import br.com.useblu.oceands.core.OceanBadgeType
 import br.com.useblu.oceands.databinding.OceanChipListItemBinding
 
 class OceanChipListAdapter(
-    val items: ArrayList<OceanChipItem>,
+    var items: ArrayList<OceanChipItem>,
     val selectedItem: MutableLiveData<OceanChipItem>
 ) : RecyclerView.Adapter<OceanChipListAdapter.OceanChipListViewHolder>() {
 
@@ -38,6 +38,12 @@ class OceanChipListAdapter(
     }
 
     override fun getItemCount(): Int = items.size
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(items: ArrayList<OceanChipItem>) {
+        this.items = items
+        notifyDataSetChanged()
+    }
 
     inner class OceanChipListViewHolder(
         private val itemBinding: OceanChipListItemBinding
@@ -137,7 +143,7 @@ class OceanChipListAdapter(
         private fun setBadge(item: OceanChipItem) {
             item.badge ?: return
             if (item.badge.text > 0) return
-            
+
             item.badge.type = OceanBadgeType.NEUTRAL
         }
 

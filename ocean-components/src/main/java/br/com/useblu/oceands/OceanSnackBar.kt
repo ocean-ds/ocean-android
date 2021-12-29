@@ -66,21 +66,21 @@ class OceanSnackBar(
                 this.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_action)
                     .apply {
                         isAllCaps = false
-                        when (type) {
-                            is OceanSnackBarType.Information -> {
-                                setActionTextColor(getColor(context, R.color.ocean_color_brand_primary_pure))
-                            }
-                            is OceanSnackBarType.Error -> {
-                                setActionTextColor(getColor(context, R.color.ocean_color_status_negative_pure))
-                            }
-                            is OceanSnackBarType.Success -> {
-                                setActionTextColor(getColor(context, R.color.ocean_color_status_positive_pure))
-                            }
-                            is OceanSnackBarType.Warning -> {
-                                setActionTextColor(getColor(context, R.color.ocean_color_status_neutral_pure))
-                            }
-                        }
                     }
+                when (type) {
+                    is OceanSnackBarType.Information -> {
+                        setActionTextColor(getColor(context, R.color.ocean_color_brand_primary_pure))
+                    }
+                    is OceanSnackBarType.Error -> {
+                        setActionTextColor(getColor(context, R.color.ocean_color_status_negative_pure))
+                    }
+                    is OceanSnackBarType.Success -> {
+                        setActionTextColor(getColor(context, R.color.ocean_color_status_positive_pure))
+                    }
+                    is OceanSnackBarType.Warning -> {
+                        setActionTextColor(getColor(context, R.color.ocean_color_status_neutral_pure))
+                    }
+                }
             }
 
             show()

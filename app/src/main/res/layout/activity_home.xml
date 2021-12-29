@@ -302,6 +302,14 @@
             android:text="SnackBar"
             android:textSize="24sp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onClickSnackBarAction"
+            android:padding="16dp"
+            android:text="SnackBar + Action"
+            android:textSize="24sp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="3px"

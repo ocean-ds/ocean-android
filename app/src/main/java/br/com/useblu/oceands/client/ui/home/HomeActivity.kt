@@ -268,6 +268,16 @@ class HomeActivity : AppCompatActivity() {
         ).show()
     }
 
+    fun onClickSnackBarAction(view: View) {
+        OceanSnackBar(
+            binding.container,
+            getString(R.string.lorem_ipsum),
+            OceanSnackBar.OceanSnackBarType.Success,
+            getString(R.string.help),
+            View.OnClickListener { println("ok") }
+        ).show()
+    }
+
     fun onClickTooltip(view: View) {
         val message = getString(R.string.message)
         val tooltip = OceanTooltip(

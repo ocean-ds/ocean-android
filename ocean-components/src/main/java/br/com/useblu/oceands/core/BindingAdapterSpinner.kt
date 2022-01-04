@@ -80,6 +80,7 @@ fun setAdapterSpinner(spinner: Spinner, list: List<String>?) {
         }
 
         spinner.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 }
 
@@ -95,11 +96,12 @@ fun setAdapterBottomSheet(
     valueSelected: Int?
 ) {
     list?.let { items ->
-        spinner.adapter = ArrayAdapter(
+        val adapter = ArrayAdapter(
             spinner.context,
             R.layout.ocean_dropdown_menu_item,
             items
         )
+        spinner.adapter = adapter
         spinner.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
 
@@ -136,6 +138,6 @@ fun setAdapterBottomSheet(
         valueSelected?.let {
             spinner.setSelection(it)
         }
+        adapter.notifyDataSetChanged()
     }
 }
-

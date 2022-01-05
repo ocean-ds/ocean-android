@@ -18,7 +18,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
         tools:context=".ui.paragraph.ParagraphActivity">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -66,8 +65,20 @@
 
             <include
                 layout="@layout/ocean_text_list_item"
-                app:icon="@{@drawable/icon_generic_primary}"
                 app:arrowVisible="@{true}"
+                app:icon="@{@drawable/icon_generic_primary}"
+                app:title="@{@string/all_title}" />
+
+            <include layout="@layout/ocean_divider" />
+
+            <include
+                layout="@layout/ocean_text_list_item"
+                app:arrowVisible="@{false}"
+                app:clickLink="@{viewmodel::clickedLink}"
+                app:description="@{@string/all_description}"
+                app:linkText="@{`Compartilhar`}"
+                app:itemId="@{`itemId`}"
+                app:subtitle="@{@string/all_subtitle}"
                 app:title="@{@string/all_title}" />
 
             <include layout="@layout/ocean_divider" />
@@ -111,8 +122,8 @@
 
             <include
                 layout="@layout/ocean_text_list_item_inverted"
-                app:icon="@{@drawable/icon_phone}"
                 app:arrowVisible="@{true}"
+                app:icon="@{@drawable/icon_phone}"
                 app:title="@{@string/all_title}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

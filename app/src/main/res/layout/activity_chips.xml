@@ -48,6 +48,7 @@
             app:chips="@{viewmodel.chipsWithClose}"
             app:selectedItem="@{viewmodel.selectedItem}"
             app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
             layout="@layout/ocean_chip_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

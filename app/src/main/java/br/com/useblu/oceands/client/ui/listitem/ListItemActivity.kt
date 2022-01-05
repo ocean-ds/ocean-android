@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.client.ui.listitem
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -19,5 +20,12 @@ class ListItemActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[ListItemViewModel::class.java]
         binding.viewmodel = viewModel
+        initObservers()
+    }
+
+    private fun initObservers() {
+        viewModel.clickedLink.observe(this) {
+            Toast.makeText(this, "Clicked item id: $it", Toast.LENGTH_SHORT).show()
+        }
     }
 }

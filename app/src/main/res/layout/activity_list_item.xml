@@ -76,10 +76,31 @@
                 app:arrowVisible="@{false}"
                 app:clickLink="@{viewmodel::clickedLink}"
                 app:description="@{@string/all_description}"
-                app:linkText="@{`Compartilhar`}"
                 app:itemId="@{`itemId`}"
+                app:linkText="@{`Compartilhar`}"
                 app:subtitle="@{@string/all_subtitle}"
                 app:title="@{@string/all_title}" />
+
+            <include
+                layout="@layout/ocean_text_list_item"
+                app:arrowVisible="@{false}"
+                app:clickLink="@{viewmodel::clickedLink}"
+                app:description="@{@string/all_description}"
+                app:isSingleLine="@{true}"
+                app:itemId="@{`itemId`}"
+                app:linkText="@{`Compartilhar`}"
+                app:subtitle="@{@string/all_subtitle}"
+                app:title="@{`A VERY VERY VERY VERY VERY LARGE TEXT`}" />
+
+            <include
+                layout="@layout/ocean_text_list_item"
+                app:arrowVisible="@{false}"
+                app:clickLink="@{viewmodel::clickedLink}"
+                app:description="@{@string/all_description}"
+                app:itemId="@{`itemId`}"
+                app:linkText="@{`Compartilhar`}"
+                app:subtitle="@{@string/all_subtitle}"
+                app:title="@{`A VERY VERY VERY VERY VERY LARGE TEXT`}" />
 
             <include layout="@layout/ocean_divider" />
 

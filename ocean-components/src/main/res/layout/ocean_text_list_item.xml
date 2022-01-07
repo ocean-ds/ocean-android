@@ -67,6 +67,10 @@
             name="arrowVisible"
             type="Boolean" />
 
+        <variable
+            name="isSingleLine"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -108,17 +112,38 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/include10"
-                    style="@style/Ocean.Paragraph"
+                <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_family_base_medium"
-                    android:text="@{title}"
-                    android:textColor="@color/ocean_color_interface_dark_deep"
-                    app:ocean_text="@{title}"
-                    app:ocean_text_format="@{formatTypeTitle}"
-                    tools:text="Title" />
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/include10"
+                        style="@style/Ocean.Paragraph"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font_family_base_medium"
+                        android:text="@{title}"
+                        android:textColor="@color/ocean_color_interface_dark_deep"
+                        app:ocean_text="@{title}"
+                        app:ocean_text_format="@{formatTypeTitle}"
+                        app:ocean_visible_or_gone="@{!isSingleLine}"
+                        tools:text="Title" />
+
+                    <TextView
+                        android:id="@+id/textTitle"
+                        style="@style/Ocean.Paragraph"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/font_family_base_medium"
+                        android:maxLines="1"
+                        android:text="@{title}"
+                        android:textColor="@color/ocean_color_interface_dark_deep"
+                        app:ocean_text="@{title}"
+                        app:ocean_text_format="@{formatTypeTitle}"
+                        app:ocean_visible_or_gone="@{isSingleLine}"
+                        tools:text="Title" />
+                </FrameLayout>
 
                 <Space
                     android:layout_width="@dimen/ocean_spacing_stack_xxs"

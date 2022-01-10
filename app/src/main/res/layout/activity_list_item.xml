@@ -34,7 +34,8 @@
                 app:description="@{@string/all_description}"
                 app:icon="@{@drawable/icon_generic_primary}"
                 app:subtitle="@{@string/all_subtitle}"
-                app:title="@{@string/all_title}" />
+                app:title="@{@string/all_title}"
+                app:longClick="@{viewmodel::longClick}"/>
 
             <include layout="@layout/ocean_divider" />
 

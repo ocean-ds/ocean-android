@@ -43,6 +43,14 @@ fun setLayoutWidth(view: View, width: Int) {
     view.layoutParams = params
 }
 
+@BindingAdapter("app:onLongClickPressed")
+fun setOnLongClickPressed(view: View, longClick: (() -> Unit)?) {
+    view.setOnLongClickListener {
+        longClick?.invoke()
+        false
+    }
+}
+
 @BindingAdapter("app:ocean_drawable_padding")
 fun setOceanDrawablePadding(button: Button, @DimenRes dimenId: Int) {
     var dimensionPixelSize = 0

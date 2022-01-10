@@ -60,6 +60,10 @@
             type="Function0&lt;Unit>" />
 
         <variable
+            name="longClick"
+            type="Function0&lt;Unit>" />
+
+        <variable
             name="clickLink"
             type="Function1&lt;String, Unit>" />
 
@@ -74,6 +78,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -82,7 +87,8 @@
         android:foreground="?attr/selectableItemBackground"
         android:onClick="@{() -> click.invoke()}"
         android:paddingTop="12dp"
-        android:paddingBottom="@dimen/ocean_spacing_stack_xs">
+        android:paddingBottom="@dimen/ocean_spacing_stack_xs"
+        app:onLongClickPressed="@{longClick}">
 
         <ImageView
             android:id="@+id/imageView19"
@@ -212,4 +218,5 @@
             app:srcCompat="@drawable/icon_chevron_right" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

@@ -27,5 +27,9 @@ class ListItemActivity : AppCompatActivity() {
         viewModel.clickedLink.observe(this) {
             Toast.makeText(this, "Clicked item id: $it", Toast.LENGTH_SHORT).show()
         }
+
+        viewModel.longClickPressed.observe(this) {
+            Toast.makeText(this, "Long click pressed", Toast.LENGTH_SHORT).show()
+        }
     }
 }

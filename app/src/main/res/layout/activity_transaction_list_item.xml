@@ -7,6 +7,8 @@
 
         <import type="android.text.InputType" />
 
+        <import type="br.com.useblu.oceands.core.OceanTagType" />
+
         <variable
             name="viewmodel"
             type="br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemViewModel" />
@@ -50,6 +52,13 @@
                     app:tagTitle="@{`Pendente`}"
                     app:time="@{`9:00`}"
                     app:value="@{`1000000.00`}" />
+
+                <include
+                    layout="@layout/ocean_transaction_list_item"
+                    app:primaryLabel="@{`Label 1`}"
+                    app:value="@{`1000000.00`}"
+                    app:tagType="@{OceanTagType.Negative}"
+                    app:tagTitle="@{`Tag`}"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

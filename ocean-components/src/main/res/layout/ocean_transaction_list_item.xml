@@ -58,6 +58,10 @@
             type="OceanTagType" />
 
         <variable
+            name="tagHideIcon"
+            type="Boolean" />
+
+        <variable
             name="time"
             type="String" />
 
@@ -80,7 +84,6 @@
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        tools:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
@@ -91,7 +94,8 @@
         app:click="@{click}"
         app:hasCheckbox="@{hasCheckbox}"
         app:index="@{index}"
-        app:selectionMode="@{selectionMode}">
+        app:selectionMode="@{selectionMode}"
+        tools:background="@color/white">
 
         <Space
             android:id="@+id/space1"
@@ -111,7 +115,8 @@
                 android:layout_marginStart="@dimen/ocean_spacing_inset_sm"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{icon != null || hasCheckbox}">
 
                 <ImageView
                     android:id="@+id/icon"
@@ -266,6 +271,7 @@
 
                     <include
                         layout="@layout/ocean_tag"
+                        app:hideIcon="@{tagHideIcon}"
                         app:title="@{tagTitle}"
                         app:type="@{tagType != null ? tagType : OceanTagType.Warning}" />
 

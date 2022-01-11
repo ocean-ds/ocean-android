@@ -60,6 +60,14 @@
                     app:tagType="@{OceanTagType.Negative}"
                     app:tagTitle="@{`Tag`}"/>
 
+                <include
+                    layout="@layout/ocean_transaction_list_item"
+                    app:primaryLabel="@{`Label 1`}"
+                    app:value="@{`1000000.00`}"
+                    app:tagType="@{OceanTagType.Negative}"
+                    app:tagHideIcon="@{true}"
+                    app:tagTitle="@{`Tag`}"/>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat

@@ -58,6 +58,10 @@
             type="OceanTagType" />
 
         <variable
+            name="tagHideIcon"
+            type="Boolean" />
+
+        <variable
             name="time"
             type="String" />
 
@@ -267,6 +271,7 @@
 
                     <include
                         layout="@layout/ocean_tag"
+                        app:hideIcon="@{tagHideIcon}"
                         app:title="@{tagTitle}"
                         app:type="@{tagType != null ? tagType : OceanTagType.Warning}" />
 

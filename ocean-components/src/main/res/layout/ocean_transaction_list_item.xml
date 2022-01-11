@@ -54,6 +54,10 @@
             type="String" />
 
         <variable
+            name="tagType"
+            type="OceanTagType" />
+
+        <variable
             name="time"
             type="String" />
 
@@ -76,6 +80,7 @@
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        tools:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
@@ -262,7 +267,7 @@
                     <include
                         layout="@layout/ocean_tag"
                         app:title="@{tagTitle}"
-                        app:type="@{OceanTagType.Warning}" />
+                        app:type="@{tagType != null ? tagType : OceanTagType.Warning}" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

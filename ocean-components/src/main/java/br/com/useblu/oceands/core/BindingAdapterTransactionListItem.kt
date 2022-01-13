@@ -2,10 +2,15 @@ package br.com.useblu.oceands.core
 
 import android.view.View
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
+import androidx.transition.ChangeBounds
+import androidx.transition.TransitionManager
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanCheckboxBinding
 
@@ -24,7 +29,7 @@ fun setClickListener(
             setCheckboxVisibleIfNot(checkbox)
             checkboxBinding?.checked = checkboxBinding?.checked?.not() ?: true
         }
-        enterOrLeaveSelectionMode(selectionMode, layout, checkbox, checkboxBinding, click, index)
+        enterOrLeaveSelectionMode(selectionMode, layout, checkboxBinding, click, index)
         setCheckboxClick(checkboxBinding, click, index)
     } else {
         layout.setOnClickListener {
@@ -46,17 +51,17 @@ private fun setCheckboxClick(
 private fun enterOrLeaveSelectionMode(
     selectionMode: MutableLiveData<Boolean>?,
     layout: LinearLayoutCompat,
-    checkbox: View,
     checkboxBinding: OceanCheckboxBinding?,
     click: ((Int) -> Unit)?,
     index: Int?
 ) {
     selectionMode?.observe(layout.context as LifecycleOwner) { isEntering ->
+        val motionLayout = layout.findViewById<MotionLayout>(R.id.motionLayout)
         if (isEntering) {
-            setCheckboxVisibleIfNot(checkbox)
+            motionLayout.transitionToEnd()
         } else {
+            motionLayout.transitionToStart()
             checkboxBinding?.click = {}
-            checkbox.visibility = View.GONE
             checkboxBinding?.checked = false
             checkboxBinding?.executePendingBindings()
             setCheckboxClick(checkboxBinding, click, index)

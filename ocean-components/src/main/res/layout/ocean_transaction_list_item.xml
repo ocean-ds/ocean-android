@@ -251,6 +251,7 @@
                     android:id="@+id/text_view_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="end"
                     android:fontFamily="@font/font_family_base_bold"
                     android:textAlignment="textEnd"
                     android:textColor="@color/ocean_color_interface_dark_deep"
@@ -296,6 +297,7 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
                     android:text="@{time}"
+                    android:textAppearance="@style/Ocean.Caption.BrandPrimaryUp"
                     android:textColor="@color/ocean_color_interface_dark_down"
                     app:ocean_visible_or_gone="@{time != null}"
                     tools:text="Time" />

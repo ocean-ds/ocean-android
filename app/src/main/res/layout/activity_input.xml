@@ -175,6 +175,7 @@
 
             <include
                 layout="@layout/ocean_input_text_search"
+                app:placeHolder="@{@string/all_hint}"
                 app:value="@={viewmodel.search}"/>
 
             <Space

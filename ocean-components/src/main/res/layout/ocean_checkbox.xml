@@ -23,12 +23,16 @@
     </data>
 
     <androidx.appcompat.widget.AppCompatCheckBox
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:checked="@{checked}"
+        android:drawablePadding="100dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
         android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
-        android:text="@{text, default = Text}"
+        android:text="@{text}"
         android:textColor="@color/ocean_color_interface_dark_down"
         android:theme="@style/Ocean.CheckBox"
-        tools:checked="false" />
+        tools:checked="false"
+        tools:text="" />
 </layout>

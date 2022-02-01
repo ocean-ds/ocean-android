@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -16,12 +17,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:boxBackgroundMode="none"
             app:endIconDrawable="@drawable/icon_clear"
             app:endIconMode="clear_text"
@@ -31,7 +32,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputSearch"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="match_parent"
                 android:background="@drawable/ocean_input_text_field_states"
                 android:drawableStart="@drawable/icon_search_states"
                 android:drawablePadding="@dimen/ocean_spacing_stack_xs"
@@ -45,7 +46,8 @@
                 android:textColor="@color/ocean_color_interface_dark_deep"
                 android:textColorHint="@color/ocean_color_interface_light_deep"
                 android:textCursorDrawable="@drawable/ocean_cursor"
-                android:textSize="@dimen/ocean_font_size_xs" />
+                android:textSize="@dimen/ocean_font_size_xs"
+                tools:hint="Placeholder" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>

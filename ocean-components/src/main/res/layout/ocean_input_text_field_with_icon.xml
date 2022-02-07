@@ -44,6 +44,10 @@
         <variable
             name="iconClick"
             type="Function0&lt;Unit>" />
+
+        <variable
+            name="disabled"
+            type="Boolean" />
     </data>
 
     <merge
@@ -92,6 +96,7 @@
                     android:paddingEnd="@{(icon != null) ? @dimen/ocean_spacing_inline_xx : @dimen/ocean_spacing_inline_xs}"
                     android:paddingBottom="@dimen/ocean_spacing_inline_xs"
                     android:text="@={value}"
+                    android:enabled="@{!disabled}"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textColorHint="@color/ocean_color_interface_light_deep"
                     android:textCursorDrawable="@drawable/ocean_cursor"

@@ -24,6 +24,10 @@
         <variable
             name="help"
             type="String" />
+
+        <variable
+            name="disabled"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,6 +77,7 @@
                 android:minLines="2"
                 android:padding="@dimen/ocean_spacing_inline_xs"
                 android:singleLine="false"
+                android:enabled="@{!disabled}"
                 android:text="@={value}"
                 android:textColor="@color/ocean_color_interface_dark_deep"
                 android:textColorHint="@color/ocean_color_interface_light_deep"

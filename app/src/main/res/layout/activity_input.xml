@@ -37,7 +37,8 @@
                 app:hint="@{@string/all_hint}"
                 app:information="@{@string/all_information}"
                 app:label="@{@string/all_label}"
-                app:type="@{InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS}" />
+                app:type="@{InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS}"
+                app:disabled="@{true}"/>
 
             <include
                 android:id="@+id/container_input2"

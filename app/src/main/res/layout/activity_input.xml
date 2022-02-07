@@ -40,7 +40,7 @@
                 app:type="@{InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS}" />
 
             <include
-                android:id="@+id/container_input2"
+                android:id="@+id/container_number"
                 layout="@layout/ocean_input_text_field_with_icon"
                 app:error="@{viewmodel.error}"
                 app:help="@{@string/all_help}"
@@ -48,6 +48,20 @@
                 app:information="@{@string/all_information}"
                 app:label="@{@string/all_label}"
                 app:type="@{InputType.TYPE_CLASS_NUMBER}" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <include
+                android:id="@+id/container_input_password"
+                layout="@layout/ocean_input_text_field_with_icon"
+                app:error="@{viewmodel.error}"
+                app:help="@{@string/all_help}"
+                app:hint="@{@string/all_hint}"
+                app:information="@{@string/all_information}"
+                app:label="@{@string/all_label}"
+                app:type="@{(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)}" />
 
             <Space
                 android:layout_width="match_parent"

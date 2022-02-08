@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DimenRes
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
@@ -91,6 +92,12 @@ fun setOceanInputType(inputText: TextInputEditText, inputType: Int) {
         val textInputLayout = inputText.parent.parent as TextInputLayout
         textInputLayout.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
         textInputLayout.setEndIconDrawable(R.drawable.ocean_selector_eye)
+        textInputLayout.setEndIconTintList(
+            AppCompatResources.getColorStateList(
+                textInputLayout.context,
+                R.color.ocean_color_interface_dark_up
+            )
+        )
         inputText.typeface = typeFace
     }
 }

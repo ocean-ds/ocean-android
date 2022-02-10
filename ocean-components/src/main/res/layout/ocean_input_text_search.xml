@@ -40,6 +40,7 @@
                 android:hint="@{placeHolder}"
                 android:inputType="text"
                 android:maxLines="1"
+                android:ellipsize="end"
                 android:imeOptions="actionSearch"
                 android:padding="@dimen/ocean_spacing_inline_xs"
                 android:text="@={value}"

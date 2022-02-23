@@ -53,6 +53,10 @@
             name="setSelected"
             type="Integer" />
 
+        <variable
+            name="disabled"
+            type="Boolean" />
+
     </data>
 
     <merge

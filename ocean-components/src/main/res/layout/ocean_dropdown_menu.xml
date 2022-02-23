@@ -53,6 +53,10 @@
             name="setSelected"
             type="Integer" />
 
+        <variable
+            name="disabled"
+            type="Boolean" />
+
     </data>
 
     <merge
@@ -96,6 +100,7 @@
                 app:setAdapterBottomSheet="@{ hasBottomSheetBehavior ? entries : null}"
                 app:setAdapterSpinner="@{ !hasBottomSheetBehavior ? entries : null }"
                 app:title="@{title}"
+                app:spinnerSetDisabled="@{disabled}"
                 app:valueSelected="@{setSelected}"
                 tools:listitem="@layout/ocean_dropdown_menu_item" />
 

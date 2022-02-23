@@ -141,3 +141,8 @@ fun setAdapterBottomSheet(
         adapter.notifyDataSetChanged()
     }
 }
+
+@BindingAdapter("spinnerSetDisabled")
+fun spinnerSetDisabled(spinner: Spinner, disabled: Boolean?) {
+    spinner.isEnabled = disabled?.not() ?: true
+}

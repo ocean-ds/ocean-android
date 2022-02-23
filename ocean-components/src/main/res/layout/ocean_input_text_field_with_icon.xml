@@ -42,6 +42,10 @@
             type="android.graphics.drawable.Drawable" />
 
         <variable
+            name="showProgress"
+            type="Boolean" />
+
+        <variable
             name="iconClick"
             type="Function0&lt;Unit>" />
 
@@ -159,6 +163,21 @@
                 app:layout_constraintTop_toTopOf="@+id/textInputLayout"
                 app:ocean_visible_or_gone="@{icon != null}"
                 tools:src="@drawable/icon_generic_primary" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:elevation="5dp"
+                android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
+                android:indeterminateTint="@color/ocean_color_brand_primary_pure"
+                android:progressTint="@color/ocean_color_brand_primary_pure"
+                android:progressBackgroundTint="@color/ocean_color_brand_primary_up"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayout"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayout"
+                app:ocean_visible_or_invisible="@{showProgress}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

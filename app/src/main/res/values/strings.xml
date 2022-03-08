@@ -12,5 +12,5 @@
     <string name="all_information">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
 
     <string name="sample_cpf">00000000000</string>
-    <string name="click_me">Click me!</string>
+    <string name="click_me"><![CDATA[<b>Click me!</b>]]></string>
 </resources>

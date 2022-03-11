@@ -34,6 +34,16 @@
                     app:click="@{viewmodel::executeOnStatusChanged}"
                     />
 
+                <include
+                    layout="@layout/ocean_checkbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text="@{@string/text}"
+                    app:checked="@{false}"
+                    app:error="@{`Error teste`}"
+                    app:click="@{viewmodel::executeOnStatusChanged}"
+                    />
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

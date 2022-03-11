@@ -101,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{title}"
                     app:ocean_text="@{title}"
+                    app:ocean_text_from_html="@{title}"
                     app:ocean_text_format="@{formatTypeTitle}"
                     tools:text="Title" />
 

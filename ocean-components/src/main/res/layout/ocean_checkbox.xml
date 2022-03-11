@@ -66,6 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{error}"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
             android:textColor="@color/ocean_color_status_negative_pure"
             android:textSize="@dimen/ocean_font_size_xxxs"
             android:fontFamily="@font/font_family_base_medium"

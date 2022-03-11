@@ -32,6 +32,7 @@
             <include
                 layout="@layout/ocean_link_text"
                 app:click="@{viewmodel::click}"
+                app:icon="@{@drawable/icon_generic_primary}"
                 app:text="@{@string/click_me}" />
 
             <include

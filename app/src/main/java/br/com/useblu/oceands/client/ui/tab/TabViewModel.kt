@@ -10,8 +10,6 @@ class TabViewModel: ViewModel() {
     val labels1 = MutableLiveData<ArrayList<String>>()
     val labels2 = MutableLiveData<ArrayList<String>>()
 
-    val tabSelected = MutableLiveData<Int>()
-
     private val _showToast = MutableLiveData<String>()
     val showToast: LiveData<String> get() = _showToast
 

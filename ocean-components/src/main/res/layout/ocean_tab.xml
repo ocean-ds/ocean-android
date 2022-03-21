@@ -27,8 +27,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -38,6 +38,8 @@
             app:setLabels="@{labels}"
             app:setCounters="@{counters}"
             app:setTabSelected="@{tabSelected}"/>
+
+        <include layout="@layout/ocean_divider" />
 
     </LinearLayout>
 </layout>

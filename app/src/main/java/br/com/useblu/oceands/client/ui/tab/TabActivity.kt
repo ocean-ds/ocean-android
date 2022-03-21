@@ -1,15 +1,12 @@
 package br.com.useblu.oceands.client.ui.tab
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
-import br.com.useblu.oceands.client.databinding.ActivitySwitchsBinding
 import br.com.useblu.oceands.client.databinding.ActivityTabBinding
-import br.com.useblu.oceands.client.ui.switchs.SwitchsViewModel
 
 class TabActivity : AppCompatActivity() {
 

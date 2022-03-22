@@ -11,6 +11,8 @@
 
         <import type="kotlin.Unit" />
 
+        <import type="br.com.useblu.oceands.core.OceanTagType" />
+
         <variable
             name="title"
             type="String" />
@@ -77,6 +79,18 @@
 
         <variable
             name="withHorizontalPadding"
+            type="Boolean" />
+
+        <variable
+            name="tagTitle"
+            type="String" />
+
+        <variable
+            name="tagType"
+            type="OceanTagType" />
+
+        <variable
+            name="tagHideIcon"
             type="Boolean" />
 
     </data>
@@ -200,6 +214,20 @@
                 app:ocean_text_format="@{formatTypeDescription}"
                 app:ocean_visible_or_gone="@{description != null}"
                 tools:text="Description" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ocean_visible_or_gone="@{tagTitle != null}">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:hideIcon="@{tagHideIcon}"
+                    app:title="@{tagTitle}"
+                    app:type="@{tagType != null ? tagType : OceanTagType.Warning}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </LinearLayout>
 
         <TextView

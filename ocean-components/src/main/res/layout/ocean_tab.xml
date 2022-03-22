@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="java.util.ArrayList" />
+
+        <import type="androidx.lifecycle.MutableLiveData" />
+
+        <import type="kotlin.jvm.functions.Function1" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="labels"
+            type="MutableLiveData&lt;ArrayList&lt;String>>" />
+
+        <variable
+            name="counters"
+            type="MutableLiveData&lt;ArrayList&lt;Integer>>" />
+
+        <variable
+            name="tabSelected"
+            type="Function1&lt;Integer, Unit>" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:setLabels="@{labels}"
+            app:setCounters="@{counters}"
+            app:setTabSelected="@{tabSelected}"/>
+
+        <include layout="@layout/ocean_divider" />
+
+    </LinearLayout>
+</layout>

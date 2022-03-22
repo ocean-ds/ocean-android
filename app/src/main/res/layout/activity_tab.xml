@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.tab.TabViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".ui.tab.TabActivity">
+
+        <include
+            layout="@layout/ocean_tab"
+            app:labels="@{viewmodel.labels1}"
+            app:tabSelected="@{viewmodel::tabSelected}" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ocean_spacing_stack_xs" />
+
+        <include
+            layout="@layout/ocean_tab"
+            app:counters="@{viewmodel.counters}"
+            app:labels="@{viewmodel.labels1}"
+            app:tabSelected="@{viewmodel::tabSelected}" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ocean_spacing_stack_xs" />
+
+        <include
+            layout="@layout/ocean_tab"
+            app:labels="@{viewmodel.labels2}"
+            app:tabSelected="@{viewmodel.tabSelected2}" />
+
+    </LinearLayout>
+</layout>

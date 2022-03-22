@@ -26,6 +26,7 @@ import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
 import br.com.useblu.oceands.client.ui.step.StepViewActivity
 import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
+import br.com.useblu.oceands.client.ui.tab.TabActivity
 import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
@@ -124,6 +125,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickSwitch(view: View) {
         val intent = Intent(this, SwitchsActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickTab(view: View) {
+        val intent = Intent(this, TabActivity::class.java)
         startActivity(intent)
     }
 

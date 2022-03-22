@@ -75,6 +75,10 @@
             name="isSingleLine"
             type="Boolean" />
 
+        <variable
+            name="withHorizontalPadding"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -90,6 +94,15 @@
         android:paddingBottom="@dimen/ocean_spacing_stack_xs"
         app:onLongClickPressed="@{longClick}">
 
+        <Space
+            android:id="@+id/paddingStart"
+            android:layout_width="@dimen/ocean_spacing_stack_xs"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:ocean_visible_or_gone="@{withHorizontalPadding != null}"/>
+
         <ImageView
             android:id="@+id/imageView19"
             android:layout_width="wrap_content"
@@ -98,7 +111,7 @@
             android:src="@{icon}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/paddingStart"
             app:layout_constraintTop_toTopOf="parent"
             app:ocean_visible_or_gone="@{icon != null}"
             tools:src="@drawable/icon_generic_primary" />
@@ -212,10 +225,19 @@
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/ocean_spacing_inset_sm"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/paddingEnd"
             app:layout_constraintTop_toTopOf="parent"
             app:ocean_visible_or_gone="@{arrowVisible}"
             app:srcCompat="@drawable/icon_chevron_right" />
+
+        <Space
+            android:id="@+id/paddingEnd"
+            android:layout_width="@dimen/ocean_spacing_stack_xs"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:ocean_visible_or_gone="@{withHorizontalPadding != null}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

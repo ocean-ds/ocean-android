@@ -35,7 +35,8 @@
                 app:icon="@{@drawable/icon_generic_primary}"
                 app:subtitle="@{@string/all_subtitle}"
                 app:title="@{@string/all_title}"
-                app:longClick="@{viewmodel::longClick}"/>
+                app:longClick="@{viewmodel::longClick}"
+                app:withHorizontalPadding="@{true}"/>
 
             <include layout="@layout/ocean_divider" />
 

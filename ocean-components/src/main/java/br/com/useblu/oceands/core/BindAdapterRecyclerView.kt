@@ -13,8 +13,8 @@ import kotlinx.android.synthetic.main.ocean_tab_item.view.*
 @BindingAdapter("app:setLabels", "app:setCounters", "app:setTabSelected")
 fun setLabels(
     recyclerView: RecyclerView,
-    labels: ArrayList<String>?,
-    counters: ArrayList<Int>?,
+    labels: List<String>?,
+    counters: List<Int>?,
     selected: (Int) -> Unit
 ) {
     labels?.let {

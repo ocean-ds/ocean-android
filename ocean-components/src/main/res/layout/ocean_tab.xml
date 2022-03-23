@@ -4,7 +4,7 @@
 
     <data>
 
-        <import type="java.util.ArrayList" />
+        <import type="java.util.List" />
 
         <import type="androidx.lifecycle.MutableLiveData" />
 
@@ -14,11 +14,11 @@
 
         <variable
             name="labels"
-            type="MutableLiveData&lt;ArrayList&lt;String>>" />
+            type="MutableLiveData&lt;List&lt;String>>" />
 
         <variable
             name="counters"
-            type="MutableLiveData&lt;ArrayList&lt;Integer>>" />
+            type="MutableLiveData&lt;List&lt;Integer>>" />
 
         <variable
             name="tabSelected"

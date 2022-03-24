@@ -3,6 +3,7 @@ package br.com.useblu.oceands.core
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.text.InputType
+import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -22,6 +23,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
+
 @BindingAdapter("app:ocean_visible_or_invisible")
 fun setVisibleOrInvisible(view: View, status: Boolean) {
     view.visibility = if (status) View.VISIBLE else View.INVISIBLE
@@ -30,6 +32,15 @@ fun setVisibleOrInvisible(view: View, status: Boolean) {
 @BindingAdapter("app:ocean_visible_or_gone")
 fun setVisibleOrGone(view: View, status: Boolean) {
     view.visibility = if (status) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("app:clickable_effect")
+fun setClickableEffect(view: View, value: Boolean?) {
+    if (value == true) {
+        val outValue = TypedValue()
+        view.context.theme.resolveAttribute(android.R.attr.selectableItemBackground, outValue, true)
+        view.setBackgroundResource(outValue.resourceId)
+    }
 }
 
 @BindingAdapter("app:ocean_text_from_html")

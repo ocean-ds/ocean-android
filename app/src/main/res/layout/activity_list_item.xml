@@ -35,10 +35,11 @@
                 app:badgeVisible="@{true}"
                 app:description="@{@string/all_description}"
                 app:icon="@{@drawable/icon_generic_primary}"
+                app:longClick="@{viewmodel::longClick}"
                 app:subtitle="@{@string/all_subtitle}"
                 app:title="@{@string/all_title}"
-                app:longClick="@{viewmodel::longClick}"
-                app:withHorizontalPadding="@{true}"/>
+                app:withClickEffect="@{true}"
+                app:withHorizontalPadding="@{true}" />
 
             <include layout="@layout/ocean_divider" />
 
@@ -49,13 +50,14 @@
                 app:badgeVisible="@{true}"
                 app:description="@{@string/all_description}"
                 app:icon="@{@drawable/icon_generic_primary}"
-                app:subtitle="@{@string/all_subtitle}"
-                app:title="@{@string/all_title}"
                 app:longClick="@{viewmodel::longClick}"
-                app:withHorizontalPadding="@{true}"
+                app:subtitle="@{@string/all_subtitle}"
+                app:tagHideIcon="@{false}"
                 app:tagTitle="@{`tagtitle`}"
                 app:tagType="@{OceanTagType.Warning}"
-                app:tagHideIcon="@{false}"/>
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{true}"
+                app:withHorizontalPadding="@{true}" />
 
             <include layout="@layout/ocean_divider" />
 
@@ -65,7 +67,8 @@
                 app:badgeTitle="@{@string/all_badge}"
                 app:badgeVisible="@{true}"
                 app:subtitle="@{@string/all_subtitle}"
-                app:title="@{@string/all_title}" />
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{true}" />
 
             <include layout="@layout/ocean_divider" />
 
@@ -73,14 +76,16 @@
                 layout="@layout/ocean_text_list_item"
                 app:icon="@{@drawable/icon_generic_primary}"
                 app:subtitle="@{@string/all_subtitle}"
-                app:title="@{@string/all_title}" />
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{false}" />
 
             <include layout="@layout/ocean_divider" />
 
             <include
                 layout="@layout/ocean_text_list_item"
                 app:subtitle="@{@string/all_subtitle}"
-                app:title="@{@string/all_title}" />
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{false}" />
 
             <include layout="@layout/ocean_divider" />
 
@@ -88,7 +93,8 @@
                 layout="@layout/ocean_text_list_item"
                 app:arrowVisible="@{true}"
                 app:icon="@{@drawable/icon_generic_primary}"
-                app:title="@{@string/all_title}" />
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{true}" />
 
             <include layout="@layout/ocean_divider" />
 
@@ -100,7 +106,8 @@
                 app:itemId="@{`itemId`}"
                 app:linkText="@{`Compartilhar`}"
                 app:subtitle="@{@string/all_subtitle}"
-                app:title="@{@string/all_title}" />
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{false}" />
 
             <include
                 layout="@layout/ocean_text_list_item"
@@ -111,7 +118,8 @@
                 app:itemId="@{`itemId`}"
                 app:linkText="@{`Compartilhar`}"
                 app:subtitle="@{@string/all_subtitle}"
-                app:title="@{`A VERY VERY VERY VERY VERY LARGE TEXT`}" />
+                app:title="@{`A VERY VERY VERY VERY VERY LARGE TEXT`}"
+                app:withClickEffect="@{false}" />
 
             <include
                 layout="@layout/ocean_text_list_item"
@@ -121,7 +129,8 @@
                 app:itemId="@{`itemId`}"
                 app:linkText="@{`Compartilhar`}"
                 app:subtitle="@{@string/all_subtitle}"
-                app:title="@{`A VERY VERY VERY VERY VERY LARGE TEXT`}" />
+                app:title="@{`A VERY VERY VERY VERY VERY LARGE TEXT`}"
+                app:withClickEffect="@{false}" />
 
             <include layout="@layout/ocean_divider" />
 
@@ -133,7 +142,8 @@
                 app:description="@{@string/all_description}"
                 app:icon="@{@drawable/icon_generic_primary}"
                 app:subtitle="@{@string/all_subtitle}"
-                app:title="@{@string/all_title}" />
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{true}" />
 
             <include layout="@layout/ocean_divider" />
 
@@ -143,7 +153,8 @@
                 app:badgeTitle="@{@string/all_badge}"
                 app:badgeVisible="@{true}"
                 app:subtitle="@{@string/all_subtitle}"
-                app:title="@{@string/all_title}" />
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{true}" />
 
             <include layout="@layout/ocean_divider" />
 
@@ -151,14 +162,16 @@
                 layout="@layout/ocean_text_list_item_inverted"
                 app:icon="@{@drawable/icon_generic_primary}"
                 app:subtitle="@{@string/all_subtitle}"
-                app:title="@{@string/all_title}" />
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{false}" />
 
             <include layout="@layout/ocean_divider" />
 
             <include
                 layout="@layout/ocean_text_list_item_inverted"
                 app:subtitle="@{@string/all_subtitle}"
-                app:title="@{@string/all_title}" />
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{false}" />
 
             <include layout="@layout/ocean_divider" />
 
@@ -166,7 +179,8 @@
                 layout="@layout/ocean_text_list_item_inverted"
                 app:arrowVisible="@{true}"
                 app:icon="@{@drawable/icon_phone}"
-                app:title="@{@string/all_title}" />
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{true}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

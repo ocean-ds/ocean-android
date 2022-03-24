@@ -93,6 +93,10 @@
             name="tagHideIcon"
             type="Boolean" />
 
+        <variable
+            name="withClickEffect"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -102,20 +106,20 @@
         android:clickable="true"
         android:enabled="true"
         android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
         android:onClick="@{() -> click.invoke()}"
         android:paddingTop="12dp"
         android:paddingBottom="@dimen/ocean_spacing_stack_xs"
+        app:clickable_effect="@{withClickEffect}"
         app:onLongClickPressed="@{longClick}">
 
         <Space
             android:id="@+id/paddingStart"
             android:layout_width="@dimen/ocean_spacing_stack_xs"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:ocean_visible_or_gone="@{withHorizontalPadding != null}"/>
+            app:ocean_visible_or_gone="@{withHorizontalPadding != null}" />
 
         <ImageView
             android:id="@+id/imageView19"
@@ -263,10 +267,10 @@
             android:id="@+id/paddingEnd"
             android:layout_width="@dimen/ocean_spacing_stack_xs"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:ocean_visible_or_gone="@{withHorizontalPadding != null}"/>
+            app:ocean_visible_or_gone="@{withHorizontalPadding != null}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

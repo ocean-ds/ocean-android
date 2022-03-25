@@ -53,6 +53,10 @@
             name="arrowVisible"
             type="Boolean" />
 
+        <variable
+            name="withClickEffect"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,10 +65,10 @@
         android:clickable="true"
         android:enabled="true"
         android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
         android:onClick="@{() -> click.invoke()}"
         android:paddingTop="12dp"
-        android:paddingBottom="@dimen/ocean_spacing_stack_xs">
+        android:paddingBottom="@dimen/ocean_spacing_stack_xs"
+        app:clickable_effect="@{withClickEffect}">
 
         <ImageView
             android:id="@+id/imageView19"
@@ -101,8 +105,8 @@
                     android:layout_height="wrap_content"
                     android:text="@{title}"
                     app:ocean_text="@{title}"
-                    app:ocean_text_from_html="@{title}"
                     app:ocean_text_format="@{formatTypeTitle}"
+                    app:ocean_text_from_html="@{title}"
                     tools:text="Title" />
 
                 <Space

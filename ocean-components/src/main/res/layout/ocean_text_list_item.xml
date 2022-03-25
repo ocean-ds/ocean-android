@@ -155,7 +155,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@{iconDisabled}"
-            app:tint="@color/ocean_color_interface_dark_up"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
             app:layout_constraintStart_toEndOf="@id/paddingStart"

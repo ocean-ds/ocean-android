@@ -97,6 +97,10 @@
             name="withClickEffect"
             type="Boolean" />
 
+        <variable
+            name="disabled"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,6 +116,15 @@
         app:clickable_effect="@{withClickEffect}"
         app:onLongClickPressed="@{longClick}">
 
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal">
+
         <Space
             android:id="@+id/paddingStart"
             android:layout_width="@dimen/ocean_spacing_stack_xs"
@@ -125,24 +138,40 @@
             android:id="@+id/imageView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:src="@{icon}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
             app:layout_constraintStart_toEndOf="@id/paddingStart"
             app:layout_constraintTop_toTopOf="parent"
-            app:ocean_visible_or_gone="@{icon != null}"
+            app:ocean_visible_or_gone="@{icon != null &amp;&amp; !disabled}"
             tools:src="@drawable/icon_generic_primary" />
+
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@{icon}"
+            app:tint="@color/ocean_color_interface_dark_up"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+            app:layout_constraintStart_toEndOf="@id/paddingStart"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            app:ocean_visible_or_gone="@{icon != null &amp;&amp; disabled}"
+            tools:src="@drawable/icon_generic_primary" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="0dp"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView19"
-            app:layout_constraintEnd_toStartOf="@+id/link"
-            app:layout_constraintStart_toEndOf="@+id/imageView19"
-            app:layout_constraintTop_toTopOf="@+id/imageView19">
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout1"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout1"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -235,42 +264,64 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/link"
+        <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_inset_sm"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="@{() -> clickLink.invoke(itemId)}"
-            android:text="@{linkText}"
-            android:textColor="@color/ocean_color_brand_primary_pure"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView9"
-            app:layout_constraintStart_toEndOf="@id/linearLayout2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:ocean_visible_or_gone="@{linkText != null}"
-            tools:text="Link" />
-
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/ocean_spacing_inset_sm"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/paddingEnd"
-            app:layout_constraintTop_toTopOf="parent"
-            app:ocean_visible_or_gone="@{arrowVisible}"
-            app:srcCompat="@drawable/icon_chevron_right" />
-
-        <Space
-            android:id="@+id/paddingEnd"
-            android:layout_width="@dimen/ocean_spacing_stack_xs"
-            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:ocean_visible_or_gone="@{withHorizontalPadding != null}" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                android:focusable="true"
+                android:onClick="@{() -> clickLink.invoke(itemId)}"
+                android:text="@{linkText}"
+                android:textColor="@color/ocean_color_brand_primary_pure"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView9"
+                app:layout_constraintStart_toEndOf="@id/linearLayout2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{linkText != null}"
+                tools:text="Link" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/paddingEnd"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{arrowVisible &amp;&amp; !disabled}"
+                app:srcCompat="@drawable/icon_chevron_right" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/paddingEnd"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"
+                app:ocean_visible_or_gone="@{arrowVisible &amp;&amp; disabled}"
+                app:srcCompat="@drawable/icon_lock" />
+
+            <Space
+                android:id="@+id/paddingEnd"
+                android:layout_width="@dimen/ocean_spacing_stack_xs"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{withHorizontalPadding != null}" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -33,6 +33,7 @@
                 app:arrowVisible="@{true}"
                 app:badgeTitle="@{@string/all_badge}"
                 app:badgeVisible="@{true}"
+                app:disabled="@{true}"
                 app:description="@{@string/all_description}"
                 app:icon="@{@drawable/icon_generic_primary}"
                 app:longClick="@{viewmodel::longClick}"

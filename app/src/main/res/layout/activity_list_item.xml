@@ -34,6 +34,7 @@
                 app:badgeTitle="@{@string/all_badge}"
                 app:badgeVisible="@{true}"
                 app:disabled="@{true}"
+                app:iconDisabled="@{@drawable/icon_generic_gray}"
                 app:description="@{@string/all_description}"
                 app:icon="@{@drawable/icon_generic_primary}"
                 app:longClick="@{viewmodel::longClick}"

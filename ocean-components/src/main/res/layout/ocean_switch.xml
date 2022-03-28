@@ -27,8 +27,8 @@
         android:gravity="center"
         android:thumb="@drawable/ocean_switch"
         android:padding="@dimen/ocean_spacing_inset_xxs"
-        android:checked="@{checked}"
-        android:onCheckedChanged="@{(switch, isChecked) -> click.invoke(isChecked)}"
+        app:isChecked="@{checked}"
+        app:setOnChecked="@{click}"
         app:showText="false"
         app:track="@drawable/ocean_switch_track"/>
 

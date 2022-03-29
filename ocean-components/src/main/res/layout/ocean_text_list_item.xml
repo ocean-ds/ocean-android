@@ -105,6 +105,14 @@
             name="disabled"
             type="Boolean" />
 
+        <variable
+            name="imageUrl"
+            type="String" />
+
+        <variable
+            name="placeHolder"
+            type="android.graphics.drawable.Drawable" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -124,52 +132,54 @@
             android:id="@+id/linearLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:orientation="horizontal">
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Space
-            android:id="@+id/paddingStart"
-            android:layout_width="@dimen/ocean_spacing_stack_xs"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:ocean_visible_or_gone="@{withHorizontalPadding != null}" />
+            <Space
+                android:id="@+id/paddingStart"
+                android:layout_width="@dimen/ocean_spacing_stack_xs"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{withHorizontalPadding != null}" />
 
-        <ImageView
-            android:id="@+id/imageView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@{icon}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-            app:layout_constraintStart_toEndOf="@id/paddingStart"
-            app:layout_constraintTop_toTopOf="parent"
-            app:ocean_visible_or_gone="@{icon != null &amp;&amp; !disabled}"
-            tools:src="@drawable/icon_generic_primary" />
+            <ImageView
+                android:id="@+id/imageView19"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@{imageUrl == null ? icon : null}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+                app:layout_constraintStart_toEndOf="@id/paddingStart"
+                app:layout_constraintTop_toTopOf="parent"
+                app:imageUrl="@{imageUrl}"
+                app:placeHolder="@{placeHolder}"
+                app:ocean_visible_or_gone="@{icon != null &amp;&amp; !disabled}"
+                tools:src="@drawable/icon_generic_primary" />
 
-        <ImageView
-            android:id="@+id/imageView20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@{iconDisabled}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-            app:layout_constraintStart_toEndOf="@id/paddingStart"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"
-            app:ocean_visible_or_gone="@{iconDisabled != null &amp;&amp; disabled}"
-            tools:src="@drawable/icon_generic_primary" />
+            <ImageView
+                android:id="@+id/imageView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{iconDisabled}"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+                app:layout_constraintStart_toEndOf="@id/paddingStart"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{iconDisabled != null &amp;&amp; disabled}"
+                tools:src="@drawable/icon_generic_primary" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
             android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout1"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
@@ -271,8 +281,8 @@
             android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -281,8 +291,8 @@
                 android:id="@+id/link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                android:clickable="true"
                 android:focusable="true"
                 android:onClick="@{() -> clickLink.invoke(itemId)}"
                 android:text="@{linkText}"
@@ -311,7 +321,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/paddingEnd"
                 app:layout_constraintTop_toTopOf="parent"
-                android:visibility="gone"
                 app:ocean_visible_or_gone="@{arrowVisible &amp;&amp; disabled}"
                 app:srcCompat="@drawable/icon_lock" />
 

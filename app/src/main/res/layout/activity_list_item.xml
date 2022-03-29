@@ -41,7 +41,7 @@
                 app:subtitle="@{@string/all_subtitle}"
                 app:title="@{@string/all_title}"
                 app:withClickEffect="@{true}"
-                app:withHorizontalPadding="@{true}" />
+                app:withHorizontalPadding="@{true}"/>
 
             <include layout="@layout/ocean_divider" />
 
@@ -183,6 +183,23 @@
                 app:icon="@{@drawable/icon_phone}"
                 app:title="@{@string/all_title}"
                 app:withClickEffect="@{true}" />
+
+            <include
+                layout="@layout/ocean_text_list_item"
+                app:arrowVisible="@{true}"
+                app:badgeTitle="@{@string/all_badge}"
+                app:badgeVisible="@{true}"
+                app:iconDisabled="@{@drawable/icon_generic_gray}"
+                app:description="@{@string/all_description}"
+                app:icon="@{@drawable/icon_generic_primary}"
+                app:longClick="@{viewmodel::longClick}"
+                app:subtitle="@{@string/all_subtitle}"
+                app:title="@{@string/all_title}"
+                app:withClickEffect="@{true}"
+                app:withHorizontalPadding="@{true}"
+                app:imageUrl="@{`https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png`}"/>
+
+            <include layout="@layout/ocean_divider" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

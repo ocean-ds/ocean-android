@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="android.view.View" />
+
+        <import type="kotlin.Unit" />
+
+        <import type="br.com.useblu.oceands.core.OceanParentTextItem" />
+
+        <variable
+            name="item"
+            type="OceanParentTextItem" />
+
+        <variable
+            name="clickIcon"
+            type="Function0&lt;Unit>" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.github.florent37.expansionpanel.ExpansionHeader
+            android:id="@+id/expansion_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:expansion_headerIndicator="@id/header_indicator"
+            app:expansion_layout="@id/expansion_layout"
+            app:expansion_toggleOnClick="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_expansion_header"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/ocean_color_interface_light_pure">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                    android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                    android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+                    android:background="@color/ocean_color_interface_light_up"
+                    android:focusable="true"
+                    android:src="@{item.icon}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/icon_generic_primary" />
+
+                <TextView
+                    android:id="@+id/text_view_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                    android:fontFamily="@font/font_family_base_medium"
+                    android:text="@{item.title}"
+                    android:textColor="@color/ocean_color_interface_dark_pure"
+                    android:textSize="@dimen/ocean_font_size_xs"
+                    app:layout_constraintBottom_toTopOf="@+id/text_view_description"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Title" />
+
+                <TextView
+                    android:id="@+id/text_view_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                    android:fontFamily="@font/font_family_base_bold"
+                    android:textColor="@color/ocean_color_brand_primary_down"
+                    android:textSize="@dimen/ocean_font_size_xxs"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/icon"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_header"
+                    app:ocean_text="@{item.subTitle}"
+                    tools:text="Description" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/ocean_color_interface_light_down"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_description" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.github.florent37.expansionpanel.ExpansionHeader>
+
+        <com.github.florent37.expansionpanel.ExpansionLayout
+            android:id="@+id/expansion_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_childrens"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </com.github.florent37.expansionpanel.ExpansionLayout>
+
+    </LinearLayout>
+</layout>

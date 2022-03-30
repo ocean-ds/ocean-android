@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="description"
+            type="String" />
+
+        <variable
+            name="clickIcon"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/expansion_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
+        android:background="@color/ocean_color_interface_light_pure"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/icon_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+            android:background="@color/ocean_color_interface_light_up"
+            android:focusable="true"
+            android:src="@{icon}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/icon_generic_primary" />
+
+        <TextView
+            android:id="@+id/text_view_header_item_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:fontFamily="@font/font_family_base_medium"
+            android:text="@{title}"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            android:textSize="@dimen/ocean_font_size_xs"
+            app:layout_constraintBottom_toTopOf="@+id/text_view_description_item_child"
+            app:layout_constraintEnd_toStartOf="@+id/swipe_item_child"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/icon_child"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/text_view_description_item_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:fontFamily="@font/font_family_base_bold"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            android:textSize="@dimen/ocean_font_size_xxs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/swipe_item_child"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/icon_child"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_header_item_child"
+            app:ocean_text="@{description}"
+            tools:text="Description" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/swipe_item_child"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+            android:adjustViewBounds="true"
+            android:onClick="@{() -> clickIcon.invoke()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_swipe"
+            app:tint="@color/ocean_color_interface_dark_deep"
+            tools:srcCompat="@drawable/icon_swipe" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

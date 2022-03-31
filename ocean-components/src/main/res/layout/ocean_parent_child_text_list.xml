@@ -44,7 +44,7 @@
                 android:background="@color/ocean_color_interface_light_pure">
 
                 <ImageView
-                    android:id="@+id/icon"
+                    android:id="@+id/image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
@@ -59,7 +59,7 @@
                     tools:src="@drawable/icon_generic_primary" />
 
                 <TextView
-                    android:id="@+id/text_view_header"
+                    android:id="@+id/title_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
@@ -67,15 +67,15 @@
                     android:text="@{item.title}"
                     android:textColor="@color/ocean_color_interface_dark_pure"
                     android:textSize="@dimen/ocean_font_size_xs"
-                    app:layout_constraintBottom_toTopOf="@+id/text_view_description"
+                    app:layout_constraintBottom_toTopOf="@+id/subtitle_text_view"
                     app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toEndOf="@id/icon"
+                    app:layout_constraintStart_toEndOf="@id/image"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed"
                     tools:text="Title" />
 
                 <TextView
-                    android:id="@+id/text_view_description"
+                    android:id="@+id/subtitle_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
@@ -84,8 +84,8 @@
                     android:textSize="@dimen/ocean_font_size_xxs"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toEndOf="@id/icon"
-                    app:layout_constraintTop_toBottomOf="@+id/text_view_header"
+                    app:layout_constraintStart_toEndOf="@id/image"
+                    app:layout_constraintTop_toBottomOf="@+id/title_text_view"
                     app:ocean_text="@{item.subTitle}"
                     tools:text="Description" />
 
@@ -97,7 +97,7 @@
                     android:background="@color/ocean_color_interface_light_down"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_description" />
+                    app:layout_constraintTop_toBottomOf="@id/subtitle_text_view" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -14,7 +14,7 @@
             type="String" />
 
         <variable
-            name="description"
+            name="subtitle"
             type="String" />
 
         <variable
@@ -22,13 +22,13 @@
             type="Function0&lt;Unit>" />
 
         <variable
-            name="icon"
+            name="image"
             type="android.graphics.drawable.Drawable" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/expansion_layout_container"
+        android:id="@+id/expansion_layout_child_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
@@ -36,7 +36,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/icon_child"
+            android:id="@+id/image_child"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
@@ -44,14 +44,14 @@
             android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
             android:background="@color/ocean_color_interface_light_up"
             android:focusable="true"
-            android:src="@{icon}"
+            android:src="@{image}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/icon_generic_primary" />
 
         <TextView
-            android:id="@+id/text_view_header_item_child"
+            android:id="@+id/title_item_child"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
@@ -59,16 +59,16 @@
             android:text="@{title}"
             android:textColor="@color/ocean_color_interface_dark_down"
             android:textSize="@dimen/ocean_font_size_xs"
-            app:layout_constraintBottom_toTopOf="@+id/text_view_description_item_child"
+            app:layout_constraintBottom_toTopOf="@+id/subtitle_item_child"
             app:layout_constraintEnd_toStartOf="@+id/swipe_item_child"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@id/icon_child"
+            app:layout_constraintStart_toEndOf="@id/image_child"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             tools:text="Title" />
 
         <TextView
-            android:id="@+id/text_view_description_item_child"
+            android:id="@+id/subtitle_item_child"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
@@ -78,9 +78,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/swipe_item_child"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@id/icon_child"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_header_item_child"
-            app:ocean_text="@{description}"
+            app:layout_constraintStart_toEndOf="@id/image_child"
+            app:layout_constraintTop_toBottomOf="@+id/title_item_child"
+            app:ocean_text="@{subtitle}"
             tools:text="Description" />
 
         <androidx.appcompat.widget.AppCompatImageView

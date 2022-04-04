@@ -5,5 +5,5 @@ ext {
     buildToolsVersion = '30.0.1'
 
     gradleBuildToolsVersion = '4.0.1'
-    kotlinVersion = "1.5.30"
+    kotlinVersion = "1.6.20"
 }

@@ -31,10 +31,7 @@
 
             <include
                 layout="@layout/ocean_parent_child_text_list"
-                app:title="@{@string/all_title}"
-                app:description="@{@string/all_description}"
-                app:icon="@{@drawable/icon_phone}"
-                app:iconChild="@{@drawable/icon_phone}" />
+                app:item="@{viewmodel.parent}"/>
 
         </LinearLayout>
     </ScrollView>

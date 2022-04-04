@@ -2,6 +2,7 @@ package br.com.useblu.oceands.client.ui.parentchildtextlist
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
@@ -18,5 +19,8 @@ class ParentChildTextListActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this)[ParentChildTextListViewModel::class.java]
         binding.viewmodel = viewModel
+
+        viewModel.loadData(ContextCompat.getDrawable(this,R.drawable.icon_generic_primary))
+
     }
 }

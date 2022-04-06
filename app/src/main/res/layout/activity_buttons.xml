@@ -198,6 +198,39 @@
                 app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
 
             <include
+                layout="@layout/ocean_button_secondary_critical_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("Secondary CriticalSmall") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_critical_16dp : null}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
+
+            <include
+                layout="@layout/ocean_button_secondary_critical_md"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("Secondary CriticalMedium") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_critical_24dp : null}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
+
+            <include
+                layout="@layout/ocean_button_secondary_critical_lg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                android:text='@{(viewmodel.buttonType + " " + viewmodel.buttonSize)}'
+                android:visibility='@{(viewmodel.buttonType + viewmodel.buttonSize).equals("Secondary CriticalLarge") ? View.VISIBLE : View.GONE}'
+                app:disabled='@{viewmodel.buttonState.equals("Disabled")}'
+                app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_critical_24dp : null}'
+                app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
+
+            <include
                 layout="@layout/ocean_button_primary_inverse_sm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

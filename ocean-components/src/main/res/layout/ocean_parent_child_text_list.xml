@@ -101,8 +101,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_chevron_down_blue"
-                    app:tint="@color/ocean_color_brand_primary_down"/>
+                    app:srcCompat="@drawable/icon_chevron_down_solid"
+                    app:tint="@color/ocean_color_interface_dark_down"/>
 
                 <View
                     android:id="@+id/divider1"

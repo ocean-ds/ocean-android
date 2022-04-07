@@ -6,13 +6,16 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.ItemParentTextListBinding
+import io.sulek.ssml.OnSwipeListener
+import io.sulek.ssml.SSMLLinearLayoutManager
 
 @BindingAdapter("app:setChildren")
 fun setInflateChildren(recyclerView: RecyclerView, children: List<OceanChildTextItem>?) {
 
     children?.let {
         recyclerView.adapter=ChildrenAdapter(it)
-        recyclerView.layoutManager=LinearLayoutManager(recyclerView.context)
+//        recyclerView.layoutManager=LinearLayoutManager(recyclerView.context)
+        recyclerView.layoutManager = SSMLLinearLayoutManager(recyclerView.context)
     }
 }
 
@@ -27,6 +30,7 @@ class ChildrenAdapter(val list: List<OceanChildTextItem>): RecyclerView.Adapter<
     override fun onBindViewHolder(holder: ChildrenViewHolder, position: Int) {
         val item = list[position]
         holder.bind(item)
+        holder.setOceanChildTextItem(list[position])
     }
 
     override fun getItemCount(): Int {
@@ -36,9 +40,19 @@ class ChildrenAdapter(val list: List<OceanChildTextItem>): RecyclerView.Adapter<
     class ChildrenViewHolder(val binding: ItemParentTextListBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: OceanChildTextItem) {
-            binding.item=item
+            binding.item = item
             binding.executePendingBindings()
         }
-    }
 
+        fun setOceanChildTextItem(oceanChildTextItem: OceanChildTextItem) {
+            binding.swipeContainer.setOnSwipeListener(object : OnSwipeListener {
+                override fun onSwipe(isExpanded: Boolean) {
+                    oceanChildTextItem.isExpanded = isExpanded
+                }
+            })
+
+            binding.swipeContainer.apply(oceanChildTextItem.isExpanded)
+
+        }
+    }
 }

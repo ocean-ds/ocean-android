@@ -100,6 +100,7 @@ dependencies {
     api 'me.relex:circleindicator:2.1.6'
     api 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.4'
     api 'com.github.florent37:expansionpanel:1.2.4'
+    api 'io.sulek.ssml:simpleswipemenulayout:1.0.4'
 
     embed project(path: ':ocean-tokens')
 }

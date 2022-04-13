@@ -6,7 +6,7 @@
 
     <data>
 
-        <import type="kotlin.jvm.functions.Function0" />
+        <import type="kotlin.jvm.functions.Function1" />
 
         <import type="android.view.View" />
 
@@ -19,8 +19,8 @@
             type="OceanParentTextItem" />
 
         <variable
-            name="clickIcon"
-            type="Function0&lt;Unit>" />
+            name="clickSubItem"
+            type="Function1&lt;Integer,Unit>" />
 
     </data>
 
@@ -127,7 +127,8 @@
                 android:id="@+id/recycler_childrens"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:setChildren="@{item.children}"/>
+                app:setChildren="@{item.children}"
+                app:clickItem="@{clickSubItem}"/>
 
         </com.github.florent37.expansionpanel.ExpansionLayout>
 

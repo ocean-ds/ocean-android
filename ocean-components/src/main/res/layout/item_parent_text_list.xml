@@ -14,7 +14,19 @@
             type="br.com.useblu.oceands.core.OceanChildTextItem" />
 
         <variable
+            name="position"
+            type="Integer" />
+
+        <variable
             name="clickIcon"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="longClick"
             type="Function0&lt;Unit>" />
 
     </data>
@@ -23,6 +35,9 @@
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> click.invoke()}"
+        android:clickable="true"
+        android:focusable="true"
         app:dynamicMenuWidth="true"
         app:menuSide="Left">
 
@@ -36,6 +51,7 @@
                 android:id="@+id/editButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:onClick="@{() -> clickIcon.invoke()}"
                 android:background="@color/ocean_color_interface_dark_up"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -65,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:onClick="@{() -> clickIcon.invoke()}"
                 android:background="@color/ocean_color_status_negative_pure"
                 android:orientation="vertical">
 

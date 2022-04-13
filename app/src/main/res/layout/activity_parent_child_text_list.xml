@@ -31,7 +31,8 @@
 
             <include
                 layout="@layout/ocean_parent_child_text_list"
-                app:item="@{viewmodel.parent}"/>
+                app:item="@{viewmodel.parent}"
+                app:clickSubItem="@{viewmodel::click}"/>
 
         </LinearLayout>
     </ScrollView>

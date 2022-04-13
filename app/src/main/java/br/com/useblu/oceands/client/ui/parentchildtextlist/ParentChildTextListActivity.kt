@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.client.ui.parentchildtextlist
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -21,6 +22,18 @@ class ParentChildTextListActivity : AppCompatActivity() {
         binding.viewmodel = viewModel
 
         viewModel.loadData(ContextCompat.getDrawable(this,R.drawable.icon_generic_primary))
+        initObservers()
+
+    }
+
+    private fun initObservers() {
+        viewModel.clickedItem.observe(this) {
+            Toast.makeText(this, "Clicked item id: $it", Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.longClickPressed.observe(this) {
+            Toast.makeText(this, "Long click pressed", Toast.LENGTH_SHORT).show()
+        }
 
     }
 }

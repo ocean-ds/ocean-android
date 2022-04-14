@@ -32,7 +32,10 @@
             <include
                 layout="@layout/ocean_parent_child_text_list"
                 app:item="@{viewmodel.parent}"
-                app:clickSubItem="@{viewmodel::click}"/>
+                app:clickSubItem="@{viewmodel::click}"
+                app:clickEditButton="@{viewmodel::clickEditButton}"
+                app:clickDeleteButton="@{viewmodel::clickDeleteButton}"
+                app:onLongClickPressed="@{viewmodel::longClick}"/>
 
         </LinearLayout>
     </ScrollView>

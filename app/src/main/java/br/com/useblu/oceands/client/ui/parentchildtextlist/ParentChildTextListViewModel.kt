@@ -12,11 +12,11 @@ class ParentChildTextListViewModel : ViewModel() {
 
     val parent = MutableLiveData<OceanParentTextItem>()
 
-    private val _clickedItem: MutableLiveData<Int> = MutableLiveData()
-    val clickedItem: LiveData<Int> get() = _clickedItem
-
-    private val _longClickPressed: MutableLiveData<Boolean> = MutableLiveData()
-    val longClickPressed: LiveData<Boolean> get() = _longClickPressed
+//    private val _clickedItem: MutableLiveData<Int> = MutableLiveData()
+//    val clickedItem: LiveData<Int> get() = _clickedItem
+//
+//    private val _longClickPressed: MutableLiveData<Boolean> = MutableLiveData()
+//    val longClickPressed: LiveData<Boolean> get() = _longClickPressed
 
     fun loadData(drawable: Drawable?) {
         parent.postValue(
@@ -34,11 +34,19 @@ class ParentChildTextListViewModel : ViewModel() {
 
     fun click(position: Int) {
         Log.e("teste", "teste de click $position")
-//        _clickedItem.postValue()
     }
 
-    fun longClick() {
-        _longClickPressed.postValue(true)
+    fun clickEditButton(position: Int) {
+        Log.e("teste", "Teste click botão Editar" )
+    }
+
+    fun clickDeleteButton(position: Int) {
+        Log.e("teste", "Teste click botão Excluir" )
+    }
+
+    fun longClick(position: Int) {
+        Log.e("teste", "Teste click botão Excluir" )
+//        _longClickPressed.postValue(true)
     }
 
 

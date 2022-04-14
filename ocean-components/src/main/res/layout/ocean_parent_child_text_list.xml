@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="kotlin.jvm.functions.Function0" />
+
         <import type="kotlin.jvm.functions.Function1" />
 
         <import type="android.view.View" />
@@ -21,6 +23,18 @@
         <variable
             name="clickSubItem"
             type="Function1&lt;Integer,Unit>" />
+
+        <variable
+            name="clickEditButton"
+            type="Function1&lt;Integer,Unit>"  />
+
+        <variable
+            name="clickDeleteButton"
+            type="Function1&lt;Integer,Unit>"  />
+
+        <variable
+            name="longClick"
+            type="Function0&lt;Unit>"/>
 
     </data>
 
@@ -128,7 +142,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:setChildren="@{item.children}"
-                app:clickItem="@{clickSubItem}"/>
+                app:clickItem="@{clickSubItem}"
+                app:clickEdit="@{clickEditButton}"
+                app:clickDelete="@{clickDeleteButton}"
+                app:onLongClickPressed="@{longClick}"/>
 
         </com.github.florent37.expansionpanel.ExpansionLayout>
 

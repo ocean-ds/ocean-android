@@ -7,6 +7,8 @@
 
         <import type="kotlin.jvm.functions.Function0" />
 
+        <import type="kotlin.jvm.functions.Function1" />
+
         <import type="kotlin.Unit" />
 
         <variable
@@ -18,16 +20,24 @@
             type="Integer" />
 
         <variable
-            name="clickIcon"
-            type="Function0&lt;Unit>" />
+            name="click"
+            type="Function0&lt;Unit>"/>
 
         <variable
-            name="click"
-            type="Function0&lt;Unit>" />
+            name="clickButton"
+            type="Function0&lt;Unit>"/>
+
+        <variable
+            name="clickEditButton"
+            type="Function0&lt;Unit>"/>
+
+        <variable
+            name="clickDeleteButton"
+            type="Function0&lt;Unit>"/>
 
         <variable
             name="longClick"
-            type="Function0&lt;Unit>" />
+            type="Function0&lt;Unit>"/>
 
     </data>
 
@@ -36,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> click.invoke()}"
+        app:onLongClickPressed="@{() -> longClick}"
         android:clickable="true"
         android:focusable="true"
         app:dynamicMenuWidth="true"
@@ -51,7 +62,7 @@
                 android:id="@+id/editButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> clickIcon.invoke()}"
+                android:onClick="@{() -> clickEditButton.invoke()}"
                 android:background="@color/ocean_color_interface_dark_up"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -81,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:onClick="@{() -> clickIcon.invoke()}"
+                android:onClick="@{() -> clickDeleteButton.invoke()}"
                 android:background="@color/ocean_color_status_negative_pure"
                 android:orientation="vertical">
 
@@ -169,7 +180,7 @@
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                 android:adjustViewBounds="true"
-                android:onClick="@{() -> clickIcon.invoke()}"
+                android:onClick="@{() -> clickButton.invoke()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

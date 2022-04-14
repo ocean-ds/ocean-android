@@ -22,18 +22,18 @@ class ParentChildTextListActivity : AppCompatActivity() {
         binding.viewmodel = viewModel
 
         viewModel.loadData(ContextCompat.getDrawable(this,R.drawable.icon_generic_primary))
-        initObservers()
+ //       initObservers()
 
     }
 
-    private fun initObservers() {
-        viewModel.clickedItem.observe(this) {
-            Toast.makeText(this, "Clicked item id: $it", Toast.LENGTH_SHORT).show()
-        }
-
-        viewModel.longClickPressed.observe(this) {
-            Toast.makeText(this, "Long click pressed", Toast.LENGTH_SHORT).show()
-        }
-
-    }
+//    private fun initObservers() {
+//        viewModel.clickedItem.observe(this) {
+//            Toast.makeText(this, "Clicked item id: $it", Toast.LENGTH_SHORT).show()
+//        }
+//
+//        viewModel.longClickPressed.observe(this) {
+//            Toast.makeText(this, "Long click pressed", Toast.LENGTH_SHORT).show()
+//        }
+//
+//    }
 }

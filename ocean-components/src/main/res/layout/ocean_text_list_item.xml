@@ -58,10 +58,6 @@
             type="android.graphics.drawable.Drawable" />
 
         <variable
-            name="iconDisabled"
-            type="android.graphics.drawable.Drawable" />
-
-        <variable
             name="click"
             type="Function0&lt;Unit>" />
 
@@ -150,28 +146,27 @@
                 android:id="@+id/imageView19"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@{imageUrl == null ? icon : null}"
+                app:imageUrl="@{imageUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
                 app:layout_constraintStart_toEndOf="@id/paddingStart"
                 app:layout_constraintTop_toTopOf="parent"
-                app:imageUrl="@{imageUrl}"
+                app:ocean_visible_or_gone="@{imageUrl != null &amp;&amp; icon == null}"
                 app:placeHolder="@{placeHolder}"
-                app:ocean_visible_or_gone="@{icon != null &amp;&amp; !disabled}"
                 tools:src="@drawable/icon_generic_primary" />
 
             <ImageView
                 android:id="@+id/imageView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@{iconDisabled}"
-                android:visibility="gone"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@{icon}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
                 app:layout_constraintStart_toEndOf="@id/paddingStart"
                 app:layout_constraintTop_toTopOf="parent"
-                app:ocean_visible_or_gone="@{iconDisabled != null &amp;&amp; disabled}"
-                tools:src="@drawable/icon_generic_primary" />
+                app:ocean_visible_or_gone="@{icon != null &amp;&amp; imageUrl == null }"
+                tools:src="@drawable/icon_generic_primary"
+                tools:visibility="gone"/>
         </LinearLayout>
 
         <LinearLayout
@@ -265,7 +260,7 @@
                 android:id="@+id/linear_layout_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
+                android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
                 app:ocean_visible_or_gone="@{tagTitle != null}">
 
                 <include

@@ -11,6 +11,10 @@
         android:title="Secondary" />
 
     <item
+        android:id="@+id/toggle_type_secondary_critical"
+        android:title="Secondary Critical" />
+
+    <item
         android:id="@+id/toggle_type_inverse"
         android:title="Inverse"/>
 

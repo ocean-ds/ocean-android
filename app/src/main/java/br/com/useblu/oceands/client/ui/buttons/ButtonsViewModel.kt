@@ -35,6 +35,9 @@ class ButtonsViewModel : ViewModel() {
             "Secondary" -> {
                 _backgroundColorId.value = R.color.ocean_color_interface_light_deep
             }
+            "Secondary Critical" -> {
+                _backgroundColorId.value = R.color.ocean_color_interface_light_deep
+            }
             "Inverse" -> {
                 _backgroundColorId.value = R.color.ocean_color_brand_primary_pure
             }

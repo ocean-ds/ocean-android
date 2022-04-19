@@ -35,7 +35,7 @@
                 app:clickSubItem="@{viewmodel::click}"
                 app:clickEditButton="@{viewmodel::clickEditButton}"
                 app:clickDeleteButton="@{viewmodel::clickDeleteButton}"
-                app:onLongClickPressed="@{viewmodel::longClick}"/>
+                app:longClick="@{viewmodel::longClick}"/>
 
         </LinearLayout>
     </ScrollView>

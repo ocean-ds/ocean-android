@@ -35,10 +35,6 @@
             name="clickDeleteButton"
             type="Function0&lt;Unit>"/>
 
-        <variable
-            name="longClick"
-            type="Function0&lt;Unit>"/>
-
     </data>
 
     <io.sulek.ssml.SimpleSwipeMenuLayout
@@ -46,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> click.invoke()}"
-        app:onLongClickPressed="@{() -> longClick}"
+        android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         app:dynamicMenuWidth="true"
@@ -63,6 +59,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:onClick="@{() -> clickEditButton.invoke()}"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:background="@color/ocean_color_interface_dark_up"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -93,6 +92,9 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:onClick="@{() -> clickDeleteButton.invoke()}"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:background="@color/ocean_color_status_negative_pure"
                 android:orientation="vertical">
 

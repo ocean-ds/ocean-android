@@ -34,7 +34,7 @@
 
         <variable
             name="longClick"
-            type="Function0&lt;Unit>"/>
+            type="Function1&lt;Integer,Unit>"/>
 
     </data>
 
@@ -145,7 +145,7 @@
                 app:clickItem="@{clickSubItem}"
                 app:clickEdit="@{clickEditButton}"
                 app:clickDelete="@{clickDeleteButton}"
-                app:onLongClickPressed="@{longClick}"/>
+                app:longClickItem="@{longClick}"/>
 
         </com.github.florent37.expansionpanel.ExpansionLayout>
 

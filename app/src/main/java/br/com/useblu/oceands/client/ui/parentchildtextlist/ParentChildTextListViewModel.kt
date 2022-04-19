@@ -12,11 +12,8 @@ class ParentChildTextListViewModel : ViewModel() {
 
     val parent = MutableLiveData<OceanParentTextItem>()
 
-//    private val _clickedItem: MutableLiveData<Int> = MutableLiveData()
-//    val clickedItem: LiveData<Int> get() = _clickedItem
-//
-//    private val _longClickPressed: MutableLiveData<Boolean> = MutableLiveData()
-//    val longClickPressed: LiveData<Boolean> get() = _longClickPressed
+    private val _longClickPressed: MutableLiveData<Boolean> = MutableLiveData()
+    val longClickPressed: LiveData<Boolean> get() = _longClickPressed
 
     fun loadData(drawable: Drawable?) {
         parent.postValue(
@@ -37,17 +34,14 @@ class ParentChildTextListViewModel : ViewModel() {
     }
 
     fun clickEditButton(position: Int) {
-        Log.e("teste", "Teste click botão Editar" )
+        Log.e("teste", "Teste click botão Editar")
     }
 
     fun clickDeleteButton(position: Int) {
-        Log.e("teste", "Teste click botão Excluir" )
+        Log.e("teste", "Teste click botão Excluir")
     }
 
     fun longClick(position: Int) {
-        Log.e("teste", "Teste click botão Excluir" )
-//        _longClickPressed.postValue(true)
+        _longClickPressed.postValue(true)
     }
-
-
 }

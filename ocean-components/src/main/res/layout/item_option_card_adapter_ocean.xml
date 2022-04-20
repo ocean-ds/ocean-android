@@ -31,7 +31,7 @@
         android:clickable="true"
         android:focusable="true"
         android:minWidth="200dp"
-        app:cardBackgroundColor="@color/ocean_option_card_color"
+        app:cardBackgroundColor="@{selected ? @color/ocean_color_interface_light_up : @color/ocean_color_interface_light_pure}"
         app:cardCornerRadius="@dimen/ocean_border_radius_md"
         app:cardElevation="@dimen/shadow_level_1"
         app:rippleColor="@color/ocean_color_interface_light_down"

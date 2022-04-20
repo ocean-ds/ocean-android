@@ -2,9 +2,12 @@ package br.com.useblu.oceands.core
 
 import android.annotation.SuppressLint
 import android.view.MotionEvent
+import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 
@@ -45,30 +48,12 @@ fun setTitleAndSubtitle(
 }
 
 @SuppressLint("ClickableViewAccessibility")
-@BindingAdapter("app:ocean_animation_blocked", "app:ocean_options_card_size")
+@BindingAdapter("app:ocean_animation_blocked")
 fun setAnimationBlocked(
-    view: AppCompatRadioButton,
-    disabled: Boolean,
-    size: OptionsCardSize
+    view: View,
+    disabled: Boolean
 ) {
     view.isEnabled = true
-
-    if (disabled) {
-        when (size) {
-            OptionsCardSize.SM -> {
-                view.background = ContextCompat.getDrawable(
-                    view.context,
-                    R.drawable.ocean_options_card_background_sm_disabled
-                )
-            }
-            OptionsCardSize.MD -> {
-                view.background = ContextCompat.getDrawable(
-                    view.context,
-                    R.drawable.ocean_options_card_background_md_disabled
-                )
-            }
-        }
-    }
 
     view.setOnTouchListener { _, event ->
         if (event.action == MotionEvent.ACTION_DOWN && disabled) {
@@ -80,6 +65,15 @@ fun setAnimationBlocked(
     }
 }
 
-enum class OptionsCardSize {
-    SM, MD
+@BindingAdapter("app:colorTagRecommend")
+fun setColor(view: LinearLayout, color: Int?) {
+    val unwrappedDrawable =
+        ContextCompat.getDrawable(view.context, R.drawable.ocean_tag_recommend_default)
+    unwrappedDrawable?.let { drawable ->
+        val wrappedDrawable = DrawableCompat.wrap(drawable)
+        color?.let { color ->
+            DrawableCompat.setTint(wrappedDrawable, color)
+            view.background = wrappedDrawable
+        }
+    }
 }

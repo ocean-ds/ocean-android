@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="color"
+            type="Integer" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/container_tag_recommend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ocean_tag_recommend_default"
+        app:colorTagRecommend="@{color}"
+        android:gravity="center"
+        android:padding="@dimen/ocean_spacing_inline_xxs"
+        tools:background="@drawable/ocean_tag_recommend_default">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_family_base_extrabold"
+            android:text="@{title}"
+            android:textColor="@color/ocean_color_interface_light_pure"
+            android:textSize="@dimen/ocean_font_size_xxxs"
+            tools:text="Tag Sample" />
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/ocean_color_interface_light_down" android:state_enabled="false" />
+    <item android:color="@color/ocean_color_brand_primary_up" android:state_pressed="true" />
+    <item android:color="@color/ocean_color_brand_primary_up" android:state_checkable="true" />
+    <item android:color="@color/ocean_color_interface_light_down" />
+</selector>

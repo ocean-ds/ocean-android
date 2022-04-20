@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -67,6 +68,13 @@ class OceanOptionsCardAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onItemSelected(oceanOption: OceanOptionCardItem, position: Int) {
+        selectedItem.invoke(oceanOption)
+        selectedItemPosition = position
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int = items.size
 
     inner class OceanOptionCardViewHolder(
@@ -77,8 +85,7 @@ class OceanOptionsCardAdapter(
             itemBinding.item = oceanOption
             itemBinding.selected = position == selectedItemPosition
             itemBinding.cardView.setOnClickListener {
-                selectedItem.invoke(oceanOption)
-                selectedItemPosition = position
+                onItemSelected(oceanOption, position)
             }
             itemBinding.executePendingBindings()
         }
@@ -88,12 +95,12 @@ class OceanOptionsCardAdapter(
         private val itemBinding: ItemOptionCardDisabledAdapterOceanBinding
     ) : RecyclerView.ViewHolder(itemBinding.root) {
 
+        @SuppressLint("NotifyDataSetChanged")
         fun bindView(oceanOption: OceanOptionCardItem, position: Int) {
             itemBinding.item = oceanOption
             itemBinding.selected = position == selectedItemPosition
             itemBinding.cardView.setOnClickListener {
-                selectedItem.invoke(oceanOption)
-                selectedItemPosition = position
+                onItemSelected(oceanOption, position)
             }
             itemBinding.executePendingBindings()
         }

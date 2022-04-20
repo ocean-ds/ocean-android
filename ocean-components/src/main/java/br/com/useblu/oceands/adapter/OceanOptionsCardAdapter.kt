@@ -82,12 +82,13 @@ class OceanOptionsCardAdapter(
     ) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bindView(oceanOption: OceanOptionCardItem, position: Int) {
-            itemBinding.item = oceanOption
-            itemBinding.selected = position == selectedItemPosition
-            itemBinding.cardView.setOnClickListener {
-                onItemSelected(oceanOption, position)
+            itemBinding.run {
+                item = oceanOption
+                selected = position == selectedItemPosition
+                cardView.setOnClickListener {
+                    onItemSelected(oceanOption, position)
+                }
             }
-            itemBinding.executePendingBindings()
         }
     }
 
@@ -97,12 +98,13 @@ class OceanOptionsCardAdapter(
 
         @SuppressLint("NotifyDataSetChanged")
         fun bindView(oceanOption: OceanOptionCardItem, position: Int) {
-            itemBinding.item = oceanOption
-            itemBinding.selected = position == selectedItemPosition
-            itemBinding.cardView.setOnClickListener {
-                onItemSelected(oceanOption, position)
+            itemBinding.run {
+                item = oceanOption
+                selected = position == selectedItemPosition
+                cardView.setOnClickListener {
+                    onItemSelected(oceanOption, position)
+                }
             }
-            itemBinding.executePendingBindings()
         }
     }
 }

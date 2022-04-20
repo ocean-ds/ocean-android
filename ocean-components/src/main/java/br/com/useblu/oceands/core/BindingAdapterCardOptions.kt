@@ -2,11 +2,13 @@ package br.com.useblu.oceands.core
 
 import android.annotation.SuppressLint
 import android.view.MotionEvent
+import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
+import com.google.android.material.card.MaterialCardView
 
 
 @BindingAdapter("app:ocean_title", "app:ocean_subtitle", "app:ocean_disabled")
@@ -45,30 +47,12 @@ fun setTitleAndSubtitle(
 }
 
 @SuppressLint("ClickableViewAccessibility")
-@BindingAdapter("app:ocean_animation_blocked", "app:ocean_options_card_size")
+@BindingAdapter("app:ocean_animation_blocked")
 fun setAnimationBlocked(
-    view: AppCompatRadioButton,
-    disabled: Boolean,
-    size: OptionsCardSize
+    view: View,
+    disabled: Boolean
 ) {
     view.isEnabled = true
-
-    if (disabled) {
-        when (size) {
-            OptionsCardSize.SM -> {
-                view.background = ContextCompat.getDrawable(
-                    view.context,
-                    R.drawable.ocean_options_card_background_sm_disabled
-                )
-            }
-            OptionsCardSize.MD -> {
-                view.background = ContextCompat.getDrawable(
-                    view.context,
-                    R.drawable.ocean_options_card_background_md_disabled
-                )
-            }
-        }
-    }
 
     view.setOnTouchListener { _, event ->
         if (event.action == MotionEvent.ACTION_DOWN && disabled) {
@@ -78,8 +62,4 @@ fun setAnimationBlocked(
         }
         false
     }
-}
-
-enum class OptionsCardSize {
-    SM, MD
 }

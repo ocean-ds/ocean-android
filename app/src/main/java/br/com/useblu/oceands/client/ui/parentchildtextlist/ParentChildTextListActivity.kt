@@ -27,8 +27,8 @@ class ParentChildTextListActivity : AppCompatActivity() {
 
     private fun initObservers() {
 
-        viewModel.longClickPressed.observe(this) {
-            Toast.makeText(this, "Long click pressed", Toast.LENGTH_SHORT).show()
+        viewModel.showMessage.observe(this) { message ->
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
     }
 }

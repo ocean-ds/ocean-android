@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.useblu.oceands.core.dp
 import br.com.useblu.oceands.databinding.ItemOptionCardAdapterOceanBinding
 import br.com.useblu.oceands.databinding.ItemOptionCardDisabledAdapterOceanBinding
 
@@ -70,9 +71,11 @@ class OceanOptionsCardAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     private fun onItemSelected(oceanOption: OceanOptionCardItem, position: Int) {
-        selectedItem.invoke(oceanOption)
-        selectedItemPosition = position
-        notifyDataSetChanged()
+        if (oceanOption.disabled.not()) {
+            selectedItem.invoke(oceanOption)
+            selectedItemPosition = position
+            notifyDataSetChanged()
+        }
     }
 
     override fun getItemCount(): Int = items.size
@@ -115,6 +118,7 @@ enum class OptionsCardState {
 
 data class OceanOptionCardItem(
     val icon: Drawable? = null,
+    val heightSize: OceanOptionCardSize = OceanOptionCardSize.MEDIUM,
     val title: String? = "",
     val subTitle: String? = "",
     val disabled: Boolean = false,
@@ -122,3 +126,7 @@ data class OceanOptionCardItem(
     val recommendColor: Int? = null,
     val recommendDescription: String? = "",
 )
+
+enum class OceanOptionCardSize(val size: Int = 0) {
+    SMALL(64.dp), MEDIUM(96.dp), LARGE(180.dp)
+}

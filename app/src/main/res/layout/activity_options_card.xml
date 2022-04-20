@@ -29,7 +29,7 @@
             android:paddingVertical="@dimen/ocean_spacing_inline_xs">
 
             <include
-                layout="@layout/ocean_options_card_sm"
+                layout="@layout/ocean_options_card"
                 app:items="@{viewmodel.fakeOptions}"
                 app:itemSelect="@{viewmodel::itemSelectClick}"/>
 

@@ -50,6 +50,7 @@
                     android:layout_height="40dp"
                     android:layout_marginStart="24dp"
                     app:imageUrl="@{item.icon}"
+                    app:ocean_visible_or_gone="@{item.icon != null}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

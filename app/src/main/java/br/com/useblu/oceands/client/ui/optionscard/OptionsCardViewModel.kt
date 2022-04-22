@@ -16,8 +16,8 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
                 subName = "bbbbb"
             ),
             icon = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
-            title = "Title 1",
-            subTitle = "Subtitle 1",
+            title = "PagBlu",
+            subTitle = "Economize até 10% usando saldo futuro sem taxa de antecipação",
             disabled = false,
             recommend = false,
         ),
@@ -27,8 +27,8 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
                 subName = "bbbbb"
             ),
             icon = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
-            title = "Title 2",
-            subTitle = "Subtitle 2",
+            title = "PagBlu com prazo",
+            subTitle = "Pague em 05/12/2021 com saldo futuro sem taxa de antecipação",
             disabled = true
         ),
         OceanOptionCardItem(

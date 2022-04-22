@@ -1,7 +1,6 @@
 package br.com.useblu.oceands.core
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.InputType
 import android.util.TypedValue
@@ -172,6 +171,13 @@ fun loadImage(view: ImageView, url: String?, placeHolder: Drawable? = null) {
         if (placeHolder != null) {
             view.setImageDrawable(placeHolder)
         }
+    }
+}
+
+@BindingAdapter("imageUrl")
+fun loadImage(view: ImageView, url: String?) {
+    if (url.isNullOrEmpty().not()) {
+        Glide.with(view.context).load(url).into(view)
     }
 }
 

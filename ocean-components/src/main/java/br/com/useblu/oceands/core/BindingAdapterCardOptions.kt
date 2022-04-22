@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.core
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -29,13 +30,13 @@ fun setAnimationBlocked(
 }
 
 @BindingAdapter("app:colorTagRecommend")
-fun setColor(view: LinearLayout, color: Int?) {
+fun setColor(view: LinearLayout, color: String?) {
     val unwrappedDrawable =
         ContextCompat.getDrawable(view.context, R.drawable.ocean_tag_recommend_default)
     unwrappedDrawable?.let { drawable ->
         val wrappedDrawable = DrawableCompat.wrap(drawable)
         color?.let { color ->
-            DrawableCompat.setTint(wrappedDrawable, color)
+            DrawableCompat.setTint(wrappedDrawable, Color.parseColor(color))
             view.background = wrappedDrawable
         }
     }

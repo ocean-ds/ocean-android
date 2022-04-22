@@ -165,7 +165,7 @@ fun setFormatTypeCurrency(
 }
 
 @BindingAdapter("imageUrl", "placeHolder")
-fun loadImage(view: ImageView, url: String?, placeHolder: Drawable?) {
+fun loadImage(view: ImageView, url: String?, placeHolder: Drawable? = null) {
     if (url.isNullOrEmpty().not()) {
         Glide.with(view.context).load(url).placeholder(placeHolder).into(view)
     } else {

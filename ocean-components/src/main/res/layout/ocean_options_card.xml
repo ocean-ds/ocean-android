@@ -33,5 +33,6 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:options="@{items}"
         app:selectedItem="@{itemSelect}"
-        tools:listitem="@layout/item_option_card_adapter_ocean" />
+        tools:listitem="@layout/item_option_card_adapter_ocean"
+        tools:itemCount="3"/>
 </layout>

@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.core
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.InputType
 import android.util.TypedValue
@@ -168,7 +169,7 @@ fun loadImage(view: ImageView, url: String?, placeHolder: Drawable?) {
     if (url.isNullOrEmpty().not()) {
         Glide.with(view.context).load(url).placeholder(placeHolder).into(view)
     } else {
-        if(placeHolder != null) {
+        if (placeHolder != null) {
             view.setImageDrawable(placeHolder)
         }
     }
@@ -273,4 +274,11 @@ fun setCustomMarginStart(view: View, margin: Int) {
 @BindingAdapter("app:customMinHeight")
 fun setCustomMinHeight(constraintLayout: ConstraintLayout, minHeight: Float) {
     constraintLayout.minHeight = minHeight.toInt()
+}
+
+@BindingAdapter("app:layout_height")
+fun setLayoutHeight(view: View, height: Int) {
+    val layoutParams: ViewGroup.LayoutParams = view.layoutParams
+    layoutParams.height = height
+    view.layoutParams = layoutParams
 }

@@ -71,11 +71,9 @@ class OceanOptionsCardAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     private fun onItemSelected(oceanOption: OceanOptionCardItem, position: Int) {
-        if (oceanOption.disabled.not()) {
-            selectedItem.invoke(oceanOption)
-            selectedItemPosition = position
-            notifyDataSetChanged()
-        }
+        selectedItem.invoke(oceanOption)
+        selectedItemPosition = position
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = items.size
@@ -117,6 +115,7 @@ enum class OptionsCardState {
 }
 
 data class OceanOptionCardItem(
+    val data: Any,
     val icon: Drawable? = null,
     val heightSize: OceanOptionCardSize = OceanOptionCardSize.MEDIUM,
     val title: String? = "",

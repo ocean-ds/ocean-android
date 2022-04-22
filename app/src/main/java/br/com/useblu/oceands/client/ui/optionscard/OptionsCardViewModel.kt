@@ -1,7 +1,6 @@
 package br.com.useblu.oceands.client.ui.optionscard
 
 import android.app.Application
-import android.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import br.com.useblu.oceands.R
@@ -11,6 +10,10 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
 
     val fakeOptions = listOf(
         OceanOptionCardItem(
+            data = SampleData(
+                name = "aaa",
+                subName = "bbbbb"
+            ),
             icon = ContextCompat.getDrawable(
                 getApplication<Application>(), R.drawable.icon_generic_primary
             ),
@@ -20,6 +23,10 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
             recommend = false,
         ),
         OceanOptionCardItem(
+            data = SampleData(
+                name = "aaa",
+                subName = "bbbbb"
+            ),
             icon = ContextCompat.getDrawable(
                 getApplication<Application>(), R.drawable.icon_generic_primary
             ),
@@ -28,6 +35,10 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
             disabled = true
         ),
         OceanOptionCardItem(
+            data = SampleData(
+                name = "aaa",
+                subName = "bbbbb"
+            ),
             icon = ContextCompat.getDrawable(
                 getApplication<Application>(), R.drawable.icon_generic_primary
             ),
@@ -40,6 +51,10 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
             recommendDescription = "Recomendado",
         ),
         OceanOptionCardItem(
+            data = SampleData(
+                name = "aaa",
+                subName = "bbbbb"
+            ),
             icon = ContextCompat.getDrawable(
                 getApplication<Application>(), R.drawable.icon_generic_primary
             ),
@@ -54,6 +69,12 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
     )
 
     fun itemSelectClick(optionSelected: OceanOptionCardItem) {
-        println("Item 1 clicked")
+        val data = optionSelected.data as SampleData
+        println("Item Clicked >> ${data}")
     }
 }
+
+data class SampleData(
+    val name: String,
+    val subName: String
+)

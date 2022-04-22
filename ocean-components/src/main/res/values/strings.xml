@@ -8,6 +8,8 @@
     <string name="empty"></string>
     <string name="b_token">bToken</string>
     <string name="ok">OK</string>
+    <string name="button_edit">Editar</string>
+    <string name="button_delete">Excluir</string>
     <string name="message">Message</string>
     <string name="positive">Positive</string>
     <string name="negative">Negative</string>

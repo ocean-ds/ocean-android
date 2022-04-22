@@ -24,6 +24,7 @@ import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
 import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
+import br.com.useblu.oceands.client.ui.parentchildtextlist.ParentChildTextListActivity
 import br.com.useblu.oceands.client.ui.step.StepViewActivity
 import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.tab.TabActivity
@@ -95,6 +96,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun listItems(view: View) {
         val intent = Intent(this, ListItemActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun listItemsParent(view: View) {
+        val intent = Intent(this, ParentChildTextListActivity::class.java)
         startActivity(intent)
     }
 

@@ -9,6 +9,8 @@
 
         <import type="br.com.useblu.oceands.adapter.OceanOptionCardSize" />
 
+        <import type="br.com.useblu.oceands.core.ExtensionsKt"/>
+
         <variable
             name="item"
             type="OceanOptionCardItem" />
@@ -33,7 +35,7 @@
         app:cardBackgroundColor="@{selected ? @color/ocean_color_interface_light_up : @color/ocean_color_interface_light_pure}"
         app:cardCornerRadius="@dimen/ocean_border_radius_md"
         app:cardElevation="@dimen/shadow_level_1"
-        app:layout_height="@{item.heightSize.size}"
+        app:layout_height="@{ExtensionsKt.getDp(item.heightSize.size)}"
         app:rippleColor="@color/ocean_color_interface_light_down"
         app:strokeColor="@{selected ? @color/ocean_color_brand_primary_up : @color/ocean_color_interface_light_down}"
         app:strokeWidth="1dp"

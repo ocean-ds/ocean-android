@@ -7,6 +7,8 @@
 
         <import type="br.com.useblu.oceands.adapter.OceanOptionCardItem" />
 
+        <import type="br.com.useblu.oceands.core.ExtensionsKt" />
+
         <variable
             name="item"
             type="OceanOptionCardItem" />
@@ -24,7 +26,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view"
             android:layout_width="match_parent"
-            android:layout_height="96dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xxxs"
             android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
             android:layout_marginEnd="@dimen/ocean_spacing_stack_xxxs"
@@ -35,10 +37,11 @@
             app:cardBackgroundColor="@color/ocean_color_interface_light_pure"
             app:cardCornerRadius="@dimen/ocean_border_radius_md"
             app:cardElevation="@dimen/shadow_level_1"
-            app:strokeWidth="1dp"
-            app:strokeColor="@{selected ? @color/ocean_color_brand_primary_up : @color/ocean_color_interface_light_down}"
+            app:layout_height="@{ExtensionsKt.getDp(item.heightSize.size)}"
             app:ocean_animation_blocked="@{true}"
-            app:rippleColor="@color/ocean_color_interface_light_down">
+            app:rippleColor="@color/ocean_color_interface_light_down"
+            app:strokeColor="@{selected ? @color/ocean_color_brand_primary_up : @color/ocean_color_interface_light_down}"
+            app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -50,10 +53,10 @@
                     android:layout_height="40dp"
                     android:layout_marginStart="24dp"
                     app:imageUrl="@{item.icon}"
-                    app:ocean_visible_or_gone="@{item.icon != null}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:ocean_visible_or_gone="@{item.icon != null}"
                     app:tint="@color/ocean_color_interface_dark_down"
                     tools:src="@drawable/icon_generic_primary" />
 

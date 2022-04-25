@@ -129,5 +129,5 @@ data class OceanOptionCardItem(
 )
 
 enum class OceanOptionCardSize(val size: Int = 0) {
-    SMALL(64.dp), MEDIUM(96.dp), LARGE(180.dp)
+    SMALL(64), MEDIUM(96), LARGE(180)
 }

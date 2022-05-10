@@ -1,10 +1,8 @@
 package br.com.useblu.oceands.core
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.ItemParentTextListBinding
 import io.sulek.ssml.OnSwipeListener
@@ -100,13 +98,22 @@ class ChildrenAdapter(
                 onItemLongClicked.invoke(position)
                 false
             }
+            binding.titleItemChild.setOnClickListener {
+                onItemClicked.invoke(position)
+            }
             binding.subtitleItemChild.setOnLongClickListener {
                 onItemLongClicked.invoke(position)
                 false
             }
+            binding.subtitleItemChild.setOnClickListener {
+                onItemClicked.invoke(position)
+            }
             binding.imageChild.setOnLongClickListener {
                 onItemLongClicked.invoke(position)
                 false
+            }
+            binding.imageChild.setOnClickListener {
+                onItemClicked.invoke(position)
             }
 
             binding.swipeContainer.setOnSwipeListener(object : OnSwipeListener {
@@ -115,7 +122,7 @@ class ChildrenAdapter(
                 }
             })
 
-            binding.swipeContainer.apply(oceanChildTextItem.isExpanded)
+//            binding.swipeContainer.apply(oceanChildTextItem.isExpanded)
 
             binding.executePendingBindings()
         }

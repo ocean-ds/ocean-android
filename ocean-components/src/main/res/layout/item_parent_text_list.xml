@@ -41,7 +41,6 @@
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> click.invoke()}"
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
@@ -122,7 +121,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/expansion_layout_child_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
             android:background="@color/ocean_color_interface_light_pure"
             android:orientation="vertical">
@@ -177,28 +176,17 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/swipe_item_child"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                 android:adjustViewBounds="true"
-                android:onClick="@{() -> clickButton.invoke()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/icon_swipe"
                 app:tint="@color/ocean_color_interface_dark_deep"
                 tools:srcCompat="@drawable/icon_swipe" />
-
-            <View
-                android:id="@+id/divider1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/ocean_color_interface_light_down"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subtitle_item_child"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

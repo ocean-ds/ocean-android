@@ -136,12 +136,12 @@
             style="@style/Ocean.Heading.3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{title}"
             android:textColor="@{isCritical ? @color/ocean_color_status_negative_pure : @color/ocean_color_brand_primary_pure}"
             app:gravity="@{Gravity.CENTER}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/space2"
+            app:text="@{title}"
             tools:text="Heading 3" />
 
         <Space
@@ -158,12 +158,12 @@
             layout="@layout/ocean_paragraph"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{message}"
             app:gravity="@{Gravity.CENTER}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/space3"
-            app:ocean_visible_or_gone="@{message.length() > 0}" />
+            app:ocean_visible_or_gone="@{message.length() > 0}"
+            app:text="@{message}" />
 
         <Space
             android:id="@+id/space6"
@@ -179,12 +179,12 @@
             layout="@layout/ocean_paragraph_highlight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{subMessage}"
             app:gravity="@{Gravity.CENTER}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/space6"
-            app:ocean_visible_or_gone="@{subMessage.length() > 0}" />
+            app:ocean_visible_or_gone="@{subMessage.length() > 0}"
+            app:text="@{subMessage}" />
 
         <Space
             android:id="@+id/space5"

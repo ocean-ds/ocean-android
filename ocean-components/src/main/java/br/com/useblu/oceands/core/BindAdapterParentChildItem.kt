@@ -79,6 +79,8 @@ class ChildrenAdapter(
         val binding: ItemParentTextListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        var stateExpanded = false
+
         fun bind(
             oceanChildTextItem: OceanChildTextItem, position: Int,
             onItemClicked: (Int) -> Unit,
@@ -121,12 +123,11 @@ class ChildrenAdapter(
 
             binding.swipeContainer.setOnSwipeListener(object : OnSwipeListener {
                 override fun onSwipe(isExpanded: Boolean) {
-                    oceanChildTextItem.isExpanded = isExpanded
+                    stateExpanded = isExpanded
                 }
             })
-            itemView.swipeContainer.apply(oceanChildTextItem.isExpanded)
+            itemView.swipeContainer.apply(stateExpanded)
             binding.executePendingBindings()
         }
     }
-
 }

@@ -44,7 +44,7 @@
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        app:dynamicMenuWidth="true"
+        app:dynamicMenuWidth="false"
         app:menuSide="Left">
 
         <LinearLayout
@@ -122,9 +122,12 @@
             android:id="@+id/expansion_layout_child_container"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
             android:background="@color/ocean_color_interface_light_pure"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/image_child"

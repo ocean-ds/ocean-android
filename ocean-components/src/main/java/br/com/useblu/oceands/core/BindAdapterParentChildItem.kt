@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.ItemParentTextListBinding
 import io.sulek.ssml.OnSwipeListener
 import io.sulek.ssml.SSMLLinearLayoutManager
+import kotlinx.android.synthetic.main.item_parent_text_list.view.*
 
 @BindingAdapter(
     "app:setChildren",
@@ -16,7 +17,8 @@ import io.sulek.ssml.SSMLLinearLayoutManager
     "app:longClickItem"
 )
 fun setInflateChildren(
-    recyclerView: RecyclerView, children: List<OceanChildTextItem>?,
+    recyclerView: RecyclerView,
+    children: List<OceanChildTextItem>?,
     clickItem: ((Int) -> Unit)?,
     clickEdit: ((Int) -> Unit)?,
     clickDelete: ((Int) -> Unit)?,
@@ -25,7 +27,8 @@ fun setInflateChildren(
 
     children?.let {
         recyclerView.adapter = ChildrenAdapter(
-            it, onClicked = clickItem,
+            list = it,
+            onClicked = clickItem,
             onClickedButtonEdit = clickEdit,
             onClickedButtonDelete = clickDelete,
             onLongClickPressed = longClickItem
@@ -121,9 +124,7 @@ class ChildrenAdapter(
                     oceanChildTextItem.isExpanded = isExpanded
                 }
             })
-
-//            binding.swipeContainer.apply(oceanChildTextItem.isExpanded)
-
+            itemView.swipeContainer.apply(oceanChildTextItem.isExpanded)
             binding.executePendingBindings()
         }
     }

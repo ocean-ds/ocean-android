@@ -37,20 +37,20 @@
 
     </data>
 
-    <!--<io.sulek.ssml.SimpleSwipeMenuLayout
+    <io.sulek.ssml.SimpleSwipeMenuLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        app:dynamicMenuWidth="false"
+        app:dynamicMenuWidth="true"
         app:menuSide="Left">
 
         <LinearLayout
             android:id="@+id/backgroundContainer"
             android:orientation="horizontal"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp">
 
             <LinearLayout
@@ -189,80 +189,6 @@
                 tools:srcCompat="@drawable/icon_swipe" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </io.sulek.ssml.SimpleSwipeMenuLayout>-->
-    <io.sulek.ssml.SimpleSwipeMenuLayout
-        android:id="@+id/swipeContainer"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"
-        app:dynamicMenuWidth="false"
-        app:menuSide="Right">
-
-        <LinearLayout
-            android:id="@+id/backgroundContainer"
-            android:orientation="horizontal"
-            android:background="#BBBBBB"
-            android:layout_width="200dp"
-            android:layout_height="0dp">
-
-            <FrameLayout
-                android:id="@+id/button2"
-                android:background="#673AB7"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:src="@drawable/ic_edit_white"
-                    android:layout_gravity="center"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"/>
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/button1"
-                android:layout_gravity="center"
-                android:background="#FF3E3E"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:src="@drawable/ic_delete_forever_white"
-                    android:layout_gravity="center"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"/>
-
-            </FrameLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/foregroundContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#EEEEEE"
-            android:orientation="vertical"
-            android:padding="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/titleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/descriptionText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp" />
-
-        </LinearLayout>
 
     </io.sulek.ssml.SimpleSwipeMenuLayout>
 </layout>

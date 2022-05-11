@@ -12,5 +12,6 @@ data class OceanParentTextItem(
 data class OceanChildTextItem(
     val image: Drawable?,
     val title: String?,
-    val subTitle: String?
+    val subTitle: String?,
+    var isExpanded: Boolean = false
 )

@@ -130,7 +130,7 @@
                 android:id="@+id/image_child"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_sm"
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
                 android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
                 android:background="@color/ocean_color_interface_light_up"

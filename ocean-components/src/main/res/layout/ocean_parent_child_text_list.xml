@@ -118,16 +118,6 @@
                     app:srcCompat="@drawable/icon_chevron_down_solid"
                     app:tint="@color/ocean_color_interface_dark_down"/>
 
-                <View
-                    android:id="@+id/divider1"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/ocean_color_interface_light_down"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/subtitle_text_view" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.github.florent37.expansionpanel.ExpansionHeader>

@@ -6,7 +6,6 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.ItemParentTextListBinding
-import com.chauthai.swipereveallayout.ViewBinderHelper
 
 @BindingAdapter(
     "app:setChildren",
@@ -25,26 +24,26 @@ fun setInflateChildren(
 ) {
 
     children?.let {
-        recyclerView.adapter = ChildrenAdapter(
-            list = it,
-            onClicked = clickItem,
-            onClickedButtonEdit = clickEdit,
-            onClickedButtonDelete = clickDelete,
-            onLongClickPressed = longClickItem
-        )
-        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+        recyclerView.run {
+            adapter = ChildrenAdapter(
+                list = it,
+                onClicked = clickItem,
+                onLongClickPressed = longClickItem
+            )
+            layoutManager = LinearLayoutManager(recyclerView.context)
+            addSwipeLeft(
+                edit = clickEdit,
+                remove = clickDelete
+            )
+        }
     }
 }
 
 class ChildrenAdapter(
     val list: List<OceanChildTextItem>,
     val onClicked: ((Int) -> Unit)?,
-    val onClickedButtonEdit: ((Int) -> Unit)?,
-    val onClickedButtonDelete: ((Int) -> Unit)?,
     val onLongClickPressed: ((Int) -> Unit)?
 ) : RecyclerView.Adapter<ChildrenAdapter.ChildrenViewHolder>() {
-
-    private val viewBinderHelper = ViewBinderHelper()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildrenViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -55,19 +54,11 @@ class ChildrenAdapter(
     override fun onBindViewHolder(holder: ChildrenViewHolder, position: Int) {
         val item = list[position]
 
-        viewBinderHelper.bind(holder.binding.swipeLayout, item.title)
-
         holder.bind(
             item,
             position,
             onItemClicked = {
                 onClicked?.invoke(it)
-            },
-            onItemButtonEditClicked = {
-                onClickedButtonEdit?.invoke(it)
-            },
-            onItemButtonDeleteClicked = {
-                onClickedButtonDelete?.invoke(it)
             },
             onItemLongClicked = {
                 onLongClickPressed?.invoke(it)
@@ -87,21 +78,11 @@ class ChildrenAdapter(
             oceanChildTextItem: OceanChildTextItem,
             position: Int,
             onItemClicked: (Int) -> Unit,
-            onItemButtonEditClicked: (Int) -> Unit,
-            onItemButtonDeleteClicked: (Int) -> Unit,
             onItemLongClicked: (Int) -> Unit
         ) {
 
             binding.item = oceanChildTextItem
-            binding.click = {
-                onItemClicked.invoke(position)
-            }
-            binding.clickEditButton = {
-                onItemButtonEditClicked.invoke(position)
-            }
-            binding.clickDeleteButton = {
-                onItemButtonDeleteClicked.invoke(position)
-            }
+
             binding.titleItemChild.setOnLongClickListener {
                 onItemLongClicked.invoke(position)
                 false

@@ -99,7 +99,6 @@ dependencies {
     api 'com.google.android.material:material:1.4.0'
     api 'me.relex:circleindicator:2.1.6'
     api 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.4'
-    api 'com.github.florent37:expansionpanel:1.2.4'
     api 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
 
     embed project(path: ':ocean-tokens')

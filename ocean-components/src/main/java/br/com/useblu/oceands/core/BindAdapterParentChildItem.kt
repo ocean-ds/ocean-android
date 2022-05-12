@@ -119,7 +119,12 @@ class ChildrenAdapter(
                 onItemClicked.invoke(position)
             }
 
-            itemView.swipeContainer.apply(true)
+            binding.swipeContainer.setOnSwipeListener(object : OnSwipeListener {
+                override fun onSwipe(isExpanded: Boolean) {
+                    oceanChildTextItem.isExpanded = isExpanded
+                }
+            })
+            itemView.swipeContainer.apply(oceanChildTextItem.isExpanded)
             binding.executePendingBindings()
         }
     }

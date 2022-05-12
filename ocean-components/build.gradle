@@ -7,13 +7,13 @@ apply plugin: 'com.kezong.fat-aar'
 
 def versionNameProp = ""
 
-task loadVersionName () {
+task loadVersionName() {
     def VERSION_NAME = 'VERSION_NAME'
 
     Properties props = new Properties()
     def propFile = file('version.properties')
 
-    if (propFile.canRead()){
+    if (propFile.canRead()) {
         props.load(new FileInputStream(propFile))
 
         if (props != null && props.containsKey(VERSION_NAME)) {
@@ -100,7 +100,7 @@ dependencies {
     api 'me.relex:circleindicator:2.1.6'
     api 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.4'
     api 'com.github.florent37:expansionpanel:1.2.4'
-    api 'io.sulek.ssml:simpleswipemenulayout:1.0.4'
+    api 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
 
     embed project(path: ':ocean-tokens')
 }

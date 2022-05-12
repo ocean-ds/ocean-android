@@ -21,48 +21,45 @@
 
         <variable
             name="click"
-            type="Function0&lt;Unit>"/>
+            type="Function0&lt;Unit>" />
 
         <variable
             name="clickButton"
-            type="Function0&lt;Unit>"/>
+            type="Function0&lt;Unit>" />
 
         <variable
             name="clickEditButton"
-            type="Function0&lt;Unit>"/>
+            type="Function0&lt;Unit>" />
 
         <variable
             name="clickDeleteButton"
-            type="Function0&lt;Unit>"/>
+            type="Function0&lt;Unit>" />
 
     </data>
 
-    <io.sulek.ssml.SimpleSwipeMenuLayout
-        android:id="@+id/swipeContainer"
+    <com.chauthai.swipereveallayout.SwipeRevealLayout
+        android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foreground="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        app:dynamicMenuWidth="false"
-        app:menuSide="Left">
+        app:dragEdge="right"
+        app:mode="same_level">
 
         <LinearLayout
             android:id="@+id/backgroundContainer"
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="0dp">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/editButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> clickEditButton.invoke()}"
-                android:foreground="?attr/selectableItemBackground"
+                android:background="@color/ocean_color_interface_dark_up"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="@color/ocean_color_interface_dark_up"
+                android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
+                android:onClick="@{() -> clickEditButton.invoke()}"
                 android:orientation="vertical">
 
                 <ImageView
@@ -70,7 +67,7 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_alignParentTop="true"
-                    android:src="@drawable/icon_pencil"/>
+                    android:src="@drawable/icon_pencil" />
 
                 <TextView
                     android:id="@+id/edit_text"
@@ -78,10 +75,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
                     android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
-                    android:text="@string/button_edit"
                     android:fontFamily="@font/font_family_base_regular"
+                    android:text="@string/button_edit"
                     android:textColor="@color/ocean_color_interface_light_pure"
-                    android:textSize="@dimen/ocean_font_size_xxs"/>
+                    android:textSize="@dimen/ocean_font_size_xxs" />
 
             </LinearLayout>
 
@@ -89,12 +86,12 @@
                 android:id="@+id/deleteButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:onClick="@{() -> clickDeleteButton.invoke()}"
-                android:foreground="?attr/selectableItemBackground"
+                android:background="@color/ocean_color_status_negative_pure"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="@color/ocean_color_status_negative_pure"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:onClick="@{() -> clickDeleteButton.invoke()}"
                 android:orientation="vertical">
 
                 <ImageView
@@ -102,7 +99,7 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/icon_delete"/>
+                    android:src="@drawable/icon_delete" />
 
                 <TextView
                     android:id="@+id/delete_text"
@@ -110,20 +107,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
                     android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
-                    android:text="@string/button_delete"
                     android:fontFamily="@font/font_family_base_regular"
+                    android:text="@string/button_delete"
                     android:textColor="@color/ocean_color_interface_light_pure"
-                    android:textSize="@dimen/ocean_font_size_xxs"/>
+                    android:textSize="@dimen/ocean_font_size_xxs" />
 
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/expansion_layout_child_container"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:background="@color/ocean_color_interface_light_pure"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +188,7 @@
                 app:tint="@color/ocean_color_interface_dark_deep"
                 tools:srcCompat="@drawable/icon_swipe" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </io.sulek.ssml.SimpleSwipeMenuLayout>
+    </com.chauthai.swipereveallayout.SwipeRevealLayout>
 </layout>

@@ -3,11 +3,10 @@ package br.com.useblu.oceands.core
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.ItemParentTextListBinding
-import io.sulek.ssml.OnSwipeListener
-import io.sulek.ssml.SSMLLinearLayoutManager
-import kotlinx.android.synthetic.main.item_parent_text_list.view.*
+import com.chauthai.swipereveallayout.ViewBinderHelper
 
 @BindingAdapter(
     "app:setChildren",
@@ -33,7 +32,7 @@ fun setInflateChildren(
             onClickedButtonDelete = clickDelete,
             onLongClickPressed = longClickItem
         )
-        recyclerView.layoutManager = SSMLLinearLayoutManager(recyclerView.context)
+        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
     }
 }
 
@@ -45,6 +44,8 @@ class ChildrenAdapter(
     val onLongClickPressed: ((Int) -> Unit)?
 ) : RecyclerView.Adapter<ChildrenAdapter.ChildrenViewHolder>() {
 
+    private val viewBinderHelper = ViewBinderHelper()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildrenViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemParentTextListBinding.inflate(layoutInflater, parent, false)
@@ -53,6 +54,9 @@ class ChildrenAdapter(
 
     override fun onBindViewHolder(holder: ChildrenViewHolder, position: Int) {
         val item = list[position]
+
+        viewBinderHelper.bind(holder.binding.swipeLayout, item.title)
+
         holder.bind(
             item,
             position,
@@ -80,7 +84,8 @@ class ChildrenAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            oceanChildTextItem: OceanChildTextItem, position: Int,
+            oceanChildTextItem: OceanChildTextItem,
+            position: Int,
             onItemClicked: (Int) -> Unit,
             onItemButtonEditClicked: (Int) -> Unit,
             onItemButtonDeleteClicked: (Int) -> Unit,
@@ -97,7 +102,7 @@ class ChildrenAdapter(
             binding.clickDeleteButton = {
                 onItemButtonDeleteClicked.invoke(position)
             }
-            /*binding.titleItemChild.setOnLongClickListener {
+            binding.titleItemChild.setOnLongClickListener {
                 onItemLongClicked.invoke(position)
                 false
             }
@@ -117,14 +122,7 @@ class ChildrenAdapter(
             }
             binding.imageChild.setOnClickListener {
                 onItemClicked.invoke(position)
-            }*/
-
-            binding.swipeContainer.setOnSwipeListener(object : OnSwipeListener {
-                override fun onSwipe(isExpanded: Boolean) {
-                    oceanChildTextItem.isExpanded = isExpanded
-                }
-            })
-            itemView.swipeContainer.apply(oceanChildTextItem.isExpanded)
+            }
             binding.executePendingBindings()
         }
     }

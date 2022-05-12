@@ -97,7 +97,7 @@ class ChildrenAdapter(
             binding.clickDeleteButton = {
                 onItemButtonDeleteClicked.invoke(position)
             }
-            binding.titleItemChild.setOnLongClickListener {
+            /*binding.titleItemChild.setOnLongClickListener {
                 onItemLongClicked.invoke(position)
                 false
             }
@@ -117,7 +117,7 @@ class ChildrenAdapter(
             }
             binding.imageChild.setOnClickListener {
                 onItemClicked.invoke(position)
-            }
+            }*/
 
             binding.swipeContainer.setOnSwipeListener(object : OnSwipeListener {
                 override fun onSwipe(isExpanded: Boolean) {

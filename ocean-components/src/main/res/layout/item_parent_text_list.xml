@@ -45,7 +45,7 @@
         android:clickable="true"
         android:focusable="true"
         app:dynamicMenuWidth="false"
-        app:menuSide="Right">
+        app:menuSide="Left">
 
         <LinearLayout
             android:id="@+id/backgroundContainer"
@@ -118,12 +118,12 @@
             </LinearLayout>
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/expansion_layout_child_container"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:background="@color/ocean_color_interface_light_pure"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +191,7 @@
                 app:tint="@color/ocean_color_interface_dark_deep"
                 tools:srcCompat="@drawable/icon_swipe" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </io.sulek.ssml.SimpleSwipeMenuLayout>
 </layout>

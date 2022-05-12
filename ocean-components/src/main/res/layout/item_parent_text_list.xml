@@ -45,7 +45,7 @@
         android:clickable="true"
         android:focusable="true"
         app:dynamicMenuWidth="false"
-        app:menuSide="Left">
+        app:menuSide="Right">
 
         <LinearLayout
             android:id="@+id/backgroundContainer"

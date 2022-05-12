@@ -23,15 +23,16 @@ fun setInflateChildren(
     longClickItem: ((Int) -> Unit)?
 ) {
 
-    children?.let {
+    children?.let { items ->
         recyclerView.run {
             adapter = ChildrenAdapter(
-                list = it,
+                list = items,
                 onClicked = clickItem,
                 onLongClickPressed = longClickItem
             )
             layoutManager = LinearLayoutManager(recyclerView.context)
             addSwipeLeft(
+                items = items,
                 edit = clickEdit,
                 remove = clickDelete
             )

@@ -1,7 +1,6 @@
 package br.com.useblu.oceands.client.ui.parentchildtextlist
 
 import android.graphics.drawable.Drawable
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,9 +19,26 @@ class ParentChildTextListViewModel : ViewModel() {
             OceanParentTextItem(
                 image = drawable, title = "header", subTitle = "subtitle",
                 children = listOf(
-                    OceanChildTextItem(image = drawable, title = "nome", subTitle = "teste"),
-                    OceanChildTextItem(image = drawable, title = "nome", subTitle = "teste"),
-                    OceanChildTextItem(image = drawable, title = "nome", subTitle = "teste")
+                    OceanChildTextItem(
+                        image = drawable,
+                        title = "nome",
+                        subTitle = "teste",
+                        isRemove = true
+                    ),
+                    OceanChildTextItem(
+                        image = drawable,
+                        title = "nome",
+                        subTitle = "teste",
+                        isRemove = true,
+                        isEdit = true
+                    ),
+                    OceanChildTextItem(
+                        image = drawable,
+                        title = "nome",
+                        subTitle = "teste",
+                        isRemove = true,
+                        isEdit = true
+                    )
                 )
             )
         )

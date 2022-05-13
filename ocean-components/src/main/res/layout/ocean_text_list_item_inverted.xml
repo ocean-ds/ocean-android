@@ -66,8 +66,8 @@
         android:enabled="true"
         android:focusable="true"
         android:onClick="@{() -> click.invoke()}"
-        android:paddingTop="12dp"
-        android:paddingBottom="@dimen/ocean_spacing_stack_xs"
+        android:paddingTop="@dimen/ocean_spacing_stack_xxs"
+        android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
         app:clickable_effect="@{withClickEffect}">
 
         <ImageView

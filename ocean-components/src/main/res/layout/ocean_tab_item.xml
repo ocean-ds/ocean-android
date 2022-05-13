@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_constraint_layout"
@@ -8,90 +8,78 @@
     android:background="@color/ocean_color_interface_light_pure"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?attr/selectableItemBackground">
-
-    <Space
-        android:id="@+id/space1"
-        android:layout_width="@dimen/ocean_spacing_stack_xs"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textViewLabel"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/font_family_base_extrabold"
-        android:gravity="center"
-        android:maxHeight="@dimen/ocean_spacing_inline_xl"
-        android:textAlignment="center"
-        android:textColor="@color/ocean_color_brand_primary_pure"
-        android:textSize="@dimen/ocean_font_size_xs"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/space2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/space1"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Item 1" />
-
-    <Space
-        android:id="@+id/space2"
-        android:layout_width="@dimen/ocean_spacing_stack_xxxs"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayoutTag"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewLabel"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/linearLayoutTag"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:background="@drawable/ocean_tag_primary_background"
+        android:layout_height="56dp"
         android:gravity="center"
-        android:minWidth="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/space3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/space2"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="horizontal">
+
+        <Space
+            android:id="@+id/space1"
+            android:layout_width="@dimen/ocean_spacing_stack_xs"
+            android:layout_height="match_parent" />
 
         <TextView
-            android:id="@+id/textViewCounter"
+            android:id="@+id/textViewLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="1dp"
-            android:fontFamily="@font/font_family_base_medium"
+            android:fontFamily="@font/font_family_base_extrabold"
             android:gravity="center"
-            android:textColor="@color/ocean_color_interface_light_pure"
-            android:textSize="@dimen/ocean_font_size_xxxs"
-            tools:text="8" />
+            android:maxHeight="@dimen/ocean_spacing_inline_xl"
+            android:textAlignment="center"
+            android:textColor="@color/ocean_color_brand_primary_pure"
+            android:textSize="@dimen/ocean_font_size_xs"
+            tools:text="Item 1" />
 
+        <Space
+            android:id="@+id/space2"
+            android:layout_width="@dimen/ocean_spacing_stack_xxs"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutTag"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:background="@drawable/ocean_tag_primary_background"
+            android:gravity="center"
+            android:minWidth="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="1dp"
+                android:fontFamily="@font/font_family_base_medium"
+                android:gravity="center"
+                android:textColor="@color/ocean_color_interface_light_pure"
+                android:textSize="@dimen/ocean_font_size_xxxs"
+                tools:text="8" />
+
+        </LinearLayout>
+
+        <Space
+            android:id="@+id/space3"
+            android:layout_width="@dimen/ocean_spacing_stack_xs"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
-    <Space
-        android:id="@+id/space3"
-        android:layout_width="@dimen/ocean_spacing_stack_xs"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/linearLayoutTag"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/ocean_color_brand_primary_pure"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginBottom="1dp"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/ocean_color_brand_primary_pure" />
+    </LinearLayout>
+
+</LinearLayout>

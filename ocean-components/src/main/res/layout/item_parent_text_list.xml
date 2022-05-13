@@ -15,180 +15,80 @@
             name="item"
             type="br.com.useblu.oceands.core.OceanChildTextItem" />
 
-        <variable
-            name="position"
-            type="Integer" />
-
-        <variable
-            name="click"
-            type="Function0&lt;Unit>"/>
-
-        <variable
-            name="clickButton"
-            type="Function0&lt;Unit>"/>
-
-        <variable
-            name="clickEditButton"
-            type="Function0&lt;Unit>"/>
-
-        <variable
-            name="clickDeleteButton"
-            type="Function0&lt;Unit>"/>
-
     </data>
 
-    <io.sulek.ssml.SimpleSwipeMenuLayout
-        android:id="@+id/swipeContainer"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/expansion_layout_child_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:foreground="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        app:dynamicMenuWidth="true"
-        app:menuSide="Left">
+        android:layout_height="64dp"
+        android:background="@color/ocean_color_interface_light_pure"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/backgroundContainer"
-            android:orientation="horizontal"
+        <ImageView
+            android:id="@+id/image_child"
             android:layout_width="wrap_content"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+            android:background="@color/ocean_color_interface_light_up"
+            android:focusable="true"
+            android:src="@{item.image}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/icon_generic_primary" />
 
-            <LinearLayout
-                android:id="@+id/editButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:onClick="@{() -> clickEditButton.invoke()}"
-                android:foreground="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="@color/ocean_color_interface_dark_up"
-                android:gravity="center"
-                android:orientation="vertical">
+        <TextView
+            android:id="@+id/title_item_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:fontFamily="@font/font_family_base_medium"
+            android:text="@{item.title}"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            android:textSize="@dimen/ocean_font_size_xs"
+            app:layout_constraintBottom_toTopOf="@+id/subtitle_item_child"
+            app:layout_constraintEnd_toStartOf="@+id/swipe_item_child"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/image_child"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Title" />
 
-                <ImageView
-                    android:id="@+id/iconPencil"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_alignParentTop="true"
-                    android:src="@drawable/icon_pencil"/>
+        <TextView
+            android:id="@+id/subtitle_item_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:fontFamily="@font/font_family_base_regular"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            android:textSize="@dimen/ocean_font_size_xxxs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/swipe_item_child"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/image_child"
+            app:layout_constraintTop_toBottomOf="@+id/title_item_child"
+            app:text="@{item.subTitle}"
+            tools:text="Description" />
 
-                <TextView
-                    android:id="@+id/edit_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
-                    android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
-                    android:text="@string/button_edit"
-                    android:fontFamily="@font/font_family_base_regular"
-                    android:textColor="@color/ocean_color_interface_light_pure"
-                    android:textSize="@dimen/ocean_font_size_xxs"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/swipe_item_child"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_swipe"
+            app:tint="@color/ocean_color_interface_dark_deep"
+            tools:srcCompat="@drawable/icon_swipe" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:onClick="@{() -> clickDeleteButton.invoke()}"
-                android:foreground="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="@color/ocean_color_status_negative_pure"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iconDelete"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/icon_delete"/>
-
-                <TextView
-                    android:id="@+id/delete_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
-                    android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
-                    android:text="@string/button_delete"
-                    android:fontFamily="@font/font_family_base_regular"
-                    android:textColor="@color/ocean_color_interface_light_pure"
-                    android:textSize="@dimen/ocean_font_size_xxs"/>
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/expansion_layout_child_container"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
-            android:background="@color/ocean_color_interface_light_pure"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/image_child"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/ocean_spacing_stack_sm"
-                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-                android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
-                android:background="@color/ocean_color_interface_light_up"
-                android:focusable="true"
-                android:src="@{item.image}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/icon_generic_primary" />
-
-            <TextView
-                android:id="@+id/title_item_child"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                android:fontFamily="@font/font_family_base_medium"
-                android:text="@{item.title}"
-                android:textColor="@color/ocean_color_interface_dark_down"
-                android:textSize="@dimen/ocean_font_size_xs"
-                app:layout_constraintBottom_toTopOf="@+id/subtitle_item_child"
-                app:layout_constraintEnd_toStartOf="@+id/swipe_item_child"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@id/image_child"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Title" />
-
-            <TextView
-                android:id="@+id/subtitle_item_child"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                android:fontFamily="@font/font_family_base_regular"
-                android:textColor="@color/ocean_color_interface_dark_down"
-                android:textSize="@dimen/ocean_font_size_xxxs"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/swipe_item_child"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@id/image_child"
-                app:layout_constraintTop_toBottomOf="@+id/title_item_child"
-                app:text="@{item.subTitle}"
-                tools:text="Description" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/swipe_item_child"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical|end"
-                android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-                android:adjustViewBounds="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_swipe"
-                app:tint="@color/ocean_color_interface_dark_deep"
-                tools:srcCompat="@drawable/icon_swipe" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </io.sulek.ssml.SimpleSwipeMenuLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

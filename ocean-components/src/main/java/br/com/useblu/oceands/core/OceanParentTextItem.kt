@@ -13,7 +13,6 @@ data class OceanChildTextItem(
     val image: Drawable?,
     val title: String?,
     val subTitle: String?,
-    var isExpanded: Boolean = false
-
-
+    var isEdit: Boolean = false,
+    var isRemove: Boolean = false,
 )

@@ -3,10 +3,9 @@ package br.com.useblu.oceands.core
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.ItemParentTextListBinding
-import io.sulek.ssml.OnSwipeListener
-import io.sulek.ssml.SSMLLinearLayoutManager
 
 @BindingAdapter(
     "app:setChildren",
@@ -16,29 +15,34 @@ import io.sulek.ssml.SSMLLinearLayoutManager
     "app:longClickItem"
 )
 fun setInflateChildren(
-    recyclerView: RecyclerView, children: List<OceanChildTextItem>?,
+    recyclerView: RecyclerView,
+    children: List<OceanChildTextItem>?,
     clickItem: ((Int) -> Unit)?,
     clickEdit: ((Int) -> Unit)?,
     clickDelete: ((Int) -> Unit)?,
     longClickItem: ((Int) -> Unit)?
 ) {
 
-    children?.let {
-        recyclerView.adapter = ChildrenAdapter(
-            it, onClicked = clickItem,
-            onClickedButtonEdit = clickEdit,
-            onClickedButtonDelete = clickDelete,
-            onLongClickPressed = longClickItem
-        )
-        recyclerView.layoutManager = SSMLLinearLayoutManager(recyclerView.context)
+    children?.let { items ->
+        recyclerView.run {
+            adapter = ChildrenAdapter(
+                list = items,
+                onClicked = clickItem,
+                onLongClickPressed = longClickItem
+            )
+            layoutManager = LinearLayoutManager(recyclerView.context)
+            addSwipeLeft(
+                items = items,
+                edit = clickEdit,
+                remove = clickDelete
+            )
+        }
     }
 }
 
 class ChildrenAdapter(
     val list: List<OceanChildTextItem>,
     val onClicked: ((Int) -> Unit)?,
-    val onClickedButtonEdit: ((Int) -> Unit)?,
-    val onClickedButtonDelete: ((Int) -> Unit)?,
     val onLongClickPressed: ((Int) -> Unit)?
 ) : RecyclerView.Adapter<ChildrenAdapter.ChildrenViewHolder>() {
 
@@ -50,17 +54,12 @@ class ChildrenAdapter(
 
     override fun onBindViewHolder(holder: ChildrenViewHolder, position: Int) {
         val item = list[position]
+
         holder.bind(
             item,
             position,
             onItemClicked = {
                 onClicked?.invoke(it)
-            },
-            onItemButtonEditClicked = {
-                onClickedButtonEdit?.invoke(it)
-            },
-            onItemButtonDeleteClicked = {
-                onClickedButtonDelete?.invoke(it)
             },
             onItemLongClicked = {
                 onLongClickPressed?.invoke(it)
@@ -77,23 +76,14 @@ class ChildrenAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            oceanChildTextItem: OceanChildTextItem, position: Int,
+            oceanChildTextItem: OceanChildTextItem,
+            position: Int,
             onItemClicked: (Int) -> Unit,
-            onItemButtonEditClicked: (Int) -> Unit,
-            onItemButtonDeleteClicked: (Int) -> Unit,
             onItemLongClicked: (Int) -> Unit
         ) {
 
             binding.item = oceanChildTextItem
-            binding.click = {
-                onItemClicked.invoke(position)
-            }
-            binding.clickEditButton = {
-                onItemButtonEditClicked.invoke(position)
-            }
-            binding.clickDeleteButton = {
-                onItemButtonDeleteClicked.invoke(position)
-            }
+
             binding.titleItemChild.setOnLongClickListener {
                 onItemLongClicked.invoke(position)
                 false
@@ -115,17 +105,7 @@ class ChildrenAdapter(
             binding.imageChild.setOnClickListener {
                 onItemClicked.invoke(position)
             }
-
-            binding.swipeContainer.setOnSwipeListener(object : OnSwipeListener {
-                override fun onSwipe(isExpanded: Boolean) {
-                    oceanChildTextItem.isExpanded = isExpanded
-                }
-            })
-
-//            binding.swipeContainer.apply(oceanChildTextItem.isExpanded)
-
             binding.executePendingBindings()
         }
     }
-
 }

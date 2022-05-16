@@ -84,6 +84,10 @@ class ChildrenAdapter(
 
             binding.item = oceanChildTextItem
 
+            binding.expansionLayoutChildContainer.setOnClickListener {
+                onItemClicked.invoke(position)
+            }
+
             binding.titleItemChild.setOnLongClickListener {
                 onItemLongClicked.invoke(position)
                 false

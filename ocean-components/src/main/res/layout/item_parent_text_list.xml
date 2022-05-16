@@ -23,6 +23,8 @@
         android:layout_height="64dp"
         android:background="@color/ocean_color_interface_light_pure"
         android:orientation="vertical"
+        android:paddingTop="@dimen/ocean_spacing_stack_xs"
+        android:paddingBottom="@dimen/ocean_spacing_stack_xs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +37,6 @@
             android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
             android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
             android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
-            android:background="@color/ocean_color_interface_light_up"
             android:focusable="true"
             android:src="@{item.image}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +54,7 @@
             android:textColor="@color/ocean_color_interface_dark_down"
             android:textSize="@dimen/ocean_font_size_xs"
             app:layout_constraintBottom_toTopOf="@+id/subtitle_item_child"
-            app:layout_constraintEnd_toStartOf="@+id/swipe_item_child"
+            app:layout_constraintEnd_toEndOf="@+id/expansion_layout_child_container"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/image_child"
             app:layout_constraintTop_toTopOf="parent"
@@ -69,26 +70,12 @@
             android:textColor="@color/ocean_color_interface_dark_down"
             android:textSize="@dimen/ocean_font_size_xxxs"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/swipe_item_child"
+            app:layout_constraintEnd_toEndOf="@+id/expansion_layout_child_container"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/image_child"
             app:layout_constraintTop_toBottomOf="@+id/title_item_child"
             app:text="@{item.subTitle}"
             tools:text="Description" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/swipe_item_child"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center_vertical|end"
-            android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-            android:adjustViewBounds="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_swipe"
-            app:tint="@color/ocean_color_interface_dark_deep"
-            tools:srcCompat="@drawable/icon_swipe" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

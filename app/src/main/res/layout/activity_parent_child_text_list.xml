@@ -27,7 +27,8 @@
             android:layout_height="0dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="@dimen/ocean_spacing_stack_xs">
+            android:paddingTop="@dimen/ocean_spacing_stack_xs"
+            android:paddingBottom="@dimen/ocean_spacing_stack_xs">
 
             <include
                 layout="@layout/ocean_parent_child_text_list"
@@ -35,7 +36,7 @@
                 app:clickSubItem="@{viewmodel::click}"
                 app:clickEditButton="@{viewmodel::clickEditButton}"
                 app:clickDeleteButton="@{viewmodel::clickDeleteButton}"
-                app:longClick="@{viewmodel::longClick}"/>
+                app:longClick="@{viewmodel::longClick}" />
 
         </LinearLayout>
     </ScrollView>

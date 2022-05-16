@@ -66,7 +66,6 @@
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                     android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
                     android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
-                    android:background="@color/ocean_color_interface_light_up"
                     android:focusable="true"
                     android:src="@{item.image}"
                     app:layout_constraintBottom_toBottomOf="parent"

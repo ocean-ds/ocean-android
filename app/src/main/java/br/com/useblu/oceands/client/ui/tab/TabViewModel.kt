@@ -16,7 +16,17 @@ class TabViewModel: ViewModel() {
     fun loadDetails() {
         counters.postValue(listOf(2, 5, 3))
         labels1.postValue(listOf("Item 1", "Item 2"))
-        labels2.postValue(listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"))
+        labels2.postValue(
+            listOf(
+                "Item 1",
+                "Item 2",
+                "Item 3",
+                "Item 4",
+                "Item 5",
+                "Item 6",
+                "Item 7"
+            )
+        )
     }
 
     fun tabSelected(position: Int) {

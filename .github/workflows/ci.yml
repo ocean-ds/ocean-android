@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           # we actually need "github.event.pull_request.commits + 1" commit
           fetch-depth: 0
@@ -29,7 +29,7 @@ jobs:
         run: ./gradlew lint
 
       - name: Lint commit message
-        uses: wagoid/commitlint-github-action@v3
+        uses: wagoid/commitlint-github-action@v4
 
       - name: Run tests
         run: ./gradlew test

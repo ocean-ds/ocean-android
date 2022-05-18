@@ -20,7 +20,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/expansion_layout_child_container"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="wrap_content"
         android:background="@color/ocean_color_interface_light_pure"
         android:orientation="vertical"
         android:paddingTop="@dimen/ocean_spacing_stack_xs"
@@ -44,38 +44,42 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/icon_generic_primary" />
 
-        <TextView
-            android:id="@+id/title_item_child"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:fontFamily="@font/font_family_base_medium"
-            android:text="@{item.title}"
-            android:textColor="@color/ocean_color_interface_dark_down"
-            android:textSize="@dimen/ocean_font_size_xs"
-            app:layout_constraintBottom_toTopOf="@+id/subtitle_item_child"
-            app:layout_constraintEnd_toEndOf="@+id/expansion_layout_child_container"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@id/image_child"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Title" />
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/image_child"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_child"
+            app:layout_constraintTop_toTopOf="@+id/image_child">
 
-        <TextView
-            android:id="@+id/subtitle_item_child"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:fontFamily="@font/font_family_base_regular"
-            android:textColor="@color/ocean_color_interface_dark_down"
-            android:textSize="@dimen/ocean_font_size_xxxs"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/expansion_layout_child_container"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@id/image_child"
-            app:layout_constraintTop_toBottomOf="@+id/title_item_child"
-            app:text="@{item.subTitle}"
-            tools:text="Description" />
+            <TextView
+                android:id="@+id/title_item_child"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:fontFamily="@font/font_family_base_medium"
+                android:layout_gravity="center_vertical"
+                android:text="@{item.title}"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textSize="@dimen/ocean_font_size_xs"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/subtitle_item_child"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:fontFamily="@font/font_family_base_regular"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textSize="@dimen/ocean_font_size_xxxs"
+                app:text="@{item.subTitle}"
+                app:ocean_visible_or_gone="@{!item.subTitle.isEmpty()}"
+                tools:text="Description" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

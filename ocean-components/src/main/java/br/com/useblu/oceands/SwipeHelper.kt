@@ -23,7 +23,12 @@ import java.util.*
 abstract class SwipeHelper(private val context: Context, private val recyclerView: RecyclerView) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
     private var buttons: MutableList<UnderlayButton> = ArrayList()
-    private val gestureDetector: GestureDetector by lazy { GestureDetector(context, gestureListener) }
+    private val gestureDetector: GestureDetector by lazy {
+        GestureDetector(
+            context,
+            gestureListener
+        )
+    }
     private var swipedPos = -1
     private var swipeThreshold = 0.5f
     private val buttonsBuffer: MutableMap<Int, MutableList<UnderlayButton>> = HashMap()
@@ -37,6 +42,7 @@ abstract class SwipeHelper(private val context: Context, private val recyclerVie
             return true
         }
     }
+
     @SuppressLint("ClickableViewAccessibility")
     private val onTouchListener = OnTouchListener { _, e ->
         if (swipedPos < 0) return@OnTouchListener false

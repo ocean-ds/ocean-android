@@ -5,6 +5,7 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.SwipeHelper
 
 fun RecyclerView.addSwipeLeft(
+    items: List<OceanChildTextItem>,
     edit: ((Int) -> Unit)?,
     remove: ((Int) -> Unit)?,
 ) {
@@ -18,7 +19,7 @@ fun RecyclerView.addSwipeLeft(
         ) {
             val position = viewHolder?.bindingAdapterPosition
             position?.let {
-                remove?.let {
+                if (items[position].isRemove) {
                     underlayButtons?.add(UnderlayButton(
                         context,
                         R.string.all_text_exclude,
@@ -28,12 +29,12 @@ fun RecyclerView.addSwipeLeft(
                         object : UnderlayButtonClickListener {
                             override fun onClick(pos: Int) {
                                 swipeHelper?.hideOptions(pos)
-                                remove.invoke(pos)
+                                remove?.invoke(pos)
                             }
                         }
                     ))
                 }
-                edit?.let {
+                if (items[position].isEdit) {
                     underlayButtons?.add(UnderlayButton(
                         context,
                         R.string.transfer_button_item_edit,
@@ -43,7 +44,7 @@ fun RecyclerView.addSwipeLeft(
                         object : UnderlayButtonClickListener {
                             override fun onClick(pos: Int) {
                                 swipeHelper?.hideOptions(pos)
-                                edit.invoke(pos)
+                                edit?.invoke(pos)
                             }
                         }
                     ))

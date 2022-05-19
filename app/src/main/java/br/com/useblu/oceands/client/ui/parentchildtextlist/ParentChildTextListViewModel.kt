@@ -28,7 +28,7 @@ class ParentChildTextListViewModel : ViewModel() {
                     OceanChildTextItem(
                         image = drawable,
                         title = "nome",
-                        subTitle = "teste",
+                        subTitle = "",
                         isRemove = true,
                         isEdit = true
                     ),

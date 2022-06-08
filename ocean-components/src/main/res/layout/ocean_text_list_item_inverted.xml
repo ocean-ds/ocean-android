@@ -106,7 +106,6 @@
                     android:text="@{title}"
                     app:ocean_text="@{title}"
                     app:ocean_text_format="@{formatTypeTitle}"
-                    app:ocean_text_from_html="@{title}"
                     tools:text="Title" />
 
                 <Space
@@ -134,7 +133,6 @@
                 android:textColor="@color/ocean_color_interface_dark_deep"
                 app:ocean_text="@{subtitle}"
                 app:ocean_text_format="@{formatTypeSubTitle}"
-                app:ocean_text_from_html="@{subtitle}"
                 app:ocean_visible_or_gone="@{subtitle != null}"
                 tools:text="Subtitle" />
 

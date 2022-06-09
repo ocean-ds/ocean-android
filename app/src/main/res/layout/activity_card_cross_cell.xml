@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.InputType" />
+
+        <import type="br.com.useblu.oceands.core.OceanBadgeType" />
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.crosscellcard.CardCrossCellViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/ocean_spacing_stack_xxs"
+            tools:context=".ui.cardcontent.CardContentActivity">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/cardContent1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <include
+                    layout="@layout/ocean_cross_sell_card"
+                    app:actionTitle="@{`Call to action`}"
+                    app:actionIcon="@{@drawable/icon_chevron_right_brand_primary}"
+                    app:image="@{@drawable/icon_chevron_right_brand_primary}"
+                    app:click="@{viewmodel::click}"
+                    app:description="@{`Description Sample`}"
+                    app:showProgress="@{false}"
+                    app:title="@{`Title Sample`}" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

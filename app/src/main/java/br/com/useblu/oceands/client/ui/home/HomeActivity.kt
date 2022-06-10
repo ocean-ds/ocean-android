@@ -18,7 +18,7 @@ import br.com.useblu.oceands.client.ui.cardcontent.CardContentActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
 import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
 import br.com.useblu.oceands.client.ui.chips.ChipsActivity
-import br.com.useblu.oceands.client.ui.crosscellcard.CardCrossCellActivity
+import br.com.useblu.oceands.client.ui.crosscellcard.CardCrossSellActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
@@ -116,7 +116,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun cardCrossCellClick(view: View) {
-        val intent = Intent(this, CardCrossCellActivity::class.java)
+        val intent = Intent(this, CardCrossSellActivity::class.java)
         startActivity(intent)
     }
 

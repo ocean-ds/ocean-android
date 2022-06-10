@@ -11,7 +11,7 @@
 
         <variable
             name="viewmodel"
-            type="br.com.useblu.oceands.client.ui.crosscellcard.CardCrossCellViewModel" />
+            type="br.com.useblu.oceands.client.ui.crosscellcard.CardCrossSellViewModel" />
 
     </data>
 

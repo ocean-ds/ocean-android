@@ -58,7 +58,7 @@
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/ocean_color_brand_primary_deep"
+                android:background="@color/ocean_color_brand_primary_pure"
                 android:paddingStart="@dimen/ocean_spacing_stack_xs"
                 android:paddingTop="@dimen/ocean_spacing_stack_xs"
                 android:paddingEnd="@dimen/ocean_spacing_stack_xs"

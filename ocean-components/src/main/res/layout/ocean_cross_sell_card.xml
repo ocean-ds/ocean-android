@@ -87,6 +87,7 @@
                         layout="@layout/ocean_description_inverse"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/include2"
+                        app:color="@color/ocean_color_interface_light_up"
                         app:text="@{description}" />
                 </LinearLayout>
 

@@ -12,6 +12,10 @@
         <variable
             name="gravity"
             type="Integer" />
+
+        <variable
+            name="color"
+            type="Integer" />
     </data>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -20,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="@{gravity}"
+        android:textColor="@{color != null ? color : @color/ocean_color_brand_primary_up}"
         android:text="@{text}"
         app:ocean_text_from_html="@{text}"
         tools:text="Description Inverse" />

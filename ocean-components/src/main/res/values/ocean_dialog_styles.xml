@@ -14,4 +14,13 @@
         <item name="android:windowEnterAnimation">@anim/slide_up</item>
         <item name="android:windowExitAnimation">@anim/slide_down</item>
     </style>
+
+    <style name="Ocean.FullScreenDatePicker" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorPrimaryDark">@color/ocean_color_interface_light_pure</item>
+        <item name="colorAccent">@color/ocean_color_complementary_pure</item>
+        <item name="colorPrimary">@color/ocean_color_interface_light_pure</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@color/ocean_color_interface_light_pure</item>
+        <item name="actionMenuTextColor">@color/ocean_color_interface_light_pure</item>
+    </style>
 </resources>

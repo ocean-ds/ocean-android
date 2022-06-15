@@ -33,6 +33,7 @@ import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
+import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -263,6 +264,32 @@ class HomeActivity : AppCompatActivity() {
                     ).show()
                 }
             ).show()
+    }
+
+    fun onOceanDatePickerFullScreen(view: View) {
+        var calendarMaxDate = Calendar.getInstance()
+        calendarMaxDate.time = Date()
+        calendarMaxDate.add(Calendar.MONTH, 1)
+
+        var calendarDefaultSelected = Calendar.getInstance()
+        calendarDefaultSelected.time = Date()
+        calendarDefaultSelected.add(Calendar.DAY_OF_YEAR, 1)
+
+        OceanDatePickerFullscreen(supportFragmentManager)
+            .withTitle("Agendar para")
+            .withDates(
+                minDate = Date(),
+                maxDate = calendarMaxDate.time,
+                defaultSelected = calendarDefaultSelected.time,
+                onConfirm = { date ->
+                    OceanToast(this)
+                        .withType(OceanToast.OceanToastType.Warning)
+                        .withMessage(date.toString())
+                        .show()
+                }
+            )
+            .show()
+
     }
 
     fun onClickToast(view: View) {

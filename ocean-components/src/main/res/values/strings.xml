@@ -22,4 +22,6 @@
     <string name="all_text_exclude">Excluir</string>
     <string name="all_text_save">Salvar</string>
     <string name="transfer_button_item_edit">Editar</string>
+    <string name="button_confirm">Confirmar</string>
+    <string name="title_calendar_datePicker">Agendar para</string>
 </resources>

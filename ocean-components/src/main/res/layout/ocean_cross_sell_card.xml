@@ -37,6 +37,10 @@
             name="click"
             type="Function0&lt;Unit>" />
 
+        <variable
+            name="color"
+            type="Integer" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -58,11 +62,12 @@
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/ocean_color_brand_primary_pure"
+                android:background="@{(color != null) ? color : @color/ocean_color_brand_primary_pure}"
                 android:paddingStart="@dimen/ocean_spacing_stack_xs"
                 android:paddingTop="@dimen/ocean_spacing_stack_xs"
                 android:paddingEnd="@dimen/ocean_spacing_stack_xs"
-                android:paddingBottom="@dimen/ocean_spacing_stack_xs">
+                android:paddingBottom="@dimen/ocean_spacing_stack_xs"
+                tools:background="@color/ocean_color_brand_primary_pure">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -85,9 +90,9 @@
                     <include
                         android:id="@+id/include"
                         layout="@layout/ocean_description_inverse"
+                        app:color="@color/ocean_color_interface_light_up"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/include2"
-                        app:color="@color/ocean_color_interface_light_up"
                         app:text="@{description}" />
                 </LinearLayout>
 
@@ -95,10 +100,10 @@
                     android:id="@+id/imageView6"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:src="@{image}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@{image}"
                     tools:srcCompat="@drawable/icon_generic" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

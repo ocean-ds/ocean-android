@@ -47,6 +47,7 @@
         <activity android:name=".ui.optionscard.OptionsCardActivity" />
         <activity android:name=".ui.checkbox.CheckBoxActivity" />
         <activity android:name=".ui.parentchildtextlist.ParentChildTextListActivity" />
+        <activity android:name=".ui.crosscellcard.CardCrossSellActivity" />
     </application>
 
 </manifest>

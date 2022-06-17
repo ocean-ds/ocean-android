@@ -134,6 +134,7 @@
                 android:textColor="@color/ocean_color_interface_dark_deep"
                 app:ocean_text="@{subtitle}"
                 app:ocean_text_format="@{formatTypeSubTitle}"
+                app:ocean_text_from_html="@{subtitle}"
                 app:ocean_visible_or_gone="@{subtitle != null}"
                 tools:text="Subtitle" />
 
@@ -147,6 +148,7 @@
                 android:textColor="@color/ocean_color_interface_dark_deep"
                 app:ocean_text="@{description}"
                 app:ocean_text_format="@{formatTypeDescription}"
+                app:ocean_text_from_html="@{description}"
                 app:ocean_visible_or_gone="@{description != null}"
                 tools:text="Description" />
         </LinearLayout>

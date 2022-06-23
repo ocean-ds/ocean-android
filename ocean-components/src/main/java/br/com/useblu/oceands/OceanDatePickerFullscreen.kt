@@ -4,18 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import br.com.useblu.oceands.core.DisabledDaysDecorator
 import br.com.useblu.oceands.databinding.OceanDatePickerFullscreenBinding
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView.*
-import kotlinx.android.synthetic.main.ocean_date_picker_fullscreen.*
-import kotlinx.android.synthetic.main.ocean_date_picker_fullscreen.view.*
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 
 class OceanDatePickerFullscreen(
@@ -84,7 +77,6 @@ class OceanDatePickerFullscreen(
         disabledDays.let {
             binding.calendarView.addDecorators(DisabledDaysDecorator(it))
         }
-
     }
 
     private fun setupButton() {
@@ -101,17 +93,37 @@ class OceanDatePickerFullscreen(
         return this
     }
 
-    fun withDates(
-        minDate: Calendar? = null,
-        maxDate: Calendar? = null,
-        defaultSelected: Calendar,
-        disabledDays: Array<Calendar> = emptyArray(),
-        onConfirm: (Date) -> Unit
+    fun withMinDate(
+        minDate: Calendar? = null
     ): OceanDatePickerFullscreen {
         this.minDate = minDate
+        return this
+    }
+
+    fun withMaxDate(
+        maxDate: Calendar? = null
+    ): OceanDatePickerFullscreen {
         this.maxDate = maxDate
+        return this
+    }
+
+    fun withDefaultSelect(
+        defaultSelected: Calendar,
+    ): OceanDatePickerFullscreen {
         this.defaultSelected = defaultSelected
+        return this
+    }
+
+    fun withDisabledDays(
+        disabledDays: Array<Calendar> = emptyArray(),
+    ): OceanDatePickerFullscreen {
         this.disabledDays = disabledDays
+        return this
+    }
+
+    fun withOnConfirm(
+        onConfirm: (Date) -> Unit,
+    ): OceanDatePickerFullscreen {
         this.onClickConfirm = onConfirm
         return this
     }

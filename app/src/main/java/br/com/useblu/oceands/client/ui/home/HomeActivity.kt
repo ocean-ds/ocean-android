@@ -278,15 +278,29 @@ class HomeActivity : AppCompatActivity() {
 
         var calendarMaxDate = Calendar.getInstance()
         calendarMaxDate.time = Date()
-        calendarMaxDate.add(Calendar.MONTH, 1)
+        calendarMaxDate.add(Calendar.MONTH, 5)
 
         var calendarDefaultSelected = Calendar.getInstance()
         calendarDefaultSelected.time = Date()
         calendarDefaultSelected.add(Calendar.DAY_OF_YEAR, 1)
 
-        var calendarDisabledDay = Calendar.getInstance()
-        calendarDisabledDay.time = Date()
-        calendarDisabledDay.add(Calendar.DAY_OF_YEAR, 3)
+        val disableDay1 = Calendar.getInstance().apply {
+            set(Calendar.YEAR, 2022)
+            set(Calendar.MONTH, Calendar.JUNE)
+            set(Calendar.DAY_OF_MONTH, 28)
+        }
+
+        val disabledDay2 = Calendar.getInstance().apply {
+            set(Calendar.YEAR, 2022)
+            set(Calendar.MONTH, Calendar.JULY)
+            set(Calendar.DAY_OF_MONTH, 12)
+        }
+
+        val disabledDay3 = Calendar.getInstance().apply {
+            set(Calendar.YEAR, 2022)
+            set(Calendar.MONTH, Calendar.AUGUST)
+            set(Calendar.DAY_OF_MONTH, 13)
+        }
 
         OceanDatePickerFullscreen(supportFragmentManager)
             .withTitle("Agendar para")
@@ -294,7 +308,7 @@ class HomeActivity : AppCompatActivity() {
                 minDate = calendarMinDate,
                 maxDate = calendarMaxDate,
                 defaultSelected = calendarDefaultSelected,
-                disabledDays = arrayOf(calendarDisabledDay),
+                disabledDays = arrayOf(disableDay1, disabledDay2, disabledDay3),
                 onConfirm = { date ->
                     OceanToast(this)
                         .withType(OceanToast.OceanToastType.Warning)

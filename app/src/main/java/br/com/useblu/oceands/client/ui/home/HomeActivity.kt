@@ -304,18 +304,16 @@ class HomeActivity : AppCompatActivity() {
 
         OceanDatePickerFullscreen(supportFragmentManager)
             .withTitle("Agendar para")
-            .withDates(
-                minDate = calendarMinDate,
-                maxDate = calendarMaxDate,
-                defaultSelected = calendarDefaultSelected,
-                disabledDays = arrayOf(disableDay1, disabledDay2, disabledDay3),
-                onConfirm = { date ->
-                    OceanToast(this)
-                        .withType(OceanToast.OceanToastType.Warning)
-                        .withMessage(date.toString())
-                        .show()
-                }
-            )
+            .withMinDate(calendarMinDate)
+            .withMaxDate(calendarMaxDate)
+            .withDefaultSelect(calendarDefaultSelected)
+            .withDisabledDays(arrayOf(disableDay1, disabledDay2, disabledDay3))
+            .withOnConfirm { date ->
+                OceanToast(this)
+                    .withType(OceanToast.OceanToastType.Warning)
+                    .withMessage(date.toString())
+                    .show()
+            }
             .show()
 
     }

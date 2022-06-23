@@ -24,12 +24,16 @@
             app:title="@{@string/title_calendar_datePicker}"
             app:icon="@{@drawable/icon_close}" />
 
-        <CalendarView
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/calendarView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:datePickerMode="spinner"
-            android:spinnersShown="false"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:mcv_showOtherDates="all"
+            app:mcv_headerTextAppearance="@style/Ocean.Heading.4"
+            app:mcv_weekDayTextAppearance="@color/ocean_color_interface_dark_down"
+            app:mcv_selectionColor="@color/ocean_color_complementary_pure"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

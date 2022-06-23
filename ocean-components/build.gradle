@@ -101,6 +101,6 @@ dependencies {
     api 'me.relex:circleindicator:2.1.6'
     api 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.4'
     api 'com.github.florent37:expansionpanel:1.2.4'
-    api 'com.wdullaer:materialdatetimepicker:4.2.3'
+    api 'com.github.prolificinteractive:material-calendarview:2.0.0'
     embed project(path: ':ocean-tokens')
 }

@@ -273,6 +273,9 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun onOceanDatePickerFullScreen(view: View) {
+        var calendarMinDate = Calendar.getInstance()
+        calendarMinDate.time = Date()
+
         var calendarMaxDate = Calendar.getInstance()
         calendarMaxDate.time = Date()
         calendarMaxDate.add(Calendar.MONTH, 1)
@@ -281,12 +284,17 @@ class HomeActivity : AppCompatActivity() {
         calendarDefaultSelected.time = Date()
         calendarDefaultSelected.add(Calendar.DAY_OF_YEAR, 1)
 
+        var calendarDisabledDay = Calendar.getInstance()
+        calendarDisabledDay.time = Date()
+        calendarDisabledDay.add(Calendar.DAY_OF_YEAR, 3)
+
         OceanDatePickerFullscreen(supportFragmentManager)
             .withTitle("Agendar para")
             .withDates(
-                minDate = Date(),
-                maxDate = calendarMaxDate.time,
-                defaultSelected = calendarDefaultSelected.time,
+                minDate = calendarMinDate,
+                maxDate = calendarMaxDate,
+                defaultSelected = calendarDefaultSelected,
+                disabledDays = arrayOf(calendarDisabledDay),
                 onConfirm = { date ->
                     OceanToast(this)
                         .withType(OceanToast.OceanToastType.Warning)

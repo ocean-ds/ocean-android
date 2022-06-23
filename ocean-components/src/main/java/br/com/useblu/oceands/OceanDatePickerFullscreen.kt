@@ -7,7 +7,15 @@ import android.view.ViewGroup
 import android.widget.CalendarView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import br.com.useblu.oceands.core.DisabledDaysDecorator
 import br.com.useblu.oceands.databinding.OceanDatePickerFullscreenBinding
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView.*
+import kotlinx.android.synthetic.main.ocean_date_picker_fullscreen.*
+import kotlinx.android.synthetic.main.ocean_date_picker_fullscreen.view.*
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 
 class OceanDatePickerFullscreen(
@@ -15,11 +23,11 @@ class OceanDatePickerFullscreen(
 ) : DialogFragment() {
 
     private var title: String? = null
-    private var minDate: Long? = null
-    private var maxDate: Long? = null
-    private var defaultSelected: Long? = null
+    private var minDate: Calendar? = null
+    private var maxDate: Calendar? = null
+    private var defaultSelected: Calendar? = null
+    private var disabledDays: Array<Calendar> = emptyArray()
     private var onClickConfirm: (Date) -> Unit = {}
-    private var calendar: Calendar = Calendar.getInstance()
     private var _binding: OceanDatePickerFullscreenBinding? = null
     private val binding get() = _binding!!
 
@@ -53,18 +61,28 @@ class OceanDatePickerFullscreen(
     }
 
     private fun setupCalendar() {
+        val calendar = binding.calendarView.state().edit()
         minDate?.let {
-            binding.calendarView.minDate = it
+            val day = it.get(Calendar.DAY_OF_MONTH)
+            val month = it.get(Calendar.MONTH) + 1
+            val year = it.get(Calendar.YEAR)
+            calendar.setMinimumDate(CalendarDay.from(year, month, day))
         }
         maxDate?.let {
-            binding.calendarView.maxDate = it
+            val day = it.get(Calendar.DAY_OF_MONTH)
+            val month = it.get(Calendar.MONTH) + 1
+            val year = it.get(Calendar.YEAR)
+            calendar.setMaximumDate(CalendarDay.from(year, month, day))
         }
+        calendar.commit()
         defaultSelected?.let {
-            binding.calendarView.date = it
+            val day = it.get(Calendar.DAY_OF_MONTH)
+            val month = it.get(Calendar.MONTH) + 1
+            val year = it.get(Calendar.YEAR)
+            binding.calendarView.selectedDate = CalendarDay.from(year, month, day)
         }
-        binding.calendarView.setOnDateChangeListener { calView: CalendarView, year: Int, month: Int, dayOfMonth: Int ->
-            calendar.set(year, month, dayOfMonth)
-            calView.setDate(calendar.timeInMillis, true, true)
+        disabledDays.let {
+            binding.calendarView.addDecorators(DisabledDaysDecorator(it))
         }
 
     }
@@ -72,7 +90,9 @@ class OceanDatePickerFullscreen(
     private fun setupButton() {
         binding.primaryPositiveButton.click = {
             dismiss()
-            onClickConfirm.invoke(calendar.time)
+            binding.calendarView.selectedDate?.let {
+                onClickConfirm.invoke(Date(it.year, it.month - 1, it.day))
+            }
         }
     }
 
@@ -82,14 +102,16 @@ class OceanDatePickerFullscreen(
     }
 
     fun withDates(
-        minDate: Date? = null,
-        maxDate: Date? = null,
-        defaultSelected: Date,
+        minDate: Calendar? = null,
+        maxDate: Calendar? = null,
+        defaultSelected: Calendar,
+        disabledDays: Array<Calendar> = emptyArray(),
         onConfirm: (Date) -> Unit
     ): OceanDatePickerFullscreen {
-        this.minDate = minDate?.time
-        this.maxDate = maxDate?.time
-        this.defaultSelected = defaultSelected.time
+        this.minDate = minDate
+        this.maxDate = maxDate
+        this.defaultSelected = defaultSelected
+        this.disabledDays = disabledDays
         this.onClickConfirm = onConfirm
         return this
     }
@@ -97,6 +119,4 @@ class OceanDatePickerFullscreen(
     fun show() {
         this.show(manager, null)
     }
-
-
 }

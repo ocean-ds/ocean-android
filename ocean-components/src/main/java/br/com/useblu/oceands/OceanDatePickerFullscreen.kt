@@ -101,37 +101,27 @@ class OceanDatePickerFullscreen(
         return this
     }
 
-    fun withMinDate(
-        minDate: Calendar? = null
-    ): OceanDatePickerFullscreen {
+    fun withMinDate(minDate: Calendar? = null): OceanDatePickerFullscreen {
         this.minDate = minDate
         return this
     }
 
-    fun withMaxDate(
-        maxDate: Calendar? = null
-    ): OceanDatePickerFullscreen {
+    fun withMaxDate(maxDate: Calendar? = null): OceanDatePickerFullscreen {
         this.maxDate = maxDate
         return this
     }
 
-    fun withDefaultSelect(
-        defaultSelected: Calendar,
-    ): OceanDatePickerFullscreen {
+    fun withDefaultSelect(defaultSelected: Calendar): OceanDatePickerFullscreen {
         this.defaultSelected = defaultSelected
         return this
     }
 
-    fun withDisabledDays(
-        disabledDays: Array<Calendar> = emptyArray(),
-    ): OceanDatePickerFullscreen {
+    fun withDisabledDays(disabledDays: Array<Calendar> = emptyArray()): OceanDatePickerFullscreen {
         this.disabledDays = disabledDays
         return this
     }
 
-    fun withOnConfirm(
-        onConfirm: (Calendar) -> Unit,
-    ): OceanDatePickerFullscreen {
+    fun withOnConfirm(onConfirm: (Calendar) -> Unit): OceanDatePickerFullscreen {
         this.onClickConfirm = onConfirm
         return this
     }

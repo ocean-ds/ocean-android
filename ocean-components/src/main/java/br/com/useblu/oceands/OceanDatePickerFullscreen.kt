@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentManager
 import br.com.useblu.oceands.core.DisabledDaysDecorator
 import br.com.useblu.oceands.databinding.OceanDatePickerFullscreenBinding
 import com.prolificinteractive.materialcalendarview.CalendarDay
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 class OceanDatePickerFullscreen(
     private val manager: FragmentManager
@@ -20,7 +22,7 @@ class OceanDatePickerFullscreen(
     private var maxDate: Calendar? = null
     private var defaultSelected: Calendar? = null
     private var disabledDays: Array<Calendar> = emptyArray()
-    private var onClickConfirm: (Date) -> Unit = {}
+    private var onClickConfirm: (Calendar) -> Unit = {}
     private var _binding: OceanDatePickerFullscreenBinding? = null
     private val binding get() = _binding!!
 
@@ -83,7 +85,13 @@ class OceanDatePickerFullscreen(
         binding.primaryPositiveButton.click = {
             dismiss()
             binding.calendarView.selectedDate?.let {
-                onClickConfirm.invoke(Date(it.year, it.month - 1, it.day))
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+                val convertedDate: Date =
+                    dateFormat.parse(it.year.toString() + "-" + it.month.toString() + "-" + it.day.toString())
+                val calendar = Calendar.getInstance()
+                calendar.time = convertedDate
+                onClickConfirm.invoke(calendar)
+
             }
         }
     }
@@ -122,7 +130,7 @@ class OceanDatePickerFullscreen(
     }
 
     fun withOnConfirm(
-        onConfirm: (Date) -> Unit,
+        onConfirm: (Calendar) -> Unit,
     ): OceanDatePickerFullscreen {
         this.onClickConfirm = onConfirm
         return this

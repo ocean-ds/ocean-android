@@ -308,10 +308,10 @@ class HomeActivity : AppCompatActivity() {
             .withMaxDate(calendarMaxDate)
             .withDefaultSelect(calendarDefaultSelected)
             .withDisabledDays(arrayOf(disableDay1, disabledDay2, disabledDay3))
-            .withOnConfirm { date ->
+            .withOnConfirm { calendar ->
                 OceanToast(this)
                     .withType(OceanToast.OceanToastType.Warning)
-                    .withMessage(date.toString())
+                    .withMessage(calendar.time.toString())
                     .show()
             }
             .show()

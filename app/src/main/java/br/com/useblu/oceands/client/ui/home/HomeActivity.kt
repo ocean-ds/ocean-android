@@ -19,6 +19,7 @@ import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
 import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
 import br.com.useblu.oceands.client.ui.chips.ChipsActivity
 import br.com.useblu.oceands.client.ui.crosscellcard.CardCrossSellActivity
+import br.com.useblu.oceands.client.ui.footer.FooterBluActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
@@ -352,5 +353,10 @@ class HomeActivity : AppCompatActivity() {
 
         tooltip.show(binding.tooltip)
         tooltip.dismissWithDelay(1000)
+    }
+
+    fun onFooterBlu(view: View) {
+        val intent = Intent(this, FooterBluActivity::class.java)
+        startActivity(intent)
     }
 }

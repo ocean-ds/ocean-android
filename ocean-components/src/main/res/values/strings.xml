@@ -24,4 +24,12 @@
     <string name="transfer_button_item_edit">Editar</string>
     <string name="button_confirm">Confirmar</string>
     <string name="title_calendar_datePicker">Agendar para</string>
+    <string name="footer_relationship_center">Central de relacionamento</string>
+    <string name="footer_telephone_relationship_center">3003 0807</string>
+    <string name="footer_capitals_metropolitan_regions">(Capitais e regiões metropolitanas)</string>
+    <string name="footer_phones">0800 326 0807</string>
+    <string name="footer_other_regions">(Demais regiões)</string>
+    <string name="footer_ombudsman">Ouvidoria</string>
+    <string name="footer_service_description">Atendimento das 9h às 17h30 em dias úteis.</string>
+
 </resources>

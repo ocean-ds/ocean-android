@@ -33,7 +33,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
 
-            <include layout="@layout/ocean_divider" />
 
             <Space
                 android:layout_width="match_parent"
@@ -48,7 +47,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
 
-            <include layout="@layout/ocean_divider" />
 
             <Space
                 android:layout_width="match_parent"
@@ -63,7 +61,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
 
-            <include layout="@layout/ocean_divider" />
 
             <Button
                 android:id="@+id/button_show_shadow"

@@ -69,7 +69,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="8dp"
             android:background="@drawable/ocean_toolbar_dropshadow"
             app:ocean_visible_or_gone="@{visibleShadow}" />
     </androidx.appcompat.widget.LinearLayoutCompat>

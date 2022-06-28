@@ -32,6 +32,16 @@ class TopbarActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
         setSupportActionBar(toolbar)
         toolbar.setOnMenuItemClickListener(this)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        initObservers()
+    }
+
+    private fun initObservers() {
+        viewModel.shadowState.observe(this) {
+            binding.topbarDefault.visibleShadow = it
+            binding.topbarPrimary.visibleShadow = it
+            binding.topbarComplementary.visibleShadow = it
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

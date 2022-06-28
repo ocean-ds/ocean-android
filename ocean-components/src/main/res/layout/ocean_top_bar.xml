@@ -31,30 +31,46 @@
             name="iconInvisible"
             type="java.lang.Boolean" />
 
+        <variable
+            name="visibleShadow"
+            type="Boolean" />
+
     </data>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/ocean_color_brand_primary_pure"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="@{() -> clickToolbar.invoke()}"
-        android:visibility="@{iconInvisible ? View.INVISIBLE : View.VISIBLE}"
-        app:navigationIcon="@{icon == null ? @drawable/icon_back : icon}"
-        app:setNavigationOnClick="@{click::invoke}"
-        android:theme="@style/Ocean.ToolBar.Option.Light"
-        tools:navigationIcon="@drawable/icon_generic">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_family_highlight_extrabold"
-            android:text="@{title}"
-            android:textColor="@color/ocean_color_interface_light_pure"
-            android:textSize="@dimen/ocean_font_size_sm"
-            tools:text="Title" />
-    </androidx.appcompat.widget.Toolbar>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/ocean_color_brand_primary_pure"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> clickToolbar.invoke()}"
+            android:theme="@style/Ocean.ToolBar.Option.Light"
+            android:visibility="@{iconInvisible ? View.INVISIBLE : View.VISIBLE}"
+            app:navigationIcon="@{icon == null ? @drawable/icon_back : icon}"
+            app:setNavigationOnClick="@{click::invoke}"
+            tools:navigationIcon="@drawable/icon_generic">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_highlight_extrabold"
+                android:text="@{title}"
+                android:textColor="@color/ocean_color_interface_light_pure"
+                android:textSize="@dimen/ocean_font_size_sm"
+                tools:text="Title" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@drawable/ocean_toolbar_dropshadow"
+            app:ocean_visible_or_gone="@{visibleShadow}" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

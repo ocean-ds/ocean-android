@@ -330,6 +330,7 @@
                         android:layout_marginTop="12dp"
                         android:background="@color/ocean_color_interface_light_down"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:ocean_visible_or_gone="@{fourthLabel != null &amp;&amp; fourthValue != null}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/text_view_third_label" />
 
@@ -342,6 +343,7 @@
                         android:layout_marginBottom="12dp"
                         android:fontFamily="@font/font_family_base_medium"
                         android:text="@{fourthLabel}"
+                        app:ocean_visible_or_gone="@{fourthLabel != null &amp;&amp; fourthValue != null}"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xs"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -360,6 +362,7 @@
                         android:textSize="@dimen/ocean_font_size_xs"
                         app:layout_constraintBottom_toBottomOf="@id/text_view_fourth_label"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:ocean_visible_or_gone="@{fourthLabel != null &amp;&amp; fourthValue != null}"
                         app:layout_constraintHorizontal_bias="1"
                         app:layout_constraintStart_toEndOf="@id/text_view_fourth_label"
                         app:layout_constraintTop_toTopOf="@id/text_view_fourth_label"

@@ -33,7 +33,8 @@
             app:thirdLabel="@{viewmodel.labels.get(2)}"
             app:thirdValue="@{viewmodel.values.get(2)}"
             app:fourthLabel="@{viewmodel.labels.get(3)}"
-            app:fourthValue="@{viewmodel.values.get(3)}"/>
+            app:fourthValue="@{viewmodel.values.get(3)}"
+            app:visibleShadow="@{true}"/>
 
     </LinearLayout>
 </layout>

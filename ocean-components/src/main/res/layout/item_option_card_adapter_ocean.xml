@@ -45,17 +45,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="24dp"
-                app:imageUrl="@{item.icon}"
+            <LinearLayout
+                android:id="@+id/container_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:ocean_visible_or_gone="@{item.icon != null}"
-                tools:src="@drawable/icon_generic_primary" />
+                app:layout_constraintTop_toTopOf="parent">
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="24dp"
+                    app:imageUrl="@{item.icon}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:ocean_visible_or_gone="@{item.icon != null}"
+                    tools:src="@drawable/icon_generic_primary" />
+
+                <ImageView
+                    android:id="@+id/iconDrawable"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="24dp"
+                    android:src="@{item.iconDrawable}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:ocean_visible_or_gone="@{item.iconDrawable != null}"
+                    tools:src="@drawable/icon_generic_primary" />
+            </LinearLayout>
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
@@ -71,8 +92,8 @@
                 android:textSize="@dimen/ocean_font_size_xxs"
                 app:layout_constraintBottom_toTopOf="@+id/subtitle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/icon"
-                app:layout_constraintTop_toTopOf="@+id/icon"
+                app:layout_constraintStart_toEndOf="@+id/container_icon"
+                app:layout_constraintTop_toTopOf="@+id/container_icon"
                 tools:text="Title" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -87,7 +108,7 @@
                 android:text="@{item.subTitle}"
                 android:textColor="@color/ocean_color_interface_dark_down"
                 android:textSize="@dimen/ocean_font_size_xxs"
-                app:layout_constraintBottom_toBottomOf="@+id/icon"
+                app:layout_constraintBottom_toBottomOf="@+id/container_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/title"
                 app:layout_constraintTop_toBottomOf="@+id/title"

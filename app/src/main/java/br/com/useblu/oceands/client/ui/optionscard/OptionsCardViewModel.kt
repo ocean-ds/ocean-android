@@ -2,6 +2,7 @@ package br.com.useblu.oceands.client.ui.optionscard
 
 import android.annotation.SuppressLint
 import android.app.Application
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.adapter.OceanOptionCardItem
@@ -41,7 +42,7 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
             subTitle = "Subtitle 2",
             recommend = true,
             recommendColor =
-                getApplication<Application>().resources.getString(R.color.ocean_color_status_neutral_deep),
+            getApplication<Application>().resources.getString(R.color.ocean_color_status_neutral_deep),
             recommendDescription = "Recomendado",
         ),
         OceanOptionCardItem(
@@ -49,7 +50,10 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
                 name = "aaa",
                 subName = "bbbbb"
             ),
-            icon = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
+            iconDrawable = ContextCompat.getDrawable(
+                application.applicationContext,
+                R.drawable.icon_error
+            ),
             title = "Title 2",
             subTitle = "Subtitle 2",
             recommend = true,

@@ -1,11 +1,10 @@
 package br.com.useblu.oceands.adapter
 
 import android.annotation.SuppressLint
-import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.useblu.oceands.core.dp
 import br.com.useblu.oceands.databinding.ItemOptionCardAdapterOceanBinding
 import br.com.useblu.oceands.databinding.ItemOptionCardDisabledAdapterOceanBinding
 
@@ -72,7 +71,7 @@ class OceanOptionsCardAdapter(
     @SuppressLint("NotifyDataSetChanged")
     private fun onItemSelected(oceanOption: OceanOptionCardItem, position: Int) {
         selectedItem.invoke(oceanOption)
-        if(oceanOption.disabled.not()) {
+        if (oceanOption.disabled.not()) {
             selectedItemPosition = position
             notifyDataSetChanged()
         }
@@ -119,6 +118,7 @@ enum class OptionsCardState {
 data class OceanOptionCardItem(
     val data: Any,
     val icon: String? = null,
+    val iconDrawable: Drawable? = null,
     val heightSize: OceanOptionCardSize = OceanOptionCardSize.MEDIUM,
     val title: String? = "",
     val subTitle: String? = "",

@@ -27,7 +27,7 @@
             android:padding="@dimen/ocean_spacing_stack_xxs">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/cardContent1"
+                android:id="@+id/cardContentDefault"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -35,12 +35,34 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:text="Header" />
+
+            <include
+                layout="@layout/ocean_card_content"
+                app:headerTitle="@{`Header`}"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/cardContent1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardContentDefault">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:text="Default" />
+                    android:text="Icon Header" />
 
                 <include
                     layout="@layout/ocean_card_content"
@@ -64,13 +86,14 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:text="Action Header" />
+                    android:text="Header Subtitle Action" />
 
                 <include
                     layout="@layout/ocean_card_content"
                     app:actionHeaderTitle="@{`Select`}"
                     app:actionHeaderClick="@{viewmodel::actionClickHeader}"
-                    app:headerTitle="@{`Header`}"/>
+                    app:headerTitle="@{`Header`}"
+                    app:headerSubtitle="@{`Subtitle`}"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -87,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:text="Badge" />
+                    android:text="Icon Header Badge" />
 
                 <include
                     layout="@layout/ocean_card_content"

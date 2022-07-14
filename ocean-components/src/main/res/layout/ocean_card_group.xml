@@ -26,6 +26,10 @@
             type="String" />
 
         <variable
+            name="headerSubtitle"
+            type="String" />
+
+        <variable
             name="actionHeaderTitle"
             type="String" />
 
@@ -191,6 +195,20 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/space1" />
 
+                <TextView
+                    android:id="@+id/text_view_subtitle"
+                    style="@style/Ocean.Caption"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ocean_spacing_inset_sm"
+                    android:layout_marginTop="@dimen/ocean_spacing_inset_xxs"
+                    android:gravity="center_vertical"
+                    android:text="@{headerSubtitle}"
+                    android:textColor="@color/ocean_color_interface_dark_down"
+                    app:layout_constraintEnd_toStartOf="@id/space5"
+                    app:layout_constraintStart_toEndOf="@id/space4"
+                    app:layout_constraintTop_toBottomOf="@id/text_header"
+                    tools:text="Subtitle" />
+
                 <Space
                     android:id="@+id/space2"
                     android:layout_width="0dp"
@@ -198,7 +216,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_header" />
+                    app:layout_constraintTop_toBottomOf="@id/text_view_subtitle" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

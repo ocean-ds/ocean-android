@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/ocean_spacing_stack_xxs"
-            tools:context=".ui.cardcontent.CardContentActivity">
+            tools:context=".ui.cardgroup.CardGroupActivity">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/cardContent1"

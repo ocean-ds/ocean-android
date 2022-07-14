@@ -14,7 +14,7 @@ import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.badges.BadgesActivity
 import br.com.useblu.oceands.client.ui.balance.BalanceActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
-import br.com.useblu.oceands.client.ui.cardcontent.CardContentActivity
+import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
 import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
 import br.com.useblu.oceands.client.ui.chips.ChipsActivity
@@ -113,7 +113,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun cardContentClick(view: View) {
-        val intent = Intent(this, CardContentActivity::class.java)
+        val intent = Intent(this, CardGroupActivity::class.java)
         startActivity(intent)
     }
 

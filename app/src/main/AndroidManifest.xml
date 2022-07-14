@@ -14,7 +14,7 @@
             android:exported="false" />
         <activity android:name=".ui.step.StepViewActivity" />
         <activity android:name=".ui.listsubheader.ListSubheaderActivity" />
-        <activity android:name=".ui.cardcontent.CardContentActivity" />
+        <activity android:name=".ui.cardgroup.CardGroupActivity" />
         <activity android:name=".ui.transactionlistitem.TransactionListItemActivity" />
         <activity android:name=".ui.badges.BadgesActivity" />
         <activity android:name=".ui.tag.TagActivity" />

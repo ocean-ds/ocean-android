@@ -11,7 +11,7 @@
 
         <variable
             name="viewmodel"
-            type="br.com.useblu.oceands.client.ui.cardcontent.CardContentViewModel" />
+            type="br.com.useblu.oceands.client.ui.cardgroup.CardGroupViewModel" />
 
     </data>
 
@@ -23,7 +23,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".ui.cardcontent.CardContentActivity"
+            tools:context=".ui.cardgroup.CardGroupActivity"
             android:padding="@dimen/ocean_spacing_stack_xxs">
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -43,7 +43,7 @@
                 android:text="Header" />
 
             <include
-                layout="@layout/ocean_card_content"
+                layout="@layout/ocean_card_group"
                 app:headerTitle="@{`Header`}"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -65,7 +65,7 @@
                     android:text="Icon Header" />
 
                 <include
-                    layout="@layout/ocean_card_content"
+                    layout="@layout/ocean_card_group"
                     app:headerIcon="@{@drawable/icon_generic_primary}"
                     app:headerTitle="@{`Header`}"/>
 
@@ -89,7 +89,7 @@
                     android:text="Header Subtitle Action" />
 
                 <include
-                    layout="@layout/ocean_card_content"
+                    layout="@layout/ocean_card_group"
                     app:actionHeaderTitle="@{`Select`}"
                     app:actionHeaderClick="@{viewmodel::actionClickHeader}"
                     app:headerTitle="@{`Header`}"
@@ -113,7 +113,7 @@
                     android:text="Icon Header Badge" />
 
                 <include
-                    layout="@layout/ocean_card_content"
+                    layout="@layout/ocean_card_group"
                     app:headerIcon="@{@drawable/icon_generic_primary}"
                     app:badgeText="@{`9`}"
                     app:badgeType="@{OceanBadgeType.ALERT}"
@@ -137,7 +137,7 @@
                     android:text="Transaction List" />
 
                 <include
-                    layout="@layout/ocean_card_content"
+                    layout="@layout/ocean_card_group"
                     app:headerIcon="@{@drawable/icon_generic_primary}"
                     app:footerActionTitle="@{`Call To Action`}"
                     app:limitItems="@{3}"
@@ -164,7 +164,7 @@
                     android:text="Transaction List variation" />
 
                 <include
-                    layout="@layout/ocean_card_content"
+                    layout="@layout/ocean_card_group"
                     app:headerIcon="@{@drawable/icon_generic_primary}"
                     app:footerActionTitle="@{`Call To Action`}"
                     app:limitItems="@{2}"

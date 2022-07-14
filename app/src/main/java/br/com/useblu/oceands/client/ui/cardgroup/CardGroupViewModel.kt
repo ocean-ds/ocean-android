@@ -1,11 +1,11 @@
-package br.com.useblu.oceands.client.ui.cardcontent
+package br.com.useblu.oceands.client.ui.cardgroup
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.core.OceanTransactionListUIModel
 
-class CardContentViewModel: ViewModel() {
+class CardGroupViewModel: ViewModel() {
 
     private val _items = MutableLiveData<List<OceanTransactionListUIModel>>()
     val items: LiveData<List<OceanTransactionListUIModel>> get() = _items

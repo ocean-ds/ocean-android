@@ -161,12 +161,12 @@
             android:background="#E7E7E7" />
 
         <TextView
-            android:id="@+id/cardContent"
+            android:id="@+id/cardGroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="cardContentClick"
             android:padding="16dp"
-            android:text="Card Content"
+            android:text="Card Group"
             android:textSize="24sp" />
 
         <View

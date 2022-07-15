@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -39,9 +40,13 @@
             android:clipToPadding="false"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:entries="@{entries}"
             app:isHighlight="@{highlighted}"
-            app:itemSelected="@{itemSelect}"/>
+            app:itemSelected="@{itemSelect}"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_shortcuts_adapter_ocean"/>
 
     </LinearLayout>
 </layout>

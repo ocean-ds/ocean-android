@@ -9,8 +9,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.adapter.OceanShortcutItem
 import br.com.useblu.oceands.client.R
+import br.com.useblu.oceands.core.OceanBadgeType
 
-class ShortcutsViewModel(application: Application): AndroidViewModel(application) {
+class ShortcutsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _items = MutableLiveData<List<OceanShortcutItem>>()
     val items: LiveData<List<OceanShortcutItem>> get() = _items
@@ -42,19 +43,93 @@ class ShortcutsViewModel(application: Application): AndroidViewModel(application
     }
 
     private fun getItems() = listOf(
-        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic_primary), "Shortcut 1"),
-        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic_primary), "Shortcut 2"),
-        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic_primary), "Shortcut 3"),
-        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic_primary), "Shortcut 4"),
-        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic_primary), "Shortcut 5"),
+        OceanShortcutItem(
+            icon = ContextCompat.getDrawable(
+                getApplication<Application>(),
+                R.drawable.icon_generic_primary
+            ),
+            label = "Shortcut 1",
+            badgeType = OceanBadgeType.DEFAULT
+        ),
+        OceanShortcutItem(
+            icon = ContextCompat.getDrawable(
+                getApplication<Application>(),
+                R.drawable.icon_generic_primary
+            ),
+            label = "Shortcut 2",
+            count = "1",
+            badgeType = OceanBadgeType.BRAND_DEFAULT
+        ),
+        OceanShortcutItem(
+            icon = ContextCompat.getDrawable(
+                getApplication<Application>(),
+                R.drawable.icon_generic_primary
+            ),
+            label = "Shortcut 3",
+            badgeType = OceanBadgeType.NEUTRAL
+        ),
+        OceanShortcutItem(
+            icon = ContextCompat.getDrawable(
+                getApplication<Application>(),
+                R.drawable.icon_generic_primary
+            ),
+            label = "Shortcut 4",
+            count = "1",
+            badgeType = OceanBadgeType.ALERT
+        ),
+        OceanShortcutItem(
+            icon = ContextCompat.getDrawable(
+                getApplication<Application>(),
+                R.drawable.icon_generic_primary
+            ),
+            label = "Shortcut 5",
+            count = "1",
+            badgeType = OceanBadgeType.COMPLEMENTARY
+        ),
     )
 
     private fun getItemsHighlighted() = listOf(
-        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic), "Shortcut 1"),
-        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic), "Shortcut 2"),
-        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic), "Shortcut 3"),
-        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic), "Shortcut 4"),
-        OceanShortcutItem(ContextCompat.getDrawable(getApplication<Application>(), R.drawable.icon_generic), "Shortcut 5"),
+        OceanShortcutItem(
+            icon = ContextCompat.getDrawable(
+                getApplication<Application>(),
+                R.drawable.icon_generic
+            ),
+            label = "Shortcut 1",
+            count = "1",
+            badgeType = OceanBadgeType.DEFAULT
+        ),OceanShortcutItem(
+            icon = ContextCompat.getDrawable(
+                getApplication<Application>(),
+                R.drawable.icon_generic
+            ),
+            label = "Shortcut 2",
+            count = "1",
+            badgeType = OceanBadgeType.BRAND_DEFAULT
+        ),OceanShortcutItem(
+            icon = ContextCompat.getDrawable(
+                getApplication<Application>(),
+                R.drawable.icon_generic
+            ),
+            label = "Shortcut 3",
+            count = "1",
+            badgeType = OceanBadgeType.NEUTRAL
+        ),OceanShortcutItem(
+            icon = ContextCompat.getDrawable(
+                getApplication<Application>(),
+                R.drawable.icon_generic
+            ),
+            label = "Shortcut 4",
+            count = "1",
+            badgeType = OceanBadgeType.COMPLEMENTARY
+        ),OceanShortcutItem(
+            icon = ContextCompat.getDrawable(
+                getApplication<Application>(),
+                R.drawable.icon_generic
+            ),
+            label = "Shortcut 5",
+            count = "1",
+            badgeType = OceanBadgeType.ALERT
+        ),
     )
 
 }

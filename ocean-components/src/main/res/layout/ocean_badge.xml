@@ -7,7 +7,7 @@
 
         <import type="android.view.View" />
 
-        <import type="br.com.useblu.oceands.core.OceanBadgeType" />
+            <import type="br.com.useblu.oceands.core.OceanBadgeType" />
 
         <variable
             name="text"
@@ -28,7 +28,7 @@
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -47,7 +47,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Badge" />
+            tools:text="1"
+            tools:background="@drawable/ocean_badge_default"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/badgeSmall"

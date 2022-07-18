@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.useblu.oceands.core.OceanBadgeType
 import br.com.useblu.oceands.databinding.ItemShortcutsAdapterOceanBinding
 import br.com.useblu.oceands.databinding.ItemShortcutsHighlightAdapterOceanBinding
 
@@ -52,11 +53,11 @@ class OceanShortcutsListAdapter(
     ) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bindView(position: Int) {
-            itemBinding.label.text = items[position].label
-            itemBinding.icon.setImageDrawable(items[position].icon)
+            itemBinding.item = items[position]
             itemBinding.cardView.setOnClickListener {
                 onClickItem(position)
             }
+            itemBinding.executePendingBindings()
         }
     }
 
@@ -65,11 +66,11 @@ class OceanShortcutsListAdapter(
     ) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bindView(position: Int) {
-            itemBinding.label.text = items[position].label
-            itemBinding.icon.setImageDrawable(items[position].icon)
+            itemBinding.item = items[position]
             itemBinding.cardView.setOnClickListener {
                 onClickItem(position)
             }
+            itemBinding.executePendingBindings()
         }
     }
 
@@ -77,5 +78,7 @@ class OceanShortcutsListAdapter(
 
 data class OceanShortcutItem(
     val icon: Drawable?,
-    val label: String
+    val label: String,
+    val count: String? = null,
+    val badgeType: OceanBadgeType? = null,
 )

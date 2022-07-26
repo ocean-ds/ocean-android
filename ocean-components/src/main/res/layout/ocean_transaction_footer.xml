@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+        <import type="android.view.View" />
+        <import type="java.util.List" />
+        <import type="kotlin.Unit" />
+        <import type="br.com.useblu.oceands.adapter.OceanTransactionFooterItem" />
+
+        <variable
+            name="entries"
+            type="List&lt;OceanTransactionFooterItem>" />
+
+        <variable
+            name="buttonText"
+            type="String" />
+
+        <variable
+            name="showProgress"
+            type="Boolean" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/ocean_spacing_stack_xs">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/transaction_footer_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:entries="@{entries}"
+            tools:itemCount="5" />
+
+        <include
+            android:id="@+id/button"
+            layout="@layout/ocean_button_primary_md"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            app:click="@{click::invoke}"
+            app:showProgress="@{showProgress}"
+            app:text="@{buttonText}" />
+
+    </LinearLayout>
+
+</layout>

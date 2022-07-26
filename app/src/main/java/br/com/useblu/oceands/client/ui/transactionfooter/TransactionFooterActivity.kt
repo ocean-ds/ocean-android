@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.client.ui.listitem
+package br.com.useblu.oceands.client.ui.transactionfooter
 
 import android.os.Bundle
 import android.widget.Toast
@@ -7,29 +7,28 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityListItemBinding
+import br.com.useblu.oceands.client.databinding.ActivityTransactionFooterBinding
 
-class ListItemActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityListItemBinding
-    private lateinit var viewModel: ListItemViewModel
-
+class TransactionFooterActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityTransactionFooterBinding
+    private lateinit var viewModel: TransactionFooterViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_list_item)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_transaction_footer)
         binding.lifecycleOwner = this
 
-        viewModel = ViewModelProvider(this)[ListItemViewModel::class.java]
+        viewModel = ViewModelProvider(this)[TransactionFooterViewModel::class.java]
         binding.viewmodel = viewModel
-        initObservers()
+
+        initObservables()
     }
 
-    private fun initObservers() {
-        viewModel.clickedLink.observe(this) {
-            Toast.makeText(this, "Clicked item id: $it", Toast.LENGTH_SHORT).show()
-        }
-
-        viewModel.longClickPressed.observe(this) {
-            Toast.makeText(this, "Long click pressed", Toast.LENGTH_SHORT).show()
+    private fun initObservables() {
+        viewModel.message.observe(this) { msg ->
+            Toast.makeText(
+                this, msg, Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }

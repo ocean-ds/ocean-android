@@ -10,7 +10,7 @@
     <string name="all_description">Description</string>
     <string name="all_badge">Badge</string>
     <string name="all_information">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
-
+    <string name="all_button">Button</string>
     <string name="sample_cpf">00000000000</string>
     <string name="click_me"><![CDATA[<b>Click me!</b>]]></string>
 </resources>

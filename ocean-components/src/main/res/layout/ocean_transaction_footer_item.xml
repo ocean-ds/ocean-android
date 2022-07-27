@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="br.com.useblu.oceands.adapter.OceanTransactionFooterItem" />
+
+        <variable
+            name="item"
+            type="OceanTransactionFooterItem" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_items_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/text_container_icon_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:theme="@style/Ocean.Paragraph"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:text="@{item.label}"
+                tools:text="Label" />
+
+            <ImageView
+                android:id="@+id/icon_info"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/ocean_spacing_inset_xxs"
+                app:ocean_visible_or_gone="@{item.tooltip != null}"
+                app:showTooltip="@{item.tooltip}"
+                app:srcCompat="@drawable/icon_information_help"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/icon_value"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                app:imageUrl="@{item.icon}"
+                app:ocean_visible_or_gone="@{item.icon != null}"
+                tools:src="@drawable/icon_success"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/value"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/ocean_spacing_inset_xxs"
+                app:textColor="@{item.newValue == null ? item.color : `colorInterfaceDarkDown`}"
+                app:ocean_strike="@{item.isStrike}"
+                app:highlight="@{item.isBold()}"
+                android:theme="@style/Ocean.Paragraph"
+                app:text="@{item.value != null ? item.value : ``}"
+                tools:text="Value1" />
+
+            <TextView
+                android:id="@+id/new_value"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/ocean_spacing_inset_xxs"
+                app:textColor="@{item.color}"
+                android:theme="@style/Ocean.Paragraph"
+                app:ocean_visible_or_gone="@{item.newValue != null}"
+                app:text="@{item.newValue != null ? item.newValue : ``}"
+                tools:text="Value2" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

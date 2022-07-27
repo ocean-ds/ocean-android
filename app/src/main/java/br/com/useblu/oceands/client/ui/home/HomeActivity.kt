@@ -33,6 +33,7 @@ import br.com.useblu.oceands.client.ui.tab.TabActivity
 import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
+import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivity
 import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 import java.util.*
@@ -169,6 +170,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun checkbox(view: View) {
         val intent = Intent(this, CheckBoxActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun transactionFooter(view: View) {
+        val intent = Intent(this, TransactionFooterActivity::class.java)
         startActivity(intent)
     }
 

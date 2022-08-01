@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="br.com.useblu.oceands.adapter.OceanDescriptorListItem" />
+
+        <variable
+            name="item"
+            type="OceanDescriptorListItem" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_items_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/ocean_spacing_stack_xs"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/descriptor_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.title}"
+            android:theme="@style/Ocean.Description"
+            tools:text="Title" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/icon_value"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                app:imageUrl="@{item.icon}"
+                app:ocean_visible_or_gone="@{item.icon != null}"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/icon_success" />
+
+            <TextView
+                android:id="@+id/value"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/ocean_spacing_inset_xxs"
+                android:theme="@style/Ocean.Paragraph"
+                app:ocean_strike="@{item.isStrike}"
+                app:ocean_visible_or_gone="@{!item.isBold()}"
+                app:text="@{item.value != null ? item.value : ``}"
+                app:textColor="@{item.newValue == null ? item.color : `colorInterfaceDarkDown`}"
+                tools:text="Value1" />
+
+            <TextView
+                android:id="@+id/value_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/ocean_spacing_inset_xxs"
+                android:theme="@style/Ocean.Heading.3"
+                app:ocean_visible_or_gone="@{item.isBold()}"
+                app:text="@{item.value != null ? item.value : ``}"
+                app:textColor="@{item.newValue == null ? item.color : `colorInterfaceDarkDown`}"
+                tools:text="Value1-Bold" />
+
+            <TextView
+                android:id="@+id/new_value"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/ocean_spacing_inset_xxs"
+                android:theme="@style/Ocean.Paragraph"
+                app:ocean_visible_or_gone="@{item.newValue != null}"
+                app:text="@{item.newValue != null ? item.newValue : ``}"
+                app:textColor="@{item.color}"
+                tools:text="Value2" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

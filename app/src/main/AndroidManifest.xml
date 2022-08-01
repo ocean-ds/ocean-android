@@ -50,6 +50,7 @@
         <activity android:name=".ui.crosscellcard.CardCrossSellActivity" />
         <activity android:name=".ui.footer.FooterBluActivity" />
         <activity android:name=".ui.transactionfooter.TransactionFooterActivity" />
+        <activity android:name=".ui.descriptorlistitem.DescriptorListActivity" />
     </application>
 
 </manifest>

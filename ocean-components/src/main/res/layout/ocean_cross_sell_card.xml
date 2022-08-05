@@ -34,12 +34,12 @@
             type="android.graphics.drawable.Drawable" />
 
         <variable
-            name="click"
-            type="Function0&lt;Unit>" />
+            name="background"
+            type="android.graphics.drawable.Drawable" />
 
         <variable
-            name="color"
-            type="Integer" />
+            name="click"
+            type="Function0&lt;Unit>" />
 
     </data>
 
@@ -62,7 +62,7 @@
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@{(color != null) ? color : @color/ocean_color_brand_primary_pure}"
+                android:background="@{(background != null) ? background : @color/ocean_color_brand_primary_pure}"
                 android:paddingStart="@dimen/ocean_spacing_stack_xs"
                 android:paddingTop="@dimen/ocean_spacing_stack_xs"
                 android:paddingEnd="@dimen/ocean_spacing_stack_xs"
@@ -111,7 +111,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
-                android:background="@drawable/ocean_cross_cell_card"
+                android:background="@color/ocean_color_interface_light_pure"
                 android:foreground="?attr/selectableItemBackground">
 
                 <TextView

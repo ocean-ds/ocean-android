@@ -41,7 +41,7 @@
                 android:layout_height="16dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/ocean_spacing_inset_xxs"
-                app:ocean_visible_or_gone="@{item.tooltip != null}"
+                app:ocean_visible_or_gone="@{item.tooltip != null &amp;&amp; !item.tooltip.isEmpty()}"
                 app:showTooltip="@{item.tooltip}"
                 app:srcCompat="@drawable/icon_information_help"
                 tools:ignore="ContentDescription" />
@@ -59,7 +59,7 @@
                 android:layout_height="16dp"
                 android:layout_gravity="center"
                 app:imageUrl="@{item.icon}"
-                app:ocean_visible_or_gone="@{item.icon != null}"
+                app:ocean_visible_or_gone="@{item.icon != null &amp;&amp; !item.icon.isEmpty()}"
                 tools:src="@drawable/icon_success"
                 tools:ignore="ContentDescription" />
 
@@ -69,11 +69,11 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/ocean_spacing_inset_xxs"
-                app:textColor="@{item.newValue == null ? item.color : `colorInterfaceDarkDown`}"
+                app:textColor="@{(item.newValue == null || item.value.isEmpty()) ? item.color : `colorInterfaceDarkDown`}"
                 app:ocean_strike="@{item.isStrike}"
                 app:highlight="@{item.isBold()}"
                 android:theme="@style/Ocean.Paragraph"
-                app:text="@{item.value != null ? item.value : ``}"
+                app:text="@{(item.value != null  &amp;&amp; !item.value.isEmpty()) ? item.value : ``}"
                 tools:text="Value1" />
 
             <TextView
@@ -84,8 +84,8 @@
                 android:layout_marginStart="@dimen/ocean_spacing_inset_xxs"
                 app:textColor="@{item.color}"
                 android:theme="@style/Ocean.Paragraph"
-                app:ocean_visible_or_gone="@{item.newValue != null}"
-                app:text="@{item.newValue != null ? item.newValue : ``}"
+                app:ocean_visible_or_gone="@{item.newValue != null &amp;&amp; !item.newValue.isEmpty() }"
+                app:text="@{(item.newValue != null &amp;&amp; !item.newValue.isEmpty()) ? item.newValue : ``}"
                 tools:text="Value2" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

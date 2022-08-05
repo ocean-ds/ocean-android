@@ -19,6 +19,7 @@ import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
 import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
 import br.com.useblu.oceands.client.ui.chips.ChipsActivity
 import br.com.useblu.oceands.client.ui.crosscellcard.CardCrossSellActivity
+import br.com.useblu.oceands.client.ui.descriptorlistitem.DescriptorListActivity
 import br.com.useblu.oceands.client.ui.footer.FooterBluActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
@@ -175,6 +176,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun transactionFooter(view: View) {
         val intent = Intent(this, TransactionFooterActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun descriptorList(view: View) {
+        val intent = Intent(this, DescriptorListActivity::class.java)
         startActivity(intent)
     }
 

@@ -16,6 +16,10 @@
             type="String" />
 
         <variable
+            name="valueSubtitle"
+            type="String" />
+
+        <variable
             name="highlighted"
             type="String" />
 
@@ -62,44 +66,72 @@
             android:textColor="@color/ocean_color_interface_dark_down"
             android:textSize="@dimen/ocean_font_size_xxxs"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/text_view_subtitle"
+            app:layout_constraintEnd_toStartOf="@id/values_layout_parent_container"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/image_view_icon"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Title" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_view_subtitle"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/values_layout_parent_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxxs"
-            android:fontFamily="@font/font_family_base_regular"
-            android:text="@{subtitle}"
-            app:ocean_text_from_html="@{subtitle}"
-            android:textColor="@color/ocean_color_interface_dark_down"
-            android:textSize="@dimen/ocean_font_size_xxxs"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/text_view_subtitle_highlighted"
-            app:layout_constraintTop_toTopOf="parent"
-            app:ocean_visible_or_gone="@{subtitle != null}"
-            tools:layout_editor_absoluteX="337dp"
-            tools:text="Value" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_view_subtitle_highlighted"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_family_base_extrabold"
-            android:textColor="@color/ocean_color_interface_dark_down"
-            android:textSize="@dimen/ocean_font_size_xxxs"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:ocean_text="@{highlighted}"
-            app:ocean_text_format="@{FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
-            app:ocean_visible_or_gone="@{highlighted != null}"
-            tools:layout_editor_absoluteX="191dp"
-            tools:text="Value" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_value_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@{valueSubtitle}"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textSize="@dimen/ocean_font_size_xxxs"
+                app:ocean_visible_or_gone="@{valueSubtitle != null}"
+                tools:layout_editor_absoluteX="337dp"
+                tools:text="Value" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/values_layout_child_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/ocean_spacing_stack_xxxs"
+                    android:fontFamily="@font/font_family_base_regular"
+                    android:text="@{subtitle}"
+                    app:ocean_text_from_html="@{subtitle}"
+                    android:textColor="@color/ocean_color_interface_dark_down"
+                    android:textSize="@dimen/ocean_font_size_xxxs"
+                    app:ocean_visible_or_gone="@{subtitle != null}"
+                    tools:layout_editor_absoluteX="337dp"
+                    tools:text="Value" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_subtitle_highlighted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_family_base_extrabold"
+                    android:textColor="@color/ocean_color_interface_dark_down"
+                    android:textSize="@dimen/ocean_font_size_xxxs"
+                    app:ocean_text="@{highlighted}"
+                    app:ocean_text_format="@{FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
+                    app:ocean_visible_or_gone="@{highlighted != null}"
+                    tools:layout_editor_absoluteX="191dp"
+                    tools:text="Value" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

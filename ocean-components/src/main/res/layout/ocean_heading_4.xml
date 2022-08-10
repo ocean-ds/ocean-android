@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="@{gravity}"
-        android:textColor="@{(color != null) ? color : @color/ocean_color_interface_dark_pure}"
+        android:textColor="@{(color != null) ? color : @color/ocean_color_interface_dark_deep}"
         android:text="@{text}"
         tools:text="Heading 4" />
 

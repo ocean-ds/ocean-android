@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:gravity="@{gravity}"
         android:text="@{text}"
-        android:textColor="@{(color != null) ? color : @color/ocean_color_interface_dark_pure}"
+        android:textColor="@{(color != null) ? color : @color/ocean_color_interface_dark_deep}"
         tools:text="Heading 3" />
 
 </layout>

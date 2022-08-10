@@ -23,7 +23,7 @@
         style="@style/Ocean.Heading.2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@{(color != null) ? color : @color/ocean_color_interface_dark_pure}"
+        android:textColor="@{(color != null) ? color : @color/ocean_color_interface_dark_deep}"
         android:gravity="@{gravity}"
         android:text="@{text}"
         tools:text="Heading 2" />

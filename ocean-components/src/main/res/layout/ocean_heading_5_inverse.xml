@@ -19,13 +19,14 @@
     </data>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textOceanHeading4"
-        style="@style/Ocean.Heading.4"
+        android:id="@+id/textOceanHeading5Inverse"
+        style="@style/Ocean.Heading.5.Inverse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="@{gravity}"
-        android:textColor="@{(color != null) ? color : @color/ocean_color_interface_dark_deep}"
         android:text="@{text}"
-        tools:text="Heading 4" />
+        android:textColor="@{(color != null) ? color : @color/ocean_color_interface_light_pure}"
+        tools:text="Heading 5 Inverse" />
+
 
 </layout>

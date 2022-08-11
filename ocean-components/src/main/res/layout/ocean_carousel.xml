@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <import type="kotlin.Unit" />
-        <import type="java.util.List"/>
-        <import type="androidx.lifecycle.MutableLiveData"/>
+
+        <import type="java.util.List" />
+
+        <import type="androidx.lifecycle.MutableLiveData" />
+
         <import type="kotlin.jvm.functions.Function1" />
 
         <variable
@@ -58,7 +62,9 @@
             app:showTopShadow="false"
             app:touchToPause="false"
             app:entries="@{entries}"
-            app:itemSelected="@{itemSelect}" />
+            app:itemSelected="@{itemSelect}"
+            tools:background="@drawable/image_placeholder"
+            tools:visibility="gone" />
 
         <org.imaginativeworld.whynotimagecarousel.ImageCarousel
             android:id="@+id/carousel_view2"
@@ -86,7 +92,8 @@
             app:showTopShadow="false"
             app:touchToPause="false"
             app:entries="@{entries}"
-            app:itemSelected="@{itemSelect}" />
+            app:itemSelected="@{itemSelect}"
+            tools:background="@drawable/image_placeholder" />
 
         <me.relex.circleindicator.CircleIndicator2
             android:id="@+id/custom_indicator_carousel"

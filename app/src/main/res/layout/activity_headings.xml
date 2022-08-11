@@ -51,6 +51,13 @@
                     android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
                     android:text="@{@string/ocean_sample_text_heading_1}" />
 
+                <include
+                    layout="@layout/ocean_heading_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_1}" />
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -83,6 +90,13 @@
 
                 <include
                     layout="@layout/ocean_heading_4_inverse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                    android:text="@{@string/ocean_sample_text_heading_1}" />
+
+                <include
+                    layout="@layout/ocean_heading_5_inverse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"

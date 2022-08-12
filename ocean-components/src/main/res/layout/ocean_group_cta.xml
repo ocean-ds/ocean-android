@@ -27,7 +27,7 @@
         android:id="@+id/layout_container_group_cta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ocean_background_ripple_light_deep"
+        android:background="@drawable/ocean_background_ripple_light_down"
         android:clickable="true"
         android:focusable="true"
         android:onClick="@{() -> actionClick.invoke()}"

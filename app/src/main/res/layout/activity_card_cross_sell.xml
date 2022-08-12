@@ -22,14 +22,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:padding="@dimen/ocean_spacing_stack_xxs"
             tools:context=".ui.cardgroup.CardGroupActivity">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/cardContent1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

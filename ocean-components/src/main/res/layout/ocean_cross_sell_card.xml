@@ -109,19 +109,17 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:background="@color/ocean_color_interface_light_pure"
-                android:foreground="?attr/selectableItemBackground">
+            <include
+                android:id="@+id/divider"
+                layout="@layout/ocean_divider" />
 
-                <include
-                    android:id="@+id/group_cta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <include
+                android:id="@+id/group_cta"
+                layout="@layout/ocean_group_cta"
+                app:actionTitle="@{actionTitle}"
+                app:actionClick="@{click}"
+                app:showProgress="@{showProgress}" />
 
-                </include>
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

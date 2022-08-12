@@ -21,6 +21,7 @@ import br.com.useblu.oceands.client.ui.chips.ChipsActivity
 import br.com.useblu.oceands.client.ui.crosscellcard.CardCrossSellActivity
 import br.com.useblu.oceands.client.ui.descriptorlistitem.DescriptorListActivity
 import br.com.useblu.oceands.client.ui.footer.FooterBluActivity
+import br.com.useblu.oceands.client.ui.groupcta.GroupCTAActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
@@ -61,6 +62,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickButtons(view: View) {
         val intent = Intent(this, ButtonsActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickCta(view: View) {
+        val intent = Intent(this, GroupCTAActivity::class.java)
         startActivity(intent)
     }
 

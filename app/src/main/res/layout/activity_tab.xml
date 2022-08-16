@@ -38,7 +38,7 @@
         <include
             layout="@layout/ocean_tab"
             app:labels="@{viewmodel.labels2}"
-            app:tabSelected="@{viewmodel.tabSelected2}" />
+            app:tabSelected="@{viewmodel::tabSelected2}" />
 
     </LinearLayout>
 </layout>

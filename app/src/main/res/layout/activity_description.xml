@@ -59,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{@string/ocean_sample_text_description}"
-                    app:textColor="@{@color/ocean_color_interface_dark_up}" />
+                    app:color="@{@color/ocean_color_interface_dark_up}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

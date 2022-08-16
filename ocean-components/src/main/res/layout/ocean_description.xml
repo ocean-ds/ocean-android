@@ -14,7 +14,7 @@
             type="Integer" />
 
         <variable
-            name="textColor"
+            name="color"
             type="Integer" />
     </data>
 
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="@{gravity}"
-        android:textColor="@{textColor != null ? textColor : @color/ocean_color_interface_dark_down}"
+        android:textColor="@{color != null ? color : @color/ocean_color_interface_dark_down}"
         android:text="@{text}"
         app:ocean_text_from_html="@{text}"
         tools:text="Description" />

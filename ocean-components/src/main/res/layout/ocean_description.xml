@@ -15,7 +15,7 @@
 
         <variable
             name="color"
-            type="Integer" />
+            type="Integer"/>
     </data>
 
     <androidx.appcompat.widget.AppCompatTextView

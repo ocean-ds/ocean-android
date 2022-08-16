@@ -51,6 +51,7 @@
         <activity android:name=".ui.footer.FooterBluActivity" />
         <activity android:name=".ui.transactionfooter.TransactionFooterActivity" />
         <activity android:name=".ui.descriptorlistitem.DescriptorListActivity" />
+        <activity android:name=".ui.groupcta.GroupCTAActivity" />
     </application>
 
 </manifest>

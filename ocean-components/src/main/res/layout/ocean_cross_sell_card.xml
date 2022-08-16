@@ -41,6 +41,14 @@
             name="click"
             type="Function0&lt;Unit>" />
 
+        <variable
+            name="colorTitle"
+            type="Integer" />
+
+        <variable
+            name="colorSubTitle"
+            type="Integer" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -62,11 +70,12 @@
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="96dp"
                 android:background="@{(background != null) ? background : @color/ocean_color_brand_primary_pure}"
                 android:paddingStart="@dimen/ocean_spacing_stack_xs"
-                android:paddingTop="@dimen/ocean_spacing_stack_xs"
+                android:paddingTop="@dimen/ocean_spacing_stack_xxs"
                 android:paddingEnd="@dimen/ocean_spacing_stack_xs"
-                android:paddingBottom="@dimen/ocean_spacing_stack_xs"
+                android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
                 tools:background="@color/ocean_color_brand_primary_pure">
 
                 <LinearLayout
@@ -81,25 +90,26 @@
 
                     <include
                         android:id="@+id/include2"
-                        layout="@layout/ocean_heading_3_inverse"
+                        layout="@layout/ocean_heading_4_inverse"
                         app:layout_constraintEnd_toStartOf="@+id/imageView6"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:color="@{(colorTitle != null) ? colorTitle : @color/ocean_color_interface_light_pure}"
                         app:text="@{title}" />
 
                     <include
                         android:id="@+id/include"
                         layout="@layout/ocean_description_inverse"
-                        app:color="@color/ocean_color_interface_light_up"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/include2"
+                        app:color="@{(colorSubTitle != null) ? colorSubTitle : @color/ocean_color_brand_primary_up}"
                         app:text="@{description}" />
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
                     android:src="@{image}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -108,53 +118,17 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:background="@color/ocean_color_interface_light_pure"
-                android:foreground="?attr/selectableItemBackground">
+            <include
+                android:id="@+id/divider"
+                layout="@layout/ocean_divider" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_family_base_bold"
-                    android:paddingStart="@dimen/ocean_spacing_inline_xs"
-                    android:paddingEnd="@dimen/ocean_spacing_inline_xs"
-                    android:text="@{actionTitle}"
-                    android:textColor="@color/ocean_color_brand_primary_pure"
-                    android:textSize="@dimen/ocean_font_size_xxs"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:ocean_visible_or_invisible="@{!showProgress}"
-                    tools:text="Call to action" />
+            <include
+                android:id="@+id/group_cta"
+                layout="@layout/ocean_group_cta"
+                app:actionTitle="@{actionTitle}"
+                app:actionClick="@{click}"
+                app:showProgress="@{showProgress}" />
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:elevation="5dp"
-                    android:indeterminateTint="@color/ocean_color_brand_primary_pure"
-                    android:progressTint="@color/ocean_color_brand_primary_pure"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:ocean_visible_or_invisible="@{showProgress}" />
-
-                <ImageView
-                    android:id="@+id/icon_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/ocean_spacing_inline_xs"
-                    android:paddingEnd="@dimen/ocean_spacing_inline_xs"
-                    android:src="@{actionIcon}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@drawable/icon_chevron_right_brand_primary" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

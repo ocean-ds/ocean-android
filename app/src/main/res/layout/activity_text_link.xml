@@ -29,11 +29,44 @@
             android:orientation="vertical"
             android:padding="@dimen/ocean_spacing_stack_xs">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Default"
+                android:theme="@style/Ocean.Subtitle.2"/>
+
             <include
                 layout="@layout/ocean_link_text"
                 app:click="@{viewmodel::click}"
                 app:icon="@{@drawable/icon_generic_primary}"
                 app:text="@{@string/click_me}" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_font_size_xs"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Small"
+                android:theme="@style/Ocean.Subtitle.2"/>
+
+            <include
+                layout="@layout/ocean_link_text"
+                app:click="@{viewmodel::click}"
+                app:icon="@{@drawable/icon_generic_primary}"
+                app:text="@{@string/click_me}"
+                app:small="@{true}"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_font_size_xs"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Inverse"
+                android:theme="@style/Ocean.Subtitle.2"/>
 
             <include
                 layout="@layout/ocean_link_text_inverse"

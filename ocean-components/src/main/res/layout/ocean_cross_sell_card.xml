@@ -73,12 +73,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="96dp"
-                android:background="@{(background != null) ? background : @color/ocean_color_brand_primary_pure}"
+                android:background="@{(background != null) ? background : @drawable/background_cross_sell_card_default}"
                 android:paddingStart="@dimen/ocean_spacing_stack_xs"
                 android:paddingTop="@dimen/ocean_spacing_stack_xxs"
                 android:paddingEnd="@dimen/ocean_spacing_stack_xs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
-                tools:background="@color/ocean_color_brand_primary_pure">
+                tools:background="@drawable/background_cross_sell_card_default">
 
                 <LinearLayout
                     android:layout_width="0dp"

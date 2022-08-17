@@ -1,7 +1,6 @@
 package br.com.useblu.oceands.core
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -12,8 +11,8 @@ import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 
 @BindingAdapter("app:ocean_tag_type", "app:ocean_tag_icon")
-fun setOceanTagIcon(imageView: ImageView, type: OceanTagType, icon: Drawable?) {
-    val color: Int
+fun setOceanTagIcon(imageView: ImageView, type: OceanTagType?, icon: Drawable?) {
+    val color: Int?
     val iconDrawable: Drawable?
     when (type) {
         OceanTagType.Neutral1 -> {
@@ -51,21 +50,28 @@ fun setOceanTagIcon(imageView: ImageView, type: OceanTagType, icon: Drawable?) {
             )
             color = R.color.ocean_color_status_neutral_deep
         }
+        else -> {
+            iconDrawable = null
+            color = null
+        }
     }
-    imageView.setImageDrawable(iconDrawable)
-    ImageViewCompat.setImageTintList(
-        imageView,
-        ColorStateList.valueOf(
-            ContextCompat.getColor(
-                imageView.context,
-                color
+
+    if (iconDrawable != null && color != null) {
+        imageView.setImageDrawable(iconDrawable)
+        ImageViewCompat.setImageTintList(
+            imageView,
+            ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    imageView.context,
+                    color
+                )
             )
         )
-    )
+    }
 }
 
 @BindingAdapter("app:ocean_tag_background")
-fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType) {
+fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType?) {
     val textView = layout.findViewById<TextView>(R.id.title)
     val textColor: Int
     val background: Int
@@ -89,6 +95,10 @@ fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType) {
         OceanTagType.Warning -> {
             background = R.drawable.ocean_tag_warning_background
             textColor = R.color.ocean_color_status_neutral_deep
+        }
+        else -> {
+            background = R.drawable.ocean_tag_default_background
+            textColor = R.color.ocean_color_interface_dark_down
         }
     }
     textView.setTextColor(ContextCompat.getColor(textView.context, textColor))

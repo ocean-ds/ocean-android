@@ -39,9 +39,7 @@
 
                 <include
                     layout="@layout/ocean_tag"
-                    app:icon="@{@drawable/icon_generic}"
-                    app:title="@{`Custom`}"
-                    app:type="@{OceanTagType.Positive}" />
+                    app:title="@{`Custom`}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

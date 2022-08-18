@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.client.ui.crosscellcard
 
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil

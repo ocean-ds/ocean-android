@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="kotlin.jvm.functions.Function0" />
+
         <import type="kotlin.Unit" />
 
         <variable
             name="text"
             type="String" />
+
+        <variable
+            name="small"
+            type="Boolean" />
 
         <variable
             name="click"
@@ -30,21 +35,21 @@
             android:id="@+id/label"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:fontFamily="@font/font_family_base_regular"
+            android:fontFamily="@font/font_family_base_semibold"
             android:gravity="center_vertical"
             android:lineSpacingMultiplier="@dimen/ocean_line_height_tight"
             android:onClick="@{() -> click.invoke()}"
-            app:ocean_text_from_html="@{text}"
             android:textColor="@color/ocean_color_brand_primary_pure"
-            android:textSize="@dimen/ocean_font_size_xs"
-            tools:text="@string/text"/>
+            android:textSize="@{small != null &amp;&amp; small ? @dimen/ocean_font_size_xxs : @dimen/ocean_font_size_xs}"
+            app:ocean_text_from_html="@{text}"
+            tools:text="@string/text" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginStart="11dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="11dp"
             android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
             android:background="@{icon}"
             app:ocean_visible_or_gone="@{icon != null}"

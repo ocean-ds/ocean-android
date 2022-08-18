@@ -36,11 +36,13 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <include
+                    android:id="@+id/cardCrossSell"
                     layout="@layout/ocean_cross_sell_card"
                     app:actionTitle="@{`Call to action`}"
                     app:actionIcon="@{@drawable/icon_chevron_right_brand_primary}"
-                    app:image="@{@drawable/icon_chevron_right_brand_primary}"
-                    app:background="@{@drawable/sample_background_cross_sell_card}"
+                    app:image="@{@drawable/icon_generic}"
+                    app:initialColor="@{`colorhighlightpure`}"
+                    app:finalColor="@{`colorbrandprimarydown`}"
                     app:click="@{viewmodel::click}"
                     app:description="@{`Description Sample`}"
                     app:showProgress="@{false}"

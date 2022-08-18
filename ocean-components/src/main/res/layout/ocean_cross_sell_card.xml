@@ -34,8 +34,12 @@
             type="android.graphics.drawable.Drawable" />
 
         <variable
-            name="background"
-            type="android.graphics.drawable.Drawable" />
+            name="initialColor"
+            type="String" />
+
+        <variable
+            name="finalColor"
+            type="String" />
 
         <variable
             name="click"
@@ -56,6 +60,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        app:cardElevation="0dp"
         android:onClick="@{() -> click.invoke()}"
         android:orientation="vertical"
         app:cardCornerRadius="@dimen/ocean_border_radius_md">
@@ -64,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:background="@drawable/ocean_border_cross_sell"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,7 +77,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="96dp"
-                android:background="@{(background != null) ? background : @drawable/background_cross_sell_card_default}"
+                app:initialColor="@{initialColor}"
+                app:finalColor="@{finalColor}"
                 android:paddingStart="@dimen/ocean_spacing_stack_xs"
                 android:paddingTop="@dimen/ocean_spacing_stack_xxs"
                 android:paddingEnd="@dimen/ocean_spacing_stack_xs"

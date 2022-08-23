@@ -41,6 +41,7 @@
                     app:actionTitle="@{`Call to action`}"
                     app:actionIcon="@{@drawable/icon_chevron_right_brand_primary}"
                     app:image="@{@drawable/icon_generic}"
+                    app:imageUrl="@{`https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png`}"
                     app:initialColor="@{`colorhighlightpure`}"
                     app:finalColor="@{`colorbrandprimarydown`}"
                     app:click="@{viewmodel::click}"

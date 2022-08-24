@@ -38,15 +38,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
+            android:paddingStart="@dimen/ocean_spacing_inline_xs"
+            android:paddingEnd="@dimen/ocean_spacing_inline_xs"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:entries="@{entries}"
             app:isHighlight="@{highlighted}"
             app:itemSelected="@{itemSelect}"
             tools:itemCount="5"
-            tools:listitem="@layout/item_shortcuts_adapter_ocean"/>
+            tools:listitem="@layout/item_shortcuts_adapter_ocean" />
 
     </LinearLayout>
 </layout>

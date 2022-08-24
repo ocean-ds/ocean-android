@@ -6,11 +6,12 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 
-@BindingAdapter("app:initialColor", "app:finalColor")
+@BindingAdapter("app:initialColor", "app:finalColor", "app:opacityColor")
 fun setBackground(
     view: ConstraintLayout,
     initialColor: String?,
-    finalColor: String?
+    finalColor: String?,
+    opacityColor: Int?
 ) {
 
     val init = ContextCompat.getColor(
@@ -29,6 +30,7 @@ fun setBackground(
     gradient.gradientType = GradientDrawable.LINEAR_GRADIENT
     gradient.shape = GradientDrawable.RECTANGLE
     gradient.orientation = GradientDrawable.Orientation.LEFT_RIGHT
+    gradient.alpha = opacityColor ?: 255
 
     view.background = gradient
 }

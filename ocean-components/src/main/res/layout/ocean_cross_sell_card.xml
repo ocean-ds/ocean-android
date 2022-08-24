@@ -46,6 +46,10 @@
             type="String" />
 
         <variable
+            name="opacityColor"
+            type="Integer" />
+
+        <variable
             name="click"
             type="Function0&lt;Unit>" />
 
@@ -83,6 +87,7 @@
                 android:minHeight="96dp"
                 app:initialColor="@{initialColor}"
                 app:finalColor="@{finalColor}"
+                app:opacityColor="@{opacityColor}"
                 android:paddingStart="@dimen/ocean_spacing_stack_xs"
                 android:paddingTop="@dimen/ocean_spacing_stack_xxs"
                 android:paddingEnd="@dimen/ocean_spacing_stack_xs"

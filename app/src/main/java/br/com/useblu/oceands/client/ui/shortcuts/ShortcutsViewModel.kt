@@ -44,44 +44,29 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun getItems() = listOf(
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic_primary
-            ),
+            iconUrl = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
             label = "Shortcut 1",
             badgeType = OceanBadgeType.DEFAULT
         ),
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic_primary
-            ),
+            iconUrl = "",
             label = "Shortcut 2",
             count = "1",
             badgeType = OceanBadgeType.BRAND_DEFAULT
         ),
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic_primary
-            ),
+            iconUrl = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
             label = "Shortcut 3",
             badgeType = OceanBadgeType.NEUTRAL
         ),
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic_primary
-            ),
+            iconUrl = "",
             label = "Shortcut 4",
             count = "1",
             badgeType = OceanBadgeType.ALERT
         ),
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic_primary
-            ),
+            iconUrl = "",
             label = "Shortcut 5",
             count = "1",
             badgeType = OceanBadgeType.COMPLEMENTARY
@@ -90,42 +75,27 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun getItemsHighlighted() = listOf(
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic
-            ),
+            iconUrl = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
             label = "Shortcut 1",
             count = "1",
             badgeType = OceanBadgeType.DEFAULT
         ),OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic
-            ),
+            iconUrl = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
             label = "Shortcut 2",
             count = "1",
             badgeType = OceanBadgeType.BRAND_DEFAULT
         ),OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic
-            ),
+            iconUrl = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
             label = "Shortcut 3",
             count = "1",
             badgeType = OceanBadgeType.NEUTRAL
         ),OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic
-            ),
+            iconUrl = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
             label = "Shortcut 4",
             count = "1",
             badgeType = OceanBadgeType.COMPLEMENTARY
         ),OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic
-            ),
+            iconUrl = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
             label = "Shortcut 5",
             count = "1",
             badgeType = OceanBadgeType.ALERT

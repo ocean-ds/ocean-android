@@ -1,14 +1,10 @@
 package br.com.useblu.oceands.client.ui.shortcuts
 
 import android.app.Application
-import android.content.Context
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.adapter.OceanShortcutItem
-import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.core.OceanBadgeType
 
 class ShortcutsViewModel(application: Application) : AndroidViewModel(application) {
@@ -44,44 +40,29 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun getItems() = listOf(
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic_primary
-            ),
+            iconUrl = URL,
             label = "Shortcut 1",
             badgeType = OceanBadgeType.DEFAULT
         ),
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic_primary
-            ),
+            iconUrl = "",
             label = "Shortcut 2",
             count = "1",
             badgeType = OceanBadgeType.BRAND_DEFAULT
         ),
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic_primary
-            ),
+            iconUrl = URL,
             label = "Shortcut 3",
             badgeType = OceanBadgeType.NEUTRAL
         ),
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic_primary
-            ),
+            iconUrl = "",
             label = "Shortcut 4",
             count = "1",
             badgeType = OceanBadgeType.ALERT
         ),
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic_primary
-            ),
+            iconUrl = "",
             label = "Shortcut 5",
             count = "1",
             badgeType = OceanBadgeType.COMPLEMENTARY
@@ -90,46 +71,35 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun getItemsHighlighted() = listOf(
         OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic
-            ),
+            iconUrl = "",
             label = "Shortcut 1",
             count = "1",
             badgeType = OceanBadgeType.DEFAULT
         ),OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic
-            ),
+            iconUrl = URL,
             label = "Shortcut 2",
             count = "1",
             badgeType = OceanBadgeType.BRAND_DEFAULT
         ),OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic
-            ),
+            iconUrl = "",
             label = "Shortcut 3",
             count = "1",
             badgeType = OceanBadgeType.NEUTRAL
         ),OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic
-            ),
+            iconUrl = URL,
             label = "Shortcut 4",
             count = "1",
             badgeType = OceanBadgeType.COMPLEMENTARY
-        ),OceanShortcutItem(
-            icon = ContextCompat.getDrawable(
-                getApplication<Application>(),
-                R.drawable.icon_generic
-            ),
+        ),
+        OceanShortcutItem(
+            iconUrl = "",
             label = "Shortcut 5",
             count = "1",
             badgeType = OceanBadgeType.ALERT
         ),
     )
 
+    companion object {
+        const val URL = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+    }
 }

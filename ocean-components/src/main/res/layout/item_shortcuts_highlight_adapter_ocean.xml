@@ -16,8 +16,8 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view"
-            android:layout_width="104dp"
-            android:layout_height="96dp"
+            android:layout_width="126dp"
+            android:layout_height="104dp"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xxxs"
             android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
             android:layout_marginEnd="@dimen/ocean_spacing_stack_xxxs"
@@ -46,7 +46,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:ocean_visible_or_gone="@{item.count == null}"
-                    android:src="@{item.icon}"
+                    app:imageUrl="@{item.iconUrl}"
                     tools:src="@drawable/icon_generic" />
 
                 <LinearLayout

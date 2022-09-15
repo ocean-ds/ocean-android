@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.adapter
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -77,7 +76,7 @@ class OceanShortcutsListAdapter(
 }
 
 data class OceanShortcutItem(
-    val icon: Drawable?,
+    val iconUrl: String? = null,
     val label: String,
     val count: String? = null,
     val badgeType: OceanBadgeType? = null,

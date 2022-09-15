@@ -6,9 +6,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
-import br.com.useblu.oceands.client.databinding.ActivityCarouselBinding
 import br.com.useblu.oceands.client.databinding.ActivityShortcutsBinding
-import br.com.useblu.oceands.client.ui.carousel.CarouselViewModel
 
 class ShortcutsActivity : AppCompatActivity() {
 

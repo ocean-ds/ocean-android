@@ -77,7 +77,7 @@ class OceanShortcutsListAdapter(
 }
 
 data class OceanShortcutItem(
-    val iconUrl: String?,
+    val iconUrl: String? = null,
     val label: String,
     val count: String? = null,
     val badgeType: OceanBadgeType? = null,

@@ -7,9 +7,9 @@
 
         <import type="android.text.InputType" />
 
-        <import type="br.com.useblu.oceands.core.FormatTypes" />
+        <import type="br.com.useblu.oceands.utils.FormatTypes" />
 
-        <import type="br.com.useblu.oceands.core.OceanTagType" />
+        <import type="br.com.useblu.oceands.model.OceanTagType" />
 
         <variable
             name="viewmodel"

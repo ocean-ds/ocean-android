@@ -7,7 +7,7 @@
 
         <import type="android.text.InputType" />
 
-        <import type="br.com.useblu.oceands.core.OceanAlertType" />
+        <import type="br.com.useblu.oceands.model.OceanAlertType" />
 
         <variable
             name="viewmodel"

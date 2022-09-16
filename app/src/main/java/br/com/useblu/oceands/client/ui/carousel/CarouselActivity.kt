@@ -1,7 +1,6 @@
 package br.com.useblu.oceands.client.ui.carousel
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -26,18 +25,6 @@ class CarouselActivity : AppCompatActivity() {
         viewModel.loadData()
     }
 
-    private fun initObservers() {
-        viewModel.itemSelected.observe(this, {
-            Toast.makeText(this, "Selecionado $it", Toast.LENGTH_SHORT).show()
-        })
-
-        viewModel.itemSelected2.observe(this, {
-            Toast.makeText(this, "Selecionado $it", Toast.LENGTH_SHORT).show()
-        })
-
-        viewModel.itemSelected3.observe(this, {
-            Toast.makeText(this, "Selecionado $it", Toast.LENGTH_SHORT).show()
-        })
-    }
+    private fun initObservers() {}
 
 }

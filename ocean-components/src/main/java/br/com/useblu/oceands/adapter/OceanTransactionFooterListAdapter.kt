@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.OceanTransactionFooterItemBinding
+import br.com.useblu.oceands.model.OceanTransactionFooterItem
 
 class OceanTransactionFooterListAdapter(
     private val items: List<OceanTransactionFooterItem>,
@@ -39,16 +40,4 @@ class OceanTransactionFooterListAdapter(
             itemBinding.executePendingBindings()
         }
     }
-
 }
-
-data class OceanTransactionFooterItem(
-    val label: String? = null,
-    val tooltip: String? = null,
-    val value: String? = null,
-    val newValue: String? = null,
-    val color: String? = null,
-    val icon: String? = null,
-    val isBold: Boolean? = false,
-    val isStrike: Boolean? = !newValue.isNullOrBlank()
-)

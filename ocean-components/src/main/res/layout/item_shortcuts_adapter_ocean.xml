@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
-            type="br.com.useblu.oceands.adapter.OceanShortcutItem" />
+            type="br.com.useblu.oceands.model.OceanShortcutItem" />
 
     </data>
 
@@ -24,6 +25,7 @@
             android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
             android:clickable="true"
             android:focusable="true"
+            android:onClick="@{() -> item.action.invoke()}"
             app:cardBackgroundColor="@color/ocean_color_interface_light_pure"
             app:cardCornerRadius="@dimen/ocean_border_radius_sm"
             app:cardElevation="@dimen/shadow_level_1"
@@ -41,11 +43,11 @@
                     android:layout_marginTop="@dimen/ocean_spacing_inline_xs"
                     android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
                     app:imageUrl="@{item.iconUrl}"
-                    app:ocean_visible_or_gone="@{item.count == null}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:ocean_visible_or_gone="@{item.count == null}"
                     tools:src="@drawable/icon_generic_primary" />
 
                 <LinearLayout
@@ -60,11 +62,11 @@
 
                     <include
                         layout="@layout/ocean_badge"
+                        app:isSmall="@{false}"
                         app:text="@{item.count}"
                         app:type="@{item.badgeType}"
-                        app:isSmall="@{false}"
                         app:visible="@{true}"
-                        tools:visibility="visible"/>
+                        tools:visibility="visible" />
 
                 </LinearLayout>
 
@@ -79,9 +81,9 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/font_family_base_bold"
                     android:maxLines="2"
+                    android:text="@{item.label}"
                     android:textColor="@color/ocean_color_interface_dark_down"
                     android:textSize="@dimen/ocean_font_size_xxs"
-                    android:text="@{item.label}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

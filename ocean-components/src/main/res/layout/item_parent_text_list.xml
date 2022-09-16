@@ -13,7 +13,7 @@
 
         <variable
             name="item"
-            type="br.com.useblu.oceands.core.OceanChildTextItem" />
+            type="br.com.useblu.oceands.model.OceanChildTextItem" />
 
     </data>
 

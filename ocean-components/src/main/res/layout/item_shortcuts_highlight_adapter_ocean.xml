@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="br.com.useblu.oceands.adapter.OceanShortcutItem" />
+            type="br.com.useblu.oceands.model.OceanShortcutItem" />
 
     </data>
 
@@ -27,6 +27,7 @@
             app:cardBackgroundColor="@color/ocean_color_brand_primary_down"
             app:cardCornerRadius="@dimen/ocean_border_radius_sm"
             app:cardElevation="@dimen/shadow_level_1"
+            android:onClick="@{() -> item.action.invoke()}"
             app:rippleColor="@color/ocean_color_brand_primary_pure"
             tools:background="@color/ocean_color_brand_primary_down">
 

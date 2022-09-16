@@ -13,15 +13,11 @@
 
         <import type="kotlin.jvm.functions.Function1" />
 
-        <import type="br.com.useblu.oceands.adapter.OceanShortcutItem"/>
+        <import type="br.com.useblu.oceands.model.OceanShortcutItem"/>
 
         <variable
             name="entries"
             type="List&lt;OceanShortcutItem>" />
-
-        <variable
-            name="itemSelect"
-            type="Function1&lt;Integer,Unit>" />
         
         <variable
             name="highlighted"
@@ -44,7 +40,6 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:entries="@{entries}"
             app:isHighlight="@{highlighted}"
-            app:itemSelected="@{itemSelect}"
             tools:itemCount="5"
             tools:listitem="@layout/item_shortcuts_adapter_ocean" />
 

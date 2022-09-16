@@ -33,7 +33,6 @@
             layout="@layout/ocean_shortcut_list"
             app:entries="@{viewmodel.items}"
             app:highlighted="@{false}"
-            app:itemSelect="@{viewmodel::itemSelect}"
             />
 
         <TextView
@@ -49,7 +48,6 @@
             layout="@layout/ocean_shortcut_list"
             app:entries="@{viewmodel.items2}"
             app:highlighted="@{true}"
-            app:itemSelect="@{viewmodel::itemSelect2}"
             />
     </LinearLayout>
 </layout>

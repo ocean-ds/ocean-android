@@ -9,7 +9,7 @@
 
         <import type="br.com.useblu.oceands.adapter.OceanOptionCardSize" />
 
-        <import type="br.com.useblu.oceands.core.ExtensionsKt"/>
+        <import type="br.com.useblu.oceands.extensions.ExtensionsKt"/>
 
         <variable
             name="item"

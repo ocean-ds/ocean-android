@@ -9,7 +9,7 @@
         <import type="android.view.View" />
         <import type="java.util.List" />
         <import type="kotlin.Unit" />
-        <import type="br.com.useblu.oceands.adapter.OceanTransactionFooterItem" />
+        <import type="br.com.useblu.oceands.model.OceanTransactionFooterItem" />
 
         <variable
             name="entries"

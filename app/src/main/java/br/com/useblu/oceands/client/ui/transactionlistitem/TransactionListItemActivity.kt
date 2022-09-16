@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityTransactionListItemBinding
-import br.com.useblu.oceands.core.OceanTransactionListUIModel
+import br.com.useblu.oceands.model.OceanTransactionListUIModel
 
 class TransactionListItemActivity : AppCompatActivity() {
 

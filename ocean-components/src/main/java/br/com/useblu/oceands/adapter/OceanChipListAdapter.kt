@@ -1,19 +1,18 @@
 package br.com.useblu.oceands.adapter
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.core.OceanBadgeType
 import br.com.useblu.oceands.databinding.OceanChipListItemBinding
+import br.com.useblu.oceands.model.OceanBadgeType
+import br.com.useblu.oceands.model.OceanChipItem
+import br.com.useblu.oceands.model.OceanChipItemState
 
 class OceanChipListAdapter(
-    var items: ArrayList<OceanChipItem>,
-    val selectedItem: MutableLiveData<OceanChipItem>
+    var items: MutableList<OceanChipItem>
 ) : RecyclerView.Adapter<OceanChipListAdapter.OceanChipListViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -39,12 +38,6 @@ class OceanChipListAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(items: ArrayList<OceanChipItem>) {
-        this.items = items
-        notifyDataSetChanged()
-    }
-
     inner class OceanChipListViewHolder(
         private val itemBinding: OceanChipListItemBinding
     ) : RecyclerView.ViewHolder(itemBinding.root) {
@@ -66,7 +59,7 @@ class OceanChipListAdapter(
                     } else {
                         unselectCurrent()
                         selectItem(item)
-                        selectedItem.postValue(item)
+                        item.action.invoke()
                     }
                     notifyDataSetChanged()
                 }
@@ -156,22 +149,4 @@ class OceanChipListAdapter(
             currentSelectedItem?.state = OceanChipItemState.DEFAULT
         }
     }
-}
-
-data class OceanChipItem(
-    val label: String,
-    val id: String,
-    val badge: Badge? = null,
-    val icon: Drawable? = null,
-    val hasClose: Boolean = false,
-    var state: OceanChipItemState = OceanChipItemState.DEFAULT
-)
-
-data class Badge(
-    val text: Int,
-    var type: OceanBadgeType
-)
-
-enum class OceanChipItemState {
-    ERROR, DISABLED, SELECTED, DEFAULT
 }

@@ -13,9 +13,11 @@
 
         <import type="kotlin.jvm.functions.Function1" />
 
+        <import type="br.com.useblu.oceands.model.OceanCarouselItem"/>
+
         <variable
             name="entries"
-            type="List&lt;String>" />
+            type="List&lt;OceanCarouselItem>" />
 
         <variable
             name="withoutIndicator"
@@ -24,10 +26,6 @@
         <variable
             name="autoCycle"
             type="Boolean" />
-
-        <variable
-            name="itemSelect"
-            type="Function1&lt;Integer,Unit>"/>
 
     </data>
 
@@ -62,9 +60,10 @@
             app:showTopShadow="false"
             app:touchToPause="false"
             app:entries="@{entries}"
-            app:itemSelected="@{itemSelect}"
+            android:clickable="true"
             tools:background="@drawable/image_placeholder"
-            tools:visibility="gone" />
+            tools:visibility="gone"
+            android:focusable="true" />
 
         <org.imaginativeworld.whynotimagecarousel.ImageCarousel
             android:id="@+id/carousel_view2"
@@ -92,7 +91,6 @@
             app:showTopShadow="false"
             app:touchToPause="false"
             app:entries="@{entries}"
-            app:itemSelected="@{itemSelect}"
             tools:background="@drawable/image_placeholder" />
 
         <me.relex.circleindicator.CircleIndicator2

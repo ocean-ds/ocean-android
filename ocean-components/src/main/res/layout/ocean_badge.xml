@@ -7,7 +7,7 @@
 
         <import type="android.view.View" />
 
-            <import type="br.com.useblu.oceands.core.OceanBadgeType" />
+            <import type="br.com.useblu.oceands.model.OceanBadgeType" />
 
         <variable
             name="text"
@@ -23,7 +23,7 @@
 
         <variable
             name="type"
-            type="OceanBadgeType" />
+            type="br.com.useblu.oceands.model.OceanBadgeType" />
 
     </data>
 

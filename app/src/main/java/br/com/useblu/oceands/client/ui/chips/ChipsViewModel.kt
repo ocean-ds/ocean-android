@@ -5,12 +5,12 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import br.com.useblu.oceands.adapter.Badge
-import br.com.useblu.oceands.adapter.OceanChipItem
-import br.com.useblu.oceands.adapter.OceanChipItemState
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
-import br.com.useblu.oceands.core.OceanBadgeType
+import br.com.useblu.oceands.model.Badge
+import br.com.useblu.oceands.model.OceanBadgeType
+import br.com.useblu.oceands.model.OceanChipItem
+import br.com.useblu.oceands.model.OceanChipItemState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -35,42 +35,57 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
         id = "error",
         label = "Erro"
     )
-    val chips: MutableLiveData<ArrayList<OceanChipItem>> = MutableLiveData(
-        arrayListOf(
+    val chipsWithoutIcon = listOf(
             OceanChipItem(
                 label = allChip.label,
-                id = allChip.id
+                id = allChip.id,
+                action = {
+                    println("OceanChipItem 1 Selected")
+                }
             ),
             OceanChipItem(
                 label = toDueChip.label,
-                id = toDueChip.id
+                id = toDueChip.id,
+                action = {
+                    println("OceanChipItem 2 Selected")
+                }
             ),
             OceanChipItem(
                 label = overDueChip.label,
-                id = overDueChip.id
+                id = overDueChip.id,
+                action = {
+                    println("OceanChipItem 3 Selected")
+                }
             ),
             OceanChipItem(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
-                state = OceanChipItemState.DISABLED
+                state = OceanChipItemState.DISABLED,
+                action = {
+                    println("OceanChipItem 4 Selected")
+                }
             ),
             OceanChipItem(
                 label = errorChip.label,
                 id = errorChip.id,
-                state = OceanChipItemState.ERROR
+                state = OceanChipItemState.ERROR,
+                action = {
+                    println("OceanChipItem 5 Selected")
+                }
             )
         )
-    )
 
-    val chipsWithIcon: MutableLiveData<ArrayList<OceanChipItem>> = MutableLiveData(
-        arrayListOf(
+    val chipsWithIcon = listOf(
             OceanChipItem(
                 label = allChip.label,
                 id = allChip.id,
                 icon = ContextCompat.getDrawable(
                     getApplication<Application>(),
                     R.drawable.icon_information
-                )
+                ),
+                action = {
+                    println("OceanChipItem 1 Selected")
+                }
             ),
             OceanChipItem(
                 label = toDueChip.label,
@@ -78,7 +93,10 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 icon = ContextCompat.getDrawable(
                     getApplication<Application>(),
                     R.drawable.icon_information
-                )
+                ),
+                action = {
+                    println("OceanChipItem 2 Selected")
+                }
             ),
             OceanChipItem(
                 label = overDueChip.label,
@@ -86,7 +104,10 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 icon = ContextCompat.getDrawable(
                     getApplication<Application>(),
                     R.drawable.icon_information
-                )
+                ),
+                action = {
+                    println("OceanChipItem 3 Selected")
+                }
             ),
             OceanChipItem(
                 label = unavailableChip.label,
@@ -95,7 +116,10 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 icon = ContextCompat.getDrawable(
                     getApplication<Application>(),
                     R.drawable.icon_information
-                )
+                ),
+                action = {
+                    println("OceanChipItem 4 Selected")
+                }
             ),
             OceanChipItem(
                 label = errorChip.label,
@@ -104,105 +128,145 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 icon = ContextCompat.getDrawable(
                     getApplication<Application>(),
                     R.drawable.icon_information
-                )
+                ),
+                action = {
+                    println("OceanChipItem 5 Selected")
+                }
             )
         )
-    )
 
-    val chipsWithBadge: MutableLiveData<ArrayList<OceanChipItem>> = MutableLiveData(
-        arrayListOf(
+    val chipsWithBadge = listOf(
             OceanChipItem(
                 label = allChip.label,
                 id = allChip.id,
-                badge = Badge(100, OceanBadgeType.ALERT)
+                badge = Badge(100, OceanBadgeType.ALERT),
+                action = {
+                    println("OceanChipItem 1 Selected")
+                }
             ),
             OceanChipItem(
                 label = toDueChip.label,
                 id = toDueChip.id,
-                badge = Badge(50, OceanBadgeType.ALERT)
+                badge = Badge(50, OceanBadgeType.ALERT),
+                action = {
+                    println("OceanChipItem 2 Selected")
+                }
             ),
             OceanChipItem(
                 label = overDueChip.label,
                 id = overDueChip.id,
-                badge = Badge(0, OceanBadgeType.ALERT)
+                badge = Badge(0, OceanBadgeType.ALERT),
+                action = {
+                    println("OceanChipItem 3 Selected")
+                }
             ),
             OceanChipItem(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
                 state = OceanChipItemState.DISABLED,
-                badge = Badge(9, OceanBadgeType.ALERT)
+                badge = Badge(9, OceanBadgeType.ALERT),
+                action = {
+                    println("OceanChipItem 4 Selected")
+                }
             ),
             OceanChipItem(
                 label = errorChip.label,
                 id = errorChip.id,
                 state = OceanChipItemState.ERROR,
-                badge = Badge(9, OceanBadgeType.ALERT)
+                badge = Badge(9, OceanBadgeType.ALERT),
+                action = {
+                    println("OceanChipItem 5 Selected")
+                }
             )
         )
-    )
 
-    val chipsWithClose: MutableLiveData<ArrayList<OceanChipItem>> = MutableLiveData(
-        arrayListOf(
+    val chipsWithClose = listOf(
             OceanChipItem(
                 label = allChip.label,
                 id = allChip.id,
-                hasClose = true
+                hasClose = true,
+                action = {
+                    println("OceanChipItem 1 Selected")
+                }
             ),
             OceanChipItem(
                 label = toDueChip.label,
                 id = toDueChip.id,
-                hasClose = true
+                hasClose = true,
+                action = {
+                    println("OceanChipItem 2 Selected")
+                }
             ),
             OceanChipItem(
                 label = overDueChip.label,
                 id = overDueChip.id,
-                hasClose = true
+                hasClose = true,
+                action = {
+                    println("OceanChipItem 3 Selected")
+                }
             ),
             OceanChipItem(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
                 state = OceanChipItemState.DISABLED,
-                hasClose = true
+                hasClose = true,
+                action = {
+                    println("OceanChipItem 4 Selected")
+                }
             ),
             OceanChipItem(
                 label = errorChip.label,
                 id = errorChip.id,
                 state = OceanChipItemState.ERROR,
-                hasClose = true
+                hasClose = true,
+                action = {
+                    println("OceanChipItem 5 Selected")
+                }
             )
         )
-    )
 
     val chipsArrayList = arrayListOf(
         OceanChipItem(
             label = allChip.label,
-            id = allChip.id
+            id = allChip.id,
+            action = {
+                println("OceanChipItem 1 Selected")
+            }
         ),
         OceanChipItem(
             label = toDueChip.label,
-            id = toDueChip.id
+            id = toDueChip.id,
+            action = {
+                println("OceanChipItem 2 Selected")
+            }
         ),
         OceanChipItem(
             label = overDueChip.label,
-            id = overDueChip.id
+            id = overDueChip.id,
+            action = {
+                println("OceanChipItem 3 Selected")
+            }
         ),
         OceanChipItem(
             label = unavailableChip.label,
             id = unavailableChip.id,
-            state = OceanChipItemState.DISABLED
+            state = OceanChipItemState.DISABLED,
+            action = {
+                println("OceanChipItem 4 Selected")
+            }
         ),
         OceanChipItem(
             label = errorChip.label,
             id = errorChip.id,
-            state = OceanChipItemState.ERROR
+            state = OceanChipItemState.ERROR,
+            action = {
+                println("OceanChipItem 5 Selected")
+            }
         )
     )
 
-    private val _selectedItem: MutableLiveData<OceanChipItem?> = MutableLiveData()
-    val selectedItem: MutableLiveData<OceanChipItem?> get() = _selectedItem
-
     private val _chips: MutableLiveData<ArrayList<OceanChipItem>> = MutableLiveData(ArrayList())
-    val chipsLiveData: MutableLiveData<ArrayList<OceanChipItem>> get() = _chips
+    val chips: MutableLiveData<ArrayList<OceanChipItem>> get() = _chips
 
     fun loadData() {
         viewModelScope.launch {

@@ -3,7 +3,7 @@ package br.com.useblu.oceands.client.ui.transactionfooter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.adapter.OceanTransactionFooterItem
+import br.com.useblu.oceands.model.OceanTransactionFooterItem
 
 class TransactionFooterViewModel : ViewModel() {
 

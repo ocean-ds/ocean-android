@@ -11,7 +11,7 @@
 
         <import type="kotlin.Unit" />
 
-        <import type="br.com.useblu.oceands.core.OceanTagType" />
+        <import type="br.com.useblu.oceands.model.OceanTagType" />
 
         <variable
             name="title"
@@ -19,7 +19,7 @@
 
         <variable
             name="formatTypeTitle"
-            type="br.com.useblu.oceands.core.Formatter" />
+            type="br.com.useblu.oceands.utils.Formatter" />
 
         <variable
             name="subtitle"
@@ -27,7 +27,7 @@
 
         <variable
             name="formatTypeSubTitle"
-            type="br.com.useblu.oceands.core.Formatter" />
+            type="br.com.useblu.oceands.utils.Formatter" />
 
         <variable
             name="description"
@@ -43,7 +43,7 @@
 
         <variable
             name="formatTypeDescription"
-            type="br.com.useblu.oceands.core.Formatter" />
+            type="br.com.useblu.oceands.utils.Formatter" />
 
         <variable
             name="badgeTitle"
@@ -87,7 +87,7 @@
 
         <variable
             name="tagType"
-            type="OceanTagType" />
+            type="br.com.useblu.oceands.model.OceanTagType" />
 
         <variable
             name="tagHideIcon"

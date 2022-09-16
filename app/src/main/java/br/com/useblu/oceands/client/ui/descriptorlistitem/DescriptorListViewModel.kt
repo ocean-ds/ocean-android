@@ -1,7 +1,7 @@
 package br.com.useblu.oceands.client.ui.descriptorlistitem
 
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.adapter.OceanDescriptorListItem
+import br.com.useblu.oceands.model.OceanDescriptorListItem
 
 class DescriptorListViewModel : ViewModel() {
 

@@ -3,14 +3,13 @@ package br.com.useblu.oceands.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.useblu.oceands.core.OceanBadgeType
 import br.com.useblu.oceands.databinding.ItemShortcutsAdapterOceanBinding
 import br.com.useblu.oceands.databinding.ItemShortcutsHighlightAdapterOceanBinding
+import br.com.useblu.oceands.model.OceanShortcutItem
 
 class OceanShortcutsListAdapter(
     private val items: List<OceanShortcutItem>,
     private val isHighlight: Boolean,
-    private val onClickItem: (Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -53,9 +52,6 @@ class OceanShortcutsListAdapter(
 
         fun bindView(position: Int) {
             itemBinding.item = items[position]
-            itemBinding.cardView.setOnClickListener {
-                onClickItem(position)
-            }
             itemBinding.executePendingBindings()
         }
     }
@@ -66,18 +62,7 @@ class OceanShortcutsListAdapter(
 
         fun bindView(position: Int) {
             itemBinding.item = items[position]
-            itemBinding.cardView.setOnClickListener {
-                onClickItem(position)
-            }
             itemBinding.executePendingBindings()
         }
     }
-
 }
-
-data class OceanShortcutItem(
-    val iconUrl: String? = null,
-    val label: String,
-    val count: String? = null,
-    val badgeType: OceanBadgeType? = null,
-)

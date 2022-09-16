@@ -6,7 +6,7 @@
     <data>
 
         <import type="java.util.List" />
-        <import type="br.com.useblu.oceands.adapter.OceanDescriptorListItem" />
+        <import type="br.com.useblu.oceands.model.OceanDescriptorListItem" />
 
         <variable
             name="title"

@@ -3,7 +3,7 @@ package br.com.useblu.oceands.bindingadapters
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import br.com.useblu.oceands.adapter.OceanOptionCardItem
+import br.com.useblu.oceands.model.OceanOptionCardItem
 import br.com.useblu.oceands.adapter.OceanOptionsCardAdapter
 
 

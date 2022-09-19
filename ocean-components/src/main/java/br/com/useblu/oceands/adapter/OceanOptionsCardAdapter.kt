@@ -1,12 +1,13 @@
 package br.com.useblu.oceands.adapter
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.ItemOptionCardAdapterOceanBinding
 import br.com.useblu.oceands.databinding.ItemOptionCardDisabledAdapterOceanBinding
+import br.com.useblu.oceands.model.OceanOptionCardItem
+import br.com.useblu.oceands.model.OptionsCardState
 
 class OceanOptionsCardAdapter(
     private var items: List<OceanOptionCardItem>,
@@ -109,25 +110,4 @@ class OceanOptionsCardAdapter(
             }
         }
     }
-}
-
-enum class OptionsCardState {
-    ENABLED, DISABLED, RECOMMEND
-}
-
-data class OceanOptionCardItem(
-    val data: Any,
-    val icon: String? = null,
-    val iconDrawable: Drawable? = null,
-    val heightSize: OceanOptionCardSize = OceanOptionCardSize.MEDIUM,
-    val title: String? = "",
-    val subTitle: String? = "",
-    val disabled: Boolean = false,
-    val recommend: Boolean = false,
-    val recommendColor: String? = null,
-    val recommendDescription: String? = "",
-)
-
-enum class OceanOptionCardSize(val size: Int = 0) {
-    SMALL(64), MEDIUM(96), LARGE(180)
 }

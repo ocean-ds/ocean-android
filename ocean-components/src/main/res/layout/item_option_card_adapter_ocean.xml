@@ -5,15 +5,15 @@
 
     <data>
 
-        <import type="br.com.useblu.oceands.adapter.OceanOptionCardItem" />
+        <import type="br.com.useblu.oceands.model.OceanOptionCardItem" />
 
-        <import type="br.com.useblu.oceands.adapter.OceanOptionCardSize" />
+        <import type="br.com.useblu.oceands.model.OceanOptionCardSize" />
 
         <import type="br.com.useblu.oceands.extensions.ExtensionsKt"/>
 
         <variable
             name="item"
-            type="OceanOptionCardItem" />
+            type="br.com.useblu.oceands.model.OceanOptionCardItem" />
 
         <variable
             name="selected"

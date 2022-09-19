@@ -5,7 +5,7 @@ import android.app.Application
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.adapter.OceanOptionCardItem
+import br.com.useblu.oceands.model.OceanOptionCardItem
 
 class OptionsCardViewModel(application: Application) : AndroidViewModel(application) {
 

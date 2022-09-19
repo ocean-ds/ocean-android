@@ -9,7 +9,7 @@
 
         <import type="java.util.List" />
 
-        <import type="br.com.useblu.oceands.adapter.OceanOptionCardItem" />
+        <import type="br.com.useblu.oceands.model.OceanOptionCardItem" />
 
         <import type="kotlin.jvm.functions.Function0" />
 

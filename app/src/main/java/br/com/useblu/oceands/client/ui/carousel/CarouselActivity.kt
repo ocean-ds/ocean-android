@@ -20,11 +20,6 @@ class CarouselActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[CarouselViewModel::class.java]
         binding.viewmodel = viewModel
 
-        initObservers()
-
         viewModel.loadData()
     }
-
-    private fun initObservers() {}
-
 }

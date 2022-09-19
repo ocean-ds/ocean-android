@@ -18,9 +18,7 @@ class ChipsActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this)[ChipsViewModel::class.java]
         binding.viewmodel = viewModel
-        initObservers()
+
         viewModel.loadData()
     }
-
-    private fun initObservers() {}
 }

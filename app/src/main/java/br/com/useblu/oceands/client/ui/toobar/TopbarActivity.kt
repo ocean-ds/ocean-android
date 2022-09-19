@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityTopbarBinding
-import br.com.useblu.oceands.core.setTitleColor
+import br.com.useblu.oceands.extensions.setTitleColor
 
 
 class TopbarActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {

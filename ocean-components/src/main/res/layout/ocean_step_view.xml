@@ -5,7 +5,7 @@
     <data>
 
         <import type="androidx.lifecycle.MutableLiveData" />
-        <import type="br.com.useblu.oceands.OceanStepView" />
+        <import type="br.com.useblu.oceands.components.OceanStepView" />
 
         <variable
             name="amountSteps"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <br.com.useblu.oceands.OceanStepView
+        <br.com.useblu.oceands.components.OceanStepView
             android:id="@+id/stepView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

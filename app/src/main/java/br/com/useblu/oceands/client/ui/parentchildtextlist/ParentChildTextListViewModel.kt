@@ -4,8 +4,8 @@ import android.graphics.drawable.Drawable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.core.OceanChildTextItem
-import br.com.useblu.oceands.core.OceanParentTextItem
+import br.com.useblu.oceands.model.OceanChildTextItem
+import br.com.useblu.oceands.model.OceanParentTextItem
 
 class ParentChildTextListViewModel : ViewModel() {
 

@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="br.com.useblu.oceands.core.OceanBadgeType" />
+        <import type="br.com.useblu.oceands.model.OceanBadgeType" />
 
         <import type="kotlin.Unit" />
 
-        <import type="br.com.useblu.oceands.core.OceanTransactionListUIModel" />
+        <import type="br.com.useblu.oceands.model.OceanTransactionListUIModel" />
 
         <import type="java.util.List" />
 

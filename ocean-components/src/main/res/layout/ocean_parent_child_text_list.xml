@@ -14,11 +14,11 @@
 
         <import type="kotlin.Unit" />
 
-        <import type="br.com.useblu.oceands.core.OceanParentTextItem" />
+        <import type="br.com.useblu.oceands.model.OceanParentTextItem" />
 
         <variable
             name="item"
-            type="OceanParentTextItem" />
+            type="br.com.useblu.oceands.model.OceanParentTextItem" />
 
         <variable
             name="clickSubItem"

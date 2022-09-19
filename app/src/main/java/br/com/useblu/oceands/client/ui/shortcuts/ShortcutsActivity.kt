@@ -1,8 +1,7 @@
 package br.com.useblu.oceands.client.ui.shortcuts
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
@@ -21,19 +20,6 @@ class ShortcutsActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[ShortcutsViewModel::class.java]
         binding.viewmodel = viewModel
 
-        initObservers()
-
         viewModel.loadData()
     }
-
-    private fun initObservers() {
-        viewModel.itemSelected.observe(this, {
-            Toast.makeText(this, "Item \"${it.label}\" selecionado", Toast.LENGTH_SHORT).show()
-        })
-
-        viewModel.itemSelected2.observe(this, {
-            Toast.makeText(this, "Item \"${it.label}\" selecionado", Toast.LENGTH_SHORT).show()
-        })
-    }
-
 }

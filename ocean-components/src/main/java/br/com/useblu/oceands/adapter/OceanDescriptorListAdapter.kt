@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.OceanDescriptorListItemBinding
-import br.com.useblu.oceands.databinding.OceanDividerBinding
 import br.com.useblu.oceands.databinding.OceanDividerDescriptorListBinding
+import br.com.useblu.oceands.model.OceanDescriptorListItem
 
 class OceanDescriptorListAdapter(
     private val items: List<OceanDescriptorListItem>,
@@ -81,16 +81,4 @@ class OceanDescriptorListAdapter(
     enum class ItemViewType {
         DIVIDER, ROW_ITEM
     }
-
 }
-
-data class OceanDescriptorListItem(
-    val title: String? = null,
-    val value: String? = null,
-    val newValue: String? = null,
-    val color: String? = null,
-    val icon: String? = null,
-    val isBold: Boolean? = false,
-    val isDivider: Boolean? = false,
-    val isStrike: Boolean? = !newValue.isNullOrBlank()
-)

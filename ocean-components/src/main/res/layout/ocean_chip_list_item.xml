@@ -9,11 +9,11 @@
 
         <import type="kotlin.jvm.functions.Function0" />
 
-        <import type="br.com.useblu.oceands.adapter.OceanChipItem" />
+        <import type="br.com.useblu.oceands.model.OceanChipItem" />
 
-        <import type="br.com.useblu.oceands.adapter.OceanChipItemState" />
+        <import type="br.com.useblu.oceands.model.OceanChipItemState" />
 
-        <import type="br.com.useblu.oceands.core.OceanBadgeType" />
+        <import type="br.com.useblu.oceands.model.OceanBadgeType" />
 
         <import type="android.view.View" />
 
@@ -23,7 +23,7 @@
 
         <variable
             name="item"
-            type="OceanChipItem" />
+            type="br.com.useblu.oceands.model.OceanChipItem" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

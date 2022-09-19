@@ -4,68 +4,65 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import br.com.useblu.oceands.adapter.OceanShortcutItem
-import br.com.useblu.oceands.core.OceanBadgeType
+import br.com.useblu.oceands.model.OceanShortcutItem
+import br.com.useblu.oceands.model.OceanBadgeType
 
 class ShortcutsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _items = MutableLiveData<List<OceanShortcutItem>>()
     val items: LiveData<List<OceanShortcutItem>> get() = _items
 
-    private val _itemSelected = MutableLiveData<OceanShortcutItem>()
-    val itemSelected: LiveData<OceanShortcutItem> get() = _itemSelected
-
     private val _items2 = MutableLiveData<List<OceanShortcutItem>>()
     val items2: LiveData<List<OceanShortcutItem>> get() = _items2
-
-    private val _itemSelected2 = MutableLiveData<OceanShortcutItem>()
-    val itemSelected2: LiveData<OceanShortcutItem> get() = _itemSelected2
 
     fun loadData() {
         _items.postValue(getItems())
         _items2.postValue(getItemsHighlighted())
     }
 
-    fun itemSelect(position: Int) {
-        _items.value?.let { items ->
-            _itemSelected.postValue(items[position])
-        }
-    }
-
-    fun itemSelect2(position: Int) {
-        _items2.value?.let { items ->
-            _itemSelected2.postValue(items[position])
-        }
-    }
-
     private fun getItems() = listOf(
         OceanShortcutItem(
             iconUrl = URL,
             label = "Shortcut 1",
-            badgeType = OceanBadgeType.DEFAULT
+            badgeType = OceanBadgeType.DEFAULT,
+            action = {
+                println("Shortcut 1 clicked")
+            }
         ),
         OceanShortcutItem(
             iconUrl = "",
             label = "Shortcut 2",
             count = "1",
-            badgeType = OceanBadgeType.BRAND_DEFAULT
+            badgeType = OceanBadgeType.BRAND_DEFAULT,
+            action = {
+                println("Shortcut 2 clicked")
+            }
         ),
         OceanShortcutItem(
             iconUrl = URL,
             label = "Shortcut 3",
-            badgeType = OceanBadgeType.NEUTRAL
+            badgeType = OceanBadgeType.NEUTRAL,
+            action = {
+                println("Shortcut 3 clicked")
+            }
         ),
         OceanShortcutItem(
             iconUrl = "",
             label = "Shortcut 4",
             count = "1",
-            badgeType = OceanBadgeType.ALERT
+            badgeType = OceanBadgeType.ALERT,
+            action = {
+                println("Shortcut 4 clicked")
+            }
         ),
         OceanShortcutItem(
             iconUrl = "",
             label = "Shortcut 5",
             count = "1",
-            badgeType = OceanBadgeType.COMPLEMENTARY
+            badgeType = OceanBadgeType.COMPLEMENTARY,
+            action = {
+                println("Shortcut 5 clicked")
+            }
         ),
     )
 
@@ -74,28 +71,46 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             iconUrl = "",
             label = "Shortcut 1",
             count = "1",
-            badgeType = OceanBadgeType.DEFAULT
-        ),OceanShortcutItem(
+            badgeType = OceanBadgeType.DEFAULT,
+            action = {
+                println("Shortcut 1 clicked")
+            }
+        ),
+        OceanShortcutItem(
             iconUrl = URL,
             label = "Shortcut 2",
             count = "1",
-            badgeType = OceanBadgeType.BRAND_DEFAULT
-        ),OceanShortcutItem(
+            badgeType = OceanBadgeType.BRAND_DEFAULT,
+            action = {
+                println("Shortcut 2 clicked")
+            }
+        ),
+        OceanShortcutItem(
             iconUrl = "",
             label = "Shortcut 3",
             count = "1",
-            badgeType = OceanBadgeType.NEUTRAL
-        ),OceanShortcutItem(
+            badgeType = OceanBadgeType.NEUTRAL,
+            action = {
+                println("Shortcut 3 clicked")
+            }
+        ),
+        OceanShortcutItem(
             iconUrl = URL,
             label = "Shortcut 4",
             count = "1",
-            badgeType = OceanBadgeType.COMPLEMENTARY
+            badgeType = OceanBadgeType.COMPLEMENTARY,
+            action = {
+                println("Shortcut 4 clicked")
+            }
         ),
         OceanShortcutItem(
             iconUrl = "",
             label = "Shortcut 5",
             count = "1",
-            badgeType = OceanBadgeType.ALERT
+            badgeType = OceanBadgeType.ALERT,
+            action = {
+                println("Shortcut 5 clicked")
+            }
         ),
     )
 

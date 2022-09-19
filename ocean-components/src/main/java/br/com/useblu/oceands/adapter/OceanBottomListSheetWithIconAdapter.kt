@@ -3,7 +3,7 @@ package br.com.useblu.oceands.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.useblu.oceands.OceanBottomListSheetUIModel
+import br.com.useblu.oceands.components.OceanBottomListSheetUIModel
 import br.com.useblu.oceands.databinding.OceanBottomListSheetWithIconItemBinding
 
 class OceanBottomListSheetWithIconAdapter(

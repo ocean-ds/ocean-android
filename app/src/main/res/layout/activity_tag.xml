@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="br.com.useblu.oceands.core.OceanTagType"/>
+        <import type="br.com.useblu.oceands.model.OceanTagType"/>
 
         <variable
             name="viewmodel"

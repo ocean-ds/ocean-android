@@ -7,7 +7,7 @@
 
         <import type="android.text.InputType" />
 
-        <import type="br.com.useblu.oceands.core.FormatTypes" />
+        <import type="br.com.useblu.oceands.utils.FormatTypes" />
 
         <variable
             name="viewmodel"

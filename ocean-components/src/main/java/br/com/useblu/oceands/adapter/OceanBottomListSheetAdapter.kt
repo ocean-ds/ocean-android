@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import br.com.useblu.oceands.OceanBottomListSheet
-import br.com.useblu.oceands.OceanSearchDialog
+import br.com.useblu.oceands.components.OceanBottomListSheet
+import br.com.useblu.oceands.components.OceanSearchDialog
 import br.com.useblu.oceands.databinding.OceanBottomListSheetItemBinding
 
 class OceanBottomListSheetAdapter(

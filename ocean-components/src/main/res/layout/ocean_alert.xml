@@ -7,7 +7,7 @@
 
         <variable
             name="type"
-            type="br.com.useblu.oceands.core.OceanAlertType" />
+            type="br.com.useblu.oceands.model.OceanAlertType" />
 
         <variable
             name="text"

@@ -8,19 +8,15 @@
 
     <data>
 
-        <import type="java.util.ArrayList" />
+        <import type="java.util.List" />
 
-        <import type="br.com.useblu.oceands.adapter.OceanChipItem" />
+        <import type="br.com.useblu.oceands.model.OceanChipItem" />
 
         <import type="androidx.lifecycle.MutableLiveData" />
 
         <variable
             name="chips"
-            type="MutableLiveData&lt;ArrayList&lt;OceanChipItem>>" />
-
-        <variable
-            name="selectedItem"
-            type="MutableLiveData&lt;OceanChipItem>" />
+            type="List&lt;OceanChipItem>" />
 
         <variable
             name="itemsSpacing"
@@ -40,7 +36,6 @@
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:chips="@{chips}"
-            app:selectedItem="@{selectedItem}"
             app:itemsSpacing="@{itemsSpacing}"
             android:orientation="horizontal"
             tools:listitem="@layout/ocean_chip_list_item"/>

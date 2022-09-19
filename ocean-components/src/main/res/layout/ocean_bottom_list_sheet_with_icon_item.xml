@@ -11,7 +11,7 @@
 
         <variable
             name="item"
-            type="br.com.useblu.oceands.OceanBottomListSheetUIModel" />
+            type="br.com.useblu.oceands.components.OceanBottomListSheetUIModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

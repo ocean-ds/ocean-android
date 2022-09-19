@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import br.com.useblu.oceands.core.OceanTransactionListUIModel
+import br.com.useblu.oceands.model.OceanTransactionListUIModel
 import br.com.useblu.oceands.databinding.OceanTransactionListItemBinding
 
 class TransactionListItemAdapter(

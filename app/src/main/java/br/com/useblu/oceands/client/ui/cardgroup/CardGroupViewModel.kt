@@ -3,7 +3,7 @@ package br.com.useblu.oceands.client.ui.cardgroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.core.OceanTransactionListUIModel
+import br.com.useblu.oceands.model.OceanTransactionListUIModel
 
 class CardGroupViewModel: ViewModel() {
 

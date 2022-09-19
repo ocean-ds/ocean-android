@@ -18,8 +18,7 @@
         android:padding="@dimen/ocean_spacing_stack_xs">
 
         <include
-            app:chips="@{viewmodel.chips}"
-            app:selectedItem="@{viewmodel.selectedItem}"
+            app:chips="@{viewmodel.chipsWithoutIcon}"
             app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
             layout="@layout/ocean_chip_list"
             android:layout_width="match_parent"
@@ -28,7 +27,6 @@
 
         <include
             app:chips="@{viewmodel.chipsWithIcon}"
-            app:selectedItem="@{viewmodel.selectedItem}"
             app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
             layout="@layout/ocean_chip_list"
             android:layout_width="match_parent"
@@ -37,7 +35,6 @@
 
         <include
             app:chips="@{viewmodel.chipsWithBadge}"
-            app:selectedItem="@{viewmodel.selectedItem}"
             app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
             layout="@layout/ocean_chip_list"
             android:layout_width="match_parent"
@@ -46,7 +43,6 @@
 
         <include
             app:chips="@{viewmodel.chipsWithClose}"
-            app:selectedItem="@{viewmodel.selectedItem}"
             app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
             android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
             layout="@layout/ocean_chip_list"
@@ -55,8 +51,7 @@
 
         <include
             android:id="@+id/livedata"
-            app:chips="@{viewmodel.chipsLiveData}"
-            app:selectedItem="@{viewmodel.selectedItem}"
+            app:chips="@{viewmodel.chips}"
             app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
             layout="@layout/ocean_chip_list"
             android:layout_width="match_parent"

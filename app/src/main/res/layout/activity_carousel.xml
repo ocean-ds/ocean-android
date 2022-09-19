@@ -36,8 +36,7 @@
                 layout="@layout/ocean_carousel"
                 app:entries="@{viewmodel.entries}"
                 app:withoutIndicator="@{false}"
-                app:autoCycle="@{false}"
-                app:itemSelect="@{viewmodel::itemSelect}" />
+                app:autoCycle="@{false}" />
 
         </LinearLayout>
 
@@ -58,8 +57,7 @@
                 layout="@layout/ocean_carousel"
                 app:entries="@{viewmodel.entries2}"
                 app:withoutIndicator="@{true}"
-                app:autoCycle="@{false}"
-                app:itemSelect="@{viewmodel::itemSelect2}" />
+                app:autoCycle="@{false}" />
 
         </LinearLayout>
 
@@ -80,8 +78,7 @@
                 layout="@layout/ocean_carousel"
                 app:entries="@{viewmodel.entries3}"
                 app:withoutIndicator="@{false}"
-                app:autoCycle="@{true}"
-                app:itemSelect="@{viewmodel::itemSelect3}" />
+                app:autoCycle="@{true}" />
 
         </LinearLayout>
 

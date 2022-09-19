@@ -15,7 +15,7 @@
 
         <variable
             name="formatTypeTitle"
-            type="br.com.useblu.oceands.core.Formatter" />
+            type="br.com.useblu.oceands.utils.Formatter" />
 
         <variable
             name="subtitle"
@@ -23,7 +23,7 @@
 
         <variable
             name="formatTypeSubTitle"
-            type="br.com.useblu.oceands.core.Formatter" />
+            type="br.com.useblu.oceands.utils.Formatter" />
 
         <variable
             name="description"
@@ -31,7 +31,7 @@
 
         <variable
             name="formatTypeDescription"
-            type="br.com.useblu.oceands.core.Formatter" />
+            type="br.com.useblu.oceands.utils.Formatter" />
 
         <variable
             name="badgeTitle"

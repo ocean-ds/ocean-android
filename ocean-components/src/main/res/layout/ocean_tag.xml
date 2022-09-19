@@ -11,7 +11,7 @@
 
         <variable
             name="type"
-            type="br.com.useblu.oceands.core.OceanTagType" />
+            type="br.com.useblu.oceands.model.OceanTagType" />
 
         <variable
             name="icon"

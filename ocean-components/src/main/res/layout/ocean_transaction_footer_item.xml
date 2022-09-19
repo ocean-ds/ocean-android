@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="br.com.useblu.oceands.adapter.OceanTransactionFooterItem" />
+        <import type="br.com.useblu.oceands.model.OceanTransactionFooterItem" />
 
         <variable
             name="item"
-            type="OceanTransactionFooterItem" />
+            type="br.com.useblu.oceands.model.OceanTransactionFooterItem" />
 
     </data>
 

@@ -9,5 +9,5 @@ data class OceanChipItem(
     val icon: Drawable? = null,
     val hasClose: Boolean = false,
     var state: OceanChipItemState = OceanChipItemState.DEFAULT,
-    val action: () -> Unit = {}
+    var action: () -> Unit = {}
 )

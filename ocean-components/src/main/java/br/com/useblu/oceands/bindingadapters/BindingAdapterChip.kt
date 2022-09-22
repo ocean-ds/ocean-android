@@ -24,7 +24,10 @@ fun setChipsAdapter(
     val drawable = ContextCompat.getDrawable(recyclerView.context, android.R.color.transparent)
     if (drawable != null) divider.setDrawable(drawable)
 
-    recyclerView.adapter = OceanChipListAdapter(chips.toMutableList())
+    val adapter = OceanChipListAdapter()
+    recyclerView.adapter = adapter.apply {
+        addItems(chips)
+    }
     recyclerView.layoutManager = layoutManager
     recyclerView.addItemDecoration(divider)
 }

@@ -11,9 +11,10 @@ import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanChipItem
 import br.com.useblu.oceands.model.OceanChipItemState
 
-class OceanChipListAdapter(
-    var items: MutableList<OceanChipItem>
-) : RecyclerView.Adapter<OceanChipListAdapter.OceanChipListViewHolder>() {
+class OceanChipListAdapter
+    : RecyclerView.Adapter<OceanChipListAdapter.OceanChipListViewHolder>() {
+
+    val items = mutableListOf<OceanChipItem>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -34,6 +35,12 @@ class OceanChipListAdapter(
     ) {
         val item = items[position]
         holder.bindView(item)
+    }
+
+    fun addItems(chips: List<OceanChipItem>){
+        items.clear()
+        items.addAll(chips)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = items.size

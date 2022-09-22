@@ -37,7 +37,7 @@ class OceanChipListAdapter
         holder.bindView(item)
     }
 
-    fun addItems(chips: List<OceanChipItem>){
+    fun submitList(chips: List<OceanChipItem>){
         items.clear()
         items.addAll(chips)
         notifyDataSetChanged()

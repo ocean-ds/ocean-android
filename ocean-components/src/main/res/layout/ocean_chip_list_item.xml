@@ -35,6 +35,7 @@
         android:onClick="@{() -> onClick.invoke()}"
         android:orientation="horizontal"
         android:paddingHorizontal="12dp"
+        android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
         tools:background="@drawable/ocean_chip_selected">
 
         <include

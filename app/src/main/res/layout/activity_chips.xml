@@ -19,7 +19,6 @@
 
         <include
             app:chips="@{viewmodel.chipsWithoutIcon}"
-            app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
             layout="@layout/ocean_chip_list"
             android:layout_width="match_parent"
             android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
@@ -27,7 +26,6 @@
 
         <include
             app:chips="@{viewmodel.chipsWithIcon}"
-            app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
             layout="@layout/ocean_chip_list"
             android:layout_width="match_parent"
             android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
@@ -35,7 +33,6 @@
 
         <include
             app:chips="@{viewmodel.chipsWithBadge}"
-            app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
             layout="@layout/ocean_chip_list"
             android:layout_width="match_parent"
             android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
@@ -43,7 +40,6 @@
 
         <include
             app:chips="@{viewmodel.chipsWithClose}"
-            app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
             android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
             layout="@layout/ocean_chip_list"
             android:layout_width="match_parent"
@@ -52,7 +48,6 @@
         <include
             android:id="@+id/livedata"
             app:chips="@{viewmodel.chips}"
-            app:itemsSpacing="@{@dimen/ocean_spacing_stack_xxs}"
             layout="@layout/ocean_chip_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

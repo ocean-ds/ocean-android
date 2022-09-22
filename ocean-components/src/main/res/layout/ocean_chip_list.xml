@@ -36,7 +36,6 @@
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:chips="@{chips}"
-            app:itemsSpacing="@{itemsSpacing}"
             android:orientation="horizontal"
             tools:listitem="@layout/ocean_chip_list_item"/>
 

@@ -193,7 +193,7 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
 }
 
 @BindingAdapter("app:ocean_alert_background")
-fun setOceanBackground(layout: LinearLayout, type: OceanAlertType) {
+fun setOceanBackground(layout: LinearLayout, type: OceanAlertType?) {
     when (type) {
         OceanAlertType.Information -> {
             layout.setBackgroundResource(R.drawable.ocean_alert_info_background)
@@ -208,11 +208,14 @@ fun setOceanBackground(layout: LinearLayout, type: OceanAlertType) {
         OceanAlertType.Warning -> {
             layout.setBackgroundResource(R.drawable.ocean_alert_warning_background)
         }
+        else -> {
+            layout.setBackgroundResource(R.drawable.ocean_alert_warning_background)
+        }
     }
 }
 
 @BindingAdapter("app:ocean_alert_src", "app:ocean_alert_icon")
-fun setOceanSrc(imageView: ImageView, type: OceanAlertType, icon: Drawable?) {
+fun setOceanSrc(imageView: ImageView, type: OceanAlertType?, icon: Drawable?) {
     if (icon != null) {
         imageView.setImageDrawable(icon)
     } else {
@@ -229,12 +232,15 @@ fun setOceanSrc(imageView: ImageView, type: OceanAlertType, icon: Drawable?) {
             OceanAlertType.Warning -> {
                 imageView.setBackgroundResource(R.drawable.icon_warning)
             }
+            else -> {
+                imageView.setBackgroundResource(R.drawable.icon_warning)
+            }
         }
     }
 }
 
 @BindingAdapter("app:ocean_alert_text_color")
-fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType) {
+fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType?) {
     val context = textView.context
     when (type) {
         OceanAlertType.Information -> {
@@ -263,6 +269,14 @@ fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType) {
             )
         }
         OceanAlertType.Warning -> {
+            textView.setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    (R.color.ocean_color_status_neutral_deep)
+                )
+            )
+        }
+        else -> {
             textView.setTextColor(
                 ContextCompat.getColor(
                     context,

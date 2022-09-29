@@ -47,7 +47,7 @@
             <TextView
                 android:id="@+id/value"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:theme="@style/Ocean.Paragraph"
                 app:ocean_strike="@{item.isStrike}"
@@ -59,7 +59,7 @@
             <TextView
                 android:id="@+id/value_bold"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/ocean_spacing_inset_xxs"
                 android:theme="@style/Ocean.Heading.3"
@@ -71,7 +71,7 @@
             <TextView
                 android:id="@+id/new_value"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/ocean_spacing_inset_xxs"
                 android:theme="@style/Ocean.Paragraph"

@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.model.OceanDescriptorListItem
 
 class DescriptorListViewModel : ViewModel() {
-
     val entries = listOf(
         OceanDescriptorListItem(
             title = "Desconto",

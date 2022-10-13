@@ -53,7 +53,7 @@
                 app:ocean_strike="@{item.isStrike}"
                 app:ocean_visible_or_gone="@{!item.isBold()}"
                 app:text="@{item.value != null ? item.value : ``}"
-                app:textColor="@{item.newValue == null ? item.color : `colorInterfaceDarkDown`}"
+                app:textColor="@{item.newValue == null ? item.color : item.color != null ? item.color : `colorInterfaceDarkDown`}"
                 tools:text="Value1" />
 
             <TextView
@@ -65,7 +65,7 @@
                 android:theme="@style/Ocean.Heading.3"
                 app:ocean_visible_or_gone="@{item.isBold()}"
                 app:text="@{item.value != null ? item.value : ``}"
-                app:textColor="@{item.newValue == null ? item.color : `colorInterfaceDarkDown`}"
+                app:textColor="@{item.newValue == null ? item.color : item.color != null ? item.color : `colorInterfaceDarkDown`}"
                 tools:text="Value1-Bold" />
 
             <TextView

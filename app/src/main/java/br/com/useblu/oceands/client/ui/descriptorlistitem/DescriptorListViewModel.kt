@@ -31,7 +31,7 @@ class DescriptorListViewModel : ViewModel() {
         OceanDescriptorListItem(
             title = "Desconto",
             value = "R$ 40,00",
-            color = "colorInterfaceDarkDown",
+            color = "colorInterfaceDarkPure",
         ),
         OceanDescriptorListItem(
             isDivider = true,

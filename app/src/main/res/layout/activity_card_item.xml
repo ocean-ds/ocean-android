@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.InputType" />
+
+        <import type="br.com.useblu.oceands.model.OceanBadgeType" />
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.carditem.CardItemViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/ocean_spacing_inline_xs"
+        tools:context=".ui.cardgroup.CardGroupActivity">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/cardContentDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <include layout="@layout/ocean_card_item"
+                app:title="@{`CNH`}"
+                app:subtitle="@{`Carteira de Habilitação`}"
+                app:icon="@{@drawable/ic_chevron_right}"
+                app:arrow="@{false}" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_spacing_inline_xs" />
+
+            <include layout="@layout/ocean_card_item"
+                app:title="@{`RG`}"
+                app:subtitle="@{`Documento de Identidade`}"
+                app:icon="@{@drawable/ic_chevron_right}"
+                app:arrow="@{true}"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

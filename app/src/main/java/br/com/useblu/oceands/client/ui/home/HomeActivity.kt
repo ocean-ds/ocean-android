@@ -14,6 +14,7 @@ import br.com.useblu.oceands.client.ui.badges.BadgesActivity
 import br.com.useblu.oceands.client.ui.balance.BalanceActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
+import br.com.useblu.oceands.client.ui.carditem.CardItemActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
 import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
 import br.com.useblu.oceands.client.ui.chips.ChipsActivity
@@ -375,6 +376,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onFooterBlu(view: View) {
         val intent = Intent(this, FooterBluActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickCardItem(view: View) {
+        val intent = Intent(this, CardItemActivity::class.java)
         startActivity(intent)
     }
 }

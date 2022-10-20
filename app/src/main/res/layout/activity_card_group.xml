@@ -93,7 +93,7 @@
                     app:actionHeaderTitle="@{`Select`}"
                     app:actionHeaderClick="@{viewmodel::actionClickHeader}"
                     app:headerTitle="@{`Header`}"
-                    app:headerSubtitle="@{`Subtitle`}"/>
+                    app:headerSubtitle="@{`A very long subtitle that cannot be shown in a single line`}"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

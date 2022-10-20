@@ -65,6 +65,10 @@
             name="itemSelect"
             type="Function1&lt;Integer,Unit>" />
 
+        <variable
+            name="showProgress"
+            type="Boolean" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -199,7 +203,7 @@
                     android:id="@+id/text_view_subtitle"
                     style="@style/Ocean.Caption"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/ocean_spacing_inset_sm"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/ocean_spacing_inset_xxs"
                     android:gravity="center_vertical"
                     android:text="@{headerSubtitle}"
@@ -281,49 +285,14 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_footer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ocean_background_ripple_light_deep"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="@{() -> actionFooterClick.invoke()}"
-                app:ocean_visible_or_gone="@{footerActionTitle != null}">
+            <include
+                android:id="@+id/group_cta"
+                layout="@layout/ocean_group_cta"
+                app:actionTitle="@{footerActionTitle}"
+                app:actionClick="@{() -> actionFooterClick.invoke()}"
+                app:showProgress="@{showProgress != null ? showProgress : false}"
+                app:ocean_visible_or_gone="@{footerActionTitle != null}"/>
 
-                <TextView
-                    android:id="@+id/text_footer"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/font_family_base_bold"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:text="@{footerActionTitle}"
-                    android:textColor="@color/ocean_color_brand_primary_pure"
-                    android:textSize="@dimen/ocean_font_size_xxs"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/icon_footer"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Call To Action" />
-
-                <ImageView
-                    android:id="@+id/icon_footer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-                    android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-                    android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
-                    android:src="@drawable/icon_chevron_right"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/ocean_color_brand_primary_pure" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </com.google.android.material.card.MaterialCardView>

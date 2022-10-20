@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+        <import type="br.com.useblu.oceands.extensions.ExtensionsKt"/>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="subtitle"
+            type="String" />
+
+        <variable
+            name="caption"
+            type="String" />
+
+        <variable
+            name="imageUrl"
+            type="String" />
+
+
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+
+        <variable
+            name="arrow"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="@dimen/ocean_spacing_stack_xs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ocean_card_item_background">
+
+        <LinearLayout
+            android:id="@+id/container_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/ocean_spacing_inline_xs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:imageUrl="@{imageUrl}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{imageUrl != null}"
+                tools:src="@drawable/icon_generic_primary" />
+
+            <ImageView
+                android:id="@+id/iconDrawable"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@{icon}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{icon != null}"
+                tools:src="@drawable/icon_generic_primary" />
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/container_texts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/arrowIcon"
+            app:layout_constraintStart_toEndOf="@+id/container_icon">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_bold"
+                android:text="@{title}"
+                android:textColor="@color/ocean_color_interface_dark_pure"
+                android:textSize="@dimen/ocean_font_size_xs"
+                tools:text="Title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@{subtitle}"
+                android:textColor="@color/ocean_color_interface_dark_pure"
+                android:textSize="@dimen/ocean_font_size_xxs"
+                tools:text="Subtitle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_family_base_regular"
+                android:maxLines="2"
+                android:text="@{caption}"
+                app:ocean_visible_or_gone="@{caption == null ? false : true}"
+                android:textColor="@color/ocean_color_interface_dark_pure"
+                android:textSize="@dimen/ocean_font_size_xxs"
+                tools:text="Caption" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <ImageView
+            android:id="@+id/arrowIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_right"
+            app:tint="@color/ocean_color_interface_dark_down"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/container_texts"
+            app:layout_constraintTop_toTopOf="parent"
+            app:ocean_visible_or_gone="@{arrow}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

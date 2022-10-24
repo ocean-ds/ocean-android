@@ -32,20 +32,43 @@
 
 
             <include layout="@layout/ocean_card_item"
-                app:title="@{`CNH`}"
-                app:subtitle="@{`Carteira de Habilitação`}"
+                app:title="@{`One`}"
+                app:subtitle="@{`Option One`}"
                 app:icon="@{@drawable/ic_chevron_right}"
-                app:arrow="@{false}" />
+                app:arrow="@{false}"
+                app:click="@{viewmodel::actionClickCardItemOne}" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ocean_spacing_inline_xs" />
 
             <include layout="@layout/ocean_card_item"
-                app:title="@{`RG`}"
-                app:subtitle="@{`Documento de Identidade`}"
+                app:title="@{`Two`}"
+                app:subtitle="@{`Option two`}"
                 app:icon="@{@drawable/ic_chevron_right}"
-                app:arrow="@{true}"/>
+                app:arrow="@{true}"
+                app:click="@{viewmodel::actionClickCardItemTwo}"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_spacing_inline_xs" />
+
+
+            <include layout="@layout/ocean_card_item"
+                app:title="@{`One`}"
+                app:subtitle="@{`Option One without icon`}"
+                app:arrow="@{false}"
+                app:click="@{viewmodel::actionClickCardItemOne}"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_spacing_inline_xs" />
+
+            <include layout="@layout/ocean_card_item"
+                app:title="@{`Two`}"
+                app:subtitle="@{`Option two without icon`}"
+                app:arrow="@{true}"
+                app:click="@{viewmodel::actionClickCardItemTwo}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>

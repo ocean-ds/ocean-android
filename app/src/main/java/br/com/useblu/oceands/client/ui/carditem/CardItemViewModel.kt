@@ -14,5 +14,4 @@ class CardItemViewModel: ViewModel() {
     fun actionClickCardItem() {
         _shouldShowMessage.postValue("Click Action Card Item One")
     }
-
 }

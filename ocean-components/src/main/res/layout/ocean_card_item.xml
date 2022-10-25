@@ -5,9 +5,6 @@
 
     <data>
 
-
-        <import type="br.com.useblu.oceands.extensions.ExtensionsKt"/>
-
         <import type="kotlin.jvm.functions.Function0" />
 
         <import type="kotlin.Unit" />
@@ -47,6 +44,9 @@
         android:padding="@dimen/ocean_spacing_stack_xs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> click.invoke()}"
         android:background="@drawable/ocean_card_item_background">
 
         <LinearLayout

@@ -11,7 +11,11 @@ class CardItemViewModel: ViewModel() {
     val shouldShowMessage: LiveData<String> get() = _shouldShowMessage
 
 
-    fun actionClickCardItem() {
+    fun actionClickCardItemOne() {
         _shouldShowMessage.postValue("Click Action Card Item One")
+    }
+
+    fun actionClickCardItemTwo() {
+        _shouldShowMessage.postValue("Click Action Card Item Two")
     }
 }

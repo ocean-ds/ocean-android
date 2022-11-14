@@ -62,11 +62,16 @@
             name="visibleShadow"
             type="Boolean" />
 
+        <variable
+            name="hide"
+            type="Boolean" />
+
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:ocean_visible_or_gone="@{!hide}"
         android:orientation="vertical">
 
         <com.github.florent37.expansionpanel.ExpansionHeader

@@ -10,15 +10,20 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
 import kotlinx.android.synthetic.main.ocean_tab_item.view.*
 
-@BindingAdapter("app:setLabels", "app:setCounters", "app:setTabSelected")
+@BindingAdapter("app:setLabels", "app:setCounters", "app:setTabSelected", "app:setDefaultSelected")
 fun setLabels(
     recyclerView: RecyclerView,
     labels: List<String>?,
     counters: List<Int>?,
-    selected: (Int) -> Unit
+    selected: (Int) -> Unit,
+    defaultSelected: Int?
 ) {
     labels?.let {
-        recyclerView.adapter = OceanTabAdapter(labels, counters) { positionSelected ->
+        recyclerView.adapter = OceanTabAdapter(
+           labels =  labels,
+           counters =  counters,
+            defaultSelected = defaultSelected,
+        ) { positionSelected ->
             selected.invoke(positionSelected)
         }
     }
@@ -27,10 +32,11 @@ fun setLabels(
 private class OceanTabAdapter(
     val labels: List<String>,
     val counters: List<Int>?,
-    val onSelect: (Int) -> Unit
+    val defaultSelected: Int?,
+    val onSelect: (Int) -> Unit,
 ) : RecyclerView.Adapter<OceanTabAdapter.ItemViewHolder>() {
 
-    private var selected = 0
+    private var selected = defaultSelected ?: 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view =

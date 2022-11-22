@@ -23,6 +23,10 @@
         <variable
             name="tabSelected"
             type="Function1&lt;Integer, Unit>" />
+
+        <variable
+            name="defaultSelected"
+            type="Integer" />
     </data>
 
     <LinearLayout
@@ -34,11 +38,12 @@
             android:id="@+id/tab_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
-            app:setLabels="@{labels}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:setCounters="@{counters}"
-            app:setTabSelected="@{tabSelected}"/>
+            app:setDefaultSelected="@{defaultSelected}"
+            app:setLabels="@{labels}"
+            app:setTabSelected="@{tabSelected}" />
 
         <include layout="@layout/ocean_divider" />
 

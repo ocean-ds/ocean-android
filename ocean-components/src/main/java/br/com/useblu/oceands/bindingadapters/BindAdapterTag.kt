@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.core.widget.ImageViewCompat
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
@@ -17,17 +18,13 @@ fun setOceanTagIcon(imageView: ImageView, type: OceanTagType?, icon: Drawable?) 
     val iconDrawable: Drawable?
     when (type) {
         OceanTagType.Neutral1 -> {
-            iconDrawable = icon ?: ContextCompat.getDrawable(
-                imageView.context,
-                R.drawable.icon_placeholder_solid
-            )
+            imageView.isVisible = false
+            iconDrawable = null
             color = R.color.ocean_color_interface_dark_up
         }
         OceanTagType.Neutral2 -> {
-            iconDrawable = icon ?: ContextCompat.getDrawable(
-                imageView.context,
-                R.drawable.icon_placeholder_solid
-            )
+            imageView.isVisible = false
+            iconDrawable = null
             color = R.color.ocean_color_complementary_pure
         }
         OceanTagType.Negative -> {

@@ -37,7 +37,6 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="@dimen/ocean_spacing_inline_xxxs"
-            android:layout_marginEnd="@dimen/ocean_spacing_inline_xxxs"
             app:ocean_tag_icon="@{icon}"
             app:ocean_tag_type="@{type}"
             app:ocean_visible_or_gone="@{!hideIcon}" />
@@ -49,6 +48,8 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_marginBottom="1dp"
+            android:layout_marginStart="@dimen/ocean_spacing_inline_xxxs"
+            android:layout_marginEnd="@dimen/ocean_spacing_inline_xxxs"
             android:fontFamily="@font/font_family_base_medium"
             android:text="@{title}"
             android:textSize="@dimen/ocean_font_size_xxxs"

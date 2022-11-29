@@ -121,6 +121,8 @@ fun setOceanInputType(inputText: TextInputEditText, inputType: Int) {
 fun setFormatType(view: TextView, text: String?, type: Formatter?) {
     if (type != null && !text.isNullOrBlank()) {
         view.text = type.format(text)
+        println("Componente saldo >>>> $text")
+        println("Componente saldo >>>> ${text.toDoubleOrNull()}")
         text.toDoubleOrNull()?.let {
             if(it < 0){
                 view.setTextColor(

@@ -138,7 +138,6 @@ fun setFormatType(view: TextView, text: String?, type: Formatter?) {
                 )
             }
         }
-        view.invalidate()
     }
 }
 

@@ -15,6 +15,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
@@ -119,6 +120,7 @@ fun setOceanInputType(inputText: TextInputEditText, inputType: Int) {
 @BindingAdapter("app:ocean_text", "app:ocean_text_format")
 fun setFormatType(view: TextView, text: String?, type: Formatter?) {
     if (type != null && !text.isNullOrBlank()) {
+        view.isVisible = false
         view.text = type.format(text)
         text.toDoubleOrNull()?.let {
             if(it < 0){
@@ -137,7 +139,7 @@ fun setFormatType(view: TextView, text: String?, type: Formatter?) {
                 )
             }
         }
-
+        view.isVisible = true
     }
 }
 

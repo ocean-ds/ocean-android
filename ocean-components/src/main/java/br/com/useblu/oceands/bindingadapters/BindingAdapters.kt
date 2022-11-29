@@ -120,7 +120,6 @@ fun setOceanInputType(inputText: TextInputEditText, inputType: Int) {
 @BindingAdapter("app:ocean_text", "app:ocean_text_format")
 fun setFormatType(view: TextView, text: String?, type: Formatter?) {
     if (type != null && !text.isNullOrBlank()) {
-        view.isVisible = false
         view.text = type.format(text)
         text.toDoubleOrNull()?.let {
             if(it < 0){
@@ -139,7 +138,7 @@ fun setFormatType(view: TextView, text: String?, type: Formatter?) {
                 )
             }
         }
-        view.isVisible = true
+        view.invalidate()
     }
 }
 

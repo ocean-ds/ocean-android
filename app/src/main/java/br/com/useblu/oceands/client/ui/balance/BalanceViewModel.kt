@@ -37,7 +37,7 @@ class BalanceViewModel: ViewModel() {
     )
 
     private fun valueItems() = listOf(
-        "1150.0",
+        "-1150.0",
         "50.2",
         "19.0",
         "10.0"

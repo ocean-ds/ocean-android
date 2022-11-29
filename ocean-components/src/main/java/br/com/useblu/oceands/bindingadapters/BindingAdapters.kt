@@ -15,7 +15,6 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
-import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
@@ -121,24 +120,21 @@ fun setOceanInputType(inputText: TextInputEditText, inputType: Int) {
 fun setFormatType(view: TextView, text: String?, type: Formatter?) {
     if (type != null && !text.isNullOrBlank()) {
         view.text = type.format(text)
-        println("Componente saldo >>>> $text")
-        println("Componente saldo >>>> ${text.toDoubleOrNull()}")
-        text.toDoubleOrNull()?.let {
-            if(it < 0){
-                view.setTextColor(
-                    ContextCompat.getColor(
-                        view.context,
-                        R.color.ocean_color_status_negative_pure
-                    )
+        val valueToDouble = text.toDoubleOrNull()
+        if (valueToDouble != null && valueToDouble < 0) {
+            view.setTextColor(
+                ContextCompat.getColor(
+                    view.context,
+                    R.color.ocean_color_status_negative_pure
                 )
-            }else{
-                view.setTextColor(
-                    ContextCompat.getColor(
-                        view.context,
-                        R.color.ocean_color_interface_dark_deep
-                    )
+            )
+        } else {
+            view.setTextColor(
+                ContextCompat.getColor(
+                    view.context,
+                    R.color.ocean_color_interface_dark_deep
                 )
-            }
+            )
         }
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.orderedlistitem.OrderedListViewModel" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/ocean_spacing_stack_xs">
+
+        <include
+            layout="@layout/ocean_ordered_list"
+            app:entries="@{viewmodel.entries}" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

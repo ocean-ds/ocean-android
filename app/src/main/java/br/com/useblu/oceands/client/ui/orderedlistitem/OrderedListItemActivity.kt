@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
-import br.com.useblu.oceands.client.databinding.ActivityListItemBinding
 import br.com.useblu.oceands.client.databinding.ActivityOrderedListBindingImpl
-import br.com.useblu.oceands.client.ui.listitem.ListItemViewModel
 
 class OrderedListItemActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOrderedListBindingImpl

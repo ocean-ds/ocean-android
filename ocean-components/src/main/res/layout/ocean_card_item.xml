@@ -53,7 +53,6 @@
             android:id="@+id/container_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/ocean_spacing_inline_xs"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -86,6 +85,7 @@
             android:id="@+id/container_texts"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:gravity="start"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -121,9 +121,9 @@
                 android:fontFamily="@font/font_family_base_regular"
                 android:maxLines="2"
                 android:text="@{caption}"
-                app:ocean_visible_or_gone="@{caption == null ? false : true}"
                 android:textColor="@color/ocean_color_interface_dark_pure"
                 android:textSize="@dimen/ocean_font_size_xxs"
+                app:ocean_visible_or_gone="@{caption == null ? false : true}"
                 tools:text="Caption" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -69,7 +68,6 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        card_view:cardElevation="0dp"
         app:cardElevation="0dp"
         android:onClick="@{() -> click.invoke()}"
         android:orientation="vertical"

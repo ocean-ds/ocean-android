@@ -27,6 +27,7 @@
                 android:id="@+id/topbar_default"
                 layout="@layout/ocean_top_bar"
                 app:click="@{viewmodel::clickBack}"
+                app:iconInvisible="@{true}"
                 app:title="@{@string/title}" />
 
             <Space

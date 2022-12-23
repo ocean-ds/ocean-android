@@ -51,8 +51,7 @@
             android:focusable="true"
             android:onClick="@{() -> clickToolbar.invoke()}"
             android:theme="@style/Ocean.ToolBar.Option.Light"
-            android:visibility="@{iconInvisible ? View.INVISIBLE : View.VISIBLE}"
-            app:navigationIcon="@{icon == null ? @drawable/icon_back_white : icon}"
+            app:navigationIcon="@{iconInvisible ? null : icon == null ? @drawable/icon_back_white : icon}"
             app:setNavigationOnClick="@{click::invoke}"
             tools:navigationIcon="@drawable/icon_generic">
 

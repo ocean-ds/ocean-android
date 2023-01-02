@@ -12,6 +12,7 @@ class OceanTooltip(
     val lifecycle: LifecycleOwner? = null
 ) {
     private var message: String? = null
+    private lateinit var action: () -> Unit
 
     fun build(): Balloon {
         return createBalloon(context) {
@@ -35,12 +36,18 @@ class OceanTooltip(
             setDismissWhenClicked(true)
             setDismissWhenTouchOutside(true)
             setAutoDismissDuration(5000)
+            setOnBalloonClickListener { action.invoke() }
             setLifecycleOwner(lifecycle)
         }
     }
 
     fun withMessage(message: String): OceanTooltip {
         this.message = message
+        return this
+    }
+
+    fun withClick(action: () -> Unit): OceanTooltip {
+        this.action = action
         return this
     }
 }

@@ -374,6 +374,9 @@ class HomeActivity : AppCompatActivity() {
         val tooltip = OceanTooltip(
             context = this
         ).withMessage(message)
+            .withClick {
+                Toast.makeText(this, "Select Tooltip", Toast.LENGTH_LONG).show()
+            }
             .build()
 
         tooltip.show(binding.tooltip)

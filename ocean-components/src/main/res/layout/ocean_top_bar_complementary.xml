@@ -11,6 +11,8 @@
 
         <import type="kotlin.Unit" />
 
+        <import type="android.view.Gravity"/>
+
         <variable
             name="title"
             type="String" />
@@ -57,7 +59,8 @@
 
             <TextView
                 android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="@{iconInvisible ? Gravity.CENTER : Gravity.START }"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_family_highlight_extrabold"
                 android:text="@{title}"

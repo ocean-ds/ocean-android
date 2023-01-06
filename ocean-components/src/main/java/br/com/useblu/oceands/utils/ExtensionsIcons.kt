@@ -1561,6 +1561,6 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_youtube_solid
     }
     else -> {
-        null
+        R.drawable.ocean_icon_placeholder_solid
     }
 }

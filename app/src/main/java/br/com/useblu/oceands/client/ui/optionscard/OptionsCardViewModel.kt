@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.model.OceanOptionCardItem
+import br.com.useblu.oceands.utils.toOceanIcon
 
 class OptionsCardViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -27,7 +28,7 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
                 name = "aaa",
                 subName = "bbbbb"
             ),
-            icon = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
+            icon = "academiccapoutline",
             title = "PagBlu com prazo",
             subTitle = "Pague em 05/12/2021 com saldo futuro sem taxa de antecipação",
             disabled = true
@@ -37,7 +38,7 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
                 name = "aaa",
                 subName = "bbbbb"
             ),
-            icon = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
+            icon = "academiccapsolid",
             title = "Title 2",
             subTitle = "Subtitle 2",
             recommend = true,

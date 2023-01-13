@@ -47,7 +47,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:ocean_visible_or_gone="@{item.count == null}"
-                    app:imageUrl="@{item.iconUrl}"
+                    app:ocean_icon="@{item.iconUrl}"
                     tools:src="@drawable/icon_generic" />
 
                 <LinearLayout

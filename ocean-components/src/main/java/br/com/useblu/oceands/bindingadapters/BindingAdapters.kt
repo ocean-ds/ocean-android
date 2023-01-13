@@ -21,6 +21,7 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.extensions.dp
 import br.com.useblu.oceands.model.OceanAlertType
 import br.com.useblu.oceands.utils.Formatter
+import br.com.useblu.oceands.utils.toOceanIcon
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -189,6 +190,21 @@ fun loadImage(view: ImageView, url: String?, placeHolder: Drawable? = null) {
     } else {
         if (placeHolder != null) {
             view.setImageDrawable(placeHolder)
+        }
+    }
+}
+
+@BindingAdapter("ocean_icon")
+fun loadIcon(view: ImageView, token: String?) {
+    if (token != null && token.isNotBlank()) {
+        val isUrl = token.contains("http")
+        if (isUrl) {
+            val placeHolder = AppCompatResources.getDrawable(view.context, R.drawable.circle_place_holder)
+            Glide.with(view.context).load(token).placeholder(placeHolder).into(view)
+        } else {
+            val context = view.context
+            val icon = AppCompatResources.getDrawable(context, token.toOceanIcon())
+            view.setImageDrawable(icon)
         }
     }
 }

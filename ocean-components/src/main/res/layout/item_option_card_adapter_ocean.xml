@@ -57,23 +57,11 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="24dp"
-                    app:imageUrl="@{item.icon}"
+                    app:ocean_icon="@{item.icon}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:ocean_visible_or_gone="@{item.icon != null}"
-                    tools:src="@drawable/icon_generic_primary" />
-
-                <ImageView
-                    android:id="@+id/iconDrawable"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="24dp"
-                    android:src="@{item.iconDrawable}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:ocean_visible_or_gone="@{item.iconDrawable != null}"
                     tools:src="@drawable/icon_generic_primary" />
             </LinearLayout>
 

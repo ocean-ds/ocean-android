@@ -22,7 +22,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun getItems() = listOf(
         OceanShortcutItem(
-            iconUrl = URL,
+            iconUrl = "youtubesolid",
             label = "Shortcut 1",
             badgeType = OceanBadgeType.DEFAULT,
             action = {
@@ -30,7 +30,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             }
         ),
         OceanShortcutItem(
-            iconUrl = "",
+            iconUrl = "youtubesolid",
             label = "Shortcut 2",
             count = "1",
             badgeType = OceanBadgeType.BRAND_DEFAULT,
@@ -39,7 +39,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             }
         ),
         OceanShortcutItem(
-            iconUrl = URL,
+            iconUrl = "youtubesolid",
             label = "Shortcut 3",
             badgeType = OceanBadgeType.NEUTRAL,
             action = {
@@ -47,7 +47,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             }
         ),
         OceanShortcutItem(
-            iconUrl = "",
+            iconUrl = "youtubesolid",
             label = "Shortcut 4",
             count = "1",
             badgeType = OceanBadgeType.ALERT,
@@ -56,7 +56,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             }
         ),
         OceanShortcutItem(
-            iconUrl = "",
+            iconUrl = "youtubesolid",
             label = "Shortcut 5",
             count = "1",
             badgeType = OceanBadgeType.COMPLEMENTARY,

@@ -105,10 +105,6 @@
             name="imageUrl"
             type="String" />
 
-        <variable
-            name="placeHolder"
-            type="android.graphics.drawable.Drawable" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -146,13 +142,12 @@
                 android:id="@+id/imageView19"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                app:imageUrl="@{imageUrl}"
+                app:ocean_icon="@{imageUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
                 app:layout_constraintStart_toEndOf="@id/paddingStart"
                 app:layout_constraintTop_toTopOf="parent"
                 app:ocean_visible_or_gone="@{imageUrl != null &amp;&amp; icon == null}"
-                app:placeHolder="@{placeHolder}"
                 tools:src="@drawable/icon_generic_primary" />
 
             <ImageView

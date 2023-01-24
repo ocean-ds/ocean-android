@@ -9,9 +9,7 @@
 
         <import type="java.util.List" />
 
-        <import type="androidx.lifecycle.MutableLiveData" />
-
-        <import type="kotlin.jvm.functions.Function1" />
+        <import type="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <import type="br.com.useblu.oceands.model.OceanShortcutItem"/>
 
@@ -19,6 +17,9 @@
             name="entries"
             type="List&lt;OceanShortcutItem>" />
 
+        <variable
+            name="layoutManager"
+            type="androidx.recyclerview.widget.LinearLayoutManager" />
     </data>
 
     <LinearLayout
@@ -33,8 +34,8 @@
             android:paddingStart="@dimen/ocean_spacing_inline_xs"
             android:paddingEnd="@dimen/ocean_spacing_inline_xs"
             android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:entries="@{entries}"
+            app:shortcutLayoutManager="@{layoutManager}"
             tools:itemCount="5"
             tools:listitem="@layout/item_shortcuts_adapter_ocean" />
 

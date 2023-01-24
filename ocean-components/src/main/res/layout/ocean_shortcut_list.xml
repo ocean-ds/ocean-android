@@ -18,10 +18,6 @@
         <variable
             name="entries"
             type="List&lt;OceanShortcutItem>" />
-        
-        <variable
-            name="highlighted"
-            type="Boolean" />
 
     </data>
 
@@ -39,7 +35,6 @@
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:entries="@{entries}"
-            app:isHighlight="@{highlighted}"
             tools:itemCount="5"
             tools:listitem="@layout/item_shortcuts_adapter_ocean" />
 

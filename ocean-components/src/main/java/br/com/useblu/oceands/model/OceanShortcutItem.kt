@@ -10,21 +10,13 @@ data class OceanShortcutItem(
     val subTitle: String? = null,
     val badgeType: OceanBadgeType? = null,
     val action: () -> Unit = {},
-    val size: OceanShortcutItemSize = OceanShortcutItemSize.Small,
+    val size: OceanShortcutCardSize = OceanShortcutCardSize.Small,
     val viewMode: OceanShortcutViewMode = OceanShortcutViewMode.None
 ) {
-    fun hasSubtitle() = size == OceanShortcutItemSize.Medium
+    fun hasSubtitle() = size == OceanShortcutCardSize.Medium
 
     fun getCardHeight(context: Context): Int {
-        return when (size) {
-            OceanShortcutItemSize.Tiny,
-            OceanShortcutItemSize.Small -> {
-                size.heigth * context.resources.displayMetrics.density
-            }
-            OceanShortcutItemSize.Medium -> {
-                size.heigth * context.resources.displayMetrics.density
-            }
-        }.toInt()
+        return (size.height * context.resources.displayMetrics.density).toInt()
     }
 
     fun getCardWidth(context: Context): Int {
@@ -37,7 +29,7 @@ data class OceanShortcutItem(
     }
 }
 
-enum class OceanShortcutItemSize(val width: Int, val heigth: Int) {
+enum class OceanShortcutCardSize(val width: Int, val height: Int) {
     Tiny(80, 80),
     Small(116, 104),
     Medium(156, 130)

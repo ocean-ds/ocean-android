@@ -11,9 +11,12 @@ data class OceanShortcutItem(
     val badgeType: OceanBadgeType? = null,
     val action: () -> Unit = {},
     val size: OceanShortcutCardSize = OceanShortcutCardSize.Small,
-    val viewMode: OceanShortcutViewMode = OceanShortcutViewMode.None
+    val viewMode: OceanShortcutViewMode = OceanShortcutViewMode.None,
+    val blocked: Boolean = false
 ) {
     fun hasSubtitle() = size == OceanShortcutCardSize.Medium
+
+    fun showBadge() = !blocked && count != null
 
     fun getCardHeight(context: Context): Int {
         return (size.height * context.resources.displayMetrics.density).toInt()

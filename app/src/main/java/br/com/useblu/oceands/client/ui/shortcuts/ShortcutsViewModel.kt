@@ -46,7 +46,9 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
         OceanShortcutItem(
             iconUrl = "youtubesolid",
             label = "Shortcut 1",
+            subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             badgeType = OceanBadgeType.DEFAULT,
+            blocked = true,
             action = {
                 println("Shortcut 1 clicked")
             }
@@ -64,6 +66,8 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
         OceanShortcutItem(
             iconUrl = "youtubesolid",
             label = "Shortcut 3 with big label",
+            subTitle = "Lorem ipsum dolor sit amet, consectetur.",
+            count = "3",
             badgeType = OceanBadgeType.NEUTRAL,
             action = {
                 println("Shortcut 3 clicked")
@@ -72,6 +76,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
         OceanShortcutItem(
             iconUrl = "youtubesolid",
             label = "Shortcut 4",
+            subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             count = "1",
             badgeType = OceanBadgeType.ALERT,
             action = {
@@ -81,6 +86,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
         OceanShortcutItem(
             iconUrl = "youtubesolid",
             label = "Shortcut 5",
+            subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             count = "1",
             badgeType = OceanBadgeType.COMPLEMENTARY,
             action = {

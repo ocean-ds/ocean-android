@@ -59,6 +59,13 @@ fun setLayoutWidth(view: View, width: Int) {
     view.layoutParams = params
 }
 
+@BindingAdapter("app:layout_height")
+fun setLayoutHeight(view: View, height: Int) {
+    val layoutParams: ViewGroup.LayoutParams = view.layoutParams
+    layoutParams.height = height
+    view.layoutParams = layoutParams
+}
+
 @BindingAdapter("app:onLongClickPressed")
 fun setOnLongClickPressed(view: View, longClick: (() -> Unit)?) {
     view.setOnLongClickListener {
@@ -331,9 +338,3 @@ fun setCustomMinHeight(constraintLayout: ConstraintLayout, minHeight: Float) {
     constraintLayout.minHeight = minHeight.toInt()
 }
 
-@BindingAdapter("app:layout_height")
-fun setLayoutHeight(view: View, height: Int) {
-    val layoutParams: ViewGroup.LayoutParams = view.layoutParams
-    layoutParams.height = height
-    view.layoutParams = layoutParams
-}

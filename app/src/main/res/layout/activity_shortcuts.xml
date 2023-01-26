@@ -12,41 +12,57 @@
 
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/ocean_spacing_inline_xs"
-        android:paddingBottom="@dimen/ocean_spacing_inline_xs"
-        tools:context=".ui.shortcuts.ShortcutsActivity">
-
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Shortcuts"
-            android:textSize="18sp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="8dp"/>
+            android:orientation="vertical"
+            android:paddingTop="@dimen/ocean_spacing_inline_xs"
+            android:paddingBottom="@dimen/ocean_spacing_inline_xs"
+            tools:context=".ui.shortcuts.ShortcutsActivity">
 
-        <include
-            layout="@layout/ocean_shortcut_list"
-            app:entries="@{viewmodel.items}"
-            app:highlighted="@{false}"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shortcuts Tiny"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Shortcuts Highlight"
-            android:textSize="18sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="8dp"/>
+            <include
+                layout="@layout/ocean_shortcut_list"
+                app:entries="@{viewmodel.itemsTiny}"
+                app:layoutManager="@{viewmodel.itemsTinyLayoutManager}"
+                />
 
-        <include
-            layout="@layout/ocean_shortcut_list"
-            app:entries="@{viewmodel.items2}"
-            app:highlighted="@{true}"
-            />
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shortcuts Small"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <include
+                layout="@layout/ocean_shortcut_list"
+                app:entries="@{viewmodel.itemsSmall}"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shortcuts Medium"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <include
+                layout="@layout/ocean_shortcut_list"
+                app:entries="@{viewmodel.itemsMedium}"
+                app:layoutManager="@{viewmodel.itemsMediumLayoutManager}"
+                />
+        </LinearLayout>
+    </ScrollView>
 </layout>

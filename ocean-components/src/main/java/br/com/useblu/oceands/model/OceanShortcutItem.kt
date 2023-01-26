@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.ViewGroup.LayoutParams
 
 data class OceanShortcutItem(
-    val iconUrl: String? = null,
+    val icon: String? = null,
     val label: String,
     val count: String? = null,
     val subTitle: String? = null,

@@ -42,13 +42,13 @@
                     android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
                     android:layout_marginTop="@dimen/ocean_spacing_inline_xs"
                     android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
-                    app:ocean_icon="@{item.iconUrl}"
+                    app:ocean_icon="@{item.icon}"
                     app:tint="@color/ocean_color_brand_primary_down"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:ocean_visible_or_gone="@{item.iconUrl != null}"
+                    app:ocean_visible_or_gone="@{item.icon != null}"
                     tools:src="@drawable/icon_generic_primary" />
 
                 <include

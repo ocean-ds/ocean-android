@@ -44,7 +44,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun getItemsSmall() = listOf(
         OceanShortcutItem(
-            iconUrl = "pixoutline",
+            icon = "pixoutline",
             label = "Shortcut 1",
             subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             badgeType = OceanBadgeType.DEFAULT,
@@ -54,7 +54,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             }
         ),
         OceanShortcutItem(
-            iconUrl = "linkoutline",
+            icon = "linkoutline",
             label = "Shortcut 2",
             subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             count = "99+",
@@ -64,7 +64,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             }
         ),
         OceanShortcutItem(
-            iconUrl = "barcodeoutline",
+            icon = "barcodeoutline",
             label = "Shortcut 3 with big label",
             subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             count = "3",
@@ -74,7 +74,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             }
         ),
         OceanShortcutItem(
-            iconUrl = "switchhorizontaloutline",
+            icon = "switchhorizontaloutline",
             label = "Shortcut 4",
             subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             count = "1",
@@ -84,7 +84,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             }
         ),
         OceanShortcutItem(
-            iconUrl = "pagbluoutline",
+            icon = "pagbluoutline",
             label = "Shortcut 5",
             subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             count = "1",

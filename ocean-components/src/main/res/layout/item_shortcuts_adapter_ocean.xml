@@ -43,6 +43,7 @@
                     android:layout_marginTop="@dimen/ocean_spacing_inline_xs"
                     android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
                     app:ocean_icon="@{item.iconUrl}"
+                    app:tint="@color/ocean_color_brand_primary_down"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"

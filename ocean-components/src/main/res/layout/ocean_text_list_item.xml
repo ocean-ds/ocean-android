@@ -104,6 +104,14 @@
         <variable
             name="imageUrl"
             type="String" />
+        
+        <variable
+            name="rightIcon"
+            type="String" />
+
+        <variable
+            name="needsRoundBackground"
+            type="Boolean" />
 
     </data>
 
@@ -143,12 +151,22 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 app:ocean_icon="@{imageUrl}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-                app:layout_constraintStart_toEndOf="@id/paddingStart"
-                app:layout_constraintTop_toTopOf="parent"
-                app:ocean_visible_or_gone="@{imageUrl != null &amp;&amp; icon == null}"
+                app:ocean_visible_or_gone="@{!needsRoundBackground &amp; imageUrl != null &amp;&amp; icon == null}"
                 tools:src="@drawable/icon_generic_primary" />
+
+            <LinearLayout
+                app:ocean_visible_or_gone="@{needsRoundBackground &amp; imageUrl != null &amp;&amp; icon == null}"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/circle_place_holder">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:tint="@color/ocean_color_brand_primary_down"
+                    app:ocean_icon="@{imageUrl}"
+                    tools:src="@drawable/icon_generic_primary" />
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/imageView20"
@@ -159,9 +177,24 @@
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
                 app:layout_constraintStart_toEndOf="@id/paddingStart"
                 app:layout_constraintTop_toTopOf="parent"
-                app:ocean_visible_or_gone="@{icon != null &amp;&amp; imageUrl == null }"
+                app:ocean_visible_or_gone="@{!needsRoundBackground &amp; icon != null &amp;&amp; imageUrl == null }"
                 tools:src="@drawable/icon_generic_primary"
                 tools:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                app:ocean_visible_or_gone="@{needsRoundBackground &amp; icon != null &amp;&amp; imageUrl == null }"
+                android:background="@drawable/circle_place_holder"
+                tools:visibility="gone">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@{icon}"
+                    tools:src="@drawable/icon_generic_primary"
+                     />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -305,7 +338,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/paddingEnd"
                 app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/ocean_color_interface_dark_up"
                 app:ocean_visible_or_gone="@{arrowVisible &amp;&amp; !disabled}"
+                app:ocean_icon='@{rightIcon != null ? rightIcon : "chevonrightsolid"}'
                 app:srcCompat="@drawable/icon_chevron_right" />
 
             <ImageView

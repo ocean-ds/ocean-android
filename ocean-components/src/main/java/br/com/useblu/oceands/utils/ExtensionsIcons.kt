@@ -1395,6 +1395,9 @@ fun String.toOceanIcon() = when (this.lowercase()) {
     "constructionmaterialoutline" -> {
         R.drawable.ocean_icon_construction_material_outline
     }
+    "consultoutline" -> {
+        R.drawable.ocean_icon_consult_outline
+    }
     "contactbookoutline" -> {
         R.drawable.ocean_icon_contact_book_outline
     }

@@ -1063,7 +1063,7 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_search_outline
     }
     "searchsolid" -> {
-        R.drawable.ocean_icon_search_circle_solid
+        R.drawable.ocean_icon_search_solid
     }
     "selectoroutline" -> {
         R.drawable.ocean_icon_selector_outline

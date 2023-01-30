@@ -1063,7 +1063,7 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_search_outline
     }
     "searchsolid" -> {
-        R.drawable.ocean_icon_search_circle_solid
+        R.drawable.ocean_icon_search_solid
     }
     "selectoroutline" -> {
         R.drawable.ocean_icon_selector_outline
@@ -1394,6 +1394,9 @@ fun String.toOceanIcon() = when (this.lowercase()) {
     }
     "constructionmaterialoutline" -> {
         R.drawable.ocean_icon_construction_material_outline
+    }
+    "consultoutline" -> {
+        R.drawable.ocean_icon_consult_outline
     }
     "contactbookoutline" -> {
         R.drawable.ocean_icon_contact_book_outline

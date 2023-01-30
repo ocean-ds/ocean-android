@@ -339,7 +339,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/ocean_color_interface_dark_up"
                 app:ocean_visible_or_gone="@{arrowVisible &amp;&amp; !disabled}"
-                app:ocean_icon='@{rightIcon != null ? rightIcon : "chevonrightsolid"}'
+                app:ocean_icon='@{rightIcon != null ? rightIcon : "chevronrightsolid"}'
                 app:srcCompat="@drawable/icon_chevron_right" />
 
             <ImageView

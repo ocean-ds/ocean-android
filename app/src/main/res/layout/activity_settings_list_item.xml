@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.settingslistitem.SettingsListItemViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.paragraph.ParagraphActivity">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/ocean_spacing_inline_xs">
+
+            <include
+                layout="@layout/ocean_settings_list_item"
+                app:actionDescription="@{@string/all_label}"
+                app:click="@{viewmodel::click}"
+                app:description="@{@string/all_subtitle}"
+                app:disabled="@{false}"
+                app:title="@{@string/all_title}" />
+
+            <include
+                layout="@layout/ocean_settings_list_item"
+                app:actionDescription="@{@string/all_label}"
+                app:click="@{viewmodel::click}"
+                app:description="@{@string/all_subtitle}"
+                app:disabled="@{true}"
+                app:title="@{@string/all_title}" />
+
+            <include
+                layout="@layout/ocean_settings_list_item"
+                app:actionDescription="@{@string/all_label}"
+                app:click="@{viewmodel::click}"
+                app:description="@{@string/all_subtitle}"
+                app:caption="@{@string/all_caption}"
+                app:disabled="@{false}"
+                app:title="@{@string/all_title}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</layout>

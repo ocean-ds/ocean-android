@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="description"
+            type="String" />
+
+        <variable
+            name="caption"
+            type="String" />
+
+        <variable
+            name="disabled"
+            type="Boolean" />
+
+        <variable
+            name="actionDescription"
+            type="String" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> click.invoke()}">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/container_texts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:padding="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/include3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@{title}"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textSize="@dimen/ocean_font_size_xxs"
+                tools:text="Title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@{description}"
+                android:textColor="@color/ocean_color_interface_dark_up"
+                android:textSize="@dimen/ocean_font_size_xs"
+                tools:text="Description" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_spacing_inline_xxs"
+                app:ocean_visible_or_gone="@{caption == null ? false : true}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_family_base_regular"
+                android:maxLines="2"
+                android:text="@{caption}"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textSize="@dimen/ocean_font_size_xxxs"
+                app:ocean_visible_or_gone="@{caption == null ? false : true}"
+                tools:text="Caption" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <LinearLayout
+            android:id="@+id/include3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/container_texts"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/container_texts">
+
+            <include
+                layout="@layout/ocean_button_primary_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{actionDescription}"
+                app:click="@{click::invoke}"
+                app:ocean_visible_or_gone="@{disabled ? false : true}" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ocean_visible_or_gone="@{disabled ? true : false}"
+                app:srcCompat="@drawable/icon_lock" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <include layout="@layout/ocean_divider" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

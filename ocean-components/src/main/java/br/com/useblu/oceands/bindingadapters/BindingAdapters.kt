@@ -203,7 +203,7 @@ fun loadImage(view: ImageView, url: String?, placeHolder: Drawable? = null) {
 
 @BindingAdapter("ocean_icon")
 fun loadIcon(view: ImageView, token: String?) {
-    if (token != null && token.isNotBlank()) {
+    if (!token.isNullOrBlank()) {
         val isUrl = token.contains("http")
         if (isUrl) {
             val placeHolder = AppCompatResources.getDrawable(view.context, R.drawable.circle_place_holder)

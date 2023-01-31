@@ -45,10 +45,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="@{() -> click.invoke()}">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/container_texts"
@@ -122,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{actionDescription}"
                 app:click="@{click::invoke}"
-                app:ocean_visible_or_gone="@{status == OceanSettingsStatus.BLOCKED}" />
+                app:ocean_visible_or_gone="@{status == OceanSettingsStatus.DEFAULT}" />
 
             <include
                 layout="@layout/ocean_button_secondary_sm"
@@ -137,7 +134,7 @@
                 android:id="@+id/imageView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:ocean_visible_or_gone="@{status == OceanSettingsStatus.BLOCKED_ACTIVATED}"
+                app:ocean_visible_or_gone="@{status == OceanSettingsStatus.BLOCKED || status == OceanSettingsStatus.BLOCKED_ACTIVATED}"
                 app:srcCompat="@drawable/icon_lock"
                 tools:visibility="gone" />
 

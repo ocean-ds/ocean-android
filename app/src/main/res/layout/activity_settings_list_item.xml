@@ -29,6 +29,14 @@
                 app:actionDescription="@{@string/all_label}"
                 app:click="@{viewmodel::click}"
                 app:description="@{@string/all_subtitle}"
+                app:status="@{OceanSettingsStatus.DEFAULT}"
+                app:title="@{@string/all_title}" />
+
+            <include
+                layout="@layout/ocean_settings_list_item"
+                app:actionDescription="@{@string/all_label}"
+                app:click="@{viewmodel::click}"
+                app:description="@{@string/all_subtitle}"
                 app:status="@{OceanSettingsStatus.BLOCKED}"
                 app:title="@{@string/all_title}" />
 

@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="br.com.useblu.oceands.model.OceanSettingsStatus"/>
+
         <variable
             name="viewmodel"
             type="br.com.useblu.oceands.client.ui.settingslistitem.SettingsListItemViewModel" />
@@ -27,7 +29,7 @@
                 app:actionDescription="@{@string/all_label}"
                 app:click="@{viewmodel::click}"
                 app:description="@{@string/all_subtitle}"
-                app:disabled="@{false}"
+                app:status="@{OceanSettingsStatus.BLOCKED}"
                 app:title="@{@string/all_title}" />
 
             <include
@@ -35,7 +37,7 @@
                 app:actionDescription="@{@string/all_label}"
                 app:click="@{viewmodel::click}"
                 app:description="@{@string/all_subtitle}"
-                app:disabled="@{true}"
+                app:status="@{OceanSettingsStatus.BLOCKED_ACTIVATED}"
                 app:title="@{@string/all_title}" />
 
             <include
@@ -44,7 +46,17 @@
                 app:click="@{viewmodel::click}"
                 app:description="@{@string/all_subtitle}"
                 app:caption="@{@string/all_caption}"
-                app:disabled="@{false}"
+                app:tag="@{@string/all_tag}"
+                app:status="@{OceanSettingsStatus.PENDING}"
+                app:title="@{@string/all_title}" />
+
+            <include
+                layout="@layout/ocean_settings_list_item"
+                app:actionDescription="@{@string/all_label}"
+                app:click="@{viewmodel::click}"
+                app:description="@{@string/all_subtitle}"
+                app:caption="@{@string/all_caption}"
+                app:status="@{OceanSettingsStatus.ACTIVATED}"
                 app:title="@{@string/all_title}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

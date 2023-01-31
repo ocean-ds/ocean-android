@@ -7,7 +7,15 @@
 
         <import type="kotlin.jvm.functions.Function0" />
 
+        <import type="br.com.useblu.oceands.model.OceanTagType" />
+
+        <import type="br.com.useblu.oceands.model.OceanSettingsStatus" />
+
         <import type="kotlin.Unit" />
+
+        <variable
+            name="status"
+            type="OceanSettingsStatus" />
 
         <variable
             name="title"
@@ -22,8 +30,8 @@
             type="String" />
 
         <variable
-            name="disabled"
-            type="Boolean" />
+            name="tag"
+            type="String" />
 
         <variable
             name="actionDescription"
@@ -71,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_family_base_regular"
                 android:text="@{description}"
-                android:textColor="@color/ocean_color_interface_dark_up"
+                android:textColor="@{(status == OceanSettingsStatus.ACTIVATED || status == OceanSettingsStatus.BLOCKED) ? @color/ocean_color_interface_dark_deep : @color/ocean_color_interface_dark_up }"
                 android:textSize="@dimen/ocean_font_size_xs"
                 tools:text="Description" />
 
@@ -114,14 +122,32 @@
                 android:layout_height="wrap_content"
                 android:text="@{actionDescription}"
                 app:click="@{click::invoke}"
-                app:ocean_visible_or_gone="@{disabled ? false : true}" />
+                app:ocean_visible_or_gone="@{status == OceanSettingsStatus.BLOCKED}" />
+
+            <include
+                layout="@layout/ocean_button_secondary_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{actionDescription}"
+                app:click="@{click::invoke}"
+                app:ocean_visible_or_gone="@{status == OceanSettingsStatus.ACTIVATED}"
+                tools:visibility="gone" />
 
             <ImageView
                 android:id="@+id/imageView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:ocean_visible_or_gone="@{disabled ? true : false}"
-                app:srcCompat="@drawable/icon_lock" />
+                app:ocean_visible_or_gone="@{status == OceanSettingsStatus.BLOCKED_ACTIVATED}"
+                app:srcCompat="@drawable/icon_lock"
+                tools:visibility="gone" />
+
+            <include
+                layout="@layout/ocean_tag"
+                app:hideIcon="@{true}"
+                app:ocean_visible_or_gone="@{status == OceanSettingsStatus.PENDING}"
+                app:title="@{tag}"
+                app:type="@{OceanTagType.Warning}"
+                tools:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout

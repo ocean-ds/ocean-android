@@ -8,6 +8,7 @@
     <string name="all_title">Title</string>
     <string name="all_subtitle">SubTitle</string>
     <string name="all_description">Description</string>
+    <string name="all_tag">Tag</string>
     <string name="all_badge">Badge</string>
     <string name="all_caption">Caption</string>
     <string name="all_information">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>

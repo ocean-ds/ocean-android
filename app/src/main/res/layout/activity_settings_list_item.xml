@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="br.com.useblu.oceands.model.OceanSettingsStatus"/>
+        <import type="br.com.useblu.oceands.model.OceanSettingsStatus" />
 
         <variable
             name="viewmodel"
@@ -26,44 +26,48 @@
 
             <include
                 layout="@layout/ocean_settings_list_item"
-                app:actionDescription="@{@string/all_label}"
+                app:actionText="@{@string/all_label}"
                 app:click="@{viewmodel::click}"
                 app:description="@{@string/all_subtitle}"
+                app:showDivider="@{true}"
                 app:status="@{OceanSettingsStatus.DEFAULT}"
                 app:title="@{@string/all_title}" />
 
             <include
                 layout="@layout/ocean_settings_list_item"
-                app:actionDescription="@{@string/all_label}"
+                app:actionText="@{@string/all_label}"
                 app:click="@{viewmodel::click}"
                 app:description="@{@string/all_subtitle}"
+                app:showDivider="@{true}"
                 app:status="@{OceanSettingsStatus.BLOCKED}"
                 app:title="@{@string/all_title}" />
 
             <include
                 layout="@layout/ocean_settings_list_item"
-                app:actionDescription="@{@string/all_label}"
+                app:actionText="@{@string/all_label}"
                 app:click="@{viewmodel::click}"
                 app:description="@{@string/all_subtitle}"
+                app:showDivider="@{true}"
                 app:status="@{OceanSettingsStatus.BLOCKED_ACTIVATED}"
                 app:title="@{@string/all_title}" />
 
             <include
                 layout="@layout/ocean_settings_list_item"
-                app:actionDescription="@{@string/all_label}"
+                app:actionText="@{@string/all_label}"
+                app:caption="@{@string/all_caption}"
                 app:click="@{viewmodel::click}"
                 app:description="@{@string/all_subtitle}"
-                app:caption="@{@string/all_caption}"
-                app:tag="@{@string/all_tag}"
+                app:showDivider="@{true}"
                 app:status="@{OceanSettingsStatus.PENDING}"
+                app:tag="@{@string/all_tag}"
                 app:title="@{@string/all_title}" />
 
             <include
                 layout="@layout/ocean_settings_list_item"
-                app:actionDescription="@{@string/all_label}"
+                app:actionText="@{@string/all_label}"
+                app:caption="@{@string/all_caption}"
                 app:click="@{viewmodel::click}"
                 app:description="@{@string/all_subtitle}"
-                app:caption="@{@string/all_caption}"
                 app:status="@{OceanSettingsStatus.ACTIVATED}"
                 app:title="@{@string/all_title}" />
 

@@ -30,16 +30,16 @@
             type="String" />
 
         <variable
-            name="tag"
-            type="String" />
-
-        <variable
-            name="actionDescription"
+            name="actionText"
             type="String" />
 
         <variable
             name="click"
             type="Function0&lt;Unit>" />
+
+        <variable
+            name="showDivider"
+            type="Boolean" />
 
     </data>
 
@@ -117,7 +117,7 @@
                 layout="@layout/ocean_button_primary_sm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{actionDescription}"
+                android:text="@{actionText}"
                 app:click="@{click::invoke}"
                 app:ocean_visible_or_gone="@{status == OceanSettingsStatus.DEFAULT}" />
 
@@ -125,7 +125,7 @@
                 layout="@layout/ocean_button_secondary_sm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{actionDescription}"
+                android:text="@{actionText}"
                 app:click="@{click::invoke}"
                 app:ocean_visible_or_gone="@{status == OceanSettingsStatus.ACTIVATED}"
                 tools:visibility="gone" />
@@ -142,7 +142,7 @@
                 layout="@layout/ocean_tag"
                 app:hideIcon="@{true}"
                 app:ocean_visible_or_gone="@{status == OceanSettingsStatus.PENDING}"
-                app:title="@{tag}"
+                app:title="@{actionText}"
                 app:type="@{OceanTagType.Warning}"
                 tools:visibility="gone" />
         </LinearLayout>
@@ -154,7 +154,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <include layout="@layout/ocean_divider" />
+            <include
+                layout="@layout/ocean_divider"
+                app:ocean_visible_or_gone="@{showDivider}" />
 
         </LinearLayout>
 

@@ -58,7 +58,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="center"
-                app:imageUrl="@{item.icon}"
+                app:ocean_icon="@{item.icon}"
                 app:ocean_visible_or_gone="@{item.icon != null &amp;&amp; !item.icon.isEmpty()}"
                 tools:src="@drawable/icon_success"
                 tools:ignore="ContentDescription" />

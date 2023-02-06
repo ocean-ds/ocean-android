@@ -16,7 +16,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.extensions.dp
 import br.com.useblu.oceands.model.OceanAlertType
@@ -190,17 +189,6 @@ fun setFormatTypeCurrency(
     }
 }
 
-@BindingAdapter("imageUrl", "placeHolder")
-fun loadImage(view: ImageView, url: String?, placeHolder: Drawable? = null) {
-    if (url.isNullOrEmpty().not()) {
-        Glide.with(view.context).load(url).placeholder(placeHolder).into(view)
-    } else {
-        if (placeHolder != null) {
-            view.setImageDrawable(placeHolder)
-        }
-    }
-}
-
 @BindingAdapter("ocean_icon")
 fun loadIcon(view: ImageView, token: String?) {
     if (!token.isNullOrBlank()) {
@@ -213,21 +201,6 @@ fun loadIcon(view: ImageView, token: String?) {
             val icon = AppCompatResources.getDrawable(context, token.toOceanIcon())
             view.setImageDrawable(icon)
         }
-    }
-}
-
-@BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, url: String?) {
-    if (url.isNullOrEmpty().not()) {
-        Glide.with(view.context).load(url).into(view)
-    }
-}
-
-@BindingAdapter("setAdapter")
-fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
-    this.run {
-        this.setHasFixedSize(true)
-        this.adapter = adapter
     }
 }
 

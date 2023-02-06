@@ -127,7 +127,7 @@
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:src="@{image}"
-                    app:imageUrl="@{imageUrl}"
+                    app:ocean_icon="@{imageUrl}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

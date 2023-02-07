@@ -102,3 +102,54 @@ fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType?) {
     textView.setTextColor(ContextCompat.getColor(textView.context, textColor))
     layout.setBackgroundResource(background)
 }
+@BindingAdapter("app:ocean_tag_text_color")
+fun setOceanTagTextColor(textView: TextView, type: OceanTagType?) {
+    val textColor: Int
+    when (type) {
+        OceanTagType.Neutral1 -> {
+            textColor = R.color.ocean_color_interface_dark_up
+        }
+        OceanTagType.Neutral2 -> {
+            textColor = R.color.ocean_color_complementary_pure
+        }
+        OceanTagType.Negative -> {
+            textColor = R.color.ocean_color_status_negative_pure
+        }
+        OceanTagType.Positive -> {
+            textColor = R.color.ocean_color_status_positive_deep
+        }
+        OceanTagType.Warning -> {
+            textColor = R.color.ocean_color_status_neutral_deep
+        }
+        else -> {
+            textColor = R.color.ocean_color_interface_dark_down
+        }
+    }
+    textView.setTextColor(ContextCompat.getColor(textView.context, textColor))
+}
+@BindingAdapter("app:ocean_tag_background_type")
+fun setOceanTagBackgroundType(layout: LinearLayout, type: OceanTagType?) {
+    val background: Int
+
+    when (type) {
+        OceanTagType.Neutral1 -> {
+            background = R.drawable.ocean_tag_neutral_1_background
+        }
+        OceanTagType.Neutral2 -> {
+            background = R.drawable.ocean_tag_neutral_2_background
+        }
+        OceanTagType.Negative -> {
+            background = R.drawable.ocean_tag_negative_background
+        }
+        OceanTagType.Positive -> {
+            background = R.drawable.ocean_tag_positive_background
+        }
+        OceanTagType.Warning -> {
+            background = R.drawable.ocean_tag_warning_background
+        }
+        else -> {
+            background = R.drawable.ocean_tag_default_background
+        }
+    }
+    layout.setBackgroundResource(background)
+}

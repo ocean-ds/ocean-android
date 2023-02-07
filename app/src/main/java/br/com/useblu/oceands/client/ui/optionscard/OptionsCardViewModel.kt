@@ -2,12 +2,10 @@ package br.com.useblu.oceands.client.ui.optionscard
 
 import android.annotation.SuppressLint
 import android.app.Application
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.model.OceanOptionCardItem
 import br.com.useblu.oceands.model.OceanOptionCardSize
-import br.com.useblu.oceands.utils.toOceanIcon
 
 class OptionsCardViewModel(application: Application) : AndroidViewModel(application) {
 

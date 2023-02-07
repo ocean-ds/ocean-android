@@ -6,6 +6,7 @@ import android.text.InputType
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.MarginLayoutParams
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -62,6 +63,13 @@ fun setLayoutWidth(view: View, width: Int) {
 fun setLayoutHeight(view: View, height: Int) {
     val layoutParams: ViewGroup.LayoutParams = view.layoutParams
     layoutParams.height = height
+    view.layoutParams = layoutParams
+}
+
+@BindingAdapter("android:layout_marginStart")
+fun setLayoutMarginStart(view: View, dimen: Float) {
+    val layoutParams = view.layoutParams as MarginLayoutParams
+    layoutParams.marginStart = dimen.toInt()
     view.layoutParams = layoutParams
 }
 
@@ -201,6 +209,20 @@ fun loadIcon(view: ImageView, token: String?) {
             val icon = AppCompatResources.getDrawable(context, token.toOceanIcon())
             view.setImageDrawable(icon)
         }
+    }
+}
+
+@BindingAdapter("ocean_tint")
+fun setTintColor(view: ImageView, colorResourceId: Int?) {
+    colorResourceId?.let {
+        view.setColorFilter(ContextCompat.getColor(view.context, it))
+    }
+}
+
+@BindingAdapter("tint")
+fun setTint(view: ImageView, tint: Int?) {
+    tint?.let {
+        view.setColorFilter(it)
     }
 }
 

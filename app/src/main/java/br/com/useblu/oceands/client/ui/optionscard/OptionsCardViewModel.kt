@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.model.OceanOptionCardItem
+import br.com.useblu.oceands.model.OceanOptionCardSize
 import br.com.useblu.oceands.utils.toOceanIcon
 
 class OptionsCardViewModel(application: Application) : AndroidViewModel(application) {
@@ -51,10 +52,8 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
                 name = "aaa",
                 subName = "bbbbb"
             ),
-            iconDrawable = ContextCompat.getDrawable(
-                application.applicationContext,
-                R.drawable.icon_error
-            ),
+            icon = "academiccapsolid",
+            heightSize = OceanOptionCardSize.SMALL,
             title = "Title 2",
             subTitle = "Subtitle 2",
             recommend = true,

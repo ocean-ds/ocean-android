@@ -47,37 +47,37 @@
 
             <LinearLayout
                 android:id="@+id/container_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@{(item.heightSize == OceanOptionCardSize.SMALL) ? @dimen/ocean_spacing_inline_xs : @dimen/ocean_spacing_inline_sm}"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/circle_place_holder"
+                android:backgroundTint="@{selected ? @color/ocean_color_brand_primary_down : @color/ocean_color_interface_light_up}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{item.icon != null}">
                 <ImageView
                     android:id="@+id/icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="24dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     app:ocean_icon="@{item.icon}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:ocean_visible_or_gone="@{item.icon != null}"
+                    app:tint="@{!selected ? @color/ocean_color_brand_primary_down : @color/ocean_color_interface_light_up}"
                     tools:src="@drawable/icon_generic_primary" />
             </LinearLayout>
-
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@{(item.heightSize == OceanOptionCardSize.SMALL) ? @dimen/ocean_spacing_inline_xs : @dimen/ocean_spacing_inline_sm}"
                 android:layout_marginEnd="8dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/font_family_base_bold"
                 android:maxLines="2"
                 android:text="@{item.title}"
                 android:textColor="@color/ocean_card_text_color"
-                android:textSize="@dimen/ocean_font_size_xxs"
+                android:textSize="@dimen/ocean_font_size_xs"
                 app:layout_constraintBottom_toTopOf="@+id/subtitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/container_icon"

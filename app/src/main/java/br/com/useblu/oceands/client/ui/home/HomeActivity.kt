@@ -31,6 +31,7 @@ import br.com.useblu.oceands.client.ui.parentchildtextlist.ParentChildTextListAc
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
 import br.com.useblu.oceands.client.ui.settingslistitem.SettingsListItemActivity
 import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
+import br.com.useblu.oceands.client.ui.statuslistitem.StatusListItemActivity
 import br.com.useblu.oceands.client.ui.step.StepViewActivity
 import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.tab.TabActivity
@@ -155,6 +156,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun stepview(view: View) {
         val intent = Intent(this, StepViewActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun statusListItem(view: View) {
+        val intent = Intent(this, StatusListItemActivity::class.java)
         startActivity(intent)
     }
 

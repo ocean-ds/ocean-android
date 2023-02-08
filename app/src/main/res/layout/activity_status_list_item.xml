@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.InputType" />
+
+        <import type="br.com.useblu.oceands.utils.FormatTypes" />
+
+        <import type="br.com.useblu.oceands.model.OceanTagType" />
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.statuslistitem.StatusListItemViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.paragraph.ParagraphActivity">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/ocean_spacing_inline_xs">
+
+            <include
+                layout="@layout/ocean_status_list_item"
+                app:title="@{`Default List item`}"
+                app:description="@{`description`}"
+                app:caption="@{`caption`}"
+                app:label="@{`label`}"
+                app:isActive="@{true}"
+                app:showRightTag="@{true}"
+                app:showContextMenu="@{false}"
+                app:isReadOnly="@{false}"
+                app:tagType="@{OceanTagType.Warning}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_status_list_item"
+                app:title="@{`Default List item`}"
+                app:description="@{`Right tag`}"
+                app:caption="@{`Context menu`}"
+                app:label="@{`label`}"
+                app:isActive="@{true}"
+                app:showRightTag="@{true}"
+                app:showContextMenu="@{true}"
+                app:isReadOnly="@{false}"
+                app:tagType="@{OceanTagType.Positive}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_status_list_item"
+                app:title="@{`Default List item`}"
+                app:description="@{`Bottom tag`}"
+                app:caption="@{`Read-only`}"
+                app:label="@{`label`}"
+                app:isActive="@{true}"
+                app:showRightTag="@{false}"
+                app:showContextMenu="@{false}"
+                app:isReadOnly="@{true}"
+                app:tagType="@{OceanTagType.Warning}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_status_list_item"
+                app:title="@{`Default List item`}"
+                app:description="@{`Bottom tag`}"
+                app:caption="@{`Read-only`}"
+                app:label="@{`label`}"
+                app:isActive="@{true}"
+                app:showRightTag="@{false}"
+                app:showContextMenu="@{false}"
+                app:isReadOnly="@{true}"
+                app:tagType="@{OceanTagType.Positive}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_status_list_item"
+                app:title="@{`Default List item`}"
+                app:description="@{`Inactive item`}"
+                app:caption="@{`caption`}"
+                app:label="@{`label`}"
+                app:isActive="@{false}"
+                app:showRightTag="@{true}"
+                app:showContextMenu="@{false}"
+                app:isReadOnly="@{false}"
+                app:tagType="@{OceanTagType.Warning}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_status_list_item"
+                app:title="@{`Default List item`}"
+                app:description="@{`Inactive item`}"
+                app:caption="@{`Read-only`}"
+                app:label="@{`label`}"
+                app:isActive="@{false}"
+                app:showRightTag="@{true}"
+                app:showContextMenu="@{false}"
+                app:isReadOnly="@{true}"
+                app:tagType="@{OceanTagType.Positive}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</layout>

@@ -55,6 +55,7 @@
         <activity android:name=".ui.carditem.CardItemActivity" />
         <activity android:name=".ui.orderedlistitem.OrderedListItemActivity"/>
         <activity android:name=".ui.settingslistitem.SettingsListItemActivity"/>
+        <activity android:name=".ui.statuslistitem.StatusListItemActivity" />
     </application>
 
 </manifest>

@@ -32,13 +32,21 @@ This project provides an UIKit for android that implements the [Ocean](https://z
 ## Installation
 
 ```
-TODO: add how can install the package.
+    maven {
+        name = "github-packages-maven-repo"
+        url = uri("https://maven.pkg.github.com/ocean-ds/ocean-ds-android")
+
+        credentials {
+            username = System.getenv("GPR_USER")
+            password = System.getenv("GPR_API_KEY")
+           }
+        }
 ```
 
 ## Usage
 
 ```
-TODO: add an example of usage
+implementation br.com.useblu:ocean-components:LAST_VERSION
 ```
 
 ## Contributing

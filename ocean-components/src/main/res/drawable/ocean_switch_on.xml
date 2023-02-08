@@ -5,8 +5,8 @@
 
     <solid android:color="@color/ocean_color_interface_light_pure" />
     <size
-        android:width="24dp"
-        android:height="24dp" />
+        android:width="20dp"
+        android:height="20dp" />
     <stroke
         android:width="4dp"
         android:color="@color/ocean_color_complementary_pure" />

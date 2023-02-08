@@ -1,5 +1,5 @@
 package br.com.useblu.oceands.model
 
 enum class OceanTagType {
-    Neutral1, Neutral2, Negative, Positive, Warning
+    Neutral, Negative, Positive, Warning, Complementary
 }

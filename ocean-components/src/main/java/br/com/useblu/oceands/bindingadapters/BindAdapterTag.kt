@@ -17,12 +17,12 @@ fun setOceanTagIcon(imageView: ImageView, type: OceanTagType?, icon: Drawable?) 
     val color: Int?
     val iconDrawable: Drawable?
     when (type) {
-        OceanTagType.Neutral1 -> {
+        OceanTagType.Neutral -> {
             imageView.isVisible = false
             iconDrawable = null
             color = R.color.ocean_color_interface_dark_up
         }
-        OceanTagType.Neutral2 -> {
+        OceanTagType.Complementary -> {
             imageView.isVisible = false
             iconDrawable = null
             color = R.color.ocean_color_complementary_pure
@@ -74,11 +74,11 @@ fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType?) {
     val textColor: Int
     val background: Int
     when (type) {
-        OceanTagType.Neutral1 -> {
+        OceanTagType.Neutral -> {
             background = R.drawable.ocean_tag_neutral_1_background
             textColor = R.color.ocean_color_interface_dark_up
         }
-        OceanTagType.Neutral2 -> {
+        OceanTagType.Complementary -> {
             background = R.drawable.ocean_tag_neutral_2_background
             textColor = R.color.ocean_color_complementary_pure
         }
@@ -106,10 +106,10 @@ fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType?) {
 fun setOceanTagTextColor(textView: TextView, type: OceanTagType?) {
     val textColor: Int
     when (type) {
-        OceanTagType.Neutral1 -> {
+        OceanTagType.Neutral -> {
             textColor = R.color.ocean_color_interface_dark_up
         }
-        OceanTagType.Neutral2 -> {
+        OceanTagType.Complementary -> {
             textColor = R.color.ocean_color_complementary_pure
         }
         OceanTagType.Negative -> {
@@ -132,10 +132,10 @@ fun setOceanTagBackgroundType(layout: LinearLayout, type: OceanTagType?) {
     val background: Int
 
     when (type) {
-        OceanTagType.Neutral1 -> {
+        OceanTagType.Neutral -> {
             background = R.drawable.ocean_tag_neutral_1_background
         }
-        OceanTagType.Neutral2 -> {
+        OceanTagType.Complementary -> {
             background = R.drawable.ocean_tag_neutral_2_background
         }
         OceanTagType.Negative -> {

@@ -6,8 +6,8 @@
     <solid android:color="@color/ocean_color_interface_light_pure" />
 
     <size
-        android:width="44dp"
-        android:height="24dp" />
+        android:width="40dp"
+        android:height="20dp" />
 
     <corners android:radius="@dimen/ocean_border_radius_pill" />
     <stroke

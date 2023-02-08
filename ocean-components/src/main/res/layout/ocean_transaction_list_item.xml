@@ -122,12 +122,14 @@
 
                 <ImageView
                     android:id="@+id/icon"
-                    android:layout_width="@dimen/ocean_spacing_stack_md"
-                    android:layout_height="@dimen/ocean_spacing_stack_md"
+                    android:layout_width="@dimen/ocean_spacing_stack_lg"
+                    android:layout_height="@dimen/ocean_spacing_stack_lg"
                     android:layout_marginEnd="@dimen/ocean_spacing_inset_sm"
                     android:src="@{icon}"
                     app:ocean_visible_or_gone="@{icon != null &amp;&amp; !hasCheckbox }"
                     app:tint="@color/ocean_color_interface_dark_up"
+                    android:background="@drawable/circle_place_holder"
+                    android:padding="@dimen/ocean_spacing_inset_xs"
                     tools:src="@drawable/icon_generic_primary"
                     tools:visibility="gone" />
             </LinearLayout>
@@ -183,10 +185,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:fontFamily="@font/font_family_base_medium"
+                    android:fontFamily="@font/font_family_base_regular"
                     android:maxLines="2"
                     android:text="@{primaryLabel}"
-                    android:textColor="@color/ocean_color_interface_dark_deep"
+                    android:textColor="@color/ocean_color_interface_dark_pure"
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:ocean_visible_or_gone="@{primaryLabel != null}"
                     tools:text="Level 1" />
@@ -253,9 +255,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:fontFamily="@font/font_family_base_bold"
+                    android:fontFamily="@font/font_family_base_medium"
                     android:textAlignment="textEnd"
-                    android:textColor="@color/ocean_color_interface_dark_deep"
+                    android:textColor="@color/ocean_color_interface_dark_pure"
                     android:textSize="@dimen/ocean_font_size_xs"
                     app:highlighted_text="@{valueIsHighlighted}"
                     app:ocean_text_format_value="@{FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"

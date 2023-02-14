@@ -86,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_family_base_regular"
                 android:text="@{description}"
+                android:visibility="@{description == null ? View.GONE : View.VISIBLE}"
                 android:textColor="@{isActive == true ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
                 android:textSize="@dimen/ocean_font_size_xxs"
                 tools:text="Description" />
@@ -97,6 +98,7 @@
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
                 android:fontFamily="@font/font_family_base_regular"
                 android:text="@{caption}"
+                android:visibility="@{caption == null ? View.GONE : View.VISIBLE}"
                 android:textColor="@{isActive == true ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
                 android:textSize="@dimen/ocean_font_size_xxxs"
                 tools:text="Caption" />
@@ -135,8 +137,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:visibility="@{showRightTag == false ? View.GONE: View.VISIBLE}">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <LinearLayout
                 android:id="@+id/status_item_right_tag_container"
@@ -148,6 +149,7 @@
                 android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
                 app:ocean_tag_background_type="@{tagType}"
+                android:visibility="@{showRightTag == false ? View.GONE: View.VISIBLE}"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 

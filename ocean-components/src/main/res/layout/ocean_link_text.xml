@@ -34,7 +34,7 @@
         <TextView
             android:id="@+id/label"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:fontFamily="@font/font_family_base_medium"
             android:gravity="center_vertical"
             android:lineSpacingMultiplier="@dimen/ocean_line_height_tight"

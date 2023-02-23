@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.textlistitembase.TextListItemBaseViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.paragraph.ParagraphActivity">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/ocean_spacing_inline_xs">
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:title="@{`Text List Item`}"
+                app:description="@{`Default`}" />
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:title="@{`Text List Item`}"
+                app:description="@{`With Details`}"
+                app:textInfo="@{`Text info`}"
+                app:isPositive="@{true}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:title="@{`Text List Item`}"
+                app:description="@{`With Details`}"
+                app:textInfo="@{`Text info`}"
+                app:isPositive="@{false}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:title="@{`Text List Item`}"
+                app:description="@{`Selectable`}"
+                app:withCheckBox="@{true}"
+                app:isChecked="@{true}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:title="@{`Text List item`}"
+                app:description="@{`Selectable`}"
+                app:withCheckBox="@{false}"
+                app:isChecked="@{true}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:title="@{`Text List Item`}"
+                app:description="@{`Selectable`}"
+                app:withCheckBox="@{true}"
+                app:isChecked="@{false}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:title="@{`Text List item`}"
+                app:description="@{`Selectable`}"
+                app:withCheckBox="@{false}"
+                app:isChecked="@{false}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:title="@{`Text List item`}"
+                app:description="@{`Selectable with Error`}"
+                app:isChecked="@{false}"
+                app:withCheckBox="@{true}"
+                app:showError="@{true}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:title="@{`Text List item`}"
+                app:description="@{`Selectable with Error`}"
+                app:isChecked="@{false}"
+                app:withCheckBox="@{false}"
+                app:showError="@{true}"
+                app:click="@{viewmodel::onTouchItem}"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</layout>

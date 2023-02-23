@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="textInfo"
+            type="String" />
+
+        <variable
+            name="description"
+            type="String" />
+
+        <variable
+            name="isPositive"
+            type="Boolean" />
+
+        <variable
+            name="isChecked"
+            type="Boolean" />
+
+        <variable
+            name="withCheckBox"
+            type="Boolean" />
+
+        <variable
+            name="showError"
+            type="Boolean" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> click.invoke()}"
+        android:background="@color/ocean_list_item_hover">
+
+        <LinearLayout
+            android:id="@+id/text_list_item_selecting_box_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            app:ocean_visible_or_gone="@{withCheckBox != null}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/text_list_item_check_box_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ocean_visible_or_gone="@{withCheckBox == true}" >
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/text_list_item_check_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:theme="@style/Ocean.CheckBox"
+                    android:checked="@{isChecked, default = false}"
+                    app:ocean_visible_or_gone="@{showError == false}"/>
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/text_list_item_check_box_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:theme="@style/Ocean.CheckBox.Error"
+                    android:checked="@{isChecked, default = false}"
+                    app:ocean_visible_or_gone="@{showError == true}"
+                    tools:visibility="visible"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/text_list_item_radio_button_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ocean_visible_or_gone="@{withCheckBox == false}">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/text_list_item_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:theme="@style/Ocean.CheckBox"
+                    app:ocean_visible_or_gone="@{showError == false}"
+                    android:checked="@{isChecked, default = false}"
+                    tools:visibility="gone"/>
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/text_list_item_radio_button_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:theme="@style/Ocean.CheckBox.Error"
+                    app:ocean_visible_or_gone="@{showError == true}"
+                    android:checked="@{isChecked, default = false}"
+                    tools:visibility="gone"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/text_list_item_info_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_list_item_selecting_box_container"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_list_item_title"
+                style="@style/Ocean.Paragraph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{title}"
+                android:textColor="@color/ocean_color_interface_dark_pure"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/text_list_item_description"
+                style="@style/Ocean.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{description}"
+                app:ocean_visible_or_gone="@{withCheckBox == null &amp; description != null}"
+                tools:text="Description" />
+
+            <TextView
+                android:id="@+id/text_list_item_description_default"
+                style="@style/Ocean.Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{description}"
+                app:ocean_visible_or_gone="@{withCheckBox != null &amp; description != null}"
+                tools:text="Description"
+                tools:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/text_list_item_title_info"
+                style="@style/Ocean.Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                app:ocean_visible_or_gone="@{textInfo != null &amp; withCheckBox == null}"
+                android:text="@{textInfo}"
+                app:textColor="@{isPositive == true ? `colorStatusPositiveDeep` : `colorStatusInterfaceDarkDeep`}"
+                tools:text="Info" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

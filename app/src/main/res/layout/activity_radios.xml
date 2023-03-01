@@ -37,6 +37,7 @@
                     layout="@layout/ocean_radio_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:checked="@{true}"
                     app:click="@{viewmodel::clickRadio}"
                     app:icon="@{@drawable/icon_generic_primary}"
                     app:label="@{@string/text}" />

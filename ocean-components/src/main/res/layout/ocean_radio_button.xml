@@ -21,6 +21,10 @@
         <variable
             name="click"
             type="Function0&lt;Unit>" />
+        
+        <variable
+            name="checked"
+            type="Boolean" />
 
     </data>
 
@@ -39,6 +43,7 @@
         android:paddingStart="@dimen/ocean_spacing_inline_xs"
         android:drawablePadding="@dimen/ocean_spacing_inline_xs"
         android:text="@{label}"
+        android:checked="@{checked}"
         android:textColor="@drawable/ocean_radio_button_text_color_states"
         android:textSize="@dimen/ocean_font_size_xxs"
         tools:drawableEnd="@drawable/icon_generic"

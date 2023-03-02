@@ -37,7 +37,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/label"
+            android:id="@+id/labelTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
@@ -60,7 +60,7 @@
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label">
+            app:layout_constraintTop_toBottomOf="@+id/labelTextView">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input"

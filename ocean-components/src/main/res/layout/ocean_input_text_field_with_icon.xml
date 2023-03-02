@@ -64,7 +64,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/label"
+                android:id="@+id/labelTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_family_base_regular"
@@ -85,7 +85,7 @@
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/label"
+                app:layout_constraintTop_toBottomOf="@+id/labelTextView"
                 app:passwordToggleTint="@color/ocean_color_interface_light_deep">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -142,15 +142,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/label"
-                app:layout_constraintStart_toEndOf="@+id/label"
-                app:layout_constraintTop_toTopOf="@+id/label"
+                app:layout_constraintBottom_toBottomOf="@+id/labelTextView"
+                app:layout_constraintStart_toEndOf="@+id/labelTextView"
+                app:layout_constraintTop_toTopOf="@+id/labelTextView"
                 app:ocean_visible_or_gone="@{(information.length() > 0)}"
                 app:showTooltip="@{information}"
                 app:srcCompat="@drawable/icon_information_help" />
 
             <ImageView
-                android:id="@+id/icon"
+                android:id="@+id/iconImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"

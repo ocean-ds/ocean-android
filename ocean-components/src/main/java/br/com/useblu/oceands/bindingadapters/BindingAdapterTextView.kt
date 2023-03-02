@@ -7,12 +7,12 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 
-@BindingAdapter("app:highlight")
+@BindingAdapter("highlight")
 fun setHighlight(textView: TextView, highlight: Boolean) {
     if (highlight) textView.setTypeface(null, Typeface.BOLD)
 }
 
-@BindingAdapter("app:ocean_strike")
+@BindingAdapter("ocean_strike")
 fun setStrike(textView: TextView, status: Boolean) {
     if (status) {
         textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
@@ -21,7 +21,7 @@ fun setStrike(textView: TextView, status: Boolean) {
     }
 }
 
-@BindingAdapter("app:textColor")
+@BindingAdapter("textColor")
 fun setTextColor(textView: TextView, color: String?) {
     val context = textView.context
     var colorSelect =  R.color.ocean_color_interface_dark_down

@@ -34,7 +34,7 @@
         tools:background="@drawable/ocean_tag_warning_background">
 
         <ImageView
-            android:id="@+id/icon"
+            android:id="@+id/iconImageView"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="@dimen/ocean_spacing_inline_xxxs"
@@ -44,7 +44,7 @@
             tools:src="@drawable/icon_warning"/>
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:gravity="center"

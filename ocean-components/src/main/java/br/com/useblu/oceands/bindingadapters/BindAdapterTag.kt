@@ -12,7 +12,7 @@ import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.model.OceanTagType
 
-@BindingAdapter("app:ocean_tag_type", "app:ocean_tag_icon")
+@BindingAdapter("ocean_tag_type", "ocean_tag_icon")
 fun setOceanTagIcon(imageView: ImageView, type: OceanTagType?, icon: Drawable?) {
     val color: Int?
     val iconDrawable: Drawable?
@@ -68,7 +68,7 @@ fun setOceanTagIcon(imageView: ImageView, type: OceanTagType?, icon: Drawable?) 
     }
 }
 
-@BindingAdapter("app:ocean_tag_background")
+@BindingAdapter("ocean_tag_background")
 fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType?) {
     val textView = layout.findViewById<TextView>(R.id.title)
     val textColor: Int
@@ -102,7 +102,7 @@ fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType?) {
     textView.setTextColor(ContextCompat.getColor(textView.context, textColor))
     layout.setBackgroundResource(background)
 }
-@BindingAdapter("app:ocean_tag_text_color")
+@BindingAdapter("ocean_tag_text_color")
 fun setOceanTagTextColor(textView: TextView, type: OceanTagType?) {
     val textColor: Int
     when (type) {
@@ -127,7 +127,7 @@ fun setOceanTagTextColor(textView: TextView, type: OceanTagType?) {
     }
     textView.setTextColor(ContextCompat.getColor(textView.context, textColor))
 }
-@BindingAdapter("app:ocean_tag_background_type")
+@BindingAdapter("ocean_tag_background_type")
 fun setOceanTagBackgroundType(layout: LinearLayout, type: OceanTagType?) {
     val background: Int
 

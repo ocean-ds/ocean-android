@@ -409,7 +409,7 @@ class OceanStepView @JvmOverloads constructor(
             val text = steps[i]
             val alignment =
                 if (isRtl) Layout.Alignment.ALIGN_OPPOSITE else Layout.Alignment.ALIGN_NORMAL
-            textLayouts!![i] = StaticLayout(
+            textLayouts[i] = StaticLayout(
                 text,
                 textPaint,
                 measuredWidth / steps.size,

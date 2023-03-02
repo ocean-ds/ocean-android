@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanTabItemBinding
 
-@BindingAdapter("app:setLabels", "app:setCounters", "app:setTabSelected", "app:setDefaultSelected")
+@BindingAdapter("setLabels", "setCounters", "setTabSelected", "setDefaultSelected")
 fun setLabels(
     recyclerView: RecyclerView,
     labels: List<String>?,

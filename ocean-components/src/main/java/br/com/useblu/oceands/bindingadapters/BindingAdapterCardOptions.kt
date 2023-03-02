@@ -12,7 +12,7 @@ import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 
 @SuppressLint("ClickableViewAccessibility")
-@BindingAdapter("app:ocean_animation_blocked")
+@BindingAdapter("ocean_animation_blocked")
 fun setAnimationBlocked(
     view: View,
     disabled: Boolean
@@ -29,7 +29,7 @@ fun setAnimationBlocked(
     }
 }
 
-@BindingAdapter("app:colorTagRecommend")
+@BindingAdapter("colorTagRecommend")
 fun setColor(view: LinearLayout, color: String?) {
     val unwrappedDrawable =
         ContextCompat.getDrawable(view.context, R.drawable.ocean_tag_recommend_default)

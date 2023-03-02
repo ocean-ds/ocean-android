@@ -10,11 +10,11 @@ import br.com.useblu.oceands.extensions.addSwipeLeft
 import br.com.useblu.oceands.model.OceanChildTextItem
 
 @BindingAdapter(
-    "app:setChildren",
-    "app:clickItem",
-    "app:clickEdit",
-    "app:clickDelete",
-    "app:longClickItem"
+    "setChildren",
+    "clickItem",
+    "clickEdit",
+    "clickDelete",
+    "longClickItem"
 )
 fun setInflateChildren(
     recyclerView: RecyclerView,

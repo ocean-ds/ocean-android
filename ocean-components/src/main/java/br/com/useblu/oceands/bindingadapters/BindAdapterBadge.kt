@@ -8,7 +8,7 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.model.OceanBadgeType
 
 @SuppressLint("SetTextI18n")
-@BindingAdapter("app:badge_text")
+@BindingAdapter("badge_text")
 fun setBadgeText(textView: AppCompatTextView, badgeText: String?) {
     badgeText?.let { text ->
         text.toIntOrNull()?.let { number ->
@@ -19,7 +19,7 @@ fun setBadgeText(textView: AppCompatTextView, badgeText: String?) {
     }
 }
 
-@BindingAdapter("app:badge_type")
+@BindingAdapter("badge_type")
 fun setBadgeType(textView: AppCompatTextView, badgeType: OceanBadgeType?) {
     val background = when (badgeType) {
         OceanBadgeType.DEFAULT -> R.drawable.ocean_badge_default

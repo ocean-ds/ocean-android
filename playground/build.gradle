@@ -34,8 +34,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-
     implementation project(path: ':ocean-components')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"

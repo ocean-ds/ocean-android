@@ -50,7 +50,7 @@
         android:clickable="true"
         android:focusable="true"
         android:onClick="@{() -> click.invoke()}"
-        android:background="@color/ocean_list_item_hover">
+        android:drawable="@drawable/ocean_list_item_hover">
 
         <LinearLayout
             android:id="@+id/text_list_item_selecting_box_container"

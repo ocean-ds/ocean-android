@@ -55,7 +55,7 @@
         android:id="@+id/status_item_main_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/ocean_list_item_hover"
+        android:background="@drawable/ocean_list_item_hover"
         android:clickable="@{isActive != null &amp; isReadOnly != null ? isActive &amp; !isReadOnly: false}"
         android:focusable="true"
         android:onClick="@{() -> click.invoke()}">

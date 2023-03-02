@@ -70,7 +70,7 @@ fun setOceanTagIcon(imageView: ImageView, type: OceanTagType?, icon: Drawable?) 
 
 @BindingAdapter("ocean_tag_background")
 fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType?) {
-    val textView = layout.findViewById<TextView>(R.id.title)
+    val textView = layout.findViewById<TextView>(R.id.title_tag)
     val textColor: Int
     val background: Int
     when (type) {

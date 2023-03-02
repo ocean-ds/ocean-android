@@ -10,8 +10,8 @@ import br.com.useblu.oceands.databinding.OceanInputTokenBinding
 import com.google.android.material.textfield.TextInputEditText
 
 @BindingAdapter(
-    "app:ocean_input_token_focus",
-    "app:ocean_input_token_error",
+    "ocean_input_token_focus",
+    "ocean_input_token_error",
 )
 fun setOceanInputTokenFocus(
     inputText: TextInputEditText,
@@ -32,7 +32,7 @@ fun setOceanInputTokenFocus(
 }
 
 @BindingAdapter(
-    "app:ocean_input_token_value"
+    "ocean_input_token_value"
 )
 fun setOceanInputTokenValue(
     inputText: TextInputEditText,
@@ -58,7 +58,7 @@ fun setOceanInputTokenValue(
 }
 
 @BindingAdapter(
-    "app:ocean_input_token_autocompleted"
+    "ocean_input_token_autocompleted"
 )
 fun setOceanInputTokenAutocompleted(
     inputText: TextInputEditText,

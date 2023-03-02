@@ -69,7 +69,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/label"
+                android:id="@+id/labelTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
@@ -95,7 +95,7 @@
                 app:hint="@{hint}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/label"
+                app:layout_constraintTop_toBottomOf="@+id/labelTextView"
                 app:limit="@{limit}"
                 app:setAdapterBottomSheet="@{ hasBottomSheetBehavior ? entries : null}"
                 app:setAdapterSpinner="@{ !hasBottomSheetBehavior ? entries : null }"

@@ -1,9 +1,7 @@
 ext {
     minSDK = 21
-    targetSDK = 30
-    compileSDK = 30
-    buildToolsVersion = '30.0.1'
+    targetSDK = 33
+    compileSDK = 33
 
-    gradleBuildToolsVersion = '4.2.2'
-    kotlinVersion = "1.5.30"
+    kotlinVersion = "1.7.20"
 }

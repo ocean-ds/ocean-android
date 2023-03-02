@@ -7,7 +7,7 @@ import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.utils.toOceanColor
 
-@BindingAdapter("app:initialColor", "app:finalColor", "app:opacityColor")
+@BindingAdapter("initialColor", "finalColor", "opacityColor")
 fun setBackground(
     view: ConstraintLayout,
     initialColor: String?,

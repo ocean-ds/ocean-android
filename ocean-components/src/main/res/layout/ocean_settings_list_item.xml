@@ -61,7 +61,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title"
+                android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_family_base_regular"
@@ -71,7 +71,7 @@
                 tools:text="Title" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/description"
+                android:id="@+id/descriptionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_family_base_regular"
@@ -86,7 +86,7 @@
                 app:ocean_visible_or_gone="@{caption == null ? false : true}" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/caption"
+                android:id="@+id/captionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"

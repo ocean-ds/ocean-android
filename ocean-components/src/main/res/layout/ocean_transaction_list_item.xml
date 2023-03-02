@@ -121,7 +121,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/icon"
+                    android:id="@+id/iconImageView"
                     android:layout_width="@dimen/ocean_spacing_stack_lg"
                     android:layout_height="@dimen/ocean_spacing_stack_lg"
                     android:layout_marginEnd="@dimen/ocean_spacing_inset_sm"

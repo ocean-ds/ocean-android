@@ -28,17 +28,17 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 
-@BindingAdapter("app:ocean_visible_or_invisible")
+@BindingAdapter("ocean_visible_or_invisible")
 fun setVisibleOrInvisible(view: View, status: Boolean) {
     view.visibility = if (status) View.VISIBLE else View.INVISIBLE
 }
 
-@BindingAdapter("app:ocean_visible_or_gone")
+@BindingAdapter("ocean_visible_or_gone")
 fun setVisibleOrGone(view: View, status: Boolean) {
     view.visibility = if (status) View.VISIBLE else View.GONE
 }
 
-@BindingAdapter("app:clickable_effect")
+@BindingAdapter("clickable_effect")
 fun setClickableEffect(view: View, value: Boolean?) {
     if (value == true) {
         val outValue = TypedValue()
@@ -47,19 +47,19 @@ fun setClickableEffect(view: View, value: Boolean?) {
     }
 }
 
-@BindingAdapter("app:ocean_text_from_html")
+@BindingAdapter("ocean_text_from_html")
 fun setTextFromHtml(view: TextView, text: String?) {
     view.text = HtmlCompat.fromHtml(text ?: "", HtmlCompat.FROM_HTML_MODE_LEGACY)
 }
 
-@BindingAdapter("app:ocean_layout_width")
+@BindingAdapter("ocean_layout_width")
 fun setLayoutWidth(view: View, width: Int) {
     val params = view.layoutParams as ViewGroup.LayoutParams
     params.width = width
     view.layoutParams = params
 }
 
-@BindingAdapter("app:layout_height")
+@BindingAdapter("layout_height")
 fun setLayoutHeight(view: View, height: Int) {
     val layoutParams: ViewGroup.LayoutParams = view.layoutParams
     layoutParams.height = height
@@ -73,7 +73,7 @@ fun setLayoutMarginStart(view: View, dimen: Float) {
     view.layoutParams = layoutParams
 }
 
-@BindingAdapter("app:onLongClickPressed")
+@BindingAdapter("onLongClickPressed")
 fun setOnLongClickPressed(view: View, longClick: (() -> Unit)?) {
     view.setOnLongClickListener {
         longClick?.invoke()
@@ -81,7 +81,7 @@ fun setOnLongClickPressed(view: View, longClick: (() -> Unit)?) {
     }
 }
 
-@BindingAdapter("app:ocean_drawable_padding")
+@BindingAdapter("ocean_drawable_padding")
 fun setOceanDrawablePadding(button: Button, @DimenRes dimenId: Int) {
     var dimensionPixelSize = 0
 
@@ -96,7 +96,7 @@ fun setOceanDrawablePadding(button: Button, @DimenRes dimenId: Int) {
     }
 }
 
-@BindingAdapter("app:ocean_background")
+@BindingAdapter("ocean_background")
 fun setOceanBackground(input: TextInputEditText, error: Boolean) {
     input.setBackgroundResource(R.drawable.ocean_input_text_field_states)
 
@@ -112,7 +112,7 @@ fun setOceanBackground(input: TextInputEditText, error: Boolean) {
     }
 }
 
-@BindingAdapter("app:ocean_inputType")
+@BindingAdapter("ocean_inputType")
 fun setOceanInputType(inputText: TextInputEditText, inputType: Int) {
     val typeFace = inputText.typeface
     inputText.inputType = inputType
@@ -131,7 +131,7 @@ fun setOceanInputType(inputText: TextInputEditText, inputType: Int) {
     }
 }
 
-@BindingAdapter("app:ocean_text", "app:ocean_text_format")
+@BindingAdapter("ocean_text", "ocean_text_format")
 fun setFormatType(view: TextView, text: String?, type: Formatter?) {
     if (type != null && !text.isNullOrBlank()) {
         view.text = type.format(text)
@@ -156,10 +156,10 @@ fun setFormatType(view: TextView, text: String?, type: Formatter?) {
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter(
-    "app:ocean_text_value",
-    "app:ocean_text_format_value",
-    "app:highlighted_text",
-    "app:show_signal"
+    "ocean_text_value",
+    "ocean_text_format_value",
+    "highlighted_text",
+    "show_signal"
 )
 fun setFormatTypeCurrency(
     view: TextView,
@@ -226,7 +226,7 @@ fun setTint(view: ImageView, tint: Int?) {
     }
 }
 
-@BindingAdapter("app:ocean_alert_background")
+@BindingAdapter("ocean_alert_background")
 fun setOceanBackground(layout: LinearLayout, type: OceanAlertType?) {
     when (type) {
         OceanAlertType.Information -> {
@@ -248,7 +248,7 @@ fun setOceanBackground(layout: LinearLayout, type: OceanAlertType?) {
     }
 }
 
-@BindingAdapter("app:ocean_alert_src", "app:ocean_alert_icon")
+@BindingAdapter("ocean_alert_src", "ocean_alert_icon")
 fun setOceanSrc(imageView: ImageView, type: OceanAlertType?, icon: Drawable?) {
     if (icon != null) {
         imageView.setImageDrawable(icon)
@@ -273,7 +273,7 @@ fun setOceanSrc(imageView: ImageView, type: OceanAlertType?, icon: Drawable?) {
     }
 }
 
-@BindingAdapter("app:ocean_alert_text_color")
+@BindingAdapter("ocean_alert_text_color")
 fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType?) {
     val context = textView.context
     when (type) {
@@ -321,14 +321,14 @@ fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType?) {
     }
 }
 
-@BindingAdapter("app:marginStart")
+@BindingAdapter("marginStart")
 fun setCustomMarginStart(view: View, margin: Int) {
     val params = view.layoutParams as ConstraintLayout.LayoutParams
     params.marginStart = margin.dp
     view.layoutParams = params
 }
 
-@BindingAdapter("app:customMinHeight")
+@BindingAdapter("customMinHeight")
 fun setCustomMinHeight(constraintLayout: ConstraintLayout, minHeight: Float) {
     constraintLayout.minHeight = minHeight.toInt()
 }

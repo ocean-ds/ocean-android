@@ -3,7 +3,7 @@ package br.com.useblu.oceands.bindingadapters
 import androidx.appcompat.widget.SwitchCompat
 import androidx.databinding.BindingAdapter
 
-@BindingAdapter("app:isChecked", "app:setOnChecked")
+@BindingAdapter("isChecked", "setOnChecked")
 fun setOnChecked(
     switch: SwitchCompat,
     isChecked: Boolean,

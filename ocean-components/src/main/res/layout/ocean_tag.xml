@@ -44,7 +44,7 @@
             tools:src="@drawable/icon_warning"/>
 
         <TextView
-            android:id="@+id/titleTextView"
+            android:id="@+id/title_tag"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:gravity="center"

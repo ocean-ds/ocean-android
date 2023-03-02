@@ -418,7 +418,7 @@ class OceanStepView @JvmOverloads constructor(
                 0f,
                 true
             )
-            val height = textLayouts!![i]!!.height
+            val height = textLayouts[i]!!.height
             max = Math.max(height, max)
         }
         return max
@@ -760,7 +760,7 @@ class OceanStepView @JvmOverloads constructor(
         if (text.isEmpty()) {
             return
         }
-        val layout = textLayouts!![step]
+        val layout = textLayouts[step]
         canvas.save()
         canvas.translate(circlesX[step].toFloat(), y.toFloat())
         layout!!.draw(canvas)

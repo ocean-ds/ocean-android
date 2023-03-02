@@ -3,7 +3,7 @@ package br.com.useblu.oceands.client.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.GlobalScope
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -31,7 +31,7 @@ class HomeViewModel : ViewModel() {
     fun showToast() {
         _showToast.postValue(true)
 
-        GlobalScope.launch {
+        viewModelScope.launch {
             delay(1000)
             _showToast.postValue(false)
         }

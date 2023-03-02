@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
-import kotlinx.android.synthetic.main.ocean_tab_item.view.*
+import br.com.useblu.oceands.databinding.OceanTabItemBinding
 
 @BindingAdapter("app:setLabels", "app:setCounters", "app:setTabSelected", "app:setDefaultSelected")
 fun setLabels(
@@ -39,9 +39,8 @@ private class OceanTabAdapter(
     private var selected = defaultSelected ?: 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.ocean_tab_item, parent, false)
-        calculateItemWidth(parent, view)
+        val view = OceanTabItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        calculateItemWidth(parent, view.root)
         return ItemViewHolder(view)
     }
 
@@ -75,10 +74,11 @@ private class OceanTabAdapter(
 
     override fun getItemCount(): Int = labels.size
 
-    inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ItemViewHolder(private val item: OceanTabItemBinding) : RecyclerView.ViewHolder(item.root) {
 
         fun bind(label: String, counter: Int?, position: Int, onItemSelect: (Int) -> Unit) {
-            itemView.run {
+            val context = item.root.context
+            item.run {
                 val isSelected = position == selected
                 val textColor: Int
                 val backgroundTag: Int
@@ -105,7 +105,7 @@ private class OceanTabAdapter(
                     space2.visibility = View.GONE
                 }
 
-                root_constraint_layout.setOnClickListener { onItemSelect.invoke(position) }
+                item.rootConstraintLayout.setOnClickListener { onItemSelect.invoke(position) }
             }
         }
 

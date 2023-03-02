@@ -24,7 +24,7 @@ class OceanToast(
         }
 
         type?.let {
-            when (type) {
+            when (it) {
                 is OceanToastType.Information -> {
                     binding.icon.setImageResource(R.drawable.icon_information)
                 }

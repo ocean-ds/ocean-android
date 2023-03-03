@@ -15,6 +15,7 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
 import br.com.useblu.oceands.adapter.OceanBottomListSheetWithIconAdapter
 import br.com.useblu.oceands.databinding.OceanBottomListSheetBinding
+import br.com.useblu.oceands.databinding.OceanParagraphHighlightBindingImpl
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
@@ -26,6 +27,9 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     private var adapterWithIcon: OceanBottomListSheetWithIconAdapter? = null
     private var manager: FragmentManager? = null
     private var limit: Int? = null
+    private var buttomText: String? = null
+    private var buttomIcon: Drawable? = null
+    private var buttomClick: (() -> Unit)? = null
 
     private lateinit var binding: OceanBottomListSheetBinding
 
@@ -40,6 +44,18 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
 
         title?.let {
             binding.title = it
+        }
+
+        buttomText?.let {
+            binding.bottomSheetListButton.text = it
+        }
+
+        buttomIcon?.let {
+            binding.bottomSheetListButton.icon = it
+        }
+
+        buttomClick?.let{
+            binding.bottomSheetListButton.click = it
         }
 
         adapter?.let {
@@ -92,6 +108,17 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     fun withSearch(manager: FragmentManager, limit: Int): OceanBottomListSheet {
         this.limit = limit
         this.manager = manager
+        return this
+    }
+
+    fun withFooterButton(
+        text: String,
+        icon: Drawable? = null,
+        click: () -> Unit,
+    ): OceanBottomListSheet {
+        this.buttomText = text
+        this.buttomIcon = icon
+        this.buttomClick = click
         return this
     }
 

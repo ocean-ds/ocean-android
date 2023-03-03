@@ -17,10 +17,6 @@
             type="String" />
 
         <variable
-            name="items"
-            type="List&lt;String>" />
-
-        <variable
             name="cancelabled"
             type="Boolean" />
 
@@ -32,12 +28,14 @@
         android:layout_height="match_parent"
         android:background="@drawable/ocean_bottom_sheet_background"
         android:orientation="vertical"
-        android:padding="@dimen/ocean_spacing_stack_xs">
+        android:paddingStart="@dimen/ocean_spacing_stack_xxxs"
+        android:paddingEnd="@dimen/ocean_spacing_stack_xxxs"
+        android:paddingBottom="@dimen/ocean_spacing_stack_xs">
 
         <Space
             android:id="@+id/space"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_xxs" />
+            android:layout_height="@dimen/ocean_spacing_stack_md" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -48,20 +46,17 @@
             app:ocean_visible_or_gone="@{cancelabled}" />
 
         <Space
-            android:id="@+id/space1"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/ocean_spacing_stack_xxxs" />
-
-        <Space
             android:id="@+id/space2"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_sm" />
+            android:layout_height="@dimen/ocean_spacing_stack_md" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textTitle"
-            style="@style/Ocean.Heading.3.Blue"
+            style="@style/Ocean.Heading.3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="@dimen/ocean_spacing_stack_xs"
+            android:paddingEnd="@dimen/ocean_spacing_stack_xs"
             android:text="@{title}"
             tools:text="Heading 3" />
 
@@ -73,8 +68,34 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="@dimen/ocean_spacing_stack_xxxs"
+            android:paddingEnd="@dimen/ocean_spacing_stack_xxxs"
             android:clipToPadding="false"
-            app:layout_constraintTop_toBottomOf="@id/textTitle" />
+            app:layout_constraintTop_toBottomOf="@id/textTitle"
+            tools:paddingStart="@dimen/ocean_spacing_stack_xs"/>
+
+        <include layout="@layout/ocean_divider"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ocean_spacing_stack_xs" />
+
+        <LinearLayout
+            android:id="@+id/botton_sheet_list_button_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/ocean_spacing_stack_xs">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_spacing_stack_xxs" />
+
+            <include
+                android:id="@+id/bottom_sheet_list_button"
+                layout="@layout/ocean_button_secondary_md" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

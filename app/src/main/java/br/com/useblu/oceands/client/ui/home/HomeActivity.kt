@@ -264,6 +264,7 @@ class HomeActivity : AppCompatActivity() {
             .withTitle("Title")
             .withSimpleList(
                 items = options,
+                selectedPosition = 1,
                 onItemSelect = {
                     Toast.makeText(
                         this,
@@ -271,7 +272,15 @@ class HomeActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            ).withFooterButton(
+                text=getString(R.string.all_button_confirm),
+                icon=getDrawable(R.drawable.ocean_icon_retailer_outline),
+                click = {showTast()}
             ).show()
+    }
+
+    fun showTast(){
+        Toast.makeText(this, "Footer button clicked", Toast.LENGTH_SHORT).show()
     }
 
     fun onOceanBottomListSheetIcon(view: View) {

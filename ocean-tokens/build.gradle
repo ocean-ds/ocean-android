@@ -6,8 +6,6 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSDK
         targetSdkVersion rootProject.ext.targetSDK
-        versionCode 1
-        versionName "1.0.0"
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -23,6 +21,7 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+    namespace 'br.com.useblu.oceands.tokens'
 }
 
 dependencies {

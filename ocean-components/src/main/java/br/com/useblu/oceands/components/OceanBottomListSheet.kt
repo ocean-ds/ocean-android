@@ -15,7 +15,6 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
 import br.com.useblu.oceands.adapter.OceanBottomListSheetWithIconAdapter
 import br.com.useblu.oceands.databinding.OceanBottomListSheetBinding
-import br.com.useblu.oceands.databinding.OceanParagraphHighlightBindingImpl
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {

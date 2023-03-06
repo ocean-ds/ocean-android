@@ -273,14 +273,16 @@ class HomeActivity : AppCompatActivity() {
                     ).show()
                 }
             ).withFooterButton(
-                text=getString(R.string.all_button_confirm),
-                icon=getDrawable(R.drawable.ocean_icon_retailer_outline),
-                click = {showTast()}
+                text = getString(R.string.all_button_confirm),
+                icon = getDrawable(R.drawable.ocean_icon_retailer_outline),
+                click = {
+                    Toast.makeText(
+                        this,
+                        "Footer button clicked",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             ).show()
-    }
-
-    fun showTast(){
-        Toast.makeText(this, "Footer button clicked", Toast.LENGTH_SHORT).show()
     }
 
     fun onOceanBottomListSheetIcon(view: View) {

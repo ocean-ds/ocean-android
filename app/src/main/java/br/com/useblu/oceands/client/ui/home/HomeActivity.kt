@@ -272,6 +272,23 @@ class HomeActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            ).show()
+    }
+
+    fun onOceanBottomListSheetButton(view: View) {
+        val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+        OceanBottomListSheet(this)
+            .withTitle("Title")
+            .withSimpleList(
+                items = options,
+                selectedPosition = 1,
+                onItemSelect = {
+                    Toast.makeText(
+                        this,
+                        "O Item selecionado foi \"${options[it]}\"",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             ).withFooterButton(
                 text = getString(R.string.all_button_confirm),
                 icon = getDrawable(R.drawable.ocean_icon_retailer_outline),

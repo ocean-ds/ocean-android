@@ -135,6 +135,20 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:onClick="onOceanBottomListSheetButton"
+            android:padding="16dp"
+            android:text="BottomSheetList (button)"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:onClick="onOceanBottomListSheetIcon"
             android:padding="16dp"
             android:text="BottomSheetList (icon + subtitle)"

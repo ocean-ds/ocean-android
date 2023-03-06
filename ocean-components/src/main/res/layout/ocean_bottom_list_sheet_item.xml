@@ -12,20 +12,23 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
         android:orientation="horizontal"
-        android:background="@{isSelected ? @color/ocean_color_interface_light_up : @android:color/white}">
+        android:background="@{isSelected == false ? @drawable/ocean_list_item_hover : @drawable/ocean_list_selected_item_hover }">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textOceanParagraph"
-            style="@style/Ocean.Paragraph"
-            android:textColor="@{isSelected ? @color/ocean_color_brand_primary_pure : @color/ocean_color_interface_dark_deep}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/font_family_base_regular"
+            android:lineSpacingMultiplier="@dimen/ocean_line_height_comfy_android"
             android:maxLines="1"
             android:paddingTop="@dimen/ocean_spacing_inline_xs"
             android:paddingBottom="@dimen/ocean_spacing_inline_xs"
-            android:ellipsize="end"
+            android:textColor="@{isSelected == true ? @color/ocean_color_brand_primary_pure : @color/ocean_color_interface_dark_down}"
+            android:textSize="@dimen/ocean_font_size_xs"
             tools:text="Paragraph" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

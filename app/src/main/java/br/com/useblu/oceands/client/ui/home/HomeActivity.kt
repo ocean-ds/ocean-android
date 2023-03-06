@@ -264,10 +264,21 @@ class HomeActivity : AppCompatActivity() {
             .withTitle("Title")
             .withSimpleList(
                 items = options,
+                selectedPosition = 1,
                 onItemSelect = {
                     Toast.makeText(
                         this,
                         "O Item selecionado foi \"${options[it]}\"",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            ).withFooterButton(
+                text = getString(R.string.all_button_confirm),
+                icon = getDrawable(R.drawable.ocean_icon_retailer_outline),
+                click = {
+                    Toast.makeText(
+                        this,
+                        "Footer button clicked",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

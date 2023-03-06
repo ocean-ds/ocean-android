@@ -89,6 +89,7 @@ class OceanBottomListSheetAdapter(
                     setSelectItem(position)
                 }
             }
+            itemBinding.isSelected = selected == position
         }
 
         private fun isItemSeeAll(position: Int) = itemsAll[position] == SEE_ALL

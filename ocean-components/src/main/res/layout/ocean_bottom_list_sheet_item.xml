@@ -7,7 +7,7 @@
             type="Boolean" />
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:background="@{isSelected == false ? @drawable/ocean_list_item_hover : @drawable/ocean_list_selected_item_hover }">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <TextView
             android:id="@+id/textOceanParagraph"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,6 +31,6 @@
             android:textSize="@dimen/ocean_font_size_xs"
             tools:text="Paragraph" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
 
 </layout>

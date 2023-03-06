@@ -68,6 +68,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         }
 
         binding.cancelabled = isDismiss
+        binding.showFooterButton = buttomText != null
 
         setCancelable(isDismiss)
         setCanceledOnTouchOutside(isDismiss)

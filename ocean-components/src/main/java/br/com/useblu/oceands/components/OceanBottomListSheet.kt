@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
@@ -26,9 +27,10 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     private var adapterWithIcon: OceanBottomListSheetWithIconAdapter? = null
     private var manager: FragmentManager? = null
     private var limit: Int? = null
-    private var buttomText: String? = null
-    private var buttomIcon: Drawable? = null
-    private var buttomClick: (() -> Unit)? = null
+    private var buttonText: String? = null
+    private var buttonIcon: Drawable? = null
+    private var buttonClick: (() -> Unit)? = null
+    private var buttonLoading : MutableLiveData<Boolean>? = null
 
     private lateinit var binding: OceanBottomListSheetBinding
 
@@ -40,21 +42,27 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
             null,
             false
         )
+        
+        binding.lifecycleOwner = this
 
         title?.let {
             binding.title = it
         }
 
-        buttomText?.let {
+        buttonText?.let {
             binding.bottomSheetListButton.text = it
         }
 
-        buttomIcon?.let {
+        buttonIcon?.let {
             binding.bottomSheetListButton.icon = it
         }
 
-        buttomClick?.let{
+        buttonClick?.let{
             binding.bottomSheetListButton.click = it
+        }
+
+        buttonLoading?.let {
+            binding.loading = it
         }
 
         adapter?.let {
@@ -68,7 +76,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         }
 
         binding.cancelabled = isDismiss
-        binding.showFooterButton = buttomText != null
+        binding.showFooterButton = buttonText != null
 
         setCancelable(isDismiss)
         setCanceledOnTouchOutside(isDismiss)
@@ -114,11 +122,13 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     fun withFooterButton(
         text: String,
         icon: Drawable? = null,
+        loading: MutableLiveData<Boolean> = MutableLiveData(false),
         click: () -> Unit,
     ): OceanBottomListSheet {
-        this.buttomText = text
-        this.buttomIcon = icon
-        this.buttomClick = click
+        this.buttonText = text
+        this.buttonIcon = icon
+        this.buttonClick = click
+        this.buttonLoading = loading
         return this
     }
 

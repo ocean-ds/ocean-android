@@ -12,6 +12,8 @@
 
         <import type="java.util.List" />
 
+        <import type="androidx.lifecycle.MutableLiveData" />
+
         <variable
             name="title"
             type="String" />
@@ -23,6 +25,10 @@
         <variable
             name="showFooterButton"
             type="Boolean" />
+
+        <variable
+            name="loading"
+            type="MutableLiveData&lt;Boolean>" />
 
     </data>
 
@@ -106,7 +112,8 @@
 
                 <include
                     android:id="@+id/bottom_sheet_list_button"
-                    layout="@layout/ocean_button_secondary_md" />
+                    layout="@layout/ocean_button_secondary_md"
+                    app:showProgress="@{loading.booleanValue()}"/>
 
             </LinearLayout>
         </LinearLayout>

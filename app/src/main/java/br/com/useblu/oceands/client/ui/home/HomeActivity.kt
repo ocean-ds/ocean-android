@@ -2,11 +2,14 @@ package br.com.useblu.oceands.client.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
@@ -43,6 +46,9 @@ import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivi
 import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 import br.com.useblu.oceands.components.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.android.HandlerDispatcher
+import kotlinx.coroutines.delay
 import java.util.*
 
 class HomeActivity : AppCompatActivity() {
@@ -276,6 +282,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun onOceanBottomListSheetButton(view: View) {
+        val showLoading = MutableLiveData(false)
         val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
         OceanBottomListSheet(this)
             .withTitle("Title")
@@ -292,15 +299,23 @@ class HomeActivity : AppCompatActivity() {
             ).withFooterButton(
                 text = getString(R.string.all_button_confirm),
                 icon = getDrawable(R.drawable.ocean_icon_retailer_outline),
-                click = {
-                    Toast.makeText(
-                        this,
-                        "Footer button clicked",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+                click = { showToast(showLoading) },
+                loading = showLoading
             ).show()
     }
+
+     private fun showToast(loading: MutableLiveData<Boolean>) {
+         loading.postValue(true)
+         Toast.makeText(
+             this,
+             "Footer button clicked",
+             Toast.LENGTH_SHORT
+         ).show()
+        Handler().postDelayed({
+            loading.postValue(false)
+        }, 6000)
+     }
+
 
     fun onOceanBottomListSheetIcon(view: View) {
         val drawableIcon = ContextCompat.getDrawable(this, R.drawable.icon_generic_primary)!!

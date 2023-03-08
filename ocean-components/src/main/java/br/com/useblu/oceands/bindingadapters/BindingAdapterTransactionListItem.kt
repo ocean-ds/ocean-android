@@ -24,9 +24,9 @@ fun setClickListener(
         layout.setOnClickListener {
             setCheckboxVisibleIfNot(checkbox)
             checkboxBinding?.checked = checkboxBinding?.checked?.not() ?: true
+            click?.invoke(index ?: -1)
         }
-        enterOrLeaveSelectionMode(selectionMode, layout, checkboxBinding, click, index)
-        setCheckboxClick(checkboxBinding, click, index)
+        enterOrLeaveSelectionMode(selectionMode, layout, checkboxBinding)
     } else {
         layout.setOnClickListener {
             click?.invoke(index ?: -1)
@@ -34,22 +34,10 @@ fun setClickListener(
     }
 }
 
-private fun setCheckboxClick(
-    checkboxBinding: OceanCheckboxBinding?,
-    click: ((Int) -> Unit)?,
-    index: Int?
-) {
-    checkboxBinding?.click = {
-        click?.invoke(index ?: -1)
-    }
-}
-
 private fun enterOrLeaveSelectionMode(
     selectionMode: MutableLiveData<Boolean>?,
     layout: LinearLayoutCompat,
-    checkboxBinding: OceanCheckboxBinding?,
-    click: ((Int) -> Unit)?,
-    index: Int?
+    checkboxBinding: OceanCheckboxBinding?
 ) {
     selectionMode?.observe(layout.context as LifecycleOwner) { isEntering ->
         val motionLayout = layout.findViewById<MotionLayout>(R.id.motionLayout)
@@ -57,10 +45,8 @@ private fun enterOrLeaveSelectionMode(
             motionLayout.transitionToEnd()
         } else {
             motionLayout.transitionToStart()
-            checkboxBinding?.click = {}
             checkboxBinding?.checked = false
             checkboxBinding?.executePendingBindings()
-            setCheckboxClick(checkboxBinding, click, index)
         }
     }
 }

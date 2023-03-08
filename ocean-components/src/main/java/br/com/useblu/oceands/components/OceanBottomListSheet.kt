@@ -30,7 +30,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     private var buttonText: String? = null
     private var buttonIcon: Drawable? = null
     private var buttonClick: (() -> Unit)? = null
-    private var buttonLoading = MutableLiveData(false)
+    private var buttonLoading : MutableLiveData<Boolean>? = null
 
     private lateinit var binding: OceanBottomListSheetBinding
 
@@ -42,6 +42,8 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
             null,
             false
         )
+        
+        binding.lifecycleOwner = this
 
         title?.let {
             binding.title = it
@@ -59,10 +61,8 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
             binding.bottomSheetListButton.click = it
         }
 
-        buttonLoading.let { liveData ->
-             liveData.observe(this) { isLoading ->
-                 binding.loading = isLoading
-             }
+        buttonLoading?.let {
+            binding.loading = it
         }
 
         adapter?.let {

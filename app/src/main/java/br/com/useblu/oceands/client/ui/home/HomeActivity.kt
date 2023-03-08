@@ -46,9 +46,11 @@ import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivi
 import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 import br.com.useblu.oceands.components.*
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.android.HandlerDispatcher
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 
 class HomeActivity : AppCompatActivity() {
@@ -300,7 +302,7 @@ class HomeActivity : AppCompatActivity() {
                 text = getString(R.string.all_button_confirm),
                 icon = getDrawable(R.drawable.ocean_icon_retailer_outline),
                 click = { showToast(showLoading) },
-                loading = showLoading
+                loading = showLoading,
             ).show()
     }
 
@@ -311,9 +313,10 @@ class HomeActivity : AppCompatActivity() {
              "Footer button clicked",
              Toast.LENGTH_SHORT
          ).show()
-        Handler().postDelayed({
-            loading.postValue(false)
-        }, 6000)
+         GlobalScope.launch {
+             delay(6000)
+             loading.postValue(false)
+         }
      }
 
 

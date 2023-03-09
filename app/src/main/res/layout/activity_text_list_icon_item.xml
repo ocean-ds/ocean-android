@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.textlisticonitem.TextListIconItemViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.paragraph.ParagraphActivity">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/ocean_spacing_inline_xs">
+
+            <include
+                layout="@layout/ocean_text_list_icon_item"
+                app:title="@{`Text List Item`}"
+                app:description="@{`Default`}"
+                app:caption="@{`Caption`}"
+                app:leadingIcon="@{@drawable/ocean_icon_calculator_outline}"
+                app:trailingIcon="@{@drawable/ocean_icon_chevron_right_solid}"/>
+
+            <include
+                layout="@layout/ocean_text_list_icon_item"
+                app:title="@{`Text List Item`}"
+                app:description="@{`Default`}"
+                app:caption="@{`Caption`}"
+                app:leadingIcon="@{@drawable/ocean_icon_calculator_outline}"/>
+
+            <include
+                layout="@layout/ocean_text_list_icon_item"
+                app:title="@{`Text List Item`}"
+                app:description="@{`Default`}"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</layout>

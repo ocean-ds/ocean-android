@@ -48,9 +48,24 @@
             <include
                 android:id="@+id/alertInfoWithTitle"
                 layout="@layout/ocean_alert"
-                app:shortText="@{true}"
                 app:text="@{@string/lorem_ipsum}"
                 app:title="@{@string/title}"
+                app:type="@{OceanAlertType.Information}" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <include layout="@layout/ocean_divider" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <include
+                android:id="@+id/alertInfoNoTitle"
+                layout="@layout/ocean_alert"
+                app:text="@{@string/lorem_ipsum}"
                 app:type="@{OceanAlertType.Information}" />
 
             <Space
@@ -150,6 +165,22 @@
                 layout="@layout/ocean_alert"
                 app:title="@{@string/title}"
                 app:text="@{@string/lorem_ipsum}"
+                app:type="@{OceanAlertType.Warning}" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <include layout="@layout/ocean_divider" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <include
+                android:id="@+id/alertWarningShortText"
+                layout="@layout/ocean_alert"
+                app:text="@{@string/message}"
                 app:type="@{OceanAlertType.Warning}" />
 
             <Space

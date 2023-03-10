@@ -2,8 +2,6 @@ package br.com.useblu.oceands.client.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.HandlerThread
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +38,7 @@ import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.tab.TabActivity
 import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
+import br.com.useblu.oceands.client.ui.textlisticonitem.TextListIconItemActivity
 import br.com.useblu.oceands.client.ui.textlistitembase.TextListItemBaseActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivity
@@ -47,8 +46,6 @@ import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemAc
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 import br.com.useblu.oceands.components.*
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.android.HandlerDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
@@ -170,6 +167,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun statusListItem(view: View) {
         val intent = Intent(this, StatusListItemActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun textListIconItem(view: View) {
+        val intent = Intent(this, TextListIconItemActivity::class.java)
         startActivity(intent)
     }
 

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.Unit" />
+
+        <import type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="caption"
+            type="String" />
+
+        <variable
+            name="description"
+            type="String" />
+
+        <variable
+            name="leadingIcon"
+            type="Drawable" />
+
+        <variable
+            name="trailingIcon"
+            type="Drawable" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:drawable="@drawable/ocean_list_item_hover">
+
+        <LinearLayout
+            android:id="@+id/text_list_item_selecting_box_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/circle_place_holder"
+            ocean_visible_or_gone="@{leadingIcon != null}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{leadingIcon}"
+                tools:src="@drawable/ocean_icon_retailer_outline"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/text_list_item_info_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/text_list_item_trailing_container"
+            app:layout_constraintStart_toEndOf="@+id/text_list_item_selecting_box_container"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_list_item_title"
+                style="@style/Ocean.Paragraph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{title}"
+                ocean_visible_or_gone="@{title != null}"
+                android:textColor="@color/ocean_color_interface_dark_pure"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/text_list_item_description"
+                style="@style/Ocean.Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ocean_visible_or_gone="@{description != null}"
+                android:text="@{description}"
+                tools:text="Description" />
+
+            <TextView
+                android:id="@+id/text_list_item_title_info"
+                style="@style/Ocean.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
+                ocean_visible_or_gone="@{caption != null}"
+                android:text="@{caption}"
+                tools:text="Caption" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/text_list_item_trailing_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            android:gravity="center"
+            ocean_visible_or_gone="@{trailingIcon != null}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{trailingIcon}"
+                tools:src="@drawable/ocean_icon_chevron_right_solid"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

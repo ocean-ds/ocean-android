@@ -8,7 +8,7 @@ class TextListItemBaseViewModel : ViewModel() {
     private val _touchItem: MutableLiveData<String> = MutableLiveData()
     val touchItem: LiveData<String> get() = _touchItem
 
-    fun onTouchItem() {
+    fun onTouchItem(isChecked: Boolean){
         _touchItem.postValue("Item touched")
     }
 }

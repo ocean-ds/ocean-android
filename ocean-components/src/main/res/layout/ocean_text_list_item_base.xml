@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="kotlin.jvm.functions.Function0" />
+        <import type="kotlin.jvm.functions.Function1" />
 
         <import type="kotlin.Unit" />
 
@@ -39,7 +39,7 @@
 
         <variable
             name="click"
-            type="Function0&lt;Unit>" />
+            type="Function1&lt;Boolean, Unit>" />
 
     </data>
 
@@ -47,9 +47,6 @@
         android:id="@+id/root_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="@{() -> click.invoke()}"
         android:drawable="@drawable/ocean_list_item_hover">
 
         <LinearLayout
@@ -71,6 +68,7 @@
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/text_list_item_check_box"
+                    android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minWidth="0dp"
@@ -86,6 +84,7 @@
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:theme="@style/Ocean.CheckBox.Error"
+                    android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
                     android:checked="@{isChecked, default = false}"
                     app:ocean_visible_or_gone="@{showError == true}"
                     tools:visibility="visible"/>

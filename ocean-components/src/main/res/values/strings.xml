@@ -31,5 +31,6 @@
     <string name="footer_other_regions">(Demais regiões)</string>
     <string name="footer_ombudsman">Ouvidoria</string>
     <string name="footer_service_description">Atendimento das 9h às 17h30 em dias úteis.</string>
+    <string name="link"><![CDATA[Teste de link <a href="https://www.google.pl/">Google</a>]]></string>
 
 </resources>

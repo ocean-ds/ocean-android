@@ -3,6 +3,7 @@ package br.com.useblu.oceands.bindingadapters
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.text.InputType
+import android.text.method.LinkMovementMethod
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DimenRes
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
@@ -50,6 +52,12 @@ fun setClickableEffect(view: View, value: Boolean?) {
 @BindingAdapter("ocean_text_from_html")
 fun setTextFromHtml(view: TextView, text: String?) {
     view.text = HtmlCompat.fromHtml(text ?: "", HtmlCompat.FROM_HTML_MODE_LEGACY)
+}
+
+@BindingAdapter("ocean_text_from_html")
+fun setTextFromHtml(view: AppCompatCheckBox, text: String?) {
+    view.text = HtmlCompat.fromHtml(text ?: "", HtmlCompat.FROM_HTML_MODE_LEGACY)
+    view.movementMethod = LinkMovementMethod.getInstance()
 }
 
 @BindingAdapter("ocean_layout_width")
@@ -184,10 +192,12 @@ fun setFormatTypeCurrency(
                     if (hideSignal == true)
                         view.text = "+ ${view.text}"
                 }
+
                 value < 0 -> {
                     if (hideSignal == false)
                         view.text = view.text.toString().replace("- ", "")
                 }
+
                 else -> {
                     if (hideSignal == true)
                         view.text = "- ${view.text}"
@@ -202,7 +212,8 @@ fun loadIcon(view: ImageView, token: String?) {
     if (!token.isNullOrBlank()) {
         val isUrl = token.contains("http")
         if (isUrl) {
-            val placeHolder = AppCompatResources.getDrawable(view.context, R.drawable.circle_place_holder)
+            val placeHolder =
+                AppCompatResources.getDrawable(view.context, R.drawable.circle_place_holder)
             Glide.with(view.context).load(token).placeholder(placeHolder).into(view)
         } else {
             val context = view.context
@@ -232,16 +243,20 @@ fun setOceanBackground(layout: LinearLayout, type: OceanAlertType?) {
         OceanAlertType.Information -> {
             layout.setBackgroundResource(R.drawable.ocean_alert_info_background)
         }
+
         OceanAlertType.Error -> {
             layout.setBackgroundResource(R.drawable.ocean_alert_error_background)
 
         }
+
         OceanAlertType.Success -> {
             layout.setBackgroundResource(R.drawable.ocean_alert_success_background)
         }
+
         OceanAlertType.Warning -> {
             layout.setBackgroundResource(R.drawable.ocean_alert_warning_background)
         }
+
         else -> {
             layout.setBackgroundResource(R.drawable.ocean_alert_warning_background)
         }
@@ -257,15 +272,19 @@ fun setOceanSrc(imageView: ImageView, type: OceanAlertType?, icon: Drawable?) {
             OceanAlertType.Information -> {
                 imageView.setBackgroundResource(R.drawable.icon_information)
             }
+
             OceanAlertType.Error -> {
                 imageView.setBackgroundResource(R.drawable.icon_error)
             }
+
             OceanAlertType.Success -> {
                 imageView.setBackgroundResource(R.drawable.icon_success)
             }
+
             OceanAlertType.Warning -> {
                 imageView.setBackgroundResource(R.drawable.icon_warning)
             }
+
             else -> {
                 imageView.setBackgroundResource(R.drawable.icon_warning)
             }
@@ -285,6 +304,7 @@ fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType?) {
                 )
             )
         }
+
         OceanAlertType.Error -> {
             textView.setTextColor(
                 ContextCompat.getColor(
@@ -294,6 +314,7 @@ fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType?) {
             )
 
         }
+
         OceanAlertType.Success -> {
             textView.setTextColor(
                 ContextCompat.getColor(
@@ -302,6 +323,7 @@ fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType?) {
                 )
             )
         }
+
         OceanAlertType.Warning -> {
             textView.setTextColor(
                 ContextCompat.getColor(
@@ -310,6 +332,7 @@ fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType?) {
                 )
             )
         }
+
         else -> {
             textView.setTextColor(
                 ContextCompat.getColor(

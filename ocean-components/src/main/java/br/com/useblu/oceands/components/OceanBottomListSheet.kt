@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter

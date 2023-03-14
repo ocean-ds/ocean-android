@@ -112,7 +112,7 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_family_base_regular"
+                    android:fontFamily="@font/font_family_base_medium"
                     android:text="@{text}"
                     app:ocean_text_from_html="@{text}"
                     android:textColor="@color/ocean_color_interface_dark_down"

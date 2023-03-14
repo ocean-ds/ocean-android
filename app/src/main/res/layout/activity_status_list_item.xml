@@ -93,7 +93,7 @@
 
             <include
                 layout="@layout/ocean_status_list_item"
-                app:title="@{`Default List item`}"
+                app:title="@{`Essa Loja Tem um Nome Gigantesco para Testar o campo de texto LTDA`}"
                 app:description="@{`Bottom tag`}"
                 app:caption="@{`Read-only`}"
                 app:label="@{`label`}"

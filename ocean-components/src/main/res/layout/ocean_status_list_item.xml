@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/ocean_list_item_hover"
-        android:clickable="@{isActive != null &amp; isReadOnly != null ? isActive &amp; !isReadOnly: false}"
+        android:clickable="@{isActive &amp; !isReadOnly}"
         android:focusable="true"
         android:onClick="@{() -> click.invoke()}">
 
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_family_base_regular"
                 android:text="@{title}"
-                android:textColor="@{ isActive == true ? @color/ocean_color_interface_dark_pure : @color/ocean_color_interface_dark_up}"
+                android:textColor="@{ isActive ? @color/ocean_color_interface_dark_pure : @color/ocean_color_interface_dark_up}"
                 android:textSize="@dimen/ocean_font_size_xs"
                 tools:text="Title" />
 
@@ -91,7 +91,7 @@
                 android:fontFamily="@font/font_family_base_regular"
                 android:text="@{description}"
                 android:visibility="@{description == null ? View.GONE : View.VISIBLE}"
-                android:textColor="@{isActive == true ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
+                android:textColor="@{isActive ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
                 android:textSize="@dimen/ocean_font_size_xxs"
                 tools:text="Description" />
 
@@ -103,7 +103,7 @@
                 android:fontFamily="@font/font_family_base_regular"
                 android:text="@{caption}"
                 android:visibility="@{caption == null ? View.GONE : View.VISIBLE}"
-                android:textColor="@{isActive == true ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
+                android:textColor="@{isActive ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
                 android:textSize="@dimen/ocean_font_size_xxxs"
                 tools:text="Caption" />
 
@@ -117,7 +117,8 @@
                 android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
                 app:ocean_tag_background_type="@{tagType}"
-                android:visibility="@{showRightTag == true ? View.GONE: View.VISIBLE}">
+                android:visibility="@{showRightTag ? View.GONE: View.VISIBLE}"
+                tools:background="@drawable/ocean_tag_warning_background">
 
                 <TextView
                     android:id="@+id/status_item_tag_label"
@@ -127,10 +128,10 @@
                     android:text="@{label}"
                     app:ocean_tag_text_color="@{tagType}"
                     android:textSize="@dimen/ocean_font_size_xxxs"
-                    tools:text="Label" />
+                    tools:text="Label"
+                    tools:textColor="@color/ocean_color_status_neutral_deep"/>
 
             </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
@@ -153,7 +154,7 @@
                 android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
                 app:ocean_tag_background_type="@{tagType}"
-                android:visibility="@{showRightTag == false ? View.GONE: View.VISIBLE}"
+                android:visibility="@{showRightTag ? View.VISIBLE: View.GONE}"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -173,8 +174,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@{showContextMenu == true ? @drawable/icon_vertical_solid_dots : @drawable/icon_chevron_right}"
-                android:visibility="@{isActive == true ? View.VISIBLE : View.GONE}"
+                android:src="@{showContextMenu ? @drawable/icon_vertical_solid_dots : @drawable/icon_chevron_right}"
+                android:visibility="@{isReadOnly ? View.GONE : View.VISIBLE}"
                 tools:src="@drawable/icon_chevron_right"
                 tools:ignore="ContentDescription" />
 
@@ -185,7 +186,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:visibility="@{hideDivider == true ? View.GONE : View.VISIBLE}"/>
+            android:visibility="@{hideDivider ? View.GONE : View.VISIBLE}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

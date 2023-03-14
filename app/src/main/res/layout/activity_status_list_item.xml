@@ -141,25 +141,25 @@
                 app:showContextMenu="@{false}"
                 app:isReadOnly="@{true}"
                 app:tagType="@{OceanTagType.Positive}"
-                app:click="@{viewmodel::onTouchItem}"/>
+                app:click="@{viewmodel::onTouchItem}"
+                app:hideDivider="@{true}"/>
 
             <include
                 layout="@layout/ocean_status_list_item"
                 app:title="@{`Default List item`}"
                 app:description="@{`Inactive item`}"
-                app:caption="@{`Read-only`}"
                 app:label="@{`label`}"
                 app:isActive="@{true}"
                 app:showRightTag="@{true}"
                 app:showContextMenu="@{false}"
                 app:tagType="@{OceanTagType.Neutral}"
-                app:click="@{viewmodel::onTouchItem}"/>
+                app:click="@{viewmodel::onTouchItem}"
+                app:hideDivider="@{true}"/>
 
             <include
                 layout="@layout/ocean_status_list_item"
                 app:title="@{`Default List item`}"
                 app:description="@{`Inactive item`}"
-                app:caption="@{`Read-only`}"
                 app:label="@{`label`}"
                 app:isActive="@{true}"
                 app:showRightTag="@{true}"
@@ -172,7 +172,6 @@
                 layout="@layout/ocean_status_list_item"
                 app:title="@{`Default List item`}"
                 app:description="@{`Inactive item`}"
-                app:caption="@{`Read-only`}"
                 app:label="@{`label`}"
                 app:isActive="@{true}"
                 app:showRightTag="@{true}"

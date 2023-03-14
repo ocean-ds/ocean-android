@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.useblu.oceands.R
@@ -30,7 +31,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     private var buttonText: String? = null
     private var buttonIcon: Drawable? = null
     private var buttonClick: (() -> Unit)? = null
-    private var buttonLoading : MutableLiveData<Boolean>? = null
+    private var buttonLoading : LiveData<Boolean>? = null
 
     private lateinit var binding: OceanBottomListSheetBinding
 
@@ -122,7 +123,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     fun withFooterButton(
         text: String,
         icon: Drawable? = null,
-        loading: MutableLiveData<Boolean> = MutableLiveData(false),
+        loading: LiveData<Boolean>? = null,
         click: () -> Unit,
     ): OceanBottomListSheet {
         this.buttonText = text

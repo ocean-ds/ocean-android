@@ -49,6 +49,10 @@
             name="tagType"
             type="OceanTagType" />
 
+        <variable
+            name="hideDivider"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -180,7 +184,8 @@
             layout="@layout/ocean_divider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="@{hideDivider == true ? View.GONE : View.VISIBLE}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

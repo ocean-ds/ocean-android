@@ -141,7 +141,8 @@
                 app:showContextMenu="@{false}"
                 app:isReadOnly="@{true}"
                 app:tagType="@{OceanTagType.Positive}"
-                app:click="@{viewmodel::onTouchItem}"/>
+                app:click="@{viewmodel::onTouchItem}"
+                app:hideDivider="@{true}"/>
 
             <include
                 layout="@layout/ocean_status_list_item"
@@ -153,7 +154,8 @@
                 app:showRightTag="@{true}"
                 app:showContextMenu="@{false}"
                 app:tagType="@{OceanTagType.Neutral}"
-                app:click="@{viewmodel::onTouchItem}"/>
+                app:click="@{viewmodel::onTouchItem}"
+                app:hideDivider="@{true}"/>
 
             <include
                 layout="@layout/ocean_status_list_item"

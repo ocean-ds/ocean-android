@@ -127,7 +127,10 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     ): OceanBottomListSheet {
         this.buttonText = text
         this.buttonIcon = icon
-        this.buttonClick = click
+        this.buttonClick = {
+            click()
+            dismiss()
+        }
         this.buttonLoading = loading
         return this
     }

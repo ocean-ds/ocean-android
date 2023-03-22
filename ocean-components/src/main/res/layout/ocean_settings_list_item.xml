@@ -41,6 +41,10 @@
             name="showDivider"
             type="Boolean" />
 
+        <variable
+            name="error"
+            type="String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,6 +101,24 @@
                 android:textSize="@dimen/ocean_font_size_xxxs"
                 app:ocean_visible_or_gone="@{caption == null ? false : true}"
                 tools:text="Caption" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_spacing_inline_xxs"
+                app:ocean_visible_or_gone="@{error == null ? false : true}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/errorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_regular"
+                android:maxLines="2"
+                android:text="@{error}"
+                android:textColor="@color/ocean_color_status_negative_pure"
+                android:textSize="@dimen/ocean_font_size_xxxs"
+                android:lineSpacingMultiplier="@dimen/ocean_line_height_comfy_android"
+                app:ocean_visible_or_gone="@{error == null ? false : true}"
+                tools:text="Error" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

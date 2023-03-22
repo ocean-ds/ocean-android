@@ -105,7 +105,7 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ocean_spacing_inline_xxs"
-                app:ocean_visible_or_gone="@{caption == null ? false : true}" />
+                app:ocean_visible_or_gone="@{error == null ? false : true}" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/errorTextView"

@@ -71,6 +71,16 @@
                 app:status="@{OceanSettingsStatus.ACTIVATED}"
                 app:title="@{@string/all_title}" />
 
+            <include
+                layout="@layout/ocean_settings_list_item"
+                app:actionText="@{@string/all_label}"
+                app:caption="@{@string/all_caption}"
+                app:error="@{@string/all_error}"
+                app:click="@{viewmodel::click}"
+                app:description="@{@string/all_subtitle}"
+                app:status="@{OceanSettingsStatus.ACTIVATED}"
+                app:title="@{@string/all_title}" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>

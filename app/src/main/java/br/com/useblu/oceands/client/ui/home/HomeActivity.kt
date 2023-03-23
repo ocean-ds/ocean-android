@@ -28,6 +28,7 @@ import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.orderedlistitem.OrderedListItemActivity
+import br.com.useblu.oceands.client.ui.unorderedlistitem.UnorderedListItemActivity
 import br.com.useblu.oceands.client.ui.parentchildtextlist.ParentChildTextListActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
 import br.com.useblu.oceands.client.ui.settingslistitem.SettingsListItemActivity
@@ -67,6 +68,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickTypography(view: View) {
         val intent = Intent(this, TypographyActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickUnorderedListItem(view: View) {
+        val intent = Intent(this, UnorderedListItemActivity::class.java)
         startActivity(intent)
     }
 

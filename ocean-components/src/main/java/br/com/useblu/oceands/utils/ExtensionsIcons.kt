@@ -1221,6 +1221,9 @@ fun String.toOceanIcon() = when (this.lowercase()) {
     "ticketsolid" -> {
         R.drawable.ocean_icon_ticket_solid
     }
+    "transactionsoutline" -> {
+        R.drawable.ocean_icon_transactions_outline
+    }
     "translateoutline" -> {
         R.drawable.ocean_icon_translate_outline
     }

@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="br.com.useblu.oceands.client.ui.textlistitembase.TextListItemBaseViewModel" />
+            type="br.com.useblu.oceands.client.ui.textlistitem.TextListItemViewModel" />
 
     </data>
 
@@ -23,12 +23,12 @@
             android:paddingVertical="@dimen/ocean_spacing_inline_xs">
 
             <include
-                layout="@layout/ocean_text_list_item_base"
+                layout="@layout/ocean_text_list_item"
                 app:description="@{`Default`}"
                 app:title="@{`Text List Item`}" />
 
             <include
-                layout="@layout/ocean_text_list_item_base"
+                layout="@layout/ocean_text_list_item"
                 app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`With Details`}"
                 app:isPositive="@{true}"
@@ -36,7 +36,7 @@
                 app:title="@{`Text List Item`}" />
 
             <include
-                layout="@layout/ocean_text_list_item_base"
+                layout="@layout/ocean_text_list_item"
                 app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`With Details`}"
                 app:isPositive="@{false}"
@@ -44,7 +44,7 @@
                 app:title="@{`Text List Item`}" />
 
             <include
-                layout="@layout/ocean_text_list_item_base"
+                layout="@layout/ocean_text_list_item"
                 app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`Selectable`}"
                 app:isChecked="@{true}"
@@ -52,7 +52,7 @@
                 app:withCheckBox="@{true}" />
 
             <include
-                layout="@layout/ocean_text_list_item_base"
+                layout="@layout/ocean_text_list_item"
                 app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`Selectable`}"
                 app:isChecked="@{true}"
@@ -60,7 +60,7 @@
                 app:withCheckBox="@{false}" />
 
             <include
-                layout="@layout/ocean_text_list_item_base"
+                layout="@layout/ocean_text_list_item"
                 app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`Selectable`}"
                 app:isChecked="@{false}"
@@ -68,7 +68,7 @@
                 app:withCheckBox="@{true}" />
 
             <include
-                layout="@layout/ocean_text_list_item_base"
+                layout="@layout/ocean_text_list_item"
                 app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`Selectable`}"
                 app:isChecked="@{false}"
@@ -76,7 +76,7 @@
                 app:withCheckBox="@{false}" />
 
             <include
-                layout="@layout/ocean_text_list_item_base"
+                layout="@layout/ocean_text_list_item"
                 app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`Selectable with Error`}"
                 app:isChecked="@{false}"
@@ -85,7 +85,7 @@
                 app:withCheckBox="@{true}" />
 
             <include
-                layout="@layout/ocean_text_list_item_base"
+                layout="@layout/ocean_text_list_item"
                 app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`Selectable with Error`}"
                 app:isChecked="@{false}"

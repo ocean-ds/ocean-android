@@ -339,9 +339,9 @@
             android:id="@+id/listItemsParent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="listItemsParent"
+            android:onClick="listItemsExpandable"
             android:padding="16dp"
-            android:text="List Items Parent"
+            android:text="List Items Expandable"
             android:textSize="24sp" />
 
         <View

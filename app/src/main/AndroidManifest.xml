@@ -40,13 +40,12 @@
         <activity android:name=".ui.input.InputActivity" />
         <activity android:name=".ui.alert.AlertActivity" />
         <activity android:name=".ui.toobar.TopbarActivity" />
-        <activity android:name=".ui.listitem.ListItemActivity" />
         <activity android:name=".ui.switchs.SwitchsActivity" />
         <activity android:name=".ui.radio.RadioActivity" />
         <activity android:name=".ui.textlink.TextLinkActivity" />
         <activity android:name=".ui.optionscard.OptionsCardActivity" />
         <activity android:name=".ui.checkbox.CheckBoxActivity" />
-        <activity android:name=".ui.parentchildtextlist.ParentChildTextListActivity" />
+        <activity android:name=".ui.textlistexpandable.TextListExpandableActivity" />
         <activity android:name=".ui.crosscellcard.CardCrossSellActivity" />
         <activity android:name=".ui.footer.FooterBluActivity" />
         <activity android:name=".ui.transactionfooter.TransactionFooterActivity" />
@@ -56,7 +55,7 @@
         <activity android:name=".ui.orderedlistitem.OrderedListItemActivity"/>
         <activity android:name=".ui.settingslistitem.SettingsListItemActivity"/>
         <activity android:name=".ui.statuslistitem.StatusListItemActivity" />
-        <activity android:name=".ui.textlistitembase.TextListItemBaseActivity" />
+        <activity android:name=".ui.textlistitem.TextListItemActivity" />
         <activity android:name=".ui.textlisticonitem.TextListIconItemActivity" />
         <activity android:name=".ui.unorderedlistitem.UnorderedListItemActivity" />
         <activity android:name=".ui.textlistinverted.TextListInvertedItemActivity"/>

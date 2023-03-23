@@ -39,17 +39,25 @@ import br.com.useblu.oceands.client.ui.tab.TabActivity
 import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.textlisticonitem.TextListIconItemActivity
+import br.com.useblu.oceands.client.ui.textlistinline.TextListInlineItemActivity
 import br.com.useblu.oceands.client.ui.textlistinverted.TextListInvertedItemActivity
 import br.com.useblu.oceands.client.ui.textlistitembase.TextListItemBaseActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivity
 import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
-import br.com.useblu.oceands.components.*
+import br.com.useblu.oceands.components.OceanBottomListSheet
+import br.com.useblu.oceands.components.OceanBottomListSheetUIModel
+import br.com.useblu.oceands.components.OceanBottomSheet
+import br.com.useblu.oceands.components.OceanDatePickerFullscreen
+import br.com.useblu.oceands.components.OceanSnackBar
+import br.com.useblu.oceands.components.OceanToast
+import br.com.useblu.oceands.components.OceanTooltip
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 class HomeActivity : AppCompatActivity() {
 
@@ -186,6 +194,11 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun textListInlineItem(view: View) {
+        val intent = Intent(this, TextListInlineItemActivity::class.java)
+        startActivity(intent)
+    }
+
     fun onClickSwitch(view: View) {
         val intent = Intent(this, SwitchsActivity::class.java)
         startActivity(intent)
@@ -314,18 +327,18 @@ class HomeActivity : AppCompatActivity() {
             ).show()
     }
 
-     private fun showToast(loading: MutableLiveData<Boolean>) {
-         loading.postValue(true)
-         Toast.makeText(
-             this,
-             "Footer button clicked",
-             Toast.LENGTH_SHORT
-         ).show()
-         GlobalScope.launch {
-             delay(6000)
-             loading.postValue(false)
-         }
-     }
+    private fun showToast(loading: MutableLiveData<Boolean>) {
+        loading.postValue(true)
+        Toast.makeText(
+            this,
+            "Footer button clicked",
+            Toast.LENGTH_SHORT
+        ).show()
+        GlobalScope.launch {
+            delay(6000)
+            loading.postValue(false)
+        }
+    }
 
 
     fun onOceanBottomListSheetIcon(view: View) {

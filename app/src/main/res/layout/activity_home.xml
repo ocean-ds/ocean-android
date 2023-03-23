@@ -600,6 +600,21 @@
             android:background="#E7E7E7" />
 
         <TextView
+            android:id="@+id/text_inline_text_list_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="textListInlineItem"
+            android:padding="16dp"
+            android:text="Text List Inline Item"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="onClickToast"

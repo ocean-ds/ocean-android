@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="br.com.useblu.oceands.model.OceanStatusTextListItem" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="description"
+            type="String" />
+
+        <variable
+            name="status"
+            type="OceanStatusTextListItem" />
+
+        <variable
+            name="isBold"
+            type="Boolean" />
+
+        <variable
+            name="icon"
+            type="android.graphics.drawable.Drawable" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/ocean_spacing_stack_xs"
+        android:paddingTop="@dimen/ocean_spacing_stack_xxs"
+        android:paddingEnd="@dimen/ocean_spacing_stack_xs"
+        android:paddingBottom="@dimen/ocean_spacing_stack_xxs">
+
+        <TextView
+            style="@style/Ocean.Paragraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{title}"
+            android:textColor="@{@color/ocean_color_interface_dark_down}"
+            tools:text="@string/title" />
+
+        <Space
+            android:layout_width="@dimen/ocean_spacing_stack_xs"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@{icon}"
+            app:statusTextListItem="@{status}"
+            tools:src="@drawable/icon_generic_primary"/>
+
+        <Space
+            android:layout_width="@dimen/ocean_spacing_stack_xxs"
+            android:layout_height="match_parent" />
+
+        <TextView
+            style="@style/Ocean.Paragraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{description}"
+            app:highlight="@{isBold}"
+            app:statusTextListItem="@{status}"
+            tools:text="@string/description" />
+
+    </LinearLayout>
+
+</layout>

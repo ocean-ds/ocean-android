@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title">Title</string>
+    <string name="description">Decription</string>
     <string name="subtitle">SubTitle</string>
     <string name="label">Label</string>
     <string name="text">Text test</string>

@@ -58,6 +58,7 @@
         <activity android:name=".ui.statuslistitem.StatusListItemActivity" />
         <activity android:name=".ui.textlistitembase.TextListItemBaseActivity" />
         <activity android:name=".ui.textlisticonitem.TextListIconItemActivity" />
+        <activity android:name=".ui.unorderedlistitem.UnorderedListItemActivity" />
         <activity android:name=".ui.textlistinverted.TextListInvertedItemActivity"/>
         <activity android:name=".ui.textlistinline.TextListInlineItemActivity"/>
     </application>

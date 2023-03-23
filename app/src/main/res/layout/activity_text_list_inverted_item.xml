@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="br.com.useblu.oceands.model.OceanStatusTextListItem" />
+
+        <import type="br.com.useblu.oceands.model.OceanTagType" />
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.textlistinverted.TextListInvertedItemViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/ocean_spacing_inline_xs">
+
+            <include
+                layout="@layout/ocean_inverted_text_list_item"
+                app:description="@{`Description`}"
+                app:title="@{`Title`}" />
+
+            <include
+                layout="@layout/ocean_inverted_text_list_item"
+                app:description="@{`Description`}"
+                app:isBold="@{true}"
+                app:title="@{`Title`}" />
+
+            <include
+                layout="@layout/ocean_inverted_text_list_item"
+                app:description="@{`Description`}"
+                app:status="@{OceanStatusTextListItem.Inactive}"
+                app:title="@{`Title`}" />
+
+            <include
+                layout="@layout/ocean_inverted_text_list_item"
+                app:description="@{`Description`}"
+                app:status="@{OceanStatusTextListItem.Positive}"
+                app:title="@{`Title`}" />
+
+            <include
+                layout="@layout/ocean_inverted_text_list_item"
+                app:description="@{`Description`}"
+                app:status="@{OceanStatusTextListItem.Warning}"
+                app:title="@{`Title`}" />
+
+            <include
+                layout="@layout/ocean_inverted_text_list_item"
+                app:description="@{`Description`}"
+                app:tag="@{`Tag`}"
+                app:tagType="@{OceanTagType.Positive}"
+                app:title="@{`Title`}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</layout>

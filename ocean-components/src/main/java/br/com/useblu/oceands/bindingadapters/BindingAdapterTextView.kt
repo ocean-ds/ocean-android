@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.model.OceanStatusTextListItem
 
 @BindingAdapter("highlight")
 fun setHighlight(textView: TextView, highlight: Boolean) {
@@ -24,11 +25,11 @@ fun setStrike(textView: TextView, status: Boolean) {
 @BindingAdapter("textColor")
 fun setTextColor(textView: TextView, color: String?) {
     val context = textView.context
-    var colorSelect =  R.color.ocean_color_interface_dark_down
+    var colorSelect = R.color.ocean_color_interface_dark_down
 
-    color?.let{
+    color?.let {
         colorSelect = when (color) {
-            "colorStatusNeutralDeep" ->  R.color.ocean_color_status_neutral_deep
+            "colorStatusNeutralDeep" -> R.color.ocean_color_status_neutral_deep
             "colorInterfaceDarkPure" -> R.color.ocean_color_interface_dark_pure
             "colorStatusPositiveDeep" -> R.color.ocean_color_status_positive_deep
             "colorInterfaceDarkDown" -> R.color.ocean_color_interface_dark_down
@@ -37,5 +38,19 @@ fun setTextColor(textView: TextView, color: String?) {
         }
     }
 
-    textView.setTextColor(ContextCompat.getColor(context,colorSelect))
+    textView.setTextColor(ContextCompat.getColor(context, colorSelect))
+}
+
+@BindingAdapter("statusTextListItem")
+fun setStatusTextListItem(textView: TextView, status: OceanStatusTextListItem?) {
+    val context = textView.context
+
+    val color = when (status) {
+        OceanStatusTextListItem.Inactive -> R.color.ocean_color_interface_dark_up
+        OceanStatusTextListItem.Positive -> R.color.ocean_color_status_positive_pure
+        OceanStatusTextListItem.Warning -> R.color.ocean_color_status_neutral_pure
+        else -> R.color.ocean_color_interface_dark_pure
+    }
+
+    textView.setTextColor(ContextCompat.getColor(context, color))
 }

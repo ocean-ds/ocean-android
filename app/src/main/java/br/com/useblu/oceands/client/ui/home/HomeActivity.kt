@@ -39,6 +39,7 @@ import br.com.useblu.oceands.client.ui.tab.TabActivity
 import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.textlisticonitem.TextListIconItemActivity
+import br.com.useblu.oceands.client.ui.textlistinverted.TextListInvertedItemActivity
 import br.com.useblu.oceands.client.ui.textlistitembase.TextListItemBaseActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivity
@@ -177,6 +178,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun textListItemBase(view: View) {
         val intent = Intent(this, TextListItemBaseActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun textListInvertedItem(view: View) {
+        val intent = Intent(this, TextListInvertedItemActivity::class.java)
         startActivity(intent)
     }
 

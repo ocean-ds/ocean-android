@@ -24,74 +24,74 @@
 
             <include
                 layout="@layout/ocean_text_list_item_base"
-                app:title="@{`Text List Item`}"
-                app:description="@{`Default`}" />
+                app:description="@{`Default`}"
+                app:title="@{`Text List Item`}" />
 
             <include
                 layout="@layout/ocean_text_list_item_base"
-                app:title="@{`Text List Item`}"
+                app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`With Details`}"
-                app:textInfo="@{`Text info`}"
                 app:isPositive="@{true}"
-                app:click="@{viewmodel::onTouchItem}"/>
-
-            <include
-                layout="@layout/ocean_text_list_item_base"
-                app:title="@{`Text List Item`}"
-                app:description="@{`With Details`}"
                 app:textInfo="@{`Text info`}"
+                app:title="@{`Text List Item`}" />
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:click="@{viewmodel::onTouchItem}"
+                app:description="@{`With Details`}"
                 app:isPositive="@{false}"
-                app:click="@{viewmodel::onTouchItem}"/>
+                app:textInfo="@{`Text info`}"
+                app:title="@{`Text List Item`}" />
 
             <include
                 layout="@layout/ocean_text_list_item_base"
-                app:title="@{`Text List Item`}"
+                app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`Selectable`}"
-                app:withCheckBox="@{true}"
                 app:isChecked="@{true}"
-                app:click="@{viewmodel::onTouchItem}"/>
-
-            <include
-                layout="@layout/ocean_text_list_item_base"
-                app:title="@{`Text List item`}"
-                app:description="@{`Selectable`}"
-                app:withCheckBox="@{false}"
-                app:isChecked="@{true}"
-                app:click="@{viewmodel::onTouchItem}"/>
-
-            <include
-                layout="@layout/ocean_text_list_item_base"
                 app:title="@{`Text List Item`}"
-                app:description="@{`Selectable`}"
-                app:withCheckBox="@{true}"
-                app:isChecked="@{false}"
-                app:click="@{viewmodel::onTouchItem}"/>
+                app:withCheckBox="@{true}" />
 
             <include
                 layout="@layout/ocean_text_list_item_base"
-                app:title="@{`Text List item`}"
+                app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`Selectable`}"
-                app:withCheckBox="@{false}"
-                app:isChecked="@{false}"
-                app:click="@{viewmodel::onTouchItem}"/>
+                app:isChecked="@{true}"
+                app:title="@{`Text List item`}"
+                app:withCheckBox="@{false}" />
 
             <include
                 layout="@layout/ocean_text_list_item_base"
+                app:click="@{viewmodel::onTouchItem}"
+                app:description="@{`Selectable`}"
+                app:isChecked="@{false}"
+                app:title="@{`Text List Item`}"
+                app:withCheckBox="@{true}" />
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:click="@{viewmodel::onTouchItem}"
+                app:description="@{`Selectable`}"
+                app:isChecked="@{false}"
                 app:title="@{`Text List item`}"
+                app:withCheckBox="@{false}" />
+
+            <include
+                layout="@layout/ocean_text_list_item_base"
+                app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`Selectable with Error`}"
                 app:isChecked="@{false}"
-                app:withCheckBox="@{true}"
                 app:showError="@{true}"
-                app:click="@{viewmodel::onTouchItem}"/>
+                app:title="@{`Text List item`}"
+                app:withCheckBox="@{true}" />
 
             <include
                 layout="@layout/ocean_text_list_item_base"
-                app:title="@{`Text List item`}"
+                app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`Selectable with Error`}"
                 app:isChecked="@{false}"
-                app:withCheckBox="@{false}"
                 app:showError="@{true}"
-                app:click="@{viewmodel::onTouchItem}"/>
+                app:title="@{`Text List item`}"
+                app:withCheckBox="@{false}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

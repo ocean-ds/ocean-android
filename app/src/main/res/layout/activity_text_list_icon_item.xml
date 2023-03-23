@@ -27,6 +27,7 @@
                 app:title="@{`Text List Item`}"
                 app:description="@{`Default`}"
                 app:caption="@{`Caption`}"
+                app:trailingIconClick="@{viewmodel::click}"
                 app:leadingIcon="@{@drawable/ocean_icon_calculator_outline}"
                 app:trailingIcon="@{@drawable/ocean_icon_chevron_right_solid}"/>
 

@@ -31,6 +31,10 @@
             name="trailingIcon"
             type="Drawable" />
 
+        <variable
+            name="trailingIconClick"
+            type="Function0&lt;Unit>" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,18 +42,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:focusable="true"
-        android:drawable="@drawable/ocean_list_item_hover">
+        android:drawable="@drawable/ocean_list_item_hover"
+        android:focusable="true">
 
         <LinearLayout
             android:id="@+id/text_list_item_selecting_box_container"
+            ocean_visible_or_gone="@{leadingIcon != null}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:orientation="vertical"
-            android:gravity="center"
             android:background="@drawable/circle_place_holder"
-            ocean_visible_or_gone="@{leadingIcon != null}"
+            android:gravity="center"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -58,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@{leadingIcon}"
-                tools:src="@drawable/ocean_icon_retailer_outline"/>
+                tools:src="@drawable/ocean_icon_retailer_outline" />
 
         </LinearLayout>
 
@@ -76,43 +80,43 @@
             <TextView
                 android:id="@+id/text_list_item_title"
                 style="@style/Ocean.Paragraph"
+                ocean_visible_or_gone="@{title != null}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@{title}"
-                ocean_visible_or_gone="@{title != null}"
                 android:textColor="@color/ocean_color_interface_dark_pure"
                 tools:text="Title" />
 
             <TextView
                 android:id="@+id/text_list_item_description"
                 style="@style/Ocean.Description"
+                ocean_visible_or_gone="@{description != null}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ocean_visible_or_gone="@{description != null}"
                 android:text="@{description}"
                 tools:text="Description" />
 
             <TextView
                 android:id="@+id/text_list_item_title_info"
                 style="@style/Ocean.Caption"
+                ocean_visible_or_gone="@{caption != null}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
-                ocean_visible_or_gone="@{caption != null}"
                 android:text="@{caption}"
                 tools:text="Caption" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/text_list_item_trailing_container"
+            ocean_visible_or_gone="@{trailingIcon != null}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/ocean_spacing_stack_xs"
-            android:orientation="vertical"
             android:gravity="center"
-            ocean_visible_or_gone="@{trailingIcon != null}"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -120,8 +124,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{() -> trailingIconClick. invoke()}"
                 android:src="@{trailingIcon}"
-                tools:src="@drawable/ocean_icon_chevron_right_solid"/>
+                tools:src="@drawable/ocean_icon_chevron_right_solid" />
 
         </LinearLayout>
 

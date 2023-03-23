@@ -28,8 +28,7 @@ import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.orderedlistitem.OrderedListItemActivity
-import br.com.useblu.oceands.client.ui.unorderedlistitem.UnorderedListItemActivity
-import br.com.useblu.oceands.client.ui.parentchildtextlist.ParentChildTextListActivity
+import br.com.useblu.oceands.client.ui.textlistexpandable.TextListExpandableActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
 import br.com.useblu.oceands.client.ui.settingslistitem.SettingsListItemActivity
 import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
@@ -42,7 +41,7 @@ import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.textlisticonitem.TextListIconItemActivity
 import br.com.useblu.oceands.client.ui.textlistinline.TextListInlineItemActivity
 import br.com.useblu.oceands.client.ui.textlistinverted.TextListInvertedItemActivity
-import br.com.useblu.oceands.client.ui.textlistitembase.TextListItemBaseActivity
+import br.com.useblu.oceands.client.ui.textlistitem.TextListItemActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivity
 import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
@@ -77,11 +76,6 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickTypography(view: View) {
         val intent = Intent(this, TypographyActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun onClickUnorderedListItem(view: View) {
-        val intent = Intent(this, UnorderedListItemActivity::class.java)
         startActivity(intent)
     }
 
@@ -135,8 +129,8 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun listItemsParent(view: View) {
-        val intent = Intent(this, ParentChildTextListActivity::class.java)
+    fun listItemsExpandable(view: View) {
+        val intent = Intent(this, TextListExpandableActivity::class.java)
         startActivity(intent)
     }
 
@@ -191,7 +185,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun textListItemBase(view: View) {
-        val intent = Intent(this, TextListItemBaseActivity::class.java)
+        val intent = Intent(this, TextListItemActivity::class.java)
         startActivity(intent)
     }
 

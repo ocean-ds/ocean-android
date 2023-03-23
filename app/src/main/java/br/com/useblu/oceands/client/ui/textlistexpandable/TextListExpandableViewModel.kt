@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.client.ui.parentchildtextlist
+package br.com.useblu.oceands.client.ui.textlistexpandable
 
 import android.graphics.drawable.Drawable
 import androidx.lifecycle.LiveData
@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.model.OceanChildTextItem
 import br.com.useblu.oceands.model.OceanParentTextItem
 
-class ParentChildTextListViewModel : ViewModel() {
+class TextListExpandableViewModel : ViewModel() {
 
     val parent = MutableLiveData<OceanParentTextItem>()
 

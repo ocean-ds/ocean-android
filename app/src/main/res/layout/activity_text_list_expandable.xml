@@ -13,7 +13,7 @@
 
         <variable
             name="viewmodel"
-            type="br.com.useblu.oceands.client.ui.parentchildtextlist.ParentChildTextListViewModel" />
+            type="br.com.useblu.oceands.client.ui.textlistexpandable.TextListExpandableViewModel" />
 
     </data>
 
@@ -31,7 +31,7 @@
             android:paddingBottom="@dimen/ocean_spacing_stack_xs">
 
             <include
-                layout="@layout/ocean_parent_child_text_list"
+                layout="@layout/ocean_expandable_text_list_icon_item"
                 app:item="@{viewmodel.parent}"
                 app:clickSubItem="@{viewmodel::click}"
                 app:clickEditButton="@{viewmodel::clickEditButton}"

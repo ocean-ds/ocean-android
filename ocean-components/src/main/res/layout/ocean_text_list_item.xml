@@ -5,113 +5,41 @@
 
     <data>
 
-        <import type="kotlin.jvm.functions.Function0" />
-
         <import type="kotlin.jvm.functions.Function1" />
 
         <import type="kotlin.Unit" />
-
-        <import type="br.com.useblu.oceands.model.OceanTagType" />
 
         <variable
             name="title"
             type="String" />
 
         <variable
-            name="formatTypeTitle"
-            type="br.com.useblu.oceands.utils.Formatter" />
-
-        <variable
-            name="subtitle"
+            name="textInfo"
             type="String" />
-
-        <variable
-            name="formatTypeSubTitle"
-            type="br.com.useblu.oceands.utils.Formatter" />
 
         <variable
             name="description"
             type="String" />
 
         <variable
-            name="linkText"
-            type="String" />
-
-        <variable
-            name="itemId"
-            type="String" />
-
-        <variable
-            name="formatTypeDescription"
-            type="br.com.useblu.oceands.utils.Formatter" />
-
-        <variable
-            name="badgeTitle"
-            type="String" />
-
-        <variable
-            name="badgeVisible"
+            name="isPositive"
             type="Boolean" />
 
         <variable
-            name="icon"
-            type="android.graphics.drawable.Drawable" />
+            name="isChecked"
+            type="Boolean" />
+
+        <variable
+            name="withCheckBox"
+            type="Boolean" />
+
+        <variable
+            name="showError"
+            type="Boolean" />
 
         <variable
             name="click"
-            type="Function0&lt;Unit>" />
-
-        <variable
-            name="longClick"
-            type="Function0&lt;Unit>" />
-
-        <variable
-            name="clickLink"
-            type="Function1&lt;String, Unit>" />
-
-        <variable
-            name="arrowVisible"
-            type="Boolean" />
-
-        <variable
-            name="isSingleLine"
-            type="Boolean" />
-
-        <variable
-            name="withHorizontalPadding"
-            type="Boolean" />
-
-        <variable
-            name="tagTitle"
-            type="String" />
-
-        <variable
-            name="tagType"
-            type="br.com.useblu.oceands.model.OceanTagType" />
-
-        <variable
-            name="tagHideIcon"
-            type="Boolean" />
-
-        <variable
-            name="withClickEffect"
-            type="Boolean" />
-
-        <variable
-            name="disabled"
-            type="Boolean" />
-
-        <variable
-            name="imageUrl"
-            type="String" />
-        
-        <variable
-            name="rightIcon"
-            type="String" />
-
-        <variable
-            name="needsRoundBackground"
-            type="Boolean" />
+            type="Function1&lt;Boolean, Unit>" />
 
     </data>
 
@@ -119,248 +47,133 @@
         android:id="@+id/root_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:enabled="true"
-        android:focusable="true"
-        android:onClick="@{() -> click.invoke()}"
-        android:paddingTop="@dimen/ocean_spacing_stack_xxs"
-        android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
-        app:clickable_effect="@{withClickEffect}"
-        app:onLongClickPressed="@{longClick}">
+        android:drawable="@drawable/ocean_list_item_hover">
 
         <LinearLayout
-            android:id="@+id/linearLayout1"
+            android:id="@+id/text_list_item_selecting_box_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            app:ocean_visible_or_gone="@{withCheckBox != null}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Space
-                android:id="@+id/paddingStart"
-                android:layout_width="@dimen/ocean_spacing_stack_xs"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:ocean_visible_or_gone="@{withHorizontalPadding != null}" />
-
-            <ImageView
-                android:id="@+id/imageView19"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:ocean_icon="@{imageUrl}"
-                app:ocean_visible_or_gone="@{!needsRoundBackground &amp; imageUrl != null &amp;&amp; icon == null}"
-                tools:src="@drawable/icon_generic_primary" />
-
             <LinearLayout
-                app:ocean_visible_or_gone="@{needsRoundBackground &amp; imageUrl != null &amp;&amp; icon == null}"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:background="@drawable/circle_place_holder">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    app:tint="@color/ocean_color_brand_primary_down"
-                    app:ocean_icon="@{imageUrl}"
-                    tools:src="@drawable/icon_generic_primary" />
+                android:id="@+id/text_list_item_check_box_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ocean_visible_or_gone="@{withCheckBox == true}" >
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/text_list_item_check_box"
+                    android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:theme="@style/Ocean.CheckBox"
+                    android:checked="@{isChecked, default = false}"
+                    app:ocean_visible_or_gone="@{showError == false}"/>
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/text_list_item_check_box_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:theme="@style/Ocean.CheckBox.Error"
+                    android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
+                    android:checked="@{isChecked, default = false}"
+                    app:ocean_visible_or_gone="@{showError == true}"
+                    tools:visibility="visible"/>
+
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imageView20"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@{icon}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-                app:layout_constraintStart_toEndOf="@id/paddingStart"
-                app:layout_constraintTop_toTopOf="parent"
-                app:ocean_visible_or_gone="@{!needsRoundBackground &amp; icon != null &amp;&amp; imageUrl == null }"
-                tools:src="@drawable/icon_generic_primary"
-                tools:visibility="gone" />
-
             <LinearLayout
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:gravity="center"
-                app:ocean_visible_or_gone="@{needsRoundBackground &amp; icon != null &amp;&amp; imageUrl == null }"
-                android:background="@drawable/circle_place_holder"
-                tools:visibility="gone">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@{icon}"
-                    tools:src="@drawable/icon_generic_primary"
-                     />
+                android:id="@+id/text_list_item_radio_button_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ocean_visible_or_gone="@{withCheckBox == false}">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/text_list_item_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:theme="@style/Ocean.CheckBox"
+                    app:ocean_visible_or_gone="@{showError == false}"
+                    android:checked="@{isChecked, default = false}"
+                    tools:visibility="gone"/>
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/text_list_item_radio_button_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:theme="@style/Ocean.CheckBox.Error"
+                    app:ocean_visible_or_gone="@{showError == true}"
+                    android:checked="@{isChecked, default = false}"
+                    tools:visibility="gone"/>
+
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/text_list_item_info_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+            android:layout_margin="@dimen/ocean_spacing_stack_xs"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout1"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout1"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout1">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/include10"
-                        style="@style/Ocean.Paragraph"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_family_base_medium"
-                        android:text="@{title}"
-                        app:ocean_text_from_html="@{title}"
-                        android:textColor="@color/ocean_color_interface_dark_deep"
-                        app:ocean_text="@{title}"
-                        app:ocean_text_format="@{formatTypeTitle}"
-                        app:ocean_visible_or_gone="@{!isSingleLine}"
-                        tools:text="Title" />
-
-                    <TextView
-                        android:id="@+id/textTitle"
-                        style="@style/Ocean.Paragraph"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="@{title}"
-                        android:textColor="@color/ocean_color_interface_dark_pure"
-                        app:ocean_text="@{title}"
-                        app:ocean_text_format="@{formatTypeTitle}"
-                        app:ocean_text_from_html="@{title}"
-                        app:ocean_visible_or_gone="@{isSingleLine}"
-                        tools:text="Title" />
-                </FrameLayout>
-
-                <Space
-                    android:layout_width="@dimen/ocean_spacing_stack_xxs"
-                    android:layout_height="match_parent" />
-
-                <include
-                    android:id="@+id/include6"
-                    layout="@layout/ocean_badge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:text="@{badgeTitle}"
-                    app:visible="@{badgeVisible}"
-                    tools:layout_editor_absoluteX="76dp"
-                    tools:layout_editor_absoluteY="16dp" />
-            </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_list_item_selecting_box_container"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/include4"
-                style="@style/Ocean.Description"
-                android:layout_width="match_parent"
+                android:id="@+id/text_list_item_title"
+                style="@style/Ocean.Paragraph"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{subtitle}"
-                app:ocean_text="@{subtitle}"
-                app:ocean_text_format="@{formatTypeSubTitle}"
-                app:ocean_text_from_html="@{subtitle}"
-                app:ocean_visible_or_gone="@{subtitle != null}"
-                tools:text="Subtitle" />
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{title}"
+                android:textColor="@color/ocean_color_interface_dark_pure"
+                tools:text="Title" />
 
             <TextView
-                android:id="@+id/include20"
+                android:id="@+id/text_list_item_description"
                 style="@style/Ocean.Caption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{description}"
-                app:ocean_text="@{description}"
-                app:ocean_text_format="@{formatTypeDescription}"
-                app:ocean_text_from_html="@{description}"
-                app:ocean_visible_or_gone="@{description != null}"
+                app:ocean_visible_or_gone="@{withCheckBox == null &amp; description != null}"
                 tools:text="Description" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/linear_layout_tag"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/text_list_item_description_default"
+                style="@style/Ocean.Description"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
-                app:ocean_visible_or_gone="@{tagTitle != null}">
-
-                <include
-                    layout="@layout/ocean_tag"
-                    app:hideIcon="@{tagHideIcon}"
-                    app:title="@{tagTitle}"
-                    app:type="@{tagType != null ? tagType : OceanTagType.Warning}" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                android:text="@{description}"
+                app:ocean_visible_or_gone="@{withCheckBox != null &amp; description != null}"
+                tools:text="Description"
+                tools:visibility="gone"/>
 
             <TextView
-                android:id="@+id/link"
-                android:layout_width="wrap_content"
+                android:id="@+id/text_list_item_title_info"
+                style="@style/Ocean.Description"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="@{() -> clickLink.invoke(itemId)}"
-                android:text="@{linkText}"
-                android:textColor="@color/ocean_color_brand_primary_pure"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView9"
-                app:layout_constraintStart_toEndOf="@id/linearLayout2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:ocean_visible_or_gone="@{linkText != null}"
-                tools:text="Link" />
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/paddingEnd"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/ocean_color_interface_dark_up"
-                app:ocean_visible_or_gone="@{arrowVisible &amp;&amp; !disabled}"
-                app:ocean_icon='@{rightIcon != null ? rightIcon : "chevronrightsolid"}'
-                app:srcCompat="@drawable/icon_chevron_right" />
-
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/paddingEnd"
-                app:layout_constraintTop_toTopOf="parent"
-                app:ocean_visible_or_gone="@{arrowVisible &amp;&amp; disabled}"
-                app:srcCompat="@drawable/icon_lock" />
-
-            <Space
-                android:id="@+id/paddingEnd"
-                android:layout_width="@dimen/ocean_spacing_stack_xs"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:ocean_visible_or_gone="@{withHorizontalPadding != null}" />
-
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                app:ocean_visible_or_gone="@{textInfo != null &amp; withCheckBox == null}"
+                android:text="@{textInfo}"
+                app:textColor="@{isPositive == true ? `colorStatusPositiveDeep` : `colorStatusInterfaceDarkDeep`}"
+                tools:text="Info" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

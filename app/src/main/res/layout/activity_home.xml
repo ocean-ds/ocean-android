@@ -339,9 +339,9 @@
             android:id="@+id/listItemsParent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="listItemsParent"
+            android:onClick="listItemsExpandable"
             android:padding="16dp"
-            android:text="List Items Parent"
+            android:text="List Items Expandable"
             android:textSize="24sp" />
 
         <View
@@ -694,20 +694,6 @@
             android:onClick="onClickTypography"
             android:padding="16dp"
             android:text="Typography"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onClickUnorderedListItem"
-            android:padding="16dp"
-            android:text="Unordered List Item"
             android:textSize="24sp" />
 
         <View

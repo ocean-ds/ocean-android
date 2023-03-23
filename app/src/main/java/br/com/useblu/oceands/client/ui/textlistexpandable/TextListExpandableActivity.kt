@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.client.ui.parentchildtextlist
+package br.com.useblu.oceands.client.ui.textlistexpandable
 
 import android.os.Bundle
 import android.widget.Toast
@@ -7,18 +7,18 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
-import br.com.useblu.oceands.client.databinding.ActivityParentChildTextListBinding
+import br.com.useblu.oceands.client.databinding.ActivityTextListExpandableBinding
 
-class ParentChildTextListActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityParentChildTextListBinding
-    private lateinit var viewModel: ParentChildTextListViewModel
+class TextListExpandableActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityTextListExpandableBinding
+    private lateinit var viewModel: TextListExpandableViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_parent_child_text_list)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_text_list_expandable)
         binding.lifecycleOwner = this
-        viewModel = ViewModelProvider(this)[ParentChildTextListViewModel::class.java]
+        viewModel = ViewModelProvider(this)[TextListExpandableViewModel::class.java]
         binding.viewmodel = viewModel
 
         viewModel.loadData(ContextCompat.getDrawable(this, R.drawable.icon_generic_primary))

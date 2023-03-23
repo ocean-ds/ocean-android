@@ -321,81 +321,6 @@
             android:background="#E7E7E7" />
 
         <TextView
-            android:id="@+id/listItems"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="listItems"
-            android:padding="16dp"
-            android:text="List Items"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:id="@+id/listItemsParent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="listItemsExpandable"
-            android:padding="16dp"
-            android:text="List Items Expandable"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:id="@+id/listItemsSettings"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="listItemsSettings"
-            android:padding="16dp"
-            android:text="List Items Settings"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:id="@+id/listSubheader"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="listSubheaderClick"
-            android:padding="16dp"
-            android:text="List Subheader"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:id="@+id/listOrdered"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="listOrderedClick"
-            android:padding="16dp"
-            android:text="List Ordered"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
             android:id="@+id/optionsCard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -555,12 +480,12 @@
             android:background="#E7E7E7" />
 
         <TextView
-            android:id="@+id/text_list_icon_item"
+            android:id="@+id/text_list_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="textListIconItem"
+            android:onClick="textListItem"
             android:padding="16dp"
-            android:text="Text List Icon Item"
+            android:text="Text List Item"
             android:textSize="24sp" />
 
         <View
@@ -570,12 +495,12 @@
             android:background="#E7E7E7" />
 
         <TextView
-            android:id="@+id/text_list_item_base"
+            android:id="@+id/text_list_icon_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="textListItemBase"
+            android:onClick="textListIconItem"
             android:padding="16dp"
-            android:text="Text List Item Base"
+            android:text="Text List Icon Item"
             android:textSize="24sp" />
 
         <View
@@ -606,6 +531,66 @@
             android:onClick="textListInlineItem"
             android:padding="16dp"
             android:text="Text List Inline Item"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:id="@+id/listItemsParent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="listItemsExpandable"
+            android:padding="16dp"
+            android:text="Text List Expandable"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:id="@+id/listItemsSettings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="listItemsSettings"
+            android:padding="16dp"
+            android:text="Text List Settings"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:id="@+id/listSubheader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="listSubheaderClick"
+            android:padding="16dp"
+            android:text="List Subheader"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
+            android:id="@+id/listOrdered"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="listOrderedClick"
+            android:padding="16dp"
+            android:text="List Ordered"
             android:textSize="24sp" />
 
         <View

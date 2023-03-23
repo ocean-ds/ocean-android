@@ -24,11 +24,9 @@ import br.com.useblu.oceands.client.ui.descriptorlistitem.DescriptorListActivity
 import br.com.useblu.oceands.client.ui.footer.FooterBluActivity
 import br.com.useblu.oceands.client.ui.groupcta.GroupCTAActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
-import br.com.useblu.oceands.client.ui.listitem.ListItemActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.orderedlistitem.OrderedListItemActivity
-import br.com.useblu.oceands.client.ui.textlistexpandable.TextListExpandableActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
 import br.com.useblu.oceands.client.ui.settingslistitem.SettingsListItemActivity
 import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
@@ -38,6 +36,7 @@ import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.tab.TabActivity
 import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
+import br.com.useblu.oceands.client.ui.textlistexpandable.TextListExpandableActivity
 import br.com.useblu.oceands.client.ui.textlisticonitem.TextListIconItemActivity
 import br.com.useblu.oceands.client.ui.textlistinline.TextListInlineItemActivity
 import br.com.useblu.oceands.client.ui.textlistinverted.TextListInvertedItemActivity
@@ -124,11 +123,6 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun listItems(view: View) {
-        val intent = Intent(this, ListItemActivity::class.java)
-        startActivity(intent)
-    }
-
     fun listItemsExpandable(view: View) {
         val intent = Intent(this, TextListExpandableActivity::class.java)
         startActivity(intent)
@@ -184,7 +178,7 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun textListItemBase(view: View) {
+    fun textListItem(view: View) {
         val intent = Intent(this, TextListItemActivity::class.java)
         startActivity(intent)
     }

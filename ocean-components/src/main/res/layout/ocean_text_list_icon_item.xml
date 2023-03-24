@@ -57,7 +57,7 @@
         android:focusable="true"
         app:clickable_effect="@{true}"
         android:onClick="@{() -> click.invoke()}"
-        app:onLongClickPressed="@{longClick::invoke}">
+        app:onLongClickPressed="@{longClick}">
 
         <LinearLayout
             android:id="@+id/text_list_item_selecting_box_container"

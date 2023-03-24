@@ -29,6 +29,7 @@
                 app:badge="@{`Novo`}"
                 app:caption="@{`Caption`}"
                 app:click="@{viewmodel::click}"
+                app:longClick="@{viewmodel::onLongClick}"
                 app:trailingIconClick="@{viewmodel::click}"
                 app:leadingIcon="@{@drawable/ocean_icon_calculator_outline}"
                 app:trailingIcon="@{@drawable/ocean_icon_chevron_right_solid}"/>

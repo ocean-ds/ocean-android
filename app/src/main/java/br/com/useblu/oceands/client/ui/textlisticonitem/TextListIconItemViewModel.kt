@@ -4,7 +4,11 @@ import androidx.lifecycle.ViewModel
 
 class TextListIconItemViewModel : ViewModel() {
 
-    fun click(){
+    fun click() {
         println("Click Icon")
+    }
+
+    fun onLongClick() {
+        println("Long Click Icon")
     }
 }

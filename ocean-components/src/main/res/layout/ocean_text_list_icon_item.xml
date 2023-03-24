@@ -42,6 +42,10 @@
         <variable
             name="click"
             type="Function0&lt;Unit>" />
+
+        <variable
+            name="longClick"
+            type="Function0&lt;Unit>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,7 +55,9 @@
         android:clickable="true"
         android:drawable="@drawable/ocean_list_item_hover"
         android:focusable="true"
-        android:onClick="@{() -> click.invoke()}">
+        app:clickable_effect="@{true}"
+        android:onClick="@{() -> click.invoke()}"
+        app:onLongClickPressed="@{longClick::invoke}">
 
         <LinearLayout
             android:id="@+id/text_list_item_selecting_box_container"

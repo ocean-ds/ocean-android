@@ -47,6 +47,7 @@
         android:id="@+id/root_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:clickable_effect="@{true}"
         android:drawable="@drawable/ocean_list_item_hover">
 
         <LinearLayout

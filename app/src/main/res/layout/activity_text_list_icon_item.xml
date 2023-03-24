@@ -26,6 +26,7 @@
                 layout="@layout/ocean_text_list_icon_item"
                 app:title="@{`Text List Item`}"
                 app:description="@{`Default`}"
+                app:badge="@{`Novo`}"
                 app:caption="@{`Caption`}"
                 app:click="@{viewmodel::click}"
                 app:trailingIconClick="@{viewmodel::click}"

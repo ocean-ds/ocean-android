@@ -38,7 +38,6 @@
         <variable
             name="click"
             type="Function0&lt;Unit>" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

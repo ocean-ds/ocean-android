@@ -35,6 +35,10 @@
             name="trailingIconClick"
             type="Function0&lt;Unit>" />
 
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +47,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:drawable="@drawable/ocean_list_item_hover"
-        android:focusable="true">
+        android:focusable="true"
+        android:onClick="@{() -> click.invoke()}">
 
         <LinearLayout
             android:id="@+id/text_list_item_selecting_box_container"

@@ -32,8 +32,16 @@
             type="Drawable" />
 
         <variable
+            name="leadingIconToken"
+            type="String" />
+
+        <variable
             name="trailingIcon"
             type="Drawable" />
+
+        <variable
+            name="trailingIconToken"
+            type="String" />
 
         <variable
             name="trailingIconClick"
@@ -55,8 +63,8 @@
         android:clickable="true"
         android:drawable="@drawable/ocean_list_item_hover"
         android:focusable="true"
-        app:clickable_effect="@{true}"
         android:onClick="@{() -> click.invoke()}"
+        app:clickable_effect="@{true}"
         app:onLongClickPressed="@{longClick}">
 
         <LinearLayout
@@ -76,6 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@{leadingIcon}"
+                app:ocean_icon="@{leadingIconToken}"
                 tools:src="@drawable/ocean_icon_retailer_outline" />
 
         </LinearLayout>
@@ -154,8 +163,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> trailingIconClick. invoke()}"
+                android:onClick="@{() -> trailingIconClick.invoke()}"
                 android:src="@{trailingIcon}"
+                app:ocean_icon="@{trailingIconToken}"
                 tools:src="@drawable/ocean_icon_chevron_right_solid" />
 
         </LinearLayout>

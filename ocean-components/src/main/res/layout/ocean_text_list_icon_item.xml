@@ -69,7 +69,7 @@
 
         <LinearLayout
             android:id="@+id/text_list_item_selecting_box_container"
-            ocean_visible_or_gone="@{leadingIcon != null}"
+            ocean_visible_or_gone="@{leadingIcon != null || leadingIconToken != null}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
@@ -150,7 +150,7 @@
 
         <LinearLayout
             android:id="@+id/text_list_item_trailing_container"
-            ocean_visible_or_gone="@{trailingIcon != null}"
+            ocean_visible_or_gone="@{trailingIcon != null || trailingIconToken != null}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/ocean_spacing_stack_xs"

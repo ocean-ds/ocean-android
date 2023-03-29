@@ -5,10 +5,6 @@
 
     <data>
 
-        <import type="android.view.View" />
-
-        <import type="android.view.ViewGroup" />
-
         <import type="br.com.useblu.oceands.client.R" />
 
         <variable
@@ -25,7 +21,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="@dimen/ocean_spacing_stack_xs">
 
@@ -38,7 +33,7 @@
             <include
                 layout="@layout/ocean_link_text"
                 app:click="@{viewmodel::click}"
-                app:icon="@{@drawable/icon_generic_primary}"
+                app:icon="@{`adjustmentssolid`}"
                 app:text="@{@string/click_me}" />
 
             <Space
@@ -54,7 +49,7 @@
             <include
                 layout="@layout/ocean_link_text"
                 app:click="@{viewmodel::click}"
-                app:icon="@{@drawable/icon_generic_primary}"
+                app:icon="@{`backspaceoutline`}"
                 app:text="@{@string/click_me}"
                 app:small="@{true}"/>
 

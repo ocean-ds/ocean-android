@@ -69,6 +69,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            app:layout_goneMarginStart="0dp"
             android:gravity="start"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -94,7 +95,8 @@
                 android:text="@{description}"
                 android:textColor="@color/ocean_color_interface_dark_down"
                 android:textSize="@dimen/ocean_font_size_xxs"
-                tools:text="Description" />
+                tools:text="Description"
+                app:ocean_visible_or_gone="@{description != null}"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/captionTextView"
@@ -106,7 +108,7 @@
                 android:text="@{caption}"
                 android:textColor="@color/ocean_color_interface_dark_down"
                 android:textSize="@dimen/ocean_font_size_xxxs"
-                app:ocean_visible_or_gone="@{caption == null ? false : true}"
+                app:ocean_visible_or_gone="@{caption != null}"
                 tools:text="Caption" />
         </LinearLayout>
 

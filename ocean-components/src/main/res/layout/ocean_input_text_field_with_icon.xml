@@ -52,6 +52,10 @@
         <variable
             name="disabled"
             type="Boolean" />
+
+        <variable
+            name="maxLength"
+            type="Integer" />
     </data>
 
     <merge
@@ -95,6 +99,7 @@
                     android:fontFamily="@font/font_family_base_regular"
                     android:hint="@{hint}"
                     android:imeOptions="actionGo"
+                    android:maxLength="@{maxLength != 0 ? maxLength : 1000}"
                     android:paddingStart="@dimen/ocean_spacing_inline_xs"
                     android:paddingTop="@dimen/ocean_spacing_inline_xs"
                     android:paddingEnd="@{(icon != null) ? @dimen/ocean_spacing_inline_xx : @dimen/ocean_spacing_inline_xs}"

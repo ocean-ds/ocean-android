@@ -28,6 +28,10 @@
         <variable
             name="disabled"
             type="Boolean" />
+
+        <variable
+            name="maxLength"
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,6 +74,7 @@
                 android:fontFamily="@font/font_family_base_regular"
                 android:gravity="start"
                 android:hint="@{hint}"
+                android:maxLength="@{maxLength != 0 ? maxLength : 1000}"
                 android:imeOptions="actionGo"
                 android:inputType="number"
                 android:maxLines="2"

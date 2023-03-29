@@ -320,11 +320,13 @@ class HomeActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            ).withFooterButton(
+            )
+            .withFooterButton(
                 text = getString(R.string.all_button_confirm),
                 icon = getDrawable(R.drawable.ocean_icon_retailer_outline),
                 click = { showToast(showLoading) },
                 loading = showLoading,
+                useSecondaryStyle = true
             ).show()
     }
 
@@ -354,9 +356,8 @@ class HomeActivity : AppCompatActivity() {
             .withCustomList(adapter)
             .withFooterButton(
                 text = getString(R.string.all_button_confirm),
-                icon = getDrawable(R.drawable.ocean_icon_retailer_outline),
                 click = { showToast(showLoading) },
-                loading = showLoading,
+                loading = showLoading
             )
             .withCaption("Lembre-se de salvar o documento em um local onde consiga encontrar com facilidade.")
             .show()

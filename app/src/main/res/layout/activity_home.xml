@@ -175,6 +175,21 @@
             android:background="#E7E7E7" />
 
         <TextView
+            android:id="@+id/cardCrossCell"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="cardCrossCellClick"
+            android:padding="16dp"
+            android:text="Card Cross Cell"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
             android:id="@+id/cardGroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -190,12 +205,11 @@
             android:background="#E7E7E7" />
 
         <TextView
-            android:id="@+id/cardCrossCell"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="cardCrossCellClick"
+            android:onClick="onClickCardItem"
             android:padding="16dp"
-            android:text="Card Cross Cell"
+            android:text="Card Item"
             android:textSize="24sp" />
 
         <View
@@ -693,20 +707,6 @@
             android:onClick="onClickUnorderedListItem"
             android:padding="16dp"
             android:text="Unordered List Item"
-            android:textSize="24sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:layout_marginStart="10dp"
-            android:background="#E7E7E7" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="onClickCardItem"
-            android:padding="16dp"
-            android:text="CardItem"
             android:textSize="24sp" />
 
         <View

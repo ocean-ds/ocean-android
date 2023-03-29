@@ -47,6 +47,7 @@
                 app:help="@{@string/all_help}"
                 app:hint="@{@string/all_hint}"
                 app:showProgress="@{true}"
+                app:maxLength="@{10}"
                 app:information="@{@string/all_information}"
                 app:label="@{@string/all_label}"
                 app:type="@{InputType.TYPE_CLASS_NUMBER}" />

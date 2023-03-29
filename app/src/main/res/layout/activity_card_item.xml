@@ -30,12 +30,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <include layout="@layout/ocean_card_item"
                 app:title="@{`One`}"
-                app:subtitle="@{`Option One`}"
-                app:icon="@{@drawable/ic_chevron_right}"
-                app:arrow="@{false}"
+                app:description="@{`Option One`}"
+                app:leadingIcon="@{`badgecheckoutline`}"
                 app:click="@{viewmodel::actionClickCardItemOne}" />
 
             <Space
@@ -44,20 +42,18 @@
 
             <include layout="@layout/ocean_card_item"
                 app:title="@{`Two`}"
-                app:subtitle="@{`Option two`}"
-                app:icon="@{@drawable/ic_chevron_right}"
-                app:arrow="@{true}"
+                app:description="@{`Option two`}"
+                app:leadingIcon="@{`badgecheckoutline`}"
+                app:trailingIcon="@{`chevronrightoutline`}"
                 app:click="@{viewmodel::actionClickCardItemTwo}"/>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ocean_spacing_inline_xs" />
 
-
             <include layout="@layout/ocean_card_item"
                 app:title="@{`One`}"
-                app:subtitle="@{`Option One without icon`}"
-                app:arrow="@{false}"
+                app:description="@{`Option One without icon`}"
                 app:click="@{viewmodel::actionClickCardItemOne}"/>
 
             <Space
@@ -66,8 +62,8 @@
 
             <include layout="@layout/ocean_card_item"
                 app:title="@{`Two`}"
-                app:subtitle="@{`Option two without icon`}"
-                app:arrow="@{true}"
+                app:description="@{`Option two without icon`}"
+                app:trailingIcon="@{`uploadoutline`}"
                 app:click="@{viewmodel::actionClickCardItemTwo}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

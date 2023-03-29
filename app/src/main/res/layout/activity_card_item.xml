@@ -53,7 +53,7 @@
 
             <include layout="@layout/ocean_card_item"
                 app:title="@{`One`}"
-                app:description="@{`Option One without icon`}"
+                app:description="@{`Option One without icons`}"
                 app:click="@{viewmodel::actionClickCardItemOne}"/>
 
             <Space
@@ -62,7 +62,16 @@
 
             <include layout="@layout/ocean_card_item"
                 app:title="@{`Two`}"
-                app:description="@{`Option two without icon`}"
+                app:description="@{`Option two without leading icon`}"
+                app:trailingIcon="@{`uploadoutline`}"
+                app:click="@{viewmodel::actionClickCardItemTwo}"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_spacing_inline_xs" />
+
+            <include layout="@layout/ocean_card_item"
+                app:title="@{`Three`}"
                 app:trailingIcon="@{`uploadoutline`}"
                 app:click="@{viewmodel::actionClickCardItemTwo}"/>
 

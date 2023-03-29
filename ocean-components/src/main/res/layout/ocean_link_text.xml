@@ -23,7 +23,7 @@
 
         <variable
             name="icon"
-            type="android.graphics.drawable.Drawable" />
+            type="String" />
     </data>
 
     <LinearLayout
@@ -34,26 +34,27 @@
         <TextView
             android:id="@+id/label"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/font_family_base_medium"
             android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
             android:lineSpacingMultiplier="@dimen/ocean_line_height_tight"
             android:onClick="@{() -> click.invoke()}"
             android:textColor="@color/ocean_color_brand_primary_pure"
-            android:textSize="@{small != null &amp;&amp; small ? @dimen/ocean_font_size_xxs : @dimen/ocean_font_size_xs}"
+            android:textSize="@{small ? @dimen/ocean_font_size_xxs : @dimen/ocean_font_size_xs}"
             app:ocean_text_from_html="@{text}"
             tools:text="@string/text" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="11dp"
-            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
-            android:background="@{icon}"
+            android:layout_marginStart="4dp"
+            app:ocean_icon="@{icon}"
+            android:tint="@color/ocean_color_brand_primary_pure"
             app:ocean_visible_or_gone="@{icon != null}"
-            tools:background="@drawable/icon_generic_primary" />
+            tools:src="@drawable/icon_generic_primary" />
 
     </LinearLayout>
 </layout>

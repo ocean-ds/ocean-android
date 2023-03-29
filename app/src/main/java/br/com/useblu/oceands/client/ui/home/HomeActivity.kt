@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
+import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
@@ -325,6 +326,40 @@ class HomeActivity : AppCompatActivity() {
                 click = { showToast(showLoading) },
                 loading = showLoading,
             ).show()
+    }
+
+    fun onOceanBottomListSheetButtonWithCaption(view: View) {
+        val showLoading = MutableLiveData(false)
+        val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+
+
+        val bottomSheet = OceanBottomListSheet(this)
+        val adapter = OceanBottomListSheetAdapter(
+            oceanBottomSheet = bottomSheet,
+            items = options,
+            selected = 1,
+            onSelect = {
+                Toast.makeText(
+                    this,
+                    "O Item selecionado foi \"${options[it]}\"",
+                    Toast.LENGTH_SHORT
+                ).show()
+                bottomSheet.dismiss()
+            },
+            title = "Title",
+        )
+
+        bottomSheet
+            .withTitle("Title")
+            .withCustomList(adapter)
+            .withFooterButton(
+                text = getString(R.string.all_button_confirm),
+                icon = getDrawable(R.drawable.ocean_icon_retailer_outline),
+                click = { showToast(showLoading) },
+                loading = showLoading,
+            )
+            .withCaption("Lembre-se de salvar o documento em um local onde consiga encontrar com facilidade.")
+            .show()
     }
 
     private fun showToast(loading: MutableLiveData<Boolean>) {

@@ -10,8 +10,6 @@
 
         <import type="kotlin.jvm.functions.Function0" />
 
-        <import type="java.util.List" />
-
         <import type="androidx.lifecycle.LiveData" />
 
         <variable
@@ -30,6 +28,10 @@
             name="loading"
             type="LiveData&lt;Boolean>" />
 
+        <variable
+            name="caption"
+            type="String" />
+
     </data>
 
     <LinearLayout
@@ -38,8 +40,6 @@
         android:layout_height="match_parent"
         android:background="@drawable/ocean_bottom_sheet_background"
         android:orientation="vertical"
-        android:paddingStart="@dimen/ocean_spacing_stack_xxxs"
-        android:paddingEnd="@dimen/ocean_spacing_stack_xxxs"
         android:paddingBottom="@dimen/ocean_spacing_stack_xs">
 
         <Space
@@ -63,6 +63,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textTitle"
             style="@style/Ocean.Heading.3"
+            android:textColor="@color/ocean_color_interface_dark_deep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/ocean_spacing_stack_xs"
@@ -82,42 +83,41 @@
             android:paddingEnd="@dimen/ocean_spacing_stack_xxxs"
             android:clipToPadding="false"
             app:layout_constraintTop_toBottomOf="@id/textTitle"
-            tools:paddingStart="@dimen/ocean_spacing_stack_xs"
+            tools:paddingStart="@dimen/ocean_spacing_stack_xxxs"
             tools:listitem="@layout/ocean_bottom_list_sheet_item"
             tools:itemCount="4"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{caption}"
+            android:fontFamily="@font/font_family_base_medium"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            tools:text="Lembre-se de salvar o documento em um local onde consiga encontrar com facilidade."
+            app:ocean_visible_or_gone="@{caption != null}"
+            android:layout_marginHorizontal="16dp"
+            android:layout_margin="16dp" />
 
         <LinearLayout
             android:id="@+id/botton_sheet_list_button_div_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:ocean_visible_or_gone="@{showFooterButton == true}">
+            app:ocean_visible_or_gone="@{showFooterButton}">
 
             <include layout="@layout/ocean_divider"/>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ocean_spacing_stack_xs" />
+                android:layout_height="@dimen/ocean_spacing_stack_xxs" />
 
-            <LinearLayout
-                android:id="@+id/botton_sheet_list_button_container"
+            <include
+                android:id="@+id/bottom_sheet_list_button"
+                layout="@layout/ocean_button_secondary_md"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/ocean_spacing_stack_xs">
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/ocean_spacing_stack_xxs" />
-
-                <include
-                    android:id="@+id/bottom_sheet_list_button"
-                    layout="@layout/ocean_button_secondary_md"
-                    app:showProgress="@{loading}"/>
-
-            </LinearLayout>
+                android:layout_margin="16dp"
+                app:showProgress="@{loading}"/>
         </LinearLayout>
-
     </LinearLayout>
-
 </layout>

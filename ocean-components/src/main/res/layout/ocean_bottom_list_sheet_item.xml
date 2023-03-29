@@ -13,14 +13,14 @@
         android:clickable="true"
         android:focusable="true"
         android:orientation="horizontal"
-        android:background="@{isSelected == false ? @drawable/ocean_list_item_hover : @drawable/ocean_list_selected_item_hover }">
+        android:background="@{isSelected ? @drawable/ocean_list_selected_item_hover : @drawable/ocean_list_item_hover }">
 
         <TextView
             android:id="@+id/textOceanParagraph"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:fontFamily="@font/font_family_base_regular"
             android:lineSpacingMultiplier="@dimen/ocean_line_height_comfy_android"

@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
 import br.com.useblu.oceands.adapter.OceanBottomListSheetWithIconAdapter
@@ -23,14 +24,14 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     private var title: String? = null
     private var hint: String? = null
     private var isDismiss: Boolean = true
-    private var adapter: OceanBottomListSheetAdapter? = null
-    private var adapterWithIcon: OceanBottomListSheetWithIconAdapter? = null
+    private var adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>? = null
     private var manager: FragmentManager? = null
     private var limit: Int? = null
     private var buttonText: String? = null
     private var buttonIcon: Drawable? = null
     private var buttonClick: (() -> Unit)? = null
     private var buttonLoading : LiveData<Boolean>? = null
+    private var caption: String? = null
 
     private lateinit var binding: OceanBottomListSheetBinding
 
@@ -45,9 +46,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         
         binding.lifecycleOwner = this
 
-        title?.let {
-            binding.title = it
-        }
+        binding.title = title
 
         buttonText?.let {
             binding.bottomSheetListButton.text = it
@@ -65,13 +64,10 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
             binding.loading = it
         }
 
+        binding.caption = caption
+
         adapter?.let {
             binding.recyclerView.adapter = adapter
-            binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        }
-
-        adapterWithIcon?.let {
-            binding.recyclerView.adapter = adapterWithIcon
             binding.recyclerView.layoutManager = LinearLayoutManager(context)
         }
 
@@ -161,7 +157,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         selectedPosition: Int = -1,
         onItemSelect: (Int) -> Unit
     ): OceanBottomListSheet {
-        adapterWithIcon = OceanBottomListSheetWithIconAdapter(
+        adapter = OceanBottomListSheetWithIconAdapter(
             items = items,
             selected = selectedPosition,
             onSelect = {
@@ -169,6 +165,18 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
                 dismiss()
             }
         )
+        return this
+    }
+
+    fun withCustomList(
+        adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>
+    ): OceanBottomListSheet {
+        this.adapter = adapter
+        return this
+    }
+
+    fun withCaption(caption: String): OceanBottomListSheet {
+        this.caption = caption
         return this
     }
 }

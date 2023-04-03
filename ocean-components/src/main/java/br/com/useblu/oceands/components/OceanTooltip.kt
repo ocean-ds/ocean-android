@@ -11,14 +11,15 @@ class OceanTooltip(
     val context: Context,
     val lifecycle: LifecycleOwner? = null
 ) {
-    private var message: String? = null
-    private var action: (() -> Unit)? = null
+    private var message: String = ""
+    private var action: (() -> Unit) = {}
+    private var tooltipAutoDismiss: Long = 5000
 
     fun build(): Balloon {
         return createBalloon(context) {
             setWidth(BalloonSizeSpec.WRAP)
             setHeight(BalloonSizeSpec.WRAP)
-            setText(message.toString())
+            setText(message)
             setTextSize(14f)
             setTextIsHtml(true)
             ResourcesCompat.getFont(context, R.font.font_family_base_regular)?.let {
@@ -26,17 +27,16 @@ class OceanTooltip(
             }
             setTextGravity(Gravity.LEFT)
             setArrowSize(12)
-            setArrowOrientation(ArrowOrientation.BOTTOM)
             setArrowPosition(0.5f)
             setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
-            setPadding(16)
-            setCornerRadius(4f)
-            setBalloonAnimationStyle(R.style.Fade_Balloon_Library)
+            setPaddingVertical(12)
+            setPaddingHorizontal(16)
+            setCornerRadius(8f)
             setBackgroundColorResource(R.color.ocean_color_interface_dark_deep)
             setDismissWhenClicked(true)
             setDismissWhenTouchOutside(true)
-            setAutoDismissDuration(5000)
-            setOnBalloonClickListener { action?.invoke() }
+            setAutoDismissDuration(tooltipAutoDismiss)
+            setOnBalloonClickListener { action.invoke() }
             setLifecycleOwner(lifecycle)
         }
     }
@@ -48,6 +48,11 @@ class OceanTooltip(
 
     fun withClick(action: () -> Unit): OceanTooltip {
         this.action = action
+        return this
+    }
+
+    fun withAutoDismissDuration(duration: Long): OceanTooltip {
+        tooltipAutoDismiss = duration
         return this
     }
 }

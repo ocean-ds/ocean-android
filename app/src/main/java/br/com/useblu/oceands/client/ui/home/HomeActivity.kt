@@ -54,6 +54,7 @@ import br.com.useblu.oceands.components.OceanDatePickerFullscreen
 import br.com.useblu.oceands.components.OceanSnackBar
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.OceanTooltip
+import com.skydoves.balloon.ArrowOrientation
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -491,16 +492,15 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickTooltip(view: View) {
         val message = getString(R.string.message)
-        val tooltip = OceanTooltip(
-            context = this
-        ).withMessage(message)
+        val tooltip = OceanTooltip(context = this)
+            .withMessage(message)
             .withClick {
                 Toast.makeText(this, "Select Tooltip", Toast.LENGTH_LONG).show()
             }
+            .withAutoDismissDuration(1000)
             .build()
 
-        tooltip.show(binding.tooltip)
-        tooltip.dismissWithDelay(1000)
+        tooltip.showAlignTop(binding.tooltip)
     }
 
     fun onFooterBlu(view: View) {

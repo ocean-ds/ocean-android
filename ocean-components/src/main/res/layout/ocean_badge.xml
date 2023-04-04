@@ -7,7 +7,7 @@
 
         <import type="android.view.View" />
 
-            <import type="br.com.useblu.oceands.model.OceanBadgeType" />
+        <import type="br.com.useblu.oceands.model.OceanBadgeType" />
 
         <variable
             name="text"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_family_base_extrabold"
             android:gravity="center"
-            android:textColor="@color/ocean_color_interface_light_pure"
+            android:textColor="@{type != OceanBadgeType.PRIMARY_INVERTED ? @color/ocean_color_interface_light_pure : @color/ocean_color_brand_primary_pure}"
             android:textSize="@dimen/ocean_font_size_xxxs"
             android:textStyle="bold"
             android:visibility="@{visible &amp; !isSmall &amp; text != null ? View.VISIBLE : View.GONE}"
@@ -48,7 +48,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="1"
-            tools:background="@drawable/ocean_badge_default"/>
+            tools:textColor="@color/ocean_color_interface_light_pure"
+            tools:background="@drawable/ocean_badge_highlight"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/badgeSmall"
@@ -56,7 +57,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_family_base_extrabold"
             android:gravity="center"
-            android:textColor="@color/ocean_color_interface_light_pure"
+            android:textColor="@{type != OceanBadgeType.PRIMARY_INVERTED ? @color/ocean_color_interface_light_pure : @color/ocean_color_brand_primary_pure}"
             android:textSize="10sp"
             android:textStyle="bold"
             android:visibility="@{visible &amp; isSmall &amp; text != null ? View.VISIBLE : View.GONE}"
@@ -66,7 +67,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Badge" />
+            tools:text="1"
+            tools:textColor="@color/ocean_color_interface_light_pure"
+            tools:background="@drawable/ocean_badge_highlight"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/badgeNone"
@@ -83,7 +86,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Badge" />
+            tools:textColor="@color/ocean_color_interface_light_pure"
+            tools:background="@drawable/ocean_badge_highlight" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/badgeNoneSmall"
@@ -100,7 +104,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Badge" />
+            tools:textColor="@color/ocean_color_interface_light_pure"
+            tools:background="@drawable/ocean_badge_highlight" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

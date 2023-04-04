@@ -22,12 +22,12 @@ fun setBadgeText(textView: AppCompatTextView, badgeText: String?) {
 @BindingAdapter("badge_type")
 fun setBadgeType(textView: AppCompatTextView, badgeType: OceanBadgeType?) {
     val background = when (badgeType) {
-        OceanBadgeType.DEFAULT -> R.drawable.ocean_badge_default
-        OceanBadgeType.BRAND_DEFAULT -> R.drawable.ocean_badge_brand_default
-        OceanBadgeType.COMPLEMENTARY -> R.drawable.ocean_badge_complementary
-        OceanBadgeType.ALERT -> R.drawable.ocean_badge_alert
-        OceanBadgeType.NEUTRAL -> R.drawable.ocean_badge_neutral
-        else -> R.drawable.ocean_badge_default
+        OceanBadgeType.HIGHLIGHT -> R.drawable.ocean_badge_highlight
+        OceanBadgeType.PRIMARY -> R.drawable.ocean_badge_primary
+        OceanBadgeType.PRIMARY_INVERTED -> R.drawable.ocean_badge_primary_inverted
+        OceanBadgeType.WARNING -> R.drawable.ocean_badge_warning
+        OceanBadgeType.DISABLED -> R.drawable.ocean_badge_disabled
+        null -> R.drawable.ocean_badge_highlight
     }
     textView.background = ContextCompat.getDrawable(textView.context, background)
 }

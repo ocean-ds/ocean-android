@@ -157,7 +157,7 @@
                 layout="@layout/ocean_badge"
                 app:text="@{`Badge`}"
                 app:visible="@{true}"
-                app:type="@{OceanBadgeType.BRAND_DEFAULT}"/>
+                app:type="@{OceanBadgeType.PRIMARY}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -173,7 +173,7 @@
                 layout="@layout/ocean_badge"
                 app:text="@{`Badge`}"
                 app:visible="@{true}"
-                app:type="@{OceanBadgeType.COMPLEMENTARY}"/>
+                app:type="@{OceanBadgeType.PRIMARY_INVERTED}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -189,7 +189,7 @@
                 layout="@layout/ocean_badge"
                 app:text="@{`Badge`}"
                 app:visible="@{true}"
-                app:type="@{OceanBadgeType.ALERT}"/>
+                app:type="@{OceanBadgeType.WARNING}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -207,7 +207,7 @@
                 layout="@layout/ocean_badge"
                 app:text="@{`Badge`}"
                 app:visible="@{true}"
-                app:type="@{OceanBadgeType.NEUTRAL}"/>
+                app:type="@{OceanBadgeType.DISABLED}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

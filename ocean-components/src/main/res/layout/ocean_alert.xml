@@ -25,6 +25,10 @@
             name="icon"
             type="android.graphics.drawable.Drawable" />
 
+        <variable
+            name="iconToken"
+            type="String" />
+
     </data>
 
     <LinearLayout
@@ -51,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/ocean_spacing_inline_xxs"
                 app:ocean_alert_icon="@{icon}"
+                app:ocean_alert_icon_token="@{iconToken}"
                 app:ocean_alert_src="@{type}"
                 tools:src="@drawable/icon_generic"
                 tools:tint="@color/ocean_color_interface_dark_pure" />
@@ -82,6 +87,7 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/ocean_spacing_inline_xxs"
                 app:ocean_alert_icon="@{icon}"
+                app:ocean_alert_icon_token="@{iconToken}"
                 app:ocean_alert_src="@{type}"
                 app:ocean_visible_or_gone="@{title == null || shortText}"
                 tools:src="@drawable/icon_generic"

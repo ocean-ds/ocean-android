@@ -32,7 +32,7 @@
                 layout="@layout/ocean_alert"
                 app:title="@{@string/custom_icon}"
                 app:text="@{@string/custom_icon}"
-                app:icon="@{@drawable/icon_phone}"
+                app:iconToken="@{`appareloutline`}"
                 app:type="@{OceanAlertType.Information}" />
 
             <Space

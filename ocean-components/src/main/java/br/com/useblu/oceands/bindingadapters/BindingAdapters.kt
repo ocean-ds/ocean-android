@@ -263,9 +263,11 @@ fun setOceanBackground(layout: LinearLayout, type: OceanAlertType?) {
     }
 }
 
-@BindingAdapter("ocean_alert_src", "ocean_alert_icon")
-fun setOceanSrc(imageView: ImageView, type: OceanAlertType?, icon: Drawable?) {
-    if (icon != null) {
+@BindingAdapter("ocean_alert_src", "ocean_alert_icon", "ocean_alert_icon_token")
+fun setOceanSrc(imageView: ImageView, type: OceanAlertType?, icon: Drawable?, token: String?) {
+    if (token != null) {
+        loadIconByToken(imageView, token, type)
+    } else if (icon != null) {
         imageView.setImageDrawable(icon)
     } else {
         when (type) {
@@ -290,6 +292,24 @@ fun setOceanSrc(imageView: ImageView, type: OceanAlertType?, icon: Drawable?) {
             }
         }
     }
+}
+
+private fun loadIconByToken(
+    imageView: ImageView,
+    token: String,
+    type: OceanAlertType?
+) {
+    val icon = AppCompatResources.getDrawable(imageView.context, token.toOceanIcon())
+    imageView.setColorFilter(ContextCompat.getColor(imageView.context, getColor(type)))
+    imageView.setImageDrawable(icon)
+}
+
+fun getColor(type: OceanAlertType?) = when (type) {
+    OceanAlertType.Information -> R.color.ocean_color_brand_primary_down
+    OceanAlertType.Error -> R.color.ocean_color_status_negative_pure
+    OceanAlertType.Success -> R.color.ocean_color_status_positive_pure
+    OceanAlertType.Warning -> R.color.ocean_color_status_neutral_pure
+    else -> R.color.ocean_color_interface_dark_down
 }
 
 @BindingAdapter("ocean_alert_text_color")

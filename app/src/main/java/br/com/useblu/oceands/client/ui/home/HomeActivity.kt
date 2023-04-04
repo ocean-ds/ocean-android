@@ -54,7 +54,6 @@ import br.com.useblu.oceands.components.OceanDatePickerFullscreen
 import br.com.useblu.oceands.components.OceanSnackBar
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.OceanTooltip
-import com.skydoves.balloon.ArrowOrientation
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

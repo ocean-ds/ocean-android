@@ -27,6 +27,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     private var adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>? = null
     private var manager: FragmentManager? = null
     private var limit: Int? = null
+    private var bodyIcon: Drawable? = null
     private var buttonText: String? = null
     private var buttonIcon: Drawable? = null
     private var buttonClick: (() -> Unit)? = null
@@ -48,6 +49,10 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         binding.lifecycleOwner = this
 
         binding.title = title
+
+        bodyIcon?.let {
+            binding.bodyIcon = it
+        }
 
         buttonText?.let {
             binding.bottomSheetListButtonPrimary.text = it
@@ -188,6 +193,11 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
 
     fun withCaption(caption: String): OceanBottomListSheet {
         this.caption = caption
+        return this
+    }
+
+    fun withBodyIcon(icon: Drawable?): OceanBottomListSheet {
+        this.bodyIcon = icon
         return this
     }
 }

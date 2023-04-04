@@ -112,8 +112,17 @@
                 android:layout_height="@dimen/ocean_spacing_stack_xxs" />
 
             <include
-                android:id="@+id/bottom_sheet_list_button"
+                android:id="@+id/bottom_sheet_list_button_secondary"
                 layout="@layout/ocean_button_secondary_md"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:showProgress="@{loading}"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/bottom_sheet_list_button_primary"
+                layout="@layout/ocean_button_primary_md"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"

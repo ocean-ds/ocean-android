@@ -31,6 +31,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     private var buttonIcon: Drawable? = null
     private var buttonClick: (() -> Unit)? = null
     private var buttonLoading : LiveData<Boolean>? = null
+    private var useSecondaryButtonStyle: Boolean = false
     private var caption: String? = null
 
     private lateinit var binding: OceanBottomListSheetBinding
@@ -49,19 +50,27 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         binding.title = title
 
         buttonText?.let {
-            binding.bottomSheetListButton.text = it
+            binding.bottomSheetListButtonPrimary.text = it
+            binding.bottomSheetListButtonSecondary.text = it
         }
 
         buttonIcon?.let {
-            binding.bottomSheetListButton.icon = it
+            binding.bottomSheetListButtonPrimary.icon = it
+            binding.bottomSheetListButtonSecondary.icon = it
         }
 
         buttonClick?.let{
-            binding.bottomSheetListButton.click = it
+            binding.bottomSheetListButtonPrimary.click = it
+            binding.bottomSheetListButtonSecondary.click = it
         }
 
         buttonLoading?.let {
             binding.loading = it
+        }
+
+        if (useSecondaryButtonStyle) {
+            binding.bottomSheetListButtonPrimary.root.visibility = View.GONE
+            binding.bottomSheetListButtonSecondary.root.visibility = View.VISIBLE
         }
 
         binding.caption = caption
@@ -120,6 +129,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         icon: Drawable? = null,
         loading: LiveData<Boolean>? = null,
         click: () -> Unit,
+        useSecondaryStyle: Boolean = false
     ): OceanBottomListSheet {
         this.buttonText = text
         this.buttonIcon = icon
@@ -128,6 +138,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
             dismiss()
         }
         this.buttonLoading = loading
+        this.useSecondaryButtonStyle = useSecondaryStyle
         return this
     }
 

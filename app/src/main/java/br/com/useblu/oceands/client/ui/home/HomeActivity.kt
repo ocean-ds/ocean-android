@@ -28,7 +28,6 @@ import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.orderedlistitem.OrderedListItemActivity
-import br.com.useblu.oceands.client.ui.unorderedlistitem.UnorderedListItemActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
 import br.com.useblu.oceands.client.ui.settingslistitem.SettingsListItemActivity
 import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
@@ -47,18 +46,12 @@ import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivity
 import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
-import br.com.useblu.oceands.components.OceanBottomListSheet
-import br.com.useblu.oceands.components.OceanBottomListSheetUIModel
-import br.com.useblu.oceands.components.OceanBottomSheet
-import br.com.useblu.oceands.components.OceanDatePickerFullscreen
-import br.com.useblu.oceands.components.OceanSnackBar
-import br.com.useblu.oceands.components.OceanToast
-import br.com.useblu.oceands.components.OceanTooltip
+import br.com.useblu.oceands.client.ui.unorderedlistitem.UnorderedListItemActivity
+import br.com.useblu.oceands.components.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.Calendar
-import java.util.Date
+import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -291,6 +284,24 @@ class HomeActivity : AppCompatActivity() {
     fun onOceanBottomListSheet(view: View) {
         val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
         OceanBottomListSheet(this)
+            .withTitle("Title")
+            .withSimpleList(
+                items = options,
+                selectedPosition = 1,
+                onItemSelect = {
+                    Toast.makeText(
+                        this,
+                        "O Item selecionado foi \"${options[it]}\"",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            ).show()
+    }
+
+    fun onOceanBottomListSheetWithBodyIcon(view: View) {
+        val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+        OceanBottomListSheet(this)
+            .withBodyIcon(getDrawable(R.drawable.ocean_icon_retailer_outline))
             .withTitle("Title")
             .withSimpleList(
                 items = options,

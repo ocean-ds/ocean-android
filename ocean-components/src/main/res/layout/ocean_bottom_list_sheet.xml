@@ -12,6 +12,8 @@
 
         <import type="androidx.lifecycle.LiveData" />
 
+        <import type="android.graphics.drawable.Drawable" />
+
         <variable
             name="title"
             type="String" />
@@ -31,6 +33,10 @@
         <variable
             name="caption"
             type="String" />
+
+        <variable
+            name="bodyIcon"
+            type="Drawable" />
 
     </data>
 
@@ -56,9 +62,28 @@
             app:ocean_visible_or_gone="@{cancelabled}" />
 
         <Space
+            android:id="@+id/space1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ocean_spacing_stack_xxxs" />
+
+        <Space
+            android:id="@+id/space4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ocean_spacing_stack_sm"
+            app:ocean_visible_or_gone="@{bodyIcon != null}" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@{bodyIcon}"
+            tools:src="@drawable/icon_generic" />
+
+        <Space
             android:id="@+id/space2"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_md" />
+            android:layout_height="@dimen/ocean_spacing_stack_sm" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textTitle"

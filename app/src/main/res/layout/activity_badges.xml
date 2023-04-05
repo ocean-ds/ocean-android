@@ -145,6 +145,54 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge7_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toEndOf="@id/badge7_1"
+            app:layout_constraintTop_toTopOf="@id/badge7_1">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`7`}"
+                app:visible="@{true}"
+                app:isSmall="@{true}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge7_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toEndOf="@id/badge7_2"
+            app:layout_constraintTop_toTopOf="@id/badge7_2">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`70`}"
+                app:visible="@{true}"
+                app:isSmall="@{true}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/badge7_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            app:layout_constraintStart_toEndOf="@id/badge7_3"
+            app:layout_constraintTop_toTopOf="@id/badge7_3">
+
+            <include
+                layout="@layout/ocean_badge"
+                app:text="@{`700`}"
+                app:visible="@{true}"
+                app:isSmall="@{true}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/badge8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

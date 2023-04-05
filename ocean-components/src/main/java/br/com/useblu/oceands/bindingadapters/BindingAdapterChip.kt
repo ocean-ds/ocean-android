@@ -8,8 +8,9 @@ import br.com.useblu.oceands.model.OceanBasicChipItem
 @BindingAdapter("chips")
 fun setChipsAdapter(
     recyclerView: RecyclerView,
-    chips: List<OceanBasicChipItem>
+    chips: List<OceanBasicChipItem>?
 ) {
+    chips ?: return
     val adapter = OceanChipListAdapter()
     recyclerView.adapter = adapter.apply {
         submitList(chips)

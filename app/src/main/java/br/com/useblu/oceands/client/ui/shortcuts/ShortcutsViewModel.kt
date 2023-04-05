@@ -47,7 +47,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             icon = "pixoutline",
             label = "Shortcut 1",
             subTitle = "Lorem ipsum dolor sit amet, consectetur.",
-            badgeType = OceanBadgeType.DEFAULT,
+            badgeType = OceanBadgeType.HIGHLIGHT,
             blocked = true,
             action = {
                 println("Shortcut 1 clicked")
@@ -58,7 +58,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             label = "Shortcut 2",
             subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             count = "99+",
-            badgeType = OceanBadgeType.BRAND_DEFAULT,
+            badgeType = OceanBadgeType.PRIMARY,
             action = {
                 println("Shortcut 2 clicked")
             }
@@ -68,7 +68,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             label = "Shortcut 3 with big label",
             subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             count = "3",
-            badgeType = OceanBadgeType.NEUTRAL,
+            badgeType = OceanBadgeType.DISABLED,
             action = {
                 println("Shortcut 3 clicked")
             }
@@ -78,7 +78,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             label = "Shortcut 4",
             subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             count = "1",
-            badgeType = OceanBadgeType.ALERT,
+            badgeType = OceanBadgeType.WARNING,
             action = {
                 println("Shortcut 4 clicked")
             }
@@ -88,7 +88,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             label = "Shortcut 5",
             subTitle = "Lorem ipsum dolor sit amet, consectetur.",
             count = "1",
-            badgeType = OceanBadgeType.COMPLEMENTARY,
+            badgeType = OceanBadgeType.PRIMARY_INVERTED,
             action = {
                 println("Shortcut 5 clicked")
             }

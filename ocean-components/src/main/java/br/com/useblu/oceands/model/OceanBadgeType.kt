@@ -1,5 +1,5 @@
 package br.com.useblu.oceands.model
 
 enum class OceanBadgeType {
-    DEFAULT, BRAND_DEFAULT, COMPLEMENTARY, ALERT, NEUTRAL
+    HIGHLIGHT, PRIMARY, PRIMARY_INVERTED, WARNING, DISABLED
 }

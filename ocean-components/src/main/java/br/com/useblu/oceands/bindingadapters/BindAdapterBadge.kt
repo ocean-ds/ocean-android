@@ -1,15 +1,14 @@
 package br.com.useblu.oceands.bindingadapters
 
-import android.annotation.SuppressLint
-import androidx.appcompat.widget.AppCompatTextView
+import android.view.View
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.model.OceanBadgeType
 
-@SuppressLint("SetTextI18n")
 @BindingAdapter("badge_text")
-fun setBadgeText(textView: AppCompatTextView, badgeText: String?) {
+fun setBadgeText(textView: TextView, badgeText: String?) {
     badgeText?.let { text ->
         text.toIntOrNull()?.let { number ->
             textView.text = if (number > 99) "99+" else number.toString()
@@ -20,14 +19,14 @@ fun setBadgeText(textView: AppCompatTextView, badgeText: String?) {
 }
 
 @BindingAdapter("badge_type")
-fun setBadgeType(textView: AppCompatTextView, badgeType: OceanBadgeType?) {
+fun setBadgeType(view: View, badgeType: OceanBadgeType?) {
     val background = when (badgeType) {
-        OceanBadgeType.DEFAULT -> R.drawable.ocean_badge_default
-        OceanBadgeType.BRAND_DEFAULT -> R.drawable.ocean_badge_brand_default
-        OceanBadgeType.COMPLEMENTARY -> R.drawable.ocean_badge_complementary
-        OceanBadgeType.ALERT -> R.drawable.ocean_badge_alert
-        OceanBadgeType.NEUTRAL -> R.drawable.ocean_badge_neutral
-        else -> R.drawable.ocean_badge_default
+        OceanBadgeType.HIGHLIGHT -> R.drawable.ocean_badge_highlight
+        OceanBadgeType.PRIMARY -> R.drawable.ocean_badge_primary
+        OceanBadgeType.PRIMARY_INVERTED -> R.drawable.ocean_badge_primary_inverted
+        OceanBadgeType.WARNING -> R.drawable.ocean_badge_warning
+        OceanBadgeType.DISABLED -> R.drawable.ocean_badge_disabled
+        null -> R.drawable.ocean_badge_highlight
     }
-    textView.background = ContextCompat.getDrawable(textView.context, background)
+    view.background = ContextCompat.getDrawable(view.context, background)
 }

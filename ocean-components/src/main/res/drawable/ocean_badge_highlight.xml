@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <corners android:radius="100dp" />
+    <corners android:radius="40dp" />
     <solid android:color="@color/ocean_color_highlight_pure" />
-    <padding
-        android:bottom="3dp"
-        android:left="7dp"
-        android:right="7dp"
-        android:top="3dp" />
 </shape>

@@ -116,7 +116,7 @@
                     layout="@layout/ocean_card_group"
                     app:headerIcon="@{@drawable/icon_generic_primary}"
                     app:badgeText="@{`9`}"
-                    app:badgeType="@{OceanBadgeType.ALERT}"
+                    app:badgeType="@{OceanBadgeType.WARNING}"
                     app:headerTitle="@{`Header`}"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>

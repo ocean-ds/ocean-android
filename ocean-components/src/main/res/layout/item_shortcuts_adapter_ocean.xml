@@ -52,18 +52,17 @@
                     tools:src="@drawable/icon_generic_primary" />
 
                 <include
+                    layout="@layout/ocean_badge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
                     android:layout_marginEnd="@dimen/ocean_spacing_inline_xxs"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:ocean_visible_or_gone="@{item.showBadge}"
-                    layout="@layout/ocean_badge"
                     app:isSmall="@{false}"
                     app:text="@{item.count}"
                     app:type="@{item.badgeType}"
-                    app:visible="@{true}"
+                    app:visible="@{item.showBadge}"
                     tools:visibility="visible" />
 
                 <ImageView

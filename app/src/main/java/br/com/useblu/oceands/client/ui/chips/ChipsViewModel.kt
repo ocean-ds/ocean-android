@@ -1,17 +1,17 @@
 package br.com.useblu.oceands.client.ui.chips
 
 import android.app.Application
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
 import br.com.useblu.oceands.model.Badge
 import br.com.useblu.oceands.model.OceanBadgeType
-import br.com.useblu.oceands.model.OceanBasicChipItem
+import br.com.useblu.oceands.model.OceanBasicChip
+import br.com.useblu.oceands.model.OceanChip
 import br.com.useblu.oceands.model.OceanChipItemState
+import br.com.useblu.oceands.model.OceanFilterChip
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -36,29 +36,33 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
         id = "error",
         label = "Erro"
     )
-    val chipsWithoutIcon = listOf(
-            OceanBasicChipItem(
+    val chipsWithoutIcon: List<OceanChip> = listOf(
+            OceanBasicChip(
                 label = allChip.label,
                 id = allChip.id,
                 action = {
                     println("OceanChipItem 1 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanFilterChip(
+                label = "Filtro",
+                id = "999"
+            ),
+            OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
                 action = {
                     println("OceanChipItem 2 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = overDueChip.label,
                 id = overDueChip.id,
                 action = {
                     println("OceanChipItem 3 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
                 state = OceanChipItemState.DISABLED,
@@ -66,7 +70,7 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                     println("OceanChipItem 4 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
                 state = OceanChipItemState.HOVER,
@@ -76,68 +80,53 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
             )
         )
 
-    val chipsWithIcon = listOf(
-            OceanBasicChipItem(
+    val chipsWithIcon: List<OceanChip> = listOf(
+            OceanBasicChip(
                 label = allChip.label,
                 id = allChip.id,
-                icon = ContextCompat.getDrawable(
-                    getApplication<Application>(),
-                    R.drawable.icon_information
-                ),
+                icon = "informationcircleoutline",
                 action = {
                     println("OceanChipItem 1 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
-                icon = ContextCompat.getDrawable(
-                    getApplication<Application>(),
-                    R.drawable.icon_information
-                ),
+                icon = "informationcircleoutline",
                 action = {
                     println("OceanChipItem 2 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = overDueChip.label,
                 id = overDueChip.id,
-                icon = ContextCompat.getDrawable(
-                    getApplication<Application>(),
-                    R.drawable.icon_information
-                ),
+                icon = "informationcircleoutline",
                 action = {
                     println("OceanChipItem 3 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
                 state = OceanChipItemState.DISABLED,
-                icon = ContextCompat.getDrawable(
-                    getApplication<Application>(),
-                    R.drawable.icon_information
-                ),
+                icon = "informationcircleoutline",
                 action = {
                     println("OceanChipItem 4 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
                 state = OceanChipItemState.HOVER,
-                icon = ContextCompat.getDrawable(
-                    getApplication<Application>(),
-                    R.drawable.icon_information
-                ),
+                icon = "informationcircleoutline",
                 action = {
                     println("OceanChipItem 5 Selected")
                 }
             )
         )
 
-    val chipsWithBadge = listOf(
-            OceanBasicChipItem(
+    val chipsWithBadge: List<OceanChip> = listOf(
+            OceanBasicChip(
                 label = allChip.label,
                 id = allChip.id,
                 badge = Badge(100, OceanBadgeType.HIGHLIGHT),
@@ -145,7 +134,7 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                     println("OceanChipItem 1 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
                 badge = Badge(50, OceanBadgeType.HIGHLIGHT),
@@ -153,7 +142,7 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                     println("OceanChipItem 2 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = overDueChip.label,
                 id = overDueChip.id,
                 badge = Badge(10, OceanBadgeType.PRIMARY),
@@ -161,7 +150,7 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                     println("OceanChipItem 3 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
                 state = OceanChipItemState.DISABLED,
@@ -170,7 +159,7 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                     println("OceanChipItem 4 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
                 state = OceanChipItemState.HOVER,
@@ -181,8 +170,8 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
             )
         )
 
-    private val _chips: MutableLiveData<List<OceanBasicChipItem>> = MutableLiveData()
-    val chips: LiveData<List<OceanBasicChipItem>> = _chips
+    private val _chips: MutableLiveData<List<OceanChip>> = MutableLiveData()
+    val chips: LiveData<List<OceanChip>> = _chips
 
     fun loadData() {
         viewModelScope.launch {

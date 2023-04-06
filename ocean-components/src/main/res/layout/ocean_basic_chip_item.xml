@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="br.com.useblu.oceands.model.OceanBasicChipItem" />
+        <import type="br.com.useblu.oceands.model.OceanBasicChip" />
 
         <import type="br.com.useblu.oceands.model.OceanChipItemState" />
 
@@ -14,7 +14,7 @@
 
         <variable
             name="item"
-            type="br.com.useblu.oceands.model.OceanBasicChipItem" />
+            type="br.com.useblu.oceands.model.OceanBasicChip" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -33,9 +33,9 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_gravity="center"
-            android:src="@{item.icon != null ? item.icon : @drawable/icon_information}"
+            app:ocean_icon="@{item.icon != null ? item.icon : `informationcircleoutline`}"
             android:visibility="@{item.icon != null ? View.VISIBLE : View.GONE}"
-            tools:src="@drawable/icon_information"
+            tools:src="@drawable/ocean_icon_information_circle_outline"
             tools:tint="@color/ocean_color_interface_light_up" />
 
         <TextView

@@ -1,12 +1,25 @@
 package br.com.useblu.oceands.model
 
-import android.graphics.drawable.Drawable
+sealed class OceanChip {
+    abstract val id: String
+    abstract val label: String
+    abstract var state: OceanChipItemState
+    abstract val action: () -> Unit
+}
 
-data class OceanBasicChipItem(
-    val label: String,
-    val id: String,
+data class OceanBasicChip(
+    override val label: String,
+    override val id: String,
     val badge: Badge? = null,
-    val icon: Drawable? = null,
-    var state: OceanChipItemState = OceanChipItemState.DEFAULT,
-    var action: () -> Unit = {}
-)
+    val icon: String? = null,
+    override var state: OceanChipItemState = OceanChipItemState.DEFAULT,
+    override val action: () -> Unit = {}
+): OceanChip()
+
+data class OceanFilterChip(
+    override val label: String,
+    override val id: String,
+    override var state: OceanChipItemState = OceanChipItemState.DEFAULT,
+    override val action: () -> Unit = {},
+    var isOpen: Boolean = false
+): OceanChip()

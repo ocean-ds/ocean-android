@@ -7,11 +7,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
 import br.com.useblu.oceands.model.Badge
+import br.com.useblu.oceands.model.FilterOptionsItem
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
 import br.com.useblu.oceands.model.OceanChip
+import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
+import br.com.useblu.oceands.model.SingleChoice
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -46,7 +49,10 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
             ),
             OceanFilterChip(
                 label = "Filtro",
-                id = "999"
+                id = "999",
+                filterOptions = SingleChoice(
+                    items = listOf(FilterOptionsItem("Teste 1"), FilterOptionsItem("Teste 2"))
+                )
             ),
             OceanBasicChip(
                 label = toDueChip.label,

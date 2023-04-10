@@ -21,5 +21,6 @@ data class OceanFilterChip(
     override val id: String,
     override var state: OceanChipItemState = OceanChipItemState.DEFAULT,
     override val action: () -> Unit = {},
+    val filterOptions: OceanChipFilterOptions,
     var isOpen: Boolean = false
 ): OceanChip()

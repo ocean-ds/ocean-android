@@ -7,26 +7,33 @@
 
         <import type="java.util.List" />
 
-        <import type="br.com.useblu.oceands.model.OceanBasicChip" />
+        <import type="br.com.useblu.oceands.model.OceanChip" />
 
         <variable
             name="chips"
-            type="List&lt;OceanBasicChip>" />
+            type="List&lt;OceanChip>" />
 
     </data>
 
+    <!-- the outer LinearLayout is needed so when including this layout it is possible to add margins without overriding the 64dp height  -->
     <LinearLayout
-        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:gravity="center_vertical">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linear_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:chips="@{chips}"
-            android:orientation="horizontal"
-            tools:listitem="@layout/ocean_basic_chip_item"/>
+            android:layout_height="64dp"
+            android:gravity="center_vertical"
+            tools:ignore="UselessParent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:chips="@{chips}"
+                android:orientation="horizontal"
+                tools:listitem="@layout/ocean_basic_chip_item"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>

@@ -39,6 +39,13 @@
             android:layout_height="wrap_content" />
 
         <include
+            app:chips="@{viewmodel.chipsWithoutIcon}"
+            layout="@layout/ocean_filter_bar"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+            android:layout_height="wrap_content" />
+
+        <include
             android:id="@+id/livedata"
             app:chips="@{viewmodel.chips}"
             layout="@layout/ocean_chip_list"

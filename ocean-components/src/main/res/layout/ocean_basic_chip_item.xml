@@ -17,7 +17,7 @@
             type="br.com.useblu.oceands.model.OceanBasicChip" />
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:id="@+id/chip_list_item_background"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
@@ -61,5 +61,5 @@
             app:text="@{item.badge != null ? Integer.toString(item.badge.text) : @string/empty}"
             app:type="@{item.badge != null ? item.badge.type : OceanBadgeType.HIGHLIGHT}"
             app:visible="@{item.badge != null}" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
 </layout>

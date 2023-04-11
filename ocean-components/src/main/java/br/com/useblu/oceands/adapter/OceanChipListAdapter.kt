@@ -162,11 +162,10 @@ class OceanChipListAdapter
         private fun setupSpinner(spinner: Spinner, chip: OceanFilterChip) {
             val context = spinner.context
 
-            binding.spinner.setSelection(chip.filterOptions.items.indexOfFirst { it.isSelected })
-            
             when (chip.filterOptions) {
                 is SingleChoice -> {
                     spinner.adapter = getSingleChoiceAdapter(context, chip)
+                    binding.spinner.setSelection(chip.filterOptions.items.indexOfFirst { it.isSelected })
 
                     var isInitCall = true
                     binding.spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
@@ -180,6 +179,8 @@ class OceanChipListAdapter
                                 it.isSelected = false
                             }
                             chip.filterOptions.items[position].isSelected = true
+
+                            chip.filterOptions.onCloseOptions(listOf(position))
                         }
 
                         override fun onNothingSelected(p0: AdapterView<*>?) { }
@@ -192,58 +193,11 @@ class OceanChipListAdapter
         }
 
         private fun getMultipleChoiceAdapter(context: Context, chipItem: OceanFilterChip): ArrayAdapter<FilterOptionsItem> {
-            return getSingleChoiceAdapter(context, chipItem)
+            return OceanFilterChipMultipleOptionsAdapter(context, chipItem)
         }
 
         private fun getSingleChoiceAdapter(context: Context, chipItem: OceanFilterChip): ArrayAdapter<FilterOptionsItem> {
-            return object : ArrayAdapter<FilterOptionsItem>(
-                context, 0, chipItem.filterOptions.items
-            ) {
-                override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                    return if (convertView == null) {
-                        val layoutInflater = LayoutInflater.from(context)
-                        val view = OceanChipFilterTextViewBinding.inflate(layoutInflater, parent, false)
-
-                        view.textView.text = chipItem.label
-                        view.textView.setTextColor(getContentColor(chipItem, context))
-
-                        view.root
-                    } else {
-                        convertView
-                    }
-                }
-
-                override fun getDropDownView(
-                    position: Int,
-                    convertView: View?,
-                    parent: ViewGroup
-                ): View {
-                    val item = getItem(position) ?: return View(context)
-
-                    if (convertView != null) return convertView
-
-                    val layoutInflater = LayoutInflater.from(context)
-                    val view = OceanChipOptionItemBinding.inflate(layoutInflater, parent, false)
-
-                    view.textView.text = item.title
-
-                    if (item.isSelected) {
-                        view.textView.setTextColor(
-                            ContextCompat.getColor(
-                                context,
-                                R.color.ocean_color_brand_primary_pure
-                            )
-                        )
-
-                        view.layout.background = ContextCompat.getDrawable(
-                            context,
-                            R.drawable.ocean_filter_selected_item_background
-                        )
-                    }
-
-                    return view.root
-                }
-            }
+            return OceanFilterChipSingleOptionsAdapter(context, chipItem)
         }
     }
 

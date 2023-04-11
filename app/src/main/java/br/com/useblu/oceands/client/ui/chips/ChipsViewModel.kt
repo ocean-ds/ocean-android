@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
 import br.com.useblu.oceands.model.Badge
 import br.com.useblu.oceands.model.FilterOptionsItem
+import br.com.useblu.oceands.model.MultipleChoice
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
 import br.com.useblu.oceands.model.OceanChip
@@ -92,9 +93,20 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 label = "Filtro",
                 id = "999",
                 filterOptions = SingleChoice(
-                    items = listOf(FilterOptionsItem("Teste 1"), FilterOptionsItem("Teste 2", isSelected = true))
+                    items = listOf(FilterOptionsItem("Teste 1"), FilterOptionsItem("Teste 2", isSelected = true)),
+                    onCloseOptions = {}
                 )
             ),
+        OceanFilterChip(
+            label = "Filtro 2",
+            id = "999",
+            filterOptions = MultipleChoice(
+                items = listOf(FilterOptionsItem("Teste 1"), FilterOptionsItem("Teste 2", isSelected = true), FilterOptionsItem("Teste 3", isSelected = true)),
+                primaryButtonLabel = "Ok",
+                secondaryButtonLabel = "Cancelar",
+                onCloseOptions = {}
+            )
+        ),
             OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,

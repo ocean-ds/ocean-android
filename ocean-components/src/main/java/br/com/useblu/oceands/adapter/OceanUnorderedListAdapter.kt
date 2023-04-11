@@ -3,7 +3,6 @@ package br.com.useblu.oceands.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.useblu.oceands.databinding.OceanOrderedListItemBinding
 import br.com.useblu.oceands.databinding.OceanUnorderedListItemBinding
 import br.com.useblu.oceands.model.OceanUnorderedListItem
 
@@ -37,6 +36,8 @@ class OceanUnorderedListAdapter(
             itemBinding.icon = item.icon
             itemBinding.text = item.title
             itemBinding.needsRoundBackground = item.needsRoundBackgroundIcon
+            itemBinding.needTrailingSpacer = item.needTrailingSpacer
+            itemBinding.needLeadingSpacer = item.needLeadingSpacer
         }
     }
 }

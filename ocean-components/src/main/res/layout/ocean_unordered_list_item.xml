@@ -15,6 +15,14 @@
         <variable
             name="needsRoundBackground"
             type="Boolean" />
+
+        <variable
+            name="needTrailingSpacer"
+            type="Boolean" />
+
+        <variable
+            name="needLeadingSpacer"
+            type="Boolean" />
     </data>
 
     <LinearLayout
@@ -23,10 +31,16 @@
         android:orientation="horizontal"
         android:paddingVertical="4dp">
 
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            app:ocean_visible_or_gone="@{needLeadingSpacer != null ? needLeadingSpacer : false}"/>
+
         <LinearLayout
             app:ocean_visible_or_gone="@{needsRoundBackground}"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
             android:gravity="center"
             android:background="@drawable/circle_place_holder"
             tools:visibility="gone">
@@ -57,5 +71,10 @@
             android:layout_height="wrap_content"
             app:ocean_text_from_html="@{text}"
             tools:text="Lorem ipsum "/>
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            app:ocean_visible_or_gone="@{needTrailingSpacer != null ? needTrailingSpacer : false}"/>
     </LinearLayout>
 </layout>

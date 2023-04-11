@@ -12,24 +12,26 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         android:orientation="horizontal"
         android:background="@{isSelected ? @drawable/ocean_list_selected_item_hover : @drawable/ocean_list_item_hover }">
 
-        <TextView
-            android:id="@+id/textOceanParagraph"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/font_family_base_regular"
-            android:lineSpacingMultiplier="@dimen/ocean_line_height_comfy_android"
-            android:maxLines="1"
-            android:paddingTop="@dimen/ocean_spacing_inline_xs"
-            android:paddingBottom="@dimen/ocean_spacing_inline_xs"
-            android:textColor="@{isSelected == true ? @color/ocean_color_brand_primary_pure : @color/ocean_color_interface_dark_down}"
-            android:textSize="@dimen/ocean_font_size_xs"
-            tools:text="Paragraph" />
+            <TextView
+                android:id="@+id/textOceanParagraph"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_family_base_regular"
+                android:lineSpacingMultiplier="@dimen/ocean_line_height_comfy_android"
+                android:maxLines="1"
+                android:paddingTop="@dimen/ocean_spacing_inline_xs"
+                android:paddingBottom="@dimen/ocean_spacing_inline_xs"
+                android:textColor="@{isSelected == true ? @color/ocean_color_brand_primary_pure : @color/ocean_color_interface_dark_down}"
+                android:textSize="@dimen/ocean_font_size_xs"
+                tools:text="Paragraph" />
 
     </LinearLayout>
 

@@ -104,8 +104,6 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/ocean_spacing_stack_xxxs"
-            android:paddingEnd="@dimen/ocean_spacing_stack_xxxs"
             android:clipToPadding="false"
             app:layout_constraintTop_toBottomOf="@id/textTitle"
             tools:paddingStart="@dimen/ocean_spacing_stack_xxxs"

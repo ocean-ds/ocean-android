@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="br.com.useblu.oceands.model.OceanBasicChip" />
-
         <import type="br.com.useblu.oceands.model.OceanChipItemState" />
-
-        <import type="br.com.useblu.oceands.model.OceanChipFilterOptions" />
 
         <variable
             name="item"
@@ -26,29 +22,12 @@
         android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
         tools:background="@drawable/ocean_chip_active">
 
-
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/font_family_base_bold"
-            android:textSize="@dimen/ocean_font_size_xxs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelTextView"
-            app:setFilterOptionsAdapter="@{item.filterOptions}" />
-
-        <TextView
-            android:id="@+id/label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_family_base_bold"
-            android:gravity="center"
-            android:text="@{item.label}"
-            android:textAlignment="center"
-            android:textSize="@dimen/ocean_font_size_xxs"
-            tools:text="Todos"
-            tools:textColor="@color/ocean_color_interface_light_up" />
+            android:gravity="center_vertical"
+            android:background="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/icon"
@@ -58,6 +37,7 @@
             android:layout_gravity="center"
             app:ocean_icon="@{item.isOpen ? `chevronupsolid` : `chevrondownsolid`}"
             tools:src="@drawable/ocean_icon_chevron_down_solid"
-            tools:tint="@color/ocean_color_interface_light_up" />
+            tools:tint="@color/ocean_color_interface_light_up"
+            tools:ignore="ContentDescription" />
     </LinearLayout>
 </layout>

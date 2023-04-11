@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:fontFamily="@font/font_family_base_bold"
+        android:textColor="@color/ocean_color_interface_dark_down"
+        android:textSize="@dimen/ocean_font_size_xxs"
+        tools:text="Spinner item"/>
+</layout>

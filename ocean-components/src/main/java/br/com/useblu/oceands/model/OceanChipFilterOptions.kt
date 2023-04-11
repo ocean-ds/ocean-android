@@ -21,5 +21,5 @@ data class MultipleChoice(
 
 data class FilterOptionsItem(
     val title: String,
-    var isChecked: Boolean = false
+    var isSelected: Boolean = false
 )

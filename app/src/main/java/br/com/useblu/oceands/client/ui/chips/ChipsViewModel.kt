@@ -47,13 +47,6 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                     println("OceanChipItem 1 Selected")
                 }
             ),
-            OceanFilterChip(
-                label = "Filtro",
-                id = "999",
-                filterOptions = SingleChoice(
-                    items = listOf(FilterOptionsItem("Teste 1"), FilterOptionsItem("Teste 2"))
-                )
-            ),
             OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
@@ -94,6 +87,13 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 action = {
                     println("OceanChipItem 1 Selected")
                 }
+            ),
+            OceanFilterChip(
+                label = "Filtro",
+                id = "999",
+                filterOptions = SingleChoice(
+                    items = listOf(FilterOptionsItem("Teste 1"), FilterOptionsItem("Teste 2", isSelected = true))
+                )
             ),
             OceanBasicChip(
                 label = toDueChip.label,

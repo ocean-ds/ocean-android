@@ -5,7 +5,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
@@ -20,6 +22,7 @@ import br.com.useblu.oceands.model.OceanBasicChip
 import br.com.useblu.oceands.model.OceanChip
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
+import br.com.useblu.oceands.model.SingleChoice
 
 class OceanChipListAdapter
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -143,31 +146,48 @@ class OceanChipListAdapter
     inner class OceanFilterChipViewHolder(
         private val binding: OceanFilterChipItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("NotifyDataSetChanged")
         fun bindView(item: OceanFilterChip) {
             val context = binding.root.context
 
             binding.item = item
-
             binding.chipListItemBackground.background = getBackgroundDrawable(item, context)
 
-            binding.spinner.adapter = getSpinnerAdapter(context, item)
+            setupSpinner(binding.spinner, item)
 
             binding.chipListItemBackground.setOnClickListener {
                 binding.spinner.performClick()
             }
         }
 
-        private fun getSpinnerAdapter(context: Context, item: OceanFilterChip): ArrayAdapter<FilterOptionsItem> {
-            val options = item.filterOptions
-            val adapter = if (options is MultipleChoice)  {
-                getMultipleChoiceAdapter(context, item)
-            } else {
-                getSingleChoiceAdapter(context, item)
-            }
+        private fun setupSpinner(spinner: Spinner, chip: OceanFilterChip) {
+            val context = spinner.context
 
-            return adapter.apply {
-                notifyDataSetChanged()
+            binding.spinner.setSelection(chip.filterOptions.items.indexOfFirst { it.isSelected })
+            
+            when (chip.filterOptions) {
+                is SingleChoice -> {
+                    spinner.adapter = getSingleChoiceAdapter(context, chip)
+
+                    var isInitCall = true
+                    binding.spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                            if (isInitCall) {
+                                isInitCall = false
+                                return
+                            }
+
+                            chip.filterOptions.items.forEach {
+                                it.isSelected = false
+                            }
+                            chip.filterOptions.items[position].isSelected = true
+                        }
+
+                        override fun onNothingSelected(p0: AdapterView<*>?) { }
+                    }
+                }
+                is MultipleChoice -> {
+                    spinner.adapter = getMultipleChoiceAdapter(context, chip)
+                }
             }
         }
 
@@ -205,18 +225,20 @@ class OceanChipListAdapter
                     val layoutInflater = LayoutInflater.from(context)
                     val view = OceanChipOptionItemBinding.inflate(layoutInflater, parent, false)
 
-                    view.textView.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.ocean_color_interface_dark_deep
-                        )
-                    )
-
                     view.textView.text = item.title
 
-                    // set selected item style
                     if (item.isSelected) {
+                        view.textView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.ocean_color_brand_primary_pure
+                            )
+                        )
 
+                        view.layout.background = ContextCompat.getDrawable(
+                            context,
+                            R.drawable.ocean_filter_selected_item_background
+                        )
                     }
 
                     return view.root

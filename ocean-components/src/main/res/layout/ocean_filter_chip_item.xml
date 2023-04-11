@@ -18,7 +18,7 @@
         android:clickable="@{item.state != OceanChipItemState.DISABLED}"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="12dp"
+        android:paddingEnd="12dp"
         android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
         tools:background="@drawable/ocean_chip_active">
 
@@ -26,7 +26,10 @@
             android:id="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="12dp"
             android:gravity="center_vertical"
+            android:popupBackground="@drawable/ocean_filter_spinner_background"
+            android:dropDownVerticalOffset="30dp"
             android:background="@android:color/transparent" />
 
         <ImageView

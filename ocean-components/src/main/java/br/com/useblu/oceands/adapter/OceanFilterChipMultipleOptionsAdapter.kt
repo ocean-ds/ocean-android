@@ -31,31 +31,18 @@ internal class OceanFilterChipMultipleOptionsAdapter(
         if (position == count - 1) {
             if (convertView != null) return convertView
 
-            val layoutInflater = LayoutInflater.from(context)
-            val view = OceanChipOptionActionItemBinding.inflate(layoutInflater, parent, false)
-
-            chipItem.filterOptions as OceanChipFilterOptions.MultipleChoice
-            view.buttonPrimary.text = chipItem.filterOptions.primaryButtonLabel
-            view.buttonSecondary.text = chipItem.filterOptions.secondaryButtonLabel
-
-            view.buttonSecondary.click = {
-                closeDropdownCallback(parent)
-            }
-
-            view.buttonPrimary.click = {
-                val selectedIndexes = mutableListOf<Int>()
-                chipItem.filterOptions.items.forEachIndexed { index, filterOptionsItem ->
-                    filterOptionsItem.isSelected = internalItems[index].isSelected
-                    if (filterOptionsItem.isSelected) selectedIndexes.add(index)
-                }
-
-                chipItem.filterOptions.onCloseOptions(selectedIndexes)
-                closeDropdownCallback(parent)
-            }
-
-            return view.root
+            val filterOptions = chipItem.filterOptions as OceanChipFilterOptions.MultipleChoice
+            return setupButtonBar(parent, filterOptions)
         }
 
+        return setupAdapterItem(convertView, parent, position)
+    }
+
+    private fun setupAdapterItem(
+        convertView: View?,
+        parent: ViewGroup,
+        position: Int
+    ): View {
         val viewHolder: ViewHolder
         val viewToReturn: View
         if (convertView == null) {
@@ -87,6 +74,34 @@ internal class OceanFilterChipMultipleOptionsAdapter(
         }
 
         return viewToReturn
+    }
+
+    private fun setupButtonBar(
+        parent: ViewGroup,
+        filterOptions: OceanChipFilterOptions.MultipleChoice
+    ): View {
+        val layoutInflater = LayoutInflater.from(context)
+        val view = OceanChipOptionActionItemBinding.inflate(layoutInflater, parent, false)
+
+        view.buttonPrimary.text = filterOptions.primaryButtonLabel
+        view.buttonSecondary.text = filterOptions.secondaryButtonLabel
+
+        view.buttonSecondary.click = {
+            closeDropdownCallback(parent)
+        }
+
+        view.buttonPrimary.click = {
+            val selectedIndexes = mutableListOf<Int>()
+            filterOptions.items.forEachIndexed { index, filterOptionsItem ->
+                filterOptionsItem.isSelected = internalItems[index].isSelected
+                if (filterOptionsItem.isSelected) selectedIndexes.add(index)
+            }
+
+            filterOptions.onCloseOptions(selectedIndexes)
+            closeDropdownCallback(parent)
+        }
+
+        return view.root
     }
 
     private data class ViewHolder(

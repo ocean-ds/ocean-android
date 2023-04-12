@@ -55,7 +55,7 @@ class OceanChipListAdapter
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
             is OceanBasicChip -> 1
-            else -> 2
+            is OceanFilterChip -> 2
         }
     }
 

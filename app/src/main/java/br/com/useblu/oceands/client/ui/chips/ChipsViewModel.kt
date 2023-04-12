@@ -104,16 +104,32 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                     }
                 )
             ),
+            OceanFilterChip(
+                label = "Filtro 2",
+                id = "999",
+                filterOptions = OceanChipFilterOptions.MultipleChoice(
+                    optionsItems = listOf(
+                        FilterOptionsItem("Teste 1"),
+                        FilterOptionsItem("Teste 2", isSelected = true),
+                        FilterOptionsItem("Teste 3", isSelected = true)
+                    ),
+                    primaryButtonLabel = "Adicionar",
+                    secondaryButtonLabel = "Cancelar",
+                    onPrimaryButtonClick = {
+                        _toastText.postValue("Items selecionados: $it")
+                    }
+                )
+            ),
         OceanFilterChip(
-            label = "Filtro 2",
-            id = "999",
+            label = "Filtro 3",
+            id = "9999",
             filterOptions = OceanChipFilterOptions.MultipleChoice(
                 optionsItems = listOf(
-                    FilterOptionsItem("Teste 1"),
+                    FilterOptionsItem("Teste 123333333333333333333"),
                     FilterOptionsItem("Teste 2", isSelected = true),
                     FilterOptionsItem("Teste 3", isSelected = true)
                 ),
-                primaryButtonLabel = "Ok",
+                primaryButtonLabel = "Okay",
                 secondaryButtonLabel = "Cancelar",
                 onPrimaryButtonClick = {
                     _toastText.postValue("Items selecionados: $it")

@@ -2,16 +2,23 @@ package br.com.useblu.oceands.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.view.KeyEvent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanBasicChipItemBinding
 import br.com.useblu.oceands.databinding.OceanFilterChipItemBinding
+import br.com.useblu.oceands.model.FilterOptionsItem
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
 import br.com.useblu.oceands.model.OceanChip
+import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
 
@@ -149,7 +156,56 @@ class OceanChipListAdapter
 
             binding.item = item
             binding.chipListItemBackground.background = getBackgroundDrawable(item, context)
-            binding.label.setTextColor(getContentColor(item, context))
+
+            setupSpinner(binding.spinner, item)
+
+            binding.chipListItemBackground.setOnClickListener {
+                binding.spinner.performClick()
+            }
+        }
+
+        private fun setupSpinner(spinner: Spinner, chip: OceanFilterChip) {
+            val context = spinner.context
+            when (chip.filterOptions) {
+                is OceanChipFilterOptions.SingleChoice -> {
+                    spinner.adapter = getSingleChoiceAdapter(context, chip)
+                    binding.spinner.setSelection(chip.filterOptions.items.indexOfFirst { it.isSelected })
+
+                    var isInitCall = true
+                    binding.spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                            if (isInitCall) {
+                                isInitCall = false
+                                return
+                            }
+
+                            chip.filterOptions.items.forEach {
+                                it.isSelected = false
+                            }
+                            chip.filterOptions.items[position].isSelected = true
+
+                            chip.filterOptions.onSelectItem(position)
+                        }
+
+                        override fun onNothingSelected(p0: AdapterView<*>?) { }
+                    }
+                }
+                is OceanChipFilterOptions.MultipleChoice -> {
+                    spinner.adapter = getMultipleChoiceAdapter(context, chip) {
+                        val root = it.rootView
+                        root.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK))
+                        root.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK))
+                    }
+                }
+            }
+        }
+
+        private fun getMultipleChoiceAdapter(context: Context, chipItem: OceanFilterChip, closeDropdown: (parent: ViewGroup) -> Unit): ArrayAdapter<FilterOptionsItem> {
+            return OceanFilterChipMultipleOptionsAdapter(context, chipItem, closeDropdown)
+        }
+
+        private fun getSingleChoiceAdapter(context: Context, chipItem: OceanFilterChip): ArrayAdapter<FilterOptionsItem> {
+            return OceanFilterChipSingleOptionsAdapter(context, chipItem)
         }
     }
 

@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.TextView
 import br.com.useblu.oceands.databinding.OceanChipOptionActionItemBinding
 import br.com.useblu.oceands.databinding.OceanChipOptionItemBinding
 import br.com.useblu.oceands.model.OceanChipFilterOptions
@@ -49,7 +47,7 @@ internal class OceanFilterChipMultipleOptionsAdapter(
             val layoutInflater = LayoutInflater.from(context)
             val view = OceanChipOptionItemBinding.inflate(layoutInflater, parent, false)
 
-            viewHolder = ViewHolder(view.textView, view.checkbox)
+            viewHolder = ViewHolder(view.textView, view.checkbox, view.layout)
 
             view.root.setOnClickListener {
                 view.checkbox.performClick()
@@ -103,9 +101,4 @@ internal class OceanFilterChipMultipleOptionsAdapter(
 
         return view.root
     }
-
-    private data class ViewHolder(
-        val textView: TextView,
-        val checkbox: CheckBox
-    )
 }

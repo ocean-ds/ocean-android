@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanChipOptionItemBinding
 import br.com.useblu.oceands.model.OceanFilterChip
 
 internal class OceanFilterChipSingleOptionsAdapter(
     private val context: Context,
-    private val chipItem: OceanFilterChip
+    chipItem: OceanFilterChip
 ): OceanFilterChipBaseOptionsAdapter(context, chipItem) {
     override fun getDropDownView(
         position: Int,
@@ -20,27 +21,46 @@ internal class OceanFilterChipSingleOptionsAdapter(
     ): View {
         val item = getItem(position) ?: return View(context)
 
-        if (convertView != null) return convertView
+        val viewHolder: ViewHolder
+        val viewToReturn: View
 
-        val layoutInflater = LayoutInflater.from(context)
-        val view = OceanChipOptionItemBinding.inflate(layoutInflater, parent, false)
+        if (convertView == null) {
+            val layoutInflater = LayoutInflater.from(context)
+            val view = OceanChipOptionItemBinding.inflate(layoutInflater, parent, false)
+            viewHolder = ViewHolder(view.textView, view.checkbox, view.layout)
+            view.root.tag = viewHolder
+            viewToReturn = view.root
+        } else {
+            viewToReturn = convertView
+            viewHolder = convertView.tag as ViewHolder
+        }
 
-        view.textView.text = item.title
+        viewHolder.textView.text = item.title
+        viewHolder.checkbox.visibility = View.GONE
 
         if (item.isSelected) {
-            view.textView.setTextColor(
+            viewHolder.textView.setTextColor(
                 ContextCompat.getColor(
                     context,
                     R.color.ocean_color_brand_primary_pure
                 )
             )
 
-            view.layout.background = ContextCompat.getDrawable(
+            viewHolder.linearLayout.background = ContextCompat.getDrawable(
                 context,
                 R.drawable.ocean_options_list_selected_item_background
             )
+        } else {
+            viewHolder.textView.setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.ocean_color_interface_dark_down
+                )
+            )
+
+            viewHolder.linearLayout.setBackgroundResource(0)
         }
 
-        return view.root
+        return viewToReturn
     }
 }

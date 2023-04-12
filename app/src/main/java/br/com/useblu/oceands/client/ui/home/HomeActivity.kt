@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
+import br.com.useblu.oceands.adapter.OceanUnorderedListAdapter
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
@@ -48,6 +49,7 @@ import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemAc
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 import br.com.useblu.oceands.client.ui.unorderedlistitem.UnorderedListItemActivity
 import br.com.useblu.oceands.components.*
+import br.com.useblu.oceands.model.OceanUnorderedListItem
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -314,6 +316,35 @@ class HomeActivity : AppCompatActivity() {
                     ).show()
                 }
             ).show()
+    }
+
+    fun onOceanBottomListSheetWithGenericList(view: View) {
+
+        val bottomSheet = OceanBottomListSheet(this)
+
+        val adapter = OceanUnorderedListAdapter(
+            items = listOf(
+                OceanUnorderedListItem(
+                    title = "Item 1",
+                    icon = "chevronrightsolid",
+                    needsRoundBackgroundIcon = true,
+                    needLeadingSpacer = true,
+                    needTrailingSpacer = true,
+                ),
+                OceanUnorderedListItem(
+                    title = "Item 2",
+                    icon = "chevronrightsolid",
+                    needsRoundBackgroundIcon = true,
+                    needLeadingSpacer = true,
+                    needTrailingSpacer = true,
+                ),
+            )
+        )
+
+        bottomSheet.apply {
+            withTitle("Title")
+            withCustomList(adapter)
+        }.show()
     }
 
     fun onOceanBottomListSheetButton(view: View) {

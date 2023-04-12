@@ -2,6 +2,7 @@ package br.com.useblu.oceands.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +13,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanBasicChipItemBinding
-import br.com.useblu.oceands.databinding.OceanChipFilterTextViewBinding
-import br.com.useblu.oceands.databinding.OceanChipOptionItemBinding
 import br.com.useblu.oceands.databinding.OceanFilterChipItemBinding
 import br.com.useblu.oceands.model.FilterOptionsItem
 import br.com.useblu.oceands.model.MultipleChoice
@@ -116,7 +115,7 @@ class OceanChipListAdapter
                 if (item != currentSelectedItem) {
                     unselectCurrent()
                     selectItem(item)
-                    item.action.invoke()
+                    item.onClick.invoke()
 
                     notifyDataSetChanged()
                 }
@@ -161,7 +160,6 @@ class OceanChipListAdapter
 
         private fun setupSpinner(spinner: Spinner, chip: OceanFilterChip) {
             val context = spinner.context
-
             when (chip.filterOptions) {
                 is SingleChoice -> {
                     spinner.adapter = getSingleChoiceAdapter(context, chip)
@@ -187,13 +185,17 @@ class OceanChipListAdapter
                     }
                 }
                 is MultipleChoice -> {
-                    spinner.adapter = getMultipleChoiceAdapter(context, chip)
+                    spinner.adapter = getMultipleChoiceAdapter(context, chip) {
+                        val root = it.rootView
+                        root.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK))
+                        root.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK))
+                    }
                 }
             }
         }
 
-        private fun getMultipleChoiceAdapter(context: Context, chipItem: OceanFilterChip): ArrayAdapter<FilterOptionsItem> {
-            return OceanFilterChipMultipleOptionsAdapter(context, chipItem)
+        private fun getMultipleChoiceAdapter(context: Context, chipItem: OceanFilterChip, closeDropdown: (parent: ViewGroup) -> Unit): ArrayAdapter<FilterOptionsItem> {
+            return OceanFilterChipMultipleOptionsAdapter(context, chipItem, closeDropdown)
         }
 
         private fun getSingleChoiceAdapter(context: Context, chipItem: OceanFilterChip): ArrayAdapter<FilterOptionsItem> {

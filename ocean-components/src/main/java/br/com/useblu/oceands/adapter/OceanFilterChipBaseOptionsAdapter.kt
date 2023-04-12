@@ -17,6 +17,8 @@ internal abstract class OceanFilterChipBaseOptionsAdapter(
     private val context: Context,
     private val chipItem: OceanFilterChip
 ) : ArrayAdapter<FilterOptionsItem>(context, 0, chipItem.filterOptions.items) {
+
+    private val originalItems = chipItem.filterOptions.items.toList()
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         return if (convertView == null) {
             val layoutInflater = LayoutInflater.from(context)

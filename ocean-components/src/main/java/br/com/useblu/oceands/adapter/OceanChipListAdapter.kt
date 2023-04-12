@@ -177,7 +177,7 @@ class OceanChipListAdapter
                             }
                             chip.filterOptions.items[position].isSelected = true
 
-                            chip.filterOptions.onCloseOptions(listOf(position))
+                            chip.filterOptions.onSelectItem(position)
                         }
 
                         override fun onNothingSelected(p0: AdapterView<*>?) { }

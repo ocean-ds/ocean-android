@@ -17,17 +17,17 @@ import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
 
 internal abstract class OceanFilterChipBaseOptionsAdapter(
-    private val context: Context,
+    context: Context,
     private val chipItem: OceanFilterChip
 ) : ArrayAdapter<FilterOptionsItem>(context, 0, chipItem.filterOptions.items) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         return if (convertView == null) {
-            val layoutInflater = LayoutInflater.from(context)
+            val layoutInflater = LayoutInflater.from(parent.context)
             val view = OceanChipFilterTextViewBinding.inflate(layoutInflater, parent, false)
 
             view.textView.text = chipItem.label
-            view.textView.setTextColor(getTextColor(chipItem, context))
+            view.textView.setTextColor(getTextColor(chipItem, parent.context))
 
             view.root
         } else {

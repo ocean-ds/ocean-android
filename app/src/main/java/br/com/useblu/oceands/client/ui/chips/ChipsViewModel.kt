@@ -95,11 +95,11 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 label = "Filtro",
                 id = "999",
                 filterOptions = OceanChipFilterOptions.SingleChoice(
-                    items = listOf(
+                    optionsItems = listOf(
                         FilterOptionsItem("Teste 1"),
                         FilterOptionsItem("Teste 2", isSelected = true)
                     ),
-                    onCloseOptions = {
+                    onSelectItem = {
                         _toastText.postValue("Item selecionado: $it")
                     }
                 )
@@ -108,14 +108,14 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
             label = "Filtro 2",
             id = "999",
             filterOptions = OceanChipFilterOptions.MultipleChoice(
-                items = listOf(
+                optionsItems = listOf(
                     FilterOptionsItem("Teste 1"),
                     FilterOptionsItem("Teste 2", isSelected = true),
                     FilterOptionsItem("Teste 3", isSelected = true)
                 ),
                 primaryButtonLabel = "Ok",
                 secondaryButtonLabel = "Cancelar",
-                onCloseOptions = {
+                onPrimaryButtonClick = {
                     _toastText.postValue("Items selecionados: $it")
                 }
             )

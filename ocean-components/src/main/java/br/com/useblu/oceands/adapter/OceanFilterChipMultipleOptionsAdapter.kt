@@ -10,7 +10,7 @@ import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanFilterChip
 
 internal class OceanFilterChipMultipleOptionsAdapter(
-    private val context: Context,
+    context: Context,
     private val chipItem: OceanFilterChip,
     private val closeDropdownCallback: (parent: ViewGroup) -> Unit
 ): OceanFilterChipBaseOptionsAdapter(context, chipItem) {
@@ -30,7 +30,7 @@ internal class OceanFilterChipMultipleOptionsAdapter(
             if (convertView != null) return convertView
 
             val filterOptions = chipItem.filterOptions as OceanChipFilterOptions.MultipleChoice
-            return setupButtonBar(parent, filterOptions)
+            return setupButtonsBar(parent, filterOptions)
         }
 
         return setupAdapterItem(convertView, parent, position)
@@ -44,7 +44,7 @@ internal class OceanFilterChipMultipleOptionsAdapter(
         val viewHolder: ViewHolder
         val viewToReturn: View
         if (convertView == null) {
-            val layoutInflater = LayoutInflater.from(context)
+            val layoutInflater = LayoutInflater.from(parent.context)
             val view = OceanChipOptionItemBinding.inflate(layoutInflater, parent, false)
 
             viewHolder = ViewHolder(view.textView, view.checkbox, view.layout)
@@ -66,6 +66,9 @@ internal class OceanFilterChipMultipleOptionsAdapter(
 
         viewHolder.checkbox.visibility = View.VISIBLE
         viewHolder.checkbox.isChecked = item.isSelected
+
+        internalItems[position].isSelected = item.isSelected
+
         viewHolder.checkbox.setOnCheckedChangeListener { _, isChecked ->
             val itemToEdit = internalItems[position]
             itemToEdit.isSelected = isChecked
@@ -74,7 +77,7 @@ internal class OceanFilterChipMultipleOptionsAdapter(
         return viewToReturn
     }
 
-    private fun setupButtonBar(
+    private fun setupButtonsBar(
         parent: ViewGroup,
         filterOptions: OceanChipFilterOptions.MultipleChoice
     ): View {
@@ -95,7 +98,7 @@ internal class OceanFilterChipMultipleOptionsAdapter(
                 if (filterOptionsItem.isSelected) selectedIndexes.add(index)
             }
 
-            filterOptions.onCloseOptions(selectedIndexes)
+            filterOptions.onPrimaryButtonClick(selectedIndexes)
             closeDropdownCallback(parent)
         }
 

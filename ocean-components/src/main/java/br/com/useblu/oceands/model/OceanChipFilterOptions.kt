@@ -1,23 +1,22 @@
 package br.com.useblu.oceands.model
 
-sealed class OceanChipFilterOptions {
-    abstract val items: List<FilterOptionsItem>
-    abstract val onCloseOptions: (selectedOptions: List<Int>) -> Unit
-
+sealed class OceanChipFilterOptions(
+    val items: List<FilterOptionsItem>
+) {
     data class SingleChoice(
-        override val items: List<FilterOptionsItem>,
-        override val onCloseOptions: (selectedOptions: List<Int>) -> Unit
-    ): OceanChipFilterOptions()
+        private val optionsItems: List<FilterOptionsItem>,
+        val onSelectItem: (selectedIndex: Int) -> Unit
+    ): OceanChipFilterOptions(optionsItems)
 
     data class MultipleChoice(
-        override val items: List<FilterOptionsItem>,
-        override val onCloseOptions: (selectedOptions: List<Int>) -> Unit,
+        private val optionsItems: List<FilterOptionsItem>,
+        val onPrimaryButtonClick: (selectedIndexes: List<Int>) -> Unit,
         val column: Int = 1,
         val title: String? = null,
         val showSelectAllButton: Boolean = false,
         val primaryButtonLabel: String,
         val secondaryButtonLabel: String
-    ): OceanChipFilterOptions()
+    ): OceanChipFilterOptions(optionsItems)
 }
 
 data class FilterOptionsItem(

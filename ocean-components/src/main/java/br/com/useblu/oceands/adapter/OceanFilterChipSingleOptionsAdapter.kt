@@ -11,7 +11,7 @@ import br.com.useblu.oceands.databinding.OceanChipOptionItemBinding
 import br.com.useblu.oceands.model.OceanFilterChip
 
 internal class OceanFilterChipSingleOptionsAdapter(
-    private val context: Context,
+    context: Context,
     chipItem: OceanFilterChip
 ): OceanFilterChipBaseOptionsAdapter(context, chipItem) {
     override fun getDropDownView(
@@ -19,13 +19,13 @@ internal class OceanFilterChipSingleOptionsAdapter(
         convertView: View?,
         parent: ViewGroup
     ): View {
-        val item = getItem(position) ?: return View(context)
+        val item = getItem(position) ?: return View(parent.context)
 
         val viewHolder: ViewHolder
         val viewToReturn: View
 
         if (convertView == null) {
-            val layoutInflater = LayoutInflater.from(context)
+            val layoutInflater = LayoutInflater.from(parent.context)
             val view = OceanChipOptionItemBinding.inflate(layoutInflater, parent, false)
             viewHolder = ViewHolder(view.textView, view.checkbox, view.layout)
             view.root.tag = viewHolder
@@ -41,19 +41,19 @@ internal class OceanFilterChipSingleOptionsAdapter(
         if (item.isSelected) {
             viewHolder.textView.setTextColor(
                 ContextCompat.getColor(
-                    context,
+                    parent.context,
                     R.color.ocean_color_brand_primary_pure
                 )
             )
 
             viewHolder.linearLayout.background = ContextCompat.getDrawable(
-                context,
+                parent.context,
                 R.drawable.ocean_options_list_selected_item_background
             )
         } else {
             viewHolder.textView.setTextColor(
                 ContextCompat.getColor(
-                    context,
+                    parent.context,
                     R.color.ocean_color_interface_dark_down
                 )
             )

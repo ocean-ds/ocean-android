@@ -8,7 +8,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import br.com.useblu.oceands.databinding.OceanChipOptionActionItemBinding
 import br.com.useblu.oceands.databinding.OceanChipOptionItemBinding
-import br.com.useblu.oceands.model.MultipleChoice
+import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanFilterChip
 
 internal class OceanFilterChipMultipleOptionsAdapter(
@@ -34,7 +34,7 @@ internal class OceanFilterChipMultipleOptionsAdapter(
             val layoutInflater = LayoutInflater.from(context)
             val view = OceanChipOptionActionItemBinding.inflate(layoutInflater, parent, false)
 
-            chipItem.filterOptions as MultipleChoice
+            chipItem.filterOptions as OceanChipFilterOptions.MultipleChoice
             view.buttonPrimary.text = chipItem.filterOptions.primaryButtonLabel
             view.buttonSecondary.text = chipItem.filterOptions.secondaryButtonLabel
 

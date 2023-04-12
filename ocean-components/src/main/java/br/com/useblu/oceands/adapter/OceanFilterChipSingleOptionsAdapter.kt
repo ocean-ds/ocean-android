@@ -37,7 +37,7 @@ internal class OceanFilterChipSingleOptionsAdapter(
 
             view.layout.background = ContextCompat.getDrawable(
                 context,
-                R.drawable.ocean_filter_selected_item_background
+                R.drawable.ocean_options_list_selected_item_background
             )
         }
 

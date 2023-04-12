@@ -83,7 +83,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/label" />
 
-            <Spinner
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
@@ -97,8 +97,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/labelTextView"
                 app:limit="@{limit}"
-                app:setAdapterBottomSheet="@{hasBottomSheetBehavior ? entries : null}"
-                app:setAdapterSpinner="@{!hasBottomSheetBehavior ? entries : null }"
+                app:setAdapterBottomSheet="@{ hasBottomSheetBehavior ? entries : null}"
+                app:setAdapterSpinner="@{ !hasBottomSheetBehavior ? entries : null }"
                 app:title="@{title}"
                 app:spinnerSetDisabled="@{disabled}"
                 app:valueSelected="@{setSelected}"

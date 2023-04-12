@@ -1,7 +1,6 @@
 package br.com.useblu.oceands.client.ui.chips
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,13 +8,12 @@ import androidx.lifecycle.viewModelScope
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
 import br.com.useblu.oceands.model.Badge
 import br.com.useblu.oceands.model.FilterOptionsItem
-import br.com.useblu.oceands.model.MultipleChoice
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
 import br.com.useblu.oceands.model.OceanChip
+import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
-import br.com.useblu.oceands.model.SingleChoice
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -96,8 +94,11 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
             OceanFilterChip(
                 label = "Filtro",
                 id = "999",
-                filterOptions = SingleChoice(
-                    items = listOf(FilterOptionsItem("Teste 1"), FilterOptionsItem("Teste 2", isSelected = true)),
+                filterOptions = OceanChipFilterOptions.SingleChoice(
+                    items = listOf(
+                        FilterOptionsItem("Teste 1"),
+                        FilterOptionsItem("Teste 2", isSelected = true)
+                    ),
                     onCloseOptions = {
                         _toastText.postValue("Item selecionado: $it")
                     }
@@ -106,8 +107,12 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
         OceanFilterChip(
             label = "Filtro 2",
             id = "999",
-            filterOptions = MultipleChoice(
-                items = listOf(FilterOptionsItem("Teste 1"), FilterOptionsItem("Teste 2", isSelected = true), FilterOptionsItem("Teste 3", isSelected = true)),
+            filterOptions = OceanChipFilterOptions.MultipleChoice(
+                items = listOf(
+                    FilterOptionsItem("Teste 1"),
+                    FilterOptionsItem("Teste 2", isSelected = true),
+                    FilterOptionsItem("Teste 3", isSelected = true)
+                ),
                 primaryButtonLabel = "Ok",
                 secondaryButtonLabel = "Cancelar",
                 onCloseOptions = {

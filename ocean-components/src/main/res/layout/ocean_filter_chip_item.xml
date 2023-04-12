@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="12dp"
             android:gravity="center_vertical"
-            android:popupBackground="@drawable/ocean_filter_spinner_background"
+            android:popupBackground="@drawable/ocean_filter_spinner_dropdown_background"
             android:dropDownVerticalOffset="30dp"
             android:background="@android:color/transparent" />
 

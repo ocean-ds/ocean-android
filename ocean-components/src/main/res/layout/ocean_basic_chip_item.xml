@@ -33,7 +33,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_gravity="center"
-            app:ocean_icon="@{item.icon != null ? item.icon : `informationcircleoutline`}"
+            app:ocean_icon="@{item.icon ?? `informationcircleoutline`}"
             android:visibility="@{item.icon != null ? View.VISIBLE : View.GONE}"
             tools:src="@drawable/ocean_icon_information_circle_outline"
             tools:tint="@color/ocean_color_interface_light_up" />

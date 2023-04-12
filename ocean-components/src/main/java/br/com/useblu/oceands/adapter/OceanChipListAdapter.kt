@@ -15,13 +15,12 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanBasicChipItemBinding
 import br.com.useblu.oceands.databinding.OceanFilterChipItemBinding
 import br.com.useblu.oceands.model.FilterOptionsItem
-import br.com.useblu.oceands.model.MultipleChoice
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
 import br.com.useblu.oceands.model.OceanChip
+import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
-import br.com.useblu.oceands.model.SingleChoice
 
 class OceanChipListAdapter
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -161,7 +160,7 @@ class OceanChipListAdapter
         private fun setupSpinner(spinner: Spinner, chip: OceanFilterChip) {
             val context = spinner.context
             when (chip.filterOptions) {
-                is SingleChoice -> {
+                is OceanChipFilterOptions.SingleChoice -> {
                     spinner.adapter = getSingleChoiceAdapter(context, chip)
                     binding.spinner.setSelection(chip.filterOptions.items.indexOfFirst { it.isSelected })
 
@@ -184,7 +183,7 @@ class OceanChipListAdapter
                         override fun onNothingSelected(p0: AdapterView<*>?) { }
                     }
                 }
-                is MultipleChoice -> {
+                is OceanChipFilterOptions.MultipleChoice -> {
                     spinner.adapter = getMultipleChoiceAdapter(context, chip) {
                         val root = it.rootView
                         root.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK))

@@ -5,8 +5,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout"
-        android:layout_width="wrap_content"
-        android:minWidth="185dp"
+        android:layout_width="match_parent"
+        android:minWidth="225dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -17,25 +17,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <include
-            android:id="@+id/button_secondary"
-            layout="@layout/ocean_button_secondary_sm"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_margin="16dp" />
-
-        <include
-            android:id="@+id/button_primary"
-            layout="@layout/ocean_button_primary_sm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="16dp" />
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingVertical="16dp">
+
+            <include
+                android:id="@+id/button_secondary"
+                layout="@layout/ocean_button_secondary_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/button_primary"
+                layout="@layout/ocean_button_primary_sm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

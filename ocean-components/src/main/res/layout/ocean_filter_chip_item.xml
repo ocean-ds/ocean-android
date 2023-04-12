@@ -18,18 +18,21 @@
         android:clickable="@{item.state != OceanChipItemState.DISABLED}"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingEnd="12dp"
+        android:paddingHorizontal="12dp"
         android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
         tools:background="@drawable/ocean_chip_active">
 
-        <Spinner
-            android:id="@+id/spinner"
+        <TextView
+            android:id="@+id/label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="12dp"
+            android:fontFamily="@font/font_family_base_bold"
+            android:text="@{item.label}"
+            android:textAlignment="center"
+            android:textSize="@dimen/ocean_font_size_xxs"
+            tools:text="Todos"
+            tools:textColor="@color/ocean_color_interface_light_up"
             android:gravity="center_vertical"
-            android:popupBackground="@drawable/ocean_filter_spinner_dropdown_background"
-            android:dropDownVerticalOffset="30dp"
             android:background="@android:color/transparent" />
 
         <ImageView

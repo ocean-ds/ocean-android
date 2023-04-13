@@ -23,12 +23,10 @@ fun setCustomBehavior(expansionLayout: ExpansionLayout, setCustomBehavior: Boole
     val textviewHeaderLabel = expansionHeader.findViewById<TextView>(R.id.text_view_header_label)
     val textviewHeaderValue = expansionHeader.findViewById<TextView>(R.id.text_view_header_value)
     val textViewHeaderTitle = expansionHeader.findViewById<TextView>(R.id.text_view_header_title)
-    val textViewHeaderOtherMachinesLabel =
-        expansionHeader.findViewById<TextView>(R.id.text_view_header_label_other_machines)
-    val textViewHeaderOtherMachinesValue =
-        expansionHeader.findViewById<TextView>(R.id.text_view_header_other_machines_value)
+    val textViewSummaryExternalBalanceLabel = expansionHeader.findViewById<TextView>(R.id.text_view_summary_external_balance_label)
+    val textViewSummaryExternalBalanceValue = expansionHeader.findViewById<TextView>(R.id.text_view_summary_external_balance_value)
     val headerIndicator = expansionHeader.findViewById<ImageView>(R.id.header_indicator)
-    val buttonOtherMachines = expansionHeader.findViewById<View>(R.id.button_other_machines)
+    val buttonExternalBalance = expansionHeader.findViewById<View>(R.id.button_external_balance_button)
     val containerDivider = expansionHeader.findViewById<View>(R.id.container_divider)
     val shadow = linearLayout.findViewById<View>(R.id.shadow)
 
@@ -45,9 +43,9 @@ fun setCustomBehavior(expansionLayout: ExpansionLayout, setCustomBehavior: Boole
                 ), android.graphics.PorterDuff.Mode.SRC_IN
             )
 
-            textViewHeaderOtherMachinesLabel.animateFadeOut()
-            textViewHeaderOtherMachinesValue.animateFadeOut()
-            buttonOtherMachines.animateFadeOut()
+            textViewSummaryExternalBalanceLabel.animateFadeOut()
+            textViewSummaryExternalBalanceValue.animateFadeOut()
+            buttonExternalBalance.animateFadeOut()
             containerDivider.animateFadeOut()
             shadow.animateFadeOut()
 
@@ -63,9 +61,9 @@ fun setCustomBehavior(expansionLayout: ExpansionLayout, setCustomBehavior: Boole
                 ), android.graphics.PorterDuff.Mode.SRC_IN
             )
 
-            textViewHeaderOtherMachinesLabel.animateFadeIn()
-            textViewHeaderOtherMachinesValue.animateFadeIn()
-            buttonOtherMachines.animateFadeIn()
+            textViewSummaryExternalBalanceLabel.animateFadeIn()
+            textViewSummaryExternalBalanceValue.animateFadeIn()
+            buttonExternalBalance.animateFadeIn()
             containerDivider.animateFadeIn()
             shadow.animateFadeIn()
         }

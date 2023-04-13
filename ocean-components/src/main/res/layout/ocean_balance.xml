@@ -124,7 +124,7 @@
                     android:padding="@dimen/ocean_spacing_stack_xs">
 
                     <TextView
-                        android:id="@+id/text_view_header_label_other_machines"
+                        android:id="@+id/text_view_summary_external_balance_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -179,27 +179,27 @@
                         tools:text="First value" />
 
                     <TextView
-                        android:id="@+id/text_view_header_other_machines_value"
+                        android:id="@+id/text_view_summary_external_balance_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/font_family_base_bold"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xxs"
-                        app:layout_constraintStart_toStartOf="@+id/text_view_header_label_other_machines"
-                        app:layout_constraintTop_toBottomOf="@+id/text_view_header_label_other_machines"
+                        app:layout_constraintStart_toStartOf="@+id/text_view_summary_external_balance_label"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_summary_external_balance_label"
                         app:ocean_text="@{summaryExternalBalanceValue}"
                         app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                         tools:text="First value" />
 
                     <include
-                        android:id="@+id/button_other_machines"
+                        android:id="@+id/button_external_balance_button"
                         layout="@layout/ocean_button_secondary_sm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:click="@{externalBalanceClickButton}"
-                        app:layout_constraintBottom_toBottomOf="@+id/text_view_header_other_machines_value"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_view_summary_external_balance_value"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/text_view_header_label_other_machines"
+                        app:layout_constraintTop_toTopOf="@+id/text_view_summary_external_balance_label"
                         app:text="@{externalBalanceTextButton}" />
 
                     <TextView
@@ -433,7 +433,7 @@
                         app:layout_constraintTop_toBottomOf="@id/text_view_fourth_value" />
 
                     <TextView
-                        android:id="@+id/text_view_title_other_machines"
+                        android:id="@+id/text_view_external_balance_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
@@ -448,7 +448,7 @@
                         tools:text="Title Others Machices" />
 
                     <TextView
-                        android:id="@+id/text_view_other_machines_label"
+                        android:id="@+id/text_view_external_balance_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
@@ -458,23 +458,23 @@
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xs"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/text_view_title_other_machines"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_external_balance_title"
                         app:ocean_visible_or_gone="@{externalBalanceLabel != null &amp;&amp; externalBalanceValue != null}"
                         tools:text="Others Label" />
 
                     <TextView
-                        android:id="@+id/text_view_other_machines_value"
+                        android:id="@+id/text_view_external_balance_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                         android:fontFamily="@font/font_family_base_bold"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xs"
-                        app:layout_constraintBottom_toBottomOf="@id/text_view_other_machines_label"
+                        app:layout_constraintBottom_toBottomOf="@id/text_view_external_balance_label"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1"
-                        app:layout_constraintStart_toEndOf="@id/text_view_other_machines_label"
-                        app:layout_constraintTop_toTopOf="@id/text_view_other_machines_label"
+                        app:layout_constraintStart_toEndOf="@id/text_view_external_balance_label"
+                        app:layout_constraintTop_toTopOf="@id/text_view_external_balance_label"
                         app:ocean_text="@{externalBalanceValue}"
                         app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                         app:ocean_visible_or_gone="@{externalBalanceLabel != null &amp;&amp; externalBalanceValue != null}"

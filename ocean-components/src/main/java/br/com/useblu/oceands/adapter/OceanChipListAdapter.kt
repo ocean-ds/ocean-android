@@ -1,44 +1,82 @@
 package br.com.useblu.oceands.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.databinding.OceanBasicChipListItemBinding
+import br.com.useblu.oceands.databinding.OceanBasicChipItemBinding
+import br.com.useblu.oceands.databinding.OceanFilterChipItemBinding
 import br.com.useblu.oceands.model.OceanBadgeType
-import br.com.useblu.oceands.model.OceanBasicChipItem
+import br.com.useblu.oceands.model.OceanBasicChip
+import br.com.useblu.oceands.model.OceanChip
 import br.com.useblu.oceands.model.OceanChipItemState
+import br.com.useblu.oceands.model.OceanFilterChip
 
 class OceanChipListAdapter
-    : RecyclerView.Adapter<OceanChipListAdapter.OceanChipListViewHolder>() {
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val items = mutableListOf<OceanBasicChipItem>()
+    private val items = mutableListOf<OceanChip>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): OceanChipListAdapter.OceanChipListViewHolder {
-        val itemBinding = OceanBasicChipListItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+    ): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
 
-        return OceanChipListViewHolder(itemBinding)
+        return when (viewType) {
+            ChipViewType.BASIC.value -> {
+                val itemBinding = OceanBasicChipItemBinding.inflate(
+                    inflater,
+                    parent,
+                    false
+                )
+
+                OceanBasicChipViewHolder(itemBinding)
+            }
+
+            ChipViewType.FILTER.value -> {
+                val itemBinding = OceanFilterChipItemBinding.inflate(
+                    inflater,
+                    parent,
+                    false
+                )
+
+                OceanFilterChipViewHolder(itemBinding)
+            }
+            else -> {
+                throw IllegalArgumentException("Invalid view type")
+            }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (items[position]) {
+            is OceanBasicChip -> ChipViewType.BASIC.value
+            is OceanFilterChip -> ChipViewType.FILTER.value
+        }
     }
 
     override fun onBindViewHolder(
-        holder: OceanChipListViewHolder,
+        holder: RecyclerView.ViewHolder,
         position: Int
     ) {
         val item = items[position]
-        holder.bindView(item)
+
+        when (holder) {
+            is OceanBasicChipViewHolder -> {
+                holder.bindView(item as OceanBasicChip)
+            }
+            is OceanFilterChipViewHolder -> {
+                holder.bindView(item as OceanFilterChip)
+            }
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun submitList(chips: List<OceanBasicChipItem>){
+    fun submitList(chips: List<OceanChip>) {
         items.clear()
         items.addAll(chips)
         notifyDataSetChanged()
@@ -46,95 +84,44 @@ class OceanChipListAdapter
 
     override fun getItemCount(): Int = items.size
 
-    inner class OceanChipListViewHolder(
-        private val itemBinding: OceanBasicChipListItemBinding
-    ) : RecyclerView.ViewHolder(itemBinding.root) {
-        private val currentSelectedItem: OceanBasicChipItem?
-            get() = items.find { it.state == OceanChipItemState.ACTIVE }
+    private val currentSelectedItem: OceanChip?
+        get() = items.find { it.state == OceanChipItemState.ACTIVE }
 
+    private fun selectItem(item: OceanChip) {
+        val selectedItem = items.find { it.id == item.id }
+        selectedItem?.state = OceanChipItemState.ACTIVE
+    }
+
+    private fun unselectCurrent() {
+        currentSelectedItem?.state = OceanChipItemState.DEFAULT
+    }
+
+    inner class OceanBasicChipViewHolder(
+        private val binding: OceanBasicChipItemBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("NotifyDataSetChanged")
-        fun bindView(item: OceanBasicChipItem) {
-            itemBinding.item = item
-            setItemBackground(item)
-            setItemTextColor(item)
-            setIconTint(item)
+        fun bindView(item: OceanBasicChip) {
+            val context = binding.root.context
+
+            binding.item = item
             setBadge(item)
-            itemBinding.chipListItemBackground.setOnClickListener {
+            binding.label.setTextColor(getContentColor(item, context))
+            binding.leftIcon.setColorFilter(getContentColor(item, context))
+
+            binding.chipListItemBackground.background = getBackgroundDrawable(item, context)
+
+            binding.chipListItemBackground.setOnClickListener {
                 if (item != currentSelectedItem) {
                     unselectCurrent()
                     selectItem(item)
-                    item.action.invoke()
+                    item.onClick.invoke()
 
                     notifyDataSetChanged()
                 }
             }
         }
 
-        private fun setItemBackground(item: OceanBasicChipItem) {
-            val context = itemBinding.root.context
-            itemBinding.chipListItemBackground.background = when (item.state) {
-                OceanChipItemState.HOVER -> ContextCompat.getDrawable(
-                    context,
-                    R.drawable.ocean_chip_hover
-                )
-                OceanChipItemState.ACTIVE -> ContextCompat.getDrawable(
-                    context,
-                    R.drawable.ocean_chip_active
-                )
-                OceanChipItemState.DEFAULT -> ContextCompat.getDrawable(
-                    context,
-                    R.drawable.ocean_chip_default
-                )
-                OceanChipItemState.DISABLED -> ContextCompat.getDrawable(
-                    context,
-                    R.drawable.ocean_chip_disabled
-                )
-            }
-        }
-
-        private fun setItemTextColor(item: OceanBasicChipItem) {
-            val context = itemBinding.root.context
-            val textColor = when (item.state) {
-                OceanChipItemState.HOVER,
-                OceanChipItemState.ACTIVE -> ContextCompat.getColor(
-                    context,
-                    R.color.ocean_color_interface_light_pure
-                )
-                OceanChipItemState.DISABLED -> ContextCompat.getColor(
-                    context,
-                    R.color.ocean_color_interface_dark_up
-                )
-                OceanChipItemState.DEFAULT -> ContextCompat.getColor(
-                    context,
-                    R.color.ocean_color_brand_primary_pure
-                )
-            }
-
-            itemBinding.label.setTextColor(textColor)
-        }
-
-        private fun setIconTint(item: OceanBasicChipItem) {
-            val context = itemBinding.root.context
-            val iconColor = when (item.state) {
-                OceanChipItemState.HOVER,
-                OceanChipItemState.ACTIVE -> ContextCompat.getColor(
-                    context,
-                    R.color.ocean_color_interface_light_pure
-                )
-                OceanChipItemState.DISABLED -> ContextCompat.getColor(
-                    context,
-                    R.color.ocean_color_interface_dark_up
-                )
-                OceanChipItemState.DEFAULT -> ContextCompat.getColor(
-                    context,
-                    R.color.ocean_color_brand_primary_pure
-                )
-            }
-
-            itemBinding.leftIcon.setColorFilter(iconColor)
-        }
-
-        private fun setBadge(item: OceanBasicChipItem) {
+        private fun setBadge(item: OceanBasicChip) {
             item.badge ?: return
 
             if (item.badge.text <= 0) {
@@ -152,14 +139,63 @@ class OceanChipListAdapter
                 }
             }
         }
+    }
 
-        private fun selectItem(item: OceanBasicChipItem) {
-            val selectedItem = items.find { it.id == item.id }
-            selectedItem?.state = OceanChipItemState.ACTIVE
-        }
+    inner class OceanFilterChipViewHolder(
+        private val binding: OceanFilterChipItemBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bindView(item: OceanFilterChip) {
+            val context = binding.root.context
 
-        private fun unselectCurrent() {
-            currentSelectedItem?.state = OceanChipItemState.DEFAULT
+            binding.item = item
+            binding.chipListItemBackground.background = getBackgroundDrawable(item, context)
+            binding.label.setTextColor(getContentColor(item, context))
         }
+    }
+
+    private fun getContentColor(
+        item: OceanChip,
+        context: Context
+    ) = when (item.state) {
+        OceanChipItemState.HOVER,
+        OceanChipItemState.ACTIVE -> ContextCompat.getColor(
+            context,
+            R.color.ocean_color_interface_light_pure
+        )
+        OceanChipItemState.DISABLED -> ContextCompat.getColor(
+            context,
+            R.color.ocean_color_interface_dark_up
+        )
+        OceanChipItemState.DEFAULT -> ContextCompat.getColor(
+            context,
+            R.color.ocean_color_brand_primary_pure
+        )
+    }
+
+    private fun getBackgroundDrawable(
+        item: OceanChip,
+        context: Context
+    ) = when (item.state) {
+        OceanChipItemState.HOVER -> ContextCompat.getDrawable(
+            context,
+            R.drawable.ocean_chip_hover
+        )
+        OceanChipItemState.ACTIVE -> ContextCompat.getDrawable(
+            context,
+            R.drawable.ocean_chip_active
+        )
+        OceanChipItemState.DEFAULT -> ContextCompat.getDrawable(
+            context,
+            R.drawable.ocean_chip_default
+        )
+        OceanChipItemState.DISABLED -> ContextCompat.getDrawable(
+            context,
+            R.drawable.ocean_chip_disabled
+        )
+    }
+
+    private enum class ChipViewType(val value: Int) {
+        BASIC(1),
+        FILTER(2)
     }
 }

@@ -1,21 +1,27 @@
 package br.com.useblu.oceands.client.ui.chips
 
 import android.app.Application
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
 import br.com.useblu.oceands.model.Badge
+import br.com.useblu.oceands.model.FilterOptionsItem
 import br.com.useblu.oceands.model.OceanBadgeType
-import br.com.useblu.oceands.model.OceanBasicChipItem
+import br.com.useblu.oceands.model.OceanBasicChip
+import br.com.useblu.oceands.model.OceanChip
+import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
+import br.com.useblu.oceands.model.OceanFilterChip
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ChipsViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val _toastText = MutableLiveData<String>()
+    val toastText: LiveData<String> = _toastText
+
     private val allChip = ChipModel(
         id = "all",
         label = "Todos"
@@ -36,153 +42,167 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
         id = "error",
         label = "Erro"
     )
-    val chipsWithoutIcon = listOf(
-            OceanBasicChipItem(
+    val chipsWithoutIcon: List<OceanChip> = listOf(
+            OceanBasicChip(
                 label = allChip.label,
                 id = allChip.id,
-                action = {
+                onClick = {
                     println("OceanChipItem 1 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
-                action = {
+                onClick = {
                     println("OceanChipItem 2 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = overDueChip.label,
                 id = overDueChip.id,
-                action = {
+                onClick = {
                     println("OceanChipItem 3 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
                 state = OceanChipItemState.DISABLED,
-                action = {
+                onClick = {
                     println("OceanChipItem 4 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
                 state = OceanChipItemState.HOVER,
-                action = {
+                onClick = {
                     println("OceanChipItem 5 Selected")
                 }
             )
         )
 
-    val chipsWithIcon = listOf(
-            OceanBasicChipItem(
+    val chipsWithIcon: List<OceanChip> = listOf(
+            OceanBasicChip(
                 label = allChip.label,
                 id = allChip.id,
-                icon = ContextCompat.getDrawable(
-                    getApplication<Application>(),
-                    R.drawable.icon_information
-                ),
-                action = {
+                icon = "informationcircleoutline",
+                onClick = {
                     println("OceanChipItem 1 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanFilterChip(
+                label = "Filtro",
+                id = "999",
+                filterOptions = OceanChipFilterOptions.SingleChoice(
+                    optionsItems = listOf(
+                        FilterOptionsItem("Teste 1"),
+                        FilterOptionsItem("Teste 2", isSelected = true)
+                    ),
+                    onSelectItem = {
+                        _toastText.postValue("Item selecionado: $it")
+                    }
+                )
+            ),
+        OceanFilterChip(
+            label = "Filtro 2",
+            id = "999",
+            filterOptions = OceanChipFilterOptions.MultipleChoice(
+                optionsItems = listOf(
+                    FilterOptionsItem("Teste 1"),
+                    FilterOptionsItem("Teste 2", isSelected = true),
+                    FilterOptionsItem("Teste 3", isSelected = true)
+                ),
+                primaryButtonLabel = "Ok",
+                secondaryButtonLabel = "Cancelar",
+                onPrimaryButtonClick = {
+                    _toastText.postValue("Items selecionados: $it")
+                }
+            )
+        ),
+            OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
-                icon = ContextCompat.getDrawable(
-                    getApplication<Application>(),
-                    R.drawable.icon_information
-                ),
-                action = {
+                icon = "informationcircleoutline",
+                onClick = {
                     println("OceanChipItem 2 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = overDueChip.label,
                 id = overDueChip.id,
-                icon = ContextCompat.getDrawable(
-                    getApplication<Application>(),
-                    R.drawable.icon_information
-                ),
-                action = {
+                icon = "informationcircleoutline",
+                onClick = {
                     println("OceanChipItem 3 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
                 state = OceanChipItemState.DISABLED,
-                icon = ContextCompat.getDrawable(
-                    getApplication<Application>(),
-                    R.drawable.icon_information
-                ),
-                action = {
+                icon = "informationcircleoutline",
+                onClick = {
                     println("OceanChipItem 4 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
                 state = OceanChipItemState.HOVER,
-                icon = ContextCompat.getDrawable(
-                    getApplication<Application>(),
-                    R.drawable.icon_information
-                ),
-                action = {
+                icon = "informationcircleoutline",
+                onClick = {
                     println("OceanChipItem 5 Selected")
                 }
             )
         )
 
-    val chipsWithBadge = listOf(
-            OceanBasicChipItem(
+    val chipsWithBadge: List<OceanChip> = listOf(
+            OceanBasicChip(
                 label = allChip.label,
                 id = allChip.id,
                 badge = Badge(100, OceanBadgeType.HIGHLIGHT),
-                action = {
+                onClick = {
                     println("OceanChipItem 1 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
                 badge = Badge(50, OceanBadgeType.HIGHLIGHT),
-                action = {
+                onClick = {
                     println("OceanChipItem 2 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = overDueChip.label,
                 id = overDueChip.id,
                 badge = Badge(10, OceanBadgeType.PRIMARY),
-                action = {
+                onClick = {
                     println("OceanChipItem 3 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
                 state = OceanChipItemState.DISABLED,
                 badge = Badge(9, OceanBadgeType.WARNING),
-                action = {
+                onClick = {
                     println("OceanChipItem 4 Selected")
                 }
             ),
-            OceanBasicChipItem(
+            OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
                 state = OceanChipItemState.HOVER,
                 badge = Badge(9, OceanBadgeType.WARNING),
-                action = {
+                onClick = {
                     println("OceanChipItem 5 Selected")
                 }
             )
         )
 
-    private val _chips: MutableLiveData<List<OceanBasicChipItem>> = MutableLiveData()
-    val chips: LiveData<List<OceanBasicChipItem>> = _chips
+    private val _chips: MutableLiveData<List<OceanChip>> = MutableLiveData()
+    val chips: LiveData<List<OceanChip>> = _chips
 
     fun loadData() {
         viewModelScope.launch {

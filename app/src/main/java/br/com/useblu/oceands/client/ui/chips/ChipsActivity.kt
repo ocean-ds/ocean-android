@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.client.ui.chips
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -20,5 +21,9 @@ class ChipsActivity : AppCompatActivity() {
         binding.viewmodel = viewModel
 
         viewModel.loadData()
+
+        viewModel.toastText.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
     }
 }

@@ -34,12 +34,12 @@
             app:thirdValue="@{viewmodel.values.get(2)}"
             app:fourthLabel="@{viewmodel.labels.get(3)}"
             app:fourthValue="@{viewmodel.values.get(3)}"
-            app:otherMachinesHeaderLabel="@{`Em outras maquininhas`}"
-            app:otherMachinesHeaderValue="@{`R$ 1.000.000,00`}"
-            app:otherMachinesTitle="@{`Em outras maquininhas`}"
-            app:otherMachinesLabel="@{`Saldo total`}"
-            app:otherMachinesValue="@{`R$ 1.000.000,00`}"
-            app:textButton="@{`como usar`}"
+            app:summaryExternalBalanceLabel="@{`Em outras maquininhas`}"
+            app:summaryExternalBalanceValue="@{`R$ 1.000.000,00`}"
+            app:externalBalanceTitle="@{`Em outras maquininhas`}"
+            app:externalBalanceLabel="@{`Saldo total`}"
+            app:externalBalanceValue="@{`R$ 1.000.000,00`}"
+            app:externalBalanceTextButton="@{`como usar`}"
             app:visibleShadow="@{true}"/>
 
     </LinearLayout>

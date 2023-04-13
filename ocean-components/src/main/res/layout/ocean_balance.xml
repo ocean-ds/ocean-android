@@ -67,31 +67,31 @@
             type="Boolean" />
 
         <variable
-            name="otherMachinesHeaderLabel"
+            name="summaryExternalBalanceLabel"
             type="String" />
 
         <variable
-            name="otherMachinesHeaderValue"
+            name="summaryExternalBalanceValue"
             type="String" />
 
         <variable
-            name="otherMachinesTitle"
+            name="externalBalanceTitle"
             type="String" />
 
         <variable
-            name="otherMachinesLabel"
+            name="externalBalanceLabel"
             type="String" />
 
         <variable
-            name="otherMachinesValue"
+            name="externalBalanceValue"
             type="String" />
 
         <variable
-            name="textButton"
+            name="externalBalanceTextButton"
             type="String" />
 
         <variable
-            name="clickButton"
+            name="externalBalanceClickButton"
             type="Function0&lt;Unit>" />
 
     </data>
@@ -127,10 +127,10 @@
                         android:id="@+id/text_view_header_label_other_machines"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/font_family_base_medium"
-                        android:text="@{otherMachinesHeaderLabel}"
+                        android:text="@{summaryExternalBalanceLabel}"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xxxs"
                         app:layout_constraintStart_toEndOf="@+id/icon"
@@ -154,7 +154,7 @@
                         android:id="@+id/text_view_header_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="16dp"
                         android:fontFamily="@font/font_family_base_medium"
                         android:text="@{firstLabel}"
                         android:textColor="@color/ocean_color_interface_dark_deep"
@@ -187,7 +187,7 @@
                         android:textSize="@dimen/ocean_font_size_xxs"
                         app:layout_constraintStart_toStartOf="@+id/text_view_header_label_other_machines"
                         app:layout_constraintTop_toBottomOf="@+id/text_view_header_label_other_machines"
-                        app:ocean_text="@{otherMachinesHeaderValue}"
+                        app:ocean_text="@{summaryExternalBalanceValue}"
                         app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                         tools:text="First value" />
 
@@ -196,12 +196,11 @@
                         layout="@layout/ocean_button_secondary_sm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        app:click="@{clickButton}"
+                        app:click="@{externalBalanceClickButton}"
                         app:layout_constraintBottom_toBottomOf="@+id/text_view_header_other_machines_value"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/text_view_header_label_other_machines"
-                        app:text="@{textButton}" />
+                        app:text="@{externalBalanceTextButton}" />
 
                     <TextView
                         android:id="@+id/text_view_header_title"
@@ -440,7 +439,7 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="12dp"
                         android:fontFamily="@font/font_family_highlight_bold"
-                        android:text="@{otherMachinesTitle}"
+                        android:text="@{externalBalanceTitle}"
                         android:textColor="@color/ocean_color_brand_primary_pure"
                         android:textSize="@dimen/ocean_font_size_xs"
                         app:layout_constraintStart_toEndOf="parent"
@@ -455,12 +454,12 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="12dp"
                         android:fontFamily="@font/font_family_base_bold"
-                        android:text="@{otherMachinesLabel}"
+                        android:text="@{externalBalanceLabel}"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xs"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/text_view_title_other_machines"
-                        app:ocean_visible_or_gone="@{otherMachinesLabel != null &amp;&amp; otherMachinesValue != null}"
+                        app:ocean_visible_or_gone="@{externalBalanceLabel != null &amp;&amp; externalBalanceValue != null}"
                         tools:text="Others Label" />
 
                     <TextView
@@ -476,9 +475,9 @@
                         app:layout_constraintHorizontal_bias="1"
                         app:layout_constraintStart_toEndOf="@id/text_view_other_machines_label"
                         app:layout_constraintTop_toTopOf="@id/text_view_other_machines_label"
-                        app:ocean_text="@{otherMachinesValue}"
+                        app:ocean_text="@{externalBalanceValue}"
                         app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
-                        app:ocean_visible_or_gone="@{otherMachinesLabel != null &amp;&amp; otherMachinesValue != null}"
+                        app:ocean_visible_or_gone="@{externalBalanceLabel != null &amp;&amp; externalBalanceValue != null}"
                         tools:text="Others value" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

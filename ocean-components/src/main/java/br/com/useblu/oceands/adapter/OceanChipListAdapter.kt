@@ -26,29 +26,36 @@ class OceanChipListAdapter
     ): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
-        return if (viewType == 1) {
-            val itemBinding = OceanBasicChipItemBinding.inflate(
-                inflater,
-                parent,
-                false
-            )
+        return when (viewType) {
+            ChipViewType.BASIC.value -> {
+                val itemBinding = OceanBasicChipItemBinding.inflate(
+                    inflater,
+                    parent,
+                    false
+                )
 
-            OceanBasicChipViewHolder(itemBinding)
-        } else {
-            val itemBinding = OceanFilterChipItemBinding.inflate(
-                inflater,
-                parent,
-                false
-            )
+                OceanBasicChipViewHolder(itemBinding)
+            }
 
-            OceanFilterChipViewHolder(itemBinding)
+            ChipViewType.FILTER.value -> {
+                val itemBinding = OceanFilterChipItemBinding.inflate(
+                    inflater,
+                    parent,
+                    false
+                )
+
+                OceanFilterChipViewHolder(itemBinding)
+            }
+            else -> {
+                throw IllegalArgumentException("Invalid view type")
+            }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
-            is OceanBasicChip -> 1
-            is OceanFilterChip -> 2
+            is OceanBasicChip -> ChipViewType.BASIC.value
+            is OceanFilterChip -> ChipViewType.FILTER.value
         }
     }
 
@@ -185,5 +192,10 @@ class OceanChipListAdapter
             context,
             R.drawable.ocean_chip_disabled
         )
+    }
+
+    private enum class ChipViewType(val value: Int) {
+        BASIC(1),
+        FILTER(2)
     }
 }

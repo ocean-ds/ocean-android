@@ -12,7 +12,7 @@ data class OceanBasicChip(
     val badge: Badge? = null,
     val icon: String? = null,
     override var state: OceanChipItemState = OceanChipItemState.DEFAULT,
-    val onClick: () -> Unit = {}
+    var onClick: () -> Unit = {}
 ): OceanChip()
 
 data class OceanFilterChip(

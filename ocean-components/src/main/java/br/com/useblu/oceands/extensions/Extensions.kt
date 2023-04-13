@@ -78,7 +78,7 @@ fun View.animateFadeOut() {
             override fun onAnimationRepeat(animation: Animation?) {}
             override fun onAnimationStart(animation: Animation?) {}
             override fun onAnimationEnd(animation: Animation?) {
-                this@animateFadeOut.visibility = View.INVISIBLE
+                this@animateFadeOut.visibility = View.GONE
             }
         })
         this@animateFadeOut.animation = this

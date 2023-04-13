@@ -66,13 +66,41 @@
             name="hide"
             type="Boolean" />
 
+        <variable
+            name="otherMachinesHeaderLabel"
+            type="String" />
+
+        <variable
+            name="otherMachinesHeaderValue"
+            type="String" />
+
+        <variable
+            name="otherMachinesTitle"
+            type="String" />
+
+        <variable
+            name="otherMachinesLabel"
+            type="String" />
+
+        <variable
+            name="otherMachinesValue"
+            type="String" />
+
+        <variable
+            name="textButton"
+            type="String" />
+
+        <variable
+            name="clickButton"
+            type="Function0&lt;Unit>" />
+
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:ocean_visible_or_gone="@{!hide}"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:ocean_visible_or_gone="@{!hide}">
 
         <com.github.florent37.expansionpanel.ExpansionHeader
             android:id="@+id/expansion_header"
@@ -83,6 +111,7 @@
             app:expansion_toggleOnClick="true">
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/container_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -90,22 +119,33 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/container_expansion_header"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:background="@color/ocean_color_interface_light_pure">
+                    android:layout_height="wrap_content"
+                    android:background="@color/ocean_color_interface_light_pure"
+                    android:padding="@dimen/ocean_spacing_stack_xs">
+
+                    <TextView
+                        android:id="@+id/text_view_header_label_other_machines"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/font_family_base_medium"
+                        android:text="@{otherMachinesHeaderLabel}"
+                        android:textColor="@color/ocean_color_interface_dark_deep"
+                        android:textSize="@dimen/ocean_font_size_xxxs"
+                        app:layout_constraintStart_toEndOf="@+id/icon"
+                        app:layout_constraintTop_toBottomOf="@+id/container_divider"
+                        tools:text="First label" />
 
                     <ImageView
                         android:id="@+id/icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                        android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-                        android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
                         android:onClick="@{() -> clickIcon.invoke()}"
                         android:src="@{isContentHidden ? @drawable/icon_eye_off : @drawable/icon_eye_on}"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:src="@drawable/icon_eye_on" />
@@ -114,49 +154,65 @@
                         android:id="@+id/text_view_header_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                        android:layout_marginStart="24dp"
                         android:fontFamily="@font/font_family_base_medium"
                         android:text="@{firstLabel}"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xxxs"
                         app:layout_constraintBottom_toTopOf="@+id/text_view_header_value"
-                        app:layout_constraintEnd_toStartOf="@+id/header_indicator"
-                        app:layout_constraintHorizontal_bias="0"
-                        app:layout_constraintStart_toEndOf="@id/icon"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_chainStyle="packed"
+                        app:layout_constraintStart_toEndOf="@+id/icon"
+                        app:layout_constraintTop_toTopOf="@+id/icon"
                         tools:text="First label" />
 
                     <TextView
                         android:id="@+id/text_view_header_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                         android:fontFamily="@font/font_family_base_bold"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xxs"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/header_indicator"
-                        app:layout_constraintHorizontal_bias="0"
-                        app:layout_constraintStart_toEndOf="@id/icon"
+                        app:layout_constraintBottom_toBottomOf="@+id/icon"
+                        app:layout_constraintStart_toStartOf="@+id/text_view_header_label"
                         app:layout_constraintTop_toBottomOf="@+id/text_view_header_label"
                         app:ocean_text="@{firstValue}"
                         app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                         tools:text="First value" />
 
                     <TextView
+                        android:id="@+id/text_view_header_other_machines_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font_family_base_bold"
+                        android:textColor="@color/ocean_color_interface_dark_deep"
+                        android:textSize="@dimen/ocean_font_size_xxs"
+                        app:layout_constraintStart_toStartOf="@+id/text_view_header_label_other_machines"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_header_label_other_machines"
+                        app:ocean_text="@{otherMachinesHeaderValue}"
+                        app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
+                        tools:text="First value" />
+
+                    <include
+                        android:id="@+id/button_other_machines"
+                        layout="@layout/ocean_button_secondary_sm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        app:click="@{clickButton}"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_view_header_other_machines_value"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/text_view_header_label_other_machines"
+                        app:text="@{textButton}" />
+
+                    <TextView
                         android:id="@+id/text_view_header_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                        android:fontFamily="@font/font_family_base_medium"
+                        android:fontFamily="@font/font_family_highlight_bold"
                         android:text="@{headerTitle}"
                         android:textColor="@color/ocean_color_brand_primary_pure"
                         android:textSize="@dimen/ocean_font_size_xs"
                         android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/header_indicator"
-                        app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Header title" />
@@ -166,17 +222,28 @@
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:layout_gravity="center_vertical|end"
-                        android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                         android:adjustViewBounds="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/icon_chevron_right_solid"
                         app:tint="@color/ocean_color_interface_dark_deep" />
 
+                    <LinearLayout
+                        android:id="@+id/container_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_header_value">
+
+                        <include layout="@layout/ocean_divider" />
+                    </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
+                    android:id="@+id/shadow"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
                     android:background="@drawable/ocean_toolbar_dropshadow"
@@ -185,7 +252,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:ocean_visible_or_gone="@{visibleShadow}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
-
         </com.github.florent37.expansionpanel.ExpansionHeader>
 
         <com.github.florent37.expansionpanel.ExpansionLayout
@@ -203,6 +269,8 @@
                     android:id="@+id/expansion_layout_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                    android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                     android:layout_marginBottom="12dp"
                     android:background="@color/ocean_color_interface_light_pure">
 
@@ -210,8 +278,6 @@
                         android:id="@+id/text_view_first_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                        android:layout_marginTop="12dp"
                         android:layout_marginBottom="12dp"
                         android:fontFamily="@font/font_family_base_bold"
                         android:text="@{firstLabel}"
@@ -226,7 +292,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                        android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                         android:fontFamily="@font/font_family_base_bold"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xs"
@@ -253,7 +318,6 @@
                         android:id="@+id/text_view_second_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="12dp"
                         android:fontFamily="@font/font_family_base_medium"
@@ -268,8 +332,6 @@
                         android:id="@+id/text_view_second_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                        android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                         android:fontFamily="@font/font_family_base_medium"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xs"
@@ -296,7 +358,6 @@
                         android:id="@+id/text_view_third_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="12dp"
                         android:fontFamily="@font/font_family_base_medium"
@@ -311,8 +372,6 @@
                         android:id="@+id/text_view_third_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                        android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                         android:fontFamily="@font/font_family_base_medium"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xs"
@@ -340,13 +399,11 @@
                         android:id="@+id/text_view_fourth_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/font_family_base_medium"
                         android:text="@{fourthLabel}"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xs"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/divider3"
                         app:ocean_visible_or_gone="@{fourthLabel != null &amp;&amp; fourthValue != null}"
@@ -357,7 +414,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                        android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                         android:fontFamily="@font/font_family_base_medium"
                         android:textColor="@color/ocean_color_interface_dark_up"
                         android:textSize="@dimen/ocean_font_size_xs"
@@ -370,6 +426,61 @@
                         app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                         app:ocean_visible_or_gone="@{fourthLabel != null &amp;&amp; fourthValue != null}"
                         tools:text="Third value" />
+
+                    <Space
+                        android:id="@+id/space"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ocean_spacing_stack_xxs"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_fourth_value" />
+
+                    <TextView
+                        android:id="@+id/text_view_title_other_machines"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:fontFamily="@font/font_family_highlight_bold"
+                        android:text="@{otherMachinesTitle}"
+                        android:textColor="@color/ocean_color_brand_primary_pure"
+                        android:textSize="@dimen/ocean_font_size_xs"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/space"
+                        tools:text="Title Others Machices" />
+
+                    <TextView
+                        android:id="@+id/text_view_other_machines_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:fontFamily="@font/font_family_base_bold"
+                        android:text="@{otherMachinesLabel}"
+                        android:textColor="@color/ocean_color_interface_dark_deep"
+                        android:textSize="@dimen/ocean_font_size_xs"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_title_other_machines"
+                        app:ocean_visible_or_gone="@{otherMachinesLabel != null &amp;&amp; otherMachinesValue != null}"
+                        tools:text="Others Label" />
+
+                    <TextView
+                        android:id="@+id/text_view_other_machines_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                        android:fontFamily="@font/font_family_base_bold"
+                        android:textColor="@color/ocean_color_interface_dark_deep"
+                        android:textSize="@dimen/ocean_font_size_xs"
+                        app:layout_constraintBottom_toBottomOf="@id/text_view_other_machines_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1"
+                        app:layout_constraintStart_toEndOf="@id/text_view_other_machines_label"
+                        app:layout_constraintTop_toTopOf="@id/text_view_other_machines_label"
+                        app:ocean_text="@{otherMachinesValue}"
+                        app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
+                        app:ocean_visible_or_gone="@{otherMachinesLabel != null &amp;&amp; otherMachinesValue != null}"
+                        tools:text="Others value" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
@@ -380,7 +491,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.appcompat.widget.LinearLayoutCompat>
-
         </com.github.florent37.expansionpanel.ExpansionLayout>
     </LinearLayout>
 

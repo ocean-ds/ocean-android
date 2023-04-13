@@ -31,21 +31,26 @@
                 app:click="@{viewmodel::click}"
                 app:longClick="@{viewmodel::onLongClick}"
                 app:trailingIconClick="@{viewmodel::click}"
-                app:leadingIconToken="@{`appareloutline`}"
-                app:trailingIcon="@{@drawable/ocean_icon_chevron_right_solid}"/>
+                app:leadingIcon="@{`appareloutline`}"
+                app:trailingIcon="@{`chevronrightoutline`}"/>
 
             <include
                 layout="@layout/ocean_text_list_icon_item"
                 app:title="@{`Text List Item`}"
                 app:description="@{`Default`}"
                 app:caption="@{`Caption`}"
-                app:leadingIcon="@{@drawable/ocean_icon_calculator_outline}"/>
+                app:leadingIcon="@{`calculatoroutline`}"/>
 
             <include
                 layout="@layout/ocean_text_list_icon_item"
                 app:title="@{`Text List Item`}"
                 app:description="@{`Default`}"/>
 
+            <include
+                layout="@layout/ocean_text_list_icon_item"
+                app:title="@{`Text List Item`}"
+                app:leadingIcon="@{`calculatoroutline`}"
+                app:trailingIcon="@{`chevronrightoutline`}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

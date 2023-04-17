@@ -92,11 +92,11 @@ class OceanChipListAdapter
     override fun getItemCount(): Int = items.size
 
     private val currentSelectedItem: OceanChip?
-        get() = items.find { it.state == OceanChipItemState.ACTIVE }
+        get() = items.find { it.state == OceanChipItemState.ACTIVE_HOVER }
 
     private fun selectItem(item: OceanChip) {
         val selectedItem = items.find { it.id == item.id }
-        selectedItem?.state = OceanChipItemState.ACTIVE
+        selectedItem?.state = OceanChipItemState.ACTIVE_HOVER
     }
 
     private fun unselectCurrent() {
@@ -136,7 +136,7 @@ class OceanChipListAdapter
                 return
             }
 
-            if (item.state == OceanChipItemState.ACTIVE) {
+            if (item.state == OceanChipItemState.ACTIVE_HOVER) {
                 if (item.badge.type == OceanBadgeType.PRIMARY) {
                     item.badge.type = OceanBadgeType.PRIMARY_INVERTED
                 }
@@ -156,6 +156,7 @@ class OceanChipListAdapter
 
             binding.item = item
             binding.chipListItemBackground.background = getBackgroundDrawable(item, context)
+            binding.icon.setColorFilter(getContentColor(item, context), android.graphics.PorterDuff.Mode.SRC_IN);
 
             setupSpinner(binding.spinner, item)
 
@@ -213,8 +214,11 @@ class OceanChipListAdapter
         item: OceanChip,
         context: Context
     ) = when (item.state) {
-        OceanChipItemState.HOVER,
-        OceanChipItemState.ACTIVE -> ContextCompat.getColor(
+        OceanChipItemState.INACTIVE_HOVER -> ContextCompat.getColor(
+            context,
+            R.color.ocean_color_brand_primary_pure
+        )
+        OceanChipItemState.ACTIVE_HOVER -> ContextCompat.getColor(
             context,
             R.color.ocean_color_interface_light_pure
         )
@@ -224,7 +228,7 @@ class OceanChipListAdapter
         )
         OceanChipItemState.DEFAULT -> ContextCompat.getColor(
             context,
-            R.color.ocean_color_brand_primary_pure
+            R.color.ocean_color_interface_light_pure
         )
     }
 
@@ -232,13 +236,13 @@ class OceanChipListAdapter
         item: OceanChip,
         context: Context
     ) = when (item.state) {
-        OceanChipItemState.HOVER -> ContextCompat.getDrawable(
+        OceanChipItemState.INACTIVE_HOVER -> ContextCompat.getDrawable(
             context,
-            R.drawable.ocean_chip_hover
+            R.drawable.ocean_chip_inactive_hover
         )
-        OceanChipItemState.ACTIVE -> ContextCompat.getDrawable(
+        OceanChipItemState.ACTIVE_HOVER -> ContextCompat.getDrawable(
             context,
-            R.drawable.ocean_chip_active
+            R.drawable.ocean_chip_active_hover
         )
         OceanChipItemState.DEFAULT -> ContextCompat.getDrawable(
             context,

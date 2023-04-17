@@ -75,7 +75,7 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
             OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
-                state = OceanChipItemState.HOVER,
+                state = OceanChipItemState.INACTIVE_HOVER,
                 onClick = {
                     println("OceanChipItem 5 Selected")
                 }
@@ -164,7 +164,7 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
             OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
-                state = OceanChipItemState.HOVER,
+                state = OceanChipItemState.INACTIVE_HOVER,
                 icon = "informationcircleoutline",
                 onClick = {
                     println("OceanChipItem 5 Selected")
@@ -209,7 +209,7 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
             OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
-                state = OceanChipItemState.HOVER,
+                state = OceanChipItemState.INACTIVE_HOVER,
                 badge = Badge(9, OceanBadgeType.WARNING),
                 onClick = {
                     println("OceanChipItem 5 Selected")

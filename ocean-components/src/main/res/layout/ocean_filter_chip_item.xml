@@ -20,7 +20,7 @@
         android:orientation="horizontal"
         android:paddingHorizontal="12dp"
         android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
-        tools:background="@drawable/ocean_chip_active">
+        tools:background="@drawable/ocean_chip_active_hover">
 
         <Spinner
             android:id="@+id/spinner"

@@ -39,8 +39,11 @@ internal abstract class OceanFilterChipBaseOptionsAdapter(
         item: OceanChip,
         context: Context
     ) = when (item.state) {
-        OceanChipItemState.HOVER,
-        OceanChipItemState.ACTIVE -> ContextCompat.getColor(
+        OceanChipItemState.INACTIVE_HOVER -> ContextCompat.getColor(
+            context,
+            R.color.ocean_color_brand_primary_pure
+        )
+        OceanChipItemState.ACTIVE_HOVER -> ContextCompat.getColor(
             context,
             R.color.ocean_color_interface_light_pure
         )
@@ -50,7 +53,7 @@ internal abstract class OceanFilterChipBaseOptionsAdapter(
         )
         OceanChipItemState.DEFAULT -> ContextCompat.getColor(
             context,
-            R.color.ocean_color_brand_primary_pure
+            R.color.ocean_color_interface_light_pure
         )
     }
 

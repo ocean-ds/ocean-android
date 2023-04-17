@@ -1704,7 +1704,7 @@ fun String.toOceanIcon() = when (this.lowercase()) {
     }
 
     "useroutline" -> {
-        R.drawable.ocean_icon_users_outline
+        R.drawable.ocean_icon_user_outline
     }
 
     "userremoveoutline" -> {

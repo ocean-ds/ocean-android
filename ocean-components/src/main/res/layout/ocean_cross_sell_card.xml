@@ -68,6 +68,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
         app:cardElevation="0dp"
         android:onClick="@{() -> click.invoke()}"
         android:orientation="vertical"

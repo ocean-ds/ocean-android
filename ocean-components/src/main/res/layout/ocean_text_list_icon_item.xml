@@ -9,8 +9,6 @@
 
         <import type="kotlin.Unit" />
 
-        <import type="android.graphics.drawable.Drawable" />
-
         <variable
             name="title"
             type="String" />
@@ -29,18 +27,10 @@
 
         <variable
             name="leadingIcon"
-            type="Drawable" />
-
-        <variable
-            name="leadingIconToken"
             type="String" />
 
         <variable
             name="trailingIcon"
-            type="Drawable" />
-
-        <variable
-            name="trailingIconToken"
             type="String" />
 
         <variable
@@ -65,14 +55,14 @@
         android:focusable="true"
         android:onClick="@{() -> click.invoke()}"
         app:clickable_effect="@{true}"
-        app:onLongClickPressed="@{longClick}">
+        app:onLongClickPressed="@{longClick}"
+        android:padding="16dp">
 
         <LinearLayout
             android:id="@+id/text_list_item_selecting_box_container"
-            ocean_visible_or_gone="@{leadingIcon != null || leadingIconToken != null}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            ocean_visible_or_gone="@{leadingIcon != null}"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/circle_place_holder"
             android:gravity="center"
             android:orientation="vertical"
@@ -81,11 +71,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@{leadingIcon}"
-                app:ocean_icon="@{leadingIconToken}"
-                tools:src="@drawable/ocean_icon_retailer_outline" />
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:ocean_icon="@{leadingIcon}"
+                app:tint="@color/ocean_color_brand_primary_down"
+                tools:src="@drawable/ocean_icon_archive_solid" />
 
         </LinearLayout>
 
@@ -93,7 +83,7 @@
             android:id="@+id/text_list_item_info_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginHorizontal="@dimen/ocean_spacing_stack_xs"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/text_list_item_trailing_container"
@@ -102,12 +92,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/text_list_item_title"
                     style="@style/Ocean.Paragraph"
-                    ocean_visible_or_gone="@{title != null}"
+                    app:ocean_visible_or_gone="@{title != null}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -118,13 +109,13 @@
 
                 <Space
                     android:layout_width="@dimen/ocean_spacing_stack_xs"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    app:ocean_visible_or_gone="@{badge != null}" />
 
                 <include
                     layout="@layout/ocean_badge"
                     app:text="@{badge}"
                     app:visible="@{badge != null}" />
-
 
             </LinearLayout>
 
@@ -148,27 +139,18 @@
                 tools:text="Caption" />
         </LinearLayout>
 
-        <LinearLayout
+        <ImageView
             android:id="@+id/text_list_item_trailing_container"
-            ocean_visible_or_gone="@{trailingIcon != null || trailingIconToken != null}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/ocean_spacing_stack_xs"
-            android:gravity="center"
-            android:orientation="vertical"
+            ocean_visible_or_gone="@{trailingIcon != null}"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:onClick="@{() -> trailingIconClick.invoke()}"
+            app:ocean_icon="@{trailingIcon}"
+            tools:src="@drawable/ocean_icon_chevron_right_solid"
+            app:tint="@color/ocean_color_interface_dark_up"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> trailingIconClick.invoke()}"
-                android:src="@{trailingIcon}"
-                app:ocean_icon="@{trailingIconToken}"
-                tools:src="@drawable/ocean_icon_chevron_right_solid" />
-
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

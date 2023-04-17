@@ -1,12 +1,21 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="20dp"
-    android:height="20dp"
-    android:viewportWidth="24"
-    android:viewportHeight="24">
-  <path
-      android:pathData="M12,12m-12,0a12,12 0,1 1,24 0a12,12 0,1 1,-24 0"
-      android:fillColor="@color/ocean_color_complementary_pure"/>
-  <path
-      android:pathData="M12,12m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0"
-      android:fillColor="#ffffff"/>
-</vector>
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android = "http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/ocean_border_radius_sm" />
+            <solid android:color="@color/ocean_color_complementary_pure" />
+        </shape>
+    </item>
+
+    <item>
+        <vector
+            android:width="20dp"
+            android:height="20dp"
+            android:viewportWidth="20"
+            android:viewportHeight="20">
+            <path
+                android:pathData="M16.707,5.293C17.098,5.683 17.098,6.317 16.707,6.707L8.707,14.707C8.317,15.098 7.683,15.098 7.293,14.707L3.293,10.707C2.902,10.317 2.902,9.683 3.293,9.293C3.683,8.902 4.317,8.902 4.707,9.293L8,12.586L15.293,5.293C15.683,4.902 16.317,4.902 16.707,5.293Z"
+                android:fillColor="#FFF" />
+        </vector>
+    </item>
+</layer-list>

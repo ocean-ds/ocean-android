@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.bindingadapters
 
+import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.adapter.OceanChipListAdapter
@@ -11,7 +12,9 @@ fun setChipsAdapter(
     chips: List<OceanChip>?
 ) {
     chips ?: return
-    val adapter = OceanChipListAdapter()
+    val adapter = OceanChipListAdapter {
+        Toast.makeText(recyclerView.context, "Selected items: $it", Toast.LENGTH_SHORT).show()
+    }
     recyclerView.adapter = adapter.apply {
         submitList(chips)
     }

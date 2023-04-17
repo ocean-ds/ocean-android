@@ -7,17 +7,19 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.components.OceanBottomListSheet
+import br.com.useblu.oceands.components.OceanOptionsBottomListSheet
 import br.com.useblu.oceands.databinding.OceanBasicChipItemBinding
 import br.com.useblu.oceands.databinding.OceanFilterChipItemBinding
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
 import br.com.useblu.oceands.model.OceanChip
+import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
 
-class OceanChipListAdapter
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class OceanChipListAdapter(
+    private val onSelectItems: (List<Int>) -> Unit
+): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val items = mutableListOf<OceanChip>()
 
@@ -115,8 +117,12 @@ class OceanChipListAdapter
                 if (item != currentSelectedItem) {
                     unselectCurrent()
                     selectItem(item)
-                    item.onClick.invoke()
+                    item.onClick.invoke(true)
 
+                    notifyDataSetChanged()
+                } else {
+                    unselectCurrent()
+                    item.onClick.invoke(false)
                     notifyDataSetChanged()
                 }
             }
@@ -160,14 +166,39 @@ class OceanChipListAdapter
 
         private fun showBottomSheet(context: Context, chip: OceanFilterChip) {
             val options = chip.filterOptions
+            val internalItems = options.items.map { it.copy() }
 
-            val bottomSheet = OceanBottomListSheet(context)
+            val bottomSheet = OceanOptionsBottomListSheet(context)
+                .withTitle(options.title)
 
-            options.title?.let {
-                bottomSheet.withTitle(it)
+            val adapter = when (options) {
+                is OceanChipFilterOptions.MultipleChoice -> {
+                    OceanFilterChipMultipleOptionsAdapter(internalItems)
+                }
+                is OceanChipFilterOptions.SingleChoice -> {
+                    OceanFilterChipSingleOptionsAdapter(options) {
+                        onSelectItems(listOf(it))
+                        bottomSheet.dismiss()
+                    }
+                }
             }
 
-            bottomSheet.withCustomList(OceanFilterChipOptionsAdapter(chip))
+            bottomSheet.withCustomList(adapter)
+
+            if (options is OceanChipFilterOptions.MultipleChoice) {
+                bottomSheet.withFooterButton(options.primaryButtonLabel, options.secondaryButtonLabel) {
+                    val selectedItems = internalItems.mapIndexed { index, filterOptionsItem ->
+                        if (filterOptionsItem.isSelected) {
+                            index
+                        } else {
+                            -1
+                        }
+                    }.filter { it != -1 }
+
+                    onSelectItems.invoke(selectedItems)
+                }
+            }
+
             bottomSheet.show()
         }
     }

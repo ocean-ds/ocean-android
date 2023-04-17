@@ -2,26 +2,34 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="item"
+            type="br.com.useblu.oceands.model.FilterOptionsItem" />
+    </data>
+
     <LinearLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginBottom="16dp"
-        android:layout_marginHorizontal="16dp"
-        tools:background="@drawable/ocean_options_list_selected_item_background">
+        android:layout_marginHorizontal="16dp">
 
-        <CheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/checkbox"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:gravity="center"
-            android:theme="@style/Ocean.CheckBox"
-            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:minWidth="0dp"
             android:minHeight="0dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:checked="@{item.selected}"
             android:layout_marginEnd="8dp"
-            tools:checked="false" />
+            android:button="@drawable/ocean_checkbox"
+            android:clickable="true"
+            android:focusable="true"
+            tools:checked="true"/>
 
         <TextView
             android:id="@+id/text_view"
@@ -33,6 +41,7 @@
             android:textSize="@dimen/ocean_font_size_xxs"
             android:maxLines="1"
             android:ellipsize="end"
+            android:text="@{item.title}"
             tools:text="Em monitoramento"/>
     </LinearLayout>
 </layout>

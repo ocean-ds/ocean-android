@@ -95,6 +95,7 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 label = "Filtro",
                 id = "999",
                 filterOptions = OceanChipFilterOptions.SingleChoice(
+                    _title = "Status do Boleto",
                     optionsItems = listOf(
                         FilterOptionsItem("Teste 1"),
                         FilterOptionsItem("Teste 2", isSelected = true)
@@ -125,12 +126,13 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 label = "Filtro 3",
                 id = "9999",
                 filterOptions = OceanChipFilterOptions.MultipleChoice(
+                    _title = "Status do Pagamento",
                     optionsItems = listOf(
                         FilterOptionsItem("Teste 123333333333333333333"),
                         FilterOptionsItem("Teste 2", isSelected = true),
                         FilterOptionsItem("Teste 3", isSelected = true)
                     ),
-                    primaryButtonLabel = "Okay",
+                    primaryButtonLabel = "Salvar",
                     secondaryButtonLabel = "Cancelar",
                     onPrimaryButtonClick = {
                         _toastText.postValue("Items selecionados: $it")

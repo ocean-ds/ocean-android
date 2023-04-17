@@ -26,6 +26,7 @@ fun setBadgeType(view: View, badgeType: OceanBadgeType?) {
         OceanBadgeType.PRIMARY_INVERTED -> R.drawable.ocean_badge_primary_inverted
         OceanBadgeType.WARNING -> R.drawable.ocean_badge_warning
         OceanBadgeType.DISABLED -> R.drawable.ocean_badge_disabled
+        OceanBadgeType.CHIP_HOVER -> R.drawable.ocean_badge_primary_inverted
         null -> R.drawable.ocean_badge_highlight
     }
     view.background = ContextCompat.getDrawable(view.context, background)

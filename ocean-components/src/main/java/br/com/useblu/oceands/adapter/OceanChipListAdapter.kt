@@ -2,23 +2,17 @@ package br.com.useblu.oceands.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.view.KeyEvent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.components.OceanBottomListSheet
 import br.com.useblu.oceands.databinding.OceanBasicChipItemBinding
 import br.com.useblu.oceands.databinding.OceanFilterChipItemBinding
-import br.com.useblu.oceands.model.FilterOptionsItem
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
 import br.com.useblu.oceands.model.OceanChip
-import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
 
@@ -92,15 +86,15 @@ class OceanChipListAdapter
     override fun getItemCount(): Int = items.size
 
     private val currentSelectedItem: OceanChip?
-        get() = items.find { it.state == OceanChipItemState.ACTIVE_HOVER }
+        get() = items.find { it.state == OceanChipItemState.DEFAULT }
 
     private fun selectItem(item: OceanChip) {
         val selectedItem = items.find { it.id == item.id }
-        selectedItem?.state = OceanChipItemState.ACTIVE_HOVER
+        selectedItem?.state = OceanChipItemState.DEFAULT
     }
 
     private fun unselectCurrent() {
-        currentSelectedItem?.state = OceanChipItemState.DEFAULT
+        currentSelectedItem?.state = OceanChipItemState.INACTIVE_HOVER
     }
 
     inner class OceanBasicChipViewHolder(
@@ -136,7 +130,7 @@ class OceanChipListAdapter
                 return
             }
 
-            if (item.state == OceanChipItemState.ACTIVE_HOVER) {
+            if (item.state == OceanChipItemState.DEFAULT) {
                 if (item.badge.type == OceanBadgeType.PRIMARY) {
                     item.badge.type = OceanBadgeType.PRIMARY_INVERTED
                 }
@@ -156,57 +150,25 @@ class OceanChipListAdapter
 
             binding.item = item
             binding.chipListItemBackground.background = getBackgroundDrawable(item, context)
-            binding.icon.setColorFilter(getContentColor(item, context), android.graphics.PorterDuff.Mode.SRC_IN);
-
-            setupSpinner(binding.spinner, item)
+            binding.label.setTextColor(getContentColor(item, context))
+            binding.icon.setColorFilter(getContentColor(item, context), android.graphics.PorterDuff.Mode.SRC_IN)
 
             binding.chipListItemBackground.setOnClickListener {
-                binding.spinner.performClick()
+                showBottomSheet(it.context, item)
             }
         }
 
-        private fun setupSpinner(spinner: Spinner, chip: OceanFilterChip) {
-            val context = spinner.context
-            when (chip.filterOptions) {
-                is OceanChipFilterOptions.SingleChoice -> {
-                    spinner.adapter = getSingleChoiceAdapter(context, chip)
-                    binding.spinner.setSelection(chip.filterOptions.items.indexOfFirst { it.isSelected })
+        private fun showBottomSheet(context: Context, chip: OceanFilterChip) {
+            val options = chip.filterOptions
 
-                    var isInitCall = true
-                    binding.spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-                        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                            if (isInitCall) {
-                                isInitCall = false
-                                return
-                            }
+            val bottomSheet = OceanBottomListSheet(context)
 
-                            chip.filterOptions.items.forEach {
-                                it.isSelected = false
-                            }
-                            chip.filterOptions.items[position].isSelected = true
-
-                            chip.filterOptions.onSelectItem(position)
-                        }
-
-                        override fun onNothingSelected(p0: AdapterView<*>?) { }
-                    }
-                }
-                is OceanChipFilterOptions.MultipleChoice -> {
-                    spinner.adapter = getMultipleChoiceAdapter(context, chip) {
-                        val root = it.rootView
-                        root.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK))
-                        root.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK))
-                    }
-                }
+            options.title?.let {
+                bottomSheet.withTitle(it)
             }
-        }
 
-        private fun getMultipleChoiceAdapter(context: Context, chipItem: OceanFilterChip, closeDropdown: (parent: ViewGroup) -> Unit): ArrayAdapter<FilterOptionsItem> {
-            return OceanFilterChipMultipleOptionsAdapter(context, chipItem, closeDropdown)
-        }
-
-        private fun getSingleChoiceAdapter(context: Context, chipItem: OceanFilterChip): ArrayAdapter<FilterOptionsItem> {
-            return OceanFilterChipSingleOptionsAdapter(context, chipItem)
+            bottomSheet.withCustomList(OceanFilterChipOptionsAdapter(chip))
+            bottomSheet.show()
         }
     }
 
@@ -222,7 +184,8 @@ class OceanChipListAdapter
             context,
             R.color.ocean_color_interface_light_pure
         )
-        OceanChipItemState.DISABLED -> ContextCompat.getColor(
+        OceanChipItemState.DISABLED_ACTIVE,
+        OceanChipItemState.DISABLED_INACTIVE -> ContextCompat.getColor(
             context,
             R.color.ocean_color_interface_dark_up
         )
@@ -248,7 +211,8 @@ class OceanChipListAdapter
             context,
             R.drawable.ocean_chip_default
         )
-        OceanChipItemState.DISABLED -> ContextCompat.getDrawable(
+        OceanChipItemState.DISABLED_ACTIVE,
+        OceanChipItemState.DISABLED_INACTIVE -> ContextCompat.getDrawable(
             context,
             R.drawable.ocean_chip_disabled
         )

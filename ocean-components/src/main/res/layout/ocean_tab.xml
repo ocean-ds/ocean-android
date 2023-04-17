@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <import type="java.util.List" />
-
-        <import type="androidx.lifecycle.MutableLiveData" />
 
         <import type="kotlin.jvm.functions.Function1" />
 
@@ -14,11 +13,11 @@
 
         <variable
             name="labels"
-            type="MutableLiveData&lt;List&lt;String>>" />
+            type="List&lt;String>" />
 
         <variable
             name="counters"
-            type="MutableLiveData&lt;List&lt;Integer>>" />
+            type="List&lt;Integer>" />
 
         <variable
             name="tabSelected"
@@ -43,7 +42,8 @@
             app:setCounters="@{counters}"
             app:setDefaultSelected="@{defaultSelected}"
             app:setLabels="@{labels}"
-            app:setTabSelected="@{tabSelected}" />
+            app:setTabSelected="@{tabSelected}"
+            tools:listitem="@layout/ocean_tab_item" />
 
         <include layout="@layout/ocean_divider" />
 

@@ -20,9 +20,9 @@ fun setLabels(
 ) {
     labels?.let {
         recyclerView.adapter = OceanTabAdapter(
-           labels =  labels,
-           counters =  counters,
-            defaultSelected = defaultSelected,
+            labels =  labels,
+            counters =  counters,
+            defaultSelected = defaultSelected
         ) { positionSelected ->
             selected.invoke(positionSelected)
         }
@@ -60,7 +60,6 @@ private class OceanTabAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holderItem: ItemViewHolder, position: Int) {
-
         holderItem.bind(
             label = labels[position],
             counter = counters?.let { it[position] },
@@ -75,7 +74,6 @@ private class OceanTabAdapter(
     override fun getItemCount(): Int = labels.size
 
     inner class ItemViewHolder(private val item: OceanTabItemBinding) : RecyclerView.ViewHolder(item.root) {
-
         fun bind(label: String, counter: Int?, position: Int, onItemSelect: (Int) -> Unit) {
             val context = item.root.context
             item.run {
@@ -108,7 +106,5 @@ private class OceanTabAdapter(
                 item.rootConstraintLayout.setOnClickListener { onItemSelect.invoke(position) }
             }
         }
-
     }
-
 }

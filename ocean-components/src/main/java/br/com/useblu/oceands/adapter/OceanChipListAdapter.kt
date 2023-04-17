@@ -14,9 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanBasicChipItemBinding
 import br.com.useblu.oceands.databinding.OceanFilterChipItemBinding
-import br.com.useblu.oceands.model.OceanBadgeType
-import br.com.useblu.oceands.model.OceanBasicChip
-import br.com.useblu.oceands.model.OceanChip
 import br.com.useblu.oceands.model.FilterOptionsItem
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip

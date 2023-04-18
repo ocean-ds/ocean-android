@@ -46,21 +46,21 @@ class ChipsViewModel : ViewModel() {
                 label = allChip.label,
                 id = allChip.id,
                 onClick = {
-                    println("OceanChipItem 1 Selected")
+                    println("OceanChipItem 1 $it")
                 }
             ),
             OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
                 onClick = {
-                    println("OceanChipItem 2 Selected")
+                    println("OceanChipItem 2 $it")
                 }
             ),
             OceanBasicChip(
                 label = overDueChip.label,
                 id = overDueChip.id,
                 onClick = {
-                    println("OceanChipItem 3 Selected")
+                    println("OceanChipItem 3 $it")
                 }
             ),
             OceanBasicChip(
@@ -68,7 +68,7 @@ class ChipsViewModel : ViewModel() {
                 id = unavailableChip.id,
                 state = OceanChipItemState.DISABLED_ACTIVE,
                 onClick = {
-                    println("OceanChipItem 4 Selected")
+                    println("OceanChipItem 4 $it")
                 }
             ),
             OceanBasicChip(
@@ -76,7 +76,7 @@ class ChipsViewModel : ViewModel() {
                 id = errorChip.id,
                 state = OceanChipItemState.INACTIVE_HOVER,
                 onClick = {
-                    println("OceanChipItem 5 Selected")
+                    println("OceanChipItem 5 $it")
                 }
             )
         )
@@ -87,7 +87,7 @@ class ChipsViewModel : ViewModel() {
                 id = allChip.id,
                 icon = "informationcircleoutline",
                 onClick = {
-                    println("OceanChipItem 1 Selected")
+                    println("OceanChipItem 1 $it")
                 }
             ),
             OceanFilterChip(
@@ -143,7 +143,7 @@ class ChipsViewModel : ViewModel() {
                 id = toDueChip.id,
                 icon = "informationcircleoutline",
                 onClick = {
-                    println("OceanChipItem 2 Selected")
+                    println("OceanChipItem 2 $it")
                 }
             ),
             OceanBasicChip(
@@ -151,7 +151,7 @@ class ChipsViewModel : ViewModel() {
                 id = overDueChip.id,
                 icon = "informationcircleoutline",
                 onClick = {
-                    println("OceanChipItem 3 Selected")
+                    println("OceanChipItem 3 $it")
                 }
             ),
             OceanBasicChip(
@@ -160,7 +160,7 @@ class ChipsViewModel : ViewModel() {
                 state = OceanChipItemState.DISABLED_ACTIVE,
                 icon = "informationcircleoutline",
                 onClick = {
-                    println("OceanChipItem 4 Selected")
+                    println("OceanChipItem 4 $it")
                 }
             ),
             OceanBasicChip(
@@ -169,7 +169,7 @@ class ChipsViewModel : ViewModel() {
                 state = OceanChipItemState.INACTIVE_HOVER,
                 icon = "informationcircleoutline",
                 onClick = {
-                    println("OceanChipItem 5 Selected")
+                    println("OceanChipItem 5 $it")
                 }
             )
         )
@@ -180,7 +180,7 @@ class ChipsViewModel : ViewModel() {
                 id = allChip.id,
                 badge = Badge(100, OceanBadgeType.PRIMARY_INVERTED),
                 onClick = {
-                    println("OceanChipItem 1 Selected")
+                    println("OceanChipItem 1 $it")
                 }
             ),
             OceanBasicChip(
@@ -188,7 +188,7 @@ class ChipsViewModel : ViewModel() {
                 id = toDueChip.id,
                 badge = Badge(50, OceanBadgeType.PRIMARY_INVERTED),
                 onClick = {
-                    println("OceanChipItem 2 Selected")
+                    println("OceanChipItem 2 $it")
                 }
             ),
             OceanBasicChip(
@@ -196,7 +196,7 @@ class ChipsViewModel : ViewModel() {
                 id = overDueChip.id,
                 badge = Badge(10, OceanBadgeType.PRIMARY),
                 onClick = {
-                    println("OceanChipItem 3 Selected")
+                    println("OceanChipItem 3 $it")
                 }
             ),
             OceanBasicChip(
@@ -205,7 +205,7 @@ class ChipsViewModel : ViewModel() {
                 state = OceanChipItemState.DISABLED_ACTIVE,
                 badge = Badge(9, OceanBadgeType.PRIMARY_INVERTED),
                 onClick = {
-                    println("OceanChipItem 4 Selected")
+                    println("OceanChipItem 4 $it")
                 }
             ),
             OceanBasicChip(
@@ -214,7 +214,7 @@ class ChipsViewModel : ViewModel() {
                 state = OceanChipItemState.INACTIVE_HOVER,
                 badge = Badge(9, OceanBadgeType.PRIMARY_INVERTED),
                 onClick = {
-                    println("OceanChipItem 5 Selected")
+                    println("OceanChipItem 5 $it")
                 }
             )
         )

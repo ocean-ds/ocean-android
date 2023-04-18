@@ -207,15 +207,12 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             context,
             R.color.ocean_color_brand_primary_pure
         )
-        OceanChipItemState.ACTIVE_HOVER -> ContextCompat.getColor(
-            context,
-            R.color.ocean_color_interface_light_pure
-        )
         OceanChipItemState.DISABLED_ACTIVE,
         OceanChipItemState.DISABLED_INACTIVE -> ContextCompat.getColor(
             context,
             R.color.ocean_color_interface_dark_up
         )
+        OceanChipItemState.ACTIVE_HOVER,
         OceanChipItemState.DEFAULT -> ContextCompat.getColor(
             context,
             R.color.ocean_color_interface_light_pure

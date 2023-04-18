@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="br.com.useblu.oceands.model.OceanChipItemState" />
-
         <variable
             name="item"
             type="br.com.useblu.oceands.model.OceanFilterChip" />
@@ -15,12 +13,12 @@
         android:id="@+id/chip_list_item_background"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:clickable="@{item.state != OceanChipItemState.DISABLED_ACTIVE}"
+        android:clickable="@{item.state.clickable}"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingHorizontal="12dp"
         android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
-        tools:background="@drawable/ocean_chip_active_hover">
+        tools:background="@drawable/ocean_chip_inactive_hover">
 
         <TextView
             android:id="@+id/label"
@@ -31,9 +29,8 @@
             android:textAlignment="center"
             android:textSize="@dimen/ocean_font_size_xxs"
             tools:text="Todos"
-            tools:textColor="@color/ocean_color_interface_light_up"
-            android:gravity="center_vertical"
-            android:background="@android:color/transparent" />
+            tools:textColor="@color/ocean_color_brand_primary_pure"
+            android:gravity="center_vertical" />
 
         <ImageView
             android:id="@+id/icon"
@@ -41,9 +38,9 @@
             android:layout_height="16dp"
             android:layout_marginStart="@dimen/ocean_spacing_inline_xxxs"
             android:layout_gravity="center"
-            app:ocean_icon="@{item.isOpen ? `chevronupsolid` : `chevrondownsolid`}"
+            app:ocean_icon="@{`chevrondownsolid`}"
             tools:src="@drawable/ocean_icon_chevron_down_solid"
-            tools:tint="@color/ocean_color_interface_light_up"
+            tools:tint="@color/ocean_color_brand_primary_pure"
             tools:ignore="ContentDescription" />
     </LinearLayout>
 </layout>

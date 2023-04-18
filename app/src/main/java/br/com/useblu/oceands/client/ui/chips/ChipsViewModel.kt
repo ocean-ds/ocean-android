@@ -1,9 +1,8 @@
 package br.com.useblu.oceands.client.ui.chips
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
 import br.com.useblu.oceands.model.Badge
@@ -17,7 +16,7 @@ import br.com.useblu.oceands.model.OceanFilterChip
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class ChipsViewModel(application: Application) : AndroidViewModel(application) {
+class ChipsViewModel : ViewModel() {
 
     private val _toastText = MutableLiveData<String>()
     val toastText: LiveData<String> = _toastText

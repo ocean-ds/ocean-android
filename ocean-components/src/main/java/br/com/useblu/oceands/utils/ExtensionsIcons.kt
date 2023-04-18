@@ -2087,6 +2087,14 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_youtube_solid
     }
 
+    "qrcodeoutlinehighlight" -> {
+        R.drawable.ocean_icon_qrcode_outline_highlight
+    }
+
+    "barcodeoutlinehighlight" -> {
+        R.drawable.ocean_icon_barcode_outline_highlight
+    }
+
     else -> {
         R.drawable.ocean_icon_placeholder_solid
     }

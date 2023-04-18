@@ -376,3 +376,12 @@ fun setCustomMinHeight(constraintLayout: ConstraintLayout, minHeight: Float) {
     constraintLayout.minHeight = minHeight.toInt()
 }
 
+@BindingAdapter("ocean_background")
+fun setBackground(view: View, background: Drawable?) {
+    if (background != null) {
+        view.background = background
+    } else {
+        view.setBackgroundResource(0)
+    }
+}
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="br.com.useblu.oceands.model.FilterOptionsItem" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="12dp"
+        app:ocean_background="@{item.selected ? @drawable/ocean_options_list_selected_item_background : null}"
+        tools:background="@drawable/ocean_options_list_selected_item_background">
+
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/font_family_base_regular"
+            android:textSize="@dimen/ocean_font_size_xxs"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{item.title}"
+            android:textColor="@{item.selected ? @color/ocean_color_brand_primary_pure : @color/ocean_color_interface_dark_down}"
+            tools:text="Em monitoramento"/>
+    </LinearLayout>
+</layout>

@@ -129,6 +129,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_family_base_regular"
                     android:text="@{label}"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     app:ocean_tag_text_color="@{tagType}"
                     android:textSize="@dimen/ocean_font_size_xxxs"
                     tools:text="Label"

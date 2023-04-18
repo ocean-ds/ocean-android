@@ -1,9 +1,8 @@
 package br.com.useblu.oceands.client.ui.chips
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
 import br.com.useblu.oceands.model.Badge
@@ -17,7 +16,7 @@ import br.com.useblu.oceands.model.OceanFilterChip
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class ChipsViewModel(application: Application) : AndroidViewModel(application) {
+class ChipsViewModel : ViewModel() {
 
     private val _toastText = MutableLiveData<String>()
     val toastText: LiveData<String> = _toastText
@@ -47,37 +46,37 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 label = allChip.label,
                 id = allChip.id,
                 onClick = {
-                    println("OceanChipItem 1 Selected")
+                    println("OceanChipItem 1 $it")
                 }
             ),
             OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
                 onClick = {
-                    println("OceanChipItem 2 Selected")
+                    println("OceanChipItem 2 $it")
                 }
             ),
             OceanBasicChip(
                 label = overDueChip.label,
                 id = overDueChip.id,
                 onClick = {
-                    println("OceanChipItem 3 Selected")
+                    println("OceanChipItem 3 $it")
                 }
             ),
             OceanBasicChip(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
-                state = OceanChipItemState.DISABLED,
+                state = OceanChipItemState.DISABLED_ACTIVE,
                 onClick = {
-                    println("OceanChipItem 4 Selected")
+                    println("OceanChipItem 4 $it")
                 }
             ),
             OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
-                state = OceanChipItemState.HOVER,
+                state = OceanChipItemState.INACTIVE_HOVER,
                 onClick = {
-                    println("OceanChipItem 5 Selected")
+                    println("OceanChipItem 5 $it")
                 }
             )
         )
@@ -88,13 +87,14 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 id = allChip.id,
                 icon = "informationcircleoutline",
                 onClick = {
-                    println("OceanChipItem 1 Selected")
+                    println("OceanChipItem 1 $it")
                 }
             ),
             OceanFilterChip(
                 label = "Filtro",
                 id = "999",
                 filterOptions = OceanChipFilterOptions.SingleChoice(
+                    _title = "Status do Boleto",
                     optionsItems = listOf(
                         FilterOptionsItem("Teste 1"),
                         FilterOptionsItem("Teste 2", isSelected = true)
@@ -104,28 +104,46 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                     }
                 )
             ),
-        OceanFilterChip(
-            label = "Filtro 2",
-            id = "999",
-            filterOptions = OceanChipFilterOptions.MultipleChoice(
-                optionsItems = listOf(
-                    FilterOptionsItem("Teste 1"),
-                    FilterOptionsItem("Teste 2", isSelected = true),
-                    FilterOptionsItem("Teste 3", isSelected = true)
-                ),
-                primaryButtonLabel = "Ok",
-                secondaryButtonLabel = "Cancelar",
-                onPrimaryButtonClick = {
-                    _toastText.postValue("Items selecionados: $it")
-                }
-            )
-        ),
+            OceanFilterChip(
+                label = "Filtro 2",
+                id = "999",
+                filterOptions = OceanChipFilterOptions.MultipleChoice(
+                    optionsItems = listOf(
+                        FilterOptionsItem("Teste 1"),
+                        FilterOptionsItem("Teste 2", isSelected = true),
+                        FilterOptionsItem("Teste 3", isSelected = true)
+                    ),
+                    primaryButtonLabel = "Adicionar",
+                    secondaryButtonLabel = "Cancelar",
+                    onPrimaryButtonClick = {
+                        _toastText.postValue("Items selecionados: $it")
+                    },
+                    _title = "Status do Pagamento"
+                )
+            ),
+            OceanFilterChip(
+                label = "Filtro 3",
+                id = "9999",
+                filterOptions = OceanChipFilterOptions.MultipleChoice(
+                    _title = "Status do Pagamento",
+                    optionsItems = listOf(
+                        FilterOptionsItem("Teste 123333333333333333333"),
+                        FilterOptionsItem("Teste 2", isSelected = true),
+                        FilterOptionsItem("Teste 3", isSelected = true)
+                    ),
+                    primaryButtonLabel = "Salvar",
+                    secondaryButtonLabel = "Cancelar",
+                    onPrimaryButtonClick = {
+                        _toastText.postValue("Items selecionados: $it")
+                    }
+                )
+            ),
             OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
                 icon = "informationcircleoutline",
                 onClick = {
-                    println("OceanChipItem 2 Selected")
+                    println("OceanChipItem 2 $it")
                 }
             ),
             OceanBasicChip(
@@ -133,25 +151,25 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 id = overDueChip.id,
                 icon = "informationcircleoutline",
                 onClick = {
-                    println("OceanChipItem 3 Selected")
+                    println("OceanChipItem 3 $it")
                 }
             ),
             OceanBasicChip(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
-                state = OceanChipItemState.DISABLED,
+                state = OceanChipItemState.DISABLED_ACTIVE,
                 icon = "informationcircleoutline",
                 onClick = {
-                    println("OceanChipItem 4 Selected")
+                    println("OceanChipItem 4 $it")
                 }
             ),
             OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
-                state = OceanChipItemState.HOVER,
+                state = OceanChipItemState.INACTIVE_HOVER,
                 icon = "informationcircleoutline",
                 onClick = {
-                    println("OceanChipItem 5 Selected")
+                    println("OceanChipItem 5 $it")
                 }
             )
         )
@@ -160,17 +178,17 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
             OceanBasicChip(
                 label = allChip.label,
                 id = allChip.id,
-                badge = Badge(100, OceanBadgeType.HIGHLIGHT),
+                badge = Badge(100, OceanBadgeType.PRIMARY_INVERTED),
                 onClick = {
-                    println("OceanChipItem 1 Selected")
+                    println("OceanChipItem 1 $it")
                 }
             ),
             OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
-                badge = Badge(50, OceanBadgeType.HIGHLIGHT),
+                badge = Badge(50, OceanBadgeType.PRIMARY_INVERTED),
                 onClick = {
-                    println("OceanChipItem 2 Selected")
+                    println("OceanChipItem 2 $it")
                 }
             ),
             OceanBasicChip(
@@ -178,25 +196,25 @@ class ChipsViewModel(application: Application) : AndroidViewModel(application) {
                 id = overDueChip.id,
                 badge = Badge(10, OceanBadgeType.PRIMARY),
                 onClick = {
-                    println("OceanChipItem 3 Selected")
+                    println("OceanChipItem 3 $it")
                 }
             ),
             OceanBasicChip(
                 label = unavailableChip.label,
                 id = unavailableChip.id,
-                state = OceanChipItemState.DISABLED,
-                badge = Badge(9, OceanBadgeType.WARNING),
+                state = OceanChipItemState.DISABLED_ACTIVE,
+                badge = Badge(9, OceanBadgeType.PRIMARY_INVERTED),
                 onClick = {
-                    println("OceanChipItem 4 Selected")
+                    println("OceanChipItem 4 $it")
                 }
             ),
             OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
-                state = OceanChipItemState.HOVER,
-                badge = Badge(9, OceanBadgeType.WARNING),
+                state = OceanChipItemState.INACTIVE_HOVER,
+                badge = Badge(9, OceanBadgeType.PRIMARY_INVERTED),
                 onClick = {
-                    println("OceanChipItem 5 Selected")
+                    println("OceanChipItem 5 $it")
                 }
             )
         )

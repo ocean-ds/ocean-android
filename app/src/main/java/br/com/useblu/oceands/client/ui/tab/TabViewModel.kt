@@ -3,6 +3,9 @@ package br.com.useblu.oceands.client.ui.tab
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class TabViewModel: ViewModel() {
 
@@ -11,7 +14,7 @@ class TabViewModel: ViewModel() {
     val labels2 = MutableLiveData<List<String>>()
 
     private val _showToast = MutableLiveData<String>()
-    val showToast: LiveData<String> get() = _showToast
+    val showToast: LiveData<String> = _showToast
 
     fun loadDetails() {
         counters.postValue(listOf(2, 5, 3))
@@ -27,6 +30,11 @@ class TabViewModel: ViewModel() {
                 "Item 7"
             )
         )
+
+        viewModelScope.launch {
+            delay(2000)
+            labels1.postValue(listOf("Item 11", "Item 22"))
+        }
     }
 
     fun tabSelected(position: Int) {
@@ -40,5 +48,4 @@ class TabViewModel: ViewModel() {
             _showToast.postValue("Tab \"${list[position]}\" has been selected")
         }
     }
-
 }

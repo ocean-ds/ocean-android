@@ -60,6 +60,7 @@
         <activity android:name=".ui.unorderedlistitem.UnorderedListItemActivity" />
         <activity android:name=".ui.textlistinverted.TextListInvertedItemActivity"/>
         <activity android:name=".ui.textlistinline.TextListInlineItemActivity"/>
+        <activity android:name=".ui.accordion.AccordionActivity"/>
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
 import br.com.useblu.oceands.adapter.OceanUnorderedListAdapter
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
+import br.com.useblu.oceands.client.ui.accordion.AccordionActivity
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.badges.BadgesActivity
 import br.com.useblu.oceands.client.ui.balance.BalanceActivity
@@ -92,6 +93,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickInputs(view: View) {
         val intent = Intent(this, InputActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickAccordion(view: View) {
+        val intent = Intent(this, AccordionActivity::class.java)
         startActivity(intent)
     }
 

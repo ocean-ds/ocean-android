@@ -45,7 +45,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/font_family_base_medium"
-                        android:padding="@dimen/ocean_spacing_stack_xs"
+                        android:paddingTop="@dimen/ocean_spacing_stack_xxs"
+                        android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
                         android:text="@{title}"
                         android:textColor="@color/ocean_color_interface_dark_deep"
                         android:textSize="@dimen/ocean_font_size_xs"
@@ -82,8 +83,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_family_base_medium"
-                android:paddingStart="@dimen/ocean_spacing_stack_xs"
-                android:paddingEnd="@dimen/ocean_spacing_stack_xs"
                 android:text="@{description}"
                 android:textColor="@color/ocean_color_interface_dark_down"
                 android:textSize="@dimen/ocean_font_size_xs" />

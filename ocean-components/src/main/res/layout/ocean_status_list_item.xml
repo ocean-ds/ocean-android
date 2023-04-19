@@ -68,7 +68,6 @@
             android:id="@+id/status_item_description_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/ocean_spacing_stack_xs"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -120,7 +119,7 @@
                 android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
                 app:ocean_tag_background_type="@{tagType}"
-                android:visibility="@{showRightTag ? View.GONE: View.VISIBLE}"
+                android:visibility="@{label != null ? (showRightTag ? View.GONE: View.VISIBLE) : View.GONE}"
                 tools:background="@drawable/ocean_tag_warning_background">
 
                 <TextView
@@ -159,7 +158,7 @@
                 android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
                 app:ocean_tag_background_type="@{tagType}"
-                android:visibility="@{showRightTag ? View.VISIBLE: View.GONE}"
+                android:visibility="@{label != null ? (showRightTag ? View.VISIBLE: View.GONE) : View.GONE}"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 

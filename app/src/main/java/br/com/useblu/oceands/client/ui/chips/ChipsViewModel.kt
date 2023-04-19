@@ -42,16 +42,18 @@ class ChipsViewModel : ViewModel() {
         label = "Erro"
     )
 
-    var singleChoiceFilterOptions = listOf(
+    private var singleChoiceFilterOptions = listOf(
         FilterOptionsItem("Teste 1"),
         FilterOptionsItem("Teste 2", isSelected = true)
     )
 
-    var multipleChoiceFilterOptions = listOf(
+    private var multipleChoiceFilterOptions = listOf(
         FilterOptionsItem("Teste 1"),
-        FilterOptionsItem("Teste 2", isSelected = true),
-        FilterOptionsItem("Teste 3", isSelected = true)
+        FilterOptionsItem("Teste 2"),
+        FilterOptionsItem("Teste 3")
     )
+
+    private var multipleChoiceBadge: Badge? = null
 
     val chipsWithoutIcon: List<OceanChip> get() = listOf(
             OceanBasicChip(
@@ -76,8 +78,10 @@ class ChipsViewModel : ViewModel() {
                 )
             ),
             OceanFilterChip(
-                label = "Filtro 2",
+                label = "Filtro Teste",
                 id = "9999",
+                badge = multipleChoiceBadge,
+                state = if (multipleChoiceFilterOptions.any { it.isSelected }) OceanChipItemState.DEFAULT else OceanChipItemState.INACTIVE_HOVER,
                 filterOptions = OceanChipFilterOptions.MultipleChoice(
                     title = "Status do Pagamento",
                     optionsItems = multipleChoiceFilterOptions,
@@ -87,12 +91,19 @@ class ChipsViewModel : ViewModel() {
                         multipleChoiceFilterOptions = multipleChoiceFilterOptions.mapIndexed { index, filterOptionsItem ->
                             filterOptionsItem.copy(isSelected = it.contains(index))
                         }
+                        multipleChoiceBadge = if (it.isNotEmpty()) {
+                            Badge(
+                                type = OceanBadgeType.PRIMARY_INVERTED,
+                                text = it.size
+                            )
+                        } else null
                         loadData()
                     },
                     onSecondaryButtonClick = {
                         multipleChoiceFilterOptions = multipleChoiceFilterOptions.map { filterOptionsItem ->
                             filterOptionsItem.copy(isSelected = false)
                         }
+                        multipleChoiceBadge = null
                         loadData()
                     }
                 )

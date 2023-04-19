@@ -33,6 +33,17 @@
             tools:textColor="@color/ocean_color_brand_primary_pure"
             android:gravity="center_vertical" />
 
+        <include
+            android:id="@+id/badge"
+            layout="@layout/ocean_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_inline_xxxs"
+            app:isSmall="@{true}"
+            app:text="@{item.badge != null ? Integer.toString(item.badge.text) : @string/empty}"
+            app:type="@{item.badge.type}"
+            app:visible="@{item.state.active &amp; item.badge != null}" />
+
         <ImageView
             android:id="@+id/icon"
             android:layout_width="16dp"

@@ -164,7 +164,7 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private fun showBottomSheet(context: Context, chip: OceanFilterChip) {
             val options = chip.filterOptions
-            val internalItems = options.items.map { it.copy() }
+            val internalItems = options.optionsItems.map { it.copy() }
 
             val bottomSheet = OceanOptionsBottomListSheet(context)
                 .withTitle(options.title)

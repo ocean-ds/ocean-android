@@ -19,12 +19,12 @@ internal class OceanFilterChipSingleOptionsAdapter(
     }
 
     override fun onBindViewHolder(holder: ChipOptionSingleChoiceViewHolder, position: Int) {
-        val item = options.items[position]
+        val item = options.optionsItems[position]
         holder.bindView(item, position)
     }
 
     override fun getItemCount(): Int {
-        return options.items.size
+        return options.optionsItems.size
     }
 
     inner class ChipOptionSingleChoiceViewHolder(private val binding: OceanChipOptionSingleChoiceItemBinding): RecyclerView.ViewHolder(binding.root) {

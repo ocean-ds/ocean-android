@@ -44,12 +44,7 @@
             <include
                 layout="@layout/ocean_status_list_item"
                 app:title="@{`Default List item`}"
-                app:label="@{`label`}"
                 app:isActive="@{true}"
-                app:showRightTag="@{false}"
-                app:showContextMenu="@{false}"
-                app:isReadOnly="@{false}"
-                app:tagType="@{OceanTagType.Warning}"
                 app:click="@{viewmodel::onTouchItem}"/>
 
             <include

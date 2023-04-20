@@ -41,13 +41,72 @@ class ChipsViewModel : ViewModel() {
         id = "error",
         label = "Erro"
     )
-    val chipsWithoutIcon: List<OceanChip> = listOf(
+
+    private var singleChoiceFilterOptions = listOf(
+        FilterOptionsItem("Teste 1"),
+        FilterOptionsItem("Teste 2", isSelected = true)
+    )
+
+    private var multipleChoiceFilterOptions = listOf(
+        FilterOptionsItem("Teste 1"),
+        FilterOptionsItem("Teste 2"),
+        FilterOptionsItem("Teste 3")
+    )
+
+    private var multipleChoiceBadge: Badge? = null
+
+    val chipsWithoutIcon: List<OceanChip> get() = listOf(
             OceanBasicChip(
                 label = allChip.label,
                 id = allChip.id,
                 onClick = {
                     println("OceanChipItem 1 $it")
                 }
+            ),
+            OceanFilterChip(
+                label = "Filtro",
+                id = "999",
+                filterOptions = OceanChipFilterOptions.SingleChoice(
+                    title = "Status do Boleto",
+                    optionsItems = singleChoiceFilterOptions,
+                    onSelectItem = {
+                        singleChoiceFilterOptions = singleChoiceFilterOptions.mapIndexed { index, filterOptionsItem ->
+                            filterOptionsItem.copy(isSelected = index == it)
+                        }
+                        loadData()
+                    }
+                )
+            ),
+            OceanFilterChip(
+                label = "Filtro Teste",
+                id = "9999",
+                badge = multipleChoiceBadge,
+                state = if (multipleChoiceFilterOptions.any { it.isSelected }) OceanChipItemState.DEFAULT else OceanChipItemState.INACTIVE_HOVER,
+                filterOptions = OceanChipFilterOptions.MultipleChoice(
+                    title = "Status do Pagamento",
+                    optionsItems = multipleChoiceFilterOptions,
+                    primaryButtonLabel = "Salvar",
+                    secondaryButtonLabel = "Limpar",
+                    onPrimaryButtonClick = {
+                        multipleChoiceFilterOptions = multipleChoiceFilterOptions.mapIndexed { index, filterOptionsItem ->
+                            filterOptionsItem.copy(isSelected = it.contains(index))
+                        }
+                        multipleChoiceBadge = if (it.isNotEmpty()) {
+                            Badge(
+                                type = OceanBadgeType.PRIMARY_INVERTED,
+                                text = it.size
+                            )
+                        } else null
+                        loadData()
+                    },
+                    onSecondaryButtonClick = {
+                        multipleChoiceFilterOptions = multipleChoiceFilterOptions.map { filterOptionsItem ->
+                            filterOptionsItem.copy(isSelected = false)
+                        }
+                        multipleChoiceBadge = null
+                        loadData()
+                    }
+                )
             ),
             OceanBasicChip(
                 label = toDueChip.label,
@@ -94,11 +153,8 @@ class ChipsViewModel : ViewModel() {
                 label = "Filtro",
                 id = "999",
                 filterOptions = OceanChipFilterOptions.SingleChoice(
-                    _title = "Status do Boleto",
-                    optionsItems = listOf(
-                        FilterOptionsItem("Teste 1"),
-                        FilterOptionsItem("Teste 2", isSelected = true)
-                    ),
+                    title = "Status do Boleto",
+                    optionsItems = singleChoiceFilterOptions,
                     onSelectItem = {
                         _toastText.postValue("Item selecionado: $it")
                     }
@@ -108,34 +164,28 @@ class ChipsViewModel : ViewModel() {
                 label = "Filtro 2",
                 id = "999",
                 filterOptions = OceanChipFilterOptions.MultipleChoice(
-                    optionsItems = listOf(
-                        FilterOptionsItem("Teste 1"),
-                        FilterOptionsItem("Teste 2", isSelected = true),
-                        FilterOptionsItem("Teste 3", isSelected = true)
-                    ),
+                    optionsItems = multipleChoiceFilterOptions,
                     primaryButtonLabel = "Adicionar",
                     secondaryButtonLabel = "Cancelar",
                     onPrimaryButtonClick = {
                         _toastText.postValue("Items selecionados: $it")
                     },
-                    _title = "Status do Pagamento"
+                    onSecondaryButtonClick = {},
+                    title = "Status do Pagamento"
                 )
             ),
             OceanFilterChip(
                 label = "Filtro 3",
                 id = "9999",
                 filterOptions = OceanChipFilterOptions.MultipleChoice(
-                    _title = "Status do Pagamento",
-                    optionsItems = listOf(
-                        FilterOptionsItem("Teste 123333333333333333333"),
-                        FilterOptionsItem("Teste 2", isSelected = true),
-                        FilterOptionsItem("Teste 3", isSelected = true)
-                    ),
+                    title = "Status do Pagamento",
+                    optionsItems = multipleChoiceFilterOptions,
                     primaryButtonLabel = "Salvar",
                     secondaryButtonLabel = "Cancelar",
                     onPrimaryButtonClick = {
                         _toastText.postValue("Items selecionados: $it")
-                    }
+                    },
+                    onSecondaryButtonClick = {}
                 )
             ),
             OceanBasicChip(
@@ -224,7 +274,7 @@ class ChipsViewModel : ViewModel() {
 
     fun loadData() {
         viewModelScope.launch {
-            delay(3000)
+            delay(100)
             _chips.postValue(chipsWithoutIcon)
         }
     }

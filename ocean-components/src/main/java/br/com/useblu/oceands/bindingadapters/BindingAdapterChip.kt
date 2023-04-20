@@ -11,8 +11,15 @@ fun setChipsAdapter(
     chips: List<OceanChip>?
 ) {
     chips ?: return
-    val adapter = OceanChipListAdapter()
-    recyclerView.adapter = adapter.apply {
-        submitList(chips)
+
+    if (recyclerView.adapter == null) {
+        val adapter = OceanChipListAdapter()
+        recyclerView.adapter = adapter.apply {
+            submitList(chips)
+        }
+    } else {
+        (recyclerView.adapter as OceanChipListAdapter).apply {
+            submitList(chips)
+        }
     }
 }

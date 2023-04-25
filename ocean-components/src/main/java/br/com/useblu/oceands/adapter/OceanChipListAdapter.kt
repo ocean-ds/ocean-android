@@ -10,6 +10,7 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.components.OceanOptionsBottomListSheet
 import br.com.useblu.oceands.databinding.OceanBasicChipItemBinding
 import br.com.useblu.oceands.databinding.OceanFilterChipItemBinding
+import br.com.useblu.oceands.model.FilterOptionsItem
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
 import br.com.useblu.oceands.model.OceanChip
@@ -162,6 +163,16 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
         }
 
+        private fun List<FilterOptionsItem>.getSelectedIndexes(): List<Int> {
+            return mapIndexed { index, filterOptionsItem ->
+                if (filterOptionsItem.isSelected) {
+                    index
+                } else {
+                    -1
+                }
+            }.filter { it != -1 }
+        }
+
         private fun showBottomSheet(context: Context, chip: OceanFilterChip) {
             val options = chip.filterOptions
             val internalItems = options.optionsItems.map { it.copy() }
@@ -174,17 +185,18 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     val adapter = OceanFilterChipMultipleOptionsAdapter(internalItems)
                     bottomSheet.withCustomList(adapter)
 
-                    bottomSheet.withFooterButton(options.primaryButtonLabel, options.secondaryButtonLabel) {
-                        val selectedItems = internalItems.mapIndexed { index, filterOptionsItem ->
-                            if (filterOptionsItem.isSelected) {
-                                index
-                            } else {
-                                -1
-                            }
-                        }.filter { it != -1 }
-
-                        options.onPrimaryButtonClick(selectedItems)
-                    }
+                    bottomSheet.withFooterButton(
+                        options.primaryButtonLabel,
+                        options.secondaryButtonLabel,
+                        primaryAction = {
+                            val selectedItems = internalItems.getSelectedIndexes()
+                            options.onPrimaryButtonClick(selectedItems)
+                        },
+                        secondaryAction = {
+                            val selectedItems = internalItems.getSelectedIndexes()
+                            options.onSecondaryButtonClick(selectedItems)
+                        }
+                    )
                 }
                 is OceanChipFilterOptions.SingleChoice -> {
                     val adapter = OceanFilterChipSingleOptionsAdapter(options) {

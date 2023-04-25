@@ -20,6 +20,7 @@ internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog
     private var primaryButtonText: String? = null
     private var secondaryButtonText: String? = null
     private var primaryButtonAction: (() -> Unit)? = null
+    private var secondaryButtonAction: (() -> Unit)? = null
     private var withFooterButton: Boolean = false
 
     private lateinit var binding: OceanOptionsBottomListSheetBinding
@@ -43,8 +44,8 @@ internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog
             binding.bottomSheetListButtonPrimary.click = it
         }
 
-        binding.bottomSheetListButtonSecondary.click = {
-            dismiss()
+        secondaryButtonAction?.let {
+            binding.bottomSheetListButtonSecondary.click = it
         }
 
         adapter?.let {
@@ -80,12 +81,17 @@ internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog
         primaryText: String,
         secondaryText: String,
         primaryAction: () -> Unit,
+        secondaryAction: (() -> Unit)? = null
     ): OceanOptionsBottomListSheet {
         this.withFooterButton = true
         this.primaryButtonText = primaryText
         this.secondaryButtonText = secondaryText
         this.primaryButtonAction = {
             primaryAction()
+            dismiss()
+        }
+        this.secondaryButtonAction = {
+            secondaryAction?.invoke()
             dismiss()
         }
         return this

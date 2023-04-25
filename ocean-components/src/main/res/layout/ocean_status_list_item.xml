@@ -11,7 +11,7 @@
 
         <variable
             name="click"
-            type="Function0&lt; Unit>" />
+            type="Function0&lt;Unit>" />
 
         <variable
             name="title"

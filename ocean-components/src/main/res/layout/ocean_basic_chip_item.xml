@@ -14,9 +14,27 @@
     </data>
 
     <LinearLayout
-        android:id="@+id/chip_list_item_background"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+            app:ocean_visible_or_gone="@{item.hasFilterAll == true}">
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/ocean_color_interface_light_down"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chip_list_item_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:clickable="@{item.state.clickable}"
         android:gravity="center"
         android:orientation="horizontal"
@@ -57,5 +75,6 @@
             app:text="@{item.badge != null ? Integer.toString(item.badge.text) : @string/empty}"
             app:type="@{item.badge.type}"
             app:visible="@{item.state.active &amp; item.badge != null}" />
+    </LinearLayout>
     </LinearLayout>
 </layout>

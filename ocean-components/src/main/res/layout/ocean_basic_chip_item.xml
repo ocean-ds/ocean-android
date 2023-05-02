@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="br.com.useblu.oceands.model.OceanBasicChip" />
 
         <import type="br.com.useblu.oceands.model.OceanBadgeType" />
@@ -28,53 +29,53 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/ocean_color_interface_light_down"/>
+                android:background="@color/ocean_color_interface_light_down" />
         </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/chip_list_item_background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="@{item.state.clickable}"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="12dp"
-        android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
-        tools:background="@drawable/ocean_chip_inactive_hover">
-
-        <ImageView
-            android:id="@+id/leftIcon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_gravity="center"
-            app:ocean_icon="@{item.icon}"
-            ocean_visible_or_gone="@{item.icon != null}"
-            tools:src="@drawable/ocean_icon_information_circle_outline"
-            tools:tint="@color/ocean_color_brand_primary_pure"
-            android:layout_marginEnd="@dimen/ocean_spacing_inline_xxxs"/>
-
-        <TextView
-            android:id="@+id/label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_family_base_bold"
+        <LinearLayout
+            android:id="@+id/chip_list_item_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
+            android:clickable="@{item.state.clickable}"
             android:gravity="center"
-            android:text="@{item.label}"
-            android:textAlignment="center"
-            android:textSize="@dimen/ocean_font_size_xxs"
-            tools:text="Todos"
-            tools:textColor="@color/ocean_color_brand_primary_pure" />
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            tools:background="@drawable/ocean_chip_inactive_hover">
 
-        <include
-            android:id="@+id/badge"
-            layout="@layout/ocean_badge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_inline_xxxs"
-            app:isSmall="@{true}"
-            app:text="@{item.badge != null ? Integer.toString(item.badge.text) : @string/empty}"
-            app:type="@{item.badge.type}"
-            app:visible="@{item.state.active &amp; item.badge != null}" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/leftIcon"
+                ocean_visible_or_gone="@{item.icon != null}"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/ocean_spacing_inline_xxxs"
+                app:ocean_icon="@{item.icon}"
+                tools:src="@drawable/ocean_icon_information_circle_outline"
+                tools:tint="@color/ocean_color_brand_primary_pure" />
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_bold"
+                android:gravity="center"
+                android:text="@{item.label}"
+                android:textAlignment="center"
+                android:textSize="@dimen/ocean_font_size_xxs"
+                tools:text="Todos"
+                tools:textColor="@color/ocean_color_brand_primary_pure" />
+
+            <include
+                android:id="@+id/badge"
+                layout="@layout/ocean_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ocean_spacing_inline_xxxs"
+                app:isSmall="@{true}"
+                app:text="@{item.badge != null ? Integer.toString(item.badge.text) : @string/empty}"
+                app:type="@{item.badge.type}"
+                app:visible="@{item.state.active &amp; item.badge != null}" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

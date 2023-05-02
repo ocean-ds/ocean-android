@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
             android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-            app:ocean_visible_or_gone="@{item.hasFilterAll == true}">
+            app:ocean_visible_or_gone="@{item.hasFilterAll}">
 
             <View
                 android:layout_width="1dp"

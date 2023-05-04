@@ -60,7 +60,7 @@
 
         <LinearLayout
             android:id="@+id/text_list_item_selecting_box_container"
-            ocean_visible_or_gone="@{leadingIcon != null}"
+            ocean_visible_or_gone="@{leadingIcon != null &amp;&amp; !leadingIcon.isEmpty()}"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/circle_place_holder"
@@ -122,7 +122,7 @@
             <TextView
                 android:id="@+id/text_list_item_description"
                 style="@style/Ocean.Description"
-                ocean_visible_or_gone="@{description != null}"
+                ocean_visible_or_gone="@{description != null &amp;&amp; !description.isEmpty()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{description}"
@@ -131,7 +131,7 @@
             <TextView
                 android:id="@+id/text_list_item_title_info"
                 style="@style/Ocean.Caption"
-                ocean_visible_or_gone="@{caption != null}"
+                ocean_visible_or_gone="@{caption != null &amp;&amp; !caption.isEmpty()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"

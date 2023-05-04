@@ -772,7 +772,7 @@ fun String.toOceanIcon() = when (this.lowercase()) {
     }
 
     "eyeoutline" -> {
-        R.drawable.ocean_icon_eye_off_outline
+        R.drawable.ocean_icon_eye_outline
     }
 
     "eyesolid" -> {

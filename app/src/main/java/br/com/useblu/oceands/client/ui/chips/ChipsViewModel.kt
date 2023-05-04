@@ -5,14 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
-import br.com.useblu.oceands.model.Badge
-import br.com.useblu.oceands.model.FilterOptionsItem
-import br.com.useblu.oceands.model.OceanBadgeType
-import br.com.useblu.oceands.model.OceanBasicChip
-import br.com.useblu.oceands.model.OceanChip
-import br.com.useblu.oceands.model.OceanChipFilterOptions
-import br.com.useblu.oceands.model.OceanChipItemState
-import br.com.useblu.oceands.model.OceanFilterChip
+import br.com.useblu.oceands.model.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -158,7 +151,7 @@ class ChipsViewModel : ViewModel() {
                     onSelectItem = {
                         _toastText.postValue("Item selecionado: $it")
                     }
-                )
+                ),
             ),
             OceanFilterChip(
                 label = "Filtro 2",
@@ -220,7 +213,8 @@ class ChipsViewModel : ViewModel() {
                 icon = "informationcircleoutline",
                 onClick = {
                     println("OceanChipItem 5 $it")
-                }
+                },
+                hasFilterAll = true
             )
         )
 
@@ -265,7 +259,8 @@ class ChipsViewModel : ViewModel() {
                 badge = Badge(9, OceanBadgeType.PRIMARY_INVERTED),
                 onClick = {
                     println("OceanChipItem 5 $it")
-                }
+                },
+                hasFilterAll = true
             )
         )
 

@@ -56,8 +56,9 @@
 
         <include
             layout="@layout/ocean_description"
+            android:text="@{title}"
             app:color="@{@color/ocean_color_interface_dark_down}"
-            app:text="@{title}" />
+            app:ocean_text_from_html="@{title}" />
 
         <TextView
             style="@style/Ocean.Paragraph"
@@ -66,6 +67,7 @@
             android:text="@{description}"
             android:textColor="@{@color/ocean_color_interface_dark_pure}"
             app:highlight="@{isBold}"
+            app:ocean_text_from_html="@{description}"
             app:statusTextListItem="@{status}"
             tools:text="@string/title" />
 

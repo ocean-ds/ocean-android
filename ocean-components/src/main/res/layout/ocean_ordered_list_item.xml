@@ -41,7 +41,8 @@
         <include
             layout="@layout/ocean_description"
             app:color="@{@color/ocean_color_interface_dark_deep}"
-            app:text="@{item}" />
+            app:text="@{item}"
+            app:ocean_text_from_html="@{item}"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

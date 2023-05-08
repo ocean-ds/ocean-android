@@ -1979,6 +1979,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_retailer_outline
     }
 
+    "retailersolid" -> {
+        R.drawable.ocean_icon_retailer_solid
+    }
+
     "scanoutline" -> {
         R.drawable.ocean_icon_scan_outline
     }

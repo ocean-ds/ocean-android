@@ -4,10 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <import type="kotlin.jvm.functions.Function0" />
+
         <import type="kotlin.Unit" />
-        <import type="br.com.useblu.oceands.model.OceanTagType"/>
+
+        <import type="br.com.useblu.oceands.model.OceanTagType" />
 
         <variable
             name="click"
@@ -69,22 +73,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/status_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_family_base_regular"
-                android:text="@{title}"
-                android:maxLines="1"
                 android:ellipsize="end"
+                android:fontFamily="@font/font_family_base_regular"
+                android:maxLines="1"
+                android:text="@{title}"
                 android:textColor="@{ isActive ? @color/ocean_color_interface_dark_pure : @color/ocean_color_interface_dark_up}"
                 android:textSize="@dimen/ocean_font_size_xs"
                 tools:text="Title"
-                tools:textColor="@color/ocean_color_interface_dark_pure"/>
+                tools:textColor="@color/ocean_color_interface_dark_pure" />
 
             <TextView
                 android:id="@+id/status_item_description"
@@ -92,9 +96,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_family_base_regular"
                 android:text="@{description}"
-                android:visibility="@{description == null ? View.GONE : View.VISIBLE}"
                 android:textColor="@{isActive ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
                 android:textSize="@dimen/ocean_font_size_xxs"
+                android:visibility="@{description == null ? View.GONE : View.VISIBLE}"
                 tools:text="Description" />
 
             <TextView
@@ -104,38 +108,32 @@
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
                 android:fontFamily="@font/font_family_base_regular"
                 android:text="@{caption}"
-                android:visibility="@{caption == null ? View.GONE : View.VISIBLE}"
                 android:textColor="@{isActive ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
                 android:textSize="@dimen/ocean_font_size_xxxs"
+                android:visibility="@{caption == null ? View.GONE : View.VISIBLE}"
                 tools:text="Caption" />
 
-            <LinearLayout
-                android:id="@+id/status_item_bottom_tag_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+            <Space
+                android:layout_width="match_parent"
+                app:ocean_visible_or_gone="@{label != null}"
+                android:layout_height="@dimen/ocean_spacing_inset_xs"/>
+
+            <include
+                layout="@layout/ocean_tag"
                 android:paddingStart="@dimen/ocean_spacing_stack_xxs"
-                android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
                 android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
+                android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
-                app:ocean_tag_background_type="@{tagType}"
-                android:visibility="@{label != null ? (showRightTag ? View.GONE: View.VISIBLE) : View.GONE}"
-                tools:background="@drawable/ocean_tag_warning_background">
+                app:hideIcon="@{true}"
+                app:ocean_visible_or_gone="@{label != null}"
+                app:title="@{label}"
+                app:type="@{tagType}" />
 
-                <TextView
-                    android:id="@+id/status_item_tag_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_family_base_regular"
-                    android:text="@{label}"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    app:ocean_tag_text_color="@{tagType}"
-                    android:textSize="@dimen/ocean_font_size_xxxs"
-                    tools:text="Label"
-                    tools:textColor="@color/ocean_color_status_neutral_deep"/>
+            <Space
+                android:layout_width="match_parent"
+                app:ocean_visible_or_gone="@{label != null}"
+                android:layout_height="@dimen/ocean_spacing_inset_xs"/>
 
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -144,23 +142,23 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/ocean_spacing_stack_xs"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:id="@+id/status_item_right_tag_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-                android:paddingStart="@dimen/ocean_spacing_stack_xxs"
-                android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
-                android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
-                android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
-                app:ocean_tag_background_type="@{tagType}"
-                android:visibility="@{label != null ? (showRightTag ? View.VISIBLE: View.GONE) : View.GONE}"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/ocean_spacing_stack_xxs"
+                android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
+                android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
+                android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
+                android:visibility="@{label != null ? (showRightTag ? View.VISIBLE: View.GONE) : View.GONE}"
+                app:ocean_tag_background_type="@{tagType}">
 
                 <TextView
                     android:id="@+id/status_item_right_tag_label"
@@ -168,8 +166,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_family_base_regular"
                     android:text="@{label}"
-                    app:ocean_tag_text_color="@{tagType}"
                     android:textSize="@dimen/ocean_font_size_xxxs"
+                    app:ocean_tag_text_color="@{tagType}"
                     tools:text="Label" />
 
             </LinearLayout>
@@ -180,8 +178,8 @@
                 android:layout_gravity="center_vertical"
                 android:src="@{showContextMenu ? @drawable/icon_vertical_solid_dots : @drawable/icon_chevron_right}"
                 android:visibility="@{isReadOnly ? View.GONE : View.VISIBLE}"
-                tools:src="@drawable/icon_chevron_right"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/icon_chevron_right" />
 
         </LinearLayout>
 
@@ -189,8 +187,8 @@
             layout="@layout/ocean_divider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:visibility="@{hideDivider ? View.GONE : View.VISIBLE}"/>
+            android:visibility="@{hideDivider ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

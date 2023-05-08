@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.donut.DonutActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.tab.TabActivity"
             android:exported="false" />
         <activity android:name=".ui.step.StepViewActivity" />
@@ -52,15 +55,15 @@
         <activity android:name=".ui.descriptorlistitem.DescriptorListActivity" />
         <activity android:name=".ui.groupcta.GroupCTAActivity" />
         <activity android:name=".ui.carditem.CardItemActivity" />
-        <activity android:name=".ui.orderedlistitem.OrderedListItemActivity"/>
-        <activity android:name=".ui.settingslistitem.SettingsListItemActivity"/>
+        <activity android:name=".ui.orderedlistitem.OrderedListItemActivity" />
+        <activity android:name=".ui.settingslistitem.SettingsListItemActivity" />
         <activity android:name=".ui.statuslistitem.StatusListItemActivity" />
         <activity android:name=".ui.textlistitem.TextListItemActivity" />
         <activity android:name=".ui.textlisticonitem.TextListIconItemActivity" />
         <activity android:name=".ui.unorderedlistitem.UnorderedListItemActivity" />
-        <activity android:name=".ui.textlistinverted.TextListInvertedItemActivity"/>
-        <activity android:name=".ui.textlistinline.TextListInlineItemActivity"/>
-        <activity android:name=".ui.accordion.AccordionActivity"/>
+        <activity android:name=".ui.textlistinverted.TextListInvertedItemActivity" />
+        <activity android:name=".ui.textlistinline.TextListInlineItemActivity" />
+        <activity android:name=".ui.accordion.AccordionActivity" />
     </application>
 
 </manifest>

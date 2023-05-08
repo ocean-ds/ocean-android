@@ -56,9 +56,8 @@
 
         <include
             layout="@layout/ocean_description"
-            android:text="@{title}"
-            app:color="@{@color/ocean_color_interface_dark_down}"
-            app:ocean_text_from_html="@{title}" />
+            app:text="@{title}"
+            app:color="@{@color/ocean_color_interface_dark_down}" />
 
         <TextView
             style="@style/Ocean.Paragraph"

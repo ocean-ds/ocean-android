@@ -2095,11 +2095,11 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_barcode_outline_highlight
     }
 
-    "moneyinflow" -> {
+    "moneyinflowoutline" -> {
         R.drawable.ocean_icon_money_inflow
     }
 
-    "moneyoutflow" -> {
+    "moneyoutflowoutline" -> {
         R.drawable.ocean_icon_money_outflow
     }
 

@@ -15,7 +15,7 @@
 
         <include
             layout="@layout/ocean_donut"
-            app:items="@{viewmodel.items}" />
+            app:model="@{viewmodel.donutModel}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

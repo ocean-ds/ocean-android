@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.extensions.dp
-import br.com.useblu.oceands.model.OceanDonutItem
+import br.com.useblu.oceands.model.OceanDonutModel
 
 class OceanDonutView @JvmOverloads constructor(
     context: Context,
@@ -19,7 +19,11 @@ class OceanDonutView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private var sectionItems: List<OceanDonutItem> = emptyList()
+    private val sectionItems get() = model.items
+
+    private var model = OceanDonutModel()
+
+    private var selectedIndex: Int? = null
 
     private val paintSize = 32.dp.toFloat()
 
@@ -39,8 +43,8 @@ class OceanDonutView @JvmOverloads constructor(
 
     private val drawRect = RectF()
 
-    fun setSectionItems(items: Collection<OceanDonutItem>) {
-        sectionItems = items.toList()
+    fun setupDonut(model: OceanDonutModel) {
+        this.model = model
 
         invalidate()
     }
@@ -112,16 +116,27 @@ class OceanDonutView @JvmOverloads constructor(
             drawEmptyChart(canvas)
         }
 
+        drawText(canvas)
+    }
+
+    private fun drawText(canvas: Canvas) {
         val textX = drawRect.centerX()
         val textY = drawRect.centerY()
 
+        val (title, label) = selectedIndex?.let {
+            val item = sectionItems[it]
+            item.label to item.label
+        } ?: run {
+            model.title to model.label
+        }
+
         textPaint.color = ContextCompat.getColor(context, R.color.ocean_color_interface_dark_deep)
         textPaint.textSize = 20.dp.toFloat()
-        canvas.drawText("0", textX, textY, textPaint)
+        canvas.drawText(title, textX, textY, textPaint)
 
         textPaint.color = ContextCompat.getColor(context, R.color.ocean_color_interface_dark_down)
         textPaint.textSize = 12.dp.toFloat()
-        canvas.drawText("Label", textX, textY + 50, textPaint)
+        canvas.drawText(label, textX, textY + 50, textPaint)
     }
 
     private fun drawEmptyChart(canvas: Canvas) {

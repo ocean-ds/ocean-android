@@ -24,31 +24,23 @@ fun PieChart.setupDonutModel(model: OceanDonutModel) {
 
 private fun PieChart.setupChart(model: OceanDonutModel) {
     description.isEnabled = false
+    legend.isEnabled = false
+
     isDrawHoleEnabled = true
     setHoleColor(android.R.color.transparent)
     setTransparentCircleAlpha(0)
     holeRadius = 64f
 
-    setDrawCenterText(true)
-
-    centerText = getCenterTextStyled(model.title, model.label)
-
     rotationAngle = 270f
     isRotationEnabled = false
-    isHighlightPerTapEnabled = true
-    legend.isEnabled = false
 
-    val pieEntries = model.items.map {
-        PieEntry(it.value)
-    }
+    isHighlightPerTapEnabled = model.items.isNotEmpty()
 
-    val pieDataSet = PieDataSet(pieEntries, "")
+    setDrawCenterText(true)
+    centerText = getCenterTextStyled(model.title, model.label)
 
-    pieDataSet.colors = model.items.map {
-        ContextCompat.getColor(context, it.color)
-    }
-
-    data = PieData(pieDataSet).apply {
+    data = PieData().apply {
+        dataSet = buildPieDataSet(model)
         setValueTextColor(android.R.color.transparent)
     }
 
@@ -72,6 +64,23 @@ private fun PieChart.setupChart(model: OceanDonutModel) {
     })
 
     invalidate()
+}
+
+private fun PieChart.buildPieDataSet(model: OceanDonutModel): PieDataSet {
+    val pieEntries = model.items.map {
+        PieEntry(it.value)
+    }.ifEmpty { listOf(PieEntry(1f)) }
+
+    val pieDataSet = PieDataSet(pieEntries, "")
+
+    pieDataSet.colors = model.items.map {
+        ContextCompat.getColor(context, it.color)
+    }.ifEmpty {
+        listOf(
+            ContextCompat.getColor(context, R.color.ocean_color_interface_light_deep)
+        )
+    }
+    return pieDataSet
 }
 
 private fun PieChart.getCenterTextStyled(

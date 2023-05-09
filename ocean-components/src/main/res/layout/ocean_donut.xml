@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.util.List" />
+
+        <import type="br.com.useblu.oceands.model.OceanDonutModel" />
+
+        <variable
+            name="model"
+            type="OceanDonutModel" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pie_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:donut_model="@{model}"/>
+
+    </LinearLayout>
+
+</layout>

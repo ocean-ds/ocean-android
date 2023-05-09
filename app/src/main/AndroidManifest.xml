@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.donut.DonutActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.tab.TabActivity"
             android:exported="false" />
         <activity android:name=".ui.step.StepViewActivity" />

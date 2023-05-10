@@ -6,22 +6,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.useblu.oceands.model.OceanShortcutItem
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanShortcutCardSize
+import br.com.useblu.oceands.model.OceanShortcutItem
 import br.com.useblu.oceands.model.OceanShortcutLayoutMode
 
 class ShortcutsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _itemsTiny = MutableLiveData<List<OceanShortcutItem>>()
-    val itemsTiny: LiveData<List<OceanShortcutItem>> get() = _itemsTiny
+    val itemsTiny: LiveData<List<OceanShortcutItem>> = _itemsTiny
 
     val itemsTinyLayoutManager = GridLayoutManager(
         application.applicationContext, 2
     )
 
     private val _itemsSmall = MutableLiveData<List<OceanShortcutItem>>()
-    val itemsSmall: LiveData<List<OceanShortcutItem>> get() = _itemsSmall
+    val itemsSmall: LiveData<List<OceanShortcutItem>> = _itemsSmall
 
     val itemsSmallLayoutManager = LinearLayoutManager(
         application.applicationContext,
@@ -30,7 +30,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
     )
 
     private val _itemsMedium = MutableLiveData<List<OceanShortcutItem>>()
-    val itemsMedium: LiveData<List<OceanShortcutItem>> get() = _itemsMedium
+    val itemsMedium: LiveData<List<OceanShortcutItem>> = _itemsMedium
 
     val itemsMediumLayoutManager = GridLayoutManager(
         application.applicationContext, 2

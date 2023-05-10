@@ -34,7 +34,7 @@
         <Space
             android:layout_width="16dp"
             android:layout_height="16dp"
-            app:ocean_visible_or_gone="@{needLeadingSpacer != null ? needLeadingSpacer : false}"/>
+            app:ocean_visible_or_gone="@{needLeadingSpacer}"/>
 
         <LinearLayout
             app:ocean_visible_or_gone="@{needsRoundBackground}"
@@ -67,14 +67,15 @@
 
         <TextView
             style="@style/Ocean.Description.DarkDown"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             app:ocean_text_from_html="@{text}"
             tools:text="Lorem ipsum "/>
 
         <Space
             android:layout_width="16dp"
             android:layout_height="16dp"
-            app:ocean_visible_or_gone="@{needTrailingSpacer != null ? needTrailingSpacer : false}"/>
+            app:ocean_visible_or_gone="@{needTrailingSpacer}"/>
     </LinearLayout>
 </layout>

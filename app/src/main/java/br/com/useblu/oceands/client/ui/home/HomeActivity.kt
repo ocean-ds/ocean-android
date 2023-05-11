@@ -504,7 +504,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         OceanDatePickerFullscreen(supportFragmentManager)
-            .withTitle("Agendar para")
+            .withTitle("Teste de título 2")
             .withMinDate(calendarMinDate)
             .withMaxDate(calendarMaxDate)
             .withDefaultSelect(calendarDefaultSelected)

@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.utils.DisabledDaysDecorator
 import br.com.useblu.oceands.databinding.OceanDatePickerFullscreenBinding
+import br.com.useblu.oceands.utils.DisabledDaysDecorator
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 
 class OceanDatePickerFullscreen(
@@ -57,26 +58,28 @@ class OceanDatePickerFullscreen(
     }
 
     private fun setupCalendar() {
-        val calendar = binding.calendarView.state().edit()
-        minDate?.let {
-            val day = it.get(Calendar.DAY_OF_MONTH)
-            val month = it.get(Calendar.MONTH) + 1
-            val year = it.get(Calendar.YEAR)
-            calendar.setMinimumDate(CalendarDay.from(year, month, day))
-        }
-        maxDate?.let {
-            val day = it.get(Calendar.DAY_OF_MONTH)
-            val month = it.get(Calendar.MONTH) + 1
-            val year = it.get(Calendar.YEAR)
-            calendar.setMaximumDate(CalendarDay.from(year, month, day))
-        }
-        calendar.commit()
         defaultSelected?.let {
             val day = it.get(Calendar.DAY_OF_MONTH)
             val month = it.get(Calendar.MONTH) + 1
             val year = it.get(Calendar.YEAR)
             binding.calendarView.selectedDate = CalendarDay.from(year, month, day)
         }
+
+        val calendarState = binding.calendarView.state().edit()
+        minDate?.let {
+            val day = it.get(Calendar.DAY_OF_MONTH)
+            val month = it.get(Calendar.MONTH) + 1
+            val year = it.get(Calendar.YEAR)
+            calendarState.setMinimumDate(CalendarDay.from(year, month, day))
+        }
+        maxDate?.let {
+            val day = it.get(Calendar.DAY_OF_MONTH)
+            val month = it.get(Calendar.MONTH) + 1
+            val year = it.get(Calendar.YEAR)
+            calendarState.setMaximumDate(CalendarDay.from(year, month, day))
+        }
+        calendarState.commit()
+
         disabledDays.let {
             binding.calendarView.addDecorators(DisabledDaysDecorator(it))
         }

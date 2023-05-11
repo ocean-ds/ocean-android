@@ -474,16 +474,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun onOceanDatePickerFullScreen(view: View) {
-        var calendarMinDate = Calendar.getInstance()
+        val calendarMinDate = Calendar.getInstance()
         calendarMinDate.time = Date()
 
-        var calendarMaxDate = Calendar.getInstance()
+        val calendarMaxDate = Calendar.getInstance()
         calendarMaxDate.time = Date()
         calendarMaxDate.add(Calendar.MONTH, 5)
 
-        var calendarDefaultSelected = Calendar.getInstance()
+        val calendarDefaultSelected = Calendar.getInstance()
         calendarDefaultSelected.time = Date()
-        calendarDefaultSelected.add(Calendar.DAY_OF_YEAR, 1)
+        calendarDefaultSelected.add(Calendar.MONTH, 1)
 
         val disableDay1 = Calendar.getInstance().apply {
             set(Calendar.YEAR, 2022)
@@ -504,7 +504,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         OceanDatePickerFullscreen(supportFragmentManager)
-            .withTitle("Agendar para")
+            .withTitle("Teste de título 2")
             .withMinDate(calendarMinDate)
             .withMaxDate(calendarMaxDate)
             .withDefaultSelect(calendarDefaultSelected)

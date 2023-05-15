@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.client.ui.transactionlistitem
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -37,22 +36,18 @@ class TransactionListItemActivity : AppCompatActivity() {
 
     private fun initObservers() {
         viewModel.selectionMode.observe(this) { isEntering ->
-            if(!isEntering) selectedItems.clear()
+            if (!isEntering) selectedItems.clear()
+            recyclerViewAdapter.updateSelectionMode(isEntering, selectedItems)
         }
+
         viewModel.clickedItem.observe(this) { index ->
             with(selectedItems) {
-                if (isEmpty()) {
-                    viewModel.selectionMode.postValue(true)
-                } else {
-                }
                 if (contains(index)) remove(index) else add(index)
-
-                if (isEmpty()) viewModel.selectionMode.postValue(false)
+                viewModel.selectionMode.postValue(isNotEmpty())
             }
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun initRecyclerView() {
         binding.transactionListRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
@@ -61,7 +56,7 @@ class TransactionListItemActivity : AppCompatActivity() {
     }
 
     private fun getRecyclerViewAdapter(): TransactionListItemAdapter {
-        return TransactionListItemAdapter(selectionMode = viewModel.selectionMode) {
+        return TransactionListItemAdapter {
             viewModel.click(it)
         }.apply {
             val list = (0..9).map {

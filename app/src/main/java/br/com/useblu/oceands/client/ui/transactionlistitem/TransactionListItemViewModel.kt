@@ -1,15 +1,15 @@
 package br.com.useblu.oceands.client.ui.transactionlistitem
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class TransactionListItemViewModel(application: Application): AndroidViewModel(application) {
-    val selectionMode:MutableLiveData<Boolean> = MutableLiveData()
+class TransactionListItemViewModel: ViewModel() {
+
+    val selectionMode: MutableLiveData<Boolean> = MutableLiveData()
 
     private val _clickedItem: MutableLiveData<Int> = MutableLiveData()
-    val clickedItem: LiveData<Int> get() = _clickedItem
+    val clickedItem: LiveData<Int> = _clickedItem
 
     fun loadData() {
 

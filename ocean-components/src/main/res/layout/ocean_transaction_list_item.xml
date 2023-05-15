@@ -75,7 +75,7 @@
 
         <variable
             name="selectionMode"
-            type="MutableLiveData&lt;Boolean>" />
+            type="Boolean" />
 
         <variable
             name="click"

@@ -5,18 +5,16 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanCheckboxBinding
 
 @BindingAdapter("click", "hasCheckbox", "index", "selectionMode")
 fun setClickListener(
     layout: LinearLayoutCompat,
-    click: ((Int) -> Unit)?,
+    click: ((indexSelected: Int) -> Unit)?,
     hasCheckbox: Boolean?,
     index: Int?,
-    selectionMode: MutableLiveData<Boolean>?
+    selectionMode: Boolean?
 ) {
     val checkbox = layout.findViewById<View>(R.id.checkbox)
     val checkboxBinding = oceanCheckboxBinding(checkbox)
@@ -35,11 +33,11 @@ fun setClickListener(
 }
 
 private fun enterOrLeaveSelectionMode(
-    selectionMode: MutableLiveData<Boolean>?,
+    selectionMode: Boolean?,
     layout: LinearLayoutCompat,
     checkboxBinding: OceanCheckboxBinding?
 ) {
-    selectionMode?.observe(layout.context as LifecycleOwner) { isEntering ->
+    selectionMode?.let { isEntering ->
         val motionLayout = layout.findViewById<MotionLayout>(R.id.motionLayout)
         if (isEntering) {
             motionLayout.transitionToEnd()

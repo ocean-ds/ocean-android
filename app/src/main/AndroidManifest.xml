@@ -64,6 +64,7 @@
         <activity android:name=".ui.textlistinverted.TextListInvertedItemActivity"/>
         <activity android:name=".ui.textlistinline.TextListInlineItemActivity"/>
         <activity android:name=".ui.accordion.AccordionActivity"/>
+        <activity android:name=".ui.progressbar.ProgressBarActivity"/>
     </application>
 
 </manifest>

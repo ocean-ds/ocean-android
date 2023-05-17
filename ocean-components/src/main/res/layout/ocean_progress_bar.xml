@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="percent"
+            type="Integer" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/ocean_spacing_stack_xxs"
+        android:paddingBottom="@dimen/ocean_spacing_stack_xxs">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginRight="@dimen/ocean_spacing_stack_xxs"
+            android:layout_weight="1"
+            android:progress="@{percent}"
+            android:progressDrawable="@drawable/custom_progress_bar" />
+
+        <include
+            layout="@layout/ocean_caption"
+            app:text="@{percent+`%`}" />
+
+    </LinearLayout>
+</layout>

@@ -422,6 +422,21 @@
             android:background="#E7E7E7" />
 
         <TextView
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="clickProgressBar"
+            android:padding="16dp"
+            android:text="Progress Bar"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginStart="10dp"
+            android:background="#E7E7E7" />
+
+        <TextView
             android:id="@+id/radio"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -35,7 +35,7 @@ class HeaderAppViewModel: ViewModel() {
                         isContentHidden = !isContentHidden
                         loadData()
                     },
-                    buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu",
+                    buttonDescription = "Confira tudo tudo tudo tudo tudo tudo tudo tudo tudo o que entrou e saiu da sua Conta Digital Blu",
                     buttonCta = "Extrato",
                     onClickButton = {}
                 )

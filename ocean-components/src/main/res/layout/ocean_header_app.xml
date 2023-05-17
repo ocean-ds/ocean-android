@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:gravity="center_vertical"
             android:paddingVertical="8dp"
             android:paddingStart="16dp"
             android:onClick="@{() -> model.onClickTitle.invoke()}"
@@ -87,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
             android:layout_marginTop="14dp"
+            android:layout_marginEnd="4dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/header_title_container"
             app:layout_constraintEnd_toStartOf="@+id/constraint_layout_first_action">
@@ -100,23 +100,21 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_layout_first_action"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xxxs"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginEnd="@dimen/ocean_spacing_stack_xxxs"
             android:layout_marginTop="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
             android:onClick="@{() -> model.onClickMenu.invoke()}"
-            app:layout_constraintStart_toEndOf="@+id/blu_plus_view_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <FrameLayout
                 android:id="@+id/frame_layout_badge"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -164,7 +162,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:model="@{model.balanceModel}"/>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

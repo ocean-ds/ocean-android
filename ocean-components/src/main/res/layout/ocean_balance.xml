@@ -257,7 +257,8 @@
             android:id="@+id/expansion_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:setCustomBehavior="@{true}">
+            tools:expansion_expanded="true"
+            app:setCustomBehavior="@{false}">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"

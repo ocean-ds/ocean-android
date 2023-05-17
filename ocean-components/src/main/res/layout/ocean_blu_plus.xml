@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <variable
+            name="click"
+            type="Function0" />
+
+        <variable
+            name="value"
+            type="Integer" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/blu_plus_view_container"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/ocean_blu_plus_background"
+        android:focusable="true"
+        android:clickable="true"
+        android:onClick="@{() -> click.invoke()}">
+
+        <ImageView
+            android:id="@+id/blu_plus_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/blu_plus_text"
+            android:src="@drawable/icon_blu_plus"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/blu_plus_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/blu_plus_trailing_icon"
+            android:text="@{value != null ? value.toString() : `0`}"
+            android:textColor="@color/ocean_color_interface_light_pure"
+            android:maxLength="3"
+            style="@style/Ocean.Caption"
+            tools:text="100" />
+
+        <ImageView
+            android:id="@+id/blu_plus_trailing_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ocean_icon_chevron_right_solid"
+            app:tint="@color/ocean_color_interface_light_pure"
+            tools:tint="@color/ocean_color_interface_light_pure"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

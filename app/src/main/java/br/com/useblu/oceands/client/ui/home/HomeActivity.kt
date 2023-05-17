@@ -27,6 +27,7 @@ import br.com.useblu.oceands.client.ui.descriptorlistitem.DescriptorListActivity
 import br.com.useblu.oceands.client.ui.donut.DonutActivity
 import br.com.useblu.oceands.client.ui.footer.FooterBluActivity
 import br.com.useblu.oceands.client.ui.groupcta.GroupCTAActivity
+import br.com.useblu.oceands.client.ui.headerapp.HeaderAppActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
@@ -89,6 +90,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickCta(view: View) {
         val intent = Intent(this, GroupCTAActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickHeaderApp(view: View) {
+        val intent = Intent(this, HeaderAppActivity::class.java)
         startActivity(intent)
     }
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.text.InputType" />
+
+        <import type="br.com.useblu.oceands.utils.FormatTypes" />
+
+        <variable
+            name="viewmodel"
+            type="br.com.useblu.oceands.client.ui.informativecard.InformativeCardViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/ocean_spacing_inline_xs">
+
+            <include
+                layout="@layout/ocean_informative_card"
+                app:actionTitle="@{@string/action_title}"
+                app:click="@{viewmodel::click}"
+                app:description="@{@string/description}"
+                app:firstInfo="@{viewmodel.fistInfo}"
+                app:information="@{@string/lorem_ipsum}"
+                app:leftIcon="@{`appareloutline`}"
+                app:secondInfo="@{viewmodel.secondInfo}"
+                app:title="@{@string/title}"
+                app:value="@{`R$ 1000,00`}" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <include
+                layout="@layout/ocean_informative_card"
+                app:actionTitle="@{@string/action_title}"
+                app:additionalInformation="@{@string/lorem_ipsum}"
+                app:click="@{viewmodel::click}"
+                app:description="@{@string/description}"
+                app:firstInfo="@{viewmodel.fistInfo}"
+                app:information="@{@string/lorem_ipsum}"
+                app:secondInfo="@{viewmodel.secondInfo}"
+                app:title="@{@string/title}"
+                app:value="@{`R$ 1000,00`}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</layout>

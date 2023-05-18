@@ -8,5 +8,7 @@ data class OceanHeaderAppModel(
     val onClickBluPlus: () -> Unit,
     val onClickMenu: () -> Unit,
     val badgeCount: Int,
-    val balanceModel: OceanBalanceModel
+    val balanceBluModel: OceanBalanceBluModel,
+    val balanceOthersModel: OceanBalanceOthersModel,
+    val isHeaderCollapsed: Boolean
 )

@@ -1,12 +1,8 @@
 package br.com.useblu.oceands.model
 
-data class OceanBalanceModel(
+data class OceanBalanceOthersModel(
     val firstLabel: String,
     val firstValue: String,
-    val secondLabel: String,
-    val secondValue: String,
-    val thirdLabel: String,
-    val thirdValue: String,
     val isContentHidden: Boolean,
     val onClickHideIcon: () -> Unit,
     val buttonDescription: String,

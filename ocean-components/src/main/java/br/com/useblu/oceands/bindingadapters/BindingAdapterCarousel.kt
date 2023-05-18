@@ -16,7 +16,8 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.adapter.OceanBalanceAdapter
 import br.com.useblu.oceands.databinding.ItemCarouselOceanBinding
 import br.com.useblu.oceands.extensions.dp
-import br.com.useblu.oceands.model.OceanBalanceModel
+import br.com.useblu.oceands.model.OceanBalanceBluModel
+import br.com.useblu.oceands.model.OceanBalanceOthersModel
 import br.com.useblu.oceands.model.OceanCarouselItem
 import me.relex.circleindicator.CircleIndicator2
 import me.relex.circleindicator.CircleIndicator3
@@ -72,20 +73,30 @@ fun setCircleIndicator(
     }
 }
 
-@BindingAdapter("setViewPager", "circle_indicator")
-fun ViewPager2.setViewPager(model: OceanBalanceModel?, circleIndicatorRes: Int) {
-    model ?: return
+@BindingAdapter("blu_model", "others_model", "circle_indicator")
+fun ViewPager2.setViewPager(
+    bluModel: OceanBalanceBluModel?,
+    othersModel: OceanBalanceOthersModel?,
+    circleIndicatorRes: Int
+) {
+    bluModel ?: return
+    othersModel ?: return
 
     this.offscreenPageLimit = 1
     this.clipToPadding = false
-    this.adapter = OceanBalanceAdapter(listOf(model, model))
 
-    val parent = this.parent as ViewGroup
+    if (adapter == null) {
+        this.adapter = OceanBalanceAdapter(bluModel, othersModel)
 
-    val circleIndicator = parent.findViewById<CircleIndicator3>(circleIndicatorRes)
-    circleIndicator.setViewPager(this)
+        val parent = this.parent as ViewGroup
+        val circleIndicator = parent.findViewById<CircleIndicator3>(circleIndicatorRes)
+        circleIndicator.setViewPager(this)
+        adapter?.registerAdapterDataObserver(circleIndicator.adapterDataObserver)
 
-    adapter?.registerAdapterDataObserver(circleIndicator.adapterDataObserver)
+        this.registerOnPageChangeCallback(ViewPagerCallback(this))
+    } else {
+        (adapter as OceanBalanceAdapter).updateModel(bluModel, othersModel)
+    }
 
     val nextItemVisiblePx = 24.dp
     val currentItemHorizontalMarginPx = 32.dp
@@ -95,36 +106,36 @@ fun ViewPager2.setViewPager(model: OceanBalanceModel?, circleIndicatorRes: Int) 
         page.translationX = -pageTranslationX * position
     }
 
-    this.addItemDecoration(object: RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(
-            outRect: Rect,
-            view: View,
-            parent: RecyclerView,
-            state: RecyclerView.State
-        ) {
-            val position = parent.getChildAdapterPosition(view)
-            val totalItems = parent.adapter?.itemCount ?: 0
-
-            when (position) {
-                0 -> {
-                    outRect.left = 16.dp
-                    outRect.right = currentItemHorizontalMarginPx
-                }
-                totalItems - 1 -> {
-                    outRect.left = currentItemHorizontalMarginPx
-                    outRect.right = 16.dp
-                }
-                else -> {
-                    outRect.left = currentItemHorizontalMarginPx
-                    outRect.right = currentItemHorizontalMarginPx
-                }
-            }
-        }
-    })
-
     this.setPageTransformer(pageTransformer)
 
-    this.registerOnPageChangeCallback(ViewPagerCallback(this))
+    if (this.itemDecorationCount == 0) {
+        this.addItemDecoration(object: RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                val position = parent.getChildAdapterPosition(view)
+                val totalItems = parent.adapter?.itemCount ?: 0
+
+                when (position) {
+                    0 -> {
+                        outRect.left = 16.dp
+                        outRect.right = currentItemHorizontalMarginPx
+                    }
+                    totalItems - 1 -> {
+                        outRect.left = currentItemHorizontalMarginPx
+                        outRect.right = 16.dp
+                    }
+                    else -> {
+                        outRect.left = currentItemHorizontalMarginPx
+                        outRect.right = currentItemHorizontalMarginPx
+                    }
+                }
+            }
+        })
+    }
 }
 
 private class ViewPagerCallback(private val viewPager: ViewPager2): ViewPager2.OnPageChangeCallback() {

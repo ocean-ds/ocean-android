@@ -21,5 +21,9 @@ class HeaderAppActivity : AppCompatActivity() {
         binding.viewmodel = viewModel
 
         viewModel.loadData()
+
+        binding.toggleButton.setOnClickListener {
+            viewModel.onClickToggle()
+        }
     }
 }

@@ -13,11 +13,11 @@
 
         <import type="br.com.useblu.oceands.utils.FormatTypes" />
 
-        <import type="br.com.useblu.oceands.model.OceanBalanceModel" />
+        <import type="br.com.useblu.oceands.model.OceanBalanceBluModel" />
 
         <variable
             name="model"
-            type="OceanBalanceModel" />
+            type="OceanBalanceBluModel" />
     </data>
 
     <LinearLayout
@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/ocean_blu_plus_background">
+            android:background="@drawable/ocean_blu_plus_background"
+            tools:ignore="UselessParent">
 
             <com.github.florent37.expansionpanel.ExpansionHeader
                 android:id="@+id/expansion_header"

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="label"
+            type="String" />
+
+        <variable
+            name="value"
+            type="String" />
+
+        <variable
+            name="information"
+            type="String" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include
+                layout="@layout/ocean_caption"
+                app:text="@{label}" />
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                app:ocean_visible_or_gone="@{(information.length() > 0)}"
+                app:showTooltip="@{information}"
+                app:srcCompat="@drawable/ocean_icon_info_solid"
+                app:tint="@color/ocean_color_interface_light_deep" />
+
+        </LinearLayout>
+
+        <include
+            layout="@layout/ocean_description"
+            app:text="@{value}" />
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="android.view.View" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="showProgress"
+            type="Boolean" />
+
+        <variable
+            name="leftIcon"
+            type="String" />
+
+        <variable
+            name="information"
+            type="String" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="value"
+            type="String" />
+
+        <variable
+            name="description"
+            type="String" />
+
+        <variable
+            name="actionTitle"
+            type="String" />
+
+        <variable
+            name="additionalInformation"
+            type="String" />
+
+        <variable
+            name="firstInfo"
+            type="br.com.useblu.oceands.model.OceanInfoListItem" />
+
+        <variable
+            name="secondInfo"
+            type="br.com.useblu.oceands.model.OceanInfoListItem" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardCornerRadius="@dimen/ocean_border_radius_md"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ocean_border_cross_sell"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/ocean_spacing_stack_xs">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:ocean_icon="@{leftIcon}"
+                    app:ocean_visible_or_gone="@{leftIcon != null &amp;&amp; !leftIcon.isEmpty()}"
+                    tools:src="@drawable/icon_generic_primary" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ocean_icon_info_solid"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:ocean_visible_or_gone="@{information != null &amp;&amp; !information.isEmpty()}"
+                    app:showTooltip="@{information}"
+                    app:tint="@color/ocean_color_interface_light_deep" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView5">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ocean_spacing_stack_xxs" />
+
+                    <include
+                        layout="@layout/ocean_description"
+                        app:text="@{title}" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ocean_spacing_stack_xxxs" />
+
+                    <include
+                        layout="@layout/ocean_lead"
+                        app:text="@{value}" />
+
+                    <include
+                        layout="@layout/ocean_description"
+                        app:color="@{@color/ocean_color_interface_dark_up}"
+                        app:text="@{description}" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ocean_spacing_stack_xxs" />
+
+                    <include
+                        layout="@layout/ocean_info_item"
+                        app:information="@{firstInfo.information}"
+                        app:label="@{firstInfo.label}"
+                        app:ocean_visible_or_gone="@{firstInfo != null}"
+                        app:value="@{firstInfo.value}" />
+
+                    <include
+                        layout="@layout/ocean_info_item"
+                        app:information="@{secondInfo.information}"
+                        app:label="@{secondInfo.label}"
+                        app:ocean_visible_or_gone="@{secondInfo != null}"
+                        app:value="@{secondInfo.value}" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ocean_spacing_stack_xs"
+                        app:ocean_visible_or_gone="@{additionalInformation != null &amp;&amp; !additionalInformation.isEmpty()}" />
+
+                    <include
+                        layout="@layout/ocean_caption"
+                        app:ocean_visible_or_gone="@{additionalInformation != null &amp;&amp; !additionalInformation.isEmpty()}"
+                        app:text="@{additionalInformation}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                android:id="@+id/divider"
+                layout="@layout/ocean_divider" />
+
+            <include
+                android:id="@+id/group_cta"
+                layout="@layout/ocean_group_cta"
+                app:actionClick="@{click}"
+                app:actionTitle="@{actionTitle}"
+                app:showProgress="@{showProgress}" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

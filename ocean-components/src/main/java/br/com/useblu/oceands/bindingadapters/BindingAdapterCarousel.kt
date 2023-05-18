@@ -137,9 +137,11 @@ fun ViewPager2.setViewPager(model: OceanBalanceModel?, circleIndicatorRes: Int) 
             currentView?.viewTreeObserver?.removeOnGlobalLayoutListener(layoutListener)
 
             val layoutManager = (this@setViewPager.get(0) as RecyclerView).layoutManager
-            val view = layoutManager?.findViewByPosition(position)
-            currentView = view
-            view?.viewTreeObserver?.addOnGlobalLayoutListener(layoutListener)
+            layoutManager?.findViewByPosition(position)?.let {
+                currentView = it
+                updatePagerHeightForChild(it)
+                it.viewTreeObserver?.addOnGlobalLayoutListener(layoutListener)
+            }
         }
 
         private fun updatePagerHeightForChild(view: View) {
@@ -148,8 +150,6 @@ fun ViewPager2.setViewPager(model: OceanBalanceModel?, circleIndicatorRes: Int) 
             view.measure(wMeasureSpec, hMeasureSpec)
 
             if (this@setViewPager.layoutParams.height != view.measuredHeight) {
-                // ParentViewGroup is, for example, LinearLayout
-                // ... or whatever the parent of the ViewPager2 is
                 this@setViewPager.layoutParams = (this@setViewPager.layoutParams as ViewGroup.LayoutParams)
                     .also { lp -> lp.height = view.measuredHeight }
             }

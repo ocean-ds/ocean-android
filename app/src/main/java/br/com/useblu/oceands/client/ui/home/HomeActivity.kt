@@ -27,11 +27,13 @@ import br.com.useblu.oceands.client.ui.descriptorlistitem.DescriptorListActivity
 import br.com.useblu.oceands.client.ui.donut.DonutActivity
 import br.com.useblu.oceands.client.ui.footer.FooterBluActivity
 import br.com.useblu.oceands.client.ui.groupcta.GroupCTAActivity
+import br.com.useblu.oceands.client.ui.informativecard.InformativeCardActivity
 import br.com.useblu.oceands.client.ui.headerapp.HeaderAppActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.orderedlistitem.OrderedListItemActivity
+import br.com.useblu.oceands.client.ui.progressbar.ProgressBarActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
 import br.com.useblu.oceands.client.ui.settingslistitem.SettingsListItemActivity
 import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
@@ -51,12 +53,19 @@ import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivi
 import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 import br.com.useblu.oceands.client.ui.unorderedlistitem.UnorderedListItemActivity
-import br.com.useblu.oceands.components.*
+import br.com.useblu.oceands.components.OceanBottomListSheet
+import br.com.useblu.oceands.components.OceanBottomListSheetUIModel
+import br.com.useblu.oceands.components.OceanBottomSheet
+import br.com.useblu.oceands.components.OceanDatePickerFullscreen
+import br.com.useblu.oceands.components.OceanSnackBar
+import br.com.useblu.oceands.components.OceanToast
+import br.com.useblu.oceands.components.OceanTooltip
 import br.com.useblu.oceands.model.OceanUnorderedListItem
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 class HomeActivity : AppCompatActivity() {
 
@@ -168,6 +177,11 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun informativeCardClick(view: View) {
+        val intent = Intent(this, InformativeCardActivity::class.java)
+        startActivity(intent)
+    }
+
     fun carousel(view: View) {
         val intent = Intent(this, CarouselActivity::class.java)
         startActivity(intent)
@@ -235,6 +249,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun clickOptionsCard(view: View) {
         val intent = Intent(this, OptionsCardActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun clickProgressBar(view: View) {
+        val intent = Intent(this, ProgressBarActivity::class.java)
         startActivity(intent)
     }
 

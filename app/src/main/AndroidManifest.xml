@@ -28,7 +28,8 @@
         <activity android:name=".ui.description.DescriptionActivity" />
         <activity android:name=".ui.paragraph.ParagraphActivity" />
         <activity android:name=".ui.subtitles.SubtitlesActivity" />
-        <activity android:name=".ui.home.HomeActivity"
+        <activity
+            android:name=".ui.home.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,15 +57,17 @@
         <activity android:name=".ui.groupcta.GroupCTAActivity" />
         <activity android:name=".ui.headerapp.HeaderAppActivity" />
         <activity android:name=".ui.carditem.CardItemActivity" />
-        <activity android:name=".ui.orderedlistitem.OrderedListItemActivity"/>
-        <activity android:name=".ui.settingslistitem.SettingsListItemActivity"/>
+        <activity android:name=".ui.orderedlistitem.OrderedListItemActivity" />
+        <activity android:name=".ui.settingslistitem.SettingsListItemActivity" />
         <activity android:name=".ui.statuslistitem.StatusListItemActivity" />
         <activity android:name=".ui.textlistitem.TextListItemActivity" />
         <activity android:name=".ui.textlisticonitem.TextListIconItemActivity" />
         <activity android:name=".ui.unorderedlistitem.UnorderedListItemActivity" />
-        <activity android:name=".ui.textlistinverted.TextListInvertedItemActivity"/>
-        <activity android:name=".ui.textlistinline.TextListInlineItemActivity"/>
-        <activity android:name=".ui.accordion.AccordionActivity"/>
+        <activity android:name=".ui.textlistinverted.TextListInvertedItemActivity" />
+        <activity android:name=".ui.textlistinline.TextListInlineItemActivity" />
+        <activity android:name=".ui.accordion.AccordionActivity" />
+        <activity android:name=".ui.informativecard.InformativeCardActivity" />
+        <activity android:name=".ui.progressbar.ProgressBarActivity"/>
     </application>
 
 </manifest>

@@ -163,7 +163,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:blu_model="@{model.balanceBluModel}"
             app:others_model="@{model.balanceOthersModel}"
-            app:circle_indicator="@{@id/indicator}"/>
+            app:circle_indicator="@{@id/indicator}" />
 
         <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/indicator"

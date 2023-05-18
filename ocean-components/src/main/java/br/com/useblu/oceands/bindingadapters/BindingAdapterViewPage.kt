@@ -8,19 +8,19 @@ import androidx.viewpager2.widget.ViewPager2
 import br.com.useblu.oceands.extensions.dp
 
 @BindingAdapter("previewNextItem")
-fun setPreviewNextItem(
-    pager: ViewPager2,
-    enabled: Boolean
-) {
-    if (enabled) {
-        val nextItemVisiblePx = 24.dp
-        val currentItemHorizontalMarginPx = 32.dp
-        val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
+fun ViewPager2.setPreviewNextItem(enabled: Boolean) {
+    if (!enabled) return
 
-        val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
-            page.translationX = -pageTranslationX * position
-        }
+    val pager = this
+    val nextItemVisiblePx = 24.dp
+    val currentItemHorizontalMarginPx = 32.dp
+    val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
 
+    val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
+        page.translationX = -pageTranslationX * position
+    }
+
+    if (pager.itemDecorationCount == 0) {
         pager.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,
@@ -49,9 +49,9 @@ fun setPreviewNextItem(
                 }
             }
         })
-
-        pager.offscreenPageLimit = 1
-        pager.clipToPadding = false
-        pager.setPageTransformer(pageTransformer)
     }
+
+    pager.offscreenPageLimit = 1
+    pager.clipToPadding = false
+    pager.setPageTransformer(pageTransformer)
 }

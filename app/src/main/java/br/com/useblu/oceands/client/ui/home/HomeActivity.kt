@@ -24,6 +24,7 @@ import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
 import br.com.useblu.oceands.client.ui.chips.ChipsActivity
 import br.com.useblu.oceands.client.ui.crosscellcard.CardCrossSellActivity
 import br.com.useblu.oceands.client.ui.descriptorlistitem.DescriptorListActivity
+import br.com.useblu.oceands.client.ui.detailed.DetailedCardActivity
 import br.com.useblu.oceands.client.ui.donut.DonutActivity
 import br.com.useblu.oceands.client.ui.footer.FooterBluActivity
 import br.com.useblu.oceands.client.ui.groupcta.GroupCTAActivity
@@ -268,6 +269,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun donutView(view: View) {
         val intent = Intent(this, DonutActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun detailedCardClick(view: View) {
+        val intent = Intent(this, DetailedCardActivity::class.java)
         startActivity(intent)
     }
 

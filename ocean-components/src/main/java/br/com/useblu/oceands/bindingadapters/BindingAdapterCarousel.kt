@@ -1,13 +1,22 @@
 package br.com.useblu.oceands.bindingadapters
 
+import android.graphics.Rect
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.get
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import androidx.viewpager2.widget.ViewPager2
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.adapter.OceanBalanceAdapter
 import br.com.useblu.oceands.databinding.ItemCarouselOceanBinding
+import br.com.useblu.oceands.extensions.dp
+import br.com.useblu.oceands.model.OceanBalanceModel
 import br.com.useblu.oceands.model.OceanCarouselItem
 import me.relex.circleindicator.CircleIndicator2
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
@@ -60,4 +69,82 @@ fun setCircleIndicator(
         val imageCarousel = constraintLayout.findViewById<ImageCarousel>(carouselId)
         imageCarousel.setIndicator(circleIndicator)
     }
+}
+
+@BindingAdapter("setViewPager")
+fun ViewPager2.setViewPager(model: OceanBalanceModel?) {
+    model ?: return
+
+    this.offscreenPageLimit = 1
+    this.clipToPadding = false
+    this.adapter = OceanBalanceAdapter(listOf(model, model))
+
+    val nextItemVisiblePx = 24.dp
+    val currentItemHorizontalMarginPx = 32.dp
+    val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
+
+    val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
+        page.translationX = -pageTranslationX * position
+    }
+
+    this.addItemDecoration(object: RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            val position = parent.getChildAdapterPosition(view)
+            val totalItems = parent.adapter?.itemCount ?: 0
+
+            when (position) {
+                0 -> {
+                    outRect.left = 16.dp
+                    outRect.right = currentItemHorizontalMarginPx
+                }
+                totalItems - 1 -> {
+                    outRect.left = currentItemHorizontalMarginPx
+                    outRect.right = 16.dp
+                }
+                else -> {
+                    outRect.left = currentItemHorizontalMarginPx
+                    outRect.right = currentItemHorizontalMarginPx
+                }
+            }
+        }
+    })
+
+    this.setPageTransformer(pageTransformer)
+
+    this.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        private var currentView: View? = null
+        private val layoutListener = ViewTreeObserver.OnGlobalLayoutListener {
+            currentView?.let {
+                updatePagerHeightForChild(it)
+            }
+        }
+
+        override fun onPageSelected(position: Int) {
+            super.onPageSelected(position)
+            currentView?.viewTreeObserver?.removeOnGlobalLayoutListener(layoutListener)
+
+            val layoutManager = (this@setViewPager.get(0) as RecyclerView).layoutManager
+            val view = layoutManager?.findViewByPosition(position)
+            currentView = view
+            view?.viewTreeObserver?.addOnGlobalLayoutListener(layoutListener)
+        }
+
+        private fun updatePagerHeightForChild(view: View) {
+            val wMeasureSpec = View.MeasureSpec.makeMeasureSpec(view.width, View.MeasureSpec.EXACTLY)
+            val hMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+            view.measure(wMeasureSpec, hMeasureSpec)
+
+            if (this@setViewPager.layoutParams.height != view.measuredHeight) {
+                // ParentViewGroup is, for example, LinearLayout
+                // ... or whatever the parent of the ViewPager2 is
+                this@setViewPager.layoutParams = (this@setViewPager.layoutParams as ViewGroup.LayoutParams)
+                    .also { lp -> lp.height = view.measuredHeight }
+            }
+        }
+    })
 }

@@ -19,6 +19,7 @@ import br.com.useblu.oceands.extensions.dp
 import br.com.useblu.oceands.model.OceanBalanceModel
 import br.com.useblu.oceands.model.OceanCarouselItem
 import me.relex.circleindicator.CircleIndicator2
+import me.relex.circleindicator.CircleIndicator3
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 import org.imaginativeworld.whynotimagecarousel.listener.CarouselListener
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
@@ -71,13 +72,20 @@ fun setCircleIndicator(
     }
 }
 
-@BindingAdapter("setViewPager")
-fun ViewPager2.setViewPager(model: OceanBalanceModel?) {
+@BindingAdapter("setViewPager", "circle_indicator")
+fun ViewPager2.setViewPager(model: OceanBalanceModel?, circleIndicatorRes: Int) {
     model ?: return
 
     this.offscreenPageLimit = 1
     this.clipToPadding = false
     this.adapter = OceanBalanceAdapter(listOf(model, model))
+
+    val parent = this.parent as ViewGroup
+
+    val circleIndicator = parent.findViewById<CircleIndicator3>(circleIndicatorRes)
+    circleIndicator.setViewPager(this)
+
+    adapter?.registerAdapterDataObserver(circleIndicator.adapterDataObserver)
 
     val nextItemVisiblePx = 24.dp
     val currentItemHorizontalMarginPx = 32.dp

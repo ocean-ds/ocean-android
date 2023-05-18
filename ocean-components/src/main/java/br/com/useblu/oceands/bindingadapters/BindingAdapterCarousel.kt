@@ -124,35 +124,37 @@ fun ViewPager2.setViewPager(model: OceanBalanceModel?, circleIndicatorRes: Int) 
 
     this.setPageTransformer(pageTransformer)
 
-    this.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-        private var currentView: View? = null
-        private val layoutListener = ViewTreeObserver.OnGlobalLayoutListener {
-            currentView?.let {
-                updatePagerHeightForChild(it)
-            }
+    this.registerOnPageChangeCallback(ViewPagerCallback(this))
+}
+
+private class ViewPagerCallback(private val viewPager: ViewPager2): ViewPager2.OnPageChangeCallback() {
+    private var currentView: View? = null
+    private val layoutListener = ViewTreeObserver.OnGlobalLayoutListener {
+        currentView?.let {
+            updatePagerHeightForChild(it)
         }
+    }
 
-        override fun onPageSelected(position: Int) {
-            super.onPageSelected(position)
-            currentView?.viewTreeObserver?.removeOnGlobalLayoutListener(layoutListener)
+    override fun onPageSelected(position: Int) {
+        super.onPageSelected(position)
+        currentView?.viewTreeObserver?.removeOnGlobalLayoutListener(layoutListener)
 
-            val layoutManager = (this@setViewPager.get(0) as RecyclerView).layoutManager
-            layoutManager?.findViewByPosition(position)?.let {
-                currentView = it
-                updatePagerHeightForChild(it)
-                it.viewTreeObserver?.addOnGlobalLayoutListener(layoutListener)
-            }
+        val layoutManager = (viewPager[0] as RecyclerView).layoutManager
+        layoutManager?.findViewByPosition(position)?.let {
+            currentView = it
+            updatePagerHeightForChild(it)
+            it.viewTreeObserver?.addOnGlobalLayoutListener(layoutListener)
         }
+    }
 
-        private fun updatePagerHeightForChild(view: View) {
-            val wMeasureSpec = View.MeasureSpec.makeMeasureSpec(view.width, View.MeasureSpec.EXACTLY)
-            val hMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-            view.measure(wMeasureSpec, hMeasureSpec)
+    private fun updatePagerHeightForChild(view: View) {
+        val wMeasureSpec = View.MeasureSpec.makeMeasureSpec(view.width, View.MeasureSpec.EXACTLY)
+        val hMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        view.measure(wMeasureSpec, hMeasureSpec)
 
-            if (this@setViewPager.layoutParams.height != view.measuredHeight) {
-                this@setViewPager.layoutParams = (this@setViewPager.layoutParams as ViewGroup.LayoutParams)
-                    .also { lp -> lp.height = view.measuredHeight }
-            }
+        if (viewPager.layoutParams.height != view.measuredHeight) {
+            viewPager.layoutParams = (viewPager.layoutParams as ViewGroup.LayoutParams)
+                .also { lp -> lp.height = view.measuredHeight }
         }
-    })
+    }
 }

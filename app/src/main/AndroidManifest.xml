@@ -68,6 +68,7 @@
         <activity android:name=".ui.accordion.AccordionActivity" />
         <activity android:name=".ui.informativecard.InformativeCardActivity" />
         <activity android:name=".ui.progressbar.ProgressBarActivity"/>
+        <activity android:name=".ui.detailed.DetailedCardActivity"/>
     </application>
 
 </manifest>

@@ -9,17 +9,24 @@
 
         <import type="br.com.useblu.oceands.model.OceanHeaderAppModel" />
 
+        <import type="kotlin.jvm.functions.Function1" />
+
+        <import type="kotlin.Unit" />
+
         <variable
             name="model"
             type="OceanHeaderAppModel" />
+
+        <variable
+            name="onPageChangeCallback"
+            type="Function1&lt;Integer,Unit>" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/ocean_color_brand_primary_pure"
-        android:paddingBottom="16dp">
+        android:background="@color/ocean_color_brand_primary_pure" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header_title_container"
@@ -161,9 +168,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_title_container"
             app:layout_constraintEnd_toEndOf="parent"
-            app:blu_model="@{model.balanceBluModel}"
-            app:others_model="@{model.balanceOthersModel}"
-            app:circle_indicator="@{@id/indicator}" />
+            app:header_model="@{model}"
+            app:on_page_change="@{onPageChangeCallback}"
+            app:circle_indicator="@{@id/indicator}"
+            app:ocean_visible_or_invisible="@{!model.headerCollapsed}"
+            tools:visibility="gone"/>
 
         <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/indicator"
@@ -176,7 +185,36 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewPager"
-            android:layout_marginTop="8dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            app:ocean_visible_or_gone="@{!model.headerCollapsed}"
+            tools:visibility="gone"/>
+
+
+        <include
+            android:id="@+id/balance_card_blu_simple"
+            layout="@layout/ocean_balance_blu_card_simple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_title_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:visibility="visible"
+            app:model="@{model.balanceBluModel}"
+            app:ocean_visible_or_invisible="@{model.headerCollapsed &amp;&amp; model.currentPage == 0}"/>
+
+        <include
+            android:id="@+id/balance_card_others_simple"
+            layout="@layout/ocean_balance_others_card_simple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_title_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:visibility="visible"
+            app:model="@{model.balanceOthersModel}"
+            app:ocean_visible_or_invisible="@{model.headerCollapsed &amp;&amp; model.currentPage == 1}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

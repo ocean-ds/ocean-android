@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/ocean_blu_plus_background">
+            android:background="#2244E8">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/container_expansion_header"
@@ -95,49 +95,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:paddingBottom="12dp"
-                android:paddingTop="4dp">
-
-                <include
-                    android:id="@+id/container_divider"
-                    layout="@layout/ocean_divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_family_base_regular"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/button_extract"
-                    android:text="@{model.buttonDescription}"
-                    android:layout_marginEnd="16dp"
-                    android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/container_divider"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:textColor="@color/ocean_color_interface_light_pure"
-                    tools:text="Confira tudo o que entrou e saiu da sua Conta Digital Blu"/>
-
-                <include
-                    android:id="@+id/button_extract"
-                    layout="@layout/ocean_button_secondary_sm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@id/container_divider"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:text="@{model.buttonCta}" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>

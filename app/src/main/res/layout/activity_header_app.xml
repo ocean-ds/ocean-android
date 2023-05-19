@@ -19,7 +19,8 @@
 
         <include
             layout="@layout/ocean_header_app"
-            app:model="@{viewmodel.headerAppModel}"/>
+            app:model="@{viewmodel.headerAppModel}"
+            app:onPageChangeCallback="@{viewmodel::onPageChange}"/>
 
         <Button
             android:id="@+id/toggle_scroll_button"

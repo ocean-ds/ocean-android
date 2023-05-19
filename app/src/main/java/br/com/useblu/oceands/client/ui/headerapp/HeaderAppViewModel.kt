@@ -9,53 +9,50 @@ import br.com.useblu.oceands.model.OceanHeaderAppModel
 
 class HeaderAppViewModel: ViewModel() {
 
-    private val _headerAppModel = MutableLiveData<OceanHeaderAppModel>()
+    private val _headerAppModel = MutableLiveData(
+        OceanHeaderAppModel(
+            clientName = "Fcr Colchões",
+            formattedCnpj = "32.677.554/0001-14",
+            bluPlusValue = 100,
+            balanceBluModel = OceanBalanceBluModel(
+                firstLabel = "Saldo total na Blu",
+                firstValue = "R$ 0,00",
+                secondLabel = "Saldo atual",
+                secondValue = "R$ 0.000.000,00",
+                thirdLabel = "Agenda",
+                thirdValue = "R$ 0.000.000,00",
+                onClickHideIcon = {
+                    isContentHidden = !isContentHidden
+                    reloadData()
+                },
+                buttonDescription = "Confira tudo tudo tudo tudo tudo tudo tudo tudo tudo o que entrou e saiu da sua Conta Digital Blu",
+                buttonCta = "Extrato",
+                onClickButton = {}
+            )
+        )
+    )
     val headerAppModel: LiveData<OceanHeaderAppModel> = _headerAppModel
 
     private var isContentHidden = false
     private var othersBalanceActive = true
 
-    fun loadData() {
-        _headerAppModel.postValue(
-            OceanHeaderAppModel(
-                isHeaderCollapsed = false,
-                clientName = "Fcr Colchões",
-                formattedCnpj = "32.677.554/0001-14",
-                badgeCount = 0,
-                bluPlusValue = 100,
-                onClickBluPlus = {},
-                onClickMenu = {},
-                onClickTitle = {},
-                balanceBluModel = OceanBalanceBluModel(
-                    firstLabel = "Saldo total na Blu",
-                    firstValue = "R$ 0,00",
-                    secondLabel = "Saldo atual",
-                    secondValue = "R$ 0.000.000,00",
-                    thirdLabel = "Agenda",
-                    thirdValue = "R$ 0.000.000,00",
-                    isContentHidden = isContentHidden,
-                    onClickHideIcon = {
-                        isContentHidden = !isContentHidden
-                        loadData()
-                    },
-                    buttonDescription = "Confira tudo tudo tudo tudo tudo tudo tudo tudo tudo o que entrou e saiu da sua Conta Digital Blu",
-                    buttonCta = "Extrato",
-                    onClickButton = {}
-                ),
-                balanceOthersModel = OceanBalanceOthersModel(
-                    firstLabel = "Saldo em Outras maquininhas",
-                    firstValue = if (othersBalanceActive) "R$ 0,00" else null,
-                    isContentHidden = isContentHidden,
-                    onClickHideIcon = {
-                        isContentHidden = !isContentHidden
-                        loadData()
-                    },
-                    buttonDescription = "Lorem ipsum dolor sit amet consectetur elementum",
-                    buttonCta = "Usar saldo",
-                    onClickButton = {}
-                )
+    fun reloadData() {
+        val newValue = _headerAppModel.value!!.copy(
+            isContentHidden = isContentHidden,
+            balanceOthersModel = OceanBalanceOthersModel(
+                firstLabel = "Saldo em Outras maquininhas",
+                firstValue = if (othersBalanceActive) "R$ 0,00" else null,
+                onClickHideIcon = {
+                    isContentHidden = !isContentHidden
+                    reloadData()
+                },
+                buttonDescription = "Lorem ipsum dolor sit amet consectetur elementum",
+                buttonCta = "Usar saldo",
+                onClickButton = {}
             )
         )
+
+        _headerAppModel.postValue(newValue)
     }
 
     fun onClickToggle() {
@@ -66,6 +63,12 @@ class HeaderAppViewModel: ViewModel() {
 
     fun onClickPortabilidade() {
         othersBalanceActive = !othersBalanceActive
-        loadData()
+        reloadData()
+    }
+
+    fun onPageChange(newPage: Int) {
+        _headerAppModel.value = _headerAppModel.value!!.copy(
+            currentPage = newPage
+        )
     }
 }

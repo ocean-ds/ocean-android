@@ -5,12 +5,6 @@
 
     <data>
 
-        <import type="kotlin.jvm.functions.Function0" />
-
-        <import type="android.view.View" />
-
-        <import type="kotlin.Unit" />
-
         <import type="br.com.useblu.oceands.utils.FormatTypes" />
 
         <import type="br.com.useblu.oceands.model.OceanBalanceBluModel" />
@@ -18,6 +12,10 @@
         <variable
             name="model"
             type="OceanBalanceBluModel" />
+
+        <variable
+            name="isContentHidden"
+            type="Boolean" />
     </data>
 
     <LinearLayout
@@ -53,7 +51,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:onClick="@{() -> model.onClickHideIcon.invoke()}"
-                        android:src="@{model.isContentHidden ? @drawable/icon_eye_off : @drawable/icon_eye_on}"
+                        android:src="@{isContentHidden ? @drawable/icon_eye_off : @drawable/icon_eye_on}"
                         android:layout_marginStart="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@id/text_view_header_label"
@@ -85,7 +83,7 @@
                         app:layout_constraintStart_toStartOf="@+id/text_view_header_label"
                         app:layout_constraintTop_toBottomOf="@+id/text_view_header_label"
                         app:ocean_text="@{model.firstValue}"
-                        app:ocean_text_format="@{model.isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
+                        app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                         app:change_color="@{false}"
                         tools:text="First value" />
 
@@ -141,7 +139,7 @@
                         app:layout_constraintStart_toEndOf="@id/text_view_first_label"
                         app:layout_constraintTop_toTopOf="@id/text_view_first_label"
                         app:ocean_text="@{model.secondValue}"
-                        app:ocean_text_format="@{model.isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
+                        app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                         app:change_color="@{false}"
                         tools:text="Second value" />
 
@@ -179,7 +177,7 @@
                         app:layout_constraintStart_toEndOf="@id/text_view_second_label"
                         app:layout_constraintTop_toTopOf="@id/text_view_second_label"
                         app:ocean_text="@{model.thirdValue}"
-                        app:ocean_text_format="@{model.isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
+                        app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                         app:change_color="@{false}"
                         tools:text="Third value" />
 

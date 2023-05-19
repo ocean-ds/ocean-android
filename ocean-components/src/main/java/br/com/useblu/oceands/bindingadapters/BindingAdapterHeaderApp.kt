@@ -8,39 +8,39 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import br.com.useblu.oceands.adapter.OceanBalanceAdapter
-import br.com.useblu.oceands.model.OceanBalanceBluModel
-import br.com.useblu.oceands.model.OceanBalanceOthersModel
+import br.com.useblu.oceands.model.OceanHeaderAppModel
 import me.relex.circleindicator.CircleIndicator3
 
-@BindingAdapter("blu_model", "others_model", "circle_indicator")
+@BindingAdapter("header_model", "on_page_change", "circle_indicator")
 fun ViewPager2.setViewPager(
-    bluModel: OceanBalanceBluModel?,
-    othersModel: OceanBalanceOthersModel?,
+    headerModel: OceanHeaderAppModel?,
+    onPageChangeCallback: ((Int) -> Unit)?,
     circleIndicatorRes: Int
 ) {
-    bluModel ?: return
-    othersModel ?: return
-
-    this.offscreenPageLimit = 1
-    this.clipToPadding = false
+    headerModel ?: return
 
     if (adapter == null) {
-        this.adapter = OceanBalanceAdapter(bluModel, othersModel)
+        this.adapter = OceanBalanceAdapter(headerModel)
 
         val parent = this.parent as ViewGroup
         val circleIndicator = parent.findViewById<CircleIndicator3>(circleIndicatorRes)
         circleIndicator.setViewPager(this)
         adapter?.registerAdapterDataObserver(circleIndicator.adapterDataObserver)
 
-        this.registerOnPageChangeCallback(ViewPagerCallback(this))
+        this.registerOnPageChangeCallback(ViewPagerCallback(this) {
+            onPageChangeCallback?.invoke(it)
+        })
     } else {
-        (adapter as OceanBalanceAdapter).updateModel(bluModel, othersModel)
+        (adapter as OceanBalanceAdapter).updateModel(headerModel)
     }
 
     this.setPreviewNextItem(true)
 }
 
-private class ViewPagerCallback(private val viewPager: ViewPager2): ViewPager2.OnPageChangeCallback() {
+private class ViewPagerCallback(
+    private val viewPager: ViewPager2,
+    private val onPageChangeCallback: (Int) -> Unit
+): ViewPager2.OnPageChangeCallback() {
     private var currentView: View? = null
     private val layoutListener = ViewTreeObserver.OnGlobalLayoutListener {
         currentView?.let {
@@ -50,6 +50,7 @@ private class ViewPagerCallback(private val viewPager: ViewPager2): ViewPager2.O
 
     override fun onPageSelected(position: Int) {
         super.onPageSelected(position)
+        onPageChangeCallback(position)
         currentView?.viewTreeObserver?.removeOnGlobalLayoutListener(layoutListener)
 
         val layoutManager = (viewPager[0] as RecyclerView).layoutManager

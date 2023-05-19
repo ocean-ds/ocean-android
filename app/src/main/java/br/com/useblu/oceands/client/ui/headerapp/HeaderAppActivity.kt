@@ -23,7 +23,7 @@ class HeaderAppActivity : AppCompatActivity() {
         viewModel.reloadData()
 
         binding.toggleScrollButton.setOnClickListener {
-            viewModel.onClickToggle()
+            viewModel.onClickToggleScroll()
         }
 
         binding.togglePortabilidadeButton.setOnClickListener {

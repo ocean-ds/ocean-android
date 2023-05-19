@@ -47,7 +47,8 @@
                     app:layout_constraintTop_toTopOf="@id/text_view_header_label"
                     app:layout_constraintBottom_toBottomOf="@id/text_view_header_value"
                     app:ocean_visible_or_gone="@{model.firstValue != null}"
-                    tools:src="@drawable/icon_eye_on" />
+                    tools:src="@drawable/icon_eye_on"
+                    android:contentDescription="@string/toggle_visibility_content_description"/>
 
                 <TextView
                     android:id="@+id/text_view_header_label"

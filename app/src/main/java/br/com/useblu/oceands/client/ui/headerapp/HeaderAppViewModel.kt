@@ -27,7 +27,11 @@ class HeaderAppViewModel: ViewModel() {
                 },
                 buttonDescription = "Confira tudo tudo tudo tudo tudo tudo tudo tudo tudo o que entrou e saiu da sua Conta Digital Blu",
                 buttonCta = "Extrato",
-                onClickButton = {}
+                onClickButton = {},
+                onClickExpandScroll = {
+                    isHeaderCollapsed = false
+                    reloadData()
+                }
             )
         )
     )
@@ -35,9 +39,11 @@ class HeaderAppViewModel: ViewModel() {
 
     private var isBalanceValueHidden = false
     private var othersBalanceActive = true
+    private var isHeaderCollapsed = false
 
     fun reloadData() {
         val newValue = _headerAppModel.value!!.copy(
+            isHeaderCollapsed = isHeaderCollapsed,
             isContentHidden = isBalanceValueHidden,
             balanceOthersModel = OceanBalanceOthersModel(
                 firstLabel = "Saldo em Outras maquininhas",
@@ -55,10 +61,9 @@ class HeaderAppViewModel: ViewModel() {
         _headerAppModel.postValue(newValue)
     }
 
-    fun onClickToggle() {
-        _headerAppModel.value = _headerAppModel.value!!.copy(
-            isHeaderCollapsed = !_headerAppModel.value!!.isHeaderCollapsed
-        )
+    fun onClickToggleScroll() {
+        isHeaderCollapsed = !isHeaderCollapsed
+        reloadData()
     }
 
     fun onClickPortabilidade() {

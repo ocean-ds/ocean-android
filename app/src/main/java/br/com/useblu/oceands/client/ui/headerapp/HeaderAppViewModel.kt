@@ -13,6 +13,7 @@ class HeaderAppViewModel: ViewModel() {
     val headerAppModel: LiveData<OceanHeaderAppModel> = _headerAppModel
 
     private var isContentHidden = false
+    private var othersBalanceActive = true
 
     fun loadData() {
         _headerAppModel.postValue(
@@ -43,7 +44,7 @@ class HeaderAppViewModel: ViewModel() {
                 ),
                 balanceOthersModel = OceanBalanceOthersModel(
                     firstLabel = "Saldo em Outras maquininhas",
-                    firstValue = "R$ 0,00",
+                    firstValue = if (othersBalanceActive) "R$ 0,00" else null,
                     isContentHidden = isContentHidden,
                     onClickHideIcon = {
                         isContentHidden = !isContentHidden
@@ -61,5 +62,10 @@ class HeaderAppViewModel: ViewModel() {
         _headerAppModel.value = _headerAppModel.value!!.copy(
             isHeaderCollapsed = !_headerAppModel.value!!.isHeaderCollapsed
         )
+    }
+
+    fun onClickPortabilidade() {
+        othersBalanceActive = !othersBalanceActive
+        loadData()
     }
 }

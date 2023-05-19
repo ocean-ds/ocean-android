@@ -3,8 +3,11 @@ package br.com.useblu.oceands.model
 import androidx.annotation.ColorRes
 
 data class OceanDonutItem(
-    val label: String = "",
+    val title: String = "",
+    val subtitle: String = "",
     val value: Float = 0f,
-    val formattedValue: String = "",
+    val valueFormatted: String = "",
+    val percent: String = "",
+    val information: String = "",
     @ColorRes val color: Int
 )

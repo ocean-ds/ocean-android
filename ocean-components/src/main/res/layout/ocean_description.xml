@@ -21,7 +21,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textOceanDescription"
         style="@style/Ocean.Description"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="@{gravity}"
         android:textColor="@{color != null ? color : @color/ocean_color_interface_dark_down}"

@@ -50,8 +50,8 @@ private fun PieChart.setupChart(model: OceanDonutModel) {
             val item = model.items.getOrNull(index) ?: return
 
             centerText = getCenterTextStyled(
-                item.formattedValue,
-                item.label
+                item.valueFormatted,
+                item.title
             )
 
             model.onItemSelected(item)

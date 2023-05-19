@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+        <import type="kotlin.Unit" />
+
+        <import type="br.com.useblu.oceands.model.OceanDonutModel" />
+
+        <variable
+            name="showProgress"
+            type="Boolean" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="subtitle"
+            type="String" />
+
+        <variable
+            name="model"
+            type="OceanDonutModel" />
+
+        <variable
+            name="actionTitle"
+            type="String" />
+
+        <variable
+            name="click"
+            type="Function0&lt;Unit>" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardCornerRadius="@dimen/ocean_border_radius_md"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ocean_border_cross_sell"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/ocean_spacing_stack_sm">
+
+                <include
+                    layout="@layout/ocean_heading_4"
+                    app:text="@{title}" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_stack_xxxs" />
+
+                <include
+                    layout="@layout/ocean_description"
+                    app:text="@{subtitle}" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_stack_xs" />
+
+                <include
+                    layout="@layout/ocean_donut"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    app:model="@{model}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:items="@{model.items}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/ocean_chart_legend" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include
+                android:id="@+id/divider"
+                layout="@layout/ocean_divider" />
+
+            <include
+                android:id="@+id/group_cta"
+                layout="@layout/ocean_group_cta"
+                app:actionClick="@{click}"
+                app:actionTitle="@{actionTitle}"
+                app:showProgress="@{showProgress}" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

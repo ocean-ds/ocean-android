@@ -67,8 +67,9 @@ private class ViewPagerCallback(
         view.measure(wMeasureSpec, hMeasureSpec)
 
         if (viewPager.layoutParams.height != view.measuredHeight) {
-            viewPager.layoutParams = (viewPager.layoutParams as ViewGroup.LayoutParams)
-                .also { lp -> lp.height = view.measuredHeight }
+            viewPager.layoutParams = viewPager.layoutParams.also {
+                it.height = view.measuredHeight
+            }
         }
     }
 }

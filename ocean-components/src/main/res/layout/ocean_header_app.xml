@@ -26,6 +26,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
         android:background="@color/ocean_color_brand_primary_pure" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -171,7 +172,7 @@
             app:header_model="@{model}"
             app:on_page_change="@{onPageChangeCallback}"
             app:circle_indicator="@{@id/indicator}"
-            app:ocean_visible_or_invisible="@{!model.headerCollapsed}"
+            app:ocean_visible_or_gone="@{!model.headerCollapsed}"
             tools:visibility="gone"/>
 
         <me.relex.circleindicator.CircleIndicator3

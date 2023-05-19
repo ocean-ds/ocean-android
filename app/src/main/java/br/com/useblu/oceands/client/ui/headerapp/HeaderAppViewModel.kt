@@ -22,7 +22,7 @@ class HeaderAppViewModel: ViewModel() {
                 thirdLabel = "Agenda",
                 thirdValue = "R$ 0.000.000,00",
                 onClickHideIcon = {
-                    isContentHidden = !isContentHidden
+                    isBalanceValueHidden = !isBalanceValueHidden
                     reloadData()
                 },
                 buttonDescription = "Confira tudo tudo tudo tudo tudo tudo tudo tudo tudo o que entrou e saiu da sua Conta Digital Blu",
@@ -33,17 +33,17 @@ class HeaderAppViewModel: ViewModel() {
     )
     val headerAppModel: LiveData<OceanHeaderAppModel> = _headerAppModel
 
-    private var isContentHidden = false
+    private var isBalanceValueHidden = false
     private var othersBalanceActive = true
 
     fun reloadData() {
         val newValue = _headerAppModel.value!!.copy(
-            isContentHidden = isContentHidden,
+            isContentHidden = isBalanceValueHidden,
             balanceOthersModel = OceanBalanceOthersModel(
                 firstLabel = "Saldo em Outras maquininhas",
                 firstValue = if (othersBalanceActive) "R$ 0,00" else null,
                 onClickHideIcon = {
-                    isContentHidden = !isContentHidden
+                    isBalanceValueHidden = !isBalanceValueHidden
                     reloadData()
                 },
                 buttonDescription = "Lorem ipsum dolor sit amet consectetur elementum",

@@ -12,5 +12,6 @@ data class OceanHeaderAppModel(
     val balanceOthersModel: OceanBalanceOthersModel = OceanBalanceOthersModel(),
     val isContentHidden: Boolean = false,
     val isHeaderCollapsed: Boolean = false,
-    val currentPage: Int = 0
+    val currentPage: Int = 0,
+    val isLoading: Boolean = false
 )

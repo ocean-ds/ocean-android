@@ -203,6 +203,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:visibility="visible"
             app:model="@{model.balanceBluModel}"
+            app:isLoading="@{model.loading}"
+            app:isContentHidden="@{model.contentHidden}"
             app:ocean_visible_or_invisible="@{model.headerCollapsed &amp;&amp; model.currentPage == 0}"/>
 
         <include
@@ -215,6 +217,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:visibility="visible"
             app:model="@{model.balanceOthersModel}"
+            app:isLoading="@{model.loading}"
+            app:isContentHidden="@{model.contentHidden}"
             app:ocean_visible_or_invisible="@{model.headerCollapsed &amp;&amp; model.currentPage == 1}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,8 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.OceanBalanceBluCardBinding
 import br.com.useblu.oceands.databinding.OceanBalanceOthersCardBinding
-import br.com.useblu.oceands.model.OceanBalanceBluModel
-import br.com.useblu.oceands.model.OceanBalanceOthersModel
 import br.com.useblu.oceands.model.OceanHeaderAppModel
 
 class OceanBalanceAdapter(
@@ -32,10 +30,10 @@ class OceanBalanceAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is BalanceBluViewHolder -> {
-                holder.bind(headerAppModel.balanceBluModel, headerAppModel.isContentHidden)
+                holder.bind()
             }
             is BalanceOthersViewHolder -> {
-                holder.bind(headerAppModel.balanceOthersModel, headerAppModel.isContentHidden)
+                holder.bind()
             }
         }
     }
@@ -46,16 +44,18 @@ class OceanBalanceAdapter(
     }
 
     inner class BalanceBluViewHolder(private val binding: OceanBalanceBluCardBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: OceanBalanceBluModel, isContentHidden: Boolean) {
-            binding.model = model
-            binding.isContentHidden = isContentHidden
+        fun bind() {
+            binding.model = headerAppModel.balanceBluModel
+            binding.isContentHidden = headerAppModel.isContentHidden
+            binding.isLoading = headerAppModel.isLoading
         }
     }
 
     inner class BalanceOthersViewHolder(private val binding: OceanBalanceOthersCardBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: OceanBalanceOthersModel, isContentHidden: Boolean) {
-            binding.model = model
-            binding.isContentHidden = isContentHidden
+        fun bind() {
+            binding.model = headerAppModel.balanceOthersModel
+            binding.isContentHidden = headerAppModel.isContentHidden
+            binding.isLoading = headerAppModel.isLoading
         }
     }
 }

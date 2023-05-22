@@ -20,7 +20,7 @@ class HeaderAppActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[HeaderAppViewModel::class.java]
         binding.viewmodel = viewModel
 
-        viewModel.reloadData()
+        viewModel.loadFirstData()
 
         binding.toggleScrollButton.setOnClickListener {
             viewModel.onClickToggleScroll()

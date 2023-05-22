@@ -34,5 +34,7 @@
     <string name="footer_service_description">Atendimento das 9h às 17h30 em dias úteis.</string>
     <string name="link"><![CDATA[Teste de link <a href="https://www.google.pl/">Google</a>]]></string>
     <string name="action_title">Call to Action</string>
+    <string name="expandir_saldo_content_description">Expandir saldo</string>
+    <string name="toggle_visibility_content_description">Alternar visibilidade dos valores</string>
 
 </resources>

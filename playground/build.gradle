@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion rootProject.ext.compileSDK
 
     defaultConfig {
         applicationId "br.com.useblu.oceands.playground"
-        minSdkVersion 21
-        targetSdkVersion 33
+        minSdkVersion rootProject.ext.minSDK
+        targetSdkVersion rootProject.ext.targetSDK
         versionCode 1
         versionName "1.0"
 

@@ -162,6 +162,33 @@ fun setFormatType(view: TextView, text: String?, type: Formatter?) {
     }
 }
 
+@BindingAdapter("ocean_text", "ocean_text_format", "change_color")
+fun setFormatType(view: TextView, text: String?, type: Formatter?, changeColor: Boolean?) {
+    if (type != null && !text.isNullOrBlank()) {
+        view.text = type.format(text)
+        val valueToDouble = text.toDoubleOrNull()
+        if (valueToDouble != null && valueToDouble < 0) {
+            if (changeColor == false) return
+
+            view.setTextColor(
+                ContextCompat.getColor(
+                    view.context,
+                    R.color.ocean_color_status_negative_pure
+                )
+            )
+        } else {
+            if (changeColor == false) return
+
+            view.setTextColor(
+                ContextCompat.getColor(
+                    view.context,
+                    R.color.ocean_color_interface_dark_deep
+                )
+            )
+        }
+    }
+}
+
 @SuppressLint("SetTextI18n")
 @BindingAdapter(
     "ocean_text_value",

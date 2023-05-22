@@ -99,5 +99,6 @@ dependencies {
     api 'com.github.florent37:expansionpanel:1.2.4'
     api 'com.github.prolificinteractive:material-calendarview:2.0.1'
     api 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation "com.github.EudyContreras:Skeleton-Bones:v1.4.5"
     embed project(path: ':ocean-tokens')
 }

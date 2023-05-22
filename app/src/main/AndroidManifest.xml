@@ -55,6 +55,7 @@
         <activity android:name=".ui.transactionfooter.TransactionFooterActivity" />
         <activity android:name=".ui.descriptorlistitem.DescriptorListActivity" />
         <activity android:name=".ui.groupcta.GroupCTAActivity" />
+        <activity android:name=".ui.headerapp.HeaderAppActivity" />
         <activity android:name=".ui.carditem.CardItemActivity" />
         <activity android:name=".ui.orderedlistitem.OrderedListItemActivity" />
         <activity android:name=".ui.settingslistitem.SettingsListItemActivity" />

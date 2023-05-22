@@ -14,32 +14,32 @@ class DonutViewModel : ViewModel() {
 
     val donutItems = listOf(
         OceanDonutItem(
-            label = "Item 1",
-            formattedValue = "R$ 25,00",
+            title = "Item 1",
             value = 25.0f,
+            valueFormatted = "R$ 25,00",
             color = R.color.colorPrimary
         ),
         OceanDonutItem(
-            label = "Item 2",
-            formattedValue = "R$ 75,00",
+            title = "Item 2",
+            valueFormatted = "R$ 75,00",
             value = 75.0f,
             color = R.color.colorPrimaryDark
         ),
         OceanDonutItem(
-            label = "Item 3",
-            formattedValue = "R$ 75,00",
+            title = "Item 3",
+            valueFormatted = "R$ 75,00",
             value = 75.0f,
             color = R.color.cardview_shadow_start_color
         ),
         OceanDonutItem(
-            label = "Item 4",
-            formattedValue = "R$ 70,00",
+            title = "Item 4",
+            valueFormatted = "R$ 70,00",
             value = 70.0f,
             color = R.color.colorAccent
         ),
         OceanDonutItem(
-            label = "Item 5",
-            formattedValue = "R$ 60,00",
+            title = "Item 5",
+            valueFormatted = "R$ 60,00",
             value = 60.0f,
             color = R.color.ocean_color_brand_primary_pure
         ),

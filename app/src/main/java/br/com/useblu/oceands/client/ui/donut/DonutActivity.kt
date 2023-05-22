@@ -22,7 +22,7 @@ class DonutActivity : AppCompatActivity() {
 
 
         viewModel.selectedItem.observe(this) {
-            Toast.makeText(this, "Item selecionado: ${it?.label} ${it?.formattedValue}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Item selecionado: ${it?.title} ${it?.value}", Toast.LENGTH_SHORT).show()
         }
     }
 }

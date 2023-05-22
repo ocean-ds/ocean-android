@@ -20,6 +20,7 @@ import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
 import br.com.useblu.oceands.client.ui.carditem.CardItemActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
+import br.com.useblu.oceands.client.ui.chartcard.ChartCardActivity
 import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
 import br.com.useblu.oceands.client.ui.chips.ChipsActivity
 import br.com.useblu.oceands.client.ui.crosscellcard.CardCrossSellActivity
@@ -280,6 +281,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun detailedCardClick(view: View) {
         val intent = Intent(this, DetailedCardActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun chartCardClick(view: View) {
+        val intent = Intent(this, ChartCardActivity::class.java)
         startActivity(intent)
     }
 

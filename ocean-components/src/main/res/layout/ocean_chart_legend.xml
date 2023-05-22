@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="java.util.List" />
+
+        <import type="br.com.useblu.oceands.model.OceanDonutItem" />
+
+        <variable
+            name="item"
+            type="OceanDonutItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Space
+            android:id="@+id/space10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ocean_spacing_stack_xxs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/space10">
+
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:src="@drawable/circle_transparent"
+                app:ocean_tint="@{item.color}" />
+
+            <Space
+                android:layout_width="@dimen/ocean_spacing_stack_xxs"
+                android:layout_height="match_parent" />
+
+            <include
+                layout="@layout/ocean_description"
+                app:text="@{item.title}" />
+
+            <Space
+                android:layout_width="@dimen/ocean_spacing_stack_xxxs"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ocean_icon_info_solid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_visible_or_gone="@{item.information != null &amp;&amp; !item.information.isEmpty()}"
+                app:showTooltip="@{item.information}"
+                app:tint="@color/ocean_color_interface_light_deep" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <Space
+            android:id="@+id/space9"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ocean_spacing_stack_xxxs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/space9">
+
+            <Space
+                android:layout_width="@dimen/ocean_spacing_stack_xs"
+                android:layout_height="match_parent" />
+
+            <include
+                layout="@layout/ocean_caption"
+                app:text="@{item.subtitle}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <Space
+            android:id="@+id/space11"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ocean_spacing_stack_xxs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayoutCompat"
+            app:layout_constraintEnd_toEndOf="@+id/space9"
+            app:layout_constraintTop_toTopOf="@+id/linearLayoutCompat2">
+
+            <include
+                layout="@layout/ocean_description"
+                app:text="@{item.percent}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

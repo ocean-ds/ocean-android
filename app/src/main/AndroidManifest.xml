@@ -69,6 +69,7 @@
         <activity android:name=".ui.informativecard.InformativeCardActivity" />
         <activity android:name=".ui.progressbar.ProgressBarActivity"/>
         <activity android:name=".ui.detailed.DetailedCardActivity"/>
+        <activity android:name=".ui.chartcard.ChartCardActivity"/>
     </application>
 
 </manifest>

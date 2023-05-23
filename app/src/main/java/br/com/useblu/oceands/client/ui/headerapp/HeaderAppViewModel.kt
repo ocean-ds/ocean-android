@@ -10,8 +10,8 @@ import br.com.useblu.oceands.model.OceanHeaderAppModel
 class HeaderAppViewModel: ViewModel() {
 
     private var isBalanceValueHidden = false
-    private var othersBalanceActive = true
-    private var isHeaderCollapsed = true
+    private var othersBalanceActive = false
+    private var isHeaderCollapsed = false
     private var isLoading = false
     private var isHidingBalance = false
 
@@ -35,7 +35,9 @@ class HeaderAppViewModel: ViewModel() {
                 },
                 buttonDescription = "Confira tudo tudo tudo tudo tudo tudo tudo tudo tudo o que entrou e saiu da sua Conta Digital Blu",
                 buttonCta = "Extrato",
-                onClickButton = {},
+                onClickButton = {
+                    println("Click botão saldo Blu")
+                },
                 onClickExpandScroll = {
                     isHeaderCollapsed = false
                     reloadData()
@@ -50,13 +52,15 @@ class HeaderAppViewModel: ViewModel() {
                 },
                 buttonDescription = "Lorem ipsum dolor sit amet consectetur elementum",
                 buttonCta = "Usar saldo",
-                onClickButton = {}
+                onClickButton = {
+                    println("Click botão outras maquininhas")
+                }
             )
         )
     )
     val headerAppModel: LiveData<OceanHeaderAppModel> = _headerAppModel
 
-    fun reloadData() {
+    private fun reloadData() {
         val newValue = _headerAppModel.value!!.copy(
             hideBalance = isHidingBalance,
             isLoading = isLoading,
@@ -71,7 +75,9 @@ class HeaderAppViewModel: ViewModel() {
                 },
                 buttonDescription = "Lorem ipsum dolor sit amet consectetur elementum",
                 buttonCta = "Usar saldo",
-                onClickButton = {}
+                onClickButton = {
+                    println("Click botão outras maquininhas")
+                }
             )
         )
 

@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingVertical="4dp">
+        android:padding="@dimen/ocean_spacing_stack_xs">
 
         <Space
             android:layout_width="16dp"

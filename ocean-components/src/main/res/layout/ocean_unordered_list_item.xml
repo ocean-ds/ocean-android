@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="text"
             type="String" />
@@ -29,41 +30,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/ocean_spacing_stack_xs">
+        android:paddingTop="@dimen/ocean_spacing_stack_xs"
+        android:paddingBottom="@dimen/ocean_spacing_stack_xs">
 
         <Space
             android:layout_width="16dp"
             android:layout_height="16dp"
-            app:ocean_visible_or_gone="@{needLeadingSpacer}"/>
+            app:ocean_visible_or_gone="@{needLeadingSpacer}" />
 
         <LinearLayout
-            app:ocean_visible_or_gone="@{needsRoundBackground}"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
-            android:gravity="center"
             android:background="@drawable/circle_place_holder"
+            android:gravity="center"
+            app:ocean_visible_or_gone="@{needsRoundBackground}"
             tools:visibility="gone">
+
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                app:tint="@color/ocean_color_brand_primary_down"
                 app:ocean_icon="@{icon}"
+                app:tint="@color/ocean_color_brand_primary_down"
+                tools:ignore="ContentDescription"
                 tools:src="@drawable/ocean_icon_lock_closed_outline"
-                tools:tint="@color/ocean_color_brand_primary_down"
-                tools:ignore="ContentDescription"/>
+                tools:tint="@color/ocean_color_brand_primary_down" />
         </LinearLayout>
 
         <ImageView
-            app:ocean_visible_or_gone="@{!needsRoundBackground}"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
             app:ocean_icon="@{icon}"
+            app:ocean_visible_or_gone="@{!needsRoundBackground}"
             app:tint="@color/ocean_color_brand_primary_down"
-            tools:tint="@color/ocean_color_brand_primary_down"
+            tools:ignore="ContentDescription"
             tools:src="@drawable/ocean_icon_lock_closed_outline"
-            tools:ignore="ContentDescription" />
+            tools:tint="@color/ocean_color_brand_primary_down" />
 
         <TextView
             style="@style/Ocean.Description.DarkDown"
@@ -71,11 +74,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:ocean_text_from_html="@{text}"
-            tools:text="Lorem ipsum "/>
+            tools:text="Lorem ipsum " />
 
         <Space
             android:layout_width="16dp"
             android:layout_height="16dp"
-            app:ocean_visible_or_gone="@{needTrailingSpacer}"/>
+            app:ocean_visible_or_gone="@{needTrailingSpacer}" />
     </LinearLayout>
 </layout>

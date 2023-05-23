@@ -60,7 +60,7 @@ class HeaderAppViewModel: ViewModel() {
     )
     val headerAppModel: LiveData<OceanHeaderAppModel> = _headerAppModel
 
-    fun reloadData() {
+    private fun reloadData() {
         val newValue = _headerAppModel.value!!.copy(
             hideBalance = isHidingBalance,
             isLoading = isLoading,

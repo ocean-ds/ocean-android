@@ -172,7 +172,7 @@
             app:header_model="@{model}"
             app:on_page_change="@{onPageChangeCallback}"
             app:circle_indicator="@{@id/indicator}"
-            app:ocean_visible_or_gone="@{!model.headerCollapsed}"
+            app:ocean_visible_or_gone="@{!model.headerCollapsed &amp;&amp; !model.hideBalance}"
             tools:visibility="gone"/>
 
         <me.relex.circleindicator.CircleIndicator3
@@ -189,7 +189,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            app:ocean_visible_or_gone="@{!model.headerCollapsed}"
+            app:ocean_visible_or_gone="@{!model.headerCollapsed &amp;&amp; !model.hideBalance}"
             tools:visibility="gone"/>
 
 
@@ -205,7 +205,7 @@
             app:model="@{model.balanceBluModel}"
             app:isLoading="@{model.loading}"
             app:isContentHidden="@{model.contentHidden}"
-            app:ocean_visible_or_invisible="@{model.headerCollapsed &amp;&amp; model.currentPage == 0}"/>
+            app:ocean_visible_or_gone="@{model.headerCollapsed &amp;&amp; model.currentPage == 0 &amp;&amp; !model.hideBalance}"/>
 
         <include
             android:id="@+id/balance_card_others_simple"
@@ -219,7 +219,7 @@
             app:model="@{model.balanceOthersModel}"
             app:isLoading="@{model.loading}"
             app:isContentHidden="@{model.contentHidden}"
-            app:ocean_visible_or_invisible="@{model.headerCollapsed &amp;&amp; model.currentPage == 1}"/>
+            app:ocean_visible_or_gone="@{model.headerCollapsed &amp;&amp; model.currentPage == 1 &amp;&amp; !model.hideBalance}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

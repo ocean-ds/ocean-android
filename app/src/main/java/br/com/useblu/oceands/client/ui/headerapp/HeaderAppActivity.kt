@@ -20,14 +20,20 @@ class HeaderAppActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[HeaderAppViewModel::class.java]
         binding.viewmodel = viewModel
 
-        viewModel.loadFirstData()
-
         binding.toggleScrollButton.setOnClickListener {
             viewModel.onClickToggleScroll()
         }
 
         binding.togglePortabilidadeButton.setOnClickListener {
             viewModel.onClickPortabilidade()
+        }
+
+        binding.toggleLoadingButton.setOnClickListener {
+            viewModel.onClickToggleLoading()
+        }
+
+        binding.toggleHideButton.setOnClickListener {
+            viewModel.onClickToggleHideBalance()
         }
     }
 }

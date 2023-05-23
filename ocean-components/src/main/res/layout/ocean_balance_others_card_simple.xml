@@ -74,12 +74,15 @@
                     android:layout_height="30dp"
                     app:layout_constraintStart_toStartOf="@+id/text_view_header_label"
                     app:layout_constraintTop_toBottomOf="@+id/text_view_header_label"
+                    app:skeletonAllowSavedState="@{true}"
                     app:skeletonBoneColor="@{@color/ocean_color_interface_dark_down}"
                     app:skeletonBoneCornerRadius="@{20f}"
                     app:skeletonEnabled="@{isLoading}"
                     app:skeletonGenerateBones="@{true}"
                     app:skeletonShimmerRayColor="@{@color/ocean_color_interface_dark_deep}"
-                    app:skeletonShimmerRayCount="@{4}">
+                    app:skeletonShimmerRayCount="@{4}"
+                    app:ocean_visible_or_invisible="@{model.firstValue != null}"
+                    tools:visibility="invisible" >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
@@ -91,9 +94,7 @@
                         app:ocean_text="@{model.firstValue}"
                         app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
                         app:change_color="@{false}"
-                        tools:text="First value"
-                        tools:visibility="invisible"
-                        app:ocean_visible_or_invisible="@{model.firstValue != null}"/>
+                        tools:text="First value" />
                 </LinearLayout>
 
                 <LinearLayout

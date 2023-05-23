@@ -13,5 +13,6 @@ data class OceanHeaderAppModel(
     val isContentHidden: Boolean = false,
     val isHeaderCollapsed: Boolean = false,
     val currentPage: Int = 0,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val hideBalance: Boolean = false
 )

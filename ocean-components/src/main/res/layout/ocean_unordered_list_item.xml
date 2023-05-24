@@ -14,8 +14,16 @@
             type="String" />
 
         <variable
+            name="iconColor"
+            type="Integer" />
+
+        <variable
             name="needsRoundBackground"
             type="Boolean" />
+
+        <variable
+            name="roundBackgroundColor"
+            type="Integer" />
 
         <variable
             name="needTrailingSpacer"
@@ -43,6 +51,7 @@
             android:layout_height="24dp"
             android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
             android:background="@drawable/circle_place_holder"
+            android:backgroundTint="@{roundBackgroundColor != null ? roundBackgroundColor : @color/ocean_color_interface_light_up}"
             android:gravity="center"
             app:ocean_visible_or_gone="@{needsRoundBackground}"
             tools:visibility="gone">
@@ -51,7 +60,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 app:ocean_icon="@{icon}"
-                app:tint="@color/ocean_color_brand_primary_down"
+                app:tint="@{iconColor != null ? iconColor : @color/ocean_color_brand_primary_down}"
                 tools:ignore="ContentDescription"
                 tools:src="@drawable/ocean_icon_lock_closed_outline"
                 tools:tint="@color/ocean_color_brand_primary_down" />

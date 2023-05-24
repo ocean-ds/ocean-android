@@ -29,8 +29,8 @@ import br.com.useblu.oceands.client.ui.detailed.DetailedCardActivity
 import br.com.useblu.oceands.client.ui.donut.DonutActivity
 import br.com.useblu.oceands.client.ui.footer.FooterBluActivity
 import br.com.useblu.oceands.client.ui.groupcta.GroupCTAActivity
-import br.com.useblu.oceands.client.ui.informativecard.InformativeCardActivity
 import br.com.useblu.oceands.client.ui.headerapp.HeaderAppActivity
+import br.com.useblu.oceands.client.ui.informativecard.InformativeCardActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
@@ -379,6 +379,7 @@ class HomeActivity : AppCompatActivity() {
                     needsRoundBackgroundIcon = true,
                     needLeadingSpacer = true,
                     needTrailingSpacer = true,
+                    iconColor = R.color.ocean_color_status_negative_pure,
                 ),
                 OceanUnorderedListItem(
                     title = "Item 2",
@@ -386,7 +387,9 @@ class HomeActivity : AppCompatActivity() {
                     needsRoundBackgroundIcon = true,
                     needLeadingSpacer = true,
                     needTrailingSpacer = true,
-                ),
+                    iconColor = R.color.ocean_color_status_neutral_pure,
+                    roundBackgroundColor = R.color.ocean_color_status_neutral_up
+                )
             )
         )
 

@@ -74,7 +74,6 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/ocean_spacing_stack_xxs"
         app:cardElevation="0dp"
         android:minWidth="288dp"
         app:strokeWidth="@dimen/ocean_border_width_hairline"

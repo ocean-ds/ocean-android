@@ -1,13 +1,18 @@
 package br.com.useblu.oceands.bindingadapters
 
+import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.blue
+import androidx.core.graphics.green
+import androidx.core.graphics.red
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.extensions.dp
+import br.com.useblu.oceands.model.OceanDonutItem
 import br.com.useblu.oceands.model.OceanDonutModel
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.Entry
@@ -18,8 +23,10 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 
 @BindingAdapter("donut_model")
-fun PieChart.setupDonutModel(model: OceanDonutModel) {
-    this.setupChart(model)
+fun PieChart.setupDonutModel(model: OceanDonutModel?) {
+    model?.let {
+        this.setupChart(model)
+    }
 }
 
 private fun PieChart.setupChart(model: OceanDonutModel) {
@@ -40,9 +47,21 @@ private fun PieChart.setupChart(model: OceanDonutModel) {
     centerText = getCenterTextStyled(model.title, model.label)
 
     data = PieData().apply {
-        dataSet = buildPieDataSet(model)
+        dataSet = buildPieDataSet(
+            model = model,
+            selected = if (model.items.all { it.selected }) {
+                null
+            } else {
+                highlightValue(model.items.indexOfFirst {
+                    it.selected
+                }.toFloat(), 0, false)
+                model.items.firstOrNull { it.selected }
+            }
+        )
         setValueTextColor(android.R.color.transparent)
     }
+
+
 
     setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
         override fun onValueSelected(e: Entry?, h: Highlight?) {
@@ -54,33 +73,66 @@ private fun PieChart.setupChart(model: OceanDonutModel) {
                 item.title
             )
 
+            repaint(item)
+
             model.onItemSelected(item)
+        }
+
+        private fun repaint(selected: OceanDonutItem? = null) {
+            data = PieData().apply {
+                dataSet = buildPieDataSet(model, selected)
+                setValueTextColor(android.R.color.transparent)
+            }
         }
 
         override fun onNothingSelected() {
             centerText = getCenterTextStyled(model.title, model.label)
             model.onNothingSelected()
+            repaint()
         }
     })
 
     invalidate()
 }
 
-private fun PieChart.buildPieDataSet(model: OceanDonutModel): PieDataSet {
+private fun PieChart.buildPieDataSet(
+    model: OceanDonutModel,
+    selected: OceanDonutItem? = null,
+): PieDataSet {
     val pieEntries = model.items.map {
         PieEntry(it.value)
     }.ifEmpty { listOf(PieEntry(1f)) }
 
     val pieDataSet = PieDataSet(pieEntries, "")
+    pieDataSet.selectionShift = 0f
 
     pieDataSet.colors = model.items.map {
-        ContextCompat.getColor(context, it.color)
+        if (selected == null) {
+            ContextCompat.getColor(context, it.color)
+        } else {
+            val alpha = if (selected == it) {
+                255
+            } else {
+                41
+            }
+
+            getColor(resId = it.color, alpha = alpha)
+        }
     }.ifEmpty {
         listOf(
             ContextCompat.getColor(context, R.color.ocean_color_interface_light_deep)
         )
     }
+
     return pieDataSet
+}
+
+private fun PieChart.getColor(
+    resId: Int,
+    alpha: Int
+): Int {
+    val originalColor = ContextCompat.getColor(context, resId)
+    return Color.argb(alpha, originalColor.red, originalColor.green, originalColor.blue)
 }
 
 private fun PieChart.getCenterTextStyled(

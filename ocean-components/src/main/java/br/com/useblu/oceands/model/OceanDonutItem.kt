@@ -9,5 +9,6 @@ data class OceanDonutItem(
     val valueFormatted: String = "",
     val percent: String = "",
     val information: String = "",
+    val selected: Boolean = true,
     @ColorRes val color: Int
 )

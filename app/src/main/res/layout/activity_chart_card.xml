@@ -29,10 +29,11 @@
             <include
                 layout="@layout/ocean_chart_card"
                 app:actionTitle="@{@string/action_title}"
-                app:click="@{viewmodel::click}"
+                app:callToAction="@{viewmodel::click}"
                 app:title="@{@string/title}"
                 app:subtitle="@{@string/subtitle}"
-                app:model="@{viewmodel.model}"/>
+                app:model="@{viewmodel.oceanDonutLiveData}"
+                app:itemSelected="@{viewmodel::selectedItem}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

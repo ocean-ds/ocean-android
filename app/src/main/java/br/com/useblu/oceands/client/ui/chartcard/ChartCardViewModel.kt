@@ -1,13 +1,14 @@
 package br.com.useblu.oceands.client.ui.chartcard
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.model.OceanDonutItem
 import br.com.useblu.oceands.model.OceanDonutModel
 
 class ChartCardViewModel : ViewModel() {
-
-    val items = listOf(
+    var items = listOf(
         OceanDonutItem(
             title = "Item 1",
             valueFormatted = "25",
@@ -60,10 +61,47 @@ class ChartCardViewModel : ViewModel() {
         label = "Label",
         items = items,
         onItemSelected = {
+            selectedItem(it)
         },
         onNothingSelected = {
+            reset()
         }
     )
+
+    private val _oceanDonutLiveData = MutableLiveData<OceanDonutModel>()
+    val oceanDonutLiveData: LiveData<OceanDonutModel> = _oceanDonutLiveData
+
+    init {
+        _oceanDonutLiveData.postValue(model)
+    }
+
+    fun selectedItem(itemSelected: OceanDonutItem) {
+        items = items.map {
+            if (it == itemSelected) {
+                it.copy(selected = true)
+            } else {
+                it.copy(selected = false)
+            }
+        }
+
+        _oceanDonutLiveData.postValue(
+            model.copy(
+                items = items
+            )
+        )
+    }
+
+    private fun reset() {
+        items = items.map {
+            it.copy(selected = true)
+        }
+
+        _oceanDonutLiveData.postValue(
+            model.copy(
+                items = items
+            )
+        )
+    }
 
     fun click() {
         println("Click")

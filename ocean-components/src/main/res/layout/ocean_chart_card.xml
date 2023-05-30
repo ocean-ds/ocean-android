@@ -6,12 +6,10 @@
     <data>
 
         <import type="kotlin.jvm.functions.Function0" />
-        <import type="kotlin.jvm.functions.Function1" />
 
         <import type="kotlin.Unit" />
 
         <import type="br.com.useblu.oceands.model.OceanDonutModel" />
-        <import type="br.com.useblu.oceands.model.OceanDonutItem" />
 
         <variable
             name="showProgress"
@@ -36,10 +34,6 @@
         <variable
             name="callToAction"
             type="Function0&lt;Unit>" />
-
-        <variable
-            name="itemSelected"
-            type="Function1&lt;OceanDonutItem, Unit>" />
 
     </data>
 
@@ -84,13 +78,12 @@
                     android:layout_width="180dp"
                     android:layout_height="180dp"
                     android:layout_gravity="center"
-                    app:model="@{model}"/>
+                    app:model="@{model}" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:items="@{model}"
-                    app:itemSelected="@{itemSelected}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="5"
                     tools:listitem="@layout/ocean_chart_legend" />

@@ -30,10 +30,9 @@
                 layout="@layout/ocean_chart_card"
                 app:actionTitle="@{@string/action_title}"
                 app:callToAction="@{viewmodel::click}"
-                app:title="@{@string/title}"
-                app:subtitle="@{@string/subtitle}"
                 app:model="@{viewmodel.oceanDonutLiveData}"
-                app:itemSelected="@{viewmodel::selectedItem}"/>
+                app:subtitle="@{@string/subtitle}"
+                app:title="@{@string/title}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

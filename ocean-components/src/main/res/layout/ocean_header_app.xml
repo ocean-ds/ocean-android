@@ -32,7 +32,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header_title_container"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:clickable="true"
             android:focusable="true"
             android:paddingVertical="8dp"
@@ -45,7 +45,8 @@
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="18dp"
+                android:includeFontPadding="false"
                 android:fontFamily="@font/font_family_highlight_bold"
                 android:text="@{model.clientName}"
                 android:textColor="@color/ocean_color_interface_light_pure"
@@ -57,8 +58,8 @@
 
             <ImageView
                 android:id="@+id/image_view_arrow_down"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -66,19 +67,19 @@
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar_title"
                 app:layout_constraintStart_toEndOf="@+id/toolbar_title"
                 app:layout_constraintTop_toTopOf="@+id/toolbar_title"
-                android:src="@drawable/icon_chevron_down_solid"
+                android:src="@drawable/ocean_icon_chevron_down_solid"
                 app:tint="@color/ocean_color_interface_light_pure"
                 tools:tint="@color/ocean_color_interface_light_pure" />
 
             <TextView
                 android:id="@+id/store_identification_text_view"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="13dp"
+                android:includeFontPadding="false"
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
-                android:layout_marginBottom="@dimen/ocean_spacing_stack_xxxs"
                 android:fontFamily="@font/font_family_base_regular"
                 android:text="@{model.formattedCnpj}"
-                android:textColor="@color/ocean_color_interface_light_pure"
+                android:textColor="@color/ocean_color_brand_primary_up"
                 android:textSize="@dimen/ocean_font_size_xxxs"
                 app:ocean_visible_or_gone="@{model.formattedCnpj != null &amp; !model.formattedCnpj.isEmpty()}"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar_title"
@@ -173,7 +174,7 @@
             app:on_page_change="@{onPageChangeCallback}"
             app:circle_indicator="@{@id/indicator}"
             app:ocean_visible_or_gone="@{!model.headerCollapsed &amp;&amp; !model.hideBalance}"
-            tools:visibility="gone"/>
+            tools:visibility="visible"/>
 
         <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/indicator"
@@ -190,7 +191,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
             app:ocean_visible_or_gone="@{!model.headerCollapsed &amp;&amp; !model.hideBalance}"
-            tools:visibility="gone"/>
+            tools:visibility="visible"/>
 
 
         <include
@@ -201,7 +202,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_title_container"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:visibility="visible"
+            tools:visibility="gone"
             app:model="@{model.balanceBluModel}"
             app:isLoading="@{model.loading}"
             app:isContentHidden="@{model.contentHidden}"
@@ -215,7 +216,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_title_container"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:visibility="visible"
+            tools:visibility="gone"
             app:model="@{model.balanceOthersModel}"
             app:isLoading="@{model.loading}"
             app:isContentHidden="@{model.contentHidden}"

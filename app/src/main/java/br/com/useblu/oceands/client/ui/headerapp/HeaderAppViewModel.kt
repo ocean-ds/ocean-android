@@ -33,7 +33,7 @@ class HeaderAppViewModel: ViewModel() {
                     isBalanceValueHidden = !isBalanceValueHidden
                     reloadData()
                 },
-                buttonDescription = "Confira tudo tudo tudo tudo tudo tudo tudo tudo tudo o que entrou e saiu da sua Conta Digital Blu",
+                buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu",
                 buttonCta = "Extrato",
                 onClickButton = {
                     println("Click botão saldo Blu")
@@ -50,7 +50,7 @@ class HeaderAppViewModel: ViewModel() {
                     isBalanceValueHidden = !isBalanceValueHidden
                     reloadData()
                 },
-                buttonDescription = "Lorem ipsum dolor sit amet consectetur elementum",
+                buttonDescription = "Consulte o seu saldo para descobrir oportunidades",
                 buttonCta = "Usar saldo",
                 onClickButton = {
                     println("Click botão outras maquininhas")

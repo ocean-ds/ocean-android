@@ -91,6 +91,8 @@
                     layout="@layout/ocean_card_group"
                     app:headerSubtitle="@{`A very long subtitle that cannot be shown in a single line`}"
                     app:headerTitle="@{`Header`}"
+                    app:highlight="@{true}"
+                    app:label="@{`Recomendado`}"
                     app:footerActionTitle="@{`Call to action`}"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>

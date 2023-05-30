@@ -38,37 +38,50 @@
             name="showProgress"
             type="Boolean" />
 
+        <variable
+            name="highlight"
+            type="Boolean" />
+
+        <variable
+            name="label"
+            type="String" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="0dp"
-        android:minWidth="288dp"
-        app:strokeWidth="@dimen/ocean_border_width_hairline"
-        app:strokeColor="@color/ocean_color_interface_light_down"
-        app:cardBackgroundColor="@color/ocean_color_interface_light_pure"
-        app:cardCornerRadius="@dimen/ocean_border_radius_md">
+        android:paddingTop="@{label != null ? @dimen/card_group_negative_margin : @dimen/card_group_0_margin}">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:cardElevation="0dp"
+            android:minWidth="288dp"
+            app:strokeWidth="@dimen/ocean_border_width_hairline"
+            app:strokeColor="@{highlight ? @color/ocean_color_brand_primary_up : @color/ocean_color_interface_light_down}"
+            app:cardBackgroundColor="@color/ocean_color_interface_light_pure"
+            app:cardCornerRadius="@dimen/ocean_border_radius_md"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label"
+            android:layout_marginTop="-9dp"
+            app:layout_goneMarginTop="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_header"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/text_header"
                     style="@style/Ocean.Heading.4"
+                    android:fontFamily="@font/font_family_base_extrabold"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ocean_spacing_inset_md"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:maxLines="1"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
                     android:text="@{headerTitle}"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     app:layout_constraintEnd_toStartOf="@id/layout_action_header"
@@ -88,7 +101,7 @@
                     android:textColor="@color/ocean_color_interface_dark_down"
                     app:layout_constraintEnd_toStartOf="@id/layout_action_header"
                     android:layout_marginEnd="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/text_header"
                     app:layout_constraintTop_toBottomOf="@id/text_header"
                     tools:text="Subtitle"
                     app:ocean_visible_or_gone="@{headerSubtitle != null}"/>
@@ -99,8 +112,9 @@
                     android:layout_height="@dimen/ocean_spacing_inset_md"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintBottom_toBottomOf="@id/text_view_subtitle"
+                    app:layout_constraintTop_toTopOf="@id/text_header"
+                    android:layout_marginEnd="16dp">
 
                     <include
                         layout="@layout/ocean_badge"
@@ -109,19 +123,51 @@
                         app:visible="@{badgeText != null}" />
 
                 </LinearLayout>
+
+                <include
+                    android:id="@+id/divider"
+                    layout="@layout/ocean_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_subtitle"
+                    android:layout_marginTop="16dp"/>
+
+                <include
+                    android:id="@+id/group_cta"
+                    layout="@layout/ocean_group_cta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:actionTitle="@{footerActionTitle}"
+                    app:actionClick="@{() -> actionFooterClick.invoke()}"
+                    app:showProgress="@{showProgress}"
+                    app:ocean_visible_or_gone="@{footerActionTitle != null}"
+                    app:layout_constraintTop_toBottomOf="@id/divider" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-            <include layout="@layout/ocean_divider" />
+        <LinearLayout
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:background="@drawable/ocean_balance_others_placeholder"
+            android:paddingHorizontal="6dp"
+            android:gravity="center"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            ocean_visible_or_gone="@{label != null}">
 
-            <include
-                android:id="@+id/group_cta"
-                layout="@layout/ocean_group_cta"
-                app:actionTitle="@{footerActionTitle}"
-                app:actionClick="@{() -> actionFooterClick.invoke()}"
-                app:showProgress="@{showProgress}"
-                app:ocean_visible_or_gone="@{footerActionTitle != null}"/>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textSize="11sp"
+                android:fontFamily="@font/font_family_base_bold"
+                android:textColor="@color/ocean_color_interface_light_pure"
+                android:text="@{label}"
+                tools:text="Recomendado"/>
         </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

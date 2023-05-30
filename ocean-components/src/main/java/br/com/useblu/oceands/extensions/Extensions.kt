@@ -8,12 +8,14 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
+import android.view.animation.Transformation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import br.com.useblu.oceands.utils.FormatTypes
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 fun String.formatterDateBR(): String {
     val inFormat = SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy", Locale.US)
@@ -83,5 +85,32 @@ fun View.animateFadeOut() {
         })
         this@animateFadeOut.animation = this
         this@animateFadeOut.animate()
+    }
+}
+fun View.animateHeight(targetHeight: Int, durationMs: Int = 2000) {
+    ShowAnim(this, targetHeight, durationMs).startAnimation()
+}
+
+class ShowAnim(
+    private val view: View,
+    private val targetHeight: Int,
+    private val durationMs: Int = 2000
+): Animation() {
+
+    init {
+        duration = this.durationMs.toLong()
+    }
+    override fun applyTransformation(interpolatedTime: Float, t: Transformation?) {
+        val currentHeight = view.layoutParams.height
+        val delta = targetHeight - currentHeight
+        val targetHeight = currentHeight + (delta * interpolatedTime)
+        view.layoutParams.height = (targetHeight).toInt()
+        view.requestLayout()
+    }
+
+    override fun willChangeBounds() = true
+
+    fun startAnimation() {
+        view.startAnimation(this)
     }
 }

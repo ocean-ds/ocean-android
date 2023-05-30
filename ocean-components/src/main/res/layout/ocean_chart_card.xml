@@ -32,7 +32,7 @@
             type="String" />
 
         <variable
-            name="click"
+            name="callToAction"
             type="Function0&lt;Unit>" />
 
     </data>
@@ -83,7 +83,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:items="@{model.items}"
+                    app:items="@{model}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="5"
                     tools:listitem="@layout/ocean_chart_legend" />
@@ -97,7 +97,7 @@
             <include
                 android:id="@+id/group_cta"
                 layout="@layout/ocean_group_cta"
-                app:actionClick="@{click}"
+                app:actionClick="@{callToAction}"
                 app:actionTitle="@{actionTitle}"
                 app:showProgress="@{showProgress}" />
 

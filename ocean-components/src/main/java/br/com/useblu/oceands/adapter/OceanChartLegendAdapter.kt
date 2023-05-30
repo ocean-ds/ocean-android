@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.OceanChartLegendBinding
-import br.com.useblu.oceands.model.OceanDonutItem
+import br.com.useblu.oceands.model.OceanDonutModel
 
 class OceanChartLegendAdapter(
-    private val items: List<OceanDonutItem>
+    private val data: OceanDonutModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -29,14 +29,25 @@ class OceanChartLegendAdapter(
         (holder as ViewHolder).bindView(position)
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = data.items.size
 
     inner class ViewHolder(
         private val itemBinding: OceanChartLegendBinding
     ) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bindView(position: Int) {
-            itemBinding.item = items[position]
+            itemBinding.item = data.items[position]
+            itemBinding.root.setOnClickListener {
+                if (data.items.all { it.selected }) {
+                    data.onItemSelected.invoke(data.items[position])
+                } else {
+                    if (data.items[position].selected) {
+                        data.onNothingSelected.invoke()
+                    } else {
+                        data.onItemSelected.invoke(data.items[position])
+                    }
+                }
+            }
             itemBinding.executePendingBindings()
         }
     }

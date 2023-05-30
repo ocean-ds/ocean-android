@@ -106,21 +106,11 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/space1" />
 
-                <ImageView
-                    android:id="@+id/icon_header"
-                    android:layout_width="@dimen/ocean_spacing_inset_md"
-                    android:layout_height="@dimen/ocean_spacing_inset_md"
-                    android:src="@{headerIcon}"
-                    app:layout_constraintStart_toEndOf="@id/space3"
-                    app:layout_constraintTop_toBottomOf="@id/space1"
-                    app:ocean_visible_or_gone="@{headerIcon != null}"
-                    app:tint="@color/ocean_color_interface_dark_deep" />
-
                 <Space
                     android:id="@+id/space4"
                     android:layout_width="@dimen/ocean_spacing_stack_xs"
                     android:layout_height="@dimen/ocean_spacing_inset_md"
-                    app:layout_constraintStart_toEndOf="@id/icon_header"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/space1"
                     app:ocean_visible_or_gone="@{headerIcon != null}" />
 
@@ -153,35 +143,6 @@
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toStartOf="@id/space6"
                     app:layout_constraintTop_toBottomOf="@id/space1">
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/ocean_background_ripple_light_down"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:onClick="@{() -> actionHeaderClick.invoke()}"
-                        android:paddingStart="@dimen/ocean_spacing_stack_xxs"
-                        android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
-                        app:ocean_visible_or_gone="@{actionHeaderTitle != null}">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/font_family_base_extrabold"
-                            android:text="@{actionHeaderTitle}"
-                            android:textColor="@color/ocean_color_interface_dark_up"
-                            tools:text="Select" />
-
-                        <ImageView
-                            android:layout_width="@dimen/ocean_spacing_stack_xs"
-                            android:layout_height="@dimen/ocean_spacing_stack_xs"
-                            android:layout_marginStart="@dimen/ocean_spacing_stack_xxxs"
-                            android:src="@drawable/icon_chevron_down"
-                            app:tint="@color/ocean_color_interface_dark_up" />
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <include
                         layout="@layout/ocean_badge"

@@ -18,6 +18,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:alpha="@{item.selected ? 1f : 0.4f}"
         android:orientation="vertical">
 
         <Space

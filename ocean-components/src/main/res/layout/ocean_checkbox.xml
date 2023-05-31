@@ -7,6 +7,8 @@
 
         <import type="kotlin.jvm.functions.Function1" />
 
+        <import type="kotlin.jvm.functions.Function0" />
+
         <import type="kotlin.Unit" />
 
         <variable
@@ -20,6 +22,14 @@
         <variable
             name="click"
             type="Function1&lt;Boolean, Unit>" />
+
+        <variable
+            name="actionTitle"
+            type="String" />
+
+        <variable
+            name="actionClick"
+            type="Function0&lt;Unit>" />
 
         <variable
             name="error"
@@ -36,12 +46,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="@{checked}"
-            android:paddingStart="@dimen/ocean_spacing_stack_xxs"
             android:drawablePadding="100dp"
             android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
             android:minWidth="20dp"
             android:minHeight="20dp"
             android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
+            android:paddingStart="@dimen/ocean_spacing_stack_xxs"
             android:textColor="@color/ocean_color_interface_dark_down"
             android:textColorLink="@color/ocean_color_brand_primary_pure"
             android:textSize="@dimen/ocean_font_size_xxs"
@@ -57,10 +67,10 @@
             android:checked="@{checked}"
             android:drawablePadding="100dp"
             android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
-            android:paddingStart="@dimen/ocean_spacing_stack_xxs"
             android:minWidth="20dp"
             android:minHeight="20dp"
             android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
+            android:paddingStart="@dimen/ocean_spacing_stack_xxs"
             android:textColor="@color/ocean_color_interface_dark_down"
             android:textColorLink="@color/ocean_color_brand_primary_pure"
             android:textSize="@dimen/ocean_font_size_xxs"
@@ -70,6 +80,17 @@
             tools:checked="false"
             tools:text="Description Error"
             tools:textColor="@color/ocean_color_status_negative_pure" />
+
+        <include
+            layout="@layout/ocean_link_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="@{actionTitle}"
+            app:click="@{actionClick}"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_lg"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+            app:ocean_visible_or_gone="@{actionTitle != null &amp;&amp; !actionTitle.isEmpty()}" />
 
         <TextView
             android:layout_width="match_parent"

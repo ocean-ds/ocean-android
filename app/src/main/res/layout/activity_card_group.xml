@@ -89,8 +89,8 @@
 
                 <include
                     layout="@layout/ocean_card_group"
-                    app:headerSubtitle="@{`A very long subtitle that cannot be shown in a single line`}"
-                    app:headerTitle="@{`Header`}"
+                    app:headerTitle="@{`Escolha uma maquininha que você já usa e gere saldo aqui na Blu`}"
+                    app:headerSubtitle="@{`Receba na Blu, todos os dias, as vendas feitas nas suas outras maquininhas`}"
                     app:highlight="@{true}"
                     app:label="@{`Recomendado`}"
                     app:footerActionTitle="@{`Call to action`}"/>

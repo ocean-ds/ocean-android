@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <import type="kotlin.Unit" />
 
         <import type="kotlin.jvm.functions.Function0" />
@@ -70,8 +69,8 @@
 
         <ImageView
             android:id="@+id/action_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
             android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
             android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
@@ -80,8 +79,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/ocean_color_brand_primary_pure" />
+            app:tint="@color/ocean_color_brand_primary_pure"
+            tools:tint="@color/ocean_color_brand_primary_pure"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

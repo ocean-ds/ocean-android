@@ -23,28 +23,28 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".ui.cardgroup.CardGroupActivity"
-            android:padding="@dimen/ocean_spacing_stack_xxs">
+            android:padding="16dp"
+            tools:context=".ui.cardgroup.CardGroupActivity">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/cardContentDefault"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                android:text="Header" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                    android:text="Header"
+                    android:textSize="18sp" />
 
-            <include
-                layout="@layout/ocean_card_group"
-                app:headerTitle="@{`Header`}"/>
+                <include
+                    layout="@layout/ocean_card_group"
+                    app:headerTitle="@{`Header`}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -53,47 +53,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardContentDefault">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:text="Icon Header" />
+                    android:text="Icon Header"
+                    android:textSize="18sp" />
 
                 <include
                     layout="@layout/ocean_card_group"
-                    app:headerIcon="@{@drawable/icon_generic_primary}"
-                    app:headerTitle="@{`Header`}"/>
+                    app:headerTitle="@{`Header`}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/cardContent2"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardContent1">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:text="Header Subtitle Action" />
+                    android:text="Header Subtitle Action"
+                    android:textSize="18sp" />
 
                 <include
                     layout="@layout/ocean_card_group"
-                    app:actionHeaderTitle="@{`Select`}"
-                    app:actionHeaderClick="@{viewmodel::actionClickHeader}"
+                    app:headerSubtitle="@{`A very long subtitle that cannot be shown in a single line`}"
                     app:headerTitle="@{`Header`}"
-                    app:headerSubtitle="@{`A very long subtitle that cannot be shown in a single line`}"/>
+                    app:highlight="@{true}"
+                    app:label="@{`Recomendado`}"
+                    app:footerActionTitle="@{`Call to action`}"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -101,23 +101,22 @@
                 android:id="@+id/cardContent3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@id/cardContent2">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:text="Icon Header Badge" />
+                    android:text="Icon Header Badge"
+                    android:textSize="18sp" />
 
                 <include
                     layout="@layout/ocean_card_group"
-                    app:headerIcon="@{@drawable/icon_generic_primary}"
                     app:badgeText="@{`9`}"
                     app:badgeType="@{OceanBadgeType.WARNING}"
-                    app:headerTitle="@{`Header`}"/>
+                    app:headerTitle="@{`Header`}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -125,26 +124,22 @@
                 android:id="@+id/cardContent4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@id/cardContent3">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:text="Transaction List" />
+                    android:text="Transaction List"
+                    android:textSize="18sp" />
 
                 <include
                     layout="@layout/ocean_card_group"
-                    app:headerIcon="@{@drawable/icon_generic_primary}"
-                    app:footerActionTitle="@{`Call To Action`}"
-                    app:limitItems="@{3}"
-                    app:transactionListItems="@{viewmodel.items}"
                     app:actionFooterClick="@{viewmodel::actionClickFooter}"
-                    app:itemSelect="@{viewmodel::itemSelectedCard1}"
-                    app:headerTitle="@{`Header`}"/>
+                    app:footerActionTitle="@{`Call To Action`}"
+                    app:headerTitle="@{`Header`}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -152,26 +147,22 @@
                 android:id="@+id/cardContent5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@id/cardContent4">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:text="Transaction List variation" />
+                    android:text="Transaction List variation"
+                    android:textSize="18sp" />
 
                 <include
                     layout="@layout/ocean_card_group"
-                    app:headerIcon="@{@drawable/icon_generic_primary}"
-                    app:footerActionTitle="@{`Call To Action`}"
-                    app:limitItems="@{2}"
-                    app:transactionListItems="@{viewmodel.items2}"
                     app:actionFooterClick="@{viewmodel::actionClickFooter}"
-                    app:headerTitle="@{`Header`}"
-                    app:itemSelect="@{viewmodel::itemSelectedCard2}"/>
+                    app:footerActionTitle="@{`Call To Action`}"
+                    app:headerTitle="@{`Header`}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -24,4 +24,7 @@
     <dimen name="shadow_level_2">2dp</dimen>
     <dimen name="shadow_level_3">3dp</dimen>
     <dimen name="shadow_level_4">4dp</dimen>
+
+    <dimen name="card_group_negative_margin">-9dp</dimen>
+    <dimen name="card_group_0_margin">0dp</dimen>
 </resources>

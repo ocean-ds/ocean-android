@@ -16,6 +16,10 @@
             type="String" />
 
         <variable
+            name="description"
+            type="String" />
+
+        <variable
             name="checked"
             type="Boolean" />
 
@@ -42,55 +46,82 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="@{checked}"
-            android:drawablePadding="100dp"
-            android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
-            android:minWidth="20dp"
-            android:minHeight="20dp"
-            android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
-            android:paddingStart="@dimen/ocean_spacing_stack_xxs"
-            android:textColor="@color/ocean_color_interface_dark_down"
-            android:textColorLink="@color/ocean_color_brand_primary_pure"
-            android:textSize="@dimen/ocean_font_size_xxs"
-            android:theme="@style/Ocean.CheckBox"
-            app:ocean_text_from_html="@{text}"
-            app:ocean_visible_or_gone="@{error == null}"
-            tools:checked="false"
-            tools:text="Description" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="@{checked}"
-            android:drawablePadding="100dp"
-            android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
-            android:minWidth="20dp"
-            android:minHeight="20dp"
-            android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
-            android:paddingStart="@dimen/ocean_spacing_stack_xxs"
-            android:textColor="@color/ocean_color_interface_dark_down"
-            android:textColorLink="@color/ocean_color_brand_primary_pure"
-            android:textSize="@dimen/ocean_font_size_xxs"
-            android:theme="@style/Ocean.CheckBox.Error"
-            app:ocean_text_from_html="@{text}"
-            app:ocean_visible_or_gone="@{error != null}"
-            tools:checked="false"
-            tools:text="Description Error"
-            tools:textColor="@color/ocean_color_status_negative_pure" />
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{checked}"
+                android:drawablePadding="100dp"
+                android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
+                android:minWidth="20dp"
+                android:minHeight="20dp"
+                android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
+                android:paddingStart="@dimen/ocean_spacing_stack_xxs"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textColorLink="@color/ocean_color_brand_primary_pure"
+                android:textSize="@dimen/ocean_font_size_xxs"
+                app:ocean_visible_or_gone="@{error == null}"
+                app:theme="@style/Ocean.CheckBox"
+                tools:checked="false"
+                tools:theme="@style/Ocean.CheckBox" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{checked}"
+                android:drawablePadding="100dp"
+                android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
+                android:minWidth="20dp"
+                android:minHeight="20dp"
+                android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
+                android:paddingStart="@dimen/ocean_spacing_stack_xxs"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textColorLink="@color/ocean_color_brand_primary_pure"
+                android:textSize="@dimen/ocean_font_size_xxs"
+                android:theme="@style/Ocean.CheckBox.Error"
+                app:ocean_visible_or_gone="@{error != null}"
+                tools:visibility="gone"
+                tools:checked="false" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    layout="@layout/ocean_paragraph"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:color="@{@color/ocean_color_interface_dark_pure}"
+                    app:text="@{text}" />
+
+                <include
+                    layout="@layout/ocean_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:color="@{@color/ocean_color_interface_dark_down}"
+                    app:ocean_visible_or_gone="@{description != null &amp;&amp; !description.isEmpty()}"
+                    app:text="@{description}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <include
             layout="@layout/ocean_link_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:text="@{actionTitle}"
-            app:click="@{actionClick}"
             android:layout_marginStart="@dimen/ocean_spacing_stack_lg"
             android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
             android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
-            app:ocean_visible_or_gone="@{actionTitle != null &amp;&amp; !actionTitle.isEmpty()}" />
+            app:click="@{actionClick}"
+            app:ocean_visible_or_gone="@{actionTitle != null &amp;&amp; !actionTitle.isEmpty()}"
+            app:text="@{actionTitle}" />
 
         <TextView
             android:layout_width="match_parent"

@@ -30,27 +30,11 @@
                     layout="@layout/ocean_checkbox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:checked="@{true}"
-                    app:click="@{viewmodel::executeOnStatusChanged}"
-                    app:text="@{@string/link}" />
-
-                <include
-                    layout="@layout/ocean_checkbox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:checked="@{false}"
-                    app:click="@{viewmodel::executeOnStatusChanged}"
-                    app:error="@{`Error teste`}"
-                    app:text="@{@string/text}" />
-
-                <include
-                    layout="@layout/ocean_checkbox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     app:checked="@{false}"
                     app:click="@{viewmodel::executeOnStatusChanged}"
                     app:error="@{`Error teste`}"
                     app:text="@{@string/text}"
+                    app:description="@{@string/description}"
                     app:actionTitle="@{@string/action_title}"
                     app:actionClick="@{viewmodel::actionClick}" />
 

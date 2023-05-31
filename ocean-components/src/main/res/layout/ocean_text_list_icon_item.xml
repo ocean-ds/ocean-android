@@ -108,7 +108,7 @@
                     tools:text="Title" />
 
                 <Space
-                    android:layout_width="@dimen/ocean_spacing_stack_xs"
+                    android:layout_width="@dimen/ocean_spacing_stack_xxs"
                     android:layout_height="match_parent"
                     app:ocean_visible_or_gone="@{badge != null}" />
 

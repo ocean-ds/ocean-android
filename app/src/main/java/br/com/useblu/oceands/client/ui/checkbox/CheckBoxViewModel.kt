@@ -7,4 +7,8 @@ class CheckBoxViewModel : ViewModel() {
     fun executeOnStatusChanged(isChecked: Boolean) {
         println("On Change State $isChecked")
     }
+
+    fun actionClick() {
+        println("Action Click")
+    }
 }

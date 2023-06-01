@@ -10,8 +10,6 @@
 
         <import type="kotlin.jvm.functions.Function1" />
 
-        <import type="android.view.View" />
-
         <import type="kotlin.Unit" />
 
         <import type="br.com.useblu.oceands.model.OceanParentTextItem" />
@@ -56,16 +54,13 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/container_expansion_header"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:background="@color/ocean_color_interface_light_pure">
+                android:layout_height="77dp">
 
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-                    android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
                     android:focusable="true"
                     android:src="@{item.image}"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -76,14 +71,15 @@
                 <TextView
                     android:id="@+id/title_text_view"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="24dp"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                     android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-                    android:fontFamily="@font/font_family_base_medium"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/font_family_base_regular"
                     android:text="@{item.title}"
                     android:textColor="@color/ocean_color_interface_dark_pure"
                     android:textSize="@dimen/ocean_font_size_xs"
-                    app:layout_constraintBottom_toTopOf="@+id/subtitle_text_view"
+
                     app:layout_constraintStart_toEndOf="@id/image"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed"
@@ -92,9 +88,10 @@
                 <TextView
                     android:id="@+id/subtitle_text_view"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="21dp"
                     android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                     android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+                    android:gravity="center_vertical"
                     android:fontFamily="@font/font_family_base_regular"
                     android:textColor="@color/ocean_color_brand_primary_down"
                     android:textSize="@dimen/ocean_font_size_xxs"
@@ -106,8 +103,8 @@
 
                 <ImageView
                     android:id="@+id/header_indicator"
-                    android:layout_width="16dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center_vertical|right"
                     android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                     android:adjustViewBounds="true"
@@ -115,28 +112,30 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/icon_chevron_down_solid"
-                    app:tint="@color/ocean_color_interface_dark_down"/>
+                    app:tint="@color/ocean_color_interface_dark_up"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </com.github.florent37.expansionpanel.ExpansionHeader>
 
         <com.github.florent37.expansionpanel.ExpansionLayout
             android:id="@+id/expansion_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:expansion_expanded="true">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_childrens"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:setChildren="@{item.children}"
                 app:clickItem="@{clickSubItem}"
                 app:clickEdit="@{clickEditButton}"
                 app:clickDelete="@{clickDeleteButton}"
-                app:longClickItem="@{longClick}"/>
+                app:longClickItem="@{longClick}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_parent_text_list"
+                tools:itemCount="3"/>
 
         </com.github.florent37.expansionpanel.ExpansionLayout>
-
     </LinearLayout>
 </layout>

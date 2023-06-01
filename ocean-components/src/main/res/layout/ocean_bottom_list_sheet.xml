@@ -10,6 +10,8 @@
 
         <import type="kotlin.jvm.functions.Function0" />
 
+        <import type="kotlin.Unit" />
+
         <import type="androidx.lifecycle.LiveData" />
 
         <import type="android.graphics.drawable.Drawable" />
@@ -38,6 +40,10 @@
             name="bodyIcon"
             type="Drawable" />
 
+        <variable
+            name="dismiss"
+            type="Function0&lt;Unit>" />
+
     </data>
 
     <LinearLayout
@@ -48,17 +54,16 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/ocean_spacing_stack_xs">
 
-        <Space
-            android:id="@+id/space"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_md" />
-
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/icon_handle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="13dp"
+            android:layout_gravity="right"
+            android:onClick="@{() -> dismiss.invoke()}"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+            android:src="@drawable/icon_exit"
             app:ocean_visible_or_gone="@{cancelabled}" />
 
         <Space
@@ -88,12 +93,12 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textTitle"
             style="@style/Ocean.Heading.3"
-            android:textColor="@color/ocean_color_interface_dark_deep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/ocean_spacing_stack_xs"
             android:paddingEnd="@dimen/ocean_spacing_stack_xs"
             android:text="@{title}"
+            android:textColor="@color/ocean_color_interface_dark_deep"
             tools:text="Heading 3" />
 
         <Space
@@ -106,20 +111,20 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             app:layout_constraintTop_toBottomOf="@id/textTitle"
-            tools:paddingStart="@dimen/ocean_spacing_stack_xxxs"
+            tools:itemCount="4"
             tools:listitem="@layout/ocean_bottom_list_sheet_item"
-            tools:itemCount="4"/>
+            tools:paddingStart="@dimen/ocean_spacing_stack_xxxs" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{caption}"
-            android:fontFamily="@font/font_family_base_medium"
-            android:textColor="@color/ocean_color_interface_dark_down"
-            tools:text="Lembre-se de salvar o documento em um local onde consiga encontrar com facilidade."
-            app:ocean_visible_or_gone="@{caption != null}"
+            android:layout_margin="16dp"
             android:layout_marginHorizontal="16dp"
-            android:layout_margin="16dp" />
+            android:fontFamily="@font/font_family_base_medium"
+            android:text="@{caption}"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            app:ocean_visible_or_gone="@{caption != null}"
+            tools:text="Lembre-se de salvar o documento em um local onde consiga encontrar com facilidade." />
 
         <LinearLayout
             android:id="@+id/botton_sheet_list_button_div_container"
@@ -128,7 +133,7 @@
             android:orientation="vertical"
             app:ocean_visible_or_gone="@{showFooterButton}">
 
-            <include layout="@layout/ocean_divider"/>
+            <include layout="@layout/ocean_divider" />
 
             <Space
                 android:layout_width="match_parent"
@@ -140,8 +145,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:showProgress="@{loading}"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:showProgress="@{loading}" />
 
             <include
                 android:id="@+id/bottom_sheet_list_button_primary"
@@ -149,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:showProgress="@{loading}"/>
+                app:showProgress="@{loading}" />
         </LinearLayout>
     </LinearLayout>
 </layout>

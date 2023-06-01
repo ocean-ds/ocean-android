@@ -31,7 +31,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     private var buttonText: String? = null
     private var buttonIcon: Drawable? = null
     private var buttonClick: (() -> Unit)? = null
-    private var buttonLoading : LiveData<Boolean>? = null
+    private var buttonLoading: LiveData<Boolean>? = null
     private var useSecondaryButtonStyle: Boolean = false
     private var caption: String? = null
 
@@ -45,7 +45,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
             null,
             false
         )
-        
+
         binding.lifecycleOwner = this
 
         binding.title = title
@@ -64,7 +64,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
             binding.bottomSheetListButtonSecondary.icon = it
         }
 
-        buttonClick?.let{
+        buttonClick?.let {
             binding.bottomSheetListButtonPrimary.click = it
             binding.bottomSheetListButtonSecondary.click = it
         }
@@ -88,6 +88,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
         binding.cancelabled = isDismiss
         binding.showFooterButton = buttonText != null
 
+        binding.dismiss = { dismiss() }
         setCancelable(isDismiss)
         setCanceledOnTouchOutside(isDismiss)
         setContentView(binding.root)

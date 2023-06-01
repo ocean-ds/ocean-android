@@ -5,79 +5,60 @@
 
     <data>
 
-        <import type="kotlin.jvm.functions.Function0" />
-
-        <import type="kotlin.jvm.functions.Function1" />
-
-        <import type="kotlin.Unit" />
-
         <variable
             name="item"
             type="br.com.useblu.oceands.model.OceanChildTextItem" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/expansion_layout_child_container"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@color/ocean_color_interface_light_pure"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="58dp"
+        android:background="@color/ocean_color_interface_light_pure">
 
         <ImageView
             android:id="@+id/image_child"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
             android:focusable="true"
             android:src="@{item.image}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linear_layout"
             tools:src="@drawable/icon_generic_primary" />
 
-        <LinearLayout
-            android:id="@+id/linear_layout"
+        <TextView
+            android:id="@+id/title_item_child"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/font_family_base_medium"
+            android:text="@{item.title}"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            android:textSize="@dimen/ocean_font_size_xs"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
             android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
             android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_child"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                android:id="@+id/title_item_child"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_family_base_medium"
-                android:text="@{item.title}"
-                android:textColor="@color/ocean_color_interface_dark_down"
-                android:textSize="@dimen/ocean_font_size_xs"
-                tools:text="Title" />
-
-            <TextView
-                android:id="@+id/subtitle_item_child"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_family_base_regular"
-                android:textColor="@color/ocean_color_interface_dark_down"
-                android:textSize="@dimen/ocean_font_size_xxxs"
-                app:ocean_visible_or_gone="@{!item.subTitle.isEmpty()}"
-                app:text="@{item.subTitle}"
-                tools:text="Description" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/subtitle_item_child"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_family_base_regular"
+            android:textColor="@color/ocean_color_interface_dark_down"
+            android:textSize="@dimen/ocean_font_size_xxxs"
+            app:ocean_visible_or_gone="@{!item.subTitle.isEmpty()}"
+            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+            app:text="@{item.subTitle}"
+            tools:text="Description"
+            app:layout_constraintTop_toBottomOf="@id/title_item_child"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_child"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

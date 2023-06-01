@@ -3,7 +3,6 @@ package br.com.useblu.oceands.bindingadapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.ItemParentTextListBinding
 import br.com.useblu.oceands.extensions.addSwipeLeft
@@ -32,7 +31,6 @@ fun setInflateChildren(
                 onClicked = clickItem,
                 onLongClickPressed = longClickItem
             )
-            layoutManager = LinearLayoutManager(recyclerView.context)
             addSwipeLeft(
                 items = items,
                 edit = clickEdit,
@@ -57,61 +55,31 @@ class ChildrenAdapter(
     override fun onBindViewHolder(holder: ChildrenViewHolder, position: Int) {
         val item = list[position]
 
-        holder.bind(
-            item,
-            position,
-            onItemClicked = {
-                onClicked?.invoke(it)
-            },
-            onItemLongClicked = {
-                onLongClickPressed?.invoke(it)
-            }
-        )
+        holder.bind(item, position)
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    class ChildrenViewHolder(
+    inner class ChildrenViewHolder(
         val binding: ItemParentTextListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
             oceanChildTextItem: OceanChildTextItem,
-            position: Int,
-            onItemClicked: (Int) -> Unit,
-            onItemLongClicked: (Int) -> Unit
+            position: Int
         ) {
-
             binding.item = oceanChildTextItem
 
             binding.expansionLayoutChildContainer.setOnClickListener {
-                onItemClicked.invoke(position)
+                onClicked?.invoke(position)
             }
 
-            binding.titleItemChild.setOnLongClickListener {
-                onItemLongClicked.invoke(position)
+            binding.expansionLayoutChildContainer.setOnLongClickListener {
+                onLongClickPressed?.invoke(position)
                 false
             }
-            binding.titleItemChild.setOnClickListener {
-                onItemClicked.invoke(position)
-            }
-            binding.subtitleItemChild.setOnLongClickListener {
-                onItemLongClicked.invoke(position)
-                false
-            }
-            binding.subtitleItemChild.setOnClickListener {
-                onItemClicked.invoke(position)
-            }
-            binding.imageChild.setOnLongClickListener {
-                onItemLongClicked.invoke(position)
-                false
-            }
-            binding.imageChild.setOnClickListener {
-                onItemClicked.invoke(position)
-            }
-            binding.executePendingBindings()
         }
     }
 }

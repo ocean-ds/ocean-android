@@ -13,8 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/expansion_layout_child_container"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@color/ocean_color_interface_light_pure">
+        android:layout_height="58dp">
 
         <ImageView
             android:id="@+id/image_child"

@@ -20,18 +20,33 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.buttons.ButtonsActivity">
+        tools:context=".ui.textlistexpandable.TextListExpandableActivity"
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/ocean_spacing_stack_xs"
-            android:paddingBottom="@dimen/ocean_spacing_stack_xs">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:background="@drawable/ocean_border_cross_sell">
+                <include
+                    layout="@layout/ocean_expandable_text_list_icon_item"
+                    app:item="@{viewmodel.parent}"
+                    app:clickSubItem="@{viewmodel::click}"
+                    app:clickEditButton="@{viewmodel::clickEditButton}"
+                    app:clickDeleteButton="@{viewmodel::clickDeleteButton}"
+                    app:longClick="@{viewmodel::longClick}" />
+            </LinearLayout>
 
             <include
                 layout="@layout/ocean_expandable_text_list_icon_item"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="32dp"
                 app:item="@{viewmodel.parent}"
                 app:clickSubItem="@{viewmodel::click}"
                 app:clickEditButton="@{viewmodel::clickEditButton}"

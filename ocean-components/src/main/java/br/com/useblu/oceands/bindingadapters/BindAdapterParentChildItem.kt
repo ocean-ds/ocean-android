@@ -23,7 +23,6 @@ fun setInflateChildren(
     clickDelete: ((Int) -> Unit)?,
     longClickItem: ((Int) -> Unit)?
 ) {
-
     children?.let { items ->
         recyclerView.run {
             adapter = ChildrenAdapter(

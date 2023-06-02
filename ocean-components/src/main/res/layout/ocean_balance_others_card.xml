@@ -90,6 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:minWidth="60dp"
+                    android:includeFontPadding="false"
                     android:gravity="center"
                     android:fontFamily="@font/font_family_base_bold"
                     android:textColor="@color/ocean_color_interface_light_pure"
@@ -129,8 +130,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="16dp"
                 app:layout_constraintTop_toBottomOf="@id/container_divider"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -138,13 +140,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/font_family_base_regular"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/button_extract"
+                    android:includeFontPadding="false"
                     android:text="@{model.buttonDescription}"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
                     android:textSize="14sp"
-                    android:layout_marginTop="8dp"
                     android:textColor="@color/ocean_color_interface_light_down"
                     tools:text="Confira tudo o que entrou e saiu da sua Conta Digital Blu"/>
 
@@ -153,9 +152,6 @@
                     layout="@layout/ocean_button_secondary_sm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
                     app:text="@{model.buttonCta}"
                     app:click="@{model.onClickButton}"/>
             </LinearLayout>

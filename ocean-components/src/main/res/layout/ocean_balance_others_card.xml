@@ -40,6 +40,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/text_view_header_label"
                 app:layout_constraintBottom_toBottomOf="@id/text_view_header_value"
+                app:ocean_visible_or_gone="@{model.firstValue != null}"
                 android:layout_marginStart="16dp"
                 android:gravity="center_vertical"
                 android:clickable="true"
@@ -65,6 +66,7 @@
                 android:textColor="@color/ocean_color_brand_primary_up"
                 android:textSize="@dimen/ocean_font_size_xxxs"
                 android:layout_marginStart="8dp"
+                app:layout_goneMarginStart="16dp"
                 app:layout_constraintStart_toEndOf="@+id/icon_container"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="First label" />

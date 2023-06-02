@@ -32,22 +32,29 @@
             android:paddingBottom="8dp"
             android:background="#2244E8">
 
-            <ImageView
+            <LinearLayout
                 android:id="@+id/icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="28dp"
+                android:layout_height="42dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="@{() -> model.onClickHideIcon.invoke()}"
-                android:src="@{isContentHidden ? @drawable/icon_eye_off : @drawable/icon_eye_on}"
                 android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:onClick="@{() -> model.onClickHideIcon.invoke()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/text_view_header_label"
                 app:layout_constraintBottom_toBottomOf="@id/text_view_header_value"
-                tools:src="@drawable/icon_eye_on"
-                app:tint="@color/ocean_color_brand_primary_up"
-                tools:tint="@color/ocean_color_brand_primary_up"
-                android:contentDescription="@string/toggle_visibility_content_description" />
+                app:ocean_visible_or_gone="@{model.firstValue != null}">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@{isContentHidden ? @drawable/icon_eye_off : @drawable/icon_eye_on}"
+                    tools:src="@drawable/icon_eye_on"
+                    app:tint="@color/ocean_color_brand_primary_up"
+                    tools:tint="@color/ocean_color_brand_primary_up"
+                    android:contentDescription="@string/toggle_visibility_content_description" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/text_view_header_label"

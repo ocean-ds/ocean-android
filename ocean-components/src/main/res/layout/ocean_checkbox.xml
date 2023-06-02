@@ -9,6 +9,8 @@
 
         <import type="kotlin.jvm.functions.Function0" />
 
+        <import type="br.com.useblu.oceands.model.OceanTagType" />
+
         <import type="kotlin.Unit" />
 
         <variable
@@ -21,6 +23,10 @@
 
         <variable
             name="checked"
+            type="Boolean" />
+
+        <variable
+            name="recommended"
             type="Boolean" />
 
         <variable
@@ -85,11 +91,12 @@
                 android:textSize="@dimen/ocean_font_size_xxs"
                 android:theme="@style/Ocean.CheckBox.Error"
                 app:ocean_visible_or_gone="@{error != null}"
-                tools:visibility="gone"
-                tools:checked="false" />
+                tools:checked="false"
+                tools:visibility="gone" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -107,6 +114,21 @@
                     app:color="@{@color/ocean_color_interface_dark_down}"
                     app:ocean_visible_or_gone="@{description != null &amp;&amp; !description.isEmpty()}"
                     app:text="@{description}" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_weight="0"
+                app:ocean_visible_or_gone="@{recommended}"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <include
+                    layout="@layout/ocean_tag"
+                    app:hideIcon="@{true}"
+                    app:title="@{@string/ocean_recommended}"
+                    app:type="@{OceanTagType.Positive}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

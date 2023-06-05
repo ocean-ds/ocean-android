@@ -9,6 +9,8 @@
 
         <import type="br.com.useblu.oceands.model.OceanBalanceBluModel" />
 
+        <import type="br.com.useblu.oceands.extensions.ExtensionsKt"/>
+
         <variable
             name="model"
             type="OceanBalanceBluModel" />
@@ -89,15 +91,16 @@
                         android:id="@+id/text_view_header_value"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:minWidth="60dp"
                         app:layout_constraintStart_toStartOf="@+id/text_view_header_label"
                         app:layout_constraintTop_toBottomOf="@+id/text_view_header_label"
                         app:skeletonAllowSavedState="@{true}"
-                        app:skeletonBoneColor="@{@color/ocean_color_interface_dark_down}"
-                        app:skeletonBoneCornerRadius="@{20f}"
-                        app:skeletonEnabled="@{isLoading}"
                         app:skeletonGenerateBones="@{true}"
-                        app:skeletonShimmerRayColor="@{@color/ocean_color_interface_dark_deep}"
+                        app:skeletonBoneHeight="16dp"
+                        app:skeletonBoneWidth="72dp"
+                        app:skeletonBoneColor="@{@color/color_header_app_skeleton}"
+                        app:skeletonBoneCornerRadius="@{ExtensionsKt.getDpFloat(4)}"
+                        app:skeletonEnabled="@{isLoading}"
+                        app:skeletonShimmerRayColor="@{@color/color_header_app_skeleton_shimmer}"
                         app:skeletonShimmerRayCount="@{4}">
                         <TextView
                             android:layout_width="wrap_content"

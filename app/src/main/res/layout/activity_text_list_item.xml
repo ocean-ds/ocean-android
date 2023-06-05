@@ -25,6 +25,12 @@
             <include
                 layout="@layout/ocean_text_list_item"
                 app:description="@{`Default`}"
+                app:isSmall="@{true}"
+                app:title="@{`Text List Item`}" />
+
+            <include
+                layout="@layout/ocean_text_list_item"
+                app:description="@{`Default`}"
                 app:title="@{`Text List Item`}" />
 
             <include

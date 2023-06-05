@@ -8,6 +8,8 @@
 
         <import type="br.com.useblu.oceands.model.OceanBalanceOthersModel" />
 
+        <import type="br.com.useblu.oceands.extensions.ExtensionsKt"/>
+
         <variable
             name="model"
             type="OceanBalanceOthersModel" />
@@ -79,11 +81,13 @@
                 app:layout_constraintStart_toStartOf="@+id/text_view_header_label"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_header_label"
                 app:skeletonAllowSavedState="@{true}"
-                app:skeletonBoneColor="@{@color/ocean_color_interface_dark_down}"
-                app:skeletonBoneCornerRadius="@{20f}"
-                app:skeletonEnabled="@{isLoading}"
                 app:skeletonGenerateBones="@{true}"
-                app:skeletonShimmerRayColor="@{@color/ocean_color_interface_dark_deep}"
+                app:skeletonBoneHeight="16dp"
+                app:skeletonBoneWidth="72dp"
+                app:skeletonBoneColor="@{@color/color_header_app_skeleton}"
+                app:skeletonBoneCornerRadius="@{ExtensionsKt.getDpFloat(4)}"
+                app:skeletonEnabled="@{isLoading}"
+                app:skeletonShimmerRayColor="@{@color/color_header_app_skeleton_shimmer}"
                 app:skeletonShimmerRayCount="@{4}"
                 tools:visibility="visible">
                 <TextView
@@ -121,6 +125,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginHorizontal="16dp"
+                android:alpha="0.4"
                 android:background="@color/ocean_color_brand_primary_up"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

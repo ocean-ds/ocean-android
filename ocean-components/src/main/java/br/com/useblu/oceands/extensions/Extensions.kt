@@ -36,6 +36,9 @@ fun String.clearSpacing() = replace("\\s+".toRegex(), "").trim()
 val Int.dp: Int
     get() = (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()
 
+val Int.dpFloat: Float
+    get() = this * Resources.getSystem().displayMetrics.density
+
 val Float.dp: Int
     get() = (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()
 

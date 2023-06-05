@@ -41,6 +41,10 @@
             name="click"
             type="Function1&lt;Boolean, Unit>" />
 
+        <variable
+            name="isSmall"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,13 +63,14 @@
             app:ocean_visible_or_gone="@{withCheckBox != null}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
 
             <LinearLayout
                 android:id="@+id/text_list_item_check_box_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:ocean_visible_or_gone="@{withCheckBox == true}" >
+                app:ocean_visible_or_gone="@{withCheckBox == true}">
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/text_list_item_check_box"
@@ -128,8 +133,11 @@
             android:id="@+id/text_list_item_info_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginHorizontal="@dimen/ocean_spacing_stack_xs"
             android:orientation="vertical"
+            android:paddingTop="@{isSmall ? @dimen/ocean_spacing_stack_xxs : @dimen/ocean_spacing_stack_xs}"
+            android:paddingBottom="@{isSmall ? @dimen/ocean_spacing_stack_xxs : @dimen/ocean_spacing_stack_xs}"
+            tools:paddingVertical="@dimen/ocean_spacing_stack_xs"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_list_item_selecting_box_container"
@@ -176,7 +184,8 @@
                 app:ocean_visible_or_gone="@{textInfo != null &amp; withCheckBox == null}"
                 android:text="@{textInfo}"
                 app:textColor="@{isPositive == true ? `colorStatusPositiveDeep` : `colorStatusInterfaceDarkDeep`}"
-                tools:text="Info" />
+                tools:text="Info"
+                tools:visibility="gone"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

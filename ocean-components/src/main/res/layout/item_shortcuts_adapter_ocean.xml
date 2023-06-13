@@ -5,8 +5,6 @@
 
     <data>
 
-        <import type="br.com.useblu.oceands.model.OceanShortcutCardSize" />
-
         <import type="br.com.useblu.oceands.model.OceanShortcutLayoutMode" />
 
         <variable
@@ -93,7 +91,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/icon"
                 app:layout_constraintTop_toBottomOf="@+id/icon"
-                app:ocean_visible_or_gone="@{item.viewMode != OceanShortcutLayoutMode.Horizontal}"
+                app:ocean_visible_or_gone="@{item.layoutMode != OceanShortcutLayoutMode.Horizontal}"
                 tools:text="Label" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -112,7 +110,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/include8"
                 app:layout_constraintStart_toEndOf="@+id/icon"
                 app:layout_constraintTop_toTopOf="@+id/icon"
-                app:ocean_visible_or_gone="@{item.viewMode == OceanShortcutLayoutMode.Horizontal}"
+                app:ocean_visible_or_gone="@{item.layoutMode == OceanShortcutLayoutMode.Horizontal}"
                 tools:text="Label" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -128,7 +126,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/label"
                 app:layout_constraintStart_toStartOf="@+id/label"
                 app:layout_constraintTop_toBottomOf="@+id/label"
-                app:ocean_visible_or_gone="@{item.hasSubtitle() &amp; item.subTitle != null}"
+                app:ocean_visible_or_gone="@{item.subTitle != null &amp;&amp; !item.subTitle.isEmpty()}"
                 tools:text="Lorem ipsum dolor sit amet, consectetur." />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

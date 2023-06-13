@@ -11,7 +11,7 @@
 
         <import type="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <import type="br.com.useblu.oceands.model.OceanShortcutItem"/>
+        <import type="br.com.useblu.oceands.model.OceanShortcutItem" />
 
         <variable
             name="entries"
@@ -22,22 +22,25 @@
             type="Integer" />
     </data>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingStart="@dimen/ocean_spacing_inline_xs"
-            android:paddingEnd="@dimen/ocean_spacing_inline_xs"
-            android:orientation="horizontal"
-            app:entries="@{entries}"
-            app:columns="@{columns}"
-            tools:itemCount="5"
-            tools:listitem="@layout/item_shortcuts_adapter_ocean" />
+            android:layout_height="match_parent">
 
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/ocean_spacing_inline_xs"
+                android:paddingEnd="@dimen/ocean_spacing_inline_xs"
+                app:columns="@{columns}"
+                app:entries="@{entries}"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_shortcuts_adapter_ocean" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

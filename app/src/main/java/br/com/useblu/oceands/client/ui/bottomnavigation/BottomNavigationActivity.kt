@@ -15,51 +15,43 @@ class BottomNavigationActivity : AppCompatActivity() {
         binding = ActivityBottomNavigationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val menuItems = listOf(
+            OceanBottomNavigationMenuItem(
+                title = "Home",
+                activeIcon = "homesolid",
+                inactiveIcon = "homeoutline",
+                onClickListener = {}
+            ),
+            OceanBottomNavigationMenuItem(
+                title = "Pagar",
+                activeIcon = "pagblusolid",
+                inactiveIcon = "pagbluoutline",
+                onClickListener = {}
+            ),
+            OceanBottomNavigationMenuItem(
+                title = "Cobrar",
+                activeIcon = "chargesolid",
+                inactiveIcon = "chargeoutline",
+                onClickListener = {}
+            ),
+            OceanBottomNavigationMenuItem(
+                title = "Transferir",
+                activeIcon = "switchhorizontalsolid",
+                inactiveIcon = "switchhorizontaloutline",
+                onClickListener = {}
+            ),
+            OceanBottomNavigationMenuItem(
+                title = "Relatórios",
+                activeIcon = "reportsolid",
+                inactiveIcon = "reportoutline",
+                onClickListener = {}
+            )
+        )
+
         binding.navBottom.apply {
-            addMenuItem(
-                OceanBottomNavigationMenuItem(
-                    title = "Home",
-                    activeIcon = "homesolid",
-                    inactiveIcon = "homeoutline",
-                    onClickListener = {}
-                )
-            )
-
-            addMenuItem(
-                OceanBottomNavigationMenuItem(
-                    title = "Pagar",
-                    activeIcon = "pagblusolid",
-                    inactiveIcon = "pagbluoutline",
-                    onClickListener = {}
-                )
-            )
-
-            addMenuItem(
-                OceanBottomNavigationMenuItem(
-                    title = "Cobrar",
-                    activeIcon = "chargesolid",
-                    inactiveIcon = "chargeoutline",
-                    onClickListener = {}
-                )
-            )
-
-            addMenuItem(
-                OceanBottomNavigationMenuItem(
-                    title = "Transferir",
-                    activeIcon = "switchhorizontalsolid",
-                    inactiveIcon = "switchhorizontaloutline",
-                    onClickListener = {}
-                )
-            )
-
-            addMenuItem(
-                OceanBottomNavigationMenuItem(
-                    title = "Relatórios",
-                    activeIcon = "reportsolid",
-                    inactiveIcon = "reportoutline",
-                    onClickListener = {}
-                )
-            )
+            menuItems.forEach {
+                addMenuItem(it)
+            }
 
             setSelectedIndex(0)
         }

@@ -250,6 +250,23 @@ fun loadIcon(view: ImageView, token: String?) {
     }
 }
 
+@BindingAdapter("is_active", "active_icon", "inactive_icon")
+fun ImageView.loadBottomNavIcon(isActive: Boolean, activeToken: String?, inactiveToken: String?) {
+    val activeResource = activeToken?.toOceanIcon()
+    val inactiveResource = inactiveToken?.toOceanIcon()
+
+    val finalIcon = if (isActive) {
+        activeResource ?: inactiveResource
+    } else {
+        inactiveResource ?: activeResource
+    }
+
+    if (finalIcon != null) {
+        val icon = AppCompatResources.getDrawable(context, finalIcon)
+        setImageDrawable(icon)
+    }
+}
+
 @BindingAdapter("ocean_tint")
 fun setTintColor(view: ImageView, colorResourceId: Int?) {
     colorResourceId?.let {

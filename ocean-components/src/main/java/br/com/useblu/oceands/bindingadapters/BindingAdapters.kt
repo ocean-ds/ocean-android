@@ -244,9 +244,26 @@ fun loadIcon(view: ImageView, token: String?) {
             Glide.with(view.context).load(token).placeholder(placeHolder).into(view)
         } else {
             val context = view.context
-            val icon = AppCompatResources.getDrawable(context, token.toOceanIcon())
+            val icon = AppCompatResources.getDrawable(context, token.toOceanIcon() ?: R.drawable.ocean_icon_placeholder_solid)
             view.setImageDrawable(icon)
         }
+    }
+}
+
+@BindingAdapter("is_active", "active_icon", "inactive_icon")
+fun ImageView.loadBottomNavIcon(isActive: Boolean, activeToken: String?, inactiveToken: String?) {
+    val activeResource = activeToken?.toOceanIcon()
+    val inactiveResource = inactiveToken?.toOceanIcon()
+
+    val finalIcon = if (isActive) {
+        activeResource ?: inactiveResource
+    } else {
+        inactiveResource ?: activeResource
+    }
+
+    if (finalIcon != null) {
+        val icon = AppCompatResources.getDrawable(context, finalIcon)
+        setImageDrawable(icon)
     }
 }
 
@@ -326,7 +343,7 @@ private fun loadIconByToken(
     token: String,
     type: OceanAlertType?
 ) {
-    val icon = AppCompatResources.getDrawable(imageView.context, token.toOceanIcon())
+    val icon = AppCompatResources.getDrawable(imageView.context, token.toOceanIcon() ?: R.drawable.ocean_icon_placeholder_solid)
     imageView.setColorFilter(ContextCompat.getColor(imageView.context, getColor(type)))
     imageView.setImageDrawable(icon)
 }

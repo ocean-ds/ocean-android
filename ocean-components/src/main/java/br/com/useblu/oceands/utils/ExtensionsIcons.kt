@@ -275,6 +275,14 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_cash_solid
     }
 
+    "chargeoutline" -> {
+        R.drawable.ocean_icon_charge_outline
+    }
+
+    "chargesolid" -> {
+        R.drawable.ocean_icon_charge_solid
+    }
+
     "chartbaroutline" -> {
         R.drawable.ocean_icon_chart_bar_outline
     }
@@ -1863,6 +1871,14 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_construction_material_outline
     }
 
+    "reportsolid" -> {
+        R.drawable.ocean_icon_report_solid
+    }
+
+    "reportoutline" -> {
+        R.drawable.ocean_icon_report_outline
+    }
+
     "consultoutline" -> {
         R.drawable.ocean_icon_consult_outline
     }
@@ -1937,6 +1953,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
 
     "otheroutline" -> {
         R.drawable.ocean_icon_other_outline
+    }
+
+    "pagblusolid" -> {
+        R.drawable.ocean_icon_pagblu_solid
     }
 
     "pagbluoutline" -> {
@@ -2108,6 +2128,6 @@ fun String.toOceanIcon() = when (this.lowercase()) {
     }
 
     else -> {
-        R.drawable.ocean_icon_placeholder_solid
+        null
     }
 }

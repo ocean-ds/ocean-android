@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+
+        <variable
+            name="model"
+            type="br.com.useblu.oceands.model.OceanBottomNavigationMenuItem" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            app:is_active="@{isSelected}"
+            app:active_icon="@{model.activeIcon}"
+            app:inactive_icon="@{model.inactiveIcon}"
+            app:tint="@{isSelected ? @color/ocean_color_interface_light_pure : @color/ocean_color_brand_primary_up}"
+            tools:src="@drawable/ocean_icon_home_solid"
+            tools:tint="@color/ocean_color_brand_primary_up" />
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/font_family_highlight_extrabold"
+            android:includeFontPadding="false"
+            android:textColor="@{isSelected ? @color/ocean_color_interface_light_pure : @color/ocean_color_brand_primary_up}"
+            android:textSize="10sp"
+            android:text="@{model.title}"
+            tools:text="Início"
+            tools:textColor="@color/ocean_color_brand_primary_up" />
+    </LinearLayout>
+</layout>

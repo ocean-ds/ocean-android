@@ -18,8 +18,8 @@
             type="List&lt;OceanShortcutItem>" />
 
         <variable
-            name="layoutManager"
-            type="androidx.recyclerview.widget.LinearLayoutManager" />
+            name="columns"
+            type="Integer" />
     </data>
 
     <LinearLayout
@@ -35,7 +35,7 @@
             android:paddingEnd="@dimen/ocean_spacing_inline_xs"
             android:orientation="horizontal"
             app:entries="@{entries}"
-            app:shortcutLayoutManager="@{layoutManager}"
+            app:columns="@{columns}"
             tools:itemCount="5"
             tools:listitem="@layout/item_shortcuts_adapter_ocean" />
 

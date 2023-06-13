@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanShortcutCardSize
 import br.com.useblu.oceands.model.OceanShortcutItem
@@ -13,31 +12,21 @@ import br.com.useblu.oceands.model.OceanShortcutLayoutMode
 
 class ShortcutsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _itemsTiny = MutableLiveData<List<OceanShortcutItem>>()
-    val itemsTiny: LiveData<List<OceanShortcutItem>> = _itemsTiny
+    private val _itemsTinyVertical = MutableLiveData<List<OceanShortcutItem>>()
+    val itemsTinyVertical: LiveData<List<OceanShortcutItem>> = _itemsTinyVertical
 
-    val itemsTinyLayoutManager = GridLayoutManager(
-        application.applicationContext, 2
-    )
+    private val _itemsTinyHorizontal = MutableLiveData<List<OceanShortcutItem>>()
+    val itemsTinyHorizontal: LiveData<List<OceanShortcutItem>> = _itemsTinyHorizontal
 
     private val _itemsSmall = MutableLiveData<List<OceanShortcutItem>>()
     val itemsSmall: LiveData<List<OceanShortcutItem>> = _itemsSmall
 
-    val itemsSmallLayoutManager = LinearLayoutManager(
-        application.applicationContext,
-        LinearLayoutManager.HORIZONTAL,
-        false
-    )
-
     private val _itemsMedium = MutableLiveData<List<OceanShortcutItem>>()
     val itemsMedium: LiveData<List<OceanShortcutItem>> = _itemsMedium
 
-    val itemsMediumLayoutManager = GridLayoutManager(
-        application.applicationContext, 2
-    )
-
     fun loadData() {
-        _itemsTiny.postValue(getItemsTiny())
+        _itemsTinyVertical.postValue(getItemsTinyVertical())
+        _itemsTinyHorizontal.postValue(getItemsTinyHorizontal())
         _itemsSmall.postValue(getItemsSmall())
         _itemsMedium.postValue(getItemsMedium())
     }
@@ -94,13 +83,20 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             }
         )
     ).map {
-        it.copy(viewMode = OceanShortcutLayoutMode.Horizontal)
+        it.copy(viewMode = OceanShortcutLayoutMode.Vertical)
     }
 
-    private fun getItemsTiny() = getItemsSmall().map {
+    private fun getItemsTinyVertical() = getItemsSmall().map {
         it.copy(
-            size = OceanShortcutCardSize.Tiny,
+            size = OceanShortcutCardSize.TinyVertical,
             viewMode = OceanShortcutLayoutMode.Vertical
+        )
+    }
+
+    private fun getItemsTinyHorizontal() = getItemsSmall().map {
+        it.copy(
+            size = OceanShortcutCardSize.TinyHorizontal,
+            viewMode = OceanShortcutLayoutMode.Horizontal
         )
     }
 
@@ -109,9 +105,5 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             size = OceanShortcutCardSize.Medium,
             viewMode = OceanShortcutLayoutMode.Vertical
         )
-    }
-
-    companion object {
-        const val URL = "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
     }
 }

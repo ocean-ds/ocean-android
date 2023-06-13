@@ -5,120 +5,133 @@
 
     <data>
 
+        <import type="br.com.useblu.oceands.model.OceanShortcutCardSize" />
+
+        <import type="br.com.useblu.oceands.model.OceanShortcutLayoutMode" />
+
         <variable
             name="item"
             type="br.com.useblu.oceands.model.OceanShortcutItem" />
 
     </data>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_view"
-            android:layout_width="wrap_content"
-            app:ocean_layout_width="@{item.getCardWidth(context)}"
-            android:layout_height="wrap_content"
-            app:layout_height="@{item.getCardHeight(context)}"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
-            android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
-            android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
-            android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="@{() -> item.action.invoke()}"
-            app:cardBackgroundColor="@color/ocean_color_interface_light_pure"
-            app:cardCornerRadius="@dimen/ocean_border_radius_md"
-            app:strokeColor="@color/ocean_color_interface_light_down"
-            app:strokeWidth="@dimen/ocean_border_width_hairline"
-            app:cardElevation="0dp"
-            app:rippleColor="@color/ocean_color_interface_light_down">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ocean_spacing_stack_xxs"
+        android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+        android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
+        android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> item.action.invoke()}"
+        app:cardBackgroundColor="@color/ocean_color_interface_light_pure"
+        app:cardCornerRadius="@dimen/ocean_border_radius_md"
+        app:cardElevation="0dp"
+        app:rippleColor="@color/ocean_color_interface_light_down"
+        app:strokeColor="@color/ocean_color_interface_light_down"
+        app:strokeWidth="@dimen/ocean_border_width_hairline">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/ocean_spacing_stack_xxs"
+            android:paddingTop="@dimen/ocean_spacing_stack_xxs"
+            android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
+            android:paddingBottom="@dimen/ocean_spacing_stack_xs">
 
-                <ImageView
-                    android:id="@+id/icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
-                    android:layout_marginTop="@dimen/ocean_spacing_inline_xs"
-                    android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
-                    app:ocean_icon="@{item.icon}"
-                    app:tint="@color/ocean_color_brand_primary_down"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:ocean_visible_or_gone="@{item.icon != null}"
-                    tools:src="@drawable/icon_generic_primary" />
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_icon="@{item.icon}"
+                app:ocean_visible_or_gone="@{item.icon != null}"
+                app:tint="@color/ocean_color_brand_primary_down"
+                tools:src="@drawable/icon_generic_primary" />
 
-                <include
-                    layout="@layout/ocean_badge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
-                    android:layout_marginEnd="@dimen/ocean_spacing_inline_xxs"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:isSmall="@{false}"
-                    app:text="@{item.count}"
-                    app:type="@{item.badgeType}"
-                    app:visible="@{item.showBadge}"
-                    tools:visibility="visible" />
+            <include
+                android:id="@+id/include8"
+                layout="@layout/ocean_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:isSmall="@{false}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:text="@{item.count}"
+                app:type="@{item.badgeType}"
+                app:visible="@{item.showBadge}"
+                tools:visibility="visible" />
 
-                <ImageView
-                    android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
-                    android:layout_marginEnd="@dimen/ocean_spacing_inline_xxs"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/blockedImage"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    app:tint="@color/ocean_color_interface_dark_up"
-                    app:ocean_icon='@{"lockclosedsolid"}'
-                    app:ocean_visible_or_gone="@{item.blocked}"
-                    tools:src="@drawable/icon_generic_primary" />
+            <ImageView
+                android:id="@+id/blockedImage"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/include8"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ocean_icon='@{"lockclosedsolid"}'
+                app:ocean_visible_or_gone="@{item.blocked}"
+                app:tint="@color/ocean_color_interface_dark_up"
+                tools:src="@drawable/icon_generic_primary" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
-                    android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
-                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xxs"
-                    app:layout_goneMarginBottom="@dimen/ocean_spacing_inline_xs"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/font_family_base_bold"
-                    android:maxLines="1"
-                    android:text="@{item.label}"
-                    android:textColor="@color/ocean_color_interface_dark_deep"
-                    android:textSize="@dimen/ocean_font_size_xxs"
-                    app:layout_constraintBottom_toTopOf="@id/subTitle"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintVertical_bias="1"
-                    tools:text="Label" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_family_base_bold"
+                android:maxLines="2"
+                android:text="@{item.label}"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                android:textSize="@dimen/ocean_font_size_xxs"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/icon"
+                app:layout_constraintTop_toBottomOf="@+id/icon"
+                app:ocean_visible_or_gone="@{item.viewMode != OceanShortcutLayoutMode.Horizontal}"
+                tools:text="Label" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/subTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
-                    android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
-                    android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/font_family_base_regular"
-                    android:maxLines="2"
-                    android:text="@{item.subTitle}"
-                    android:textColor="@color/ocean_color_interface_dark_down"
-                    android:textSize="@dimen/ocean_font_size_xxxs"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintVertical_bias="1"
-                    app:ocean_visible_or_gone="@{item.hasSubtitle() &amp; item.subTitle != null}"
-                    tools:text="Lorem ipsum dolor sit amet, consectetur." />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_family_base_bold"
+                android:maxLines="1"
+                android:text="@{item.label}"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                android:textSize="@dimen/ocean_font_size_xxs"
+                app:layout_constraintBottom_toBottomOf="@+id/icon"
+                app:layout_constraintEnd_toStartOf="@+id/include8"
+                app:layout_constraintStart_toEndOf="@+id/icon"
+                app:layout_constraintTop_toTopOf="@+id/icon"
+                app:ocean_visible_or_gone="@{item.viewMode == OceanShortcutLayoutMode.Horizontal}"
+                tools:text="Label" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/subTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/font_family_base_regular"
+                android:maxLines="2"
+                android:text="@{item.subTitle}"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textSize="@dimen/ocean_font_size_xxxs"
+                app:layout_constraintEnd_toEndOf="@+id/label"
+                app:layout_constraintStart_toStartOf="@+id/label"
+                app:layout_constraintTop_toBottomOf="@+id/label"
+                app:ocean_visible_or_gone="@{item.hasSubtitle() &amp; item.subTitle != null}"
+                tools:text="Lorem ipsum dolor sit amet, consectetur." />
 
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 </layout>

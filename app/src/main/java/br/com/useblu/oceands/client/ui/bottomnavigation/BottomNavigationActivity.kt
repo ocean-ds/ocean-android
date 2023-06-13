@@ -29,12 +29,6 @@ class BottomNavigationActivity : AppCompatActivity() {
                 onClickListener = {}
             ),
             OceanBottomNavigationMenuItem(
-                title = "Cobrar",
-                activeIcon = "chargesolid",
-                inactiveIcon = "chargeoutline",
-                onClickListener = {}
-            ),
-            OceanBottomNavigationMenuItem(
                 title = "Transferir",
                 activeIcon = "switchhorizontalsolid",
                 inactiveIcon = "switchhorizontaloutline",

@@ -16,6 +16,7 @@ import br.com.useblu.oceands.client.ui.accordion.AccordionActivity
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.badges.BadgesActivity
 import br.com.useblu.oceands.client.ui.balance.BalanceActivity
+import br.com.useblu.oceands.client.ui.bottomnavigation.BottomNavigationActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
 import br.com.useblu.oceands.client.ui.carditem.CardItemActivity
@@ -86,6 +87,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun onClickTypography(view: View) {
         val intent = Intent(this, TypographyActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onClickBottomNavigation(vuew: View) {
+        val intent = Intent(this, BottomNavigationActivity::class.java)
         startActivity(intent)
     }
 

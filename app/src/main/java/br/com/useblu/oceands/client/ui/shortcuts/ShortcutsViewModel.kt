@@ -4,9 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.GridLayoutManager
 import br.com.useblu.oceands.model.OceanBadgeType
-import br.com.useblu.oceands.model.OceanShortcutCardSize
 import br.com.useblu.oceands.model.OceanShortcutItem
 import br.com.useblu.oceands.model.OceanShortcutLayoutMode
 
@@ -83,27 +81,26 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
             }
         )
     ).map {
-        it.copy(viewMode = OceanShortcutLayoutMode.Vertical)
+        it.copy(layoutMode = OceanShortcutLayoutMode.Vertical)
     }
 
     private fun getItemsTinyVertical() = getItemsSmall().map {
         it.copy(
-            size = OceanShortcutCardSize.TinyVertical,
-            viewMode = OceanShortcutLayoutMode.Vertical
+            layoutMode = OceanShortcutLayoutMode.Vertical,
+            subTitle = ""
         )
     }
 
     private fun getItemsTinyHorizontal() = getItemsSmall().map {
         it.copy(
-            size = OceanShortcutCardSize.TinyHorizontal,
-            viewMode = OceanShortcutLayoutMode.Horizontal
+            layoutMode = OceanShortcutLayoutMode.Horizontal,
+            subTitle = ""
         )
     }
 
     private fun getItemsMedium() = getItemsSmall().map {
         it.copy(
-            size = OceanShortcutCardSize.Medium,
-            viewMode = OceanShortcutLayoutMode.Vertical
+            layoutMode = OceanShortcutLayoutMode.Vertical
         )
     }
 }

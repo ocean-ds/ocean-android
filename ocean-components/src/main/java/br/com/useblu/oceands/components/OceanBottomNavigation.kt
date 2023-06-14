@@ -4,6 +4,8 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import br.com.useblu.oceands.databinding.BottomNavigationActiveBackgroundBinding
@@ -19,21 +21,13 @@ class OceanBottomNavigation @JvmOverloads constructor(
 
     private lateinit var linearLayout: LinearLayout
     private lateinit var background: BottomNavigationActiveBackgroundBinding
-    private var currentActiveIndex = -1
+    private var currentSelectedItem: BottomNavigationMenuItemBinding? = null
+    private var hasUserInteracted = false
 
     private val menuItems = arrayListOf<Pair<OceanBottomNavigationMenuItem, BottomNavigationMenuItemBinding>>()
 
     init {
         initViews()
-    }
-
-    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        super.onLayout(changed, left, top, right, bottom)
-        if (changed && currentActiveIndex > -1) {
-            val xPosition = menuItems[currentActiveIndex].second.root.x
-            val width = menuItems[currentActiveIndex].second.root.width
-            setupBackground(xPosition, width)
-        }
     }
 
     private fun initViews() {
@@ -42,32 +36,68 @@ class OceanBottomNavigation @JvmOverloads constructor(
         }
 
         background = BottomNavigationActiveBackgroundBinding.inflate(LayoutInflater.from(context))
+        background.root.visibility = View.GONE
 
         this.addView(background.root)
         this.addView(linearLayout)
     }
 
-    fun setSelectedIndex(index: Int) {
-        if (currentActiveIndex > -1) {
-            val xPosition = menuItems[index].second.root.x.toInt()
-            updateBackgroundPosition(xPosition)
-        }
+    private val selectedViewLayoutObserver = ViewTreeObserver.OnGlobalLayoutListener {
+        selectedViewLayoutChanged()
+    }
 
-        currentActiveIndex = index
+    private fun selectedViewLayoutChanged() {
+        val selectedItemView = currentSelectedItem ?: return
 
-        menuItems.forEachIndexed { menuIndex, menu ->
-            menu.second.isSelected = menuIndex == index
+        val width = selectedItemView.root.width
+        updateBackgroundWidth(width)
+        if (!hasUserInteracted) {
+            val xPosition = selectedItemView.root.x.toInt()
+            setBackgroundPosition(xPosition)
         }
     }
 
-    private fun setupBackground(xPosition: Float, width: Int) {
-        background.root.x = xPosition + this.paddingStart
+    private fun addViewLayoutChangesObserver(view: BottomNavigationMenuItemBinding) {
+        view.root.viewTreeObserver.addOnGlobalLayoutListener(selectedViewLayoutObserver)
+    }
+
+    private fun removeViewLayoutChangesObserver(view: BottomNavigationMenuItemBinding) {
+        view.root.viewTreeObserver.removeOnGlobalLayoutListener(selectedViewLayoutObserver)
+    }
+
+    fun setSelectedIndex(index: Int) {
+        setSelectedItem(menuItems[index].second)
+    }
+
+    private fun setSelectedItem(newSelectedItem: BottomNavigationMenuItemBinding) {
+        currentSelectedItem?.let {
+            val xPosition = newSelectedItem.root.x.toInt()
+            animateBackgroundPosition(xPosition)
+            removeViewLayoutChangesObserver(it)
+        }
+
+        currentSelectedItem = newSelectedItem
+        addViewLayoutChangesObserver(newSelectedItem)
+
+        menuItems.forEach {
+            it.second.isSelected = false
+        }
+
+        newSelectedItem.isSelected = true
+    }
+
+    private fun updateBackgroundWidth(width: Int) {
         background.root.layoutParams = background.root.layoutParams.apply {
             this.width = width
         }
     }
 
-    private fun updateBackgroundPosition(xPosition: Int) {
+    private fun setBackgroundPosition(xPosition: Int) {
+        val xPositionXWithPadding = xPosition + this.paddingStart
+        background.root.x = xPositionXWithPadding.toFloat()
+    }
+
+    private fun animateBackgroundPosition(xPosition: Int) {
         val xPositionXWithPadding = xPosition + this.paddingStart
         val currentX = background.root.x
         val deltaX = xPositionXWithPadding - currentX
@@ -97,11 +127,10 @@ class OceanBottomNavigation @JvmOverloads constructor(
 
             root.layoutParams = layoutParams
 
-            root.setOnClickListener { _ ->
-                val currentIndex = menuItems.indexOfFirst { it.first == item }
-
-                if (currentIndex != currentActiveIndex) {
-                    setSelectedIndex(currentIndex)
+            root.setOnClickListener {
+                if (this != currentSelectedItem) {
+                    hasUserInteracted = true
+                    setSelectedItem(this)
                     item.onClickListener()
                 }
             }
@@ -109,5 +138,23 @@ class OceanBottomNavigation @JvmOverloads constructor(
 
         linearLayout.addView(menuLayout.root)
         menuItems.add(item to menuLayout)
+
+        hasUserInteracted = false
+        background.root.visibility = View.VISIBLE
+
+        if (menuItems.size == 1) {
+            setSelectedIndex(0)
+        }
+    }
+
+    fun clearMenuItems() {
+        currentSelectedItem?.let {
+            removeViewLayoutChangesObserver(it)
+        }
+        hasUserInteracted = false
+        background.root.visibility = View.GONE
+        currentSelectedItem = null
+        menuItems.clear()
+        linearLayout.removeAllViews()
     }
 }

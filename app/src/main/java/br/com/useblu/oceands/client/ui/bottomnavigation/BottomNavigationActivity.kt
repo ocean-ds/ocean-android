@@ -25,8 +25,8 @@ class BottomNavigationActivity : AppCompatActivity() {
                 clearMenuItems()
 
                 if (it.isNotEmpty()) {
-                    it.forEach {
-                        addMenuItem(it)
+                    for (item in it) {
+                        addMenuItem(item)
                     }
                 }
             }

@@ -551,6 +551,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_currency_dollar_outline
     }
 
+    "currencydollaroutlinelightdeep" -> {
+        R.drawable.ocean_icon_currency_dollar_outline_light_deep
+    }
+
     "currencydollarsolid" -> {
         R.drawable.ocean_icon_currency_dollar_solid
     }
@@ -749,6 +753,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
 
     "exclamationcircleoutline" -> {
         R.drawable.ocean_icon_exclamation_circle_outline
+    }
+
+    "exclamationcircleoutlinelightdeep" -> {
+        R.drawable.ocean_icon_exclamation_circle_outline_light_deep
     }
 
     "exclamationcirclesolid" -> {

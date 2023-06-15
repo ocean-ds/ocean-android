@@ -551,6 +551,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_currency_dollar_outline
     }
 
+    "currencydollaroutlinelightdeep" -> {
+        R.drawable.ocean_icon_currency_dollar_outline_light_deep
+    }
+
     "currencydollarsolid" -> {
         R.drawable.ocean_icon_currency_dollar_solid
     }
@@ -675,6 +679,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_document_search_outline
     }
 
+    "documentsearchoutlinebranddown" -> {
+        R.drawable.ocean_icon_document_search_outline_brand_down
+    }
+
     "documentsearchsolid" -> {
         R.drawable.ocean_icon_document_search_solid
     }
@@ -749,6 +757,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
 
     "exclamationcircleoutline" -> {
         R.drawable.ocean_icon_exclamation_circle_outline
+    }
+
+    "exclamationcircleoutlinelightdeep" -> {
+        R.drawable.ocean_icon_exclamation_circle_outline_light_deep
     }
 
     "exclamationcirclesolid" -> {
@@ -1455,6 +1467,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_shield_check_outline
     }
 
+    "shieldcheckoutlinebranddown" -> {
+        R.drawable.ocean_icon_shield_check_outline_brand_down
+    }
+
     "shieldchecksolid" -> {
         R.drawable.ocean_icon_shield_check_solid
     }
@@ -1841,6 +1857,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
 
     "barcodebubbleoutline" -> {
         R.drawable.ocean_icon_barcode_bubble_outline
+    }
+
+    "barcodebubbleoutlinebranddown" -> {
+        R.drawable.ocean_icon_barcode_bubble_outline_brand_down
     }
 
     "barcodeoutline" -> {

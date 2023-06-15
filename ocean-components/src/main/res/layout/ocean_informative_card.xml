@@ -166,7 +166,8 @@
                 layout="@layout/ocean_group_cta"
                 app:actionClick="@{click}"
                 app:actionTitle="@{actionTitle}"
-                app:showProgress="@{showProgress}" />
+                app:showProgress="@{showProgress}"
+                app:ocean_visible_or_gone="@{actionTitle != null}"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

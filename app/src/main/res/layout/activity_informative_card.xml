@@ -54,6 +54,21 @@
                 app:title="@{@string/title}"
                 app:value="@{`R$ 1000,00`}" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <include
+                layout="@layout/ocean_informative_card"
+                app:additionalInformation="@{@string/lorem_ipsum}"
+                app:click="@{viewmodel::click}"
+                app:description="@{@string/description}"
+                app:firstInfo="@{viewmodel.fistInfo}"
+                app:information="@{@string/lorem_ipsum}"
+                app:secondInfo="@{viewmodel.secondInfo}"
+                app:title="@{@string/title}"
+                app:value="@{`R$ 1000,00`}" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>

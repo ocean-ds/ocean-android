@@ -679,6 +679,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_document_search_outline
     }
 
+    "documentsearchoutlinebranddown" -> {
+        R.drawable.ocean_icon_document_search_outline_brand_down
+    }
+
     "documentsearchsolid" -> {
         R.drawable.ocean_icon_document_search_solid
     }
@@ -1463,6 +1467,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_shield_check_outline
     }
 
+    "shieldcheckoutlinebranddown" -> {
+        R.drawable.ocean_icon_shield_check_outline_brand_down
+    }
+
     "shieldchecksolid" -> {
         R.drawable.ocean_icon_shield_check_solid
     }
@@ -1849,6 +1857,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
 
     "barcodebubbleoutline" -> {
         R.drawable.ocean_icon_barcode_bubble_outline
+    }
+
+    "barcodebubbleoutlinebranddown" -> {
+        R.drawable.ocean_icon_barcode_bubble_outline_brand_down
     }
 
     "barcodeoutline" -> {

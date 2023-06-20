@@ -38,11 +38,7 @@
             type="String" />
 
         <variable
-            name="initialColor"
-            type="String" />
-
-        <variable
-            name="finalColor"
+            name="color"
             type="String" />
 
         <variable
@@ -66,19 +62,19 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
         android:clickable="true"
         android:focusable="true"
-        android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
-        app:cardElevation="0dp"
         android:onClick="@{() -> click.invoke()}"
         android:orientation="vertical"
-        app:cardCornerRadius="@dimen/ocean_border_radius_md">
+        app:cardCornerRadius="@dimen/ocean_border_radius_md"
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:background="@drawable/ocean_border_cross_sell"
+            android:gravity="center"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,13 +82,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="96dp"
-                app:initialColor="@{initialColor}"
-                app:finalColor="@{finalColor}"
-                app:opacityColor="@{opacityColor}"
                 android:paddingStart="@dimen/ocean_spacing_stack_xs"
                 android:paddingTop="@dimen/ocean_spacing_stack_xxs"
                 android:paddingEnd="@dimen/ocean_spacing_stack_xs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
+                app:color="@{color}"
                 tools:background="@drawable/background_cross_sell_card_default">
 
                 <LinearLayout
@@ -108,18 +102,18 @@
                     <include
                         android:id="@+id/include2"
                         layout="@layout/ocean_heading_4_inverse"
+                        app:color="@{(colorTitle != null) ? colorTitle : @color/ocean_color_interface_light_pure}"
                         app:layout_constraintEnd_toStartOf="@+id/imageView6"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:color="@{(colorTitle != null) ? colorTitle : @color/ocean_color_interface_light_pure}"
                         app:text="@{title}" />
 
                     <include
                         android:id="@+id/include"
                         layout="@layout/ocean_description_inverse"
+                        app:color="@{(colorSubTitle != null) ? colorSubTitle : @color/ocean_color_brand_primary_up}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/include2"
-                        app:color="@{(colorSubTitle != null) ? colorSubTitle : @color/ocean_color_brand_primary_up}"
                         app:text="@{description}" />
                 </LinearLayout>
 
@@ -128,10 +122,10 @@
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:src="@{image}"
-                    app:ocean_icon="@{imageUrl}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:ocean_icon="@{imageUrl}"
                     tools:srcCompat="@drawable/icon_generic" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -143,8 +137,8 @@
             <include
                 android:id="@+id/group_cta"
                 layout="@layout/ocean_group_cta"
-                app:actionTitle="@{actionTitle}"
                 app:actionClick="@{click}"
+                app:actionTitle="@{actionTitle}"
                 app:showProgress="@{showProgress}" />
 
         </LinearLayout>

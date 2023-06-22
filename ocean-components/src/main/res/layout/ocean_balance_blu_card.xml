@@ -31,6 +31,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="128dp"
             android:orientation="vertical"
             android:background="@drawable/ocean_blu_plus_background"
             tools:ignore="UselessParent">

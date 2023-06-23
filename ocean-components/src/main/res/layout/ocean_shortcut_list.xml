@@ -34,8 +34,6 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="@dimen/ocean_spacing_inline_xs"
-                android:paddingEnd="@dimen/ocean_spacing_inline_xs"
                 app:columns="@{columns}"
                 app:entries="@{entries}"
                 tools:itemCount="5"

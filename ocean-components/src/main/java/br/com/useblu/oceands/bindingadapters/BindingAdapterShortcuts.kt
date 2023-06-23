@@ -20,5 +20,23 @@ fun setShortcutsAdapter(
             recyclerView.context, columns ?: 2
         )
 
+        recyclerView.addItemDecoration(SpacesItemDecoration(10))
+    }
+}
+
+class SpacesItemDecoration(
+    private var space: Int
+) : RecyclerView.ItemDecoration() {
+
+    override fun getItemOffsets(
+        outRect: android.graphics.Rect,
+        view: android.view.View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        outRect.left = space
+        outRect.right = space
+        outRect.bottom = space
+        outRect.top = space
     }
 }

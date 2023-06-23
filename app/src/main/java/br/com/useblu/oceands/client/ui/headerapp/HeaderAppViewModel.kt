@@ -10,7 +10,6 @@ import br.com.useblu.oceands.model.OceanHeaderAppModel
 class HeaderAppViewModel: ViewModel() {
 
     private var isBalanceValueHidden = false
-    private var othersBalanceActive = false
     private var isHeaderCollapsed = false
     private var isLoading = false
     private var isHidingBalance = false
@@ -78,11 +77,6 @@ class HeaderAppViewModel: ViewModel() {
 
     fun onClickToggleScroll() {
         isHeaderCollapsed = !isHeaderCollapsed
-        reloadData()
-    }
-
-    fun onClickPortabilidade() {
-        othersBalanceActive = !othersBalanceActive
         reloadData()
     }
 

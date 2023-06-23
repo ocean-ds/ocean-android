@@ -10,7 +10,6 @@ import br.com.useblu.oceands.model.OceanHeaderAppModel
 class HeaderAppViewModel: ViewModel() {
 
     private var isBalanceValueHidden = false
-    private var othersBalanceActive = false
     private var isHeaderCollapsed = false
     private var isLoading = false
     private var isHidingBalance = false
@@ -33,7 +32,7 @@ class HeaderAppViewModel: ViewModel() {
                     isBalanceValueHidden = !isBalanceValueHidden
                     reloadData()
                 },
-                buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu",
+                buttonDescription = "Confira o que entrou e saiu da sua conta",
                 buttonCta = "Extrato",
                 onClickButton = {
                     println("Click botão saldo Blu")
@@ -44,14 +43,10 @@ class HeaderAppViewModel: ViewModel() {
                 }
             ),
             balanceOthersModel = OceanBalanceOthersModel(
-                firstLabel = "Saldo em Outras maquininhas",
-                firstValue = null,
-                onClickHideIcon = {
-                    isBalanceValueHidden = !isBalanceValueHidden
-                    reloadData()
-                },
-                buttonDescription = "Consulte o seu saldo para descobrir oportunidades",
-                buttonCta = "Usar saldo",
+                title = "Saldo em Outras maquininhas",
+                description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
+                buttonCta = "Trazer saldo para a Blu",
+                buttonCtaCollapsed = "Trazer saldo",
                 onClickButton = {
                     println("Click botão outras maquininhas")
                 }
@@ -67,14 +62,10 @@ class HeaderAppViewModel: ViewModel() {
             isHeaderCollapsed = isHeaderCollapsed,
             isContentHidden = isBalanceValueHidden,
             balanceOthersModel = OceanBalanceOthersModel(
-                firstLabel = "Saldo em Outras maquininhas",
-                firstValue = if (othersBalanceActive) "R$ 0,00" else null,
-                onClickHideIcon = {
-                    isBalanceValueHidden = !isBalanceValueHidden
-                    reloadData()
-                },
-                buttonDescription = "Lorem ipsum dolor sit amet consectetur elementum",
-                buttonCta = "Usar saldo",
+                title = "Saldo em Outras maquininhas",
+                description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
+                buttonCta = "Trazer saldo para a Blu",
+                buttonCtaCollapsed = "Trazer saldo",
                 onClickButton = {
                     println("Click botão outras maquininhas")
                 }
@@ -86,11 +77,6 @@ class HeaderAppViewModel: ViewModel() {
 
     fun onClickToggleScroll() {
         isHeaderCollapsed = !isHeaderCollapsed
-        reloadData()
-    }
-
-    fun onClickPortabilidade() {
-        othersBalanceActive = !othersBalanceActive
         reloadData()
     }
 

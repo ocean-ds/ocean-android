@@ -26,10 +26,6 @@
             type="Boolean" />
 
         <variable
-            name="recommended"
-            type="Boolean" />
-
-        <variable
             name="click"
             type="Function1&lt;Boolean, Unit>" />
 
@@ -45,6 +41,18 @@
             name="error"
             type="String" />
 
+        <variable
+            name="disabled"
+            type="Boolean" />
+
+        <variable
+            name="tagText"
+            type="String" />
+
+        <variable
+            name="tagType"
+            type="OceanTagType" />
+
     </data>
 
     <LinearLayout
@@ -52,7 +60,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -62,15 +70,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="@{checked}"
-                android:drawablePadding="100dp"
-                android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
+                android:enabled="@{!disabled}"
                 android:minWidth="20dp"
                 android:minHeight="20dp"
                 android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
                 android:paddingStart="@dimen/ocean_spacing_stack_xxs"
-                android:textColor="@color/ocean_color_interface_dark_down"
-                android:textColorLink="@color/ocean_color_brand_primary_pure"
-                android:textSize="@dimen/ocean_font_size_xxs"
                 app:ocean_visible_or_gone="@{error == null}"
                 app:theme="@style/Ocean.CheckBox"
                 tools:checked="false"
@@ -80,21 +84,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="@{checked}"
+                android:enabled="@{!disabled}"
                 android:drawablePadding="100dp"
                 android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
                 android:minWidth="20dp"
                 android:minHeight="20dp"
                 android:onCheckedChanged="@{(checkbox, isChecked) -> click.invoke(isChecked)}"
                 android:paddingStart="@dimen/ocean_spacing_stack_xxs"
-                android:textColor="@color/ocean_color_interface_dark_down"
-                android:textColorLink="@color/ocean_color_brand_primary_pure"
-                android:textSize="@dimen/ocean_font_size_xxs"
                 android:theme="@style/Ocean.CheckBox.Error"
                 app:ocean_visible_or_gone="@{error != null}"
                 tools:checked="false"
                 tools:visibility="gone" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -115,24 +117,16 @@
                     app:ocean_visible_or_gone="@{description != null &amp;&amp; !description.isEmpty()}"
                     app:text="@{description}" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            </LinearLayout>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_weight="0"
-                app:ocean_visible_or_gone="@{recommended}"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical">
+            <include
+                layout="@layout/ocean_tag"
+                app:hideIcon="@{true}"
+                app:ocean_visible_or_gone="@{tagText != null}"
+                app:title="@{tagText}"
+                app:type="@{tagType}" />
 
-                <include
-                    layout="@layout/ocean_tag"
-                    app:hideIcon="@{true}"
-                    app:title="@{@string/ocean_recommended}"
-                    app:type="@{OceanTagType.Positive}" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        </LinearLayout>
 
         <include
             layout="@layout/ocean_link_text"

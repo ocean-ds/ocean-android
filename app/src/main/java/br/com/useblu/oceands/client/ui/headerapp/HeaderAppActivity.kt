@@ -24,10 +24,6 @@ class HeaderAppActivity : AppCompatActivity() {
             viewModel.onClickToggleScroll()
         }
 
-        binding.togglePortabilidadeButton.setOnClickListener {
-            viewModel.onClickPortabilidade()
-        }
-
         binding.toggleLoadingButton.setOnClickListener {
             viewModel.onClickToggleLoading()
         }

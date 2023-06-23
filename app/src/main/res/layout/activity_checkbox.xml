@@ -15,33 +15,70 @@
         android:layout_height="match_parent"
         tools:context=".ui.paragraph.ParagraphActivity">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/ocean_spacing_inline_xs">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <include
+                layout="@layout/ocean_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/ocean_spacing_inline_xs">
+                app:checked="@{false}"
+                app:click="@{viewmodel::executeOnStatusChanged}"
+                app:error="@{`Error teste`}"
+                app:text="@{@string/text}"
+                app:description="@{@string/description}"
+                app:actionTitle="@{@string/action_title}"
+                app:actionClick="@{viewmodel::actionClick}" />
 
-                <include
-                    layout="@layout/ocean_checkbox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:checked="@{false}"
-                    app:click="@{viewmodel::executeOnStatusChanged}"
-                    app:error="@{`Error teste`}"
-                    app:text="@{@string/text}"
-                    app:recommended="@{true}"
-                    app:description="@{@string/description}"
-                    app:actionTitle="@{@string/action_title}"
-                    app:actionClick="@{viewmodel::actionClick}" />
+            <include
+                layout="@layout/ocean_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:checked="@{true}"
+                app:disabled="@{true}"
+                app:click="@{viewmodel::executeOnStatusChanged}"
+                app:text="@{@string/text}"
+                app:description="@{@string/description}" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            <include
+                layout="@layout/ocean_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:click="@{viewmodel::executeOnStatusChanged}"
+                app:text="@{@string/text}"
+                app:description="@{@string/description}" />
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            <include
+                layout="@layout/ocean_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:checked="@{false}"
+                app:disabled="@{true}"
+                app:click="@{viewmodel::executeOnStatusChanged}"
+                app:text="@{@string/text}"
+                app:tagText="@{@string/positive}"
+                app:tagType="@{br.com.useblu.oceands.model.OceanTagType.Positive}"
+                app:description="@{@string/description}" />
+
+            <include
+                layout="@layout/ocean_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:checked="@{true}"
+                app:click="@{viewmodel::executeOnStatusChanged}"
+                app:text="@{@string/text}"
+                app:tagText="@{@string/help}"
+                app:tagType="@{br.com.useblu.oceands.model.OceanTagType.Neutral}"
+                app:description="@{@string/description}" />
+
+        </LinearLayout>
 
     </ScrollView>
 

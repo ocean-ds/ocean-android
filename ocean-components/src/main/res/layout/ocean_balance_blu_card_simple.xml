@@ -29,7 +29,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:paddingBottom="8dp"
             android:background="#2244E8">
 
             <LinearLayout

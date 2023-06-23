@@ -28,92 +28,35 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:paddingBottom="8dp"
+            android:paddingHorizontal="@dimen/ocean_spacing_inset_sm"
             android:background="#2244E8">
-
-            <LinearLayout
-                android:id="@+id/icon"
-                android:layout_width="28dp"
-                android:layout_height="42dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_marginStart="16dp"
-                android:gravity="center_vertical"
-                android:onClick="@{() -> model.onClickHideIcon.invoke()}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/text_view_header_label"
-                app:layout_constraintBottom_toBottomOf="@id/text_view_header_value"
-                app:ocean_visible_or_gone="@{model.firstValue != null}">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@{isContentHidden ? @drawable/icon_eye_off : @drawable/icon_eye_on}"
-                    tools:src="@drawable/icon_eye_on"
-                    app:tint="@color/ocean_color_brand_primary_up"
-                    tools:tint="@color/ocean_color_brand_primary_up"
-                    android:contentDescription="@string/toggle_visibility_content_description"/>
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/text_view_header_label"
-                android:layout_width="wrap_content"
-                android:layout_height="18dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:includeFontPadding="false"
-                android:gravity="center"
-                android:fontFamily="@font/font_family_base_bold"
-                android:text="@{model.firstLabel}"
-                android:textColor="@color/ocean_color_brand_primary_up"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@{model.description}"
+                android:textColor="@color/ocean_color_interface_light_pure"
                 android:textSize="@dimen/ocean_font_size_xxxs"
-                android:layout_marginStart="8dp"
-                app:layout_goneMarginStart="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toEndOf="@+id/icon"
+                android:layout_marginEnd="@dimen/ocean_spacing_inset_xs"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="First label" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/button"
+                tools:text="Receba na Blu as vendas feitas nas suas outras maquininhas" />
 
-            <LinearLayout
-                android:id="@+id/text_view_header_value"
+            <include
+                android:id="@+id/button"
+                layout="@layout/ocean_button_secondary_sm"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                app:layout_constraintStart_toStartOf="@+id/text_view_header_label"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_header_label"
-                app:skeletonAllowSavedState="@{true}"
-                app:skeletonBoneColor="@{@color/ocean_color_interface_dark_down}"
-                app:skeletonBoneCornerRadius="@{20f}"
-                app:skeletonEnabled="@{isLoading}"
-                app:skeletonGenerateBones="@{true}"
-                app:skeletonShimmerRayColor="@{@color/ocean_color_interface_dark_deep}"
-                app:skeletonShimmerRayCount="@{4}"
-                app:ocean_visible_or_invisible="@{model.firstValue != null || isLoading}"
-                tools:visibility="invisible" >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:minWidth="60dp"
-                    android:includeFontPadding="false"
-                    android:gravity="center"
-                    android:fontFamily="@font/font_family_base_bold"
-                    android:textColor="@color/ocean_color_interface_light_pure"
-                    android:textSize="@dimen/ocean_font_size_sm"
-                    app:ocean_text="@{model.firstValue}"
-                    app:ocean_text_format="@{isContentHidden ? FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN : FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
-                    app:change_color="@{false}"
-                    tools:text="First value" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:gravity="center"
-                app:ocean_visible_or_invisible="@{model.firstValue == null}"
-                app:layout_constraintStart_toStartOf="@+id/text_view_header_label"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_header_label">
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="6dp"
-                    android:background="@drawable/ocean_balance_others_placeholder" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:text="@{model.buttonCtaCollapsed}"
+                app:click="@{model.onClickButton}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

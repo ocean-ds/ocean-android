@@ -73,24 +73,6 @@
                 tools:src="@drawable/icon_generic_primary" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:ellipsize="end"
-                android:fontFamily="@font/font_family_base_bold"
-                android:maxLines="2"
-                android:text="@{item.label}"
-                android:textColor="@color/ocean_color_interface_dark_deep"
-                android:textSize="@dimen/ocean_font_size_xxs"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/icon"
-                app:layout_constraintTop_toBottomOf="@+id/icon"
-                app:ocean_visible_or_gone="@{item.layoutMode != OceanShortcutLayoutMode.Horizontal}"
-                tools:text="Label" />
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_vertical"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -109,19 +91,44 @@
                 app:ocean_visible_or_gone="@{item.layoutMode == OceanShortcutLayoutMode.Horizontal}"
                 tools:text="Label" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/subTitle"
-                android:layout_width="0dp"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_family_base_regular"
-                android:text="@{item.subTitle}"
-                android:textColor="@color/ocean_color_interface_dark_down"
-                android:textSize="@dimen/ocean_font_size_xxxs"
-                app:layout_constraintEnd_toEndOf="@+id/label"
-                app:layout_constraintStart_toStartOf="@+id/label"
-                app:layout_constraintTop_toBottomOf="@+id/label"
-                app:ocean_visible_or_gone="@{item.subTitle != null &amp;&amp; !item.subTitle.isEmpty()}"
-                tools:text="Lorem ipsum dolor sit amet, consectetur." />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icon">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/font_family_base_bold"
+                    android:maxLines="2"
+                    android:text="@{item.label}"
+                    android:textColor="@color/ocean_color_interface_dark_deep"
+                    android:textSize="@dimen/ocean_font_size_xxs"
+                    app:ocean_visible_or_gone="@{item.layoutMode != OceanShortcutLayoutMode.Horizontal}"
+                    tools:text="Label" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/subTitle"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_family_base_regular"
+                    android:text="@{item.subTitle}"
+                    android:textColor="@color/ocean_color_interface_dark_down"
+                    android:textSize="@dimen/ocean_font_size_xxxs"
+                    app:ocean_visible_or_gone="@{item.subTitle != null &amp;&amp; !item.subTitle.isEmpty()}"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur." />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

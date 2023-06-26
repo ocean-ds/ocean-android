@@ -33,7 +33,7 @@ class ShortcutsViewModel(application: Application) : AndroidViewModel(applicatio
         OceanShortcutItem(
             icon = "pixoutline",
             label = "Shortcut 1",
-            subTitle = "Lorem ipsum dolor sit amet, consectetur.",
+            subTitle = "Economize até 10% com taxa zero de antecipação",
             badgeType = OceanBadgeType.HIGHLIGHT,
             blocked = true,
             action = {

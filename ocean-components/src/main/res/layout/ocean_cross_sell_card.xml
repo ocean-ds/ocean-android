@@ -38,7 +38,11 @@
             type="String" />
 
         <variable
-            name="color"
+            name="initialColor"
+            type="String" />
+
+        <variable
+            name="finalColor"
             type="String" />
 
         <variable
@@ -86,8 +90,9 @@
                 android:paddingTop="@dimen/ocean_spacing_stack_xxs"
                 android:paddingEnd="@dimen/ocean_spacing_stack_xs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
-                app:color="@{color}"
-                tools:background="@drawable/background_cross_sell_card_default">
+                app:initialColor="@{initialColor}"
+                app:finalColor="@{finalColor}"
+                app:opacityColor="@{opacityColor}">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -101,8 +106,8 @@
 
                     <include
                         android:id="@+id/include2"
-                        layout="@layout/ocean_heading_4_inverse"
-                        app:color="@{(colorTitle != null) ? colorTitle : @color/ocean_color_interface_light_pure}"
+                        layout="@layout/ocean_heading_4"
+                        app:color="@{(colorTitle != null) ? colorTitle : @color/ocean_color_interface_dark_deep}"
                         app:layout_constraintEnd_toStartOf="@+id/imageView6"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -110,8 +115,8 @@
 
                     <include
                         android:id="@+id/include"
-                        layout="@layout/ocean_description_inverse"
-                        app:color="@{(colorSubTitle != null) ? colorSubTitle : @color/ocean_color_brand_primary_up}"
+                        layout="@layout/ocean_description"
+                        app:color="@{(colorSubTitle != null) ? colorSubTitle : @color/ocean_color_interface_dark_down}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/include2"
                         app:text="@{description}" />
@@ -126,7 +131,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:ocean_icon="@{imageUrl}"
-                    tools:srcCompat="@drawable/icon_generic" />
+                    tools:srcCompat="@drawable/icon_generic_primary" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

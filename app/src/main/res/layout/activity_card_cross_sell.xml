@@ -36,19 +36,75 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <include
-                    android:id="@+id/cardCrossSell"
                     layout="@layout/ocean_cross_sell_card"
                     app:actionTitle="@{`Call to action`}"
                     app:actionIcon="@{@drawable/icon_chevron_right_brand_primary}"
                     app:image="@{@drawable/icon_generic}"
                     app:imageUrl="@{`https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png`}"
-                    app:color="@{`colorhighlightpure`}"
+                    app:initialColor="@{`colorhighlightpure`}"
+                    app:finalColor="@{`colorbrandprimarydown`}"
+                    app:opacityColor="@{70}"
                     app:colorTitle="@{@color/ocean_color_interface_dark_deep}"
                     app:colorSubTitle="@{@color/ocean_color_interface_dark_down}"
                     app:click="@{viewmodel::click}"
                     app:description="@{`Description Sample`}"
                     app:showProgress="@{false}"
                     app:title="@{`Title Sample`}" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_stack_lg"/>
+
+                <include
+                    layout="@layout/ocean_cross_sell_card"
+                    app:actionTitle="@{`Call to action`}"
+                    app:actionIcon="@{@drawable/icon_chevron_right_brand_primary}"
+                    app:image="@{@drawable/icon_generic}"
+                    app:imageUrl="@{`https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png`}"
+                    app:initialColor="@{`colorhighlightpure`}"
+                    app:opacityColor="@{70}"
+                    app:colorTitle="@{@color/ocean_color_interface_dark_deep}"
+                    app:colorSubTitle="@{@color/ocean_color_interface_dark_down}"
+                    app:click="@{viewmodel::click}"
+                    app:description="@{`Description Sample`}"
+                    app:showProgress="@{false}"
+                    app:title="@{`Title Sample`}" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_stack_lg"/>
+
+                <include
+                    layout="@layout/ocean_cross_sell_card"
+                    app:actionTitle="@{`Call to action`}"
+                    app:actionIcon="@{@drawable/icon_chevron_right_brand_primary}"
+                    app:image="@{@drawable/icon_generic}"
+                    app:imageUrl="@{`https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png`}"
+                    app:colorTitle="@{@color/ocean_color_interface_dark_deep}"
+                    app:colorSubTitle="@{@color/ocean_color_interface_dark_down}"
+                    app:click="@{viewmodel::click}"
+                    app:initialColor="@{`colorhighlightpure`}"
+                    app:description="@{`Description Sample`}"
+                    app:showProgress="@{false}"
+                    app:title="@{`Title Sample`}" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_stack_lg"/>
+
+                <include
+                    layout="@layout/ocean_cross_sell_card"
+                    app:actionTitle="@{`Call to action`}"
+                    app:actionIcon="@{@drawable/icon_chevron_right_brand_primary}"
+                    app:image="@{@drawable/icon_generic}"
+                    app:imageUrl="@{`https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png`}"
+                    app:colorTitle="@{@color/ocean_color_interface_dark_deep}"
+                    app:colorSubTitle="@{@color/ocean_color_interface_dark_down}"
+                    app:click="@{viewmodel::click}"
+                    app:description="@{`Description Sample`}"
+                    app:showProgress="@{false}"
+                    app:title="@{`Title Sample`}" />
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

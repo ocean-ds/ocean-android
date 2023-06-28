@@ -203,6 +203,10 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_bell_solid
     }
 
+    "bmsoutline" ->{
+        R.drawable.ocean_icon_bms_outline
+    }
+
     "bookopenoutline" -> {
         R.drawable.ocean_icon_book_open_outline
     }

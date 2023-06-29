@@ -46,7 +46,7 @@ fun setOceanTagIcon(imageView: ImageView, type: OceanTagType?, icon: Drawable?) 
                 imageView.context,
                 R.drawable.icon_exclamation_circle_solid
             )
-            color = R.color.ocean_color_status_neutral_deep
+            color = R.color.ocean_color_status_warning_deep
         }
         else -> {
             iconDrawable = null
@@ -92,7 +92,7 @@ fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType?) {
         }
         OceanTagType.Warning -> {
             background = R.drawable.ocean_tag_warning_background
-            textColor = R.color.ocean_color_status_neutral_deep
+            textColor = R.color.ocean_color_status_warning_deep
         }
         else -> {
             background = R.drawable.ocean_tag_default_background
@@ -119,7 +119,7 @@ fun setOceanTagTextColor(textView: TextView, type: OceanTagType?) {
             textColor = R.color.ocean_color_status_positive_deep
         }
         OceanTagType.Warning -> {
-            textColor = R.color.ocean_color_status_neutral_deep
+            textColor = R.color.ocean_color_status_warning_deep
         }
         else -> {
             textColor = R.color.ocean_color_interface_dark_down

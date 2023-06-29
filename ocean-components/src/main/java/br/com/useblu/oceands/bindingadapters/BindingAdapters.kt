@@ -352,7 +352,7 @@ fun getColor(type: OceanAlertType?) = when (type) {
     OceanAlertType.Information -> R.color.ocean_color_brand_primary_down
     OceanAlertType.Error -> R.color.ocean_color_status_negative_pure
     OceanAlertType.Success -> R.color.ocean_color_status_positive_pure
-    OceanAlertType.Warning -> R.color.ocean_color_status_neutral_pure
+    OceanAlertType.Warning -> R.color.ocean_color_status_warning_pure
     else -> R.color.ocean_color_interface_dark_down
 }
 
@@ -392,7 +392,7 @@ fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType?) {
             textView.setTextColor(
                 ContextCompat.getColor(
                     context,
-                    (R.color.ocean_color_status_neutral_deep)
+                    (R.color.ocean_color_status_warning_pure)
                 )
             )
         }
@@ -401,7 +401,7 @@ fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType?) {
             textView.setTextColor(
                 ContextCompat.getColor(
                     context,
-                    (R.color.ocean_color_status_neutral_deep)
+                    (R.color.ocean_color_status_warning_pure)
                 )
             )
         }

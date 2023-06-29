@@ -84,7 +84,7 @@ class OceanSnackBar(
                     }
                     is OceanSnackBarType.Warning -> {
                         setActionTextColor(getColor(context,
-                            R.color.ocean_color_status_neutral_pure
+                            R.color.ocean_color_status_warning_pure
                         ))
                     }
                 }

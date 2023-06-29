@@ -40,7 +40,7 @@ private fun getColorByStatus(status: OceanStatusTextListItem?): Int {
     return when (status) {
         OceanStatusTextListItem.Inactive -> R.color.ocean_color_interface_dark_up
         OceanStatusTextListItem.Positive -> R.color.ocean_color_status_positive_pure
-        OceanStatusTextListItem.Warning -> R.color.ocean_color_status_neutral_pure
+        OceanStatusTextListItem.Warning -> R.color.ocean_color_status_warning_pure
         else -> R.color.ocean_color_interface_dark_pure
     }
 }

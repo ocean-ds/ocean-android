@@ -393,8 +393,8 @@ class HomeActivity : AppCompatActivity() {
                     needsRoundBackgroundIcon = true,
                     needLeadingSpacer = true,
                     needTrailingSpacer = true,
-                    iconColor = R.color.ocean_color_status_neutral_pure,
-                    roundBackgroundColor = R.color.ocean_color_status_neutral_up
+                    iconColor = R.color.ocean_color_status_warning_pure,
+                    roundBackgroundColor = R.color.ocean_color_status_warning_up
                 )
             )
         )

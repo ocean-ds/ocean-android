@@ -31,7 +31,7 @@ class ChartCardViewModel : ViewModel() {
             title = "Item 3",
             valueFormatted = "75",
             value = 75.0f,
-            color = R.color.ocean_color_status_neutral_deep,
+            color = R.color.ocean_color_status_warning_deep,
             subtitle = "Subtitle 3",
             information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             percent = "30%"

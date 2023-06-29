@@ -28,7 +28,7 @@ fun setTextColor(textView: TextView, color: String?) {
 
     color?.let {
         colorSelect = when (color) {
-            "colorStatusNeutralDeep" -> R.color.ocean_color_status_neutral_deep
+            "colorStatusNeutralDeep" -> R.color.ocean_color_status_warning_deep
             "colorInterfaceDarkPure" -> R.color.ocean_color_interface_dark_pure
             "colorStatusPositiveDeep" -> R.color.ocean_color_status_positive_deep
             "colorInterfaceDarkDown" -> R.color.ocean_color_interface_dark_down

@@ -42,7 +42,7 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
             subTitle = "Subtitle 2",
             recommend = true,
             recommendColor =
-            getApplication<Application>().resources.getString(R.color.ocean_color_status_neutral_deep),
+            getApplication<Application>().resources.getString(R.color.ocean_color_status_warning_deep),
             recommendDescription = "Recomendado",
         ),
         OceanOptionCardItem(

@@ -24,10 +24,10 @@
   <color name="ocean_color_status_positive_up" category="background-color">#F2FDF5</color>
   <color name="ocean_color_status_positive_down" category="background-color">#7ADC94</color>
   <color name="ocean_color_status_positive_deep" category="background-color">#2DA94F</color>
-  <color name="ocean_color_status_neutral_pure" category="background-color">#FFA347</color>
-  <color name="ocean_color_status_neutral_up" category="background-color">#FFF7F0</color>
-  <color name="ocean_color_status_neutral_down" category="background-color">#FFBD7A</color>
-  <color name="ocean_color_status_neutral_deep" category="background-color">#FF8A14</color>
+  <color name="ocean_color_status_warning_pure" category="background-color">#FFA347</color>
+  <color name="ocean_color_status_warning_up" category="background-color">#FFF7F0</color>
+  <color name="ocean_color_status_warning_down" category="background-color">#FFBD7A</color>
+  <color name="ocean_color_status_warning_deep" category="background-color">#FF8A14</color>
   <color name="ocean_color_status_negative_pure" category="background-color">#F5456E</color>
   <color name="ocean_color_status_negative_up" category="background-color">#FFF1F4</color>
   <color name="ocean_color_status_negative_down" category="background-color">#F27592</color>

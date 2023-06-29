@@ -157,7 +157,7 @@
                 android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
                 android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
-                android:visibility="@{()label != null &amp;&amp; !label.isEmpty()) ? (showRightTag ? View.VISIBLE: View.GONE) : View.GONE}"
+                android:visibility="@{(label != null &amp;&amp; !label.isEmpty()) ? (showRightTag ? View.VISIBLE: View.GONE) : View.GONE}"
                 app:ocean_tag_background_type="@{tagType}">
 
                 <TextView

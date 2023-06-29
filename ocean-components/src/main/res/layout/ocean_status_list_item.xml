@@ -115,7 +115,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                app:ocean_visible_or_gone="@{label != null}"
+                app:ocean_visible_or_gone="@{label != null &amp;&amp; !label.isEmpty()}"
                 android:layout_height="@dimen/ocean_spacing_inset_xs"/>
 
             <include
@@ -125,13 +125,13 @@
                 android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
                 app:hideIcon="@{true}"
-                app:ocean_visible_or_gone="@{label != null}"
+                app:ocean_visible_or_gone="@{label != null &amp;&amp; !label.isEmpty()}"
                 app:title="@{label}"
                 app:type="@{tagType}" />
 
             <Space
                 android:layout_width="match_parent"
-                app:ocean_visible_or_gone="@{label != null}"
+                app:ocean_visible_or_gone="@{label != null &amp;&amp; !label.isEmpty()}"
                 android:layout_height="@dimen/ocean_spacing_inset_xs"/>
 
         </LinearLayout>
@@ -157,7 +157,7 @@
                 android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
                 android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
-                android:visibility="@{label != null ? (showRightTag ? View.VISIBLE: View.GONE) : View.GONE}"
+                android:visibility="@{()label != null &amp;&amp; !label.isEmpty()) ? (showRightTag ? View.VISIBLE: View.GONE) : View.GONE}"
                 app:ocean_tag_background_type="@{tagType}">
 
                 <TextView

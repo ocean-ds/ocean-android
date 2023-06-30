@@ -68,127 +68,140 @@
         android:focusable="true"
         android:onClick="@{() -> click.invoke()}">
 
-        <LinearLayout
-            android:id="@+id/status_item_description_container"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="@dimen/ocean_spacing_inline_xs"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/status_item_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/font_family_base_regular"
-                android:maxLines="1"
-                android:text="@{title}"
-                android:textColor="@{ isActive ? @color/ocean_color_interface_dark_pure : @color/ocean_color_interface_dark_up}"
-                android:textSize="@dimen/ocean_font_size_xs"
-                tools:text="Title"
-                tools:textColor="@color/ocean_color_interface_dark_pure" />
-
-            <TextView
-                android:id="@+id/status_item_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_family_base_regular"
-                android:text="@{description}"
-                android:textColor="@{isActive ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
-                android:textSize="@dimen/ocean_font_size_xxs"
-                android:visibility="@{description != null &amp;&amp; !description.isEmpty() ? View.VISIBLE : View.GONE}"
-                tools:text="Description" />
-
-            <TextView
-                android:id="@+id/status_item_caption"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
-                android:fontFamily="@font/font_family_base_regular"
-                android:text="@{caption}"
-                android:textColor="@{isActive ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
-                android:textSize="@dimen/ocean_font_size_xxxs"
-                android:visibility="@{caption != null &amp;&amp; !caption.isEmpty() ? View.VISIBLE : View.GONE}"
-                tools:text="Caption" />
-
-            <Space
-                android:layout_width="match_parent"
-                app:ocean_visible_or_gone="@{label != null &amp;&amp; !label.isEmpty()}"
-                android:layout_height="@dimen/ocean_spacing_inset_xs"/>
-
-            <include
-                layout="@layout/ocean_tag"
-                android:paddingStart="@dimen/ocean_spacing_stack_xxs"
-                android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
-                android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
-                android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
-                app:hideIcon="@{true}"
-                app:ocean_visible_or_gone="@{label != null &amp;&amp; !label.isEmpty()}"
-                app:title="@{label}"
-                app:type="@{tagType}" />
-
-            <Space
-                android:layout_width="match_parent"
-                app:ocean_visible_or_gone="@{label != null &amp;&amp; !label.isEmpty()}"
-                android:layout_height="@dimen/ocean_spacing_inset_xs"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/status_item_label_tag_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/ocean_spacing_stack_xs"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
             <LinearLayout
-                android:id="@+id/status_item_right_tag_container"
-                android:layout_width="wrap_content"
+                android:id="@+id/status_item_description_container"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/ocean_spacing_stack_xxs"
-                android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
-                android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
-                android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
-                android:visibility="@{(label != null &amp;&amp; !label.isEmpty()) ? (showRightTag ? View.VISIBLE: View.GONE) : View.GONE}"
-                app:ocean_tag_background_type="@{tagType}">
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/status_item_right_tag_label"
+                    android:id="@+id/status_item_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/font_family_base_regular"
+                    android:maxLines="1"
+                    android:text="@{title}"
+                    android:textColor="@{ isActive ? @color/ocean_color_interface_dark_pure : @color/ocean_color_interface_dark_up}"
+                    android:textSize="@dimen/ocean_font_size_xs"
+                    tools:text="Title"
+                    tools:textColor="@color/ocean_color_interface_dark_pure" />
+
+                <TextView
+                    android:id="@+id/status_item_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_family_base_regular"
-                    android:text="@{label}"
+                    android:text="@{description}"
+                    android:textColor="@{isActive ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
+                    android:textSize="@dimen/ocean_font_size_xxs"
+                    android:visibility="@{description != null &amp;&amp; !description.isEmpty() ? View.VISIBLE : View.GONE}"
+                    tools:text="Description" />
+
+                <TextView
+                    android:id="@+id/status_item_caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
+                    android:fontFamily="@font/font_family_base_regular"
+                    android:text="@{caption}"
+                    android:textColor="@{isActive ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
                     android:textSize="@dimen/ocean_font_size_xxxs"
-                    app:ocean_tag_text_color="@{tagType}"
-                    tools:text="Label" />
+                    android:visibility="@{caption != null &amp;&amp; !caption.isEmpty() ? View.VISIBLE : View.GONE}"
+                    tools:text="Caption" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_inset_xs"
+                    app:ocean_visible_or_gone="@{label != null &amp;&amp; !label.isEmpty()}" />
+
+                <include
+                    layout="@layout/ocean_tag"
+                    android:paddingStart="@dimen/ocean_spacing_stack_xxs"
+                    android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
+                    android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
+                    android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
+                    app:hideIcon="@{true}"
+                    app:ocean_visible_or_gone="@{label != null &amp;&amp; !label.isEmpty()}"
+                    app:title="@{label}"
+                    app:type="@{tagType}" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ocean_spacing_inset_xs"
+                    app:ocean_visible_or_gone="@{label != null &amp;&amp; !label.isEmpty()}" />
 
             </LinearLayout>
 
-            <ImageView
+            <LinearLayout
+                android:id="@+id/status_item_label_tag_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@{showContextMenu ? @drawable/icon_vertical_solid_dots : @drawable/icon_chevron_right}"
-                android:visibility="@{isReadOnly ? View.GONE : View.VISIBLE}"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/icon_chevron_right" />
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/status_item_right_tag_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/ocean_spacing_stack_xxs"
+                    android:paddingTop="@dimen/ocean_spacing_stack_xxxs"
+                    android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
+                    android:paddingBottom="@dimen/ocean_spacing_stack_xxxs"
+                    android:visibility="@{(label != null &amp;&amp; !label.isEmpty()) ? (showRightTag ? View.VISIBLE: View.GONE) : View.GONE}"
+                    app:ocean_tag_background_type="@{tagType}">
+
+                    <TextView
+                        android:id="@+id/status_item_right_tag_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font_family_base_regular"
+                        android:text="@{label}"
+                        android:textSize="@dimen/ocean_font_size_xxxs"
+                        app:ocean_tag_text_color="@{tagType}"
+                        tools:text="Label" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@{showContextMenu ? @drawable/icon_vertical_solid_dots : @drawable/icon_chevron_right}"
+                    android:visibility="@{isReadOnly ? View.GONE : View.VISIBLE}"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/icon_chevron_right" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include
             layout="@layout/ocean_divider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="@{hideDivider ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

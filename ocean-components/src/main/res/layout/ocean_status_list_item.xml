@@ -98,7 +98,7 @@
                 android:text="@{description}"
                 android:textColor="@{isActive ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
                 android:textSize="@dimen/ocean_font_size_xxs"
-                android:visibility="@{description == null &amp;&amp; !description.isEmpty() ? View.GONE : View.VISIBLE}"
+                android:visibility="@{description != null &amp;&amp; !description.isEmpty() ? View.VISIBLE : View.GONE}"
                 tools:text="Description" />
 
             <TextView
@@ -110,7 +110,7 @@
                 android:text="@{caption}"
                 android:textColor="@{isActive ? @color/ocean_color_interface_dark_down : @color/ocean_color_interface_dark_up}"
                 android:textSize="@dimen/ocean_font_size_xxxs"
-                android:visibility="@{caption == null &amp;&amp; !caption.isEmpty() ? View.GONE : View.VISIBLE}"
+                android:visibility="@{caption != null &amp;&amp; !caption.isEmpty() ? View.VISIBLE : View.GONE}"
                 tools:text="Caption" />
 
             <Space

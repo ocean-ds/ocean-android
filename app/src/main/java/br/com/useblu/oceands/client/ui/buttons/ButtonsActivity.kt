@@ -1,8 +1,15 @@
 package br.com.useblu.oceands.client.ui.buttons
 
+import OceanButtonPrimaryMd
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
@@ -33,6 +40,27 @@ class ButtonsActivity : AppCompatActivity() {
         this.initToggleButtons()
 
         this.initToggleListeners()
+
+        binding.composeView.setContent {
+            val iconState = viewModel.isIconEnabled.observeAsState()
+            val buttonState = viewModel.buttonState.observeAsState()
+            val blockState = viewModel.isWidthStateBlocked.observeAsState()
+
+            val modifier = if (blockState.value == true) {
+                Modifier.fillMaxWidth()
+            } else {
+                Modifier.wrapContentWidth()
+            }
+
+            val context = LocalContext.current
+            OceanButtonPrimaryMd(
+                text = "Compose Button",
+                icon = if (iconState.value == true) ContextCompat.getDrawable(context, R.drawable.icon_plus_white_24dp) else null,
+                showProgress = (buttonState.value ?: "") == "Loading",
+                disabled = (buttonState.value ?: "") == "Disabled",
+                modifier = modifier
+            )
+        }
     }
 
     private fun initToggleButtons() {
@@ -77,4 +105,3 @@ class ButtonsActivity : AppCompatActivity() {
     }
 
 }
-

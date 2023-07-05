@@ -3,5 +3,5 @@ ext {
     targetSDK = 33
     compileSDK = 33
 
-    kotlinVersion = "1.7.20"
+    kotlinVersion = "1.8.22"
 }

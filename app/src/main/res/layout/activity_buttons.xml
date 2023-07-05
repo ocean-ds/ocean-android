@@ -341,7 +341,14 @@
                 app:clickPositive="@{viewmodel::clickButton}"
                 app:negativeIsInvisible="@{true}"
                 app:textNegative="@{@string/negative}"
-                app:textPositive="@{@string/positive}" />
+                app:textPositive="@{@string/positive}"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"/>
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/composeView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs" />
         </LinearLayout>
     </ScrollView>
 </layout>

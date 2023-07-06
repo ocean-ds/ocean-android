@@ -1,7 +1,6 @@
 
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,11 +14,12 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.FontFamilyBaseBold
+import br.com.useblu.oceands.ui.OceanFontSize
+import br.com.useblu.oceands.ui.OceanSpacing
 import br.com.useblu.oceands.ui.primaryDefaultButtonColors
 
 @Preview
@@ -68,12 +68,12 @@ fun OceanButtonPrimaryMd(
                         modifier = Modifier.size(24.dp),
                     )
 
-                    Spacer(modifier = Modifier.size(8.dp))
+                    OceanSpacing.StackXXS()
                 }
 
                 Text(
                     text = text,
-                    fontSize = 16.sp,
+                    fontSize = OceanFontSize.XS(),
                     fontFamily = FontFamilyBaseBold,
                 )
             }

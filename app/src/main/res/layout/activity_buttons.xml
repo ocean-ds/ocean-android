@@ -332,6 +332,12 @@
                 app:icon='@{viewmodel.isIconEnabled() ? @drawable/icon_plus_critical_24dp : null}'
                 app:ocean_layout_width="@{viewmodel.isWidthStateBlocked() ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT }" />
 
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/composeView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs" />
+
             <include
                 android:id="@+id/dualButtonBlocked"
                 layout="@layout/ocean_dual_button_blocked"
@@ -339,16 +345,9 @@
                 android:layout_height="wrap_content"
                 app:clickNegative="@{viewmodel::clickButton}"
                 app:clickPositive="@{viewmodel::clickButton}"
-                app:negativeIsInvisible="@{true}"
                 app:textNegative="@{@string/negative}"
                 app:textPositive="@{@string/positive}"
                 android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"/>
-
-            <androidx.compose.ui.platform.ComposeView
-                android:id="@+id/composeView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs" />
         </LinearLayout>
     </ScrollView>
 </layout>

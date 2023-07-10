@@ -11,17 +11,16 @@ buildscript {
         maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22"
-        classpath 'com.github.AndreasBoehm:fat-aar-android:da3ac00990'
+        classpath "com.android.tools.build:gradle:$androidGradlePluginVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
 allprojects {
     repositories {
         google()
-        maven {url "https://jitpack.io"}
-        maven {url  "https://jcenter.bintray.com"}
+        maven { url "https://jitpack.io" }
+        maven { url  "https://jcenter.bintray.com" }
         maven {
             name = "github-packages-maven-repo"
             url = uri("$gprBaseUrl/$gprRepoOwner/$gprRepoId")

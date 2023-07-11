@@ -1,7 +1,5 @@
 package br.com.useblu.oceands.client.ui.buttons
 
-import br.com.useblu.oceands.components.compose.OceanButton
-import br.com.useblu.oceands.components.compose.OceanButtonStyle
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -15,6 +13,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityButtonsBinding
+import br.com.useblu.oceands.components.compose.OceanButton
+import br.com.useblu.oceands.components.compose.OceanButtonStyle
 import com.savvyapps.togglebuttonlayout.Toggle
 import com.savvyapps.togglebuttonlayout.ToggleButtonLayout
 

@@ -336,7 +336,8 @@
                 android:id="@+id/composeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs" />
+                android:layout_marginBottom="@dimen/ocean_spacing_inline_xs"
+                tools:composableName="br.com.useblu.oceands.components.compose.OceanButtonKt.PreviewButton"/>
 
             <include
                 android:id="@+id/dualButtonBlocked"

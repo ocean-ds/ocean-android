@@ -6,10 +6,12 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityTopbarBinding
+import br.com.useblu.oceands.components.compose.OceanTopBarInverse
 import br.com.useblu.oceands.extensions.setTitleColor
 
 
@@ -34,6 +36,16 @@ class TopbarActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         initObservers()
+
+        binding.composeView.setContent {
+            val shadowState = viewModel.shadowState.observeAsState(false)
+            OceanTopBarInverse(
+                title = "Title",
+                onClick = { println("onClick") },
+                onClickToolbar = { println("onClickToolbar") },
+                visibleShadow = shadowState.value
+            )
+        }
     }
 
     private fun initObservers() {

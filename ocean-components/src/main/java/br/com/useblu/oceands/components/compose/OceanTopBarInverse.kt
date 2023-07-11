@@ -24,10 +24,10 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.ui.FontFamilyHighlightExtraBold
-import br.com.useblu.oceands.ui.OceanColors
-import br.com.useblu.oceands.ui.OceanFontSize
-import br.com.useblu.oceands.ui.OceanSpacing
+import br.com.useblu.oceands.ui.compose.FontFamilyHighlightExtraBold
+import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanFontSize
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 
 @Preview

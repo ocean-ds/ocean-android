@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.ui
+package br.com.useblu.oceands.ui.compose
 
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable

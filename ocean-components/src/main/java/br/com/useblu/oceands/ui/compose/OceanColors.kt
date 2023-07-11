@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.ui
+package br.com.useblu.oceands.ui.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable

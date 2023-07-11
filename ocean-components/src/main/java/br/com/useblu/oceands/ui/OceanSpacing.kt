@@ -3,10 +3,12 @@ package br.com.useblu.oceands.ui
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import br.com.useblu.oceands.R
 
+@Immutable
 object OceanSpacing {
     @Composable
     fun StackXXXS() {

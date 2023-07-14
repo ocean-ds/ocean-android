@@ -57,7 +57,7 @@ fun OceanAccordion(
     Column(
         modifier = Modifier
             .background(OceanColors.interfaceLightPure())
-            .padding(bottom = 12.dp)
+            .padding(bottom = 16.dp)
     ) {
 
         Row(
@@ -67,7 +67,7 @@ fun OceanAccordion(
                 .clickable {
                     expandedContent = !expandedContent
                 }
-                .padding(top = 12.dp)
+                .padding(top = 16.dp)
         ) {
             Text(
                 text = title,

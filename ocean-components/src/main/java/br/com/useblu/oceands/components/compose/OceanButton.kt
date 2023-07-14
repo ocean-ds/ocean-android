@@ -99,7 +99,7 @@ fun OceanButton(
     showProgress: Boolean = false,
     icon: Drawable? = null,
     disabled: Boolean = false,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit
 ) {
     Button(
         onClick = onClick,

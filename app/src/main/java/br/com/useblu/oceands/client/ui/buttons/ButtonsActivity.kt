@@ -60,7 +60,8 @@ class ButtonsActivity : AppCompatActivity() {
                 showProgress = (buttonState.value ?: "") == "Loading",
                 disabled = (buttonState.value ?: "") == "Disabled",
                 buttonStyle = OceanButtonStyle.PrimaryMedium,
-                modifier = modifier
+                modifier = modifier,
+                onClick = {}
             )
         }
     }

@@ -3,8 +3,6 @@ package br.com.useblu.oceands.ui.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.R
 
 @Immutable
@@ -42,5 +40,3 @@ object OceanFontSize {
     @Composable
     fun giant() = dimensionResource(id = R.dimen.ocean_font_size_giant).sp
 }
-
-inline val Dp.sp get() = this.value.sp

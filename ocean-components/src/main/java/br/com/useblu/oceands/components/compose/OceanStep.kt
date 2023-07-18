@@ -11,11 +11,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.compose.OceanColors
 
 
@@ -39,7 +42,7 @@ fun OceanStep(
         modifier = Modifier.height(20.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        for (i in 1 until currentStep) {
+        for (i in 1 until currentStep.coerceAtMost(stepCount + 1)) {
             DoneCircle()
             if (i != stepCount) {
                 StepLine(done = true)
@@ -118,7 +121,7 @@ fun StepCircle(
                 modifier = Modifier
                     .height(2.dp)
                     .width(4.dp)
-                    .background(color = color)
+                    .background(color = OceanColors.interfaceLightDown())
             )
         } else {
             Spacer(modifier = Modifier.width(4.dp))
@@ -137,8 +140,9 @@ fun DoneCircle() {
             .size(20.dp),
         contentAlignment = Alignment.Center
     ) {
-        OceanIcon(
-            token = "checkoutline",
+        Icon(
+            painter = painterResource(id = R.drawable.step_check_outline),
+            contentDescription = null,
             modifier = Modifier.size(10.dp),
             tint = OceanColors.interfaceLightPure()
         )

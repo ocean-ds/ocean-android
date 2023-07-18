@@ -36,7 +36,7 @@ fun PreviewOceanTopBarInverse() {
     val context = LocalContext.current
 
     Column(
-        modifier = Modifier.background(Color.White)
+        modifier = Modifier.background(OceanColors.interfaceLightPure())
     ) {
         OceanTopBarInverse(
             title = "Portabilidade",
@@ -59,7 +59,7 @@ fun OceanTopBarInverse(
     visibleShadow: Boolean = false,
     iconInvisible: Boolean = false
 ) {
-    Column(modifier = Modifier.background(Color.White)) {
+    Column(modifier = Modifier.background(OceanColors.interfaceLightPure())) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()

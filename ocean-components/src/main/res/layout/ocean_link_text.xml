@@ -43,6 +43,7 @@
             android:textColor="@color/ocean_color_brand_primary_pure"
             android:textSize="@{small ? @dimen/ocean_font_size_xxs : @dimen/ocean_font_size_xs}"
             app:ocean_text_from_html="@{text}"
+            app:oceanUnderline="@{true}"
             tools:text="@string/text" />
 
         <androidx.appcompat.widget.AppCompatImageView

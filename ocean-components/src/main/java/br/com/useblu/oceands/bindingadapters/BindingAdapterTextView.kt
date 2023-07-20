@@ -43,8 +43,8 @@ fun setTextColor(textView: TextView, color: String?) {
 }
 
 @BindingAdapter("oceanUnderline", "ocean_text_from_html")
-fun setUnderline(textView: TextView, underline: Boolean, text: String) {
-    if (underline) {
+fun setUnderline(textView: TextView, underline: Boolean, text: String?) {
+    if (underline && text != null) {
         val underlineText = SpannableString(text)
         underlineText.setSpan(UnderlineSpan(), 0, underlineText.length, 0)
         textView.text = underlineText

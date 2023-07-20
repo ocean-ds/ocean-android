@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
@@ -47,6 +48,14 @@ fun PreviewOceanTopBarInverse() {
         )
 
         OceanSpacing.StackSM()
+
+        OceanTopBarInverse(
+            title = "Portabilidade",
+            onClick = {},
+            onClickToolbar = {},
+            visibleShadow = true,
+            iconInvisible = true
+        )
     }
 }
 
@@ -59,7 +68,9 @@ fun OceanTopBarInverse(
     visibleShadow: Boolean = false,
     iconInvisible: Boolean = false
 ) {
-    Column(modifier = Modifier.background(OceanColors.interfaceLightPure())) {
+    Column(
+        modifier = Modifier.background(OceanColors.interfaceLightPure())
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -91,8 +102,12 @@ fun OceanTopBarInverse(
                 text = title,
                 fontSize = OceanFontSize.sm(),
                 fontFamily = OceanFontFamily.HighlightExtraBold,
-                color = OceanColors.brandPrimaryPure()
+                color = OceanColors.brandPrimaryPure(),
+                modifier = Modifier.weight(1f),
+                textAlign = if (iconInvisible) TextAlign.Center else TextAlign.Start
             )
+
+            OceanSpacing.StackXS()
         }
 
         if (visibleShadow) {

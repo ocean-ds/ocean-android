@@ -102,7 +102,7 @@ fun OceanButton(
     onClick: () -> Unit
 ) {
     Button(
-        onClick = onClick,
+        onClick = { if (!showProgress) onClick.invoke() },
         colors = buttonStyle.getColors(),
         modifier = modifier
             .height(buttonStyle.getHeight()),

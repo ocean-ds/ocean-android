@@ -5,79 +5,66 @@ import androidx.compose.ui.text.TextStyle
 
 object OceanTextStyle {
 
-    @Composable
-    private fun heading() = TextStyle(
+    private val heading @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkPure,
         fontFamily = OceanFontFamily.HighlightExtraBold
     )
 
-    @Composable
-    private fun subtitle() = TextStyle(
+    private val subtitle @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular
     )
 
-    @Composable
-    fun paragraph() = TextStyle(
+    val paragraph @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular,
-        fontSize = OceanFontSize.xs()
+        fontSize = OceanFontSize.xs
     )
 
-    @Composable
-    fun description() = TextStyle(
+    val description @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular,
-        fontSize = OceanFontSize.xxs()
+        fontSize = OceanFontSize.xxs
     )
 
-    @Composable
-    fun caption() = TextStyle(
+    val caption @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular,
-        fontSize = OceanFontSize.xxxs()
+        fontSize = OceanFontSize.xxxs
     )
 
-    @Composable
-    fun lead() = TextStyle(
+    val lead @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkDeep,
         fontFamily = OceanFontFamily.BaseBold,
-        fontSize = OceanFontSize.sm()
+        fontSize = OceanFontSize.sm
     )
 
-    @Composable
-    fun heading1() = heading().copy(
-        fontSize = OceanFontSize.lg()
+    val heading1 @Composable get() = heading.copy(
+        fontSize = OceanFontSize.lg
     )
 
-    @Composable
-    fun heading2() = heading().copy(
-        fontSize = OceanFontSize.md()
+    val heading2 @Composable get() = heading.copy(
+        fontSize = OceanFontSize.md
     )
 
-    @Composable
-    fun heading3() = heading().copy(
-        fontSize = OceanFontSize.sm()
+    val heading3 @Composable get() = heading.copy(
+        fontSize = OceanFontSize.sm
     )
 
-    @Composable
-    fun heading4() = heading().copy(
-        fontSize = OceanFontSize.xs(),
+    val heading4 @Composable get() = heading.copy(
+        fontSize = OceanFontSize.xs,
         fontFamily = OceanFontFamily.HighlightBold
     )
 
-    @Composable
-    fun heading5() = heading4().copy(
-        fontSize = OceanFontSize.xxs(),
+    val heading5 @Composable get() = heading4.copy(
+        fontSize = OceanFontSize.xxs,
     )
 
-    @Composable
-    fun subtitle1() = subtitle().copy(
-        fontSize = OceanFontSize.md()
+    val subtitle1 @Composable get() = subtitle.copy(
+        fontSize = OceanFontSize.md
     )
 
-    @Composable
-    fun subtitle2() = subtitle().copy(
-        fontSize = OceanFontSize.sm()
+    val subtitle2 @Composable get() = subtitle.copy(
+        fontSize = OceanFontSize.sm
     )
 }

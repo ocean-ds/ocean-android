@@ -100,7 +100,7 @@ fun OceanTopBarInverse(
 
             Text(
                 text = title,
-                fontSize = OceanFontSize.sm(),
+                fontSize = OceanFontSize.sm,
                 fontFamily = OceanFontFamily.HighlightExtraBold,
                 color = OceanColors.brandPrimaryPure,
                 modifier = Modifier.weight(1f),

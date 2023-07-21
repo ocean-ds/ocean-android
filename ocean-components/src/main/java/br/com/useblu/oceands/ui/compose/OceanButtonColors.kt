@@ -9,40 +9,35 @@ import br.com.useblu.oceands.R
 
 @Immutable
 object OceanButtonColors {
-    @Composable
-    fun primaryDefaultButtonColors() = ButtonDefaults.buttonColors(
+    val primaryDefaultButtonColors @Composable get() = ButtonDefaults.buttonColors(
         containerColor = colorResource(id = R.color.ocean_color_brand_primary_pure),
         contentColor = colorResource(id = R.color.ocean_color_interface_light_pure),
         disabledContainerColor = colorResource(id = R.color.ocean_color_interface_light_down),
         disabledContentColor = colorResource(id = R.color.ocean_color_interface_dark_up)
     )
 
-    @Composable
-    fun primaryInverseButtonColors() = ButtonDefaults.buttonColors(
+    val primaryInverseButtonColors @Composable get() = ButtonDefaults.buttonColors(
         containerColor = colorResource(id = R.color.ocean_color_complementary_pure),
         contentColor = colorResource(id = R.color.ocean_color_interface_light_pure),
         disabledContainerColor = colorResource(id = R.color.ocean_color_interface_light_down),
         disabledContentColor = colorResource(id = R.color.ocean_color_interface_dark_up)
     )
 
-    @Composable
-    fun primaryCriticalButtonColors() = ButtonDefaults.buttonColors(
+    val primaryCriticalButtonColors @Composable get() = ButtonDefaults.buttonColors(
         containerColor = colorResource(id = R.color.ocean_color_status_negative_pure),
         contentColor = colorResource(id = R.color.ocean_color_interface_light_pure),
         disabledContainerColor = colorResource(id = R.color.ocean_color_interface_light_down),
         disabledContentColor = colorResource(id = R.color.ocean_color_interface_dark_up)
     )
     
-    @Composable
-    fun secondaryDefaultButtonColors() = ButtonDefaults.buttonColors(
+    val secondaryDefaultButtonColors @Composable get() = ButtonDefaults.buttonColors(
         containerColor = colorResource(id = R.color.ocean_color_interface_light_up),
         contentColor = colorResource(id = R.color.ocean_color_brand_primary_pure),
         disabledContainerColor = colorResource(id = R.color.ocean_color_interface_light_down),
         disabledContentColor = colorResource(id = R.color.ocean_color_interface_dark_up)
     )
 
-    @Composable
-    fun secondaryCriticalButtonColors() = ButtonDefaults.buttonColors(
+    val secondaryCriticalButtonColors @Composable get() = ButtonDefaults.buttonColors(
         containerColor = colorResource(id = R.color.ocean_color_status_negative_up),
         contentColor = colorResource(id = R.color.ocean_color_status_negative_pure),
         disabledContainerColor = colorResource(id = R.color.ocean_color_interface_light_down),

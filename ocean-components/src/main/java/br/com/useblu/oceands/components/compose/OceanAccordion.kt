@@ -81,7 +81,7 @@ fun OceanAccordion(
             Icon(
                 painter = painterResource(id = R.drawable.ocean_icon_chevron_right_solid),
                 contentDescription = null,
-                tint = if (expandedContent) OceanColors.brandPrimaryPure() else OceanColors.interfaceDarkDown(),
+                tint = if (expandedContent) OceanColors.brandPrimaryPure else OceanColors.interfaceDarkDown,
                 modifier = Modifier
                     .size(16.dp)
                     .rotate(if (expandedContent) 270f else 90f)
@@ -94,8 +94,8 @@ fun OceanAccordion(
 
                 Text(
                     text = description,
-                    color = OceanColors.interfaceDarkDown(),
-                    fontSize = OceanFontSize.xxs(),
+                    color = OceanColors.interfaceDarkDown,
+                    fontSize = OceanFontSize.xxs,
                     modifier = Modifier.fillMaxWidth()
                 )
             }

@@ -56,7 +56,7 @@ fun OceanAccordion(
 
     Column(
         modifier = Modifier
-            .background(OceanColors.interfaceLightPure())
+            .background(OceanColors.interfaceLightPure)
             .padding(bottom = 16.dp)
     ) {
 
@@ -71,8 +71,8 @@ fun OceanAccordion(
         ) {
             Text(
                 text = title,
-                color = if (expandedContent) OceanColors.brandPrimaryPure() else OceanColors.interfaceDarkDown(),
-                fontSize = OceanFontSize.xxs(),
+                color = if (expandedContent) OceanColors.brandPrimaryPure else OceanColors.interfaceDarkDown,
+                fontSize = OceanFontSize.xxs,
                 modifier = Modifier.weight(1f)
             )
             

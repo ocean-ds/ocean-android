@@ -37,7 +37,7 @@ fun PreviewOceanTopBarInverse() {
     val context = LocalContext.current
 
     Column(
-        modifier = Modifier.background(OceanColors.interfaceLightPure())
+        modifier = Modifier.background(OceanColors.interfaceLightPure)
     ) {
         OceanTopBarInverse(
             title = "Portabilidade",
@@ -69,7 +69,7 @@ fun OceanTopBarInverse(
     iconInvisible: Boolean = false
 ) {
     Column(
-        modifier = Modifier.background(OceanColors.interfaceLightPure())
+        modifier = Modifier.background(OceanColors.interfaceLightPure)
     ) {
         Row(
             modifier = Modifier
@@ -91,7 +91,7 @@ fun OceanTopBarInverse(
                         bitmap = topBarIcon.toBitmap().asImageBitmap(),
                         contentDescription = null,
                         modifier = Modifier.size(24.dp),
-                        tint = OceanColors.brandPrimaryPure()
+                        tint = OceanColors.brandPrimaryPure
                     )
                 }
             }
@@ -100,9 +100,9 @@ fun OceanTopBarInverse(
 
             Text(
                 text = title,
-                fontSize = OceanFontSize.sm(),
+                fontSize = OceanFontSize.sm,
                 fontFamily = OceanFontFamily.HighlightExtraBold,
-                color = OceanColors.brandPrimaryPure(),
+                color = OceanColors.brandPrimaryPure,
                 modifier = Modifier.weight(1f),
                 textAlign = if (iconInvisible) TextAlign.Center else TextAlign.Start
             )

@@ -7,36 +7,15 @@ import br.com.useblu.oceands.R
 
 @Immutable
 object OceanFontSize {
-    @Composable
-    fun xxxs() = dimensionResource(id = R.dimen.ocean_font_size_xxxs).sp
-
-    @Composable
-    fun xxs() = dimensionResource(id = R.dimen.ocean_font_size_xxs).sp
-
-    @Composable
-    fun xs() = dimensionResource(id = R.dimen.ocean_font_size_xs).sp
-
-    @Composable
-    fun sm() = dimensionResource(id = R.dimen.ocean_font_size_sm).sp
-
-    @Composable
-    fun md() = dimensionResource(id = R.dimen.ocean_font_size_md).sp
-
-    @Composable
-    fun lg() = dimensionResource(id = R.dimen.ocean_font_size_lg).sp
-
-    @Composable
-    fun xl() = dimensionResource(id = R.dimen.ocean_font_size_xl).sp
-
-    @Composable
-    fun xxl() = dimensionResource(id = R.dimen.ocean_font_size_xxl).sp
-
-    @Composable
-    fun xxxl() = dimensionResource(id = R.dimen.ocean_font_size_xxxl).sp
-
-    @Composable
-    fun display() = dimensionResource(id = R.dimen.ocean_font_size_display).sp
-
-    @Composable
-    fun giant() = dimensionResource(id = R.dimen.ocean_font_size_giant).sp
+    val xxxs @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xxxs).sp
+    val xxs @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xxs).sp
+    val xs @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xs).sp
+    val sm @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_sm).sp
+    val md @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_md).sp
+    val lg @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_lg).sp
+    val xl @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xl).sp
+    val xxl @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xxl).sp
+    val xxxl @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xxxl).sp
+    val display @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_display).sp
+    val giant @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_giant).sp
 }

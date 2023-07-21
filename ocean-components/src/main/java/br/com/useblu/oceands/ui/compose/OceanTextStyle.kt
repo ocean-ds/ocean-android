@@ -7,40 +7,40 @@ object OceanTextStyle {
 
     @Composable
     private fun heading() = TextStyle(
-        color = OceanColors.interfaceDarkPure(),
+        color = OceanColors.interfaceDarkPure,
         fontFamily = OceanFontFamily.HighlightExtraBold
     )
 
     @Composable
     private fun subtitle() = TextStyle(
-        color = OceanColors.interfaceDarkDown(),
+        color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular
     )
 
     @Composable
     fun paragraph() = TextStyle(
-        color = OceanColors.interfaceDarkDown(),
+        color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular,
         fontSize = OceanFontSize.xs()
     )
 
     @Composable
     fun description() = TextStyle(
-        color = OceanColors.interfaceDarkDown(),
+        color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular,
         fontSize = OceanFontSize.xxs()
     )
 
     @Composable
     fun caption() = TextStyle(
-        color = OceanColors.interfaceDarkDown(),
+        color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular,
         fontSize = OceanFontSize.xxxs()
     )
 
     @Composable
     fun lead() = TextStyle(
-        color = OceanColors.interfaceDarkDeep(),
+        color = OceanColors.interfaceDarkDeep,
         fontFamily = OceanFontFamily.BaseBold,
         fontSize = OceanFontSize.sm()
     )

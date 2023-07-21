@@ -69,9 +69,9 @@ fun StepLine(
     done: Boolean
 ) {
     val color = if (done) {
-        OceanColors.complementaryPure()
+        OceanColors.complementaryPure
     } else {
-        OceanColors.interfaceLightDown()
+        OceanColors.interfaceLightDown
     }
 
     Box(
@@ -89,9 +89,9 @@ fun StepCircle(
     showRightLine: Boolean
 ) {
     val color = if (currentStep) {
-        OceanColors.complementaryPure()
+        OceanColors.complementaryPure
     } else {
-        OceanColors.interfaceLightDown()
+        OceanColors.interfaceLightDown
     }
 
     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -121,7 +121,7 @@ fun StepCircle(
                 modifier = Modifier
                     .height(2.dp)
                     .width(4.dp)
-                    .background(color = OceanColors.interfaceLightDown())
+                    .background(color = OceanColors.interfaceLightDown)
             )
         } else {
             Spacer(modifier = Modifier.width(4.dp))
@@ -132,7 +132,7 @@ fun StepCircle(
 
 @Composable
 fun DoneCircle() {
-    val color = OceanColors.complementaryPure()
+    val color = OceanColors.complementaryPure
 
     Box(
         modifier = Modifier
@@ -144,7 +144,7 @@ fun DoneCircle() {
             painter = painterResource(id = R.drawable.step_check_outline),
             contentDescription = null,
             modifier = Modifier.size(10.dp),
-            tint = OceanColors.interfaceLightPure()
+            tint = OceanColors.interfaceLightPure
         )
     }
 }

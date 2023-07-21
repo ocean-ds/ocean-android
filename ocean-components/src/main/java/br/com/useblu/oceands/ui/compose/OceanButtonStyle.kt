@@ -72,7 +72,7 @@ private interface IButtonColors {
     @Composable
     fun getColors(): ButtonColors
     @Composable
-    fun getLoadingColor(): Color = OceanColors.interfaceLightUp()
+    fun getLoadingColor(): Color = OceanColors.interfaceLightUp
 }
 
 private val small = object: ButtonSizes {
@@ -107,12 +107,12 @@ private val secondaryDefaultColors = object: IButtonColors {
     @Composable
     override fun getColors() = OceanButtonColors.secondaryDefaultButtonColors()
     @Composable
-    override fun getLoadingColor() = OceanColors.brandPrimaryPure()
+    override fun getLoadingColor() = OceanColors.brandPrimaryPure
 
 }
 private val secondaryCriticalColors = object: IButtonColors {
     @Composable
     override fun getColors() = OceanButtonColors.secondaryCriticalButtonColors()
     @Composable
-    override fun getLoadingColor() = OceanColors.brandPrimaryPure()
+    override fun getLoadingColor() = OceanColors.brandPrimaryPure
 }

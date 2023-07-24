@@ -6,6 +6,7 @@ import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 
@@ -42,10 +43,11 @@ fun setTextColor(textView: TextView, color: String?) {
     textView.setTextColor(ContextCompat.getColor(context, colorSelect))
 }
 
-@BindingAdapter("oceanUnderline", "ocean_text_from_html")
-fun setUnderline(textView: TextView, underline: Boolean?, text: String?) {
-    if (underline == true && text != null) {
-        val underlineText = SpannableString(text)
+@BindingAdapter("oceanUnderline")
+fun setUnderline(textView: TextView, text: String?) {
+    if (text != null) {
+        val fromHtml = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        val underlineText = SpannableString(fromHtml)
         underlineText.setSpan(UnderlineSpan(), 0, underlineText.length, 0)
         textView.text = underlineText
     }

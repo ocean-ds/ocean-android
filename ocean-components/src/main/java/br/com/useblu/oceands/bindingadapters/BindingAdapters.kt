@@ -54,12 +54,6 @@ fun setTextFromHtml(view: TextView, text: String?) {
     view.text = HtmlCompat.fromHtml(text ?: "", HtmlCompat.FROM_HTML_MODE_LEGACY)
 }
 
-@BindingAdapter("ocean_text_from_html")
-fun setTextFromHtml(view: AppCompatCheckBox, text: String?) {
-    view.text = HtmlCompat.fromHtml(text ?: "", HtmlCompat.FROM_HTML_MODE_LEGACY)
-    view.movementMethod = LinkMovementMethod.getInstance()
-}
-
 @BindingAdapter("ocean_layout_width")
 fun setLayoutWidth(view: View, width: Int) {
     val params = view.layoutParams as ViewGroup.LayoutParams

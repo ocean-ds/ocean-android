@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,6 +32,7 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.stringmask.OceanInputType
 
 
 @Preview
@@ -84,7 +84,7 @@ fun PreviewOceanTextInput() {
 
         OceanSpacing.StackXS()
 
-        var text3: String by remember { mutableStateOf("") }
+        var text3 by remember { mutableStateOf("") }
         OceanTextInput(
             value = text3,
             label = "Label",
@@ -101,6 +101,34 @@ fun PreviewOceanTextInput() {
             placeholder = "Teste placeholder disabled",
             onTextChanged = { text4 = it },
             enabled = false
+        )
+    }
+}
+
+@Preview
+@Composable
+fun PreviewOceanTextInputMask() {
+    Column(
+        modifier = Modifier
+            .background(Color.White)
+            .padding(8.dp)
+    ) {
+        var text1: String by remember { mutableStateOf("90680120") }
+
+        OceanTextInput(
+            value = text1,
+            label = "Label",
+            onTextChanged = { text1 = it },
+            oceanInputType = OceanInputType.CEP
+        )
+
+        var text2: String by remember { mutableStateOf("90680") }
+
+        OceanTextInput(
+            value = text2,
+            label = "Label",
+            onTextChanged = { text2 = it },
+            oceanInputType = OceanInputType.Currency()
         )
     }
 }
@@ -135,7 +163,7 @@ fun OceanTextInput(
     errorText: String? = null,
     placeholder: String = "",
     enabled: Boolean = true,
-    keyboardType: KeyboardType = KeyboardType.Text,
+    oceanInputType: OceanInputType = OceanInputType.DEFAULT,
     onTextChanged: (String) -> Unit
 ) {
     Column(
@@ -152,7 +180,8 @@ fun OceanTextInput(
         val placeholderCompose = @Composable {
             Text(
                 text = placeholder,
-                fontSize = 16.sp
+                fontSize = 16.sp,
+                fontFamily = OceanFontFamily.BaseRegular
             )
         }
 
@@ -181,19 +210,20 @@ fun OceanTextInput(
             textStyle = TextStyle(
                 fontSize = 16.sp,
                 color = OceanColors.interfaceDarkDeep,
+                fontFamily = OceanFontFamily.BaseRegular
             ),
-            keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+            keyboardOptions = KeyboardOptions(keyboardType = oceanInputType.getKeyboardType()),
             cursorBrush = SolidColor(OceanColors.brandPrimaryPure),
             interactionSource = interactionSource,
+            visualTransformation = oceanInputType.getVisualTransformation(),
             decorationBox = @Composable { innerTextField ->
                 OutlinedTextFieldDefaults.DecorationBox(
                     value = value,
                     visualTransformation = VisualTransformation.None,
                     innerTextField = innerTextField,
                     placeholder = placeholderCompose,
-                    leadingIcon = null,
                     trailingIcon = null,
-                    suffix = null,
+                    prefix = oceanInputType.getPrefixComposable(),
                     singleLine = true,
                     enabled = enabled,
                     isError = !errorText.isNullOrEmpty(),

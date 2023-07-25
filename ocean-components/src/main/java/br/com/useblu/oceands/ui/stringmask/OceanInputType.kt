@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.OffsetMapping
@@ -18,7 +17,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import java.math.BigDecimal
 import java.math.RoundingMode
-import kotlin.math.absoluteValue
 
 
 sealed interface OceanInputType {
@@ -45,7 +43,8 @@ sealed interface OceanInputType {
     }
 
     data class Currency(
-        val showCurrencySymbol: Boolean = true
+        val showCurrencySymbol: Boolean = true,
+        val showZeroValue: Boolean = false
     ): OceanInputType {
         // TODO: fix bug when input already has value
         override fun getKeyboardType() = KeyboardType.Number
@@ -65,47 +64,27 @@ sealed interface OceanInputType {
                 )
             }
         }
-        override fun getVisualTransformation(): VisualTransformation {
-            return VisualTransformation { text ->
-                val out = FormatadorValor.VALOR.formata(text.text.ifEmpty { "000" })
-
-                TransformedText(
-                    AnnotatedString(out),
-                    offsetTranslator(text.text, out)
-                )
-            }
-        }
 
         override fun modifyBeforeOnChange(text: String): String {
             val cleanText = super.modifyBeforeOnChange(text)
                 .filter { it.isDigit() }
 
-            return BigDecimal(cleanText)
-                .divide(BigDecimal(100))
-                .setScale(2, RoundingMode.HALF_DOWN)
-                .toPlainString()
-        }
-
-        private fun offsetTranslator(originalString: String, formattedString: String) = object : OffsetMapping {
-            override fun originalToTransformed(offset: Int): Int {
-                val offsetValue = offset.absoluteValue
-                if (offsetValue == 0) return 0
-
-                var numberOfNonDigits = 0
-                var originalStringIndex = 0
-
-                while (originalStringIndex < offsetValue) {
-                    if (!formattedString[originalStringIndex + numberOfNonDigits].isDigit()) {
-                        numberOfNonDigits++
-                    }
-                    originalStringIndex++
+            if (cleanText.isEmpty()) {
+                if (showZeroValue) {
+                    return FormatadorValor.VALOR.formata("000")
                 }
-
-                return originalStringIndex + numberOfNonDigits
             }
 
-            override fun transformedToOriginal(offset: Int): Int {
-                return formattedString.take(offset.absoluteValue).count { it.isDigit() }.coerceAtMost(originalString.length)
+            val resultado: BigDecimal = BigDecimal(cleanText)
+                .divide(BigDecimal(100))
+                .setScale(2, RoundingMode.HALF_DOWN)
+
+            return FormatadorValor.VALOR.formata(resultado.toPlainString())
+        }
+
+        override fun getVisualTransformation(): VisualTransformation {
+            return VisualTransformation { text ->
+                TransformedText(text, OffsetMapping.Identity)
             }
         }
     }

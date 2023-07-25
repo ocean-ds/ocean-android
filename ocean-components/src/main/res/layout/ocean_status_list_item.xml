@@ -57,6 +57,11 @@
             name="hideDivider"
             type="Boolean" />
 
+        <variable
+            name="contextMenuClick"
+            type="Function0&lt;Unit>" />
+
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -187,6 +192,7 @@
                     android:layout_gravity="center_vertical"
                     android:src="@{showContextMenu ? @drawable/icon_vertical_solid_dots : @drawable/icon_chevron_right}"
                     android:visibility="@{isReadOnly ? View.GONE : View.VISIBLE}"
+                    android:onClick="@{() -> contextMenuClick.invoke()}"
                     tools:ignore="ContentDescription"
                     tools:src="@drawable/icon_chevron_right" />
 

@@ -67,11 +67,6 @@
             app:ocean_visible_or_gone="@{cancelabled}" />
 
         <Space
-            android:id="@+id/space1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_xxxs" />
-
-        <Space
             android:id="@+id/space4"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ocean_spacing_stack_sm"
@@ -88,7 +83,8 @@
         <Space
             android:id="@+id/space2"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_sm" />
+            android:layout_height="@dimen/ocean_spacing_stack_sm"
+            app:ocean_visible_or_gone="@{bodyIcon != null &amp;&amp; title != null }"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textTitle"
@@ -99,11 +95,13 @@
             android:paddingEnd="@dimen/ocean_spacing_stack_xs"
             android:text="@{title}"
             android:textColor="@color/ocean_color_interface_dark_deep"
+            app:ocean_visible_or_gone="@{title != null}"
             tools:text="Heading 3" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_xs" />
+            android:layout_height="@dimen/ocean_spacing_stack_xs"
+            app:ocean_visible_or_gone="@{title != null}"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

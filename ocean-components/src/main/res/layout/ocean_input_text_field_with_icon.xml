@@ -142,7 +142,7 @@
             tools:text="@string/error" />
 
         <ImageView
-            android:id="@+id/iconError"
+            android:id="@+id/iconErrorView"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="4dp"
@@ -156,7 +156,7 @@
             tools:src="@drawable/icon_generic_primary" />
 
         <ImageView
-            android:id="@+id/iconHelper"
+            android:id="@+id/iconHelperView"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="4dp"

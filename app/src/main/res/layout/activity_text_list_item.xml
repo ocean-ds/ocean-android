@@ -76,10 +76,29 @@
             <include
                 layout="@layout/ocean_text_list_item"
                 app:click="@{viewmodel::onTouchItem}"
+                app:description="@{`Selectable disabled`}"
+                app:isChecked="@{true}"
+                app:showError="@{false}"
+                app:title="@{`Text List item`}"
+                app:withCheckBox="@{true}"
+                app:disabled="@{true}"/>
+
+            <include
+                layout="@layout/ocean_text_list_item"
+                app:click="@{viewmodel::onTouchItem}"
                 app:description="@{`Selectable`}"
                 app:isChecked="@{false}"
                 app:title="@{`Text List item`}"
                 app:withCheckBox="@{false}" />
+
+            <include
+                layout="@layout/ocean_text_list_item"
+                app:click="@{viewmodel::onTouchItem}"
+                app:description="@{`Selectable disabled`}"
+                app:isChecked="@{true}"
+                app:title="@{`Text List item`}"
+                app:withCheckBox="@{false}"
+                app:disabled="@{true}"/>
 
             <include
                 layout="@layout/ocean_text_list_item"

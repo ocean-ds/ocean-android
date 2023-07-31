@@ -45,6 +45,10 @@
             name="isSmall"
             type="Boolean" />
 
+        <variable
+            name="disabled"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,6 +85,7 @@
                     android:minHeight="0dp"
                     android:theme="@style/Ocean.CheckBox"
                     android:checked="@{isChecked, default = false}"
+                    android:enabled="@{!disabled}"
                     app:ocean_visible_or_gone="@{showError == false}"/>
 
                 <androidx.appcompat.widget.AppCompatCheckBox
@@ -92,6 +97,7 @@
                     android:theme="@style/Ocean.CheckBox.Error"
                     android:onCheckedChanged="@{(checkbox, checked) -> click.invoke(checked)}"
                     android:checked="@{isChecked, default = false}"
+                    android:enabled="@{!disabled}"
                     app:ocean_visible_or_gone="@{showError == true}"
                     tools:visibility="visible"/>
 
@@ -112,6 +118,7 @@
                     android:theme="@style/Ocean.CheckBox"
                     app:ocean_visible_or_gone="@{showError == false}"
                     android:checked="@{isChecked, default = false}"
+                    android:enabled="@{!disabled}"
                     tools:visibility="gone"/>
 
                 <androidx.appcompat.widget.AppCompatRadioButton
@@ -123,6 +130,7 @@
                     android:theme="@style/Ocean.CheckBox.Error"
                     app:ocean_visible_or_gone="@{showError == true}"
                     android:checked="@{isChecked, default = false}"
+                    android:enabled="@{!disabled}"
                     tools:visibility="gone"/>
 
             </LinearLayout>

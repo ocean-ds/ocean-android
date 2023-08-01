@@ -26,7 +26,7 @@
                 layout="@layout/ocean_text_list_item"
                 app:description="@{`Default`}"
                 app:isSmall="@{true}"
-                app:title="@{`Text List Item with a long text to test the ability to breack lines`}" />
+                app:title="@{`Text List Item with a long text to test the ability to break lines`}" />
 
             <include
                 layout="@layout/ocean_text_list_item"

@@ -36,5 +36,6 @@
     <string name="action_title">Call to Action</string>
     <string name="expandir_saldo_content_description">Expandir saldo</string>
     <string name="toggle_visibility_content_description">Alternar visibilidade dos valores</string>
+    <string name="button_advance">Avançar</string>
 
 </resources>

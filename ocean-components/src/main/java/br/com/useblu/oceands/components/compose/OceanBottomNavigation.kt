@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -83,34 +82,27 @@ private fun OceanBottomNavigationPreview() {
         )
     )
 
-    MaterialTheme {
-        OceanBottomNavigation(
-            selectedIndex = selectedIndex.value,
-            models = models,
-            onClick = {
-                selectedIndex.value = (selectedIndex.value + 1) % models.size
-            }
-        )
-    }
+    OceanBottomNavigation(
+        selectedIndex = selectedIndex.value,
+        models = models
+    )
 }
 @Composable
 fun OceanBottomNavigation(
     selectedIndex: Int = 0,
-    models: List<OceanBottomNavigationModel>,
-    onClick: () -> Unit = {}
+    models: List<OceanBottomNavigationModel>
 ) {
     val childrenWidths = remember {
         mutableStateListOf<Dp>()
     }
-
     val density = LocalDensity.current
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = OceanColors.brandPrimaryPure)
             .padding(4.dp)
             .height(64.dp)
-            .clickable { onClick() }
     ) {
         val xOffsetAnimated = remember { Animatable(0f) }
 

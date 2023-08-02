@@ -41,7 +41,7 @@ class TopbarActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
             val shadowState = viewModel.shadowState.observeAsState(false)
             OceanTopBarInverse(
                 title = "Title",
-                onClick = { println("onClick") },
+                onClickIcon = { println("onClick") },
                 onClickToolbar = { println("onClickToolbar") },
                 visibleShadow = shadowState.value
             )

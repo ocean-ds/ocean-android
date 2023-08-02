@@ -60,7 +60,7 @@ fun OceanOnboardingPreview() {
     OceanOnboardingPage(
         pages = pages,
         finishButtonLabel = "Registrar chave",
-        finishButtonAction = {
+        onFinishAction = {
             println("ultima pagina")
         }
     )
@@ -71,7 +71,7 @@ fun OceanOnboardingPreview() {
 fun OceanOnboardingPage(
     pages: List<OceanOnboardingPageModel>,
     finishButtonLabel: String,
-    finishButtonAction: () -> Unit
+    onFinishAction: () -> Unit
 ) {
     fun PagerState.isLastPage(): Boolean {
         return currentPage == pages.size - 1
@@ -88,7 +88,7 @@ fun OceanOnboardingPage(
              OceanTopBarInverse(
                  title = "",
                  icon = R.drawable.icon_close,
-                 onClickIcon = { finishButtonAction() },
+                 onClickIcon = { onFinishAction() },
                  onClickToolbar = { }
              )
         },
@@ -119,7 +119,7 @@ fun OceanOnboardingPage(
                     buttonStyle = OceanButtonStyle.PrimaryMedium,
                     onClick = {
                         if (pagerState.isLastPage()) {
-                            finishButtonAction()
+                            onFinishAction()
                         } else {
                             coroutineScope.launch {
                                 pagerState.animateScrollToPage(pagerState.currentPage + 1)

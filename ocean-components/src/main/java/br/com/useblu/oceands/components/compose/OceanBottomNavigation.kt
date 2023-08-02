@@ -163,7 +163,7 @@ private fun OceanBottomNavigationMenuItem(
     modifier: Modifier = Modifier,
     isSelected: Boolean
 ) {
-    val color = if (isSelected) OceanColors.interfaceLightPure else OceanColors.interfaceLightPure
+    val color = if (isSelected) OceanColors.interfaceLightPure else OceanColors.brandPrimaryUp
     Column(
         modifier = modifier.fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,

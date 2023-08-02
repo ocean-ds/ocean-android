@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -62,31 +63,33 @@ fun PreviewButton() {
         )
     )
 
-    Column {
-        OceanSpacing.StackXS()
-
-        styles.forEach {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                OceanSpacing.StackXS()
-
-                it.forEach { style ->
-                    OceanButton(
-                        text = "Avançar",
-                        showProgress = false,
-                        icon = icon,
-                        disabled = false,
-                        modifier = Modifier,
-                        buttonStyle = style,
-                        onClick = {
-                            println("Botão clicado")
-                        }
-                    )
-                    OceanSpacing.StackXS()
-                }
-            }
+    MaterialTheme {
+        Column {
             OceanSpacing.StackXS()
+
+            styles.forEach {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OceanSpacing.StackXS()
+
+                    it.forEach { style ->
+                        OceanButton(
+                            text = "Avançar",
+                            showProgress = false,
+                            icon = icon,
+                            disabled = false,
+                            modifier = Modifier,
+                            buttonStyle = style,
+                            onClick = {
+                                println("Botão clicado")
+                            }
+                        )
+                        OceanSpacing.StackXS()
+                    }
+                }
+                OceanSpacing.StackXS()
+            }
         }
     }
 }

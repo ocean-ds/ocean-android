@@ -160,13 +160,12 @@ fun OceanCardListItem(
                 enabled = onClick != null && !disabled,
                 onClick = { onClick?.invoke() }
             )
+            .background(
+                color = OceanColors.interfaceLightPure,
+            )
             .border(
                 width = 1.dp,
                 color = OceanColors.interfaceLightDown,
-                shape = RoundedCornerShape(8.dp)
-            )
-            .background(
-                color = OceanColors.interfaceLightPure,
                 shape = RoundedCornerShape(8.dp)
             )
             .padding(16.dp),

@@ -1,8 +1,10 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -32,6 +35,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.model.compose.OceanBottomNavigationModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -39,20 +43,60 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 @Preview
 @Composable
-fun OceanBottomNavigationPreview() {
+private fun OceanBottomNavigationPreview() {
     val selectedIndex = remember {
         mutableStateOf(0)
     }
-    OceanBottomNavigation(
-        selectedIndex = selectedIndex.value,
-        onClick = {
-            selectedIndex.value = (selectedIndex.value + 1) % 3
-        }
+
+    val models = listOf(
+        OceanBottomNavigationModel(
+            title = "Home",
+            activeIcon = "homesolid",
+            inactiveIcon = "homeoutline",
+            onClickListener = {
+                selectedIndex.value = 0
+            }
+        ),
+        OceanBottomNavigationModel(
+            title = "Pagar",
+            activeIcon = "pagblusolid",
+            inactiveIcon = "pagbluoutline",
+            onClickListener = {
+                selectedIndex.value = 1
+            }
+        ),
+        OceanBottomNavigationModel(
+            title = "Cobrar",
+            activeIcon = "chargesolid",
+            inactiveIcon = "chargeoutline",
+            onClickListener = {
+                selectedIndex.value = 2
+            }
+        ),
+        OceanBottomNavigationModel(
+            title = "EasterEggs",
+            activeIcon = "terminalsolid",
+            inactiveIcon = "terminaloutline",
+            onClickListener = {
+                selectedIndex.value = 3
+            }
+        )
     )
+
+    MaterialTheme {
+        OceanBottomNavigation(
+            selectedIndex = selectedIndex.value,
+            models = models,
+            onClick = {
+                selectedIndex.value = (selectedIndex.value + 1) % models.size
+            }
+        )
+    }
 }
 @Composable
 fun OceanBottomNavigation(
     selectedIndex: Int = 0,
+    models: List<OceanBottomNavigationModel>,
     onClick: () -> Unit = {}
 ) {
     val childrenWidths = remember {
@@ -77,7 +121,10 @@ fun OceanBottomNavigation(
                 .map { density.run { it.toPx() } }
                 .reduce { acc, dp -> acc + dp }
 
-            xOffsetAnimated.animateTo(xOffset)
+            xOffsetAnimated.animateTo(
+                targetValue = xOffset,
+                animationSpec = tween()
+            )
         }
 
         Box(
@@ -94,59 +141,53 @@ fun OceanBottomNavigation(
         )
 
         Row(
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            OceanBottomNavigationMenuItem(
-                modifier = Modifier
-                    .weight(1f)
-                    .onGloballyPositioned {
-                        childrenWidths.add(density.run { it.size.width.toDp() })
-                    }
-            )
-
-            OceanBottomNavigationMenuItem(
-                modifier = Modifier
-                    .weight(1f)
-                    .onGloballyPositioned {
-                        childrenWidths.add(density.run { it.size.width.toDp() })
-                    }
-            )
-
-            OceanBottomNavigationMenuItem(
-                modifier = Modifier
-                    .weight(1f)
-                    .onGloballyPositioned {
-                        childrenWidths.add(density.run { it.size.width.toDp() })
-                    }
-            )
+            models.forEachIndexed { index, model ->
+                OceanBottomNavigationMenuItem(
+                    model = model,
+                    isSelected = index == selectedIndex,
+                    modifier = Modifier
+                        .weight(1f)
+                        .onGloballyPositioned {
+                            childrenWidths.add(density.run { it.size.width.toDp() })
+                        }
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                            onClick = model.onClickListener
+                        )
+                )
+            }
         }
     }
 }
 
 @Composable
 private fun OceanBottomNavigationMenuItem(
-    modifier: Modifier = Modifier
+    model: OceanBottomNavigationModel,
+    modifier: Modifier = Modifier,
+    isSelected: Boolean
 ) {
+    val color = if (isSelected) OceanColors.interfaceLightPure else OceanColors.interfaceLightPure
     Column(
-        modifier = modifier
-            .fillMaxHeight(),
+        modifier = modifier.fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         OceanIcon(
-            token = "terminalsolid",
+            token = if (isSelected) model.activeIcon else model.inactiveIcon,
             modifier = Modifier.size(22.dp),
-            tint = OceanColors.interfaceLightPure
+            tint = color
         )
 
         OceanSpacing.StackXXS()
 
         Text(
-            text = "Easter Egg",
-            color = OceanColors.interfaceLightPure,
+            text = model.title,
+            color = color,
             fontFamily = OceanFontFamily.HighlightExtraBold,
             fontSize = 10.sp
         )

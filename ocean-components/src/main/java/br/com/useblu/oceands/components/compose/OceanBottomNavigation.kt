@@ -108,7 +108,7 @@ fun OceanBottomNavigation(
 
         LaunchedEffect(key1 = selectedIndex) {
             val xOffset = childrenWidths
-                .subList(0, selectedIndex)
+                .subList(0, selectedIndex.coerceAtMost(childrenWidths.lastIndex))
                 .ifEmpty { listOf(0.dp) }
                 .map { density.run { it.toPx() } }
                 .reduce { acc, dp -> acc + dp }

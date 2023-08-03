@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
@@ -42,8 +43,8 @@ fun OceanOnboardingPreview() {
     val pages = listOf(
         OceanOnboardingPageModel(
             image = R.drawable.ocean_icon_paper_clip_solid,
-            title = "Title 1",
-            subtitle = "Subtitle 1"
+            title = "Registre sua primeira chave Pix",
+            subtitle = "Não perca tempo compartilhando dados bancários. A chave é uma forma simples de receber dinheiro"
         ),
         OceanOnboardingPageModel(
             image = R.drawable.ocean_icon_adjustments_outline,
@@ -57,7 +58,7 @@ fun OceanOnboardingPreview() {
         )
     )
 
-    OceanOnboardingPage(
+    OceanOnboardingPager(
         pages = pages,
         finishButtonLabel = "Registrar chave",
         onFinishAction = {
@@ -68,7 +69,7 @@ fun OceanOnboardingPreview() {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OceanOnboardingPage(
+fun OceanOnboardingPager(
     pages: List<OceanOnboardingPageModel>,
     finishButtonLabel: String,
     onFinishAction: () -> Unit
@@ -178,11 +179,16 @@ private fun OceanOnboardingPage(
 
         Text(
             text = page.title,
-            style = OceanTextStyle.heading4
+            style = OceanTextStyle.heading4,
+            textAlign = TextAlign.Center
         )
 
         OceanSpacing.StackXXS()
 
-        Text(text = page.subtitle, style = OceanTextStyle.description)
+        Text(
+            text = page.subtitle,
+            style = OceanTextStyle.description,
+            textAlign = TextAlign.Center
+        )
     }
 }

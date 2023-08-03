@@ -86,6 +86,50 @@ fun OceanStatusListItemPreview() {
                     println("click right icon")
                 }
             )
+
+            OceanStatusListItem(
+                title = "Title",
+                description = "Description",
+                tagLabel = "Tag",
+                tagType = OceanTagType.Warning,
+                tagPosition = OceanStatusListItemTagPosition.RIGHT,
+                isInactive = true,
+                onClick = {
+                    println("click container")
+                },
+                onClickRightIcon = {
+                    println("click right icon")
+                }
+            )
+
+            OceanStatusListItem(
+                title = "Title",
+                caption = "Caption",
+                tagLabel = "Tag",
+                tagType = OceanTagType.Warning,
+                tagPosition = OceanStatusListItemTagPosition.RIGHT,
+                isInactive = true,
+                onClick = {
+                    println("click container")
+                },
+                onClickRightIcon = {
+                    println("click right icon")
+                }
+            )
+
+            OceanStatusListItem(
+                title = "Title",
+                tagLabel = "Tag",
+                tagType = OceanTagType.Warning,
+                tagPosition = OceanStatusListItemTagPosition.RIGHT,
+                isInactive = true,
+                onClick = {
+                    println("click container")
+                },
+                onClickRightIcon = {
+                    println("click right icon")
+                }
+            )
         }
     }
 }
@@ -93,9 +137,9 @@ fun OceanStatusListItemPreview() {
 @Composable
 fun OceanStatusListItem(
     title: String,
-    description: String,
-    caption: String,
-    tagLabel: String,
+    description: String? = null,
+    caption: String? = null,
+    tagLabel: String? = null,
     tagPosition: OceanStatusListItemTagPosition = OceanStatusListItemTagPosition.BOTTOM,
     tagType: OceanTagType = OceanTagType.Warning,
     isReadOnly: Boolean = false,
@@ -123,27 +167,32 @@ fun OceanStatusListItem(
                 style = OceanTextStyle.paragraph,
                 color = if (isInactive) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure
             )
-            Text(
-                text = description,
-                style = OceanTextStyle.description,
-                color = if (isInactive) OceanColors.interfaceDarkUp else Color.Unspecified
-            )
 
-            OceanSpacing.StackXXXS()
+            description?.let {
+                Text(
+                    text = it,
+                    style = OceanTextStyle.description,
+                    color = if (isInactive) OceanColors.interfaceDarkUp else Color.Unspecified
+                )
+            }
 
-            Text(
-                text = caption,
-                style = OceanTextStyle.caption,
-                color = if (isInactive) OceanColors.interfaceDarkUp else Color.Unspecified
-            )
+            caption?.let {
+                OceanSpacing.StackXXXS()
+                Text(
+                    text = it,
+                    style = OceanTextStyle.caption,
+                    color = if (isInactive) OceanColors.interfaceDarkUp else Color.Unspecified
+                )
+            }
 
-            if (tagPosition == OceanStatusListItemTagPosition.BOTTOM) {
+
+            if (tagLabel != null && tagPosition == OceanStatusListItemTagPosition.BOTTOM) {
                 OceanSpacing.StackXXXS()
                 OceanTag(label = tagLabel, type = tagType)
             }
         }
 
-        if (tagPosition == OceanStatusListItemTagPosition.RIGHT) {
+        if (tagLabel != null && tagPosition == OceanStatusListItemTagPosition.RIGHT) {
             OceanTag(label = tagLabel, type = tagType)
         }
 

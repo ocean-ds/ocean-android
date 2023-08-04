@@ -24,13 +24,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,14 +39,10 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 
+private val selectedIndex = mutableStateOf(2)
 
-@Preview
-@Composable
-private fun OceanBottomNavigationPreview() {
-    val selectedIndex = remember {
-        mutableStateOf(2)
-    }
-    val models = listOf(
+private val initialModelList = mutableStateOf(
+    listOf(
         OceanBottomNavigationModel(
             label = "Home",
             activeIcon = "homesolid",
@@ -70,51 +66,91 @@ private fun OceanBottomNavigationPreview() {
             onClickListener = {
                 selectedIndex.value = 2
             }
-        ),
+        )
+    )
+)
+
+@Preview
+@Composable
+private fun OceanBottomNavigationPreview() {
+    remember {
         OceanBottomNavigationModel(
             label = "EasterEggs",
             activeIcon = "terminalsolid",
             inactiveIcon = "terminaloutline",
             onClickListener = {
+                println("click add easter egg")
                 selectedIndex.value = 3
+                initialModelList.value = initialModelList.value.toMutableList().apply {
+                    add(
+                        OceanBottomNavigationModel(
+                            label = "EasterEggs",
+                            activeIcon = "terminalsolid",
+                            inactiveIcon = "terminaloutline",
+                            onClickListener = {
+                                selectedIndex.value = initialModelList.value.size - 1
+                            }
+                        )
+                    )
+                }
             }
-        )
-    )
+        ).let {
+            initialModelList.value = initialModelList.value.toMutableList().apply {
+                add(it)
+            }
+            initialModelList.value
+        }
+    }
 
     OceanBottomNavigation(
         selectedIndex = selectedIndex.value,
-        models = models
+        models = initialModelList.value
     )
 }
+
 @Composable
 fun OceanBottomNavigation(
-    selectedIndex: Int = 0,
+    selectedIndex: Int,
     models: List<OceanBottomNavigationModel>
 ) {
+    println("${models.hashCode()} ${models.size}")
+
+    val density = LocalDensity.current
+
     val childrenWidths = remember(models) {
+        println("childrenWidths reset ${models.hashCode()}")
         mutableStateListOf<Int>()
     }
-    val density = LocalDensity.current
 
     fun getBackgroundOffset(): Float {
         return childrenWidths
             .subList(0, selectedIndex.coerceAtMost(childrenWidths.size))
-            .ifEmpty { listOf(0) }
-            .reduce { acc, dp -> acc + dp }
+            .sum()
             .toFloat()
     }
 
-    val xOffsetAnimated = remember(models) {
+    fun getBackgroundWidth(): Dp {
+        return density.run { (childrenWidths.getOrNull(selectedIndex) ?: 0).toDp() }
+    }
+
+    val xOffsetAnimated = remember {
         val initialOffset = getBackgroundOffset()
         Animatable(initialOffset)
     }
 
-    LaunchedEffect(key1 = selectedIndex, key2 = models) {
+    LaunchedEffect(key1 = selectedIndex) {
         val xOffset = getBackgroundOffset()
-
         xOffsetAnimated.animateTo(
             targetValue = xOffset,
             animationSpec = tween()
+        )
+    }
+
+    LaunchedEffect(key1 = models) {
+        val xOffset = getBackgroundOffset()
+        xOffsetAnimated.animateTo(
+            targetValue = xOffset,
+            animationSpec = tween(durationMillis = 0)
         )
     }
 
@@ -125,7 +161,7 @@ fun OceanBottomNavigation(
             .padding(4.dp)
             .height(64.dp)
     ) {
-        val backgroundWidth = density.run { (childrenWidths.getOrNull(selectedIndex) ?: 0).toDp() }
+        val backgroundWidth = getBackgroundWidth()
 
         Box(
             modifier = Modifier
@@ -140,36 +176,28 @@ fun OceanBottomNavigation(
                 )
         )
 
-        ItemsRow(models, selectedIndex, childrenWidths)
-    }
-}
-
-@Composable
-private fun ItemsRow(
-    models: List<OceanBottomNavigationModel>,
-    selectedIndex: Int,
-    childrenWidths: SnapshotStateList<Int>
-) {
-    Row(
-        modifier = Modifier.fillMaxSize(),
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        models.forEachIndexed { index, model ->
-            OceanBottomNavigationMenuItem(
-                model = model,
-                isSelected = index == selectedIndex,
-                modifier = Modifier
-                    .weight(1f)
-                    .onSizeChanged {
-                        childrenWidths.add(it.width)
-                    }
-                    .clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = null,
-                        onClick = model.onClickListener
-                    )
-            )
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            models.forEachIndexed { index, model ->
+                OceanBottomNavigationMenuItem(
+                    model = model,
+                    isSelected = index == selectedIndex,
+                    modifier = Modifier
+                        .weight(1f)
+                        .onSizeChanged {
+                            childrenWidths.add(it.width)
+                            println("onSizeChanged $index - ${it.width} - ${childrenWidths.size}")
+                        }
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                            onClick = model.onClickListener
+                        )
+                )
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 data class OceanBottomNavigationModel(
-    val title: String,
+    val label: String,
     val activeIcon: String,
     val inactiveIcon: String,
     val onClickListener: () -> Unit

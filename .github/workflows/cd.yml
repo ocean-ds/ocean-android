@@ -17,6 +17,13 @@ jobs:
           # We need to fetch all tags and branches
           fetch-depth: 0
 
+      - name: Set up Java 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'oracle'
+          java-version: '17'
+          cache: 'gradle'
+
       - name: Set git identity
         run: |
           git config --global user.name "Blu Release Bot"

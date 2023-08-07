@@ -32,10 +32,13 @@ jobs:
       - name: Update Tokens
         run: cd scripts && ./update_tokens.sh
 
-      - name: Increment Version
+      - name: Set new version variable
         run: |
           LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/ocean-tokens version`
-          sed -i-e "/VERSION_NAME=/ s/=.*/=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER/g" "ocean-components/version.properties"
+          echo "OCEAN_VERSION=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER >> $GITHUB_ENV
+
+      - name: Increment Version
+        run: sed -i-e "/VERSION_NAME=/ s/=.*/=$OCEAN_VERSION/g" "ocean-components/version.properties"
 
       - name: Command Update Branch
         run: git pull
@@ -44,7 +47,13 @@ jobs:
         run: |
           LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/ocean-tokens version`
           git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM [skip ci]" && git push
-          git tag -a "OceanComponents-$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER" -m "Release of version $LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER" && git push --tags
+          git tag -a "OceanComponents-$OCEAN_VERSION" -m "Release of version $OCEAN_VERSION" && git push --tags
+
+      - name: Create Release Notes
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          generateReleaseNotes: true
+          tag: OceanComponents-$OCEAN_VERSION
 
       - name: Publish new version lib
         run: ./gradlew clean assembleRelease publish

@@ -3,7 +3,7 @@ name: Github Releases
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 jobs:
   build:

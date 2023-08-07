@@ -53,7 +53,7 @@ jobs:
         uses: ncipollo/release-action@v1.12.0
         with:
           generateReleaseNotes: true
-          tag: OceanComponents-$OCEAN_VERSION
+          tag: ${{ env.OCEAN_VERSION }}
 
       - name: Publish new version lib
         run: ./gradlew clean assembleRelease publish

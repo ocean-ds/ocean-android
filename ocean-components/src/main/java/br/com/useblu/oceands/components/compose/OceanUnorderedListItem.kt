@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -48,7 +49,8 @@ fun OceanUnorderedList(
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
-        modifier = modifier
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(models) {item ->
             OceanUnorderedListItem(item)
@@ -74,7 +76,10 @@ fun OceanUnorderedListItem(
     showIconBackground: Boolean = false
 ) {
     Row(
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier.padding(
+            horizontal = 16.dp,
+            vertical = 4.dp
+        )
     ) {
         val iconSize = if (showIconBackground) 16.dp else 24.dp
 

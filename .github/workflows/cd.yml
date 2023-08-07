@@ -35,7 +35,7 @@ jobs:
       - name: Set new version variable
         run: |
           LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/ocean-tokens version`
-          echo "OCEAN_VERSION=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER >> $GITHUB_ENV
+          echo "OCEAN_VERSION=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
 
       - name: Increment Version
         run: sed -i-e "/VERSION_NAME=/ s/=.*/=$OCEAN_VERSION/g" "ocean-components/version.properties"

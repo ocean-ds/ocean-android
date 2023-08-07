@@ -1840,7 +1840,7 @@ fun String.toOceanIcon() = when (this.lowercase()) {
     }
 
     "xsolid" -> {
-        R.drawable.ocean_icon_x_circle_solid
+        R.drawable.ocean_icon_x_solid
     }
 
     "zoominoutline" -> {

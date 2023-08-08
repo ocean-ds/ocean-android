@@ -113,12 +113,9 @@ fun OceanBottomNavigation(
     selectedIndex: Int,
     models: List<OceanBottomNavigationModel>
 ) {
-    println("${models.hashCode()} ${models.size}")
-
     val density = LocalDensity.current
 
     val childrenWidths = remember(models) {
-        println("childrenWidths reset ${models.hashCode()}")
         mutableStateListOf<Int>()
     }
 
@@ -189,7 +186,6 @@ fun OceanBottomNavigation(
                         .weight(1f)
                         .onSizeChanged {
                             childrenWidths.add(it.width)
-                            println("onSizeChanged $index - ${it.width} - ${childrenWidths.size}")
                         }
                         .clickable(
                             interactionSource = remember { MutableInteractionSource() },

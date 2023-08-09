@@ -34,19 +34,23 @@ fun OceanSnackBarPreview() {
             modifier = Modifier.weight(1f)
         ) {
             OceanSnackBar(
-                type = OceanSnackBarType.Information
+                type = OceanSnackBarType.Information,
+                text = "Text 1"
             )
 
             OceanSnackBar(
-                type = OceanSnackBarType.Positive
+                type = OceanSnackBarType.Positive,
+                text = "Text 2"
             )
 
             OceanSnackBar(
-                type = OceanSnackBarType.Warning
+                type = OceanSnackBarType.Warning,
+                text = "Text 3"
             )
 
             OceanSnackBar(
-                type = OceanSnackBarType.Negative
+                type = OceanSnackBarType.Negative,
+                text = "Text 4"
             )
         }
         Column(
@@ -55,6 +59,7 @@ fun OceanSnackBarPreview() {
         ) {
             OceanSnackBar(
                 type = OceanSnackBarType.Information,
+                text = "Text 1",
                 action = {
                     println("Action")
                 },
@@ -66,7 +71,8 @@ fun OceanSnackBarPreview() {
                 action = {
                     println("Action")
                 },
-                actionText = "Action"
+                actionText = "Action",
+                text = "Text 2"
             )
 
             OceanSnackBar(
@@ -74,7 +80,8 @@ fun OceanSnackBarPreview() {
                 action = {
                     println("Action")
                 },
-                actionText = "Action"
+                actionText = "Action",
+                text = "Text 3"
             )
 
             OceanSnackBar(
@@ -82,7 +89,8 @@ fun OceanSnackBarPreview() {
                 action = {
                     println("Action")
                 },
-                actionText = "Action"
+                actionText = "Action",
+                text = "Text 4"
             )
         }
     }
@@ -91,6 +99,7 @@ fun OceanSnackBarPreview() {
 @Composable
 fun OceanSnackBar(
     type: OceanSnackBarType,
+    text: String,
     action: (() -> Unit)? = null,
     actionText: String? = null
 ) {
@@ -122,7 +131,7 @@ fun OceanSnackBar(
             OceanSpacing.StackXS()
 
             Text(
-                text = "Text",
+                text = text,
                 fontFamily = OceanFontFamily.BaseRegular,
                 fontSize = 14.sp,
                 color = OceanColors.interfaceLightPure

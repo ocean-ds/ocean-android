@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.utils
 
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.model.OceanIconType
 
 fun String.toOceanIcon() = when (this.lowercase()) {
     "appareloutline" -> {
@@ -203,7 +204,7 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         R.drawable.ocean_icon_bell_solid
     }
 
-    "bmsoutline" ->{
+    "bmsoutline" -> {
         R.drawable.ocean_icon_bms_outline
     }
 
@@ -320,7 +321,7 @@ fun String.toOceanIcon() = when (this.lowercase()) {
     }
 
     "chataltoutline" -> {
-        R.drawable.ocean_icon_chat_alt_2_outline
+        R.drawable.ocean_icon_chat_alt_outline
     }
 
     "chataltsolid" -> {
@@ -2155,3 +2156,2120 @@ fun String.toOceanIcon() = when (this.lowercase()) {
         null
     }
 }
+
+fun OceanIconType.toOceanIcon() = when (this) {
+    OceanIconType.APPAREL_OUTLINE -> {
+        R.drawable.ocean_icon_apparel_outline
+    }
+
+    OceanIconType.APPLIANCES_OUTLINE -> {
+        R.drawable.ocean_icon_appliances_outline
+    }
+
+    OceanIconType.ARROW_RIGHT_UP_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_right_up_outline
+    }
+
+    OceanIconType.BACKGROUND_OUTLINE -> {
+        R.drawable.ocean_icon_background_outline
+    }
+
+    OceanIconType.ACADEMIC_CAP_OUTLINE -> {
+        R.drawable.ocean_icon_academic_cap_outline
+    }
+
+    OceanIconType.ACADEMIC_CAP_SOLID -> {
+        R.drawable.ocean_icon_academic_cap_solid
+    }
+
+    OceanIconType.ADJUSTMENTS_OUTLINE -> {
+        R.drawable.ocean_icon_adjustments_outline
+    }
+
+    OceanIconType.ADJUSTMENTS_SOLID -> {
+        R.drawable.ocean_icon_adjustments_solid
+    }
+
+    OceanIconType.ANNOTATION_OUTLINE -> {
+        R.drawable.ocean_icon_annotation_outline
+    }
+
+    OceanIconType.ANNOTATION_SOLID -> {
+        R.drawable.ocean_icon_annotation_solid
+    }
+
+    OceanIconType.ARCHIVE_OUTLINE -> {
+        R.drawable.ocean_icon_archive_outline
+    }
+
+    OceanIconType.ARCHIVE_SOLID -> {
+        R.drawable.ocean_icon_archive_solid
+    }
+
+    OceanIconType.ARROW_CIRCLE_DOWN_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_circle_down_outline
+    }
+
+    OceanIconType.ARROW_CIRCLE_DOWN_SOLID -> {
+        R.drawable.ocean_icon_arrow_circle_down_solid
+    }
+
+    OceanIconType.ARROW_CIRCLE_LEFT_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_circle_left_outline
+    }
+
+    OceanIconType.ARROW_CIRCLE_LEFT_SOLID -> {
+        R.drawable.ocean_icon_arrow_circle_left_solid
+    }
+
+    OceanIconType.ARROW_CIRCLE_RIGHT_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_circle_right_outline
+    }
+
+    OceanIconType.ARROW_CIRCLE_RIGHT_SOLID -> {
+        R.drawable.ocean_icon_arrow_circle_right_solid
+    }
+
+    OceanIconType.ARROW_CIRCLE_UP_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_circle_up_outline
+    }
+
+    OceanIconType.ARROW_CIRCLE_UP_SOLID -> {
+        R.drawable.ocean_icon_arrow_circle_up_solid
+    }
+
+    OceanIconType.ARROW_DOWN_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_down_outline
+    }
+
+    OceanIconType.ARROW_DOWN_SOLID -> {
+        R.drawable.ocean_icon_arrow_down_solid
+    }
+
+    OceanIconType.ARROW_LEFT_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_left_outline
+    }
+
+    OceanIconType.ARROW_LEFT_SOLID -> {
+        R.drawable.ocean_icon_arrow_left_solid
+    }
+
+    OceanIconType.ARROW_NARROW_DOWN_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_narrow_down_outline
+    }
+
+    OceanIconType.ARROW_NARROW_DOWN_SOLID -> {
+        R.drawable.ocean_icon_arrow_narrow_down_solid
+    }
+
+    OceanIconType.ARROW_NARROW_LEFT_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_narrow_left_outline
+    }
+
+    OceanIconType.ARROW_NARROW_LEFT_SOLID -> {
+        R.drawable.ocean_icon_arrow_narrow_left_solid
+    }
+
+    OceanIconType.ARROW_NARROW_RIGHT_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_narrow_right_outline
+    }
+
+    OceanIconType.ARROW_NARROW_RIGHT_SOLID -> {
+        R.drawable.ocean_icon_arrow_narrow_right_solid
+    }
+
+    OceanIconType.ARROW_NARROW_UP_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_narrow_up_outline
+    }
+
+    OceanIconType.ARROW_NARROW_UP_SOLID -> {
+        R.drawable.ocean_icon_arrow_narrow_up_solid
+    }
+
+    OceanIconType.ARROW_RIGHT_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_right_outline
+    }
+
+    OceanIconType.ARROW_RIGHT_SOLID -> {
+        R.drawable.ocean_icon_arrow_right_solid
+    }
+
+    OceanIconType.ARROW_UP_OUTLINE -> {
+        R.drawable.ocean_icon_arrow_up_outline
+    }
+
+    OceanIconType.ARROW_UP_SOLID -> {
+        R.drawable.ocean_icon_arrow_up_solid
+    }
+
+    OceanIconType.ARROWS_EXPAND_OUTLINE -> {
+        R.drawable.ocean_icon_arrows_expand_outline
+    }
+
+    OceanIconType.ARROWS_EXPAND_SOLID -> {
+        R.drawable.ocean_icon_arrows_expand_solid
+    }
+
+    OceanIconType.AT_SYMBOL_SOLID -> {
+        R.drawable.ocean_icon_at_symbol_solid
+    }
+
+    OceanIconType.AT_SYMBOL_OUTLINE -> {
+        R.drawable.ocean_icon_at_symbol_outline
+    }
+
+    OceanIconType.BACKSPACE_OUTLINE -> {
+        R.drawable.ocean_icon_backspace_outline
+    }
+
+    OceanIconType.BACKSPACE_SOLID -> {
+        R.drawable.ocean_icon_backspace_solid
+    }
+
+    OceanIconType.BADGE_CHECK_OUTLINE -> {
+        R.drawable.ocean_icon_badge_check_outline
+    }
+
+    OceanIconType.BADGE_CHECK_SOLID -> {
+        R.drawable.ocean_icon_badge_check_solid
+    }
+
+    OceanIconType.BAN_OUTLINE -> {
+        R.drawable.ocean_icon_ban_outline
+    }
+
+    OceanIconType.BAN_SOLID -> {
+        R.drawable.ocean_icon_ban_solid
+    }
+
+    OceanIconType.BEAKER_OUTLINE -> {
+        R.drawable.ocean_icon_beaker_outline
+    }
+
+    OceanIconType.BEAKER_SOLID -> {
+        R.drawable.ocean_icon_beaker_solid
+    }
+
+    OceanIconType.BELL_OUTLINE -> {
+        R.drawable.ocean_icon_bell_outline
+    }
+
+    OceanIconType.BELL_SOLID -> {
+        R.drawable.ocean_icon_bell_solid
+    }
+
+    OceanIconType.BMS_OUTLINE -> {
+        R.drawable.ocean_icon_bms_outline
+    }
+
+    OceanIconType.BOOK_OPEN_OUTLINE -> {
+        R.drawable.ocean_icon_book_open_outline
+    }
+
+    OceanIconType.BOOK_OPEN_SOLID -> {
+        R.drawable.ocean_icon_book_open_solid
+    }
+
+    OceanIconType.BOOKMARK_ALT_OUTLINE -> {
+        R.drawable.ocean_icon_bookmark_alt_outline
+    }
+
+    OceanIconType.BOOKMARK_ALT_SOLID -> {
+        R.drawable.ocean_icon_bookmark_alt_solid
+    }
+
+    OceanIconType.BOOKMARK_OUTLINE -> {
+        R.drawable.ocean_icon_bookmark_outline
+    }
+
+    OceanIconType.BOOKMARK_SOLID -> {
+        R.drawable.ocean_icon_bookmark_solid
+    }
+
+    OceanIconType.BRIEFCASE_OUTLINE -> {
+        R.drawable.ocean_icon_briefcase_outline
+    }
+
+    OceanIconType.BRIEFCASE_SOLID -> {
+        R.drawable.ocean_icon_briefcase_solid
+    }
+
+    OceanIconType.CAKE_OUTLINE -> {
+        R.drawable.ocean_icon_cake_outline
+    }
+
+    OceanIconType.CAKE_SOLID -> {
+        R.drawable.ocean_icon_cake_solid
+    }
+
+    OceanIconType.CALCULATOR_OUTLINE -> {
+        R.drawable.ocean_icon_calculator_outline
+    }
+
+    OceanIconType.CALCULATOR_SOLID -> {
+        R.drawable.ocean_icon_calculator_solid
+    }
+
+    OceanIconType.CALENDAR_OUTLINE -> {
+        R.drawable.ocean_icon_calendar_outline
+    }
+
+    OceanIconType.CALENDAR_SOLID -> {
+        R.drawable.ocean_icon_calendar_solid
+    }
+
+    OceanIconType.CAMERA_OUTLINE -> {
+        R.drawable.ocean_icon_camera_outline
+    }
+
+    OceanIconType.CAMERA_SOLID -> {
+        R.drawable.ocean_icon_camera_solid
+    }
+
+    OceanIconType.CASH_OUTLINE -> {
+        R.drawable.ocean_icon_cash_outline
+    }
+
+    OceanIconType.CASH_SOLID -> {
+        R.drawable.ocean_icon_cash_solid
+    }
+
+    OceanIconType.CHARGE_OUTLINE -> {
+        R.drawable.ocean_icon_charge_outline
+    }
+
+    OceanIconType.CHARGE_SOLID -> {
+        R.drawable.ocean_icon_charge_solid
+    }
+
+    OceanIconType.CHART_BAR_OUTLINE -> {
+        R.drawable.ocean_icon_chart_bar_outline
+    }
+
+    OceanIconType.CHART_BAR_SOLID -> {
+        R.drawable.ocean_icon_chart_bar_solid
+    }
+
+    OceanIconType.CHART_PIE_OUTLINE -> {
+        R.drawable.ocean_icon_chart_pie_outline
+    }
+
+    OceanIconType.CHART_PIE_SOLID -> {
+        R.drawable.ocean_icon_chart_pie_solid
+    }
+
+    OceanIconType.CHART_SQUARE_BAR_OUTLINE -> {
+        R.drawable.ocean_icon_chart_square_bar_outline
+    }
+
+    OceanIconType.CHART_SQUARE_BAR_SOLID -> {
+        R.drawable.ocean_icon_chart_square_bar_solid
+    }
+
+    OceanIconType.CHAT_ALT_TWO_OUTLINE -> {
+        R.drawable.ocean_icon_chat_alt_2_outline
+    }
+
+    OceanIconType.CHAT_ALT_TWO_SOLID -> {
+        R.drawable.ocean_icon_chat_alt_2_solid
+    }
+
+    OceanIconType.CHAT_ALT_OUTLINE -> {
+        R.drawable.ocean_icon_chat_alt_outline
+    }
+
+    OceanIconType.CHAT_ALT_SOLID -> {
+        R.drawable.ocean_icon_chat_alt_solid
+    }
+
+    OceanIconType.CHAT_OUTLINE -> {
+        R.drawable.ocean_icon_chat_outline
+    }
+
+    OceanIconType.CHAT_SOLID -> {
+        R.drawable.ocean_icon_chat_solid
+    }
+
+    OceanIconType.CHECK_CIRCLE_OUTLINE -> {
+        R.drawable.ocean_icon_check_circle_outline
+    }
+
+    OceanIconType.CHECK_CIRCLE_SOLID -> {
+        R.drawable.ocean_icon_check_circle_solid
+    }
+
+    OceanIconType.CHECK_OUTLINE -> {
+        R.drawable.ocean_icon_check_outline
+    }
+
+    OceanIconType.CHECK_SOLID -> {
+        R.drawable.ocean_icon_check_solid
+    }
+
+    OceanIconType.CHEVRON_DOUBLE_DOWN_OUTLINE -> {
+        R.drawable.ocean_icon_chevron_double_down_outline
+    }
+
+    OceanIconType.CHEVRON_DOUBLE_DOWN_SOLID -> {
+        R.drawable.ocean_icon_chevron_double_down_solid
+    }
+
+    OceanIconType.CHEVRON_DOUBLE_LEFT_OUTLINE -> {
+        R.drawable.ocean_icon_chevron_double_left_outline
+    }
+
+    OceanIconType.CHEVRON_DOUBLE_LEFT_SOLID -> {
+        R.drawable.ocean_icon_chevron_double_left_solid
+    }
+
+    OceanIconType.CHEVRON_DOUBLE_RIGHT_OUTLINE -> {
+        R.drawable.ocean_icon_chevron_double_right_outline
+    }
+
+    OceanIconType.CHEVRON_DOUBLE_RIGHT_SOLID -> {
+        R.drawable.ocean_icon_chevron_double_right_solid
+    }
+
+    OceanIconType.CHEVRON_DOUBLE_UP_OUTLINE -> {
+        R.drawable.ocean_icon_chevron_double_up_outline
+    }
+
+    OceanIconType.CHEVRON_DOUBLE_UP_SOLID -> {
+        R.drawable.ocean_icon_chevron_double_up_solid
+    }
+
+    OceanIconType.CHEVRON_DOWN_OUTLINE -> {
+        R.drawable.ocean_icon_chevron_down_outline
+    }
+
+    OceanIconType.CHEVRON_DOWN_SOLID -> {
+        R.drawable.ocean_icon_chevron_down_solid
+    }
+
+    OceanIconType.CHEVRON_LEFT_OUTLINE -> {
+        R.drawable.ocean_icon_chevron_left_outline
+    }
+
+    OceanIconType.CHEVRON_LEFT_SOLID -> {
+        R.drawable.ocean_icon_chevron_left_solid
+    }
+
+    OceanIconType.CHEVRON_RIGHT_OUTLINE -> {
+        R.drawable.ocean_icon_chevron_right_outline
+    }
+
+    OceanIconType.CHEVRON_RIGHT_SOLID -> {
+        R.drawable.ocean_icon_chevron_right_solid
+    }
+
+    OceanIconType.CHEVRON_UP_OUTLINE -> {
+        R.drawable.ocean_icon_chevron_up_outline
+    }
+
+    OceanIconType.CHEVRON_UP_SOLID -> {
+        R.drawable.ocean_icon_chevron_up_solid
+    }
+
+    OceanIconType.CHIP_OUTLINE -> {
+        R.drawable.ocean_icon_chip_outline
+    }
+
+    OceanIconType.CHIP_SOLID -> {
+        R.drawable.ocean_icon_chip_solid
+    }
+
+    OceanIconType.CLIPBOARD_CHECK_OUTLINE -> {
+        R.drawable.ocean_icon_clipboard_check_outline
+    }
+
+    OceanIconType.CLIPBOARD_CHECK_SOLID -> {
+        R.drawable.ocean_icon_clipboard_check_solid
+    }
+
+    OceanIconType.CLIPBOARD_COPY_OUTLINE -> {
+        R.drawable.ocean_icon_clipboard_copy_outline
+    }
+
+    OceanIconType.CLIPBOARD_COPY_SOLID -> {
+        R.drawable.ocean_icon_clipboard_copy_solid
+    }
+
+    OceanIconType.CLIPBOARD_LIST_OUTLINE -> {
+        R.drawable.ocean_icon_clipboard_list_outline
+    }
+
+    OceanIconType.CLIPBOARD_LIST_SOLID -> {
+        R.drawable.ocean_icon_clipboard_list_solid
+    }
+
+    OceanIconType.CLIPBOARD_OUTLINE -> {
+        R.drawable.ocean_icon_clipboard_outline
+    }
+
+    OceanIconType.CLIPBOARD_SOLID -> {
+        R.drawable.ocean_icon_clipboard_solid
+    }
+
+    OceanIconType.CLOCK_OUTLINE -> {
+        R.drawable.ocean_icon_clock_outline
+    }
+
+    OceanIconType.CLOCK_SOLID -> {
+        R.drawable.ocean_icon_clock_solid
+    }
+
+    OceanIconType.CLOUD_DOWNLOAD_OUTLINE -> {
+        R.drawable.ocean_icon_cloud_download_outline
+    }
+
+    OceanIconType.CLOUD_DOWNLOAD_SOLID -> {
+        R.drawable.ocean_icon_cloud_download_solid
+    }
+
+    OceanIconType.CLOUD_OUTLINE -> {
+        R.drawable.ocean_icon_cloud_outline
+    }
+
+    OceanIconType.CLOUD_SOLID -> {
+        R.drawable.ocean_icon_cloud_solid
+    }
+
+    OceanIconType.CLOUD_UPLOAD_OUTLINE -> {
+        R.drawable.ocean_icon_cloud_upload_outline
+    }
+
+    OceanIconType.CLOUD_UPLOAD_SOLID -> {
+        R.drawable.ocean_icon_cloud_upload_solid
+    }
+
+    OceanIconType.CODE_OUTLINE -> {
+        R.drawable.ocean_icon_code_outline
+    }
+
+    OceanIconType.CODE_SOLID -> {
+        R.drawable.ocean_icon_code_solid
+    }
+
+    OceanIconType.COG_OUTLINE -> {
+        R.drawable.ocean_icon_cog_outline
+    }
+
+    OceanIconType.COG_SOLID -> {
+        R.drawable.ocean_icon_cog_solid
+    }
+
+    OceanIconType.COLLECTION_OUTLINE -> {
+        R.drawable.ocean_icon_collection_outline
+    }
+
+    OceanIconType.COLLECTION_SOLID -> {
+        R.drawable.ocean_icon_collection_solid
+    }
+
+    OceanIconType.COLOR_SWATCH_OUTLINE -> {
+        R.drawable.ocean_icon_color_swatch_outline
+    }
+
+    OceanIconType.COLOR_SWATCH_SOLID -> {
+        R.drawable.ocean_icon_color_swatch_solid
+    }
+
+    OceanIconType.CREDIT_CARD_OUTLINE -> {
+        R.drawable.ocean_icon_credit_card_outline
+    }
+
+    OceanIconType.CREDIT_CARD_SOLID -> {
+        R.drawable.ocean_icon_credit_card_solid
+    }
+
+    OceanIconType.CUBE_OUTLINE -> {
+        R.drawable.ocean_icon_cube_outline
+    }
+
+    OceanIconType.CUBE_SOLID -> {
+        R.drawable.ocean_icon_cube_solid
+    }
+
+    OceanIconType.CUBE_TRANSPARENT_OUTLINE -> {
+        R.drawable.ocean_icon_cube_transparent_outline
+    }
+
+    OceanIconType.CUBE_TRANSPARENT_SOLID -> {
+        R.drawable.ocean_icon_cube_transparent_solid
+    }
+
+    OceanIconType.CURRENCY_BANGLADESHI_OUTLINE -> {
+        R.drawable.ocean_icon_currency_bangladeshi_outline
+    }
+
+    OceanIconType.CURRENCY_BANGLADESHI_SOLID -> {
+        R.drawable.ocean_icon_currency_bangladeshi_solid
+    }
+
+    OceanIconType.CURRENCY_DOLLAR_OUTLINE -> {
+        R.drawable.ocean_icon_currency_dollar_outline
+    }
+
+    OceanIconType.CURRENCY_DOLLAR_SOLID -> {
+        R.drawable.ocean_icon_currency_dollar_solid
+    }
+
+    OceanIconType.CURRENCY_EURO_OUTLINE -> {
+        R.drawable.ocean_icon_currency_euro_outline
+    }
+
+    OceanIconType.CURRENCY_EURO_SOLID -> {
+        R.drawable.ocean_icon_currency_euro_solid
+    }
+
+    OceanIconType.CURRENCY_POUND_OUTLINE -> {
+        R.drawable.ocean_icon_currency_pound_outline
+    }
+
+    OceanIconType.CURRENCY_POUND_SOLID -> {
+        R.drawable.ocean_icon_currency_pound_solid
+    }
+
+    OceanIconType.CURRENCY_RUPEE_OUTLINE -> {
+        R.drawable.ocean_icon_currency_rupee_outline
+    }
+
+    OceanIconType.CURRENCY_RUPEE_SOLID -> {
+        R.drawable.ocean_icon_currency_rupee_solid
+    }
+
+    OceanIconType.CURRENCY_YEN_OUTLINE -> {
+        R.drawable.ocean_icon_currency_yen_outline
+    }
+
+    OceanIconType.CURRENCY_YEN_SOLID -> {
+        R.drawable.ocean_icon_currency_yen_solid
+    }
+
+    OceanIconType.CURSOR_CLICK_OUTLINE -> {
+        R.drawable.ocean_icon_cursor_click_outline
+    }
+
+    OceanIconType.CURSOR_CLICK_SOLID -> {
+        R.drawable.ocean_icon_cursor_click_solid
+    }
+
+    OceanIconType.DATABASE_OUTLINE -> {
+        R.drawable.ocean_icon_database_outline
+    }
+
+    OceanIconType.DATABASE_SOLID -> {
+        R.drawable.ocean_icon_database_solid
+    }
+
+    OceanIconType.DESKTOP_COMPUTER_OUTLINE -> {
+        R.drawable.ocean_icon_desktop_computer_outline
+    }
+
+    OceanIconType.DESKTOP_COMPUTER_SOLID -> {
+        R.drawable.ocean_icon_desktop_computer_solid
+    }
+
+    OceanIconType.DEVICE_MOBILE_OUTLINE -> {
+        R.drawable.ocean_icon_device_mobile_outline
+    }
+
+    OceanIconType.DEVICE_MOBILE_SOLID -> {
+        R.drawable.ocean_icon_device_mobile_solid
+    }
+
+    OceanIconType.DEVICE_TABLET_OUTLINE -> {
+        R.drawable.ocean_icon_device_tablet_outline
+    }
+
+    OceanIconType.DEVICE_TABLET_SOLID -> {
+        R.drawable.ocean_icon_device_tablet_solid
+    }
+
+    OceanIconType.DOCUMENT_ADD_OUTLINE -> {
+        R.drawable.ocean_icon_document_add_outline
+    }
+
+    OceanIconType.DOCUMENT_ADD_SOLID -> {
+        R.drawable.ocean_icon_document_add_solid
+    }
+
+    OceanIconType.DOCUMENT_DOWNLOAD_OUTLINE -> {
+        R.drawable.ocean_icon_document_download_outline
+    }
+
+    OceanIconType.DOCUMENT_DOWNLOAD_SOLID -> {
+        R.drawable.ocean_icon_document_download_solid
+    }
+
+    OceanIconType.DOCUMENT_DUPLICATE_OUTLINE -> {
+        R.drawable.ocean_icon_document_duplicate_outline
+    }
+
+    OceanIconType.DOCUMENT_DUPLICATE_SOLID -> {
+        R.drawable.ocean_icon_document_duplicate_solid
+    }
+
+    OceanIconType.DOCUMENT_OUTLINE -> {
+        R.drawable.ocean_icon_document_outline
+    }
+
+    OceanIconType.DOCUMENT_REMOVE_OUTLINE -> {
+        R.drawable.ocean_icon_document_remove_outline
+    }
+
+    OceanIconType.DOCUMENT_REMOVE_SOLID -> {
+        R.drawable.ocean_icon_document_remove_solid
+    }
+
+    OceanIconType.DOCUMENT_REPORT_OUTLINE -> {
+        R.drawable.ocean_icon_document_report_outline
+    }
+
+    OceanIconType.DOCUMENT_REPORT_SOLID -> {
+        R.drawable.ocean_icon_document_report_solid
+    }
+
+    OceanIconType.DOCUMENT_SEARCH_OUTLINE -> {
+        R.drawable.ocean_icon_document_search_outline
+    }
+
+    OceanIconType.DOCUMENT_SEARCH_SOLID -> {
+        R.drawable.ocean_icon_document_search_solid
+    }
+
+    OceanIconType.DOCUMENT_SOLID -> {
+        R.drawable.ocean_icon_document_solid
+    }
+
+    OceanIconType.DOCUMENT_TEXT_OUTLINE -> {
+        R.drawable.ocean_icon_document_text_outline
+    }
+
+    OceanIconType.DOCUMENT_TEXT_SOLID -> {
+        R.drawable.ocean_icon_document_text_solid
+    }
+
+    OceanIconType.DOTS_CIRCLE_HORIZONTAL_OUTLINE -> {
+        R.drawable.ocean_icon_dots_circle_horizontal_outline
+    }
+
+    OceanIconType.DOTS_CIRCLE_HORIZONTAL_SOLID -> {
+        R.drawable.ocean_icon_dots_circle_horizontal_solid
+    }
+
+    OceanIconType.DOTS_HORIZONTAL_OUTLINE -> {
+        R.drawable.ocean_icon_dots_horizontal_outline
+    }
+
+    OceanIconType.DOTS_HORIZONTAL_SOLID -> {
+        R.drawable.ocean_icon_dots_horizontal_solid
+    }
+
+    OceanIconType.DOTS_VERTICAL_OUTLINE -> {
+        R.drawable.ocean_icon_dots_vertical_outline
+    }
+
+    OceanIconType.DOTS_VERTICAL_SOLID -> {
+        R.drawable.ocean_icon_dots_vertical_solid
+    }
+
+    OceanIconType.DOWNLOAD_OUTLINE -> {
+        R.drawable.ocean_icon_download_outline
+    }
+
+    OceanIconType.DOWNLOAD_SOLID -> {
+        R.drawable.ocean_icon_download_solid
+    }
+
+    OceanIconType.DUPLICATE_OUTLINE -> {
+        R.drawable.ocean_icon_duplicate_outline
+    }
+
+    OceanIconType.DUPLICATE_SOLID -> {
+        R.drawable.ocean_icon_duplicate_solid
+    }
+
+    OceanIconType.EMOJI_HAPPY_OUTLINE -> {
+        R.drawable.ocean_icon_emoji_happy_outline
+    }
+
+    OceanIconType.EMOJI_HAPPY_SOLID -> {
+        R.drawable.ocean_icon_emoji_happy_solid
+    }
+
+    OceanIconType.EMOJI_SAD_OUTLINE -> {
+        R.drawable.ocean_icon_emoji_sad_outline
+    }
+
+    OceanIconType.EMOJI_SAD_SOLID -> {
+        R.drawable.ocean_icon_emoji_sad_solid
+    }
+
+    OceanIconType.EXCLAMATION_CIRCLE_OUTLINE -> {
+        R.drawable.ocean_icon_exclamation_circle_outline
+    }
+
+    OceanIconType.EXCLAMATION_CIRCLE_SOLID -> {
+        R.drawable.ocean_icon_exclamation_circle_solid
+    }
+
+    OceanIconType.EXCLAMATION_OUTLINE -> {
+        R.drawable.ocean_icon_exclamation_outline
+    }
+
+    OceanIconType.EXCLAMATION_SOLID -> {
+        R.drawable.ocean_icon_exclamation_solid
+    }
+
+    OceanIconType.EXTERNAL_LINK_OUTLINE -> {
+        R.drawable.ocean_icon_external_link_outline
+    }
+
+    OceanIconType.EXTERNAL_LINK_SOLID -> {
+        R.drawable.ocean_icon_external_link_solid
+    }
+
+    OceanIconType.EYE_OFF_OUTLINE -> {
+        R.drawable.ocean_icon_eye_off_outline
+    }
+
+    OceanIconType.EYE_OFF_SOLID -> {
+        R.drawable.ocean_icon_eye_off_solid
+    }
+
+    OceanIconType.EYE_OUTLINE -> {
+        R.drawable.ocean_icon_eye_outline
+    }
+
+    OceanIconType.EYE_SOLID -> {
+        R.drawable.ocean_icon_eye_solid
+    }
+
+    OceanIconType.FAST_FORWARD_OUTLINE -> {
+        R.drawable.ocean_icon_fast_forward_outline
+    }
+
+    OceanIconType.FAST_FORWARD_SOLID -> {
+        R.drawable.ocean_icon_fast_forward_solid
+    }
+
+    OceanIconType.FILM_OUTLINE -> {
+        R.drawable.ocean_icon_film_outline
+    }
+
+    OceanIconType.FILM_SOLID -> {
+        R.drawable.ocean_icon_film_solid
+    }
+
+    OceanIconType.FILTER_OUTLINE -> {
+        R.drawable.ocean_icon_filter_outline
+    }
+
+    OceanIconType.FILTER_SOLID -> {
+        R.drawable.ocean_icon_filter_solid
+    }
+
+    OceanIconType.FINGERPRINT_OUTLINE -> {
+        R.drawable.ocean_icon_finger_print_outline
+    }
+
+    OceanIconType.FINGERPRINT_SOLID -> {
+        R.drawable.ocean_icon_finger_print_solid
+    }
+
+    OceanIconType.FIRE_OUTLINE -> {
+        R.drawable.ocean_icon_fire_outline
+    }
+
+    OceanIconType.FIRE_SOLID -> {
+        R.drawable.ocean_icon_fire_solid
+    }
+
+    OceanIconType.FLAG_OUTLINE -> {
+        R.drawable.ocean_icon_flag_outline
+    }
+
+    OceanIconType.FLAG_SOLID -> {
+        R.drawable.ocean_icon_flag_solid
+    }
+
+    OceanIconType.FOLDER_ADD_OUTLINE -> {
+        R.drawable.ocean_icon_folder_add_outline
+    }
+
+    OceanIconType.FOLDER_ADD_SOLID -> {
+        R.drawable.ocean_icon_folder_add_solid
+    }
+
+    OceanIconType.FOLDER_DOWNLOAD_OUTLINE -> {
+        R.drawable.ocean_icon_folder_download_outline
+    }
+
+    OceanIconType.FOLDER_DOWNLOAD_SOLID -> {
+        R.drawable.ocean_icon_folder_download_solid
+    }
+
+    OceanIconType.FOLDER_OPEN_OUTLINE -> {
+        R.drawable.ocean_icon_folder_open_outline
+    }
+
+    OceanIconType.FOLDER_OPEN_SOLID -> {
+        R.drawable.ocean_icon_folder_open_solid
+    }
+
+    OceanIconType.FOLDER_OUTLINE -> {
+        R.drawable.ocean_icon_folder_outline
+    }
+
+    OceanIconType.FOLDER_REMOVE_OUTLINE -> {
+        R.drawable.ocean_icon_folder_remove_outline
+    }
+
+    OceanIconType.FOLDER_REMOVE_SOLID -> {
+        R.drawable.ocean_icon_folder_remove_solid
+    }
+
+    OceanIconType.FOLDER_SOLID -> {
+        R.drawable.ocean_icon_folder_solid
+    }
+
+    OceanIconType.GIFT_OUTLINE -> {
+        R.drawable.ocean_icon_gift_outline
+    }
+
+    OceanIconType.GIFT_SOLID -> {
+        R.drawable.ocean_icon_gift_solid
+    }
+
+    OceanIconType.GLOBE_ALT_OUTLINE -> {
+        R.drawable.ocean_icon_globe_alt_outline
+    }
+
+    OceanIconType.GLOBE_ALT_SOLID -> {
+        R.drawable.ocean_icon_globe_alt_solid
+    }
+
+    OceanIconType.GLOBE_OUTLINE -> {
+        R.drawable.ocean_icon_globe_outline
+    }
+
+    OceanIconType.GLOBE_SOLID -> {
+        R.drawable.ocean_icon_globe_solid
+    }
+
+    OceanIconType.HAND_OUTLINE -> {
+        R.drawable.ocean_icon_hand_outline
+    }
+
+    OceanIconType.HAND_SOLID -> {
+        R.drawable.ocean_icon_hand_solid
+    }
+
+    OceanIconType.HASHTAG_OUTLINE -> {
+        R.drawable.ocean_icon_hashtag_outline
+    }
+
+    OceanIconType.HASHTAG_SOLID -> {
+        R.drawable.ocean_icon_hashtag_solid
+    }
+
+    OceanIconType.HEART_OUTLINE -> {
+        R.drawable.ocean_icon_heart_outline
+    }
+
+    OceanIconType.HEART_SOLID -> {
+        R.drawable.ocean_icon_heart_solid
+    }
+
+    OceanIconType.HOME_OUTLINE -> {
+        R.drawable.ocean_icon_home_outline
+    }
+
+    OceanIconType.HOME_SOLID -> {
+        R.drawable.ocean_icon_home_solid
+    }
+
+    OceanIconType.IDENTIFICATION_OUTLINE -> {
+        R.drawable.ocean_icon_identification_outline
+    }
+
+    OceanIconType.IDENTIFICATION_SOLID -> {
+        R.drawable.ocean_icon_identification_solid
+    }
+
+    OceanIconType.INBOX_IN_OUTLINE -> {
+        R.drawable.ocean_icon_inbox_in_outline
+    }
+
+    OceanIconType.INBOX_IN_SOLID -> {
+        R.drawable.ocean_icon_inbox_in_solid
+    }
+
+    OceanIconType.INBOX_OUTLINE -> {
+        R.drawable.ocean_icon_inbox_outline
+    }
+
+    OceanIconType.INBOX_SOLID -> {
+        R.drawable.ocean_icon_inbox_solid
+    }
+
+    OceanIconType.INFORMATION_CIRCLE_OUTLINE -> {
+        R.drawable.ocean_icon_information_circle_outline
+    }
+
+    OceanIconType.INFORMATION_CIRCLE_SOLID -> {
+        R.drawable.ocean_icon_information_circle_solid
+    }
+
+    OceanIconType.KEY_OUTLINE -> {
+        R.drawable.ocean_icon_key_outline
+    }
+
+    OceanIconType.KEY_SOLID -> {
+        R.drawable.ocean_icon_key_solid
+    }
+
+    OceanIconType.LIBRARY_OUTLINE -> {
+        R.drawable.ocean_icon_library_outline
+    }
+
+    OceanIconType.LIBRARY_SOLID -> {
+        R.drawable.ocean_icon_library_solid
+    }
+
+    OceanIconType.LIGHT_BULB_OUTLINE -> {
+        R.drawable.ocean_icon_light_bulb_outline
+    }
+
+    OceanIconType.LIGHT_BULB_SOLID -> {
+        R.drawable.ocean_icon_light_bulb_solid
+    }
+
+    OceanIconType.LIGHTNING_BOLT_OUTLINE -> {
+        R.drawable.ocean_icon_lightning_bolt_outline
+    }
+
+    OceanIconType.LIGHTNING_BOLT_SOLID -> {
+        R.drawable.ocean_icon_lightning_bolt_solid
+    }
+
+    OceanIconType.LINK_OUTLINE -> {
+        R.drawable.ocean_icon_link_outline
+    }
+
+    OceanIconType.LINK_SOLID -> {
+        R.drawable.ocean_icon_link_solid
+    }
+
+    OceanIconType.LOCATION_MARKER_OUTLINE -> {
+        R.drawable.ocean_icon_location_marker_outline
+    }
+
+    OceanIconType.LOCATION_MARKER_SOLID -> {
+        R.drawable.ocean_icon_location_marker_solid
+    }
+
+    OceanIconType.LOCK_CLOSED_OUTLINE -> {
+        R.drawable.ocean_icon_lock_closed_outline
+    }
+
+    OceanIconType.LOCK_CLOSED_SOLID -> {
+        R.drawable.ocean_icon_lock_closed_solid
+    }
+
+    OceanIconType.LOCK_OPEN_OUTLINE -> {
+        R.drawable.ocean_icon_lock_open_outline
+    }
+
+    OceanIconType.LOCK_OPEN_SOLID -> {
+        R.drawable.ocean_icon_lock_open_solid
+    }
+
+    OceanIconType.LOGIN_OUTLINE -> {
+        R.drawable.ocean_icon_login_outline
+    }
+
+    OceanIconType.LOGIN_SOLID -> {
+        R.drawable.ocean_icon_login_solid
+    }
+
+    OceanIconType.LOGOUT_OUTLINE -> {
+        R.drawable.ocean_icon_logout_outline
+    }
+
+    OceanIconType.LOGOUT_SOLID -> {
+        R.drawable.ocean_icon_logout_solid
+    }
+
+    OceanIconType.MAIL_OPEN_OUTLINE -> {
+        R.drawable.ocean_icon_mail_open_outline
+    }
+
+    OceanIconType.MAIL_OPEN_SOLID -> {
+        R.drawable.ocean_icon_mail_open_solid
+    }
+
+    OceanIconType.MAIL_OUTLINE -> {
+        R.drawable.ocean_icon_mail_outline
+    }
+
+    OceanIconType.MAIL_SOLID -> {
+        R.drawable.ocean_icon_mail_solid
+    }
+
+    OceanIconType.MAP_OUTLINE -> {
+        R.drawable.ocean_icon_map_outline
+    }
+
+    OceanIconType.MAP_SOLID -> {
+        R.drawable.ocean_icon_map_solid
+    }
+
+    OceanIconType.MENU_ALT_ONE_OUTLINE -> {
+        R.drawable.ocean_icon_menu_alt_1_outline
+    }
+
+    OceanIconType.MENU_ALT_ONE_SOLID -> {
+        R.drawable.ocean_icon_menu_alt_1_solid
+    }
+
+    OceanIconType.MENU_ALT_TWO_OUTLINE -> {
+        R.drawable.ocean_icon_menu_alt_2_outline
+    }
+
+    OceanIconType.MENU_ALT_TWO_SOLID -> {
+        R.drawable.ocean_icon_menu_alt_2_solid
+    }
+
+    OceanIconType.MENU_ALT_THREE_OUTLINE -> {
+        R.drawable.ocean_icon_menu_alt_3_outline
+    }
+
+    OceanIconType.MENU_ALT_THREE_SOLID -> {
+        R.drawable.ocean_icon_menu_alt_3_solid
+    }
+
+    OceanIconType.MENU_ALT_FOUR_OUTLINE -> {
+        R.drawable.ocean_icon_menu_alt_4_outline
+    }
+
+    OceanIconType.MENU_ALT_FOUR_SOLID -> {
+        R.drawable.ocean_icon_menu_alt_4_solid
+    }
+
+    OceanIconType.MENU_OUTLINE -> {
+        R.drawable.ocean_icon_menu_outline
+    }
+
+    OceanIconType.MENU_SOLID -> {
+        R.drawable.ocean_icon_menu_solid
+    }
+
+    OceanIconType.MICROPHONE_OUTLINE -> {
+        R.drawable.ocean_icon_microphone_outline
+    }
+
+    OceanIconType.MICROPHONE_SOLID -> {
+        R.drawable.ocean_icon_microphone_solid
+    }
+
+    OceanIconType.MINUS_CIRCLE_OUTLINE -> {
+        R.drawable.ocean_icon_minus_circle_outline
+    }
+
+    OceanIconType.MINUS_CIRCLE_SOLID -> {
+        R.drawable.ocean_icon_minus_circle_solid
+    }
+
+    OceanIconType.MINUS_SM_OUTLINE -> {
+        R.drawable.ocean_icon_minus_sm_outline
+    }
+
+    OceanIconType.MINUS_SM_SOLID -> {
+        R.drawable.ocean_icon_minus_sm_solid
+    }
+
+    OceanIconType.MINUS_SOLID -> {
+        R.drawable.ocean_icon_minus_solid
+    }
+
+    OceanIconType.MOON_OUTLINE -> {
+        R.drawable.ocean_icon_moon_outline
+    }
+
+    OceanIconType.MOON_SOLID -> {
+        R.drawable.ocean_icon_moon_solid
+    }
+
+    OceanIconType.MUSIC_NOTE_OUTLINE -> {
+        R.drawable.ocean_icon_music_note_outline
+    }
+
+    OceanIconType.MUSIC_NOTE_SOLID -> {
+        R.drawable.ocean_icon_music_note_solid
+    }
+
+    OceanIconType.NEWSPAPER_OUTLINE -> {
+        R.drawable.ocean_icon_newspaper_outline
+    }
+
+    OceanIconType.NEWSPAPER_SOLID -> {
+        R.drawable.ocean_icon_newspaper_solid
+    }
+
+    OceanIconType.OFFICE_BUILDING_OUTLINE -> {
+        R.drawable.ocean_icon_office_building_outline
+    }
+
+    OceanIconType.OFFICE_BUILDING_SOLID -> {
+        R.drawable.ocean_icon_office_building_solid
+    }
+
+    OceanIconType.PAPER_AIRPLANE_OUTLINE -> {
+        R.drawable.ocean_icon_paper_airplane_outline
+    }
+
+    OceanIconType.PAPER_AIRPLANE_SOLID -> {
+        R.drawable.ocean_icon_paper_airplane_solid
+    }
+
+    OceanIconType.PAPER_CLIP_OUTLINE -> {
+        R.drawable.ocean_icon_paper_clip_outline
+    }
+
+    OceanIconType.PAPER_CLIP_SOLID -> {
+        R.drawable.ocean_icon_paper_clip_solid
+    }
+
+    OceanIconType.PAUSE_OUTLINE -> {
+        R.drawable.ocean_icon_pause_outline
+    }
+
+    OceanIconType.PAUSE_SOLID -> {
+        R.drawable.ocean_icon_pause_solid
+    }
+
+    OceanIconType.PENCIL_ALT_OUTLINE -> {
+        R.drawable.ocean_icon_pencil_alt_outline
+    }
+
+    OceanIconType.PENCIL_ALT_SOLID -> {
+        R.drawable.ocean_icon_pencil_alt_solid
+    }
+
+    OceanIconType.PENCIL_OUTLINE -> {
+        R.drawable.ocean_icon_pencil_outline
+    }
+
+    OceanIconType.PENCIL_SOLID -> {
+        R.drawable.ocean_icon_pencil_solid
+    }
+
+    OceanIconType.PHONE_INCOMING_OUTLINE -> {
+        R.drawable.ocean_icon_phone_incoming_outline
+    }
+
+    OceanIconType.PHONE_INCOMING_SOLID -> {
+        R.drawable.ocean_icon_phone_incoming_solid
+    }
+
+    OceanIconType.PHONE_MISSED_CALL_OUTLINE -> {
+        R.drawable.ocean_icon_phone_missed_call_outline
+    }
+
+    OceanIconType.PHONE_MISSED_CALL_SOLID -> {
+        R.drawable.ocean_icon_phone_missed_call_solid
+    }
+
+    OceanIconType.PHONE_OUTGOING_OUTLINE -> {
+        R.drawable.ocean_icon_phone_outgoing_outline
+    }
+
+    OceanIconType.PHONE_OUTGOING_SOLID -> {
+        R.drawable.ocean_icon_phone_outgoing_solid
+    }
+
+    OceanIconType.PHONE_OUTLINE -> {
+        R.drawable.ocean_icon_phone_outline
+    }
+
+    OceanIconType.PHONE_SOLID -> {
+        R.drawable.ocean_icon_phone_solid
+    }
+
+    OceanIconType.PHOTOGRAPH_OUTLINE -> {
+        R.drawable.ocean_icon_photograph_outline
+    }
+
+    OceanIconType.PHOTOGRAPH_SOLID -> {
+        R.drawable.ocean_icon_photograph_solid
+    }
+
+    OceanIconType.PLAY_OUTLINE -> {
+        R.drawable.ocean_icon_play_outline
+    }
+
+    OceanIconType.PLAY_SOLID -> {
+        R.drawable.ocean_icon_play_solid
+    }
+
+    OceanIconType.PLUS_CIRCLE_OUTLINE -> {
+        R.drawable.ocean_icon_plus_circle_outline
+    }
+
+    OceanIconType.PLUS_CIRCLE_SOLID -> {
+        R.drawable.ocean_icon_plus_circle_solid
+    }
+
+    OceanIconType.PLUS_SM_OUTLINE -> {
+        R.drawable.ocean_icon_plus_sm_outline
+    }
+
+    OceanIconType.PLUS_SM_SOLID -> {
+        R.drawable.ocean_icon_plus_sm_solid
+    }
+
+    OceanIconType.PRESENTATION_CHART_BAR_OUTLINE -> {
+        R.drawable.ocean_icon_presentation_chart_bar_outline
+    }
+
+    OceanIconType.PRESENTATION_CHART_BAR_SOLID -> {
+        R.drawable.ocean_icon_presentation_chart_bar_solid
+    }
+
+    OceanIconType.PRESENTATION_CHART_LINE_OUTLINE -> {
+        R.drawable.ocean_icon_presentation_chart_line_outline
+    }
+
+    OceanIconType.PRESENTATION_CHART_LINE_SOLID -> {
+        R.drawable.ocean_icon_presentation_chart_line_solid
+    }
+
+    OceanIconType.PRINTER_OUTLINE -> {
+        R.drawable.ocean_icon_printer_outline
+    }
+
+    OceanIconType.PRINTER_SOLID -> {
+        R.drawable.ocean_icon_printer_solid
+    }
+
+    OceanIconType.PUZZLE_OUTLINE -> {
+        R.drawable.ocean_icon_puzzle_outline
+    }
+
+    OceanIconType.PUZZLE_SOLID -> {
+        R.drawable.ocean_icon_puzzle_solid
+    }
+
+    OceanIconType.QRCODE_OUTLINE -> {
+        R.drawable.ocean_icon_qrcode_outline
+    }
+
+    OceanIconType.QRCODE_SOLID -> {
+        R.drawable.ocean_icon_qrcode_solid
+    }
+
+    OceanIconType.QUESTION_MARK_CIRCLE_OUTLINE -> {
+        R.drawable.ocean_icon_question_mark_circle_outline
+    }
+
+    OceanIconType.QUESTION_MARK_CIRCLE_SOLID -> {
+        R.drawable.ocean_icon_question_mark_circle_solid
+    }
+
+    OceanIconType.RECEIPT_REFUND_OUTLINE -> {
+        R.drawable.ocean_icon_receipt_refund_outline
+    }
+
+    OceanIconType.RECEIPT_REFUND_SOLID -> {
+        R.drawable.ocean_icon_receipt_refund_solid
+    }
+
+    OceanIconType.RECEIPT_TAX_OUTLINE -> {
+        R.drawable.ocean_icon_receipt_tax_outline
+    }
+
+    OceanIconType.RECEIPT_TAX_SOLID -> {
+        R.drawable.ocean_icon_receipt_tax_solid
+    }
+
+    OceanIconType.REFRESH_OUTLINE -> {
+        R.drawable.ocean_icon_refresh_outline
+    }
+
+    OceanIconType.REFRESH_SOLID -> {
+        R.drawable.ocean_icon_refresh_solid
+    }
+
+    OceanIconType.REPLY_OUTLINE -> {
+        R.drawable.ocean_icon_reply_outline
+    }
+
+    OceanIconType.REPLY_SOLID -> {
+        R.drawable.ocean_icon_reply_solid
+    }
+
+    OceanIconType.REWIND_OUTLINE -> {
+        R.drawable.ocean_icon_rewind_outline
+    }
+
+    OceanIconType.REWIND_SOLID -> {
+        R.drawable.ocean_icon_rewind_solid
+    }
+
+    OceanIconType.RSS_OUTLINE -> {
+        R.drawable.ocean_icon_rss_outline
+    }
+
+    OceanIconType.RSS_SOLID -> {
+        R.drawable.ocean_icon_rss_solid
+    }
+
+    OceanIconType.SAVE_AS_OUTLINE -> {
+        R.drawable.ocean_icon_save_as_outline
+    }
+
+    OceanIconType.SAVE_AS_SOLID -> {
+        R.drawable.ocean_icon_save_as_solid
+    }
+
+    OceanIconType.SAVE_OUTLINE -> {
+        R.drawable.ocean_icon_save_outline
+    }
+
+    OceanIconType.SAVE_SOLID -> {
+        R.drawable.ocean_icon_save_solid
+    }
+
+    OceanIconType.SCALE_OUTLINE -> {
+        R.drawable.ocean_icon_scale_outline
+    }
+
+    OceanIconType.SCALE_SOLID -> {
+        R.drawable.ocean_icon_scale_solid
+    }
+
+    OceanIconType.SCISSORS_OUTLINE -> {
+        R.drawable.ocean_icon_scissors_outline
+    }
+
+    OceanIconType.SCISSORS_SOLID -> {
+        R.drawable.ocean_icon_scissors_solid
+    }
+
+    OceanIconType.SEARCH_CIRCLE_OUTLINE -> {
+        R.drawable.ocean_icon_search_circle_outline
+    }
+
+    OceanIconType.SEARCH_CIRCLE_SOLID -> {
+        R.drawable.ocean_icon_search_circle_solid
+    }
+
+    OceanIconType.SEARCH_OUTLINE -> {
+        R.drawable.ocean_icon_search_outline
+    }
+
+    OceanIconType.SEARCH_SOLID -> {
+        R.drawable.ocean_icon_search_solid
+    }
+
+    OceanIconType.SELECTOR_OUTLINE -> {
+        R.drawable.ocean_icon_selector_outline
+    }
+
+    OceanIconType.SELECTOR_SOLID -> {
+        R.drawable.ocean_icon_selector_solid
+    }
+
+    OceanIconType.SERVER_OUTLINE -> {
+        R.drawable.ocean_icon_server_outline
+    }
+
+    OceanIconType.SERVER_SOLID -> {
+        R.drawable.ocean_icon_server_solid
+    }
+
+    OceanIconType.SHARE_OUTLINE -> {
+        R.drawable.ocean_icon_share_outline
+    }
+
+    OceanIconType.SHARE_SOLID -> {
+        R.drawable.ocean_icon_share_solid
+    }
+
+    OceanIconType.SHIELD_CHECK_OUTLINE -> {
+        R.drawable.ocean_icon_shield_check_outline
+    }
+
+    OceanIconType.SHIELD_CHECK_SOLID -> {
+        R.drawable.ocean_icon_shield_check_solid
+    }
+
+    OceanIconType.SHIELD_EXCLAMATION_OUTLINE -> {
+        R.drawable.ocean_icon_shield_exclamation_outline
+    }
+
+    OceanIconType.SHIELD_EXCLAMATION_SOLID -> {
+        R.drawable.ocean_icon_shield_exclamation_solid
+    }
+
+    OceanIconType.SHOPPING_BAG_OUTLINE -> {
+        R.drawable.ocean_icon_shopping_bag_outline
+    }
+
+    OceanIconType.SHOPPING_BAG_SOLID -> {
+        R.drawable.ocean_icon_shopping_bag_solid
+    }
+
+    OceanIconType.SHOPPING_CART_OUTLINE -> {
+        R.drawable.ocean_icon_shopping_cart_outline
+    }
+
+    OceanIconType.SHOPPING_CART_SOLID -> {
+        R.drawable.ocean_icon_shopping_cart_solid
+    }
+
+    OceanIconType.SORT_ASCENDING_OUTLINE -> {
+        R.drawable.ocean_icon_sort_ascending_outline
+    }
+
+    OceanIconType.SORT_ASCENDING_SOLID -> {
+        R.drawable.ocean_icon_sort_ascending_solid
+    }
+
+    OceanIconType.SORT_DESCENDING_OUTLINE -> {
+        R.drawable.ocean_icon_sort_descending_outline
+    }
+
+    OceanIconType.SORT_DESCENDING_SOLID -> {
+        R.drawable.ocean_icon_sort_descending_solid
+    }
+
+    OceanIconType.SPARKLES_OUTLINE -> {
+        R.drawable.ocean_icon_sparkles_outline
+    }
+
+    OceanIconType.SPARKLES_SOLID -> {
+        R.drawable.ocean_icon_sparkles_solid
+    }
+
+    OceanIconType.SPEAKERPHONE_OUTLINE -> {
+        R.drawable.ocean_icon_speakerphone_outline
+    }
+
+    OceanIconType.SPEAKERPHONE_SOLID -> {
+        R.drawable.ocean_icon_speakerphone_solid
+    }
+
+    OceanIconType.STAR_OUTLINE -> {
+        R.drawable.ocean_icon_star_outline
+    }
+
+    OceanIconType.STAR_SOLID -> {
+        R.drawable.ocean_icon_star_solid
+    }
+
+    OceanIconType.STATUS_OFFLINE_OUTLINE -> {
+        R.drawable.ocean_icon_status_offline_outline
+    }
+
+    OceanIconType.STATUS_OFFLINE_SOLID -> {
+        R.drawable.ocean_icon_status_offline_solid
+    }
+
+    OceanIconType.STATUS_ONLINE_OUTLINE -> {
+        R.drawable.ocean_icon_status_online_outline
+    }
+
+    OceanIconType.STATUS_ONLINE_SOLID -> {
+        R.drawable.ocean_icon_status_online_solid
+    }
+
+    OceanIconType.STOP_OUTLINE -> {
+        R.drawable.ocean_icon_stop_outline
+    }
+
+    OceanIconType.STOP_SOLID -> {
+        R.drawable.ocean_icon_stop_solid
+    }
+
+    OceanIconType.SUN_OUTLINE -> {
+        R.drawable.ocean_icon_sun_outline
+    }
+
+    OceanIconType.SUN_SOLID -> {
+        R.drawable.ocean_icon_sun_solid
+    }
+
+    OceanIconType.SUPPORT_OUTLINE -> {
+        R.drawable.ocean_icon_support_outline
+    }
+
+    OceanIconType.SUPPORT_SOLID -> {
+        R.drawable.ocean_icon_support_solid
+    }
+
+    OceanIconType.SWITCH_HORIZONTAL_OUTLINE -> {
+        R.drawable.ocean_icon_switch_horizontal_outline
+    }
+
+    OceanIconType.SWITCH_HORIZONTAL_SOLID -> {
+        R.drawable.ocean_icon_switch_horizontal_solid
+    }
+
+    OceanIconType.SWITCH_VERTICAL_OUTLINE -> {
+        R.drawable.ocean_icon_switch_vertical_outline
+    }
+
+    OceanIconType.SWITCH_VERTICAL_SOLID -> {
+        R.drawable.ocean_icon_switch_vertical_solid
+    }
+
+    OceanIconType.TABLE_OUTLINE -> {
+        R.drawable.ocean_icon_table_outline
+    }
+
+    OceanIconType.TABLE_SOLID -> {
+        R.drawable.ocean_icon_table_solid
+    }
+
+    OceanIconType.TAG_OUTLINE -> {
+        R.drawable.ocean_icon_tag_outline
+    }
+
+    OceanIconType.TAG_SOLID -> {
+        R.drawable.ocean_icon_tag_solid
+    }
+
+    OceanIconType.TEMPLATE_OUTLINE -> {
+        R.drawable.ocean_icon_template_outline
+    }
+
+    OceanIconType.TEMPLATE_SOLID -> {
+        R.drawable.ocean_icon_template_solid
+    }
+
+    OceanIconType.TERMINAL_OUTLINE -> {
+        R.drawable.ocean_icon_terminal_outline
+    }
+
+    OceanIconType.TERMINAL_SOLID -> {
+        R.drawable.ocean_icon_terminal_solid
+    }
+
+    OceanIconType.THUMB_DOWN_OUTLINE -> {
+        R.drawable.ocean_icon_thumb_down_outline
+    }
+
+    OceanIconType.THUMB_DOWN_SOLID -> {
+        R.drawable.ocean_icon_thumb_down_solid
+    }
+
+    OceanIconType.THUMB_UP_OUTLINE -> {
+        R.drawable.ocean_icon_thumb_up_outline
+    }
+
+    OceanIconType.THUMB_UP_SOLID -> {
+        R.drawable.ocean_icon_thumb_up_solid
+    }
+
+    OceanIconType.TICKET_OUTLINE -> {
+        R.drawable.ocean_icon_ticket_outline
+    }
+
+    OceanIconType.TICKET_SOLID -> {
+        R.drawable.ocean_icon_ticket_solid
+    }
+
+    OceanIconType.TRANSACTIONS_OUTLINE -> {
+        R.drawable.ocean_icon_transactions_outline
+    }
+
+    OceanIconType.TRANSLATE_OUTLINE -> {
+        R.drawable.ocean_icon_translate_outline
+    }
+
+    OceanIconType.TRANSLATE_SOLID -> {
+        R.drawable.ocean_icon_translate_solid
+    }
+
+    OceanIconType.TRASH_OUTLINE -> {
+        R.drawable.ocean_icon_trash_outline
+    }
+
+    OceanIconType.TRASH_SOLID -> {
+        R.drawable.ocean_icon_trash_solid
+    }
+
+    OceanIconType.TRENDING_DOWN_OUTLINE -> {
+        R.drawable.ocean_icon_trending_down_outline
+    }
+
+    OceanIconType.TRENDING_DOWN_SOLID -> {
+        R.drawable.ocean_icon_trending_down_solid
+    }
+
+    OceanIconType.TRENDING_UP_OUTLINE -> {
+        R.drawable.ocean_icon_trending_up_outline
+    }
+
+    OceanIconType.TRENDING_UP_SOLID -> {
+        R.drawable.ocean_icon_trending_up_solid
+    }
+
+    OceanIconType.TRUCK_OUTLINE -> {
+        R.drawable.ocean_icon_truck_outline
+    }
+
+    OceanIconType.TRUCK_SOLID -> {
+        R.drawable.ocean_icon_truck_solid
+    }
+
+    OceanIconType.UPLOAD_OUTLINE -> {
+        R.drawable.ocean_icon_upload_outline
+    }
+
+    OceanIconType.UPLOAD_SOLID -> {
+        R.drawable.ocean_icon_upload_solid
+    }
+
+    OceanIconType.USER_ADD_OUTLINE -> {
+        R.drawable.ocean_icon_user_add_outline
+    }
+
+    OceanIconType.USER_ADD_SOLID -> {
+        R.drawable.ocean_icon_user_add_solid
+    }
+
+    OceanIconType.USER_CIRCLE_OUTLINE -> {
+        R.drawable.ocean_icon_user_circle_outline
+    }
+
+    OceanIconType.USER_CIRCLE_SOLID -> {
+        R.drawable.ocean_icon_user_circle_solid
+    }
+
+    OceanIconType.USER_GROUP_OUTLINE -> {
+        R.drawable.ocean_icon_user_group_outline
+    }
+
+    OceanIconType.USER_GROUP_SOLID -> {
+        R.drawable.ocean_icon_user_group_solid
+    }
+
+    OceanIconType.USER_OUTLINE -> {
+        R.drawable.ocean_icon_user_outline
+    }
+
+    OceanIconType.USER_REMOVE_OUTLINE -> {
+        R.drawable.ocean_icon_user_remove_outline
+    }
+
+    OceanIconType.USER_REMOVE_SOLID -> {
+        R.drawable.ocean_icon_user_remove_solid
+    }
+
+    OceanIconType.USER_SOLID -> {
+        R.drawable.ocean_icon_user_solid
+    }
+
+    OceanIconType.USERS_OUTLINE -> {
+        R.drawable.ocean_icon_users_outline
+    }
+
+    OceanIconType.USERS_SOLID -> {
+        R.drawable.ocean_icon_users_solid
+    }
+
+    OceanIconType.VARIABLE_OUTLINE -> {
+        R.drawable.ocean_icon_variable_outline
+    }
+
+    OceanIconType.VARIABLE_SOLID -> {
+        R.drawable.ocean_icon_variable_solid
+    }
+
+    OceanIconType.VIDEO_CAMERA_OUTLINE -> {
+        R.drawable.ocean_icon_video_camera_outline
+    }
+
+    OceanIconType.VIDEO_CAMERA_SOLID -> {
+        R.drawable.ocean_icon_video_camera_solid
+    }
+
+    OceanIconType.VIEW_BOARDS_OUTLINE -> {
+        R.drawable.ocean_icon_view_boards_outline
+    }
+
+    OceanIconType.VIEW_BOARDS_SOLID -> {
+        R.drawable.ocean_icon_view_boards_solid
+    }
+
+    OceanIconType.VIEW_GRID_ADD_OUTLINE -> {
+        R.drawable.ocean_icon_view_grid_add_outline
+    }
+
+    OceanIconType.VIEW_GRID_ADD_SOLID -> {
+        R.drawable.ocean_icon_view_grid_add_solid
+    }
+
+    OceanIconType.VIEW_GRID_OUTLINE -> {
+        R.drawable.ocean_icon_view_grid_outline
+    }
+
+    OceanIconType.VIEW_GRID_SOLID -> {
+        R.drawable.ocean_icon_view_grid_solid
+    }
+
+    OceanIconType.VIEW_LIST_OUTLINE -> {
+        R.drawable.ocean_icon_view_list_outline
+    }
+
+    OceanIconType.VIEW_LIST_SOLID -> {
+        R.drawable.ocean_icon_view_list_solid
+    }
+
+    OceanIconType.VOLUME_OFF_OUTLINE -> {
+        R.drawable.ocean_icon_volume_off_outline
+    }
+
+    OceanIconType.VOLUME_OFF_SOLID -> {
+        R.drawable.ocean_icon_volume_off_solid
+    }
+
+    OceanIconType.VOLUME_UP_OUTLINE -> {
+        R.drawable.ocean_icon_volume_up_outline
+    }
+
+    OceanIconType.VOLUME_UP_SOLID -> {
+        R.drawable.ocean_icon_volume_up_solid
+    }
+
+    OceanIconType.WIFI_OUTLINE -> {
+        R.drawable.ocean_icon_wifi_outline
+    }
+
+    OceanIconType.WIFI_SOLID -> {
+        R.drawable.ocean_icon_wifi_solid
+    }
+
+    OceanIconType.X_CIRCLE_OUTLINE -> {
+        R.drawable.ocean_icon_x_circle_outline
+    }
+
+    OceanIconType.X_CIRCLE_SOLID -> {
+        R.drawable.ocean_icon_x_circle_solid
+    }
+
+    OceanIconType.X_OUTLINE -> {
+        R.drawable.ocean_icon_x_outline
+    }
+
+    OceanIconType.X_SOLID -> {
+        R.drawable.ocean_icon_x_solid
+    }
+
+    OceanIconType.ZOOM_IN_OUTLINE -> {
+        R.drawable.ocean_icon_zoom_in_outline
+    }
+
+    OceanIconType.ZOOM_IN_SOLID -> {
+        R.drawable.ocean_icon_zoom_in_solid
+    }
+
+    OceanIconType.ZOOM_OUT_OUTLINE -> {
+        R.drawable.ocean_icon_zoom_out_outline
+    }
+
+    OceanIconType.ZOOM_OUT_SOLID -> {
+        R.drawable.ocean_icon_zoom_out_solid
+    }
+
+    OceanIconType.BARCODE_BUBBLE_OUTLINE -> {
+        R.drawable.ocean_icon_barcode_bubble_outline
+    }
+
+    OceanIconType.BARCODE_OUTLINE -> {
+        R.drawable.ocean_icon_barcode_outline
+    }
+
+    OceanIconType.BIKE_OUTLINE -> {
+        R.drawable.ocean_icon_bike_outline
+    }
+
+    OceanIconType.BLU_LOGO_OUTLINE -> {
+        R.drawable.ocean_icon_blu_logo_outline
+    }
+
+    OceanIconType.BTOKEN_OUTLINE -> {
+        R.drawable.ocean_icon_btoken_outline
+    }
+
+    OceanIconType.CARD_MACHINE_OUTLINE -> {
+        R.drawable.ocean_icon_card_machine_outline
+    }
+
+    OceanIconType.CASH_BACK_OUTLINE -> {
+        R.drawable.ocean_icon_cashback_outline
+    }
+
+    OceanIconType.CONSTRUCTION_MATERIAL_OUTLINE -> {
+        R.drawable.ocean_icon_construction_material_outline
+    }
+
+    OceanIconType.REPORT_SOLID -> {
+        R.drawable.ocean_icon_report_solid
+    }
+
+    OceanIconType.REPORT_OUTLINE -> {
+        R.drawable.ocean_icon_report_outline
+    }
+
+    OceanIconType.CONSULT_OUTLINE -> {
+        R.drawable.ocean_icon_consult_outline
+    }
+
+    OceanIconType.CONTACT_BOOK_OUTLINE -> {
+        R.drawable.ocean_icon_contact_book_outline
+    }
+
+    OceanIconType.DRUGSTORE_OUTLINE -> {
+        R.drawable.ocean_icon_drugstore_outline
+    }
+
+    OceanIconType.EQUAL_OUTLINE -> {
+        R.drawable.ocean_icon_equal_outline
+    }
+
+    OceanIconType.EVENTS_OUTLINE -> {
+        R.drawable.ocean_icon_events_outline
+    }
+
+    OceanIconType.EYEGLASS_STORE_OUTLINE -> {
+        R.drawable.ocean_icon_eyeglass_store_outline
+    }
+
+    OceanIconType.FLASH_OFF_OUTLINE -> {
+        R.drawable.ocean_icon_flash_off_outline
+    }
+
+    OceanIconType.FLASH_ON_OUTLINE -> {
+        R.drawable.ocean_icon_flash_on_outline
+    }
+
+    OceanIconType.FOOD_AND_BEVERAGE_OUTLINE -> {
+        R.drawable.ocean_icon_food_and_beverage_outline
+    }
+
+    OceanIconType.FOOT_WARE_OUTLINE -> {
+        R.drawable.ocean_icon_footware_outline
+    }
+
+    OceanIconType.FURNITURE_OUTLINE -> {
+        R.drawable.ocean_icon_furniture_outline
+    }
+
+    OceanIconType.GAS_STATION_OUTLINE -> {
+        R.drawable.ocean_icon_gas_station_outline
+    }
+
+    OceanIconType.GLASSES_OUTLINE -> {
+        R.drawable.ocean_icon_glasses_outline
+    }
+
+    OceanIconType.HELP_OUTLINE -> {
+        R.drawable.ocean_icon_help_outline
+    }
+
+    OceanIconType.INFO_OUTLINE -> {
+        R.drawable.ocean_icon_info_outline
+    }
+
+    OceanIconType.INSTAGRAM_OUTLINE -> {
+        R.drawable.ocean_icon_instagram_outline
+    }
+
+    OceanIconType.MATTRESS_OUTLINE -> {
+        R.drawable.ocean_icon_mattress_outline
+    }
+
+    OceanIconType.ORDER_OUTLINE -> {
+        R.drawable.ocean_icon_order_outline
+    }
+
+    OceanIconType.OTHER_OUTLINE -> {
+        R.drawable.ocean_icon_other_outline
+    }
+
+    OceanIconType.PAGBLU_SOLID -> {
+        R.drawable.ocean_icon_pagblu_solid
+    }
+
+    OceanIconType.PAGBLU_OUTLINE -> {
+        R.drawable.ocean_icon_pagblu_outline
+    }
+
+    OceanIconType.PAPER_PLANE_OUTLINE -> {
+        R.drawable.ocean_icon_paper_plane_outline
+    }
+
+    OceanIconType.PAYMENT_OUTLINE -> {
+        R.drawable.ocean_icon_payment_outline
+    }
+
+    OceanIconType.PETSHOP_OUTLINE -> {
+        R.drawable.ocean_icon_petshop_outline
+    }
+
+    OceanIconType.PIX_OUTLINE -> {
+        R.drawable.ocean_icon_pix_outline
+    }
+
+    OceanIconType.PLACEHOLDER_OUTLINE -> {
+        R.drawable.ocean_icon_placeholder_outline
+    }
+
+    OceanIconType.POINT_UP_OUTLINE -> {
+        R.drawable.ocean_icon_point_up_outline
+    }
+
+    OceanIconType.QRCODE_DISPLAY_OUTLINE -> {
+        R.drawable.ocean_icon_qrcode_display_outline
+    }
+
+    OceanIconType.RAW_MATERIAL_OUTLINE -> {
+        R.drawable.ocean_icon_raw_material_outline
+    }
+
+    OceanIconType.RETAILER_OUTLINE -> {
+        R.drawable.ocean_icon_retailer_outline
+    }
+
+    OceanIconType.RETAILER_SOLID -> {
+        R.drawable.ocean_icon_retailer_solid
+    }
+
+    OceanIconType.SCAN_OUTLINE -> {
+        R.drawable.ocean_icon_scan_outline
+    }
+
+    OceanIconType.SORT_OUTLINE -> {
+        R.drawable.ocean_icon_sort_outline
+    }
+
+    OceanIconType.SUPPLIER_OUTLINE -> {
+        R.drawable.ocean_icon_supplier_outline
+    }
+
+    OceanIconType.TAX_OUTLINE -> {
+        R.drawable.ocean_icon_tax_outline
+    }
+
+    OceanIconType.WARLIKE_OUTLINE -> {
+        R.drawable.ocean_icon_warlike_outline
+    }
+
+    OceanIconType.WHATSAPP_OUTLINE -> {
+        R.drawable.ocean_icon_whatsapp_outline
+    }
+
+    OceanIconType.YOUTUBE_OUTLINE -> {
+        R.drawable.ocean_icon_youtube_outline
+    }
+
+    OceanIconType.ZERO_OUTLINE -> {
+        R.drawable.ocean_icon_zero_outline
+    }
+
+    OceanIconType.ARROW_RIGHT_UP_SOLID -> {
+        R.drawable.ocean_icon_arrow_right_up_solid
+    }
+
+    OceanIconType.BARCODE_BUBBLE_SOLID -> {
+        R.drawable.ocean_icon_barcode_bubble_solid
+    }
+
+    OceanIconType.BARCODE_SOLID -> {
+        R.drawable.ocean_icon_barcode_solid
+    }
+
+    OceanIconType.BLU_LOGO_SOLID -> {
+        R.drawable.ocean_icon_blu_logo_solid
+    }
+
+    OceanIconType.EQUAL_SOLID -> {
+        R.drawable.ocean_icon_equal_solid
+    }
+
+    OceanIconType.FLASH_ON_SOLID -> {
+        R.drawable.ocean_icon_flash_on_solid
+    }
+
+    OceanIconType.GLASSES_SOLID -> {
+        R.drawable.ocean_icon_glasses_solid
+    }
+
+    OceanIconType.INFO_SOLID -> {
+        R.drawable.ocean_icon_info_solid
+    }
+
+    OceanIconType.INSTAGRAM_SOLID -> {
+        R.drawable.ocean_icon_instagram_solid
+    }
+
+    OceanIconType.ORDER_SOLID -> {
+        R.drawable.ocean_icon_order_solid
+    }
+
+    OceanIconType.OTHER_SOLID -> {
+        R.drawable.ocean_icon_other_solid
+    }
+
+    OceanIconType.PAPER_PLANE_SOLID -> {
+        R.drawable.ocean_icon_paper_plane_solid
+    }
+
+    OceanIconType.PAYMENT_SOLID -> {
+        R.drawable.ocean_icon_payment_solid
+    }
+
+    OceanIconType.PIX_SOLID -> {
+        R.drawable.ocean_icon_pix_solid
+    }
+
+    OceanIconType.PLACEHOLDER_SOLID -> {
+        R.drawable.ocean_icon_placeholder_solid
+    }
+
+    OceanIconType.SORT_SOLID -> {
+        R.drawable.ocean_icon_sort_solid
+    }
+
+    OceanIconType.WHATSAPP_SOLID -> {
+        R.drawable.ocean_icon_whatsapp_solid
+    }
+
+    OceanIconType.YOUTUBE_SOLID -> {
+        R.drawable.ocean_icon_youtube_solid
+    }
+
+    OceanIconType.QRCODE_OUTLINE_HIGHLIGHT -> {
+        R.drawable.ocean_icon_qrcode_outline_highlight
+    }
+
+    OceanIconType.BARCODE_OUTLINE_HIGHLIGHT -> {
+        R.drawable.ocean_icon_barcode_outline_highlight
+    }
+
+    OceanIconType.MONEY_INFLOW -> {
+        R.drawable.ocean_icon_money_inflow
+    }
+
+    OceanIconType.MONEY_OUTFLOW -> {
+        R.drawable.ocean_icon_money_outflow
+    }
+
+    else -> null
+}
+

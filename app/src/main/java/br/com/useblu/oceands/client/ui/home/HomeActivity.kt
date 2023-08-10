@@ -6,6 +6,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Text
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
@@ -59,11 +63,15 @@ import br.com.useblu.oceands.client.ui.unorderedlistitem.UnorderedListItemActivi
 import br.com.useblu.oceands.components.OceanBottomListSheet
 import br.com.useblu.oceands.components.OceanBottomListSheetUIModel
 import br.com.useblu.oceands.components.OceanBottomSheet
+import br.com.useblu.oceands.components.OceanBottomSheetCompose
 import br.com.useblu.oceands.components.OceanDatePickerFullscreen
 import br.com.useblu.oceands.components.OceanSnackBar
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.OceanTooltip
+import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.model.OceanUnorderedListItem
+import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -90,7 +98,7 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun onClickBottomNavigation(vuew: View) {
+    fun onClickBottomNavigation(view: View) {
         val intent = Intent(this, BottomNavigationActivity::class.java)
         startActivity(intent)
     }
@@ -336,6 +344,23 @@ class HomeActivity : AppCompatActivity() {
             .withActionNegative(R.string.all_button_cancel) {
             }
             .show()
+    }
+    
+    fun onClickBottomSheetWithCompose(view: View) {
+        OceanBottomSheetCompose(this)
+            .withComposeContent { 
+                OceanIcon(token = "barcodeoutline", modifier = Modifier.size(40.dp))
+                
+                OceanSpacing.StackXS()
+                
+                Text(text = "Texto de teste", style = OceanTextStyle.heading3)
+            }
+            .withDismiss(true)
+            .withActionPositive(R.string.all_button_confirm) {
+            }
+            .withActionNegative(R.string.all_button_cancel) {
+            }
+            .show(supportFragmentManager, "BottomSheetCompose")
     }
 
     fun onOceanBottomListSheet(view: View) {

@@ -347,18 +347,19 @@ class HomeActivity : AppCompatActivity() {
     }
     
     fun onClickBottomSheetWithCompose(view: View) {
-        OceanBottomSheetCompose(this)
+        OceanBottomSheetCompose()
             .withComposeContent { 
                 OceanIcon(token = "barcodeoutline", modifier = Modifier.size(40.dp))
-                
                 OceanSpacing.StackXS()
-                
                 Text(text = "Texto de teste", style = OceanTextStyle.heading3)
             }
             .withDismiss(true)
-            .withActionPositive(R.string.all_button_confirm) {
+            .withCritical(true)
+            .withOrientationButtons(OceanBottomSheetCompose.Orientation.Vertical)
+            .withCode("300")
+            .withActionPositive("Confirm") {
             }
-            .withActionNegative(R.string.all_button_cancel) {
+            .withActionNegative("Cancel") {
             }
             .show(supportFragmentManager, "BottomSheetCompose")
     }

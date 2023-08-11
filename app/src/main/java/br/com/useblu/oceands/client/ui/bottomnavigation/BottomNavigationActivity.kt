@@ -2,8 +2,10 @@ package br.com.useblu.oceands.client.ui.bottomnavigation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.databinding.ActivityBottomNavigationBinding
+import br.com.useblu.oceands.components.compose.OceanBottomNavigation
 
 class BottomNavigationActivity : AppCompatActivity() {
 
@@ -20,20 +22,12 @@ class BottomNavigationActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        viewModel.menuItems.observe(this) {
-            binding.navBottom.apply {
-                clearMenuItems()
-
-                if (it.isNotEmpty()) {
-                    for (item in it) {
-                        addMenuItem(item)
-                    }
-                }
-            }
-        }
-
-        viewModel.addItem.observe(this) {
-            binding.navBottom.addMenuItem(it)
+        binding.navBottom.setContent {
+            val models = viewModel.menuItems.observeAsState(initial = emptyList())
+            OceanBottomNavigation(
+                selectedIndex = viewModel.selectedIndex,
+                models = models.value
+            )
         }
 
         binding.addItems.setOnClickListener {

@@ -99,7 +99,7 @@ private fun OceanBottomNavigationPreview() {
 
     OceanBottomNavigation(
         selectedIndex = selectedIndex.value,
-        models = emptyList()
+        models = initialModelList.value
     )
 }
 

@@ -1,7 +1,6 @@
 package br.com.useblu.oceands.components.compose
 
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -20,8 +19,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -30,8 +27,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.model.OceanIconType
@@ -115,41 +110,14 @@ fun OceanBottomNavigation(
 ) {
     val density = LocalDensity.current
 
-    val childrenWidths = remember(models) {
-        mutableStateListOf<Int>()
+    val rowWidth = remember {
+        mutableStateOf(0.dp)
     }
 
-    fun getBackgroundOffset(): Float {
-        return childrenWidths
-            .subList(0, selectedIndex.coerceAtMost(childrenWidths.size))
-            .sum()
-            .toFloat()
-    }
-
-    fun getBackgroundWidth(): Dp {
-        return density.run { (childrenWidths.getOrNull(selectedIndex) ?: 0).toDp() }
-    }
-
-    val xOffsetAnimated = remember {
-        val initialOffset = getBackgroundOffset()
-        Animatable(initialOffset)
-    }
-
-    LaunchedEffect(key1 = selectedIndex) {
-        val xOffset = getBackgroundOffset()
-        xOffsetAnimated.animateTo(
-            targetValue = xOffset,
-            animationSpec = tween()
-        )
-    }
-
-    LaunchedEffect(key1 = models) {
-        val xOffset = getBackgroundOffset()
-        xOffsetAnimated.animateTo(
-            targetValue = xOffset,
-            animationSpec = tween(durationMillis = 0)
-        )
-    }
+    val xOffset = animateDpAsState(
+        targetValue = rowWidth.value / (models.size).coerceAtLeast(1) * selectedIndex,
+        label = "Background offset"
+    )
 
     Box(
         modifier = Modifier
@@ -158,13 +126,12 @@ fun OceanBottomNavigation(
             .padding(4.dp)
             .height(64.dp)
     ) {
-        val backgroundWidth = getBackgroundWidth()
+        val backgroundWidth = if (models.isNotEmpty()) rowWidth.value / models.size
+        else 0.dp
 
         Box(
             modifier = Modifier
-                .offset {
-                    IntOffset(x = xOffsetAnimated.value.toInt(), y = 0)
-                }
+                .offset(x = xOffset.value)
                 .width(backgroundWidth)
                 .fillMaxHeight()
                 .background(
@@ -174,7 +141,11 @@ fun OceanBottomNavigation(
         )
 
         Row(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .onSizeChanged {
+                    rowWidth.value = density.run { it.width.toDp() }
+                },
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -184,9 +155,6 @@ fun OceanBottomNavigation(
                     isSelected = index == selectedIndex,
                     modifier = Modifier
                         .weight(1f)
-                        .onSizeChanged {
-                            childrenWidths.add(it.width)
-                        }
                         .clickable(
                             interactionSource = remember { MutableInteractionSource() },
                             indication = null,

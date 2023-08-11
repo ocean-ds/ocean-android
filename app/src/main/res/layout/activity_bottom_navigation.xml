@@ -47,13 +47,10 @@
             app:layout_constraintTop_toBottomOf="@id/load_items"
             android:layout_marginTop="20dp" />
 
-        <br.com.useblu.oceands.components.OceanBottomNavigation
+        <androidx.compose.ui.platform.ComposeView
             android:id="@+id/nav_bottom"
             android:layout_width="match_parent"
-            android:background="@color/ocean_color_brand_primary_pure"
-            android:layout_height="64dp"
-            android:paddingHorizontal="2dp"
-            android:paddingVertical="4dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

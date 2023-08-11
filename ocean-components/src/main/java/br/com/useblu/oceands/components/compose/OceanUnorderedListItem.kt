@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
+import br.com.useblu.oceands.model.OceanIconType
 import br.com.useblu.oceands.model.compose.OceanUnorderedListItemModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -25,17 +26,17 @@ fun OceanUnorderedListItemPreview() {
     val models = listOf(
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
-            iconToken = "shieldcheckoutline",
+            iconType = OceanIconType.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         ),
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
-            iconToken = "shieldcheckoutline",
+            iconType = OceanIconType.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         ),
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
-            iconToken = "shieldcheckoutline",
+            iconType = OceanIconType.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         )
     )
@@ -64,7 +65,7 @@ fun OceanUnorderedListItem(
 ) {
     OceanUnorderedListItem(
         title = model.title,
-        iconToken = model.iconToken,
+        iconType = model.iconType,
         showIconBackground = model.showIconBackground
     )
 }
@@ -72,7 +73,7 @@ fun OceanUnorderedListItem(
 @Composable
 fun OceanUnorderedListItem(
     title: String,
-    iconToken: String,
+    iconType: OceanIconType,
     showIconBackground: Boolean = false
 ) {
     Row(
@@ -89,7 +90,7 @@ fun OceanUnorderedListItem(
                 .iconContainerBackground(showIconBackground)
         ) {
             OceanIcon(
-                token = iconToken,
+                iconType = iconType,
                 modifier = Modifier
                     .align(Alignment.Center)
                     .size(iconSize),

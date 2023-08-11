@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.model.OceanIconType
 import br.com.useblu.oceands.model.compose.OceanBottomNavigationModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -45,28 +46,25 @@ private val initialModelList = mutableStateOf(
     listOf(
         OceanBottomNavigationModel(
             label = "Home",
-            activeIcon = "homesolid",
-            inactiveIcon = "homeoutline",
-            onClickListener = {
-                selectedIndex.value = 0
-            }
-        ),
+            activeIcon = OceanIconType.HOME_SOLID,
+            inactiveIcon = OceanIconType.HOME_OUTLINE
+        ) {
+            selectedIndex.value = 0
+        },
         OceanBottomNavigationModel(
             label = "Pagar",
-            activeIcon = "pagblusolid",
-            inactiveIcon = "pagbluoutline",
-            onClickListener = {
-                selectedIndex.value = 1
-            }
-        ),
+            activeIcon = OceanIconType.PAG_BLU_SOLID,
+            inactiveIcon = OceanIconType.PAGBLU_OUTLINE
+        ) {
+            selectedIndex.value = 1
+        },
         OceanBottomNavigationModel(
             label = "Cobrar",
-            activeIcon = "chargesolid",
-            inactiveIcon = "chargeoutline",
-            onClickListener = {
-                selectedIndex.value = 2
-            }
-        )
+            activeIcon = OceanIconType.CHARGE_SOLID,
+            inactiveIcon = OceanIconType.CHARGE_OUTLINE
+        ) {
+            selectedIndex.value = 2
+        }
     )
 )
 
@@ -76,25 +74,23 @@ private fun OceanBottomNavigationPreview() {
     remember {
         OceanBottomNavigationModel(
             label = "EasterEggs",
-            activeIcon = "terminalsolid",
-            inactiveIcon = "terminaloutline",
-            onClickListener = {
-                println("click add easter egg")
-                selectedIndex.value = 3
-                initialModelList.value = initialModelList.value.toMutableList().apply {
-                    add(
-                        OceanBottomNavigationModel(
-                            label = "EasterEggs",
-                            activeIcon = "terminalsolid",
-                            inactiveIcon = "terminaloutline",
-                            onClickListener = {
-                                selectedIndex.value = initialModelList.value.size - 1
-                            }
-                        )
-                    )
-                }
+            activeIcon = OceanIconType.TERMINAL_SOLID,
+            inactiveIcon = OceanIconType.TERMINAL_OUTLINE
+        ) {
+            println("click add easter egg")
+            selectedIndex.value = 3
+            initialModelList.value = initialModelList.value.toMutableList().apply {
+                add(
+                    OceanBottomNavigationModel(
+                        label = "EasterEggs",
+                        activeIcon = OceanIconType.TERMINAL_SOLID,
+                        inactiveIcon = OceanIconType.TERMINAL_OUTLINE
+                    ) {
+                        selectedIndex.value = initialModelList.value.size - 1
+                    }
+                )
             }
-        ).let {
+        }.let {
             initialModelList.value = initialModelList.value.toMutableList().apply {
                 add(it)
             }
@@ -211,7 +207,7 @@ private fun OceanBottomNavigationMenuItem(
         verticalArrangement = Arrangement.Center
     ) {
         OceanIcon(
-            token = if (isSelected) model.activeIcon else model.inactiveIcon,
+            iconType = if (isSelected) model.activeIcon else model.inactiveIcon,
             modifier = Modifier.size(22.dp),
             tint = color
         )

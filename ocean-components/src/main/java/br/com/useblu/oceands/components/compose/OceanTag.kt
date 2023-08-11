@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.model.OceanIconType
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -64,7 +65,7 @@ private fun OceanTagPreview() {
         Column {
             OceanTag(
                 label = "Label",
-                iconToken = "placeholdersolid",
+                iconToken = OceanIconType.PLACEHOLDER_SOLID,
                 type = OceanTagType.Positive
             )
 
@@ -72,7 +73,7 @@ private fun OceanTagPreview() {
 
             OceanTag(
                 label = "Label",
-                iconToken = "placeholdersolid",
+                iconToken = OceanIconType.PLACEHOLDER_SOLID,
                 type = OceanTagType.Warning
             )
 
@@ -80,7 +81,7 @@ private fun OceanTagPreview() {
 
             OceanTag(
                 label = "Label",
-                iconToken = "placeholdersolid",
+                iconToken = OceanIconType.PLACEHOLDER_SOLID,
                 type = OceanTagType.Negative
             )
 
@@ -88,7 +89,7 @@ private fun OceanTagPreview() {
 
             OceanTag(
                 label = "Label",
-                iconToken = "placeholdersolid",
+                iconToken = OceanIconType.PLACEHOLDER_SOLID,
                 type = OceanTagType.Complementary
             )
 
@@ -96,7 +97,7 @@ private fun OceanTagPreview() {
 
             OceanTag(
                 label = "Label",
-                iconToken = "placeholdersolid",
+                iconToken = OceanIconType.PLACEHOLDER_SOLID,
                 type = OceanTagType.Neutral
             )
         }
@@ -149,7 +150,7 @@ private fun OceanTagPreview() {
 fun OceanTag(
     label: String,
     type: OceanTagType,
-    iconToken: String? = null,
+    iconToken: OceanIconType? = null,
     isSmall: Boolean = false
 ) {
     val size = if (isSmall) 16.dp else 20.dp
@@ -171,7 +172,7 @@ fun OceanTag(
             Spacer(modifier = Modifier.size(6.dp))
 
             OceanIcon(
-                token = iconToken,
+                iconType = iconToken,
                 tint = textColor,
                 modifier = Modifier.size(16.dp)
             )

@@ -68,7 +68,8 @@ class OceanBottomSheetCompose: BottomSheetDialogFragment() {
                         actionNegative?.invoke()
                         dismiss()
                     },
-                    orientation = orientationButtons
+                    orientation = orientationButtons,
+                    isCritical = isCritical
                 )
             }
 

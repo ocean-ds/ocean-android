@@ -1,6 +1,6 @@
 package br.com.useblu.oceands.model
 
-enum class OceanIconType(private val token: String) {
+enum class OceanIconType(val token: String) {
     APPAREL_OUTLINE("appareloutline"),
     APPLIANCES_OUTLINE("appliancesoutline"),
     ARROW_RIGHT_UP_OUTLINE("arrowrightupoutline"),
@@ -543,10 +543,6 @@ enum class OceanIconType(private val token: String) {
     MONEY_INFLOW_OUTLINE("moneyinflowoutline"),
     MONEY_OUTFLOW_OUTLINE("moneyoutflowoutline"),
     UNDEFINED("");
-
-    fun toToken(): String {
-        return this.token
-    }
 
     companion object {
         fun fromToken(token: String): OceanIconType {

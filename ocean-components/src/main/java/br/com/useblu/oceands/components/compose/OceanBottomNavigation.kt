@@ -47,24 +47,27 @@ private val initialModelList = mutableStateOf(
         OceanBottomNavigationModel(
             label = "Home",
             activeIcon = OceanIconType.HOME_SOLID,
-            inactiveIcon = OceanIconType.HOME_OUTLINE
-        ) {
-            selectedIndex.value = 0
-        },
+            inactiveIcon = OceanIconType.HOME_OUTLINE,
+            onClickListener = {
+                selectedIndex.value = 0
+            }
+        ),
         OceanBottomNavigationModel(
             label = "Pagar",
             activeIcon = OceanIconType.PAG_BLU_SOLID,
-            inactiveIcon = OceanIconType.PAGBLU_OUTLINE
-        ) {
-            selectedIndex.value = 1
-        },
+            inactiveIcon = OceanIconType.PAGBLU_OUTLINE,
+            onClickListener = {
+                selectedIndex.value = 1
+            }
+        ),
         OceanBottomNavigationModel(
             label = "Cobrar",
             activeIcon = OceanIconType.CHARGE_SOLID,
-            inactiveIcon = OceanIconType.CHARGE_OUTLINE
-        ) {
-            selectedIndex.value = 2
-        }
+            inactiveIcon = OceanIconType.CHARGE_OUTLINE,
+            onClickListener = {
+                selectedIndex.value = 2
+            }
+        )
     )
 )
 
@@ -84,10 +87,11 @@ private fun OceanBottomNavigationPreview() {
                     OceanBottomNavigationModel(
                         label = "EasterEggs",
                         activeIcon = OceanIconType.TERMINAL_SOLID,
-                        inactiveIcon = OceanIconType.TERMINAL_OUTLINE
-                    ) {
-                        selectedIndex.value = initialModelList.value.size - 1
-                    }
+                        inactiveIcon = OceanIconType.TERMINAL_OUTLINE,
+                        onClickListener = {
+                            selectedIndex.value = initialModelList.value.size - 1
+                        }
+                    )
                 )
             }
         }.let {

@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.model.OceanIconType
 import br.com.useblu.oceands.model.compose.OceanUnorderedListItemModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 
@@ -19,17 +20,17 @@ fun OceanCalloutListPreview() {
     val model = listOf(
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
-            iconToken = "shieldcheckoutline",
+            iconType = OceanIconType.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         ),
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
-            iconToken = "shieldcheckoutline",
+            iconType = OceanIconType.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         ),
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
-            iconToken = "shieldcheckoutline",
+            iconType = OceanIconType.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         )
     )

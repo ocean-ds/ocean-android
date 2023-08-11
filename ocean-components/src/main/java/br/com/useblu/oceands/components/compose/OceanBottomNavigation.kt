@@ -99,7 +99,7 @@ private fun OceanBottomNavigationPreview() {
 
     OceanBottomNavigation(
         selectedIndex = selectedIndex.value,
-        models = initialModelList.value
+        models = emptyList()
     )
 }
 
@@ -115,7 +115,7 @@ fun OceanBottomNavigation(
     }
 
     val xOffset = animateDpAsState(
-        targetValue = rowWidth.value / models.size * selectedIndex,
+        targetValue = rowWidth.value / (models.size).coerceAtLeast(1) * selectedIndex,
         label = "Background offset"
     )
 
@@ -126,7 +126,8 @@ fun OceanBottomNavigation(
             .padding(4.dp)
             .height(64.dp)
     ) {
-        val backgroundWidth = rowWidth.value / models.size
+        val backgroundWidth = if (models.isNotEmpty()) rowWidth.value / models.size
+        else 0.dp
 
         Box(
             modifier = Modifier

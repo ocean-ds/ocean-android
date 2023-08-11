@@ -1,5 +1,8 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -19,10 +22,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -139,6 +144,8 @@ private fun PageIndicator(
     pages: List<OceanOnboardingPageModel>,
     pagerState: PagerState
 ) {
+
+    val density = LocalDensity.current
     Row(
         Modifier
             .height(52.dp)
@@ -147,15 +154,29 @@ private fun PageIndicator(
         verticalAlignment = Alignment.CenterVertically
     ) {
         repeat(pages.size) { iteration ->
-            val color = if (pagerState.currentPage == iteration) OceanColors.brandPrimaryPure else OceanColors.interfaceLightDeep
-            val width = if (pagerState.currentPage == iteration) 8.dp else 4.dp
+            val isSelected = remember(pagerState.currentPage) {
+                pagerState.currentPage == iteration
+            }
+
+            val color = animateColorAsState(
+                targetValue = if (isSelected) OceanColors.brandPrimaryPure else OceanColors.interfaceLightDeep,
+                label = "Page Indicator Color",
+                animationSpec = tween(300)
+            )
+
+            val width = animateDpAsState(
+                targetValue = if (isSelected) 8.dp else 4.dp,
+                label = "Page Indicator Width",
+                animationSpec = tween(300)
+            )
+
             Box(
                 modifier = Modifier
                     .padding(2.dp)
                     .clip(CircleShape)
-                    .background(color)
+                    .background(color.value)
                     .height(4.dp)
-                    .width(width)
+                    .width(width.value)
             )
         }
     }

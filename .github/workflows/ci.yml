@@ -6,10 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: 'echo "$SSH_KEY" | base64'
+      - name: Teste
+        run: 'echo "$SSH_KEY" | base64'
         shell: bash
         env:
-          SSH_KEY: ${{ secrets.PRIVATE_KEY }}
+          SSH_KEY: ${{ secrets.GPR_API_KEY }}
 
       - name: Checkout the code
         uses: actions/checkout@v3

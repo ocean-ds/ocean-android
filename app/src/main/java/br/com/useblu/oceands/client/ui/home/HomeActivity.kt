@@ -69,7 +69,7 @@ import br.com.useblu.oceands.components.OceanSnackBar
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.OceanTooltip
 import br.com.useblu.oceands.components.compose.OceanIcon
-import br.com.useblu.oceands.model.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.model.OceanUnorderedListItem
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -351,7 +351,7 @@ class HomeActivity : AppCompatActivity() {
         OceanBottomSheetCompose()
             .withComposeContent { 
                 OceanIcon(
-                    iconType = OceanIconType.BARCODE_OUTLINE,
+                    iconType = OceanIcons.BARCODE_OUTLINE,
                     modifier = Modifier.size(40.dp)
                 )
                 OceanSpacing.StackXS()

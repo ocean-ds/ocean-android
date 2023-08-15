@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
-import br.com.useblu.oceands.model.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -66,7 +66,7 @@ private fun OceanCardListItemPreview() {
         ) {
             OceanCardListItem(
                 title = "Title",
-                leadingIconToken = OceanIconType.SWITCH_HORIZONTAL_OUTLINE
+                leadingIconToken = OceanIcons.SWITCH_HORIZONTAL_OUTLINE
             )
 
             OceanSpacing.StackXXS()
@@ -74,16 +74,7 @@ private fun OceanCardListItemPreview() {
             OceanCardListItem(
                 title = "Title",
                 description = "Description",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE
-            )
-
-            OceanSpacing.StackXXS()
-
-            OceanCardListItem(
-                title = "Title",
-                description = "Description",
-                caption = "Caption",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE
             )
 
             OceanSpacing.StackXXS()
@@ -92,7 +83,16 @@ private fun OceanCardListItemPreview() {
                 title = "Title",
                 description = "Description",
                 caption = "Caption",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE
+            )
+
+            OceanSpacing.StackXXS()
+
+            OceanCardListItem(
+                title = "Title",
+                description = "Description",
+                caption = "Caption",
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
                 disabled = true
             )
         }
@@ -103,8 +103,8 @@ private fun OceanCardListItemPreview() {
         ) {
             OceanCardListItem(
                 title = "Title",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
-                trailingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
                 showIconBackground = false
             )
 
@@ -113,19 +113,8 @@ private fun OceanCardListItemPreview() {
             OceanCardListItem(
                 title = "Title",
                 description = "Description",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
-                trailingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
-                showIconBackground = false
-            )
-
-            OceanSpacing.StackXXS()
-
-            OceanCardListItem(
-                title = "Title",
-                description = "Description",
-                caption = "Caption",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
-                trailingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
                 showIconBackground = false
             )
 
@@ -135,8 +124,19 @@ private fun OceanCardListItemPreview() {
                 title = "Title",
                 description = "Description",
                 caption = "Caption",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
-                trailingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                showIconBackground = false
+            )
+
+            OceanSpacing.StackXXS()
+
+            OceanCardListItem(
+                title = "Title",
+                description = "Description",
+                caption = "Caption",
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
                 disabled = true
             )
         }
@@ -149,8 +149,8 @@ fun OceanCardListItem(
     modifier: Modifier = Modifier,
     description: String? = null,
     caption: String? = null,
-    leadingIconToken: OceanIconType? = null,
-    trailingIconToken: OceanIconType? = null,
+    leadingIconToken: OceanIcons? = null,
+    trailingIconToken: OceanIcons? = null,
     showIconBackground: Boolean = true,
     disabled: Boolean = false,
     onClick: (() -> Unit)? = null

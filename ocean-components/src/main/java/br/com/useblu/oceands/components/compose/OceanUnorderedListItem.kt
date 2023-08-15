@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
-import br.com.useblu.oceands.model.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.model.compose.OceanUnorderedListItemModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -26,17 +26,17 @@ fun OceanUnorderedListItemPreview() {
     val models = listOf(
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
-            iconType = OceanIconType.SHIELD_CHECK_OUTLINE,
+            iconType = OceanIcons.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         ),
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
-            iconType = OceanIconType.SHIELD_CHECK_OUTLINE,
+            iconType = OceanIcons.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         ),
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
-            iconType = OceanIconType.SHIELD_CHECK_OUTLINE,
+            iconType = OceanIcons.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         )
     )
@@ -73,7 +73,7 @@ fun OceanUnorderedListItem(
 @Composable
 fun OceanUnorderedListItem(
     title: String,
-    iconType: OceanIconType,
+    iconType: OceanIcons,
     showIconBackground: Boolean = false
 ) {
     Row(

@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.useblu.oceands.model.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -143,12 +143,12 @@ fun OceanSnackBar(
 
 
 sealed interface OceanSnackBarType {
-    fun getIcon(): OceanIconType {
+    fun getIcon(): OceanIcons {
         return when (this) {
-            is Information -> OceanIconType.INFO_OUTLINE
-            is Positive -> OceanIconType.CHECK_CIRCLE_OUTLINE
-            is Warning -> OceanIconType.EXCLAMATION_CIRCLE_OUTLINE
-            is Negative -> OceanIconType.X_CIRCLE_OUTLINE
+            is Information -> OceanIcons.INFO_OUTLINE
+            is Positive -> OceanIcons.CHECK_CIRCLE_OUTLINE
+            is Warning -> OceanIcons.EXCLAMATION_CIRCLE_OUTLINE
+            is Negative -> OceanIcons.X_CIRCLE_OUTLINE
         }
     }
 

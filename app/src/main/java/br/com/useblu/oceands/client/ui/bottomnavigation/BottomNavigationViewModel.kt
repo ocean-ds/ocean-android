@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.model.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.model.compose.OceanBottomNavigationModel
 import kotlin.random.Random
 
@@ -30,8 +30,8 @@ class BottomNavigationViewModel: ViewModel() {
                 add(
                     OceanBottomNavigationModel(
                         label = "Teste ${Random.nextInt(0, 100)}",
-                        activeIcon = OceanIconType.HOME_SOLID,
-                        inactiveIcon = OceanIconType.HOME_OUTLINE,
+                        activeIcon = OceanIcons.HOME_SOLID,
+                        inactiveIcon = OceanIcons.HOME_OUTLINE,
                         onClickListener = {
                             selectedIndex = currentSize
                         }
@@ -45,32 +45,32 @@ class BottomNavigationViewModel: ViewModel() {
         val menuItems = listOf(
             OceanBottomNavigationModel(
                 label = "Home",
-                activeIcon = OceanIconType.HOME_SOLID,
-                inactiveIcon = OceanIconType.HOME_OUTLINE,
+                activeIcon = OceanIcons.HOME_SOLID,
+                inactiveIcon = OceanIcons.HOME_OUTLINE,
                 onClickListener = {
                     selectedIndex = 0
                 }
             ),
             OceanBottomNavigationModel(
                 label = "Pagar",
-                activeIcon = OceanIconType.PAGBLU_SOLID,
-                inactiveIcon = OceanIconType.PAGBLU_OUTLINE,
+                activeIcon = OceanIcons.PAGBLU_SOLID,
+                inactiveIcon = OceanIcons.PAGBLU_OUTLINE,
                 onClickListener = {
                     selectedIndex = 1
                 }
             ),
             OceanBottomNavigationModel(
                 label = "Transferir",
-                activeIcon = OceanIconType.SWITCH_HORIZONTAL_SOLID,
-                inactiveIcon = OceanIconType.SWITCH_HORIZONTAL_OUTLINE,
+                activeIcon = OceanIcons.SWITCH_HORIZONTAL_SOLID,
+                inactiveIcon = OceanIcons.SWITCH_HORIZONTAL_OUTLINE,
                 onClickListener = {
                     selectedIndex = 2
                 }
             ),
             OceanBottomNavigationModel(
                 label = "Relatórios",
-                activeIcon = OceanIconType.REPORT_SOLID,
-                inactiveIcon = OceanIconType.REPORT_OUTLINE,
+                activeIcon = OceanIcons.REPORT_SOLID,
+                inactiveIcon = OceanIcons.REPORT_OUTLINE,
                 onClickListener = {
                     selectedIndex = 3
                 }

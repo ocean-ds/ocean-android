@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanBadgeType
-import br.com.useblu.oceands.model.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.model.compose.OceanTextListIconItemModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -79,7 +79,7 @@ private fun OceanTextListIconItemPreview() {
         ) {
             OceanTextListIconItem(
                 title = "Title",
-                leadingIconToken = OceanIconType.SWITCH_HORIZONTAL_OUTLINE
+                leadingIconToken = OceanIcons.SWITCH_HORIZONTAL_OUTLINE
             )
 
             OceanSpacing.StackXXS()
@@ -87,7 +87,7 @@ private fun OceanTextListIconItemPreview() {
             OceanTextListIconItem(
                 title = "Title",
                 description = "Description",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE
             )
 
             OceanSpacing.StackXXS()
@@ -96,7 +96,7 @@ private fun OceanTextListIconItemPreview() {
                 title = "Title",
                 description = "Description",
                 caption = "Caption",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE
             )
         }
 
@@ -106,8 +106,8 @@ private fun OceanTextListIconItemPreview() {
         ) {
             OceanTextListIconItem(
                 title = "Title",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
-                trailingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
             )
 
             OceanSpacing.StackXXS()
@@ -115,8 +115,8 @@ private fun OceanTextListIconItemPreview() {
             OceanTextListIconItem(
                 title = "Title",
                 description = "Description",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
-                trailingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
             )
 
             OceanSpacing.StackXXS()
@@ -125,8 +125,8 @@ private fun OceanTextListIconItemPreview() {
                 title = "Title",
                 description = "Description",
                 caption = "Caption",
-                leadingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
-                trailingIconToken = OceanIconType.PLACEHOLDER_OUTLINE,
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
             )
         }
     }
@@ -138,15 +138,15 @@ private fun OceanTextListIconPreview() {
     val models = listOf(
         OceanTextListIconItemModel(
             title = "Transferir",
-            leadingIconToken = OceanIconType.SWITCH_HORIZONTAL_OUTLINE,
+            leadingIconToken = OceanIcons.SWITCH_HORIZONTAL_OUTLINE,
         ),
         OceanTextListIconItemModel(
             title = "Transferir",
-            leadingIconToken = OceanIconType.DUPLICATE_OUTLINE,
+            leadingIconToken = OceanIcons.DUPLICATE_OUTLINE,
         ),
         OceanTextListIconItemModel(
             title = "Transferir",
-            leadingIconToken = OceanIconType.SCALE_OUTLINE
+            leadingIconToken = OceanIcons.SCALE_OUTLINE
         ) {
             println("Click")
         }
@@ -198,8 +198,8 @@ fun OceanTextListIconItem(
     caption: String? = null,
     badgeText: String? = null,
     badgeType: OceanBadgeType = OceanBadgeType.HIGHLIGHT,
-    leadingIconToken: OceanIconType? = null,
-    trailingIconToken: OceanIconType? = null,
+    leadingIconToken: OceanIcons? = null,
+    trailingIconToken: OceanIcons? = null,
     onClick: (() -> Unit)? = null
 ) {
     Row(

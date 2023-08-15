@@ -3,7 +3,6 @@ package br.com.useblu.oceands.bindingadapters
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.text.InputType
-import android.text.method.LinkMovementMethod
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DimenRes
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
@@ -238,7 +236,10 @@ fun loadIcon(view: ImageView, token: String?) {
             Glide.with(view.context).load(token).placeholder(placeHolder).into(view)
         } else {
             val context = view.context
-            val icon = AppCompatResources.getDrawable(context, token.toOceanIcon() ?: R.drawable.ocean_icon_placeholder_solid)
+            val icon = AppCompatResources.getDrawable(
+                context,
+                token.toOceanIcon()
+            )
             view.setImageDrawable(icon)
         }
     }
@@ -337,7 +338,10 @@ private fun loadIconByToken(
     token: String,
     type: OceanAlertType?
 ) {
-    val icon = AppCompatResources.getDrawable(imageView.context, token.toOceanIcon() ?: R.drawable.ocean_icon_placeholder_solid)
+    val icon = AppCompatResources.getDrawable(
+        imageView.context,
+        token.toOceanIcon()
+    )
     imageView.setColorFilter(ContextCompat.getColor(imageView.context, getColor(type)))
     imageView.setImageDrawable(icon)
 }

@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.client.ui.toobar
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,8 +13,7 @@ class TopbarViewModel : ViewModel() {
         println("Icon back clicked!")
     }
 
-    fun showShadow(view: View) {
+    fun showShadow() {
         _shadowState.postValue(shadowState.value?.not())
     }
-
 }

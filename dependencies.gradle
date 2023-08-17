@@ -4,5 +4,13 @@ ext {
     compileSDK = 33
 
     kotlinVersion = "1.8.22"
-    androidGradlePluginVersion = '8.1.0'
+    androidGradlePluginVersion = '8.0.2'
+
+    // Dependency Analysis Gradle Plugin
+    dagpVersion = "1.20.0"
+
+    // Compose BOM
+    composeBomVersion = "2023.06.01"
+
+    kotlinCompilerExtensionVersion = "1.4.8"
 }

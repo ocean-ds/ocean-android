@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           # Check out as an admin to allow for pushing back to master
           token: ${{ secrets.GH_TOKEN }}
@@ -49,14 +49,14 @@ jobs:
           git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM [skip ci]" && git push
           git tag -a "v$OCEAN_VERSION" -m "Release of version $OCEAN_VERSION" && git push --tags
 
-      - name: Create Release Notes
-        uses: ncipollo/release-action@v1.12.0
-        with:
-          generateReleaseNotes: true
-          tag: v${{ env.OCEAN_VERSION }}
-
       - name: Publish new version lib
         run: ./gradlew clean assembleRelease publish
         env:
           GPR_USER: mariofelesdossantosjunior
           GPR_API_KEY: ${{ secrets.GPR_API_KEY }}
+
+      - name: Create Release Notes
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          generateReleaseNotes: true
+          tag: v${{ env.OCEAN_VERSION }}

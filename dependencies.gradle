@@ -3,7 +3,7 @@ ext {
     targetSDK = 33
     compileSDK = 33
 
-    kotlinVersion = "1.8.22"
+    kotlinVersion = "1.9.0"
     androidGradlePluginVersion = '8.0.2'
 
     // Dependency Analysis Gradle Plugin

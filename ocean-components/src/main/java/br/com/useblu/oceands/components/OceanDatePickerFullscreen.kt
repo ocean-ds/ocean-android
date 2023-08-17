@@ -90,12 +90,10 @@ class OceanDatePickerFullscreen(
             dismiss()
             binding.calendarView.selectedDate?.let {
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-                val convertedDate: Date =
-                    dateFormat.parse(it.year.toString() + "-" + it.month.toString() + "-" + it.day.toString())
+                val convertedDate = dateFormat.parse(it.year.toString() + "-" + it.month.toString() + "-" + it.day.toString())
                 val calendar = Calendar.getInstance()
-                calendar.time = convertedDate
+                calendar.time = convertedDate ?: Date()
                 onClickConfirm.invoke(calendar)
-
             }
         }
     }

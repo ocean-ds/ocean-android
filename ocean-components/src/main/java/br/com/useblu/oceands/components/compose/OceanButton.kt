@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.components.compose
 
-import android.graphics.drawable.Drawable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -16,24 +15,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
-import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview(widthDp = 480)
 @Composable
 fun PreviewButton() {
-    val icon = ContextCompat.getDrawable(
-        LocalContext.current,
-        R.drawable.icon_chevron_down
-    )
+    val icon = OceanIcons.CHEVRON_DOWN_OUTLINE
 
     val styles = listOf(
         listOf(
@@ -100,7 +93,7 @@ fun OceanButton(
     modifier: Modifier = Modifier,
     buttonStyle: OceanButtonStyle,
     showProgress: Boolean = false,
-    icon: Drawable? = null,
+    icon: OceanIcons? = null,
     disabled: Boolean = false,
     onClick: () -> Unit
 ) {
@@ -117,8 +110,9 @@ fun OceanButton(
     ) {
         if (!showProgress) {
             if (icon != null) {
+
                 Icon(
-                    bitmap = icon.toBitmap().asImageBitmap(),
+                    painter = painterResource(id = icon.icon),
                     contentDescription = null,
                     modifier = Modifier.size(24.dp),
                 )

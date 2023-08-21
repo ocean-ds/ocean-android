@@ -8,13 +8,13 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityButtonsBinding
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
+import br.com.useblu.oceands.utils.OceanIcons
 import com.savvyapps.togglebuttonlayout.Toggle
 import com.savvyapps.togglebuttonlayout.ToggleButtonLayout
 
@@ -56,7 +56,7 @@ class ButtonsActivity : AppCompatActivity() {
             val context = LocalContext.current
             OceanButton(
                 text = "Compose Button",
-                icon = if (iconState.value == true) ContextCompat.getDrawable(context, R.drawable.icon_plus_white_24dp) else null,
+                icon = if (iconState.value == true) OceanIcons.PLUS_CIRCLE_OUTLINE else null,
                 showProgress = (buttonState.value ?: "") == "Loading",
                 disabled = (buttonState.value ?: "") == "Disabled",
                 buttonStyle = OceanButtonStyle.PrimaryMedium,

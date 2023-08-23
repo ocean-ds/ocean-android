@@ -73,6 +73,10 @@
             name="iconErrorClick"
             type="Function0&lt;Unit>" />
 
+        <variable
+            name="labelTextColor"
+            type="Integer"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,7 +91,7 @@
             android:fontFamily="@font/font_family_base_regular"
             android:lineSpacingMultiplier="@dimen/ocean_line_height_medium"
             android:text="@{label}"
-            android:textColor="@color/ocean_color_interface_dark_down"
+            android:textColor="@{labelTextColor != null ? labelTextColor : @color/ocean_color_interface_dark_down}"
             android:textSize="@dimen/ocean_font_size_xxs"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -96,7 +100,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="@dimen/ocean_spacing_inline_xxs"
             app:boxBackgroundMode="none"
             app:hintEnabled="false"
@@ -108,15 +112,15 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:fontFamily="@font/font_family_base_regular"
                 android:hint="@{hint}"
                 android:imeOptions="actionGo"
                 android:maxLength="@{maxLength != 0 ? maxLength : 1000}"
                 android:paddingStart="@dimen/ocean_spacing_inline_xs"
-                android:paddingTop="@dimen/ocean_spacing_inline_xs"
+                android:paddingTop="0dp"
                 android:paddingEnd="@{(icon != null) ? @dimen/ocean_spacing_inline_xx : @dimen/ocean_spacing_inline_xs}"
-                android:paddingBottom="@dimen/ocean_spacing_inline_xs"
+                android:paddingBottom="0dp"
                 android:text="@={value}"
                 android:enabled="@{!disabled}"
                 android:textColor="@color/ocean_color_interface_dark_deep"
@@ -185,8 +189,8 @@
 
         <ImageView
             android:id="@+id/iconInformation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="4dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/labelTextView"
@@ -198,8 +202,8 @@
 
         <ImageView
             android:id="@+id/iconImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
             android:clickable="true"
             android:focusable="true"

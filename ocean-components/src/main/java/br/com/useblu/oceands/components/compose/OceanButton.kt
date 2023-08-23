@@ -83,6 +83,18 @@ fun PreviewButton() {
                 }
                 OceanSpacing.StackXS()
             }
+
+            OceanButton(
+                text = "",
+                showProgress = false,
+                icon = icon,
+                disabled = false,
+                modifier = Modifier,
+                buttonStyle = OceanButtonStyle.PrimaryMedium,
+                onClick = {
+                    println("Botão clicado")
+                }
+            )
         }
     }
 }
@@ -116,7 +128,9 @@ fun OceanButton(
                     contentDescription = null,
                     modifier = Modifier.size(24.dp),
                 )
+            }
 
+            if (icon != null && text.isNotEmpty()) {
                 Spacer(modifier = Modifier.size(buttonStyle.getIconPadding()))
             }
 

@@ -30,9 +30,7 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 @Preview
 @Composable
 fun PreviewOceanAccordion() {
-    Column(
-        modifier = Modifier.background(OceanColors.complementaryUp)
-    ) {
+    Column {
         OceanAccordion(
             title = "Teste",
             description = "Uiuiui ui uiasduhsaudha",

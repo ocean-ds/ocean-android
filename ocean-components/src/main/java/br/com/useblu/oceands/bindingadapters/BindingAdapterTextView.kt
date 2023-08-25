@@ -49,6 +49,12 @@ fun setUnderline(textView: TextView, text: String?) {
         val fromHtml = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY)
         val underlineText = SpannableString(fromHtml)
         underlineText.setSpan(UnderlineSpan(), 0, underlineText.length, 0)
+        textView.setTextColor(
+            ContextCompat.getColor(
+                textView.context,
+                R.color.ocean_color_brand_primary_pure
+            )
+        )
         textView.text = underlineText
     }
 }

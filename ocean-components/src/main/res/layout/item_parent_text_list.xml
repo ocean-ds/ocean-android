@@ -22,6 +22,8 @@
             android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
             android:focusable="true"
             android:src="@{item.image}"
+            tools:tint="#5872F5"
+            app:tint="#5872F5"
             app:ocean_visible_or_gone="@{item.image != null}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

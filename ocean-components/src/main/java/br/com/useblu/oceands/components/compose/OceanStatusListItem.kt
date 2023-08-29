@@ -24,6 +24,7 @@ import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIcons
 
 
 @Preview
@@ -40,6 +41,7 @@ fun OceanStatusListItemPreview() {
                 caption = "Caption",
                 tagLabel = "Tag",
                 tagType = OceanTagType.Warning,
+                tagIcon = OceanIcons.ACADEMIC_CAP_SOLID,
                 onClick = {
                     println("click container")
                 }
@@ -52,6 +54,7 @@ fun OceanStatusListItemPreview() {
                 tagLabel = "Tag",
                 tagType = OceanTagType.Warning,
                 tagPosition = OceanStatusListItemTagPosition.RIGHT,
+                tagIcon = OceanIcons.ACADEMIC_CAP_SOLID,
                 rightIconType = OceanStatusListItemRightIconType.CONTEXT_MENU,
                 onClick = {
                     println("click container")
@@ -140,6 +143,7 @@ fun OceanStatusListItem(
     description: String? = null,
     caption: String? = null,
     tagLabel: String? = null,
+    tagIcon: OceanIcons? = null,
     tagPosition: OceanStatusListItemTagPosition = OceanStatusListItemTagPosition.BOTTOM,
     tagType: OceanTagType = OceanTagType.Warning,
     isReadOnly: Boolean = false,
@@ -188,12 +192,12 @@ fun OceanStatusListItem(
 
             if (tagLabel != null && tagPosition == OceanStatusListItemTagPosition.BOTTOM) {
                 OceanSpacing.StackXXXS()
-                OceanTag(label = tagLabel, type = tagType)
+                OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
             }
         }
 
         if (tagLabel != null && tagPosition == OceanStatusListItemTagPosition.RIGHT) {
-            OceanTag(label = tagLabel, type = tagType)
+            OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
         }
 
         if (!isReadOnly) {

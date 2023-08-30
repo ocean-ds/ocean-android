@@ -3,6 +3,7 @@ package br.com.useblu.oceands.bindingadapters
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.text.InputType
+import android.text.method.LinkMovementMethod
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -50,6 +51,7 @@ fun setClickableEffect(view: View, value: Boolean?) {
 @BindingAdapter("ocean_text_from_html")
 fun setTextFromHtml(view: TextView, text: String?) {
     view.text = HtmlCompat.fromHtml(text ?: "", HtmlCompat.FROM_HTML_MODE_LEGACY)
+    view.movementMethod = LinkMovementMethod.getInstance()
 }
 
 @BindingAdapter("ocean_layout_width")

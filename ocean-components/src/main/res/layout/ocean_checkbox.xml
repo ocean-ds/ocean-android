@@ -106,14 +106,12 @@
                     layout="@layout/ocean_paragraph"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorLink="@color/ocean_color_brand_primary_pure"
                     app:color="@{@color/ocean_color_interface_dark_pure}"
                     app:text="@{text}" />
 
                 <include
                     layout="@layout/ocean_description"
                     android:layout_width="match_parent"
-                    android:textColorLink="@color/ocean_color_brand_primary_pure"
                     android:layout_height="wrap_content"
                     app:color="@{@color/ocean_color_interface_dark_down}"
                     app:ocean_visible_or_gone="@{description != null &amp;&amp; !description.isEmpty()}"

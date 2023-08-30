@@ -32,11 +32,11 @@ import br.com.useblu.oceands.utils.OceanIcons
 fun OceanShortcutPreview() {
     val models = listOf(
         OceanShortcutModel(
-            label = "Tiny Vertical",
+            label = "TinyVertical",
             icon = OceanIcons.ACADEMIC_CAP_SOLID
         ),
         OceanShortcutModel(
-            label = "Tiny Vertical",
+            label = "TinyVertical",
             icon = OceanIcons.ACADEMIC_CAP_SOLID
         ),
 
@@ -64,39 +64,39 @@ fun OceanShortcutPreview() {
         ),
 
         OceanShortcutModel(
-            label = "Label",
+            label = "Small",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.Small,
             badgeType = OceanBadgeType.WARNING,
             count = "120"
         ),
         OceanShortcutModel(
-            label = "Label",
+            label = "Small",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.Small
         ),
 
         OceanShortcutModel(
-            label = "Label",
+            label = "Small",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.Small
         ),
         OceanShortcutModel(
-            label = "Label",
+            label = "MediumHorizontal",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.MediumHorizontal,
             description = "Lorem ipsum dolor sit amet, consectetur."
         ),
 
         OceanShortcutModel(
-            label = "Label",
+            label = "MediumVertical Disabled",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.MediumVertical,
             description = "Lorem ipsum dolor sit amet, consectetur.",
             disabled = true
         ),
         OceanShortcutModel(
-            label = "Label",
+            label = "MediumVertical Disabled",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.MediumVertical,
             description = "Lorem ipsum dolor sit amet, consectetur.",

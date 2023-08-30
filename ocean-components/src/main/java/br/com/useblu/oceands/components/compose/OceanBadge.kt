@@ -76,7 +76,8 @@ fun OceanBadgePreview() {
 fun OceanBadge(
     text: String,
     type: OceanBadgeType,
-    size: OceanBadgeSize
+    size: OceanBadgeSize,
+    modifier: Modifier = Modifier
 ) {
     val backgroundColor = when (type) {
         OceanBadgeType.HIGHLIGHT -> OceanColors.highlightPure
@@ -96,7 +97,7 @@ fun OceanBadge(
     } ?: text
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .background(
                 color = backgroundColor,
                 shape = RoundedCornerShape(40.dp)

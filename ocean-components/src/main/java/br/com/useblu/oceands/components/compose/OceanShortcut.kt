@@ -39,6 +39,7 @@ fun OceanShortcutPreview() {
             label = "Tiny Vertical",
             icon = OceanIcons.ACADEMIC_CAP_SOLID
         ),
+
         OceanShortcutModel(
             label = "TinyHorizontal",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
@@ -49,6 +50,7 @@ fun OceanShortcutPreview() {
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.TinyHorizontal
         ),
+
         OceanShortcutModel(
             label = "Label",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
@@ -60,16 +62,20 @@ fun OceanShortcutPreview() {
             blocked = true,
             layout = OceanShortcutLayout.TinyHorizontal
         ),
+
         OceanShortcutModel(
             label = "Label",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
-            layout = OceanShortcutLayout.Small
+            layout = OceanShortcutLayout.Small,
+            badgeType = OceanBadgeType.WARNING,
+            count = "120"
         ),
         OceanShortcutModel(
             label = "Label",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.Small
         ),
+
         OceanShortcutModel(
             label = "Label",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
@@ -81,6 +87,7 @@ fun OceanShortcutPreview() {
             layout = OceanShortcutLayout.MediumHorizontal,
             description = "Lorem ipsum dolor sit amet, consectetur."
         ),
+
         OceanShortcutModel(
             label = "Label",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
@@ -94,7 +101,7 @@ fun OceanShortcutPreview() {
             layout = OceanShortcutLayout.MediumVertical,
             description = "Lorem ipsum dolor sit amet, consectetur.",
             disabled = true
-        ),
+        )
     )
 
     OceanShortcutList(
@@ -204,6 +211,17 @@ fun OceanShortcut(
                     .size(16.dp)
                     .align(Alignment.TopEnd),
                 tint = OceanColors.interfaceDarkUp
+            )
+        }
+
+        if (count != null && badgeType != null) {
+            OceanBadge(
+                text = count,
+                type = badgeType,
+                size = OceanBadgeSize.Medium,
+                modifier = Modifier
+                    .padding(top = 8.dp, end = 8.dp)
+                    .align(Alignment.TopEnd)
             )
         }
 

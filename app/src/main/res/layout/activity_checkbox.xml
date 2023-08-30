@@ -28,7 +28,7 @@
                 app:checked="@{false}"
                 app:click="@{viewmodel::executeOnStatusChanged}"
                 app:error="@{`Error teste`}"
-                app:text="@{@string/text}"
+                app:text="@{@string/link}"
                 app:description="@{@string/description}"
                 app:actionTitle="@{@string/action_title}"
                 app:actionClick="@{viewmodel::actionClick}" />

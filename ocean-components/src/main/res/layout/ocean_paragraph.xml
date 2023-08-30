@@ -24,11 +24,11 @@
         style="@style/Ocean.Paragraph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorLink="@color/ocean_color_brand_primary_pure"
         android:gravity="@{gravity}"
         android:text="@{text}"
-        app:ocean_text_from_html="@{text}"
         android:textColor="@{(color != null) ? color : @color/ocean_color_interface_dark_down}"
+        android:textColorLink="@color/ocean_color_brand_primary_pure"
+        app:ocean_text_from_html="@{text}"
         tools:text="Paragraph" />
 
 </layout>

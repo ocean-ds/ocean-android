@@ -23,11 +23,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanBadgeType
-import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.model.compose.OceanTextListIconItemModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIcons
 
 
 @Preview(device = "spec:width=800dp,height=550.9dp,dpi=440")
@@ -79,7 +79,7 @@ private fun OceanTextListIconItemPreview() {
         ) {
             OceanTextListIconItem(
                 title = "Title",
-                leadingIconToken = OceanIcons.SWITCH_HORIZONTAL_OUTLINE
+                leadingIcon = OceanIcons.SWITCH_HORIZONTAL_OUTLINE
             )
 
             OceanSpacing.StackXXS()
@@ -87,7 +87,7 @@ private fun OceanTextListIconItemPreview() {
             OceanTextListIconItem(
                 title = "Title",
                 description = "Description",
-                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE
+                leadingIcon = OceanIcons.PLACEHOLDER_OUTLINE
             )
 
             OceanSpacing.StackXXS()
@@ -96,7 +96,7 @@ private fun OceanTextListIconItemPreview() {
                 title = "Title",
                 description = "Description",
                 caption = "Caption",
-                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE
+                leadingIcon = OceanIcons.PLACEHOLDER_OUTLINE
             )
         }
 
@@ -106,8 +106,8 @@ private fun OceanTextListIconItemPreview() {
         ) {
             OceanTextListIconItem(
                 title = "Title",
-                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
-                trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                leadingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
             )
 
             OceanSpacing.StackXXS()
@@ -115,8 +115,8 @@ private fun OceanTextListIconItemPreview() {
             OceanTextListIconItem(
                 title = "Title",
                 description = "Description",
-                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
-                trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                leadingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
             )
 
             OceanSpacing.StackXXS()
@@ -125,8 +125,8 @@ private fun OceanTextListIconItemPreview() {
                 title = "Title",
                 description = "Description",
                 caption = "Caption",
-                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
-                trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                leadingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
             )
         }
     }
@@ -184,8 +184,8 @@ fun OceanTextListIconItem(
         description = model.description,
         caption = model.caption,
         badgeText = model.badge,
-        leadingIconToken = model.leadingIconToken,
-        trailingIconToken = model.trailingIconToken,
+        leadingIcon = model.leadingIconToken,
+        trailingIcon = model.trailingIconToken,
         onClick = model.onClick
     )
 }
@@ -198,8 +198,8 @@ fun OceanTextListIconItem(
     caption: String? = null,
     badgeText: String? = null,
     badgeType: OceanBadgeType = OceanBadgeType.HIGHLIGHT,
-    leadingIconToken: OceanIcons? = null,
-    trailingIconToken: OceanIcons? = null,
+    leadingIcon: OceanIcons? = null,
+    trailingIcon: OceanIcons? = null,
     onClick: (() -> Unit)? = null
 ) {
     Row(
@@ -213,7 +213,7 @@ fun OceanTextListIconItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        leadingIconToken?.let {
+        leadingIcon?.let {
             Box(
                 modifier = Modifier
                     .size(40.dp)
@@ -272,7 +272,7 @@ fun OceanTextListIconItem(
             }
         }
 
-        trailingIconToken?.let {
+        trailingIcon?.let {
             OceanSpacing.StackXS()
 
             OceanIcon(

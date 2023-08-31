@@ -104,9 +104,15 @@ fun OceanShortcutPreview() {
         ),
 
         OceanShortcutModel(
-            label = "MdHor No Descr",
+            label = "Medium Vertical No Descr",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
-            layout = OceanShortcutLayout.MediumHorizontal,
+            layout = OceanShortcutLayout.MediumVertical,
+            description = "",
+        ),
+        OceanShortcutModel(
+            label = "MdVer No Descr",
+            icon = OceanIcons.ACADEMIC_CAP_SOLID,
+            layout = OceanShortcutLayout.MediumVertical,
             description = "",
         )
     )

@@ -101,6 +101,13 @@ fun OceanShortcutPreview() {
             layout = OceanShortcutLayout.MediumVertical,
             description = "Lorem ipsum dolor sit amet, consectetur.",
             disabled = true
+        ),
+
+        OceanShortcutModel(
+            label = "MdHor No Descr",
+            icon = OceanIcons.ACADEMIC_CAP_SOLID,
+            layout = OceanShortcutLayout.MediumHorizontal,
+            description = "",
         )
     )
 
@@ -247,7 +254,7 @@ fun OceanShortcut(
                 )
             }
 
-            if (layout.canShowDescription() && description != null) {
+            if (layout.canShowDescription() && !description.isNullOrBlank()) {
                 val descriptionColor = if (disabled) {
                     OceanColors.interfaceDarkUp
                 } else OceanColors.interfaceDarkDown
@@ -294,7 +301,9 @@ enum class OceanShortcutLayout {
             }
             TinyHorizontal,
             MediumHorizontal -> {
-                Row {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     content()
                 }
             }

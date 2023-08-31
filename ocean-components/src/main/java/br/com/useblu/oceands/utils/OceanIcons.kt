@@ -2190,7 +2190,7 @@ enum class OceanIcons(
 
     companion object {
         fun fromToken(token: String): OceanIcons {
-            return values().firstOrNull { it.token == token } ?: UNDEFINED
+            return values().firstOrNull { it.token.equals(token, ignoreCase = true) } ?: UNDEFINED
         }
     }
 }

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -101,6 +102,19 @@ fun OceanShortcutPreview() {
             layout = OceanShortcutLayout.MediumVertical,
             description = "Lorem ipsum dolor sit amet, consectetur.",
             disabled = true
+        ),
+
+        OceanShortcutModel(
+            label = "Medium Vertical No Descr",
+            icon = OceanIcons.ACADEMIC_CAP_SOLID,
+            layout = OceanShortcutLayout.MediumVertical,
+            description = "",
+        ),
+        OceanShortcutModel(
+            label = "MdVer No Descr",
+            icon = OceanIcons.ACADEMIC_CAP_SOLID,
+            layout = OceanShortcutLayout.MediumVertical,
+            description = "",
         )
     )
 
@@ -247,7 +261,7 @@ fun OceanShortcut(
                 )
             }
 
-            if (layout.canShowDescription() && description != null) {
+            if (layout.canShowDescription() && !description.isNullOrBlank()) {
                 val descriptionColor = if (disabled) {
                     OceanColors.interfaceDarkUp
                 } else OceanColors.interfaceDarkDown
@@ -294,7 +308,9 @@ enum class OceanShortcutLayout {
             }
             TinyHorizontal,
             MediumHorizontal -> {
-                Row {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     content()
                 }
             }
@@ -304,6 +320,7 @@ enum class OceanShortcutLayout {
     fun canShowDescription() = this == MediumHorizontal || this == MediumVertical
 }
 
+@Immutable
 data class OceanShortcutModel(
     val label: String,
     val description: String? = null,

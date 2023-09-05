@@ -5,5 +5,5 @@ import androidx.compose.runtime.Immutable
 @Immutable
 data class OceanTabItemModel(
     val label: String,
-    val counter: Int
+    val counter: Int? = null
 )

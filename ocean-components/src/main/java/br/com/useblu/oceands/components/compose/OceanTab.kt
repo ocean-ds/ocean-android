@@ -82,13 +82,15 @@ fun OceanTab(
                             color = if (selected) OceanColors.brandPrimaryPure else OceanColors.interfaceDarkUp
                         )
 
-                        OceanSpacing.StackXXS()
+                        if (tab.counter != null) {
+                            OceanSpacing.StackXXS()
 
-                        OceanBadge(
-                            text = tab.counter.toString(),
-                            type = if (selected) OceanBadgeType.PRIMARY else OceanBadgeType.DISABLED,
-                            size = OceanBadgeSize.Small
-                        )
+                            OceanBadge(
+                                text = tab.counter.toString(),
+                                type = if (selected) OceanBadgeType.PRIMARY else OceanBadgeType.DISABLED,
+                                size = OceanBadgeSize.Small
+                            )
+                        }
                     }
                 }
             )

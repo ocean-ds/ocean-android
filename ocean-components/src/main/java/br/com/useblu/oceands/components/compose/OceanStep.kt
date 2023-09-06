@@ -129,7 +129,6 @@ fun StepCircle(
     }
 }
 
-
 @Composable
 fun DoneCircle() {
     val color = OceanColors.complementaryPure

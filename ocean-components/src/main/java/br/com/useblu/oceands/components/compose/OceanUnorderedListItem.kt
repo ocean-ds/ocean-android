@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
@@ -36,6 +37,7 @@ fun OceanUnorderedListItemPreview() {
         ),
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
+            style = OceanTextStyle.heading5,
             iconType = OceanIcons.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         )
@@ -66,6 +68,7 @@ fun OceanUnorderedListItem(
     OceanUnorderedListItem(
         title = model.title,
         iconType = model.iconType,
+        style = model.style ?: OceanTextStyle.description,
         showIconBackground = model.showIconBackground
     )
 }
@@ -74,6 +77,7 @@ fun OceanUnorderedListItem(
 fun OceanUnorderedListItem(
     title: String,
     iconType: OceanIcons,
+    style: TextStyle = OceanTextStyle.description,
     showIconBackground: Boolean = false
 ) {
     Row(
@@ -100,7 +104,7 @@ fun OceanUnorderedListItem(
 
         Text(
             text = title,
-            style = OceanTextStyle.description,
+            style = style,
             modifier = Modifier
                 .align(Alignment.Top)
                 .padding(start = 8.dp)

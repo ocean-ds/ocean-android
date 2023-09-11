@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -56,6 +57,7 @@ fun OceanTab(
     TabRow(
         selectedTabIndex = selectedTabIndex,
         modifier = modifier
+            .background(color = OceanColors.interfaceLightPure)
             .fillMaxWidth(),
         indicator = { tabPositions ->
             if (selectedTabIndex < tabPositions.size) {
@@ -73,26 +75,35 @@ fun OceanTab(
                 modifier = Modifier.height(56.dp),
                 onClick = { onSelectedTab(index) },
                 text = {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            text = tab.label,
-                            style = OceanTextStyle.heading4,
-                            color = if (selected) OceanColors.brandPrimaryPure else OceanColors.interfaceDarkUp
-                        )
-
-                        if (tab.counter != null) {
-                            OceanSpacing.StackXXS()
-
-                            OceanBadge(
-                                text = tab.counter.toString(),
-                                type = if (selected) OceanBadgeType.PRIMARY else OceanBadgeType.DISABLED,
-                                size = OceanBadgeSize.Small
-                            )
-                        }
-                    }
+                    TabText(tab, selected, tab.counter)
                 }
+            )
+        }
+    }
+}
+
+@Composable
+private fun TabText(
+    tab: OceanTabItemModel,
+    selected: Boolean,
+    counter: Int?
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = tab.label,
+            style = OceanTextStyle.heading4,
+            color = if (selected) OceanColors.brandPrimaryPure else OceanColors.interfaceDarkUp
+        )
+
+        if (tab.counter != null) {
+            OceanSpacing.StackXXS()
+
+            OceanBadge(
+                text = counter.toString(),
+                type = if (selected) OceanBadgeType.PRIMARY else OceanBadgeType.DISABLED,
+                size = OceanBadgeSize.Small
             )
         }
     }

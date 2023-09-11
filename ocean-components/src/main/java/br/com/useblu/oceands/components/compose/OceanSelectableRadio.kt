@@ -71,17 +71,16 @@ fun SelectableRadioPreview() {
 @Composable
 fun OceanSelectableRadio(
     selected: Boolean = false,
-    unsettled: Boolean = false,
     showError: Boolean = false,
     enabled: Boolean = true,
-    onSelectedBox: ((Boolean?) -> Unit)? = null
+    onSelectedBox: ((Boolean) -> Unit)? = null
 ) {
     var isSelected by remember(selected) { mutableStateOf(selected) }
     Row(
         modifier = Modifier
             .background(OceanColors.interfaceLightPure)
             .clickable {
-                if (enabled && !unsettled) {
+                if (enabled) {
                     isSelected = true
                 }
                 onSelectedBox?.invoke(isSelected)

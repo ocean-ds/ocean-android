@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,56 +26,50 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 
 @Preview
 @Composable
-fun SelectableBoxPreview() {
+fun SelectableRadioPreview() {
     Row {
         Column {
-            OceanSelectableBox(
+            OceanSelectableRadio(
                 selected = false,
-                showError = false,
-                enabled = true,
-            )
-            OceanSelectableBox(
-                selected = false,
-                showError = false,
-                enabled = false,
-            )
-            OceanSelectableBox(
-                selected = false,
-                showError = true,
-                enabled = false,
-            )
-        }
-        Column {
-
-            OceanSelectableBox(
-                selected = true,
                 showError = false,
                 enabled = true,
                 onSelectedBox = { isSelected ->
                     println("isSelected: $isSelected")
                 }
             )
-            OceanSelectableBox(
-                selected = true,
+            OceanSelectableRadio(
+                selected = false,
                 showError = false,
                 enabled = false,
             )
-            OceanSelectableBox(
+            OceanSelectableRadio(
                 selected = false,
                 showError = true,
                 enabled = false,
             )
-            OceanSelectableBox(
+        }
+        Column {
+            OceanSelectableRadio(
                 selected = true,
-                unsettled = true,
                 showError = false,
+                enabled = true,
+            )
+            OceanSelectableRadio(
+                selected = true,
+                showError = false,
+                enabled = false,
+            )
+            OceanSelectableRadio(
+                selected = false,
+                showError = true,
+                enabled = false,
             )
         }
     }
 }
 
 @Composable
-fun OceanSelectableBox(
+fun OceanSelectableRadio(
     selected: Boolean = false,
     unsettled: Boolean = false,
     showError: Boolean = false,
@@ -83,16 +77,11 @@ fun OceanSelectableBox(
     onSelectedBox: ((Boolean?) -> Unit)? = null
 ) {
     var isSelected by remember(selected) { mutableStateOf(selected) }
-    var isUnsettled by remember(unsettled) { mutableStateOf(unsettled) }
-
     Row(
         modifier = Modifier
             .background(OceanColors.interfaceLightPure)
             .clickable {
-                if (enabled && !isUnsettled) {
-                    isSelected = !isSelected
-                } else if (isUnsettled) {
-                    isUnsettled = false
+                if (enabled && !unsettled) {
                     isSelected = true
                 }
                 onSelectedBox?.invoke(isSelected)
@@ -116,28 +105,19 @@ fun OceanSelectableBox(
                         width = 1.dp,
                         color = boxBorderColor
                     ),
-                    shape = RoundedCornerShape(4.dp)
+                    shape = CircleShape
                 )
         ) {
-            if(isSelected && !showError){
-                if(isUnsettled) {
-                    Image(
-                        painter = painterResource(
-                            id = R.drawable.icon_checkbox_unsettled
-                        ),
-                        contentDescription = ""
-                    )
-                } else {
-                    Image(
-                        painter = painterResource(
-                            id = if(enabled)
-                                R.drawable.icon_checkbox_checked
-                            else
-                                R.drawable.icon_checkbox_checked_disabled
-                        ),
-                        contentDescription = ""
-                    )
-                }
+            if (isSelected && !showError) {
+                Image(
+                    painter = painterResource(
+                        id = if (enabled)
+                            R.drawable.icon_radiobutton_checked
+                        else
+                            R.drawable.icon_radio_button_disabled_checked
+                    ),
+                    contentDescription = ""
+                )
             }
         }
     }

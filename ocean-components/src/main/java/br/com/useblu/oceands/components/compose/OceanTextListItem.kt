@@ -40,7 +40,6 @@ fun OceanTextListItemPreview() {
         )
     ) {
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
@@ -48,7 +47,6 @@ fun OceanTextListItemPreview() {
             enabled = true
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
@@ -56,7 +54,6 @@ fun OceanTextListItemPreview() {
             enabled = false
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             caption = "Caption",
@@ -68,7 +65,6 @@ fun OceanTextListItemPreview() {
             }
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             caption = "Caption",
@@ -78,7 +74,6 @@ fun OceanTextListItemPreview() {
             enabled = true
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
@@ -90,7 +85,6 @@ fun OceanTextListItemPreview() {
             }
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
@@ -99,7 +93,6 @@ fun OceanTextListItemPreview() {
             enabled = true
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = true,
@@ -111,7 +104,6 @@ fun OceanTextListItemPreview() {
             }
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = true,
@@ -120,7 +112,6 @@ fun OceanTextListItemPreview() {
             enabled = false
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
@@ -132,7 +123,6 @@ fun OceanTextListItemPreview() {
             }
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
@@ -141,7 +131,6 @@ fun OceanTextListItemPreview() {
             enabled = true
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = true,
@@ -153,7 +142,6 @@ fun OceanTextListItemPreview() {
             }
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = true,
@@ -168,7 +156,6 @@ fun OceanTextListItemPreview() {
 
 @Composable
 fun OceanTextListItem(
-    modifier: Modifier,
     title: String,
     description: String,
     caption: String = "",
@@ -233,7 +220,7 @@ fun OceanTextListItem(
                     else OceanColors.interfaceLightDeep
 
                 Text(
-                    modifier = modifier.padding(bottom = 4.dp),
+                    modifier = Modifier.padding(bottom = 4.dp),
                     text = description,
                     style = OceanTextStyle.description,
                     color = descriptionColor
@@ -261,7 +248,7 @@ fun OceanTextListItem(
                         .align(Alignment.CenterVertically)
                 ) {
                     Image(
-                        modifier = modifier.size(20.dp),
+                        modifier = Modifier.size(20.dp),
                         painter = painterResource(id = OceanIcons.CHEVRON_RIGHT_OUTLINE.icon),
                         contentDescription = ""
                     )

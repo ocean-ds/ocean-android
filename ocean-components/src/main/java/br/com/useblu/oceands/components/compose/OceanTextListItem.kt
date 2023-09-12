@@ -36,17 +36,16 @@ fun OceanTextListItemPreview() {
     Column(
         Modifier.verticalScroll(
             state = rememberScrollState(),
-            enabled = true,
+            enabled = true
         )
-    ){
+    ) {
         OceanTextListItem(
             modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
             showError = false,
-            enabled = true,
-            
+            enabled = true
         )
         OceanTextListItem(
             modifier = Modifier,
@@ -54,8 +53,7 @@ fun OceanTextListItemPreview() {
             description = "Description",
             selected = false,
             showError = false,
-            enabled = false,
-            
+            enabled = false
         )
         OceanTextListItem(
             modifier = Modifier,
@@ -65,8 +63,9 @@ fun OceanTextListItemPreview() {
             selected = false,
             showError = false,
             enabled = true,
-            
-            onClick = {}
+            onClick = {
+                println("text list clicked")
+            }
         )
         OceanTextListItem(
             modifier = Modifier,
@@ -75,10 +74,8 @@ fun OceanTextListItemPreview() {
             caption = "Caption",
             textInfo = "TextInfo",
             textInfoColor = OceanColors.statusPositivePure,
-            selected = false,
             showError = false,
-            enabled = true,
-            
+            enabled = true
         )
         OceanTextListItem(
             modifier = Modifier,
@@ -88,109 +85,83 @@ fun OceanTextListItemPreview() {
             withCheckbox = true,
             showError = false,
             enabled = true,
-            
-        )
-        OceanTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            description = "Description",
-            selected = false,
-            withCheckbox = true,
-            showError = true,
-            enabled = true,
-            
-        )
-        OceanTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            description = "Description",
-            selected = true,
-            withCheckbox = true,
-            showError = false,
-            enabled = true,
-            
-        )
-        OceanTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            description = "Description",
-            selected = true,
-            withCheckbox = true,
-            showError = false,
-            enabled = false,
-            
-        )
-        OceanTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            description = "Description",
-            selected = false,
-            withCheckbox = false,
-            showError = false,
-            enabled = true,
-            
-        )
-        OceanTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            description = "Description",
-            selected = false,
-            withCheckbox = false,
-            showError = true,
-            enabled = true,
-            
-        )
-        OceanTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            description = "Description",
-            selected = true,
-            withCheckbox = false,
-            showError = false,
-            enabled = true,
-            
-        )
-        OceanTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            description = "Description",
-            selected = true,
-            withCheckbox = false,
-            showError = false,
-            enabled = false,
-            
-        )
-        Row(
-            modifier = Modifier
-                .background(OceanColors.interfaceLightPure)
-                .padding(16.dp)
-                .fillMaxWidth()
-        ) {
-            OceanShimmering { brush ->
-                Column {
-                    Row(
-                        modifier = Modifier.padding(bottom = 8.dp)
-                    ) {
-                        Spacer(
-                            modifier = Modifier
-                                .width(96.dp)
-                                .height(16.dp)
-                                .clip(RoundedCornerShape(4.dp))
-                                .background(brush)
-                        )
-                    }
-                    Row {
-                        Spacer(
-                            modifier = Modifier
-                                .height(16.dp)
-                                .fillMaxSize()
-                                .clip(RoundedCornerShape(4.dp))
-                                .background(brush)
-                        )
-                    }
-                }
+            onSelectedBox = {
+                println("isSelected: $it")
             }
-        }
+        )
+        OceanTextListItem(
+            modifier = Modifier,
+            title = "Title",
+            description = "Description",
+            selected = false,
+            withCheckbox = true,
+            showError = true,
+            enabled = true
+        )
+        OceanTextListItem(
+            modifier = Modifier,
+            title = "Title",
+            description = "Description",
+            selected = true,
+            withCheckbox = true,
+            showError = false,
+            enabled = true,
+            onSelectedBox = {
+                println("isSelected: $it")
+            }
+        )
+        OceanTextListItem(
+            modifier = Modifier,
+            title = "Title",
+            description = "Description",
+            selected = true,
+            withCheckbox = true,
+            showError = false,
+            enabled = false
+        )
+        OceanTextListItem(
+            modifier = Modifier,
+            title = "Title",
+            description = "Description",
+            selected = false,
+            withCheckbox = false,
+            showError = false,
+            enabled = true,
+            onSelectedBox = {
+                println("isSelected: $it")
+            }
+        )
+        OceanTextListItem(
+            modifier = Modifier,
+            title = "Title",
+            description = "Description",
+            selected = false,
+            withCheckbox = false,
+            showError = true,
+            enabled = true
+        )
+        OceanTextListItem(
+            modifier = Modifier,
+            title = "Title",
+            description = "Description",
+            selected = true,
+            withCheckbox = false,
+            showError = false,
+            enabled = true,
+            onSelectedBox = {
+                println("isSelected: $it")
+            }
+        )
+        OceanTextListItem(
+            modifier = Modifier,
+            title = "Title",
+            description = "Description",
+            selected = true,
+            withCheckbox = false,
+            showError = false,
+            enabled = false
+        )
+        OceanTextListItemSkeleton(5)
     }
 }
 
@@ -217,7 +188,6 @@ fun OceanTextListItem(
             .padding(end = 8.dp)
             .padding(vertical = 8.dp)
             .fillMaxWidth()
-            .clickable { onClick?.invoke() }
         ) {
             if (withCheckbox != null) {
                 Column(
@@ -225,37 +195,48 @@ fun OceanTextListItem(
                         .align(Alignment.CenterVertically)
                         .padding(end = 16.dp)
                 ) {
-                    OceanSelectableBox(
-                        enabled = enabled,
-                        selected = selected,
-                        showError = showError,
-                        isCheckbox = withCheckbox,
-                        onSelectedBox = onSelectedBox
-                    )
+                    if (withCheckbox) {
+                        OceanSelectableBox(
+                            enabled = enabled,
+                            selected = selected,
+                            showError = showError,
+                            onSelectedBox = onSelectedBox
+                        )
+                    } else {
+                        OceanSelectableRadio(
+                            enabled = enabled,
+                            selected = selected,
+                            showError = showError,
+                            onSelectedBox = onSelectedBox
+                        )
+                    }
                 }
             }
             Column(
                 modifier = Modifier
                     .padding(end = 8.dp)
                     .weight(2f)
+                    .clickable { onClick?.invoke() }
             ) {
+                val titleColor =
+                    if (enabled) OceanColors.interfaceDarkPure
+                    else OceanColors.interfaceDarkUp
+
                 Text(
                     text = title,
                     style = OceanTextStyle.paragraph,
-                    color = if (enabled)
-                        OceanColors.interfaceDarkPure
-                    else
-                        OceanColors.interfaceDarkUp
+                    color = titleColor
                 )
+
+                val descriptionColor =
+                    if (enabled) OceanColors.interfaceDarkDown
+                    else OceanColors.interfaceLightDeep
 
                 Text(
                     modifier = modifier.padding(bottom = 4.dp),
                     text = description,
                     style = OceanTextStyle.description,
-                    color = if (enabled)
-                        OceanColors.interfaceDarkDown
-                    else
-                        OceanColors.interfaceLightDeep
+                    color = descriptionColor
                 )
 
                 if (caption.isNotBlank() && textInfo.isBlank()) {
@@ -291,5 +272,40 @@ fun OceanTextListItem(
             thickness = 1.dp,
             color = OceanColors.interfaceLightDown
         )
+    }
+}
+
+@Composable
+fun OceanTextListItemSkeleton(items: Int) {
+    OceanShimmering { brush ->
+        repeat(items) {
+            Column(
+                modifier = Modifier
+                    .background(OceanColors.interfaceLightPure)
+                    .padding(16.dp)
+                    .fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier.padding(bottom = 8.dp)
+                ) {
+                    Spacer(
+                        modifier = Modifier
+                            .width(96.dp)
+                            .height(16.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(brush)
+                    )
+                }
+                Row {
+                    Spacer(
+                        modifier = Modifier
+                            .height(16.dp)
+                            .fillMaxSize()
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(brush)
+                    )
+                }
+            }
+        }
     }
 }

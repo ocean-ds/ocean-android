@@ -69,7 +69,7 @@ fun OceanRadioButton(
     showError: Boolean = false,
     errorMessage: String = "",
     enabled: Boolean = true,
-    onSelected: ((Boolean?) -> Unit)? = null,
+    onSelected: ((Boolean) -> Unit)? = null,
 ) {
     Column(modifier = Modifier
         .background(OceanColors.interfaceLightPure)

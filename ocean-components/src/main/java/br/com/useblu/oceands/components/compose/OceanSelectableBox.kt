@@ -85,8 +85,17 @@ fun OceanSelectableBox(
     var isSelected by remember(selected) { mutableStateOf(selected) }
     var isUnsettled by remember(unsettled) { mutableStateOf(unsettled) }
 
-    Row(
+    val boxBorderColor = when {
+        showError -> OceanColors.statusNegativePure
+        !enabled -> OceanColors.interfaceLightDeep
+        isSelected -> OceanColors.complementaryPure
+        else -> OceanColors.interfaceDarkUp
+    }
+
+    Box(
         modifier = Modifier
+            .size(20.dp)
+            .padding(1.dp)
             .background(OceanColors.interfaceLightPure)
             .clickable {
                 if (enabled && !isUnsettled) {
@@ -97,46 +106,33 @@ fun OceanSelectableBox(
                 }
                 onSelectedBox?.invoke(isSelected)
             }
+            .border(
+                border = BorderStroke(
+                    width = 1.dp,
+                    color = boxBorderColor
+                ),
+                shape = RoundedCornerShape(4.dp)
+            )
     ) {
-        val boxBorderColor = when {
-            showError -> OceanColors.statusNegativePure
-            !enabled -> OceanColors.interfaceLightDeep
-            isSelected -> OceanColors.complementaryPure
-            else -> OceanColors.interfaceDarkUp
-        }
-
-        Box(
-            modifier = Modifier
-                .size(20.dp)
-                .padding(1.dp)
-                .border(
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = boxBorderColor
+        if (isSelected && !showError) {
+            if (isUnsettled) {
+                Image(
+                    painter = painterResource(
+                        id = R.drawable.icon_checkbox_unsettled
                     ),
-                    shape = RoundedCornerShape(4.dp)
+                    contentDescription = ""
                 )
-        ) {
-            if(isSelected && !showError){
-                if(isUnsettled) {
-                    Image(
-                        painter = painterResource(
-                            id = R.drawable.icon_checkbox_unsettled
-                        ),
-                        contentDescription = ""
-                    )
-                } else {
-                    val resourceIcon =
-                        if (enabled) R.drawable.icon_checkbox_checked
-                        else R.drawable.icon_checkbox_checked_disabled
+            } else {
+                val resourceIcon =
+                    if (enabled) R.drawable.icon_checkbox_checked
+                    else R.drawable.icon_checkbox_checked_disabled
 
-                    Image(
-                        painter = painterResource(
-                            id = resourceIcon
-                        ),
-                        contentDescription = ""
-                    )
-                }
+                Image(
+                    painter = painterResource(
+                        id = resourceIcon
+                    ),
+                    contentDescription = ""
+                )
             }
         }
     }

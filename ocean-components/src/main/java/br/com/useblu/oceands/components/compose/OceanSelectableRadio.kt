@@ -73,50 +73,46 @@ fun OceanSelectableRadio(
     selected: Boolean = false,
     showError: Boolean = false,
     enabled: Boolean = true,
-    onSelectedBox: ((Boolean?) -> Unit)? = null
+    onSelectedBox: ((Boolean) -> Unit)? = null
 ) {
     var isSelected by remember(selected) { mutableStateOf(selected) }
-    Row(
+    val boxBorderColor = when {
+        showError -> OceanColors.statusNegativePure
+        !enabled -> OceanColors.interfaceLightDeep
+        isSelected -> OceanColors.complementaryPure
+        else -> OceanColors.interfaceDarkUp
+    }
+
+    Box(
         modifier = Modifier
+            .size(20.dp)
+            .padding(1.dp)
             .background(OceanColors.interfaceLightPure)
             .clickable {
                 if (enabled) {
                     isSelected = true
-                    onSelectedBox?.invoke(null)
+                    onSelectedBox?.invoke(true)
                 }
             }
+            .border(
+                border = BorderStroke(
+                    width = 1.dp,
+                    color = boxBorderColor
+                ),
+                shape = CircleShape
+            )
     ) {
-        val boxBorderColor = when {
-            showError -> OceanColors.statusNegativePure
-            !enabled -> OceanColors.interfaceLightDeep
-            isSelected -> OceanColors.complementaryPure
-            else -> OceanColors.interfaceDarkUp
-        }
+        if (isSelected && !showError) {
+            val resourceIcon =
+                if (enabled) R.drawable.icon_radiobutton_checked
+                else R.drawable.icon_radio_button_disabled_checked
 
-        Box(
-            modifier = Modifier
-                .size(20.dp)
-                .padding(1.dp)
-                .border(
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = boxBorderColor
-                    ),
-                    shape = CircleShape
-                )
-        ) {
-            if (isSelected && !showError) {
-                val resourceIcon =
-                    if (enabled) R.drawable.icon_radiobutton_checked
-                    else R.drawable.icon_radio_button_disabled_checked
-
-                Image(
-                    painter = painterResource(
-                        id = resourceIcon
-                    ),
-                    contentDescription = ""
-                )
-            }
+            Image(
+                painter = painterResource(
+                    id = resourceIcon
+                ),
+                contentDescription = ""
+            )
         }
     }
 }

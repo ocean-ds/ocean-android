@@ -154,7 +154,6 @@ fun OceanTextListItemPreview() {
             }
         )
         OceanTextListItem(
-            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = true,
@@ -169,7 +168,7 @@ fun OceanTextListItemPreview() {
 
 @Composable
 fun OceanTextListItem(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     title: String,
     description: String,
     caption: String = "",
@@ -192,6 +191,7 @@ fun OceanTextListItem(
                 .padding(end = 8.dp)
                 .padding(vertical = 8.dp)
                 .fillMaxWidth()
+                .clickable { onClick?.invoke() }
         ) {
 
             when (textListStyle) {
@@ -230,7 +230,6 @@ fun OceanTextListItem(
                 modifier = Modifier
                     .padding(end = 8.dp)
                     .weight(2f)
-                    .clickable { onClick?.invoke() }
             ) {
                 val titleColor =
                     if (enabled) OceanColors.interfaceDarkPure

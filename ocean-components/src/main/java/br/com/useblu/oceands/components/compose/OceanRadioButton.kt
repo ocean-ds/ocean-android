@@ -26,15 +26,15 @@ fun OceanRadioButtonPreview() {
        ){
            OceanRadioButton(
                label = "Label",
-               onSelected = { isSelected ->
-                   println("isSelected: $isSelected")
+               onSelected = {
+                   println("radio button selected")
                }
            )
            OceanRadioButton(
                label = "Label",
                enabled = false,
-               onSelected = { isSelected ->
-                   println("isSelected: $isSelected")
+               onSelected = {
+                   println("radio button selected")
                }
            )
        }
@@ -54,8 +54,8 @@ fun OceanRadioButtonPreview() {
                label = "Label",
                showError = true,
                errorMessage = "Error message",
-               onSelected = { isSelected ->
-                   println("isSelected: $isSelected")
+               onSelected = {
+                   println("radio button selected")
                }
            )
        }
@@ -69,7 +69,7 @@ fun OceanRadioButton(
     showError: Boolean = false,
     errorMessage: String = "",
     enabled: Boolean = true,
-    onSelected: ((Boolean) -> Unit)? = null,
+    onSelected: (() -> Unit)? = null,
 ) {
     Column(modifier = Modifier
         .background(OceanColors.interfaceLightPure)

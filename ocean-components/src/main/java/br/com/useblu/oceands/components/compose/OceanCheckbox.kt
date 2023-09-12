@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -79,23 +78,14 @@ fun OceanCheckbox(
         .background(OceanColors.interfaceLightPure)
     ){
         Row {
-            var isSelected by remember(selected) { mutableStateOf(selected) }
+            val isSelected by remember(selected) { mutableStateOf(selected) }
             OceanSelectableBox(
-                selected = selected,
+                selected = isSelected,
                 showError = showError,
                 enabled = enabled,
                 onSelectedBox = onSelected
             )
-            Text(
-                modifier = Modifier
-                    .padding(horizontal = 8.dp),
-                text = label,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                fontSize = OceanFontSize.xxs,
-                color = if(enabled) OceanColors.interfaceDarkDown else OceanColors.interfaceDarkUp,
-                fontFamily = OceanFontFamily.BaseRegular,
-            )
+            SelectableBoxLabel(label, enabled)
         }
         Row{
             Text(

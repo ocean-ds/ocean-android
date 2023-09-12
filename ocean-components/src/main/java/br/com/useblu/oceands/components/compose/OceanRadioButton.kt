@@ -81,26 +81,15 @@ fun OceanRadioButton(
                 enabled = enabled,
                 onSelectedBox = onSelected
             )
-            Text(
-                modifier = Modifier
-                    .padding(horizontal = 8.dp),
-                text = label,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                fontSize = OceanFontSize.xxs,
-                color = if(enabled) OceanColors.interfaceDarkDown else OceanColors.interfaceDarkUp,
-                fontFamily = OceanFontFamily.BaseRegular,
-            )
+            SelectableBoxLabel(label, enabled)
         }
-        Row{
-            Text(
-                text = errorMessage,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                fontFamily = OceanFontFamily.BaseRegular,
-                fontSize = OceanFontSize.xxxs,
-                color = OceanColors.statusNegativePure,
-            )
-        }
+        Text(
+            text = errorMessage,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+            fontFamily = OceanFontFamily.BaseRegular,
+            fontSize = OceanFontSize.xxxs,
+            color = OceanColors.statusNegativePure,
+        )
     }
 }

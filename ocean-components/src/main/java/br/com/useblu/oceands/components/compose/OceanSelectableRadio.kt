@@ -82,18 +82,16 @@ fun OceanSelectableRadio(
             .clickable {
                 if (enabled) {
                     isSelected = true
+                    onSelectedBox?.invoke(isSelected)
                 }
-                onSelectedBox?.invoke(isSelected)
             }
     ) {
-        val boxBorderColor = if (showError)
-            OceanColors.statusNegativePure
-        else if (!enabled)
-            OceanColors.interfaceLightDeep
-        else if (isSelected)
-            OceanColors.complementaryPure
-        else
-            OceanColors.interfaceDarkUp
+        val boxBorderColor = when {
+            showError -> OceanColors.statusNegativePure
+            !enabled -> OceanColors.interfaceLightDeep
+            isSelected -> OceanColors.complementaryPure
+            else -> OceanColors.interfaceDarkUp
+        }
 
         Box(
             modifier = Modifier
@@ -108,12 +106,13 @@ fun OceanSelectableRadio(
                 )
         ) {
             if (isSelected && !showError) {
+                val resourceIcon =
+                    if (enabled) R.drawable.icon_radiobutton_checked
+                    else R.drawable.icon_radio_button_disabled_checked
+
                 Image(
                     painter = painterResource(
-                        id = if (enabled)
-                            R.drawable.icon_radiobutton_checked
-                        else
-                            R.drawable.icon_radio_button_disabled_checked
+                        id = resourceIcon
                     ),
                     contentDescription = ""
                 )

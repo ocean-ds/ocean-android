@@ -98,14 +98,12 @@ fun OceanSelectableBox(
                 onSelectedBox?.invoke(isSelected)
             }
     ) {
-        val boxBorderColor = if (showError)
-            OceanColors.statusNegativePure
-        else if (!enabled)
-            OceanColors.interfaceLightDeep
-        else if (isSelected)
-            OceanColors.complementaryPure
-        else
-            OceanColors.interfaceDarkUp
+        val boxBorderColor = when {
+            showError -> OceanColors.statusNegativePure
+            !enabled -> OceanColors.interfaceLightDeep
+            isSelected -> OceanColors.complementaryPure
+            else -> OceanColors.interfaceDarkUp
+        }
 
         Box(
             modifier = Modifier
@@ -128,12 +126,13 @@ fun OceanSelectableBox(
                         contentDescription = ""
                     )
                 } else {
+                    val resourceIcon =
+                        if (enabled) R.drawable.icon_checkbox_checked
+                        else R.drawable.icon_checkbox_checked_disabled
+
                     Image(
                         painter = painterResource(
-                            id = if(enabled)
-                                R.drawable.icon_checkbox_checked
-                            else
-                                R.drawable.icon_checkbox_checked_disabled
+                            id = resourceIcon
                         ),
                         contentDescription = ""
                     )

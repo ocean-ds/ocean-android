@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.model.OceanTextListStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
@@ -40,6 +41,7 @@ fun OceanTextListItemPreview() {
         )
     ) {
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
@@ -47,6 +49,7 @@ fun OceanTextListItemPreview() {
             enabled = true
         )
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
@@ -54,6 +57,7 @@ fun OceanTextListItemPreview() {
             enabled = false
         )
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             caption = "Caption",
@@ -65,6 +69,7 @@ fun OceanTextListItemPreview() {
             }
         )
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             caption = "Caption",
@@ -74,10 +79,11 @@ fun OceanTextListItemPreview() {
             enabled = true
         )
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
-            withCheckbox = true,
+            textListStyle = OceanTextListStyle.WITH_CHECKBOX,
             showError = false,
             enabled = true,
             onSelectedBox = {
@@ -85,18 +91,20 @@ fun OceanTextListItemPreview() {
             }
         )
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
-            withCheckbox = true,
+            textListStyle = OceanTextListStyle.WITH_CHECKBOX,
             showError = true,
             enabled = true
         )
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = true,
-            withCheckbox = true,
+            textListStyle = OceanTextListStyle.WITH_CHECKBOX,
             showError = false,
             enabled = true,
             onSelectedBox = {
@@ -104,18 +112,20 @@ fun OceanTextListItemPreview() {
             }
         )
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = true,
-            withCheckbox = true,
+            textListStyle = OceanTextListStyle.WITH_CHECKBOX,
             showError = false,
             enabled = false
         )
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
-            withCheckbox = false,
+            textListStyle = OceanTextListStyle.WITH_RADIO_BUTTON,
             showError = false,
             enabled = true,
             onSelectedBox = {
@@ -123,18 +133,20 @@ fun OceanTextListItemPreview() {
             }
         )
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = false,
-            withCheckbox = false,
+            textListStyle = OceanTextListStyle.WITH_RADIO_BUTTON,
             showError = true,
             enabled = true
         )
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = true,
-            withCheckbox = false,
+            textListStyle = OceanTextListStyle.WITH_RADIO_BUTTON,
             showError = false,
             enabled = true,
             onSelectedBox = {
@@ -142,10 +154,11 @@ fun OceanTextListItemPreview() {
             }
         )
         OceanTextListItem(
+            modifier = Modifier,
             title = "Title",
             description = "Description",
             selected = true,
-            withCheckbox = false,
+            textListStyle = OceanTextListStyle.WITH_RADIO_BUTTON,
             showError = false,
             enabled = false
         )
@@ -156,40 +169,52 @@ fun OceanTextListItemPreview() {
 
 @Composable
 fun OceanTextListItem(
+    modifier: Modifier,
     title: String,
     description: String,
     caption: String = "",
     textInfo: String = "",
     textInfoColor: Color? = null,
     selected: Boolean = false,
-    withCheckbox: Boolean? = null,
+    textListStyle: OceanTextListStyle = OceanTextListStyle.DEFAULT,
     showError: Boolean,
     enabled: Boolean,
-    onSelectedBox: ((Boolean?) -> Unit)? = null,
+    onSelectedBox: ((Boolean) -> Unit)? = null,
     onClick: (() -> Unit)? = null
 ) {
-    Column {
-        Row(modifier = Modifier
-            .background(OceanColors.interfaceLightPure)
-            .padding(start = 16.dp)
-            .padding(end = 8.dp)
-            .padding(vertical = 8.dp)
-            .fillMaxWidth()
+    Column(
+        modifier = modifier
+    ) {
+        Row(
+            modifier = Modifier
+                .background(OceanColors.interfaceLightPure)
+                .padding(start = 16.dp)
+                .padding(end = 8.dp)
+                .padding(vertical = 8.dp)
+                .fillMaxWidth()
         ) {
-            if (withCheckbox != null) {
-                Column(
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically)
-                        .padding(end = 16.dp)
-                ) {
-                    if (withCheckbox) {
+
+            when (textListStyle) {
+                OceanTextListStyle.WITH_CHECKBOX -> {
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(end = 16.dp)
+                    ) {
                         OceanSelectableBox(
                             enabled = enabled,
                             selected = selected,
                             showError = showError,
                             onSelectedBox = onSelectedBox
                         )
-                    } else {
+                    }
+                }
+                OceanTextListStyle.WITH_RADIO_BUTTON -> {
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(end = 16.dp)
+                    ) {
                         OceanSelectableRadio(
                             enabled = enabled,
                             selected = selected,
@@ -198,7 +223,9 @@ fun OceanTextListItem(
                         )
                     }
                 }
+                OceanTextListStyle.DEFAULT -> {}
             }
+
             Column(
                 modifier = Modifier
                     .padding(end = 8.dp)

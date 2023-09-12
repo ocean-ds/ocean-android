@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,7 +37,11 @@ fun OceanTabPreview() {
     var selectedTabIndex by remember { mutableStateOf(0) }
 
     MaterialTheme {
-        Column {
+        Column(
+            Modifier
+                .background(color = OceanColors.interfaceLightPure)
+                .height(200.dp)
+        ) {
             OceanTab(
                 tabs = tabs,
                 selectedTabIndex = selectedTabIndex,
@@ -70,7 +75,9 @@ fun OceanTab(
             val selected = index == selectedTabIndex
             Tab(
                 selected = selected,
-                modifier = Modifier.height(56.dp),
+                modifier = Modifier
+                    .background(color = OceanColors.interfaceLightPure)
+                    .height(56.dp),
                 onClick = { onSelectedTab(index) },
                 text = {
                     Row(

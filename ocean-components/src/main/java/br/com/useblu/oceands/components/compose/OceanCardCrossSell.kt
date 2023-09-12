@@ -44,8 +44,7 @@ fun OceanCardCrossSellPreview() {
         OceanCardCrossSell(
             title = "Boleto Mais Seguro",
             description = "Menos atraso e inadimplência para vendas feitas com boleto",
-            actionTitle = "Saiba mais",
-            //imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/ilustra-crosssel-bms-2-03c05d6bf3ce58709f5fd75b890cc2eca1bd8beb5806a2e7be37fb38b512953e.png"
+            actionTitle = "Saiba mais"
         )
 
         Spacer(modifier = Modifier.size(16.dp))
@@ -54,8 +53,7 @@ fun OceanCardCrossSellPreview() {
             title = "Boleto Mais Seguro",
             description = "Menos atraso e inadimplência para vendas feitas com boleto",
             actionTitle = "Saiba mais",
-            showProgress = true,
-            //imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/ilustra-crosssel-bms-2-03c05d6bf3ce58709f5fd75b890cc2eca1bd8beb5806a2e7be37fb38b512953e.png"
+            showProgress = true
         )
     }
 }

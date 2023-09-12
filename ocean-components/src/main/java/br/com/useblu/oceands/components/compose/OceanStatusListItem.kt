@@ -140,6 +140,7 @@ fun OceanStatusListItemPreview() {
 @Composable
 fun OceanStatusListItem(
     title: String,
+    modifier: Modifier = Modifier,
     description: String? = null,
     caption: String? = null,
     tagLabel: String? = null,
@@ -153,7 +154,7 @@ fun OceanStatusListItem(
     onClickRightIcon: (() -> Unit)? = null
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .clickable(
                 enabled = !isReadOnly && !isInactive && onClick != null,
                 onClick = { onClick?.invoke() }

@@ -5,55 +5,47 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.components.compose.skeleton.OceanStatusListItemSkeleton
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
+import kotlinx.coroutines.delay
 
 
 @Preview
 @Composable
-fun OceanShimmeringPreview(){
-    OceanShimmering { brush ->
-        Column(
-            modifier = Modifier
-                .background(OceanColors.interfaceLightPure)
-                .padding(16.dp)
-        ) {
-            Row(
-                modifier = Modifier.padding(bottom = 8.dp)
-            ) {
-                Spacer(
-                    modifier = Modifier
-                        .width(96.dp)
-                        .height(16.dp)
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(brush)
-                )
-            }
-            Row {
-                Spacer(
-                    modifier = Modifier
-                        .height(16.dp)
-                        .fillMaxSize()
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(brush)
-                )
+fun PreviewSkeleton() {
+    var showSkeleton by remember { mutableStateOf(true) }
+
+    Column(
+        modifier = Modifier.padding(16.dp)
+    ) {
+        LaunchedEffect(key1 = true) {
+            delay(2000)
+            showSkeleton = false
+        }
+
+        if (showSkeleton) {
+            OceanStatusListItemSkeleton(5)
+        } else {
+            repeat(6) {
+                OceanStatusListItem(title = "Item $it")
+                OceanSpacing.StackXXS()
             }
         }
+
     }
 }
 

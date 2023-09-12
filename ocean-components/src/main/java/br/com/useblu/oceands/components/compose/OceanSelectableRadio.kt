@@ -73,7 +73,7 @@ fun OceanSelectableRadio(
     selected: Boolean = false,
     showError: Boolean = false,
     enabled: Boolean = true,
-    onSelectedBox: (() -> Unit)? = null
+    onSelectedBox: ((Boolean?) -> Unit)? = null
 ) {
     var isSelected by remember(selected) { mutableStateOf(selected) }
     Row(
@@ -82,7 +82,7 @@ fun OceanSelectableRadio(
             .clickable {
                 if (enabled) {
                     isSelected = true
-                    onSelectedBox?.invoke()
+                    onSelectedBox?.invoke(null)
                 }
             }
     ) {

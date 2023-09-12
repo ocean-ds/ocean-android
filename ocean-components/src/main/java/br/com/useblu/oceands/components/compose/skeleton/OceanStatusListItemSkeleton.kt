@@ -17,32 +17,35 @@ import br.com.useblu.oceands.components.compose.OceanShimmering
 import br.com.useblu.oceands.ui.compose.OceanColors
 
 @Composable
-fun OceanStatusListItemSkeleton() {
+fun OceanStatusListItemSkeleton(items: Int) {
     OceanShimmering { brush ->
-        Column(
-            modifier = Modifier
-                .background(OceanColors.interfaceLightPure)
-                .padding(16.dp)
-        ) {
-            Row(
-                modifier = Modifier.padding(bottom = 8.dp)
+        repeat(items) {
+            Column(
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .background(OceanColors.interfaceLightPure)
+                    .padding(16.dp)
             ) {
-                Spacer(
-                    modifier = Modifier
-                        .width(96.dp)
-                        .height(16.dp)
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(brush)
-                )
-            }
-            Row {
-                Spacer(
-                    modifier = Modifier
-                        .height(16.dp)
-                        .fillMaxSize()
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(brush)
-                )
+                Row(
+                    modifier = Modifier.padding(bottom = 8.dp)
+                ) {
+                    Spacer(
+                        modifier = Modifier
+                            .width(96.dp)
+                            .height(16.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(brush)
+                    )
+                }
+                Row {
+                    Spacer(
+                        modifier = Modifier
+                            .height(16.dp)
+                            .fillMaxSize()
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(brush)
+                    )
+                }
             }
         }
     }

@@ -5,7 +5,6 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -21,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.skeleton.OceanStatusListItemSkeleton
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import kotlinx.coroutines.delay
 
 
@@ -30,8 +30,7 @@ fun PreviewSkeleton() {
     var showSkeleton by remember { mutableStateOf(true) }
 
     Column(
-        modifier = Modifier.padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = Modifier.padding(16.dp)
     ) {
         LaunchedEffect(key1 = true) {
             delay(2000)
@@ -39,23 +38,14 @@ fun PreviewSkeleton() {
         }
 
         if (showSkeleton) {
-            ScreenSkeleton()
+            OceanStatusListItemSkeleton(5)
         } else {
-            OceanStatusListItem(title = "Item 1")
-            OceanStatusListItem(title = "Item 2")
-            OceanStatusListItem(title = "Item 3")
-            OceanStatusListItem(title = "Item 4")
-            OceanStatusListItem(title = "Item 5")
-            OceanStatusListItem(title = "Item 6")
+            repeat(6) {
+                OceanStatusListItem(title = "Item $it")
+                OceanSpacing.StackXXS()
+            }
         }
 
-    }
-}
-
-@Composable
-private fun ScreenSkeleton() {
-    repeat(5) {
-        OceanStatusListItemSkeleton()
     }
 }
 

@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,12 +56,14 @@ fun OceanRadioButtonPreview() {
                selected = true,
                enabled = false,
            )
+
+           var wasSelected by remember { mutableStateOf(true) }
            OceanRadioButton(
                label = "Label",
-               showError = true,
-               errorMessage = "Error message",
-               onSelected = {
-                   println("radio button selected")
+               errorMessage = if(wasSelected) "Error message" else "",
+               onSelected = { isSelected ->
+                   wasSelected = !wasSelected
+                   println("isSelected: $isSelected")
                }
            )
        }
@@ -70,7 +75,6 @@ fun OceanRadioButton(
     modifier: Modifier = Modifier,
     label: String,
     selected: Boolean = false,
-    showError: Boolean = false,
     errorMessage: String = "",
     enabled: Boolean = true,
     onSelected: ((Boolean) -> Unit)? = null,
@@ -90,7 +94,7 @@ fun OceanRadioButton(
             OceanSelectableRadio(
                 interactionSource = interactionSource,
                 selected = selected,
-                showError = showError,
+                showError = errorMessage.isNotBlank(),
                 enabled = enabled,
                 onSelectedBox = onSelected
             )

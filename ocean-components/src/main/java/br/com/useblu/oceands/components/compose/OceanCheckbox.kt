@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -64,11 +65,12 @@ fun OceanCheckboxPreview() {
                 selected = true,
                 enabled = false,
             )
+            var wasSelected by remember { mutableStateOf(true) }
             OceanCheckbox(
                 label = "Label",
-                showError = true,
-                errorMessage = "Error message",
+                errorMessage = if(wasSelected) "Error message" else "",
                 onSelected = { isSelected ->
+                    wasSelected = !wasSelected
                     println("isSelected: $isSelected")
                 }
             )
@@ -82,7 +84,6 @@ fun OceanCheckbox(
     label: String,
     selected: Boolean = false,
     unsettled: Boolean = false,
-    showError: Boolean = false,
     errorMessage: String = "",
     enabled: Boolean = true,
     onSelected: ((Boolean) -> Unit)? = null,
@@ -104,7 +105,7 @@ fun OceanCheckbox(
                 interactionSource = interactionSource,
                 selected = isSelected,
                 unsettled = unsettled,
-                showError = showError,
+                showError = errorMessage.isNotBlank(),
                 enabled = enabled,
                 onSelectedBox = onSelected
             )

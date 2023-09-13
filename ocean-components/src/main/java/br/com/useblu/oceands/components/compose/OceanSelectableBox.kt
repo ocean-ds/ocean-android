@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -76,6 +79,7 @@ fun SelectableBoxPreview() {
 
 @Composable
 fun OceanSelectableBox(
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     selected: Boolean = false,
     unsettled: Boolean = false,
     showError: Boolean = false,
@@ -92,20 +96,37 @@ fun OceanSelectableBox(
         else -> OceanColors.interfaceDarkUp
     }
 
+    val onClickSelectableBox: (() -> Unit) = {
+        if (enabled && !isUnsettled) {
+            isSelected = !isSelected
+        } else if (isUnsettled) {
+            isUnsettled = false
+            isSelected = true
+        }
+        onSelectedBox?.invoke(isSelected)
+    }
+
+    LaunchedEffect(key1 = interactionSource) {
+        interactionSource.interactions.collect {interaction ->
+            when(interaction) {
+                is PressInteraction.Press -> {
+                    onClickSelectableBox()
+                }
+            }
+        }
+    }
+
     Box(
         modifier = Modifier
             .size(20.dp)
             .padding(1.dp)
             .background(OceanColors.interfaceLightPure)
-            .clickable {
-                if (enabled && !isUnsettled) {
-                    isSelected = !isSelected
-                } else if (isUnsettled) {
-                    isUnsettled = false
-                    isSelected = true
-                }
-                onSelectedBox?.invoke(isSelected)
-            }
+            .clickable (
+                interactionSource = interactionSource,
+                indication = null,
+                enabled = enabled,
+                onClick = {}
+            )
             .border(
                 border = BorderStroke(
                     width = 1.dp,

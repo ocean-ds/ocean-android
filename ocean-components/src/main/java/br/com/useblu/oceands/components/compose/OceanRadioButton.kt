@@ -60,10 +60,10 @@ fun OceanRadioButtonPreview() {
            var wasSelected by remember { mutableStateOf(true) }
            OceanRadioButton(
                label = "Label",
-               errorMessage = if(wasSelected) "Error message" else "",
-               onSelected = { isSelected ->
+               selected = true,
+               errorMessage = if(!wasSelected) "Error message" else "",
+               onSelected = {
                    wasSelected = !wasSelected
-                   println("isSelected: $isSelected")
                }
            )
        }

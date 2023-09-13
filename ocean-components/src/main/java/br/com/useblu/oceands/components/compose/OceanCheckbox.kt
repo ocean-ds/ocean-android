@@ -68,10 +68,10 @@ fun OceanCheckboxPreview() {
             var wasSelected by remember { mutableStateOf(true) }
             OceanCheckbox(
                 label = "Label",
-                errorMessage = if(wasSelected) "Error message" else "",
-                onSelected = { isSelected ->
+                selected = true,
+                errorMessage = if(!wasSelected) "Error message" else "",
+                onSelected = {
                     wasSelected = !wasSelected
-                    println("isSelected: $isSelected")
                 }
             )
         }
@@ -100,10 +100,9 @@ fun OceanCheckbox(
         )
     ){
         Row {
-            val isSelected by remember(selected) { mutableStateOf(selected) }
             OceanSelectableBox(
                 interactionSource = interactionSource,
-                selected = isSelected,
+                selected = selected,
                 unsettled = unsettled,
                 showError = errorMessage.isNotBlank(),
                 enabled = enabled,
@@ -111,15 +110,13 @@ fun OceanCheckbox(
             )
             SelectableBoxLabel(label, enabled)
         }
-        Row{
-            Text(
-                text = errorMessage,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                fontFamily = OceanFontFamily.BaseRegular,
-                fontSize = OceanFontSize.xxxs,
-                color = OceanColors.statusNegativePure,
-            )
-        }
+        Text(
+            text = errorMessage,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+            fontFamily = OceanFontFamily.BaseRegular,
+            fontSize = OceanFontSize.xxxs,
+            color = OceanColors.statusNegativePure,
+        )
     }
 }

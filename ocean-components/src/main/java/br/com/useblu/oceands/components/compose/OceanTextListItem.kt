@@ -236,7 +236,7 @@ fun OceanTextListItem(
                         )
                     }
                 }
-                OceanTextListStyle.DEFAULT -> {}
+                OceanTextListStyle.DEFAULT -> Unit
             }
 
             Column(

@@ -42,6 +42,15 @@ fun OceanCheckboxPreview() {
                     println("isSelected: $isSelected")
                 }
             )
+            OceanCheckbox(
+                label = "Label",
+                selected = true,
+                enabled = true,
+                unsettled = true,
+                onSelected = { isSelected ->
+                    println("isSelected: $isSelected")
+                }
+            )
         }
         Column(modifier = Modifier
             .padding(horizontal = 16.dp)
@@ -72,6 +81,7 @@ fun OceanCheckbox(
     modifier: Modifier = Modifier,
     label: String,
     selected: Boolean = false,
+    unsettled: Boolean = false,
     showError: Boolean = false,
     errorMessage: String = "",
     enabled: Boolean = true,
@@ -93,6 +103,7 @@ fun OceanCheckbox(
             OceanSelectableBox(
                 interactionSource = interactionSource,
                 selected = isSelected,
+                unsettled = unsettled,
                 showError = showError,
                 enabled = enabled,
                 onSelectedBox = onSelected

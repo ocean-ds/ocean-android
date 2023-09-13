@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -76,6 +79,7 @@ fun SelectableBoxPreview() {
 
 @Composable
 fun OceanSelectableBox(
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     selected: Boolean = false,
     unsettled: Boolean = false,
     showError: Boolean = false,
@@ -85,58 +89,71 @@ fun OceanSelectableBox(
     var isSelected by remember(selected) { mutableStateOf(selected) }
     var isUnsettled by remember(unsettled) { mutableStateOf(unsettled) }
 
-    Row(
-        modifier = Modifier
-            .background(OceanColors.interfaceLightPure)
-            .clickable {
-                if (enabled && !isUnsettled) {
-                    isSelected = !isSelected
-                } else if (isUnsettled) {
-                    isUnsettled = false
-                    isSelected = true
-                }
-                onSelectedBox?.invoke(isSelected)
-            }
-    ) {
-        val boxBorderColor = when {
-            showError -> OceanColors.statusNegativePure
-            !enabled -> OceanColors.interfaceLightDeep
-            isSelected -> OceanColors.complementaryPure
-            else -> OceanColors.interfaceDarkUp
+    val boxBorderColor = when {
+        showError -> OceanColors.statusNegativePure
+        !enabled -> OceanColors.interfaceLightDeep
+        isSelected -> OceanColors.complementaryPure
+        else -> OceanColors.interfaceDarkUp
+    }
+
+    val onClickSelectableBox: (() -> Unit) = {
+        if (enabled && !isUnsettled) {
+            isSelected = !isSelected
+        } else if (isUnsettled) {
+            isUnsettled = false
+            isSelected = true
         }
+        onSelectedBox?.invoke(isSelected)
+    }
 
-        Box(
-            modifier = Modifier
-                .size(20.dp)
-                .padding(1.dp)
-                .border(
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = boxBorderColor
-                    ),
-                    shape = RoundedCornerShape(4.dp)
-                )
-        ) {
-            if(isSelected && !showError){
-                if(isUnsettled) {
-                    Image(
-                        painter = painterResource(
-                            id = R.drawable.icon_checkbox_unsettled
-                        ),
-                        contentDescription = ""
-                    )
-                } else {
-                    val resourceIcon =
-                        if (enabled) R.drawable.icon_checkbox_checked
-                        else R.drawable.icon_checkbox_checked_disabled
-
-                    Image(
-                        painter = painterResource(
-                            id = resourceIcon
-                        ),
-                        contentDescription = ""
-                    )
+    LaunchedEffect(key1 = interactionSource) {
+        interactionSource.interactions.collect {interaction ->
+            when(interaction) {
+                is PressInteraction.Press -> {
+                    onClickSelectableBox()
                 }
+            }
+        }
+    }
+
+    Box(
+        modifier = Modifier
+            .size(20.dp)
+            .padding(1.dp)
+            .background(OceanColors.interfaceLightPure)
+            .clickable (
+                interactionSource = interactionSource,
+                indication = null,
+                enabled = enabled,
+                onClick = {}
+            )
+            .border(
+                border = BorderStroke(
+                    width = 1.dp,
+                    color = boxBorderColor
+                ),
+                shape = RoundedCornerShape(4.dp)
+            )
+    ) {
+        if (isSelected && !showError) {
+            if (isUnsettled) {
+                Image(
+                    painter = painterResource(
+                        id = R.drawable.icon_checkbox_unsettled
+                    ),
+                    contentDescription = ""
+                )
+            } else {
+                val resourceIcon =
+                    if (enabled) R.drawable.icon_checkbox_checked
+                    else R.drawable.icon_checkbox_checked_disabled
+
+                Image(
+                    painter = painterResource(
+                        id = resourceIcon
+                    ),
+                    contentDescription = ""
+                )
             }
         }
     }

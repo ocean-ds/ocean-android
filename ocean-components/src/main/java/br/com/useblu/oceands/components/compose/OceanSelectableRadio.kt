@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -70,53 +73,67 @@ fun SelectableRadioPreview() {
 
 @Composable
 fun OceanSelectableRadio(
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     selected: Boolean = false,
     showError: Boolean = false,
     enabled: Boolean = true,
-    onSelectedBox: (() -> Unit)? = null
+    onSelectedBox: ((Boolean) -> Unit)? = null
 ) {
     var isSelected by remember(selected) { mutableStateOf(selected) }
-    Row(
-        modifier = Modifier
-            .background(OceanColors.interfaceLightPure)
-            .clickable {
-                if (enabled) {
-                    isSelected = true
-                    onSelectedBox?.invoke()
+    val boxBorderColor = when {
+        showError -> OceanColors.statusNegativePure
+        !enabled -> OceanColors.interfaceLightDeep
+        isSelected -> OceanColors.complementaryPure
+        else -> OceanColors.interfaceDarkUp
+    }
+
+    val onClickSelectableRadio: () -> Unit = {
+        if (enabled) {
+            isSelected = true
+            onSelectedBox?.invoke(true)
+        }
+    }
+
+    LaunchedEffect(key1 = interactionSource ){
+        interactionSource.interactions.collect {interaction ->
+            when(interaction) {
+                is PressInteraction.Press -> {
+                    onClickSelectableRadio()
                 }
             }
-    ) {
-        val boxBorderColor = when {
-            showError -> OceanColors.statusNegativePure
-            !enabled -> OceanColors.interfaceLightDeep
-            isSelected -> OceanColors.complementaryPure
-            else -> OceanColors.interfaceDarkUp
         }
+    }
 
-        Box(
-            modifier = Modifier
-                .size(20.dp)
-                .padding(1.dp)
-                .border(
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = boxBorderColor
-                    ),
-                    shape = CircleShape
-                )
-        ) {
-            if (isSelected && !showError) {
-                val resourceIcon =
-                    if (enabled) R.drawable.icon_radiobutton_checked
-                    else R.drawable.icon_radio_button_disabled_checked
+    Box(
+        modifier = Modifier
+            .size(20.dp)
+            .padding(1.dp)
+            .background(OceanColors.interfaceLightPure)
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null,
+                enabled = enabled,
+                onClick = {}
+            )
+            .border(
+                border = BorderStroke(
+                    width = 1.dp,
+                    color = boxBorderColor
+                ),
+                shape = CircleShape
+            )
+    ) {
+        if (isSelected && !showError) {
+            val resourceIcon =
+                if (enabled) R.drawable.icon_radiobutton_checked
+                else R.drawable.icon_radio_button_disabled_checked
 
-                Image(
-                    painter = painterResource(
-                        id = resourceIcon
-                    ),
-                    contentDescription = ""
-                )
-            }
+            Image(
+                painter = painterResource(
+                    id = resourceIcon
+                ),
+                contentDescription = ""
+            )
         }
     }
 }

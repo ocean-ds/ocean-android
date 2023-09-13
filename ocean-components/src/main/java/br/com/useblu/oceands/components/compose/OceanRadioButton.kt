@@ -1,11 +1,14 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -64,18 +67,28 @@ fun OceanRadioButtonPreview() {
 
 @Composable
 fun OceanRadioButton(
+    modifier: Modifier = Modifier,
     label: String,
     selected: Boolean = false,
     showError: Boolean = false,
     errorMessage: String = "",
     enabled: Boolean = true,
-    onSelected: (() -> Unit)? = null,
+    onSelected: ((Boolean) -> Unit)? = null,
 ) {
-    Column(modifier = Modifier
+    val interactionSource = remember { MutableInteractionSource() }
+
+    Column(modifier = modifier
         .background(OceanColors.interfaceLightPure)
+        .clickable(
+            interactionSource = interactionSource,
+            indication = null,
+            enabled = enabled,
+            onClick = {}
+        )
     ){
         Row {
             OceanSelectableRadio(
+                interactionSource = interactionSource,
                 selected = selected,
                 showError = showError,
                 enabled = enabled,

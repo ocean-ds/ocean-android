@@ -1,6 +1,8 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -67,6 +69,7 @@ fun OceanCheckboxPreview() {
 
 @Composable
 fun OceanCheckbox(
+    modifier: Modifier = Modifier,
     label: String,
     selected: Boolean = false,
     showError: Boolean = false,
@@ -74,12 +77,21 @@ fun OceanCheckbox(
     enabled: Boolean = true,
     onSelected: ((Boolean) -> Unit)? = null,
 ) {
-    Column(modifier = Modifier
+    val interactionSource = remember { MutableInteractionSource() }
+
+    Column(modifier = modifier
         .background(OceanColors.interfaceLightPure)
+        .clickable(
+            interactionSource = interactionSource,
+            indication = null,
+            enabled = enabled,
+            onClick = {}
+        )
     ){
         Row {
             val isSelected by remember(selected) { mutableStateOf(selected) }
             OceanSelectableBox(
+                interactionSource = interactionSource,
                 selected = isSelected,
                 showError = showError,
                 enabled = enabled,

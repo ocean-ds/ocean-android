@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,6 +43,15 @@ fun OceanCheckboxPreview() {
                     println("isSelected: $isSelected")
                 }
             )
+            OceanCheckbox(
+                label = "Label",
+                selected = true,
+                enabled = true,
+                unsettled = true,
+                onSelected = { isSelected ->
+                    println("isSelected: $isSelected")
+                }
+            )
         }
         Column(modifier = Modifier
             .padding(horizontal = 16.dp)
@@ -55,12 +65,13 @@ fun OceanCheckboxPreview() {
                 selected = true,
                 enabled = false,
             )
+            var wasSelected by remember { mutableStateOf(true) }
             OceanCheckbox(
                 label = "Label",
-                showError = true,
-                errorMessage = "Error message",
-                onSelected = { isSelected ->
-                    println("isSelected: $isSelected")
+                selected = true,
+                errorMessage = if(!wasSelected) "Error message" else "",
+                onSelected = {
+                    wasSelected = !wasSelected
                 }
             )
         }
@@ -72,7 +83,7 @@ fun OceanCheckbox(
     modifier: Modifier = Modifier,
     label: String,
     selected: Boolean = false,
-    showError: Boolean = false,
+    unsettled: Boolean = false,
     errorMessage: String = "",
     enabled: Boolean = true,
     onSelected: ((Boolean) -> Unit)? = null,
@@ -89,25 +100,23 @@ fun OceanCheckbox(
         )
     ){
         Row {
-            val isSelected by remember(selected) { mutableStateOf(selected) }
             OceanSelectableBox(
                 interactionSource = interactionSource,
-                selected = isSelected,
-                showError = showError,
+                selected = selected,
+                unsettled = unsettled,
+                showError = errorMessage.isNotBlank(),
                 enabled = enabled,
                 onSelectedBox = onSelected
             )
             SelectableBoxLabel(label, enabled)
         }
-        Row{
-            Text(
-                text = errorMessage,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                fontFamily = OceanFontFamily.BaseRegular,
-                fontSize = OceanFontSize.xxxs,
-                color = OceanColors.statusNegativePure,
-            )
-        }
+        Text(
+            text = errorMessage,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+            fontFamily = OceanFontFamily.BaseRegular,
+            fontSize = OceanFontSize.xxxs,
+            color = OceanColors.statusNegativePure,
+        )
     }
 }

@@ -88,9 +88,9 @@ fun OceanSelectableRadio(
     }
 
     val onClickSelectableRadio: () -> Unit = {
-        if (enabled) {
+        if (enabled && !showError) {
             isSelected = true
-            onSelectedBox?.invoke(true)
+            onSelectedBox?.invoke(isSelected)
         }
     }
 
@@ -112,7 +112,7 @@ fun OceanSelectableRadio(
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
-                enabled = enabled,
+                enabled = enabled && !showError,
                 onClick = {}
             )
             .border(

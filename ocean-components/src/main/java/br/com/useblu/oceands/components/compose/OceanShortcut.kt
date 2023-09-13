@@ -127,9 +127,12 @@ fun OceanShortcutPreview() {
 @Composable
 fun OceanShortcutList(
     models: List<OceanShortcutModel>,
-    columns: Int
+    columns: Int,
+    modifier: Modifier = Modifier
 ) {
-    Column {
+    Column(
+        modifier = modifier
+    ) {
         for (i in models.indices step columns) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),

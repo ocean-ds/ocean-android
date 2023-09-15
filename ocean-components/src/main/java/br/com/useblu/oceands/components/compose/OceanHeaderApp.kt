@@ -44,7 +44,7 @@ private val modelPreview = OceanHeaderAppModel(
     formattedCnpj = "32.677.554/0001-14",
     balanceBluModel = OceanBalanceBluModel(
         firstLabel = "First Label",
-        firstValue = "First Value",
+        firstValue = "-35,63",
         secondLabel = "Second Label",
         secondValue = "Second Value",
         thirdLabel = "Third Label",
@@ -56,11 +56,11 @@ private val modelPreview = OceanHeaderAppModel(
         title = "Saldo em Outras maquininhas",
         description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
         buttonCta = "Extrato",
-        buttonCtaCollapsed = "Extrato",
-        onClickButton = {}
+        buttonCtaCollapsed = "Extrato"
     )
 )
 
+@OptIn(ExperimentalFoundationApi::class)
 @Preview
 @Composable
 fun OceanHeaderCardsPreview() {
@@ -107,12 +107,16 @@ fun OceanHeaderApp(
             state = pagerState,
             pageSpacing = 8.dp,
             contentPadding = PaddingValues(horizontal = 16.dp),
-            beyondBoundsPageCount = 1,
-            pageSize = balancePageSize
+            pageSize = balancePageSize,
+            verticalAlignment = Alignment.Top
         ) { page ->
             when (page) {
                 0 -> {
-                    OceanBalanceBluCard(model = model.balanceBluModel)
+                    OceanBalanceBluCard(
+                        model = model.balanceBluModel,
+                        isLoading = model.isLoading,
+                        pagerState = pagerState
+                    )
                 }
                 1 -> {
                     OceanBalanceOthersCard(model = model.balanceOthersModel)

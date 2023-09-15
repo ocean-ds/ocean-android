@@ -2,6 +2,7 @@ package br.com.useblu.oceands.components.compose
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -12,6 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
@@ -32,9 +35,12 @@ import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.utils.FormatTypes.Companion.FORMAT_VALUE_WITH_SYMBOL
+import br.com.useblu.oceands.utils.FormatTypes.Companion.FORMAT_VALUE_WITH_SYMBOL_HIDDEN
 import br.com.useblu.oceands.utils.OceanIcons
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Preview
 @Composable
 fun OceanBalanceBluCardPreview() {
@@ -54,15 +60,18 @@ fun OceanBalanceBluCardPreview() {
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OceanBalanceBluCard(
     model: OceanBalanceBluModel,
     modifier: Modifier = Modifier,
     isLoading: Boolean = false,
-    isExpandedDefault: Boolean = false
+    pagerState: PagerState = rememberPagerState()
 ) {
     var isContentHidden by remember { mutableStateOf(false) }
-    var isExpanded by remember { mutableStateOf(isExpandedDefault) }
+    var isExpanded by remember(pagerState.currentPage) {
+        mutableStateOf(false)
+    }
 
     Column(
         modifier = modifier
@@ -122,8 +131,10 @@ fun OceanBalanceBluCard(
                     }
                 } else {
                     val text = if (isContentHidden) {
-                        model.firstValue.map { "*" }.toString()
-                    } else model.firstValue
+                        FORMAT_VALUE_WITH_SYMBOL_HIDDEN
+                    } else {
+                        FORMAT_VALUE_WITH_SYMBOL
+                    }.format(model.firstValue)
 
                     Text(
                         text = text,
@@ -145,7 +156,9 @@ fun OceanBalanceBluCard(
                 tint = OceanColors.brandPrimaryUp,
                 modifier = Modifier
                     .size(20.dp)
-                    .clickable {
+                    .clickable(
+                        enabled = pagerState.currentPage == 0
+                    ) {
                         isExpanded = !isExpanded
                     }
                     .rotate(animatedRotation.value)
@@ -180,7 +193,9 @@ fun OceanBalanceBluCard(
                     text = model.buttonCta,
                     buttonStyle = OceanButtonStyle.SecondarySmall,
                     onClick = {
-                        model.onClickButton
+                        if (pagerState.currentPage == 0) {
+                            model.onClickButton
+                        }
                     }
                 )
             }

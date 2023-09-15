@@ -18,9 +18,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
-import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -72,8 +72,17 @@ private val modelPreview = OceanHeaderAppModel(
 @Preview
 @Composable
 fun OceanHeaderAppPreview() {
+    val model = remember { mutableStateOf(modelPreview) }
     OceanTheme {
-        OceanHeaderApp(modelPreview)
+        Column {
+            OceanHeaderApp(model.value)
+            Spacer(modifier = Modifier.size(16.dp))
+            Button(onClick = {
+                model.value = model.value.copy(isHeaderCollapsed = !model.value.isHeaderCollapsed)
+            }) {
+                Text(text = "Toggle collapsed")
+            }
+        }
     }
 }
 
@@ -93,7 +102,7 @@ fun OceanHeaderApp(
     model: OceanHeaderAppModel,
     modifier: Modifier = Modifier
 ) {
-    val pagerState = rememberPagerState(initialPage = 0)
+    val pagerState = rememberPagerState()
     val isContentHidden = remember { mutableStateOf(false) }
     val isHeaderCollapsed = remember(model.isHeaderCollapsed) {
         mutableStateOf(model.isHeaderCollapsed)
@@ -107,7 +116,7 @@ fun OceanHeaderApp(
         
         Crossfade(
             targetState = isHeaderCollapsed.value,
-            label = ""
+            label = "crossfade toggle"
         ) { isCollapsed ->
             if (isCollapsed) {
                 when (pagerState.currentPage) {
@@ -138,8 +147,9 @@ fun OceanHeaderApp(
                                 OceanBalanceBluCard(
                                     model = model.balanceBluModel,
                                     isLoading = model.isLoading,
-                                    pagerState = pagerState,
-                                    isContentHidden = isContentHidden
+                                    isCurrentPage = pagerState.currentPage == 0,
+                                    isContentHidden = isContentHidden.value,
+                                    onClickToggleHideContent = { isContentHidden.value = !isContentHidden.value },
                                 )
                             }
                             1 -> {
@@ -150,7 +160,7 @@ fun OceanHeaderApp(
 
                     Spacer(modifier = Modifier.size(8.dp))
 
-                    PageIndicator(pagerState = pagerState)
+                    PageIndicator(pagerState.currentPage)
 
                     Spacer(modifier = Modifier.size(16.dp))
                 }
@@ -159,9 +169,10 @@ fun OceanHeaderApp(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun PageIndicator(pagerState: PagerState) {
+private fun PageIndicator(
+    selectedIndex: Int
+) {
     Row(
         Modifier
             .fillMaxWidth(),
@@ -169,9 +180,7 @@ private fun PageIndicator(pagerState: PagerState) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         repeat(2) { iteration ->
-            val isSelected = remember(pagerState.currentPage) {
-                pagerState.currentPage == iteration
-            }
+            val isSelected = selectedIndex == iteration
 
             val color = animateColorAsState(
                 targetValue = if (isSelected) OceanColors.interfaceLightUp else OceanColors.brandPrimaryDown,

@@ -2,7 +2,6 @@ package br.com.useblu.oceands.components.compose.header
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -13,13 +12,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.pager.PagerState
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -45,10 +41,10 @@ import br.com.useblu.oceands.utils.FormatTypes.Companion.FORMAT_VALUE_WITH_SYMBO
 import br.com.useblu.oceands.utils.OceanIcons
 
 
-@OptIn(ExperimentalFoundationApi::class)
 @Preview
 @Composable
 fun OceanBalanceBluCardPreview() {
+    val isContentHidden = remember { mutableStateOf(false) }
     val model = OceanBalanceBluModel(
         firstLabel = "First Label",
         firstValue = "First Value",
@@ -63,21 +59,24 @@ fun OceanBalanceBluCardPreview() {
         OceanBalanceBluCard(
             model,
             isLoading = false,
-            isContentHidden = remember { mutableStateOf(false) }
+            isContentHidden = isContentHidden.value,
+            onClickToggleHideContent = {
+                isContentHidden.value = !isContentHidden.value
+            }
         )
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OceanBalanceBluCard(
     model: OceanBalanceBluModel,
     modifier: Modifier = Modifier,
     isLoading: Boolean = false,
-    pagerState: PagerState = rememberPagerState(),
-    isContentHidden: MutableState<Boolean> = mutableStateOf(false)
+    isCurrentPage: Boolean = true,
+    isContentHidden: Boolean = false,
+    onClickToggleHideContent: () -> Unit
 ) {
-    val isExpanded = remember(pagerState.currentPage) {
+    val isExpanded = remember(isCurrentPage) {
         mutableStateOf(false)
     }
     val shimmeringBrush = shimmeringBrush()
@@ -94,8 +93,12 @@ fun OceanBalanceBluCard(
             model = model,
             isLoading = isLoading,
             shimmeringBrush = shimmeringBrush,
-            isExpanded = isExpanded,
-            pagerState = pagerState
+            isExpanded = isExpanded.value,
+            isCurrentPage = isCurrentPage,
+            onClickToggleHideContent = onClickToggleHideContent,
+            onClickExpandContent = {
+                isExpanded.value = !isExpanded.value
+            }
         )
 
         AnimatedVisibility(visible = isExpanded.value) {
@@ -103,7 +106,7 @@ fun OceanBalanceBluCard(
                 model = model,
                 isLoading = isLoading,
                 shimmeringBrush = shimmeringBrush,
-                isContentHidden = isContentHidden.value
+                isContentHidden = isContentHidden
             )
         }
 
@@ -114,20 +117,21 @@ fun OceanBalanceBluCard(
         ) {
             Divider(color = OceanColors.brandPrimaryUp.copy(alpha = 0.4f))
 
-            BluCardBottomBar(model, pagerState)
+            BluCardBottomBar(model, isCurrentPage)
         }
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun BluCardTopBar(
-    isContentHidden: MutableState<Boolean>,
+    isContentHidden: Boolean,
     model: OceanBalanceBluModel,
     isLoading: Boolean,
     shimmeringBrush: Brush,
-    isExpanded: MutableState<Boolean>,
-    pagerState: PagerState
+    isExpanded: Boolean,
+    isCurrentPage: Boolean,
+    onClickToggleHideContent: () -> Unit,
+    onClickExpandContent: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -140,10 +144,10 @@ private fun BluCardTopBar(
                 .height(40.dp)
                 .width(28.dp)
                 .clickable {
-                    isContentHidden.value = !isContentHidden.value
+                    onClickToggleHideContent()
                 }
         ) {
-            val icon = if (isContentHidden.value) {
+            val icon = if (isContentHidden) {
                 OceanIcons.EYE_OFF_OUTLINE
             } else OceanIcons.EYE_OUTLINE
             OceanIcon(
@@ -177,7 +181,7 @@ private fun BluCardTopBar(
                         .padding(vertical = 8.dp)
                 )
             } else {
-                val text = if (isContentHidden.value) {
+                val text = if (isContentHidden) {
                     FORMAT_VALUE_WITH_SYMBOL_HIDDEN
                 } else {
                     FORMAT_VALUE_WITH_SYMBOL
@@ -194,16 +198,16 @@ private fun BluCardTopBar(
         }
 
         val animatedRotation = animateFloatAsState(
-            targetValue = if (isExpanded.value) 180f else 0f,
+            targetValue = if (isExpanded) 180f else 0f,
             label = "Expand rotation"
         )
 
         Box(modifier = Modifier
             .size(40.dp)
             .clickable(
-                enabled = pagerState.currentPage == 0
+                enabled = isCurrentPage
             ) {
-                isExpanded.value = !isExpanded.value
+                onClickExpandContent()
             }
         ) {
             OceanIcon(
@@ -298,11 +302,10 @@ private fun ExpandableContentTextRow(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun BluCardBottomBar(
     model: OceanBalanceBluModel,
-    pagerState: PagerState
+    isCurrentPage: Boolean
 ) {
     Row(
         modifier = Modifier.padding(top = 8.dp),
@@ -320,7 +323,7 @@ private fun BluCardBottomBar(
             text = model.buttonCta,
             buttonStyle = OceanButtonStyle.SecondarySmall,
             onClick = {
-                if (pagerState.currentPage == 0) {
+                if (isCurrentPage) {
                     model.onClickButton
                 }
             }

@@ -46,9 +46,9 @@ private val modelPreview = OceanHeaderAppModel(
         firstLabel = "First Label",
         firstValue = "-35,63",
         secondLabel = "Second Label",
-        secondValue = "Second Value",
+        secondValue = "10,00",
         thirdLabel = "Third Label",
-        thirdValue = "Third Value",
+        thirdValue = "50,00",
         buttonCta = "Extrato",
         buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu"
     ),
@@ -57,7 +57,8 @@ private val modelPreview = OceanHeaderAppModel(
         description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
         buttonCta = "Extrato",
         buttonCtaCollapsed = "Extrato"
-    )
+    ),
+    isLoading = false
 )
 
 @OptIn(ExperimentalFoundationApi::class)

@@ -50,9 +50,7 @@ fun PreviewSkeleton() {
 }
 
 @Composable
-fun OceanShimmering(
-    content: @Composable (Brush) -> Unit
-) {
+fun shimmeringBrush(): Brush {
     val gradient = listOf(
         OceanColors.interfaceLightDown.copy(alpha = 0.9f),
         OceanColors.interfaceLightUp.copy(alpha = 0.3f),
@@ -73,7 +71,8 @@ fun OceanShimmering(
             ),
             label = ""
         )
-    val brush = Brush.linearGradient(
+
+    return Brush.linearGradient(
         colors = gradient,
         start = Offset.Zero,
         end = Offset(
@@ -81,5 +80,13 @@ fun OceanShimmering(
             y = translateAnimation.value
         )
     )
-    content(brush)
+}
+
+
+
+@Composable
+fun OceanShimmering(
+    content: @Composable (Brush) -> Unit
+) {
+    content(shimmeringBrush())
 }

@@ -217,81 +217,70 @@ private fun ExpandableContent(
             .padding(horizontal = 16.dp)
             .padding(bottom = 4.dp)
     ) {
-        Row(
-            modifier = Modifier.padding(vertical = 12.dp),
-            verticalAlignment = Alignment.Top
-        ) {
-            Text(
-                text = model.secondLabel,
-                modifier = Modifier
-                    .weight(1f),
-                fontFamily = OceanFontFamily.BaseBold,
-                color = OceanColors.interfaceLightPure
-            )
+        ExpandableContentTextRow(
+            isLoading = isLoading,
+            shimmeringBrush = shimmeringBrush,
+            isContentHidden = isContentHidden,
+            label = model.secondLabel,
+            value = model.secondValue
+        )
 
-            Spacer(modifier = Modifier.size(16.dp))
-
-            if (isLoading) {
-                Box(
-                    modifier = Modifier
-                        .height(14.dp)
-                        .width(72.dp)
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(shimmeringBrush)
-                        .padding(vertical = 8.dp)
-                )
-            } else {
-                val text = if (isContentHidden) {
-                    FORMAT_VALUE_WITH_SYMBOL_HIDDEN
-                } else {
-                    FORMAT_VALUE_WITH_SYMBOL
-                }.format(model.secondValue)
-
-                Text(
-                    text = text,
-                    fontFamily = OceanFontFamily.BaseBold,
-                    color = OceanColors.interfaceLightPure
-                )
-            }
-        }
+        Spacer(modifier = Modifier.size(12.dp))
 
         Divider(color = OceanColors.brandPrimaryUp.copy(alpha = 0.4f))
 
-        Row(
-            modifier = Modifier.padding(top = 12.dp),
-            verticalAlignment = Alignment.Top
-        ) {
+        ExpandableContentTextRow(
+            isLoading = isLoading,
+            shimmeringBrush = shimmeringBrush,
+            isContentHidden = isContentHidden,
+            label = model.thirdLabel,
+            value = model.thirdValue
+        )
+    }
+}
+
+@Composable
+private fun ExpandableContentTextRow(
+    isLoading: Boolean,
+    shimmeringBrush: Brush,
+    isContentHidden: Boolean,
+    label: String,
+    value: String
+) {
+    Row(
+        modifier = Modifier.padding(top = 12.dp),
+        verticalAlignment = Alignment.Top
+    ) {
+        Text(
+            text = label,
+            modifier = Modifier.weight(1f),
+            fontFamily = OceanFontFamily.BaseBold,
+            color = OceanColors.interfaceLightPure
+        )
+
+        Spacer(modifier = Modifier.size(16.dp))
+
+        if (isLoading) {
+            Box(
+                modifier = Modifier
+                    .height(14.dp)
+                    .width(72.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .background(shimmeringBrush)
+                    .padding(vertical = 8.dp)
+            )
+        } else {
+            val text = if (isContentHidden) {
+                FORMAT_VALUE_WITH_SYMBOL_HIDDEN
+            } else {
+                FORMAT_VALUE_WITH_SYMBOL
+            }.format(value)
+
             Text(
-                text = model.thirdLabel,
-                modifier = Modifier.weight(1f),
+                text = text,
                 fontFamily = OceanFontFamily.BaseBold,
                 color = OceanColors.interfaceLightPure
             )
-
-            Spacer(modifier = Modifier.size(16.dp))
-
-            if (isLoading) {
-                Box(
-                    modifier = Modifier
-                        .height(14.dp)
-                        .width(72.dp)
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(shimmeringBrush)
-                        .padding(vertical = 8.dp)
-                )
-            } else {
-                val text = if (isContentHidden) {
-                    FORMAT_VALUE_WITH_SYMBOL_HIDDEN
-                } else {
-                    FORMAT_VALUE_WITH_SYMBOL
-                }.format(model.thirdValue)
-
-                Text(
-                    text = text,
-                    fontFamily = OceanFontFamily.BaseBold,
-                    color = OceanColors.interfaceLightPure
-                )
-            }
         }
     }
 }

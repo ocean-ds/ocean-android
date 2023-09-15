@@ -33,11 +33,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.shimmeringBrush
 import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.FormatTypes.Companion.FORMAT_VALUE_WITH_SYMBOL
 import br.com.useblu.oceands.utils.FormatTypes.Companion.FORMAT_VALUE_WITH_SYMBOL_HIDDEN
 import br.com.useblu.oceands.utils.OceanIcons
@@ -57,11 +59,13 @@ fun OceanBalanceBluCardPreview() {
         buttonCta = "Extrato",
         buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu"
     )
-    OceanBalanceBluCard(
-        model,
-        isLoading = false,
-        isContentHidden = remember { mutableStateOf(false) }
-    )
+    OceanTheme {
+        OceanBalanceBluCard(
+            model,
+            isLoading = false,
+            isContentHidden = remember { mutableStateOf(false) }
+        )
+    }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -306,8 +310,7 @@ private fun BluCardBottomBar(
     ) {
         Text(
             text = model.buttonDescription, modifier = Modifier.weight(1f),
-            fontFamily = OceanFontFamily.BaseRegular,
-            fontSize = 14.sp,
+            style = OceanTextStyle.description,
             color = OceanColors.interfaceLightDown
         )
 

@@ -21,7 +21,6 @@ import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -37,6 +36,7 @@ import br.com.useblu.oceands.components.compose.OceanBadge
 import br.com.useblu.oceands.components.compose.OceanBadgeSize
 import br.com.useblu.oceands.components.compose.OceanBluPlus
 import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
 import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
@@ -66,13 +66,13 @@ private val modelPreview = OceanHeaderAppModel(
         buttonCtaCollapsed = "Extrato"
     ),
     isLoading = false,
-    isHeaderCollapsed = true
+    isHeaderCollapsed = false
 )
 
 @Preview
 @Composable
 fun OceanHeaderAppPreview() {
-    MaterialTheme {
+    OceanTheme {
         OceanHeaderApp(modelPreview)
     }
 }
@@ -130,7 +130,8 @@ fun OceanHeaderApp(
                         pageSpacing = 8.dp,
                         contentPadding = PaddingValues(horizontal = 16.dp),
                         pageSize = balancePageSize,
-                        verticalAlignment = Alignment.Top
+                        verticalAlignment = Alignment.Top,
+                        modifier = Modifier.padding(top = 4.dp)
                     ) { page ->
                         when (page) {
                             0 -> {
@@ -227,7 +228,7 @@ fun Header(
             Text(
                 text = model.formattedCnpj,
                 fontFamily = OceanFontFamily.BaseRegular,
-                color = OceanColors.interfaceLightPure,
+                color = OceanColors.brandPrimaryUp,
                 fontSize = 12.sp
             )
         }

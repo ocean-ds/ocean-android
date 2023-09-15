@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanButton
+import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -29,10 +30,12 @@ fun OceanBalanceOthersCardCollapsedPreview() {
         buttonCta = "Extrato",
         buttonCtaCollapsed = "Extrato"
     )
+    OceanTheme {
+        OceanBalanceOthersCardCollapsed(
+            model = model,
+        )
+    }
 
-    OceanBalanceOthersCardCollapsed(
-        model = model,
-    )
 }
 @Composable
 fun OceanBalanceOthersCardCollapsed(
@@ -57,7 +60,7 @@ fun OceanBalanceOthersCardCollapsed(
         Spacer(modifier = Modifier.size(8.dp))
 
         OceanButton(
-            text = model.buttonCta,
+            text = model.buttonCtaCollapsed,
             buttonStyle = OceanButtonStyle.SecondarySmall,
             onClick = model.onClickButton
         )

@@ -1,5 +1,6 @@
-package br.com.useblu.oceands.components.compose
+package br.com.useblu.oceands.components.compose.header
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -20,8 +21,10 @@ import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +33,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.components.compose.OceanBadge
+import br.com.useblu.oceands.components.compose.OceanBadgeSize
+import br.com.useblu.oceands.components.compose.OceanBluPlus
+import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
 import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
@@ -58,25 +65,16 @@ private val modelPreview = OceanHeaderAppModel(
         buttonCta = "Extrato",
         buttonCtaCollapsed = "Extrato"
     ),
-    isLoading = false
+    isLoading = false,
+    isHeaderCollapsed = true
 )
-
-@OptIn(ExperimentalFoundationApi::class)
-@Preview
-@Composable
-fun OceanHeaderCardsPreview() {
-    Column {
-        OceanBalanceBluCard(model = modelPreview.balanceBluModel)
-        OceanBalanceOthersCard(model = modelPreview.balanceOthersModel)
-    }
-}
 
 @Preview
 @Composable
 fun OceanHeaderAppPreview() {
-    OceanHeaderApp(
-        modelPreview
-    )
+    MaterialTheme {
+        OceanHeaderApp(modelPreview)
+    }
 }
 
 @ExperimentalFoundationApi
@@ -95,41 +93,68 @@ fun OceanHeaderApp(
     model: OceanHeaderAppModel,
     modifier: Modifier = Modifier
 ) {
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(initialPage = 0)
+    val isContentHidden = remember { mutableStateOf(false) }
+    val isHeaderCollapsed = remember(model.isHeaderCollapsed) {
+        mutableStateOf(model.isHeaderCollapsed)
+    }
 
     Column(
         modifier = modifier
             .background(color = OceanColors.brandPrimaryPure)
     ) {
         Header(model = model)
-
-        HorizontalPager(
-            pageCount = 2,
-            state = pagerState,
-            pageSpacing = 8.dp,
-            contentPadding = PaddingValues(horizontal = 16.dp),
-            pageSize = balancePageSize,
-            verticalAlignment = Alignment.Top
-        ) { page ->
-            when (page) {
-                0 -> {
-                    OceanBalanceBluCard(
-                        model = model.balanceBluModel,
-                        isLoading = model.isLoading,
-                        pagerState = pagerState
-                    )
+        
+        Crossfade(
+            targetState = isHeaderCollapsed.value,
+            label = ""
+        ) { isCollapsed ->
+            if (isCollapsed) {
+                when (pagerState.currentPage) {
+                    0 -> {
+                        OceanBalanceBluCardCollapsed(
+                            model = model.balanceBluModel,
+                            onClickExpand = { isHeaderCollapsed.value = false },
+                            onClickHideContent = { isContentHidden.value = !isContentHidden.value },
+                            isContentHidden = isContentHidden.value,
+                            isLoading = model.isLoading
+                        )
+                    }
+                    1 -> OceanBalanceOthersCardCollapsed(model = model.balanceOthersModel)
                 }
-                1 -> {
-                    OceanBalanceOthersCard(model = model.balanceOthersModel)
+            } else {
+                Column {
+                    HorizontalPager(
+                        pageCount = 2,
+                        state = pagerState,
+                        pageSpacing = 8.dp,
+                        contentPadding = PaddingValues(horizontal = 16.dp),
+                        pageSize = balancePageSize,
+                        verticalAlignment = Alignment.Top
+                    ) { page ->
+                        when (page) {
+                            0 -> {
+                                OceanBalanceBluCard(
+                                    model = model.balanceBluModel,
+                                    isLoading = model.isLoading,
+                                    pagerState = pagerState,
+                                    isContentHidden = isContentHidden
+                                )
+                            }
+                            1 -> {
+                                OceanBalanceOthersCard(model = model.balanceOthersModel)
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.size(8.dp))
+
+                    PageIndicator(pagerState = pagerState)
+
+                    Spacer(modifier = Modifier.size(16.dp))
                 }
             }
         }
-
-        Spacer(modifier = Modifier.size(8.dp))
-
-        PageIndicator(pagerState = pagerState)
-
-        Spacer(modifier = Modifier.size(16.dp))
     }
 }
 

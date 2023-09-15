@@ -13,5 +13,6 @@ data class OceanHeaderAppModel(
     val badgeCount: Int = 0,
     val balanceBluModel: OceanBalanceBluModel = OceanBalanceBluModel(),
     val balanceOthersModel: OceanBalanceOthersModel = OceanBalanceOthersModel(),
+    val isHeaderCollapsed: Boolean = false,
     val isLoading: Boolean = false
 )

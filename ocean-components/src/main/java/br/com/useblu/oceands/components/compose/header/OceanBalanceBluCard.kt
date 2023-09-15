@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components.compose
+package br.com.useblu.oceands.components.compose.header
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
@@ -31,6 +31,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.components.compose.OceanButton
+import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.shimmeringBrush
 import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -56,7 +59,8 @@ fun OceanBalanceBluCardPreview() {
     )
     OceanBalanceBluCard(
         model,
-        isLoading = false
+        isLoading = false,
+        isContentHidden = remember { mutableStateOf(false) }
     )
 }
 
@@ -66,9 +70,9 @@ fun OceanBalanceBluCard(
     model: OceanBalanceBluModel,
     modifier: Modifier = Modifier,
     isLoading: Boolean = false,
-    pagerState: PagerState = rememberPagerState()
+    pagerState: PagerState = rememberPagerState(),
+    isContentHidden: MutableState<Boolean> = mutableStateOf(false)
 ) {
-    val isContentHidden = remember { mutableStateOf(false) }
     val isExpanded = remember(pagerState.currentPage) {
         mutableStateOf(false)
     }
@@ -190,18 +194,23 @@ private fun BluCardTopBar(
             label = "Expand rotation"
         )
 
-        OceanIcon(
-            iconType = OceanIcons.CHEVRON_DOWN_OUTLINE,
-            tint = OceanColors.brandPrimaryUp,
-            modifier = Modifier
-                .size(20.dp)
-                .clickable(
-                    enabled = pagerState.currentPage == 0
-                ) {
-                    isExpanded.value = !isExpanded.value
-                }
-                .rotate(animatedRotation.value)
-        )
+        Box(modifier = Modifier
+            .size(40.dp)
+            .clickable(
+                enabled = pagerState.currentPage == 0
+            ) {
+                isExpanded.value = !isExpanded.value
+            }
+        ) {
+            OceanIcon(
+                iconType = OceanIcons.CHEVRON_DOWN_OUTLINE,
+                tint = OceanColors.brandPrimaryUp,
+                modifier = Modifier
+                    .size(20.dp)
+                    .align(Alignment.CenterEnd)
+                    .rotate(animatedRotation.value)
+            )
+        }
     }
 }
 

@@ -35,7 +35,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
 @Composable
-fun OceanTextListItemPreview() {
+private fun OceanTextListItemPreview() {
     Column(
         Modifier.verticalScroll(
             state = rememberScrollState(),

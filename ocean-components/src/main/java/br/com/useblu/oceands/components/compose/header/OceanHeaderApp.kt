@@ -1,6 +1,6 @@
 package br.com.useblu.oceands.components.compose.header
 
-import androidx.compose.animation.Crossfade
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -113,14 +113,20 @@ fun OceanHeaderApp(
             .background(color = OceanColors.brandPrimaryPure)
     ) {
         Header(model = model)
-        
-        Crossfade(
-            targetState = isHeaderCollapsed.value,
-            label = "crossfade toggle"
-        ) { isCollapsed ->
-            if (isCollapsed) {
-                when (pagerState.currentPage) {
-                    0 -> {
+
+        HorizontalPager(
+            pageCount = 2,
+            state = pagerState,
+            pageSpacing = if (!isHeaderCollapsed.value) 8.dp else 0.dp,
+            contentPadding = if (!isHeaderCollapsed.value) PaddingValues(horizontal = 16.dp) else PaddingValues(0.dp),
+            pageSize = if (!isHeaderCollapsed.value) balancePageSize else PageSize.Fill,
+            verticalAlignment = Alignment.Top,
+            modifier = if (!isHeaderCollapsed.value) Modifier.padding(top = 4.dp) else Modifier,
+            userScrollEnabled = !isHeaderCollapsed.value
+        ) { page ->
+            when (page) {
+                0 -> {
+                    if (isHeaderCollapsed.value) {
                         OceanBalanceBluCardCollapsed(
                             model = model.balanceBluModel,
                             onClickExpand = { isHeaderCollapsed.value = false },
@@ -128,42 +134,33 @@ fun OceanHeaderApp(
                             isContentHidden = isContentHidden.value,
                             isLoading = model.isLoading
                         )
+                    } else {
+                        OceanBalanceBluCard(
+                            model = model.balanceBluModel,
+                            isLoading = model.isLoading,
+                            isCurrentPage = pagerState.currentPage == 0,
+                            isContentHidden = isContentHidden.value,
+                            onClickToggleHideContent = {
+                                isContentHidden.value = !isContentHidden.value
+                            },
+                        )
                     }
-                    1 -> OceanBalanceOthersCardCollapsed(model = model.balanceOthersModel)
                 }
-            } else {
-                Column {
-                    HorizontalPager(
-                        pageCount = 2,
-                        state = pagerState,
-                        pageSpacing = 8.dp,
-                        contentPadding = PaddingValues(horizontal = 16.dp),
-                        pageSize = balancePageSize,
-                        verticalAlignment = Alignment.Top,
-                        modifier = Modifier.padding(top = 4.dp)
-                    ) { page ->
-                        when (page) {
-                            0 -> {
-                                OceanBalanceBluCard(
-                                    model = model.balanceBluModel,
-                                    isLoading = model.isLoading,
-                                    isCurrentPage = pagerState.currentPage == 0,
-                                    isContentHidden = isContentHidden.value,
-                                    onClickToggleHideContent = { isContentHidden.value = !isContentHidden.value },
-                                )
-                            }
-                            1 -> {
-                                OceanBalanceOthersCard(model = model.balanceOthersModel)
-                            }
-                        }
+                1 -> {
+                    if (isHeaderCollapsed.value) {
+                        OceanBalanceOthersCardCollapsed(model = model.balanceOthersModel)
+                    } else {
+                        OceanBalanceOthersCard(model = model.balanceOthersModel)
                     }
-
-                    Spacer(modifier = Modifier.size(8.dp))
-
-                    PageIndicator(pagerState.currentPage)
-
-                    Spacer(modifier = Modifier.size(16.dp))
                 }
+            }
+        }
+
+        AnimatedVisibility(visible = !isHeaderCollapsed.value) {
+            Column {
+                Spacer(modifier = Modifier.size(8.dp))
+                PageIndicator(pagerState.currentPage)
+                Spacer(modifier = Modifier.size(16.dp))
             }
         }
     }

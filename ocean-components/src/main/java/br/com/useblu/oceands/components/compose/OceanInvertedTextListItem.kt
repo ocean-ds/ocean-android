@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -87,7 +86,7 @@ fun OceanInvertedTextListItem(
             .padding(vertical = 8.dp, horizontal = 16.dp)
             .fillMaxWidth()
     ) {
-        Text(
+        OceanText(
             text = title,
             style = OceanTextStyle.description
         )
@@ -102,7 +101,7 @@ sealed interface InvertedTextListType {
     data class Default(val description: String): InvertedTextListType {
         @Composable
         override fun TypeContent() {
-            Text(
+            OceanText(
                 text = description,
                 style = OceanTextStyle.paragraph,
                 color = OceanColors.interfaceDarkPure
@@ -112,7 +111,7 @@ sealed interface InvertedTextListType {
     data class Inactive(val description: String): InvertedTextListType {
         @Composable
         override fun TypeContent() {
-            Text(
+            OceanText(
                 text = description,
                 style = OceanTextStyle.paragraph,
                 color = OceanColors.interfaceDarkUp
@@ -130,7 +129,7 @@ sealed interface InvertedTextListType {
                     OceanSpacing.StackXXXS()
                 }
 
-                Text(
+                OceanText(
                     text = description,
                     style = OceanTextStyle.paragraph,
                     color = OceanColors.statusPositiveDeep
@@ -149,7 +148,7 @@ sealed interface InvertedTextListType {
                     OceanSpacing.StackXXXS()
                 }
 
-                Text(
+                OceanText(
                     text = description,
                     style = OceanTextStyle.paragraph,
                     color = OceanColors.statusWarningDeep
@@ -167,7 +166,7 @@ sealed interface InvertedTextListType {
         @Composable
         override fun TypeContent() {
             Column {
-                Text(
+                OceanText(
                     text = description,
                     style = OceanTextStyle.lead,
                     color = OceanColors.interfaceDarkPure
@@ -187,7 +186,7 @@ sealed interface InvertedTextListType {
         @Composable
         override fun TypeContent() {
             Row {
-                Text(
+                OceanText(
                     text = strikedDescription,
                     style = OceanTextStyle.description,
                     color = OceanColors.interfaceDarkPure,
@@ -196,7 +195,7 @@ sealed interface InvertedTextListType {
 
                 OceanSpacing.StackXXXS()
 
-                Text(
+                OceanText(
                     text = description,
                     style = OceanTextStyle.description,
                     color = OceanColors.statusPositiveDeep

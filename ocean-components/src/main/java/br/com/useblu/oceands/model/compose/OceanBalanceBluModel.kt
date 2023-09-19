@@ -10,7 +10,6 @@ data class OceanBalanceBluModel(
     val secondValue: String = "",
     val thirdLabel: String = "",
     val thirdValue: String = "",
-    val onClickHideIcon: () -> Unit = {},
     val buttonDescription: String = "",
     val buttonCta: String = "",
     val onClickButton: () -> Unit = {},

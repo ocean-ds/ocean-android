@@ -14,5 +14,6 @@ data class OceanHeaderAppModel(
     val balanceBluModel: OceanBalanceBluModel = OceanBalanceBluModel(),
     val balanceOthersModel: OceanBalanceOthersModel = OceanBalanceOthersModel(),
     val isHeaderCollapsed: Boolean = false,
+    val hideBalance: Boolean = false,
     val isLoading: Boolean = false
 )

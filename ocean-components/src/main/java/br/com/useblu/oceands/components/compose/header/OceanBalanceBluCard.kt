@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -143,9 +144,13 @@ private fun BluCardTopBar(
             modifier = Modifier
                 .height(40.dp)
                 .width(28.dp)
-                .clickable {
-                    onClickToggleHideContent()
-                }
+                .clickable(
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() },
+                    onClick = {
+                        onClickToggleHideContent()
+                    }
+                )
         ) {
             val icon = if (isContentHidden) {
                 OceanIcons.EYE_OFF_OUTLINE
@@ -205,7 +210,9 @@ private fun BluCardTopBar(
         Box(modifier = Modifier
             .size(40.dp)
             .clickable(
-                enabled = isCurrentPage
+                enabled = isCurrentPage,
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() },
             ) {
                 onClickExpandContent()
             }

@@ -77,7 +77,7 @@ fun OceanBalanceOthersCard(
             text = model.buttonCta,
             buttonStyle = OceanButtonStyle.SecondarySmall,
             onClick = {
-                model.onClickButton
+                model.onClickButton()
             },
             modifier = Modifier.padding(horizontal = 16.dp)
         )

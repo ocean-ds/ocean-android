@@ -61,13 +61,19 @@ private val modelPreview = mutableStateOf(
             thirdLabel = "Third Label",
             thirdValue = "50,00",
             buttonCta = "Extrato",
-            buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu"
+            buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu",
+            onClickButton = {
+                println("Click blu")
+            }
         ),
         balanceOthersModel = OceanBalanceOthersModel(
             title = "Saldo em Outras maquininhas",
             description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
             buttonCta = "Extrato",
-            buttonCtaCollapsed = "Extrato"
+            buttonCtaCollapsed = "Extrato",
+            onClickButton = {
+                println("Click others")
+            }
         ),
         isLoading = false,
         isHeaderCollapsed = false

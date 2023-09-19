@@ -54,7 +54,10 @@ fun OceanBalanceBluCardPreview() {
         thirdLabel = "Third Label",
         thirdValue = "Third Value",
         buttonCta = "Extrato",
-        buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu"
+        buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu",
+        onClickButton = {
+            println("Click extrato")
+        }
     )
     OceanTheme {
         OceanBalanceBluCard(
@@ -331,7 +334,7 @@ private fun BluCardBottomBar(
             buttonStyle = OceanButtonStyle.SecondarySmall,
             onClick = {
                 if (isCurrentPage) {
-                    model.onClickButton
+                    model.onClickButton()
                 }
             }
         )

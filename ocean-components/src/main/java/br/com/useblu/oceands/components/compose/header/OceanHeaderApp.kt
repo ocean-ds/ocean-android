@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,6 +46,7 @@ import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.utils.OceanIcons
+import kotlinx.coroutines.launch
 
 
 private val modelPreview = mutableStateOf(
@@ -116,10 +118,11 @@ fun OceanHeaderApp(
     modifier: Modifier = Modifier
 ) {
     val pagerState = rememberPagerState()
-    val isContentHidden = remember { mutableStateOf(false) }
-    val isHeaderCollapsed = remember(model.isHeaderCollapsed) {
-        mutableStateOf(model.isHeaderCollapsed)
+    val currentPage = remember(model.isHeaderCollapsed) {
+        pagerState.currentPage
     }
+    val coroutine = rememberCoroutineScope()
+    val isContentHidden = remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -127,7 +130,7 @@ fun OceanHeaderApp(
     ) {
         Header(model = model)
 
-        if (isHeaderCollapsed.value) {
+        if (model.isHeaderCollapsed) {
             if (pagerState.currentPage == 0) {
                 OceanBalanceBluCardCollapsed(
                     model = model.balanceBluModel,
@@ -139,15 +142,20 @@ fun OceanHeaderApp(
                 OceanBalanceOthersCardCollapsed(model = model.balanceOthersModel)
             }
         } else {
+            LaunchedEffect(key1 = true) {
+                coroutine.launch {
+                    pagerState.scrollToPage(currentPage)
+                }
+            }
             HorizontalPager(
                 pageCount = 2,
                 state = pagerState,
-                contentPadding = if (!isHeaderCollapsed.value) PaddingValues(horizontal = 16.dp) else PaddingValues(0.dp),
-                pageSize = if (!isHeaderCollapsed.value) balancePageSize else PageSize.Fill,
-                pageSpacing = if (!isHeaderCollapsed.value) 8.dp else 0.dp,
+                contentPadding = PaddingValues(horizontal = 16.dp),
+                pageSize = balancePageSize,
+                pageSpacing = 8.dp,
                 verticalAlignment = Alignment.Top,
-                modifier = if (!isHeaderCollapsed.value) Modifier.padding(top = 4.dp) else Modifier,
-                userScrollEnabled = !isHeaderCollapsed.value
+                modifier = Modifier
+                    .padding(top = 4.dp)
             ) { page ->
                 when (page) {
                     0 -> {
@@ -158,7 +166,7 @@ fun OceanHeaderApp(
                             isContentHidden = isContentHidden.value,
                             onClickToggleHideContent = {
                                 isContentHidden.value = !isContentHidden.value
-                            },
+                            }
                         )
                     }
                     1 -> {
@@ -168,7 +176,7 @@ fun OceanHeaderApp(
             }
         }
 
-        AnimatedVisibility(visible = !isHeaderCollapsed.value) {
+        AnimatedVisibility(visible = !model.isHeaderCollapsed) {
             Column {
                 Spacer(modifier = Modifier.size(8.dp))
                 PageIndicator(pagerState.currentPage)

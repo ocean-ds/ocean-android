@@ -50,14 +50,13 @@ fun OceanBalanceOthersCard(
             .background(
                 color = Color(0xFF2244E8),
                 shape = RoundedCornerShape(8.dp)
-            )
-            .padding(horizontal = 16.dp),
+            ),
         verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = model.title,
             fontSize = 12.sp,
-            modifier = Modifier.height(18.dp),
+            modifier = Modifier.height(18.dp).padding(horizontal = 16.dp),
             color = OceanColors.brandPrimaryUp,
             fontFamily = OceanFontFamily.BaseBold
         )
@@ -68,7 +67,8 @@ fun OceanBalanceOthersCard(
             text = model.description,
             fontSize = 14.sp,
             color = OceanColors.interfaceLightDown,
-            fontFamily = OceanFontFamily.BaseRegular
+            fontFamily = OceanFontFamily.BaseRegular,
+            modifier = Modifier.padding(horizontal = 16.dp)
         )
 
         Spacer(modifier = Modifier.size(8.dp))
@@ -78,7 +78,8 @@ fun OceanBalanceOthersCard(
             buttonStyle = OceanButtonStyle.SecondarySmall,
             onClick = {
                 model.onClickButton
-            }
+            },
+            modifier = Modifier.padding(horizontal = 16.dp)
         )
     }
 }

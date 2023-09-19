@@ -105,7 +105,7 @@ private val balancePageSize = object : PageSize {
         availableSpace: Int,
         pageSpacing: Int
     ): Int {
-        return availableSpace - 24.dp.roundToPx()
+        return availableSpace - 16.dp.roundToPx()
     }
 }
 

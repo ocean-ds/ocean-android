@@ -23,6 +23,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -46,40 +47,52 @@ import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.utils.OceanIcons
 
 
-private val modelPreview = OceanHeaderAppModel(
-    clientName = "Fcr Colchões",
-    formattedCnpj = "32.677.554/0001-14",
-    balanceBluModel = OceanBalanceBluModel(
-        firstLabel = "First Label",
-        firstValue = "-35,63",
-        secondLabel = "Second Label",
-        secondValue = "10,00",
-        thirdLabel = "Third Label",
-        thirdValue = "50,00",
-        buttonCta = "Extrato",
-        buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu"
-    ),
-    balanceOthersModel = OceanBalanceOthersModel(
-        title = "Saldo em Outras maquininhas",
-        description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
-        buttonCta = "Extrato",
-        buttonCtaCollapsed = "Extrato"
-    ),
-    isLoading = false,
-    isHeaderCollapsed = false
+private val modelPreview = mutableStateOf(
+    OceanHeaderAppModel(
+        clientName = "Fcr Colchões",
+        formattedCnpj = "32.677.554/0001-14",
+        balanceBluModel = OceanBalanceBluModel(
+            firstLabel = "First Label",
+            firstValue = "-35,63",
+            secondLabel = "Second Label",
+            secondValue = "10,00",
+            thirdLabel = "Third Label",
+            thirdValue = "50,00",
+            buttonCta = "Extrato",
+            buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu"
+        ),
+        balanceOthersModel = OceanBalanceOthersModel(
+            title = "Saldo em Outras maquininhas",
+            description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
+            buttonCta = "Extrato",
+            buttonCtaCollapsed = "Extrato"
+        ),
+        isLoading = false,
+        isHeaderCollapsed = false
+    )
 )
 
 @Preview
 @Composable
 fun OceanHeaderAppPreview() {
-    val model = remember { mutableStateOf(modelPreview) }
+    LaunchedEffect(key1 = true) {
+        modelPreview.value = modelPreview.value.copy(
+            balanceBluModel = modelPreview.value.balanceBluModel.copy(
+                onClickExpandScroll = {
+                    modelPreview.value = modelPreview.value.copy(isHeaderCollapsed = false)
+                }
+            )
+        )
+    }
     OceanTheme {
         Column {
-            OceanHeaderApp(model.value)
+            OceanHeaderApp(modelPreview.value)
             Spacer(modifier = Modifier.size(16.dp))
-            Button(onClick = {
-                model.value = model.value.copy(isHeaderCollapsed = !model.value.isHeaderCollapsed)
-            }) {
+            Button(
+                onClick = {
+                    modelPreview.value = modelPreview.value.copy(isHeaderCollapsed = !modelPreview.value.isHeaderCollapsed)
+                }
+            ) {
                 Text(text = "Toggle collapsed")
             }
         }
@@ -114,27 +127,30 @@ fun OceanHeaderApp(
     ) {
         Header(model = model)
 
-        HorizontalPager(
-            pageCount = 2,
-            state = pagerState,
-            pageSpacing = if (!isHeaderCollapsed.value) 8.dp else 0.dp,
-            contentPadding = if (!isHeaderCollapsed.value) PaddingValues(horizontal = 16.dp) else PaddingValues(0.dp),
-            pageSize = if (!isHeaderCollapsed.value) balancePageSize else PageSize.Fill,
-            verticalAlignment = Alignment.Top,
-            modifier = if (!isHeaderCollapsed.value) Modifier.padding(top = 4.dp) else Modifier,
-            userScrollEnabled = !isHeaderCollapsed.value
-        ) { page ->
-            when (page) {
-                0 -> {
-                    if (isHeaderCollapsed.value) {
-                        OceanBalanceBluCardCollapsed(
-                            model = model.balanceBluModel,
-                            onClickExpand = { isHeaderCollapsed.value = false },
-                            onClickHideContent = { isContentHidden.value = !isContentHidden.value },
-                            isContentHidden = isContentHidden.value,
-                            isLoading = model.isLoading
-                        )
-                    } else {
+        if (isHeaderCollapsed.value) {
+            if (pagerState.currentPage == 0) {
+                OceanBalanceBluCardCollapsed(
+                    model = model.balanceBluModel,
+                    isContentHidden = isContentHidden.value,
+                    isLoading = model.isLoading,
+                    onClickHideContent = { isContentHidden.value = !isContentHidden.value },
+                )
+            } else {
+                OceanBalanceOthersCardCollapsed(model = model.balanceOthersModel)
+            }
+        } else {
+            HorizontalPager(
+                pageCount = 2,
+                state = pagerState,
+                contentPadding = if (!isHeaderCollapsed.value) PaddingValues(horizontal = 16.dp) else PaddingValues(0.dp),
+                pageSize = if (!isHeaderCollapsed.value) balancePageSize else PageSize.Fill,
+                pageSpacing = if (!isHeaderCollapsed.value) 8.dp else 0.dp,
+                verticalAlignment = Alignment.Top,
+                modifier = if (!isHeaderCollapsed.value) Modifier.padding(top = 4.dp) else Modifier,
+                userScrollEnabled = !isHeaderCollapsed.value
+            ) { page ->
+                when (page) {
+                    0 -> {
                         OceanBalanceBluCard(
                             model = model.balanceBluModel,
                             isLoading = model.isLoading,
@@ -145,11 +161,7 @@ fun OceanHeaderApp(
                             },
                         )
                     }
-                }
-                1 -> {
-                    if (isHeaderCollapsed.value) {
-                        OceanBalanceOthersCardCollapsed(model = model.balanceOthersModel)
-                    } else {
+                    1 -> {
                         OceanBalanceOthersCard(model = model.balanceOthersModel)
                     }
                 }

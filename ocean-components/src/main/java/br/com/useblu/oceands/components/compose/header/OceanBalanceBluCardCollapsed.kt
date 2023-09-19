@@ -52,9 +52,8 @@ fun OceanBalanceBluCardCollapsedPreview() {
 
     OceanBalanceBluCardCollapsed(
         model = model,
-        isLoading = false,
         isContentHidden = isContentHidden,
-        onClickExpand = {},
+        isLoading = false,
         onClickHideContent = { isContentHidden = !isContentHidden }
     )
 }
@@ -65,7 +64,6 @@ fun OceanBalanceBluCardCollapsed(
     isContentHidden: Boolean,
     isLoading: Boolean,
     shimmeringBrush: Brush = shimmeringBrush(),
-    onClickExpand: () -> Unit,
     onClickHideContent: () -> Unit
 ) {
     Row(
@@ -136,7 +134,7 @@ fun OceanBalanceBluCardCollapsed(
 
         Box(modifier = Modifier
             .size(40.dp)
-            .clickable { onClickExpand() }
+            .clickable { model.onClickExpandScroll() }
         ) {
             OceanIcon(
                 iconType = OceanIcons.CHEVRON_DOWN_OUTLINE,

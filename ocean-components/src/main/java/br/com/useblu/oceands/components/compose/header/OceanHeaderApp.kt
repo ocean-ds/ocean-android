@@ -171,7 +171,7 @@ fun OceanHeaderApp(
                     model = model.balanceBluModel,
                     isContentHidden = isContentHidden.value,
                     isLoading = model.isLoading,
-                    onClickHideContent = { isContentHidden.value = !isContentHidden.value },
+                    onClickToggleHideContent = { isContentHidden.value = !isContentHidden.value },
                 )
             } else {
                 OceanBalanceOthersCardCollapsed(model = model.balanceOthersModel)

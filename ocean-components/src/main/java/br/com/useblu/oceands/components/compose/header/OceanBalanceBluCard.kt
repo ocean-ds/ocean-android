@@ -8,6 +8,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -143,67 +144,7 @@ private fun BluCardTopBar(
             .padding(top = 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Box(
-            modifier = Modifier
-                .height(40.dp)
-                .width(28.dp)
-                .clickable(
-                    indication = null,
-                    interactionSource = remember { MutableInteractionSource() },
-                    onClick = {
-                        onClickToggleHideContent()
-                    }
-                )
-        ) {
-            val icon = if (isContentHidden) {
-                OceanIcons.EYE_OFF_OUTLINE
-            } else OceanIcons.EYE_OUTLINE
-            OceanIcon(
-                iconType = icon,
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .size(20.dp),
-                tint = OceanColors.brandPrimaryUp
-            )
-        }
-
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(start = 8.dp)
-        ) {
-            Text(
-                text = model.firstLabel,
-                fontSize = 12.sp,
-                modifier = Modifier.height(18.dp),
-                color = OceanColors.brandPrimaryUp
-            )
-
-            if (isLoading) {
-                Box(
-                    modifier = Modifier
-                        .height(16.dp)
-                        .width(72.dp)
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(shimmeringBrush)
-                        .padding(vertical = 8.dp)
-                )
-            } else {
-                val text = if (isContentHidden) {
-                    FORMAT_VALUE_WITH_SYMBOL_HIDDEN
-                } else {
-                    FORMAT_VALUE_WITH_SYMBOL
-                }.format(model.firstValue)
-
-                Text(
-                    text = text,
-                    fontSize = 20.sp,
-                    modifier = Modifier.height(30.dp),
-                    color = OceanColors.interfaceLightPure,
-                    fontFamily = OceanFontFamily.BaseBold
-                )
-            }
-        }
+        BalanceCardMainValues(onClickToggleHideContent, isContentHidden, model, isLoading, shimmeringBrush)
 
         val animatedRotation = animateFloatAsState(
             targetValue = if (isExpanded) 180f else 0f,
@@ -227,6 +168,77 @@ private fun BluCardTopBar(
                     .size(20.dp)
                     .align(Alignment.CenterEnd)
                     .rotate(animatedRotation.value)
+            )
+        }
+    }
+}
+
+@Composable
+fun RowScope.BalanceCardMainValues(
+    onClickToggleHideContent: () -> Unit,
+    isContentHidden: Boolean,
+    model: OceanBalanceBluModel,
+    isLoading: Boolean,
+    shimmeringBrush: Brush
+) {
+    Box(
+        modifier = Modifier
+            .height(40.dp)
+            .width(28.dp)
+            .clickable(
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() },
+                onClick = {
+                    onClickToggleHideContent()
+                }
+            )
+    ) {
+        val icon = if (isContentHidden) {
+            OceanIcons.EYE_OFF_OUTLINE
+        } else OceanIcons.EYE_OUTLINE
+        OceanIcon(
+            iconType = icon,
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .size(20.dp),
+            tint = OceanColors.brandPrimaryUp
+        )
+    }
+
+    Column(
+        modifier = Modifier.Companion
+            .weight(1f)
+            .padding(start = 8.dp)
+    ) {
+        Text(
+            text = model.firstLabel,
+            fontSize = 12.sp,
+            modifier = Modifier.height(18.dp),
+            color = OceanColors.brandPrimaryUp
+        )
+
+        if (isLoading) {
+            Box(
+                modifier = Modifier
+                    .height(16.dp)
+                    .width(72.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .background(shimmeringBrush)
+                    .padding(vertical = 8.dp)
+            )
+        } else {
+            val text = if (isContentHidden) {
+                FORMAT_VALUE_WITH_SYMBOL_HIDDEN
+            } else {
+                FORMAT_VALUE_WITH_SYMBOL
+            }.format(model.firstValue)
+
+            Text(
+                text = text,
+                fontSize = 20.sp,
+                modifier = Modifier.height(30.dp),
+                color = OceanColors.interfaceLightPure,
+                fontFamily = OceanFontFamily.BaseBold
             )
         }
     }

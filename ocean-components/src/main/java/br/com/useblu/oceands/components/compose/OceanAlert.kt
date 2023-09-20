@@ -60,115 +60,115 @@ fun OceanAlertPreview() {
         OceanAlert(
             style = OceanAlertType.EntitledShort(
                 title = "Entitled Alert",
-                description = "Entitled Alert Short",
+                description = "Entitled Alert Short Info",
                 alertType = AlertStyle.StyleInfo(),
             )
         )
         OceanAlert(
             style = OceanAlertType.EntitledShort(
                 title = "Entitled Alert",
-                description = "Entitled Alert Short",
+                description = "Entitled Alert Short Warning",
                 alertType = AlertStyle.StyleWarning(),
             )
         )
         OceanAlert(
             style = OceanAlertType.EntitledShort(
                 title = "Entitled Alert",
-                description = "Entitled Alert Short",
+                description = "Entitled Alert Short Positive",
                 alertType = AlertStyle.StylePositive(),
             )
         )
         OceanAlert(
             style = OceanAlertType.EntitledShort(
                 title = "Entitled Alert",
-                description = "Entitled Alert Short",
+                description = "Entitled Alert Short Negative",
                 alertType = AlertStyle.StyleNegative(),
             )
         )
         OceanAlert(
             style = OceanAlertType.EntitledLong(
                 title = "Entitled Alert",
-                description = "Entitled Alert Long",
+                description = "Entitled Alert Long Info",
                 alertType = AlertStyle.StyleInfo(),
             )
         )
         OceanAlert(
             style = OceanAlertType.EntitledLong(
                 title = "Entitled Alert",
-                description = "Entitled Alert Long",
+                description = "Entitled Alert Long Warning",
                 alertType = AlertStyle.StyleWarning(),
             )
         )
         OceanAlert(
             style = OceanAlertType.EntitledLong(
                 title = "Entitled Alert",
-                description = "Entitled Alert Long",
+                description = "Entitled Alert Long Positive",
                 alertType = AlertStyle.StylePositive(),
             )
         )
         OceanAlert(
             style = OceanAlertType.EntitledLong(
                 title = "Entitled Alert",
-                description = "Entitled Alert Long",
+                description = "Entitled Alert Long Negative",
                 alertType = AlertStyle.StyleNegative(),
             )
         )
         OceanAlert(
             style = OceanAlertType.Labeled(
-                description = "Entitled Alert Labeled",
+                description = "Untitled Alert Labeled Info",
                 label = "Label",
                 alertType = AlertStyle.StyleInfo(),
             )
         )
         OceanAlert(
             style = OceanAlertType.Labeled(
-                description = "Entitled Alert Labeled",
+                description = "Untitled Alert Labeled Warning",
                 label = "Label",
                 alertType = AlertStyle.StyleWarning(),
             )
         )
         OceanAlert(
             style = OceanAlertType.Labeled(
-                description = "Entitled Alert Labeled",
+                description = "Untitled Alert Labeled Positive",
                 label = "Label",
                 alertType = AlertStyle.StylePositive(),
             )
         )
         OceanAlert(
             style = OceanAlertType.Labeled(
-                description = "Entitled Alert Labeled",
+                description = "Untitled Alert Labeled Negative",
                 label = "Label",
                 alertType = AlertStyle.StyleNegative(),
             )
         )
         OceanAlert(
             style = OceanAlertType.Labeled(
-                title = "Entitled Alert",
-                description = "Entitled Alert Labeled",
+                title = "Labeled Alert",
+                description = "Entitled Alert Labeled Info",
                 label = "Label",
                 alertType = AlertStyle.StyleInfo(),
             )
         )
         OceanAlert(
             style = OceanAlertType.Labeled(
-                title = "Entitled Alert",
-                description = "Entitled Alert Labeled",
+                title = "Labeled Alert",
+                description = "Entitled Alert Labeled Warning",
                 label = "Label",
                 alertType = AlertStyle.StyleWarning(),
             )
         )
         OceanAlert(
             style = OceanAlertType.Labeled(
-                title = "Entitled Alert",
-                description = "Entitled Alert Labeled",
+                title = "Labeled Alert",
+                description = "Entitled Alert Labeled Positive",
                 label = "Label",
                 alertType = AlertStyle.StylePositive(),
             )
         )
         OceanAlert(
             style = OceanAlertType.Labeled(
-                title = "Entitled Alert",
-                description = "Entitled Alert Labeled",
+                title = "Labeled Alert",
+                description = "Entitled Alert Labeled Negative",
                 label = "Label",
                 alertType = AlertStyle.StyleNegative(),
             )

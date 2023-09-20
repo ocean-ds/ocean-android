@@ -49,40 +49,41 @@ import br.com.useblu.oceands.utils.OceanIcons
 import kotlinx.coroutines.launch
 
 
-private val modelPreview = mutableStateOf(
-    OceanHeaderAppModel(
-        clientName = "Fcr Colchões",
-        formattedCnpj = "32.677.554/0001-14",
-        balanceBluModel = OceanBalanceBluModel(
-            firstLabel = "First Label",
-            firstValue = "-35,63",
-            secondLabel = "Second Label",
-            secondValue = "10,00",
-            thirdLabel = "Third Label",
-            thirdValue = "50,00",
-            buttonCta = "Extrato",
-            buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu",
-            onClickButton = {
-                println("Click blu")
-            }
-        ),
-        balanceOthersModel = OceanBalanceOthersModel(
-            title = "Saldo em Outras maquininhas",
-            description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
-            buttonCta = "Extrato",
-            buttonCtaCollapsed = "Extrato",
-            onClickButton = {
-                println("Click others")
-            }
-        ),
-        isLoading = false,
-        isHeaderCollapsed = false
-    )
+private val modelPreview = OceanHeaderAppModel(
+    clientName = "Fcr Colchões",
+    formattedCnpj = "32.677.554/0001-14",
+    balanceBluModel = OceanBalanceBluModel(
+        firstLabel = "First Label",
+        firstValue = "-35,63",
+        secondLabel = "Second Label",
+        secondValue = "10,00",
+        thirdLabel = "Third Label",
+        thirdValue = "50,00",
+        buttonCta = "Extrato",
+        buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu",
+        onClickButton = {
+            println("Click blu")
+        }
+    ),
+    balanceOthersModel = OceanBalanceOthersModel(
+        title = "Saldo em Outras maquininhas",
+        description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
+        buttonCta = "Extrato",
+        buttonCtaCollapsed = "Extrato",
+        onClickButton = {
+            println("Click others")
+        }
+    ),
+    isLoading = false,
+    isHeaderCollapsed = false
 )
 
 @Preview
 @Composable
-fun OceanHeaderAppPreview() {
+private fun OceanHeaderAppPreview() {
+    val modelPreview = remember {
+        mutableStateOf(modelPreview)
+    }
     LaunchedEffect(key1 = true) {
         modelPreview.value = modelPreview.value.copy(
             balanceBluModel = modelPreview.value.balanceBluModel.copy(
@@ -92,6 +93,30 @@ fun OceanHeaderAppPreview() {
             )
         )
     }
+    OceanTheme {
+        Column {
+            OceanHeaderApp(modelPreview.value)
+            Spacer(modifier = Modifier.size(16.dp))
+            Button(
+                onClick = {
+                    modelPreview.value = modelPreview.value.copy(isHeaderCollapsed = !modelPreview.value.isHeaderCollapsed)
+                }
+            ) {
+                Text(text = "Toggle collapsed")
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun OceanHeaderAppPreviewHideBalance() {
+    val modelPreview = remember {
+        mutableStateOf(
+            modelPreview.copy(hideBalance = true)
+        )
+    }
+
     OceanTheme {
         Column {
             OceanHeaderApp(modelPreview.value)
@@ -135,6 +160,10 @@ fun OceanHeaderApp(
             .background(color = OceanColors.brandPrimaryPure)
     ) {
         Header(model = model)
+
+        if (model.hideBalance) {
+            return@Column
+        }
 
         if (model.isHeaderCollapsed) {
             if (pagerState.currentPage == 0) {

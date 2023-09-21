@@ -36,7 +36,7 @@ object Libraries {
 
     // COMPOSE DEPENDENCIES
     const val composeBOM = "androidx.compose:compose-bom:2023.06.01"
-    const val androidMaterial3 = "com.google.android.material3:material3"
+    const val androidMaterial3 = "androidx.compose.material3:material3"
     const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
     const val composeUiViewBinding = "androidx.compose.ui:ui-viewbinding"
     const val composeUiTooling = "androidx.compose.ui:ui-tooling"

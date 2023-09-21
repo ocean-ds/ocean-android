@@ -44,21 +44,21 @@ dependencies {
     implementation(Libraries.lifecycleViewModel)
 
     implementation(Libraries.constraintLayout)
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("com.github.savvyapps:ToggleButtonLayout:1.3.0")
+    implementation(Libraries.lifecycleExtensions)
+    implementation(Libraries.toggleButtonLayout)
 
     // COMPOSE
-    val composeBom = platform("androidx.compose:compose-bom:2023.06.01")
+    val composeBom = platform(Libraries.composeBOM)
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.ui:ui-viewbinding")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation(Libraries.lifecycleCompose)
-    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation(Libraries.androidMaterial3)
+    implementation(Libraries.composeUiToolingPreview)
+    implementation(Libraries.composeUiViewBinding)
+    debugImplementation(Libraries.composeUiTooling)
+    androidTestImplementation(Libraries.composeUiTestJunit4)
+    debugImplementation(Libraries.composeUiTestManifest)
+    implementation(Libraries.activityCompose)
+    implementation(Libraries.lifecycleViewModelCompose)
+    implementation(Libraries.composeRuntimeLiveData)
 }

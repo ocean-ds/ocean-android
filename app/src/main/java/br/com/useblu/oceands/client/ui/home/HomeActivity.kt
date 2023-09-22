@@ -304,6 +304,20 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun onClickBottomSheetImage(view: View) {
+        OceanBottomSheet(this)
+            .withTitle("Title")
+            .withMessage("Message")
+            .withImage("https://picsum.photos/200/300")
+            .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
+            .withDismiss(true)
+            .withActionPositive(R.string.all_button_confirm) {
+            }
+            .withActionNegative(R.string.all_button_cancel) {
+            }
+            .show()
+    }
+
     fun onClickBottomSheetVertical(view: View) {
         OceanBottomSheet(this)
             .withTitle("Title")

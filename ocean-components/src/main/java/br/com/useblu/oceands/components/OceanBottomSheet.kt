@@ -26,6 +26,7 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
     private var textPositive: String? = context.getString(R.string.ok)
     private var textNegative: String? = null
     private var icon: Drawable? = null
+    private var image: String? = null
     private var actionPositive: (() -> Unit?)? = null
     private var actionNegative: (() -> Unit?)? = null
     private var isCritical: Boolean = false
@@ -73,6 +74,10 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
 
         icon?.let {
             binding.icon = it
+        }
+
+        image?.let {
+            binding.image = it
         }
 
         code?.let {
@@ -133,6 +138,11 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
         drawable?.let {
             this.icon = it
         }
+        return this
+    }
+
+    fun withImage(image: String): OceanBottomSheet {
+        this.image = image
         return this
     }
 

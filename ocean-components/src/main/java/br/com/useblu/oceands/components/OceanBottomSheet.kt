@@ -162,8 +162,20 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
         return this
     }
 
+    fun withActionPositive(text: String, callBack: () -> Unit): OceanBottomSheet {
+        this.textPositive = text
+        this.actionPositive = callBack
+        return this
+    }
+
     fun withActionNegative(text: Int, callBack: () -> Unit): OceanBottomSheet {
         this.textNegative = context.getString(text)
+        this.actionNegative = callBack
+        return this
+    }
+
+    fun withActionNegative(text: String, callBack: () -> Unit): OceanBottomSheet {
+        this.textNegative = text
         this.actionNegative = callBack
         return this
     }

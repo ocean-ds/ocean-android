@@ -62,16 +62,13 @@ android {
 
 afterEvaluate {
     publishing {
-        val gprUser = System.getenv("GPR_USER")
-        val gprApiKey = System.getenv("GPR_API_KEY")
-
         repositories {
             maven {
                 name = "ocean-android"
                 url = uri("${Configs.gprBaseUrl}/${Configs.gprRepoOwner}/${Configs.gprRepoId}")
                 credentials {
-                    username = gprUser
-                    password = gprApiKey
+                    username = Configs.gprUser
+                    password = Configs.gprApiKey
                 }
             }
         }

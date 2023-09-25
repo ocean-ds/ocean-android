@@ -21,8 +21,8 @@ allprojects {
             url = uri("${Configs.gprBaseUrl}/${Configs.gprRepoOwner}/${Configs.gprRepoId}")
 
             credentials {
-                username = System.getenv("GPR_USER")
-                password = System.getenv("GPR_API_KEY")
+                username = Configs.gprUser
+                password = Configs.gprApiKey
             }
         }
     }

@@ -3,47 +3,48 @@ object Libraries {
     const val classpathGradle = "com.android.tools.build:gradle:${Versions.classpathGradleVersion}"
     const val classpathKotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.classpathKotlinGradleVersion}"
 
-    const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.4"
-    const val lifecycleExtensions =  "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
+    const val lifecycleExtensions =  "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensionsVersion}"
+    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewModelVersion}"
 
-    const val androidKtx = "androidx.core:core-ktx:1.9.0"
-    const val androidAppCompat = "androidx.appcompat:appcompat:1.6.1"
+    const val androidKtx = "androidx.core:core-ktx:${Versions.androidKtxVersion}"
+    const val androidAppCompat = "androidx.appcompat:appcompat:${Versions.androidAppCompatVersion}"
 
-    const val skydovesBalloon = "com.github.skydoves:balloon:1.5.2"
+    const val skydovesBalloon = "com.github.skydoves:balloon:${Versions.skydovesBalloonVersion}"
 
-    const val androidMaterial = "com.google.android.material:material:1.8.0"
+    const val androidMaterial = "com.google.android.material:material:${Versions.androidMaterialVersion}"
 
-    const val canarinho = "com.github.concretesolutions:canarinho:2.0.2"
+    const val canarinho = "com.github.concretesolutions:canarinho:${Versions.canarinhoVersion}"
 
-    const val glide = "com.github.bumptech.glide:glide:4.15.1"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
 
-    const val circleIndicator = "me.relex:circleindicator:2.1.6"
+    const val circleIndicator = "me.relex:circleindicator:${Versions.circleIndicatorVersion}"
 
-    const val imageCarousel = "org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.4"
+    const val imageCarousel = "org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:${Versions.imageCarouselVersion}"
 
-    const val expansionPanel = "com.github.florent37:expansionpanel:1.2.4"
+    const val expansionPanel = "com.github.florent37:expansionpanel:${Versions.expansionPanelVersion}"
 
-    const val toggleButtonLayout = "com.github.savvyapps:ToggleButtonLayout:1.3.0"
+    const val toggleButtonLayout = "com.github.savvyapps:ToggleButtonLayout:${Versions.toggleButtonLayoutVersion}"
 
-    const val calendarView = "com.github.prolificinteractive:material-calendarview:2.0.1"
+    const val calendarView = "com.github.prolificinteractive:material-calendarview:${Versions.calendarViewVersion}"
 
-    const val mpChart = "com.github.PhilJay:MPAndroidChart:v3.1.0"
+    const val mpChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpChartVersion}"
 
-    const val skeletonBones = "com.github.EudyContreras:Skeleton-Bones:v1.4.5"
+    const val skeletonBones = "com.github.EudyContreras:Skeleton-Bones:${Versions.skeletonBonesVersion}"
 
-    const val skydovesLandscapist = "com.github.skydoves:landscapist-glide:2.2.2"
+    const val skydovesLandscapist = "com.github.skydoves:landscapist-glide:${Versions.skydovesLandscapistVersion}"
 
     // COMPOSE DEPENDENCIES
-    const val composeBOM = "androidx.compose:compose-bom:2023.06.01"
+    const val lifecycleViewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycleViewModelVersion}"
+    const val activityCompose = "androidx.activity:activity-compose:${Versions.activityComposeVersion}"
+
+    const val composeBOM = "androidx.compose:compose-bom:${Versions.composeBOMVersion}"
     const val androidMaterial3 = "androidx.compose.material3:material3"
     const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
     const val composeUiViewBinding = "androidx.compose.ui:ui-viewbinding"
     const val composeUiTooling = "androidx.compose.ui:ui-tooling"
     const val composeUiTestJunit4 = "androidx.compose.ui:ui-test-junit4"
     const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest"
-    const val activityCompose = "androidx.activity:activity-compose:1.7.2"
-    const val lifecycleViewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
     const val composeRuntimeLiveData = "androidx.compose.runtime:runtime-livedata"
 
 }

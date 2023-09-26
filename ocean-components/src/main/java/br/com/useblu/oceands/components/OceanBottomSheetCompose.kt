@@ -30,7 +30,7 @@ class OceanBottomSheetCompose: BottomSheetDialogFragment() {
     private var actionPositive: (() -> Unit) = { }
     private var actionNegative: (() -> Unit)? = null
     private var isCritical: Boolean = false
-    private var composeContent: @Composable (ColumnScope.() -> Unit) = {}
+    private var composeContent: @Composable (ColumnScope.(BottomSheetDialogFragment) -> Unit) = {}
     private lateinit var binding: OceanBottomSheetComposeBinding
 
     override fun onCreateView(
@@ -55,7 +55,7 @@ class OceanBottomSheetCompose: BottomSheetDialogFragment() {
                     .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                composeContent()
+                composeContent(this@OceanBottomSheetCompose)
 
                 BottomButtons(
                     positiveLabel = textPositive,
@@ -81,7 +81,7 @@ class OceanBottomSheetCompose: BottomSheetDialogFragment() {
         return binding.root
     }
 
-    fun withComposeContent(content: @Composable ColumnScope.() -> Unit): OceanBottomSheetCompose {
+    fun withComposeContent(content: @Composable ColumnScope.(BottomSheetDialogFragment) -> Unit): OceanBottomSheetCompose {
         composeContent = content
 
         return this

@@ -40,6 +40,9 @@
     </data>
 
     <LinearLayout
+        android:paddingBottom="@dimen/ocean_spacing_inline_xxxs"
+        android:paddingTop="@dimen/ocean_spacing_inline_xxxs"
+        android:background="@color/ocean_color_interface_light_pure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

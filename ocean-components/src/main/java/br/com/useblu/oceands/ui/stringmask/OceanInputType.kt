@@ -130,6 +130,11 @@ sealed interface OceanInputType {
         }
     }
 
+    object Email: OceanInputType {
+        override fun getKeyboardType() = KeyboardType.Email
+        override fun getVisualTransformation() = VisualTransformation.None
+    }
+
     object Phone: OceanInputType, StaticStringMask {
         private const val TELEFONE_OITO_DIGITOS = "(##) ####-####"
         private const val TELEFONE_NOVE_DIGITOS = "(##) #####-####"

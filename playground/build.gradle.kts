@@ -38,7 +38,7 @@ android {
 
 dependencies {
     implementation(project(":ocean-components"))
-    implementation(Libraries.constraintLayout)
-    implementation(Libraries.lifecycleExtensions)
-    implementation(Libraries.lifecycleViewModel)
+    implementation(libs.constraintLayout)
+    implementation(libs.lifecycleExtensions)
+    implementation(libs.lifecycleViewModel)
 }

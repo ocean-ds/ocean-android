@@ -18,6 +18,7 @@ import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.databinding.OceanBottomSheetComposeBinding
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class OceanBottomSheetCompose: BottomSheetDialogFragment() {
@@ -79,6 +80,12 @@ class OceanBottomSheetCompose: BottomSheetDialogFragment() {
         isCancelable = isDismiss
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val bottomSheetBehavior = BottomSheetBehavior.from(view.parent as View)
+        bottomSheetBehavior.peekHeight = requireContext().resources.displayMetrics.heightPixels
     }
 
     fun withComposeContent(content: @Composable ColumnScope.(BottomSheetDialogFragment) -> Unit): OceanBottomSheetCompose {

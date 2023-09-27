@@ -3,8 +3,14 @@ include (":ocean-components")
 include (":app")
 rootProject.name = "ocean-android"
 
-
 dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { setUrl("https://jitpack.io") }
+    }
+
     versionCatalogs {
         create("classpath") {
             library("gradle", "com.android.tools.build:gradle:8.0.2")
@@ -57,7 +63,6 @@ dependencyResolutionManagement {
             library("compose-uiTestJunit4", "androidx.compose.ui", "ui-test-junit4").withoutVersion()
             library("compose-uiTestManifest", "androidx.compose.ui", "ui-test-manifest").withoutVersion()
             library("compose-runtimeLiveData", "androidx.compose.runtime", "runtime-livedata").withoutVersion()
-
         }
     }
 }

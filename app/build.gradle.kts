@@ -41,24 +41,24 @@ android {
 
 dependencies {
     implementation(project(":ocean-components"))
-    implementation(Libraries.lifecycleViewModel)
+    implementation(libs.lifecycleViewModel)
 
-    implementation(Libraries.constraintLayout)
-    implementation(Libraries.lifecycleExtensions)
-    implementation(Libraries.toggleButtonLayout)
+    implementation(libs.constraintLayout)
+    implementation(libs.lifecycleExtensions)
+    implementation(libs.toggleButtonLayout)
 
     // COMPOSE
-    val composeBom = platform(Libraries.composeBOM)
+    val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
-    implementation(Libraries.androidMaterial3)
-    implementation(Libraries.composeUiToolingPreview)
-    implementation(Libraries.composeUiViewBinding)
-    debugImplementation(Libraries.composeUiTooling)
-    androidTestImplementation(Libraries.composeUiTestJunit4)
-    debugImplementation(Libraries.composeUiTestManifest)
-    implementation(Libraries.activityCompose)
-    implementation(Libraries.lifecycleViewModelCompose)
-    implementation(Libraries.composeRuntimeLiveData)
+    implementation(libs.compose.androidMaterial3)
+    implementation(libs.compose.uiToolingPreview)
+    implementation(libs.compose.uiViewBinding)
+    debugImplementation(libs.compose.uiTooling)
+    androidTestImplementation(libs.compose.uiTestJunit4)
+    debugImplementation(libs.compose.uiTestManifest)
+    implementation(libs.compose.activity)
+    implementation(libs.compose.lifecycleViewModel)
+    implementation(libs.compose.runtimeLiveData)
 }

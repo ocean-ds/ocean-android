@@ -13,7 +13,7 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("classpath") {
-            library("gradle", "com.android.tools.build:gradle:8.0.2")
+            library("gradle", "com.android.tools.build:gradle:8.1.2")
             library("kotlin", "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22")
         }
 

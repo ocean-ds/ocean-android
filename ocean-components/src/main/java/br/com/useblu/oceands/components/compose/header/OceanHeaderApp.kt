@@ -30,6 +30,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
@@ -50,7 +51,7 @@ import kotlinx.coroutines.launch
 
 
 private val modelPreview = OceanHeaderAppModel(
-    clientName = "Fcr Colchões",
+    clientName = "Fabricante 3 - Fluxo dia atual teste 2",
     formattedCnpj = "32.677.554/0001-14",
     balanceBluModel = OceanBalanceBluModel(
         firstLabel = "First Label",
@@ -274,7 +275,10 @@ fun Header(
                     text = model.clientName,
                     fontFamily = OceanFontFamily.HighlightExtraBold,
                     color = OceanColors.interfaceLightPure,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f, false)
                 )
                 Spacer(modifier = Modifier.size(2.dp))
                 OceanIcon(

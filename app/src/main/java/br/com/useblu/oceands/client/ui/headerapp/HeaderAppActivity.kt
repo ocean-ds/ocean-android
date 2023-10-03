@@ -2,8 +2,10 @@ package br.com.useblu.oceands.client.ui.headerapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.databinding.ActivityHeaderAppBinding
+import br.com.useblu.oceands.components.compose.header.OceanHeaderApp
 
 class HeaderAppActivity : AppCompatActivity() {
 
@@ -30,6 +32,14 @@ class HeaderAppActivity : AppCompatActivity() {
 
         binding.toggleHideButton.setOnClickListener {
             viewModel.onClickToggleHideBalance()
+        }
+
+        binding.composeView.setContent {
+            val headerModel = viewModel.headerAppModel.observeAsState()
+
+            headerModel.value?.let {
+                OceanHeaderApp(model = it)
+            }
         }
     }
 }

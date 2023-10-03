@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.components.compose
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -21,11 +20,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.utils.OceanIcons
 
 
 @Preview
@@ -36,7 +35,7 @@ fun PreviewOceanTopBarInverse() {
     ) {
         OceanTopBarInverse(
             title = "Portabilidade",
-            icon = R.drawable.icon_close,
+            icon = OceanIcons.X_OUTLINE,
             onClickIcon = {},
             onClickToolbar = {},
             visibleShadow = true
@@ -57,7 +56,7 @@ fun PreviewOceanTopBarInverse() {
 @Composable
 fun OceanTopBarInverse(
     title: String,
-    @DrawableRes icon: Int? = null,
+    icon: OceanIcons? = null,
     onClickIcon: () -> Unit,
     onClickToolbar: () -> Unit = {},
     visibleShadow: Boolean = false,
@@ -75,7 +74,7 @@ fun OceanTopBarInverse(
                 },
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val topBarIcon = icon ?: R.drawable.icon_back_primary
+            val topBarIcon = icon ?: OceanIcons.ARROW_LEFT_OUTLINE
 
             if (!iconInvisible) {
                 IconButton(
@@ -83,7 +82,7 @@ fun OceanTopBarInverse(
                     onClick = { onClickIcon() }
                 ) {
                     Icon(
-                        painter = painterResource(id = topBarIcon),
+                        painter = painterResource(id = topBarIcon.icon),
                         contentDescription = null,
                         modifier = Modifier.size(24.dp),
                         tint = OceanColors.brandPrimaryPure

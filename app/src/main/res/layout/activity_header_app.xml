@@ -17,10 +17,10 @@
         android:orientation="vertical"
         tools:context=".ui.headerapp.HeaderAppActivity">
 
-        <include
-            layout="@layout/ocean_header_app"
-            app:model="@{viewmodel.headerAppModel}"
-            app:onPageChangeCallback="@{viewmodel::onPageChange}"/>
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/compose_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/toggle_scroll_button"

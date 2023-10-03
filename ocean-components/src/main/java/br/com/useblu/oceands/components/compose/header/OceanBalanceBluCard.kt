@@ -63,7 +63,7 @@ fun OceanBalanceBluCardPreview() {
     OceanTheme {
         OceanBalanceBluCard(
             model,
-            isLoading = false,
+            isLoading = true,
             isContentHidden = isContentHidden.value,
             onClickToggleHideContent = {
                 isContentHidden.value = !isContentHidden.value
@@ -220,11 +220,11 @@ fun RowScope.BalanceCardMainValues(
         if (isLoading) {
             Box(
                 modifier = Modifier
-                    .height(16.dp)
+                    .height(30.dp)
+                    .padding(vertical = 8.dp)
                     .width(72.dp)
                     .clip(RoundedCornerShape(4.dp))
                     .background(shimmeringBrush)
-                    .padding(vertical = 8.dp)
             )
         } else {
             val text = if (isContentHidden) {

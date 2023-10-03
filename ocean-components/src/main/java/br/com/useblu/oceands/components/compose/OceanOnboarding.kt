@@ -38,6 +38,7 @@ import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIcons
 import kotlinx.coroutines.launch
 
 
@@ -92,7 +93,7 @@ fun OceanOnboardingPager(
         topBar = {
              OceanTopBarInverse(
                  title = "",
-                 icon = R.drawable.icon_close,
+                 icon = OceanIcons.X_OUTLINE,
                  onClickIcon = { onFinishAction() },
                  onClickToolbar = { }
              )

@@ -3,13 +3,12 @@ package br.com.useblu.oceands.client.ui.headerapp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.model.OceanBalanceBluModel
-import br.com.useblu.oceands.model.OceanBalanceOthersModel
-import br.com.useblu.oceands.model.OceanHeaderAppModel
+import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
+import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
+import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
 
 class HeaderAppViewModel: ViewModel() {
 
-    private var isBalanceValueHidden = false
     private var isHeaderCollapsed = false
     private var isLoading = false
     private var isHidingBalance = false
@@ -28,10 +27,6 @@ class HeaderAppViewModel: ViewModel() {
                 secondValue = "R$ 0.000.000,00",
                 thirdLabel = "Agenda",
                 thirdValue = "R$ 0.000.000,00",
-                onClickHideIcon = {
-                    isBalanceValueHidden = !isBalanceValueHidden
-                    reloadData()
-                },
                 buttonDescription = "Confira o que entrou e saiu da sua conta",
                 buttonCta = "Extrato",
                 onClickButton = {
@@ -60,7 +55,6 @@ class HeaderAppViewModel: ViewModel() {
             hideBalance = isHidingBalance,
             isLoading = isLoading,
             isHeaderCollapsed = isHeaderCollapsed,
-            isContentHidden = isBalanceValueHidden,
             balanceOthersModel = OceanBalanceOthersModel(
                 title = "Saldo em Outras maquininhas",
                 description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
@@ -88,11 +82,5 @@ class HeaderAppViewModel: ViewModel() {
     fun onClickToggleHideBalance() {
         isHidingBalance = !isHidingBalance
         reloadData()
-    }
-
-    fun onPageChange(newPage: Int) {
-        _headerAppModel.value = _headerAppModel.value!!.copy(
-            currentPage = newPage
-        )
     }
 }

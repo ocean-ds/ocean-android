@@ -26,8 +26,15 @@ fun String.formatterDateBR(): String {
 
 fun Date.oceanFormatDefault(): String = oceanFormat("dd/MM/yyyy")
 
-fun Date.oceanFormat(pattern: String): String =
-    SimpleDateFormat(pattern, Locale.getDefault()).format(this)
+fun Date.oceanFormat(pattern: String): String {
+    val format = SimpleDateFormat(pattern, Locale.getDefault()).format(this)
+
+    val monthRegex = "[a-z]{1,8}".toRegex()
+
+    return monthRegex.replace(format) {
+        it.value.first().uppercase() + it.value.substring(1).lowercase()
+    }.replace(".", "")
+}
 
 fun Double.oceanFormatWithCurrency() = FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(this.toString())
 

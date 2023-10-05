@@ -81,7 +81,7 @@ private val modelPreview = OceanHeaderAppModel(
 
 @Preview
 @Composable
-private fun OceanHeaderAppPreview() {
+fun OceanHeaderAppPreview() {
     val modelPreview = remember {
         mutableStateOf(modelPreview)
     }

@@ -9,10 +9,6 @@
 
         <import type="java.util.List" />
 
-        <import type="androidx.lifecycle.MutableLiveData" />
-
-        <import type="kotlin.jvm.functions.Function1" />
-
         <import type="br.com.useblu.oceands.model.OceanCarouselItem"/>
 
         <variable

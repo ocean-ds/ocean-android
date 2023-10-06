@@ -29,7 +29,7 @@ fun Date.oceanFormatDefault(): String = oceanFormat("dd/MM/yyyy")
 fun Date.oceanFormat(pattern: String): String {
     val format = SimpleDateFormat(pattern, Locale.getDefault()).format(this)
 
-    val monthRegex = "[a-z]{1,8}".toRegex()
+    val monthRegex = "[A-Z][a-z]{3,8}".toRegex()
 
     return monthRegex.replace(format) {
         it.value.first().uppercase() + it.value.substring(1).lowercase()

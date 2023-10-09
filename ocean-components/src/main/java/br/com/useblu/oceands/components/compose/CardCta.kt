@@ -14,22 +14,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.utils.OceanIcons
-
-private fun Modifier.addClickableIfNotNull(actionClick: (() -> Unit)?) = composed {
-    if (actionClick != null) {
-        clickable {
-            actionClick()
-        }
-    } else {
-        this
-    }
-}
 
 @Composable
 fun CardCta(
@@ -50,11 +40,17 @@ fun CardCta(
                 color = OceanColors.interfaceLightDown,
                 shape = RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp)
             )
+            .clip(
+                shape = RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp)
+            )
+            .run {
+                if (actionClick != null) {
+                    clickable { actionClick() }
+                } else this
+            }
             .fillMaxWidth()
-            .padding(vertical = 14.dp)
-            .addClickableIfNotNull(actionClick),
+            .padding(vertical = 14.dp),
         horizontalArrangement = Arrangement.Center
-
     ) {
         if (!showProgress) {
             Text(

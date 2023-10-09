@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.CardCta
 import br.com.useblu.oceands.components.compose.OceanBadge
 import br.com.useblu.oceands.components.compose.OceanBadgeSize
+import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -29,16 +30,18 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 @Preview
 @Composable
 fun OceanCardGroupPreview() {
-    OceanCardGroup(
-        title = "Header",
-        subtitle = "Subtitle",
-        badgeText = "110",
-        actionClick = {},
-        actionTitle = "Call to Action",
-        label = "Recomendado",
-        showProgress = false,
-        modifier = Modifier.padding(16.dp)
-    )
+    OceanTheme {
+        OceanCardGroup(
+            title = "Header",
+            subtitle = "Subtitle",
+            badgeText = "110",
+            actionClick = {},
+            actionTitle = "Call to Action",
+            label = "Recomendado",
+            showProgress = false,
+            modifier = Modifier.padding(16.dp)
+        )
+    }
 }
 
 @Composable

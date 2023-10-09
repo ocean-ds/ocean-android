@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -31,25 +32,30 @@ import com.skydoves.landscapist.glide.GlideImage
 @Preview
 @Composable
 fun OceanCardCrossSellPreview() {
-    Column(
-        modifier = Modifier
-            .background(color = OceanColors.interfaceLightPure)
-            .padding(16.dp)
-    ) {
-        OceanCardCrossSell(
-            title = "Boleto Mais Seguro",
-            description = "Menos atraso e inadimplência para vendas feitas com boleto",
-            actionTitle = "Saiba mais"
-        )
+    OceanTheme {
+        Column(
+            modifier = Modifier
+                .background(color = OceanColors.interfaceLightPure)
+                .padding(16.dp)
+        ) {
+            OceanCardCrossSell(
+                title = "Boleto Mais Seguro",
+                description = "Menos atraso e inadimplência para vendas feitas com boleto",
+                actionTitle = "Saiba mais",
+                onClick = {
+                    println("Click no Card Cross Sell")
+                }
+            )
 
-        Spacer(modifier = Modifier.size(16.dp))
+            Spacer(modifier = Modifier.size(16.dp))
 
-        OceanCardCrossSell(
-            title = "Boleto Mais Seguro",
-            description = "Menos atraso e inadimplência para vendas feitas com boleto",
-            actionTitle = "Saiba mais",
-            showProgress = true
-        )
+            OceanCardCrossSell(
+                title = "Boleto Mais Seguro",
+                description = "Menos atraso e inadimplência para vendas feitas com boleto",
+                actionTitle = "Saiba mais",
+                showProgress = true
+            )
+        }
     }
 }
 
@@ -79,6 +85,7 @@ fun OceanCardCrossSell(
                 color = OceanColors.interfaceLightDown,
                 shape = RoundedCornerShape(8.dp)
             )
+            .clip(shape = RoundedCornerShape(8.dp))
             .clickable(
                 enabled = !showProgress && onClick != null,
                 onClick = { onClick?.invoke() }

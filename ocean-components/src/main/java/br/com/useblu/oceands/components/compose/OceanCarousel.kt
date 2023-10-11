@@ -2,6 +2,7 @@ package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -19,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.model.OceanCarouselItem
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import com.skydoves.landscapist.ImageOptions
@@ -29,29 +31,23 @@ import kotlinx.coroutines.delay
 @Composable
 fun OceanCarouselPreview() {
     val tucano = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCYLQmqlADnQuH6Of-4GBuuwXrZj16UEM2Bqu_faLa-Q&s"
-
+    val carouselItems = listOf(
+        OceanCarouselItem(tucano) {
+            println("tucano 1")
+        },
+        OceanCarouselItem(tucano) {
+            println("tucano 2")
+        },
+        OceanCarouselItem(tucano) {
+            println("tucano 3")
+        }
+    )
     Column {
         OceanCarousel(
-            listOf(tucano, tucano, tucano),
+            carouselItems,
             showPageIndicator = true,
             autoCycle = true,
             autoCycleTime = 1500
-        )
-
-        OceanCarousel(
-            listOf(tucano, tucano, tucano),
-            showPageIndicator = true,
-            autoCycle = true,
-            autoCycleTime = 1500,
-            initialPage = 1
-        )
-
-        OceanCarousel(
-            listOf(tucano, tucano, tucano),
-            showPageIndicator = true,
-            autoCycle = true,
-            autoCycleTime = 1500,
-            initialPage = 2
         )
     }
 }
@@ -59,7 +55,7 @@ fun OceanCarouselPreview() {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OceanCarousel(
-    items: List<String>,
+    items: List<OceanCarouselItem>,
     modifier: Modifier = Modifier,
     showPageIndicator: Boolean = true,
     autoCycle: Boolean = false,
@@ -72,9 +68,11 @@ fun OceanCarousel(
         if (autoCycle) {
             while (true) {
                 delay(autoCycleTime)
-                pagerState.animateScrollToPage(
-                    page = (pagerState.currentPage + 1) % items.size
-                )
+                try {
+                    pagerState.animateScrollToPage(
+                        page = (pagerState.currentPage + 1) % items.size
+                    )
+                } catch (_: Exception) {}
             }
         }
     }
@@ -95,14 +93,16 @@ fun OceanCarousel(
                 Box(
                     modifier = Modifier.background(Color.Blue)
                         .fillMaxSize()
+                        .clickable { items[it].action() }
                 )
             } else {
                 GlideImage(
-                    imageModel = { items[it] },
+                    imageModel = { items[it].url },
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Crop,
                         alignment = Alignment.Center
-                    )
+                    ),
+                    modifier = Modifier.clickable { items[it].action() }
                 )
             }
         }

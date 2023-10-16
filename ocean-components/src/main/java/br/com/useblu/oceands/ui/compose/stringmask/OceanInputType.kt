@@ -6,8 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.OffsetMapping
-import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -87,11 +85,7 @@ sealed interface OceanInputType {
             return FormatadorValor.VALOR.formata(result.toPlainString())
         }
 
-        override fun getVisualTransformation(): VisualTransformation {
-            return VisualTransformation { text ->
-                TransformedText(text, OffsetMapping.Identity)
-            }
-        }
+        override fun getVisualTransformation() = VisualTransformation.None
     }
 
      object BankBillet: OceanInputType, StaticStringMask {

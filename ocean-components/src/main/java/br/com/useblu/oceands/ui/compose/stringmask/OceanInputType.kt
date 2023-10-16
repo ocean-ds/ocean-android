@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.ui.stringmask
+package br.com.useblu.oceands.ui.compose.stringmask
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -11,6 +11,7 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.text.isDigitsOnly
 import br.com.concrete.canarinho.formatador.Formatador
 import br.com.concrete.canarinho.formatador.FormatadorValor
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -33,6 +34,8 @@ sealed interface OceanInputType {
     fun modifyBeforeOnChange(text: String): String {
         return getMaxLength()?.let { text.take(it) } ?: text
     }
+
+    fun alwaysGoToEndOfInput(): Boolean = false
 
     fun getPrefixComposable(): @Composable (() -> Unit)? = null
 
@@ -64,19 +67,27 @@ sealed interface OceanInputType {
             }
         }
 
+        override fun alwaysGoToEndOfInput() = true
+
         override fun modifyBeforeOnChange(text: String): String {
-            val cleanText = super.modifyBeforeOnChange(text)
+            val digitsString = super.modifyBeforeOnChange(text)
                 .filter { it.isDigit() }
 
-            if (cleanText.isEmpty() && showZeroValue) {
-                return FormatadorValor.VALOR.formata("000")
+            if (digitsString.isEmpty() || digitsString.toInt() == 0) {
+                return if (showZeroValue) {
+                    FormatadorValor.VALOR.formata("000")
+                } else {
+                    ""
+                }
             }
 
-            val decimalResult = BigDecimal(cleanText)
+            if (digitsString.isBlank() || !digitsString.isDigitsOnly()) return ""
+
+            val result = BigDecimal(digitsString)
                 .divide(BigDecimal(100))
                 .setScale(2, RoundingMode.HALF_DOWN)
 
-            return FormatadorValor.VALOR.formata(decimalResult.toPlainString())
+            return FormatadorValor.VALOR.formata(result.toPlainString())
         }
 
         override fun getVisualTransformation(): VisualTransformation {

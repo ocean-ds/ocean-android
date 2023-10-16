@@ -177,6 +177,7 @@ private fun getTextFieldColors() = OutlinedTextFieldDefaults.colors(
 fun OceanTextInput(
     value: String,
     label: String,
+    modifier: Modifier = Modifier,
     labelColor: Color = OceanColors.interfaceDarkUp,
     errorText: String? = null,
     placeholder: String = "",
@@ -192,7 +193,7 @@ fun OceanTextInput(
 
     CompositionLocalProvider(LocalTextStyle provides localTextStyle) {
         Column(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
         ) {
             Text(

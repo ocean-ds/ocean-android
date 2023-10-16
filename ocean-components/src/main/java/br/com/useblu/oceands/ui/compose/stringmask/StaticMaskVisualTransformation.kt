@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.ui.stringmask
+package br.com.useblu.oceands.ui.compose.stringmask
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.OffsetMapping

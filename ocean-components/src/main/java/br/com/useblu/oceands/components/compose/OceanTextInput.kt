@@ -7,15 +7,14 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -26,7 +25,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,7 +36,7 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
-import br.com.useblu.oceands.ui.stringmask.OceanInputType
+import br.com.useblu.oceands.ui.compose.stringmask.OceanInputType
 
 
 @Preview
@@ -115,14 +116,14 @@ fun PreviewOceanTextInputMask() {
         modifier = Modifier
             .background(Color.White)
             .padding(8.dp)
-            .verticalScroll(rememberScrollState())
     ) {
         CreateOceanTextInputPreview("90680120", OceanInputType.CEP)
         CreateOceanTextInputPreview("51999400685", OceanInputType.Phone)
         CreateOceanTextInputPreview("067863", OceanInputType.CpfCnpj)
         CreateOceanTextInputPreview("", OceanInputType.Currency())
         CreateOceanTextInputPreview("90000", OceanInputType.Currency())
-        CreateOceanTextInputPreview("90000", OceanInputType.Currency(false))
+        CreateOceanTextInputPreview("900.00", OceanInputType.Currency(false))
+        CreateOceanTextInputPreview("900,00", OceanInputType.Currency(true, showZeroValue = true))
     }
 }
 @Composable
@@ -152,22 +153,32 @@ fun OceanTextInput(
     val value = valueLiveData.observeAsState(initial = "")
 
     OceanTextInput(
-        value.value,
-        label,
-        errorText,
-        placeholder,
-        enabled,
+        value = value.value,
+        label = label,
+        errorText = errorText,
+        placeholder = placeholder,
+        enabled = enabled,
         onTextChanged = {
            valueLiveData.value = it
         }
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun getTextFieldColors() = OutlinedTextFieldDefaults.colors(
+    unfocusedBorderColor = OceanColors.interfaceLightDeep,
+    focusedBorderColor = OceanColors.brandPrimaryDown,
+    errorBorderColor = OceanColors.statusNegativePure,
+    disabledBorderColor = OceanColors.interfaceLightUp,
+    disabledContainerColor = OceanColors.interfaceLightUp,
+)
+
 @Composable
 fun OceanTextInput(
     value: String,
     label: String,
+    modifier: Modifier = Modifier,
+    labelColor: Color = OceanColors.interfaceDarkUp,
     errorText: String? = null,
     placeholder: String = "",
     enabled: Boolean = true,
@@ -182,41 +193,45 @@ fun OceanTextInput(
 
     CompositionLocalProvider(LocalTextStyle provides localTextStyle) {
         Column(
-            modifier = Modifier.fillMaxWidth()
+            modifier = modifier
+                .fillMaxWidth()
         ) {
             Text(
                 text = label,
-                color = if (enabled) OceanColors.interfaceDarkDown else OceanColors.interfaceDarkUp,
+                color = if (enabled) labelColor else OceanColors.interfaceDarkUp,
                 fontSize = OceanFontSize.xxs
             )
             OceanSpacing.StackXXS()
 
-            val placeholderCompose = @Composable {
-                Text(
-                    text = placeholder,
-                    fontFamily = OceanFontFamily.BaseRegular,
-                    color = if (enabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkUp
-                )
+            val interactionSource = remember { MutableInteractionSource() }
+
+            var textFieldValue by remember {
+                val maskedValue = oceanInputType.modifyBeforeOnChange(value)
+                mutableStateOf(TextFieldValue(maskedValue))
             }
 
-            val textFieldColors = OutlinedTextFieldDefaults.colors(
-                unfocusedBorderColor = OceanColors.interfaceLightDeep,
-                focusedBorderColor = OceanColors.brandPrimaryDown,
-                errorBorderColor = OceanColors.statusNegativePure,
-                disabledBorderColor = OceanColors.interfaceLightUp,
-                disabledContainerColor = OceanColors.interfaceLightUp,
-            )
-
-            val interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
-
             BasicTextField(
-                value = value,
+                value = textFieldValue,
                 modifier = Modifier
                     .height(48.dp)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .background(
+                        color = OceanColors.interfaceLightPure,
+                        shape = RoundedCornerShape(8.dp)
+                    ),
                 onValueChange = {
-                    val modifiedValue = oceanInputType.modifyBeforeOnChange(it)
-                    onTextChanged(modifiedValue)
+                    val modifiedValue = oceanInputType.modifyBeforeOnChange(it.text)
+                    if (modifiedValue != textFieldValue.text) {
+                        onTextChanged(modifiedValue)
+                        textFieldValue = it.copy(text = modifiedValue)
+                        if (oceanInputType.alwaysGoToEndOfInput()) {
+                            textFieldValue = textFieldValue.copy(
+                                selection = TextRange(modifiedValue.length)
+                            )
+                        }
+                    } else {
+                        textFieldValue = it.copy(text = modifiedValue)
+                    }
                 },
                 enabled = enabled,
                 singleLine = true,
@@ -226,30 +241,15 @@ fun OceanTextInput(
                 interactionSource = interactionSource,
                 visualTransformation = oceanInputType.getVisualTransformation(),
                 decorationBox = @Composable { innerTextField ->
-                    OutlinedTextFieldDefaults.DecorationBox(
-                        value = value,
-                        visualTransformation = VisualTransformation.None,
-                        innerTextField = innerTextField,
-                        placeholder = placeholderCompose,
-                        trailingIcon = null,
-                        prefix = oceanInputType.getPrefixComposable(),
-                        singleLine = true,
-                        enabled = enabled,
-                        isError = !errorText.isNullOrEmpty(),
-                        interactionSource = interactionSource,
-                        colors = textFieldColors,
-                        contentPadding = PaddingValues(horizontal = 16.dp),
-                        container = {
-                            OutlinedTextFieldDefaults.ContainerBox(
-                                enabled = enabled,
-                                isError = !errorText.isNullOrEmpty(),
-                                interactionSource = interactionSource,
-                                colors = textFieldColors,
-                                shape = RoundedCornerShape(8.dp),
-                                focusedBorderThickness = 2.dp,
-                                unfocusedBorderThickness = 1.dp
-                            )
-                        }
+                    OceanTextInputDecorationBox(
+                        value,
+                        innerTextField,
+                        getPlaceholder(placeholder, enabled),
+                        oceanInputType,
+                        enabled,
+                        errorText,
+                        interactionSource,
+                        getTextFieldColors()
                     )
                 }
             )
@@ -265,4 +265,57 @@ fun OceanTextInput(
             }
         }
     }
+}
+
+@Composable
+private fun getPlaceholder(
+    placeholder: String,
+    enabled: Boolean
+): @Composable () -> Unit {
+    return {
+        Text(
+            text = placeholder,
+            fontFamily = OceanFontFamily.BaseRegular,
+            color = if (enabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkUp
+        )
+    }
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+private fun OceanTextInputDecorationBox(
+    value: String,
+    innerTextField: @Composable () -> Unit,
+    placeholderCompose: @Composable () -> Unit,
+    oceanInputType: OceanInputType,
+    enabled: Boolean,
+    errorText: String?,
+    interactionSource: MutableInteractionSource,
+    textFieldColors: TextFieldColors
+) {
+    OutlinedTextFieldDefaults.DecorationBox(
+        value = value,
+        visualTransformation = VisualTransformation.None,
+        innerTextField = innerTextField,
+        placeholder = placeholderCompose,
+        trailingIcon = null,
+        prefix = oceanInputType.getPrefixComposable(),
+        singleLine = true,
+        enabled = enabled,
+        isError = !errorText.isNullOrEmpty(),
+        interactionSource = interactionSource,
+        colors = textFieldColors,
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        container = {
+            OutlinedTextFieldDefaults.ContainerBox(
+                enabled = enabled,
+                isError = !errorText.isNullOrEmpty(),
+                interactionSource = interactionSource,
+                colors = textFieldColors,
+                shape = RoundedCornerShape(8.dp),
+                focusedBorderThickness = 2.dp,
+                unfocusedBorderThickness = 1.dp
+            )
+        }
+    )
 }

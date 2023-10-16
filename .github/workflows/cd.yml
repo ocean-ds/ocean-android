@@ -50,7 +50,7 @@ jobs:
           git tag -a "v$OCEAN_VERSION" -m "Release of version $OCEAN_VERSION" && git push --tags
 
       - name: Publish new version lib
-        run: ./gradlew clean assembleRelease publish
+        run: ./gradlew clean ocean-components:publish
         env:
           GPR_USER: mariofelesdossantosjunior
           GPR_API_KEY: ${{ secrets.GPR_API_KEY }}

@@ -65,7 +65,7 @@ private fun OceanTagPreview() {
         Column {
             OceanTag(
                 label = "Label",
-                icon = OceanIcons.PLACEHOLDER_SOLID,
+                icon = OceanIcons.LOCK_CLOSED_OUTLINE,
                 type = OceanTagType.Positive
             )
 
@@ -73,7 +73,7 @@ private fun OceanTagPreview() {
 
             OceanTag(
                 label = "Label",
-                icon = OceanIcons.PLACEHOLDER_SOLID,
+                icon = OceanIcons.INFO_OUTLINE,
                 type = OceanTagType.Warning
             )
 

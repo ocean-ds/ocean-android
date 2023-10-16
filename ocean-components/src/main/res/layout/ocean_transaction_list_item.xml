@@ -15,7 +15,6 @@
 
         <import type="br.com.useblu.oceands.model.OceanTagType" />
 
-        <import type="androidx.lifecycle.MutableLiveData" />
 
         <variable
             name="index"
@@ -55,7 +54,7 @@
 
         <variable
             name="tagType"
-            type="br.com.useblu.oceands.model.OceanTagType" />
+            type="OceanTagType" />
 
         <variable
             name="tagHideIcon"

@@ -194,7 +194,6 @@ fun OceanTextInput(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = OceanColors.interfaceLightPure)
         ) {
             Text(
                 text = label,
@@ -214,7 +213,11 @@ fun OceanTextInput(
                 value = textFieldValue,
                 modifier = Modifier
                     .height(48.dp)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .background(
+                        color = OceanColors.interfaceLightPure,
+                        shape = RoundedCornerShape(8.dp)
+                    ),
                 onValueChange = {
                     val modifiedValue = oceanInputType.modifyBeforeOnChange(it.text)
                     if (modifiedValue != textFieldValue.text) {

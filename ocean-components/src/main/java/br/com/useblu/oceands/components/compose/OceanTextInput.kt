@@ -165,6 +165,15 @@ fun OceanTextInput(
 }
 
 @Composable
+private fun getTextFieldColors() = OutlinedTextFieldDefaults.colors(
+    unfocusedBorderColor = OceanColors.interfaceLightDeep,
+    focusedBorderColor = OceanColors.brandPrimaryDown,
+    errorBorderColor = OceanColors.statusNegativePure,
+    disabledBorderColor = OceanColors.interfaceLightUp,
+    disabledContainerColor = OceanColors.interfaceLightUp,
+)
+
+@Composable
 fun OceanTextInput(
     value: String,
     label: String,
@@ -183,7 +192,8 @@ fun OceanTextInput(
 
     CompositionLocalProvider(LocalTextStyle provides localTextStyle) {
         Column(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .background(color = OceanColors.interfaceLightPure)
         ) {
             Text(
@@ -192,22 +202,6 @@ fun OceanTextInput(
                 fontSize = OceanFontSize.xxs
             )
             OceanSpacing.StackXXS()
-
-            val placeholderCompose = @Composable {
-                Text(
-                    text = placeholder,
-                    fontFamily = OceanFontFamily.BaseRegular,
-                    color = if (enabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkUp
-                )
-            }
-
-            val textFieldColors = OutlinedTextFieldDefaults.colors(
-                unfocusedBorderColor = OceanColors.interfaceLightDeep,
-                focusedBorderColor = OceanColors.brandPrimaryDown,
-                errorBorderColor = OceanColors.statusNegativePure,
-                disabledBorderColor = OceanColors.interfaceLightUp,
-                disabledContainerColor = OceanColors.interfaceLightUp,
-            )
 
             val interactionSource = remember { MutableInteractionSource() }
 
@@ -246,12 +240,12 @@ fun OceanTextInput(
                     OceanTextInputDecorationBox(
                         value,
                         innerTextField,
-                        placeholderCompose,
+                        getPlaceholder(placeholder, enabled),
                         oceanInputType,
                         enabled,
                         errorText,
                         interactionSource,
-                        textFieldColors
+                        getTextFieldColors()
                     )
                 }
             )
@@ -266,6 +260,20 @@ fun OceanTextInput(
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun getPlaceholder(
+    placeholder: String,
+    enabled: Boolean
+): @Composable () -> Unit {
+    return {
+        Text(
+            text = placeholder,
+            fontFamily = OceanFontFamily.BaseRegular,
+            color = if (enabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkUp
+        )
     }
 }
 

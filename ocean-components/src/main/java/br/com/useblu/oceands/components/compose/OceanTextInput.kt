@@ -153,11 +153,11 @@ fun OceanTextInput(
     val value = valueLiveData.observeAsState(initial = "")
 
     OceanTextInput(
-        value.value,
-        label,
-        errorText,
-        placeholder,
-        enabled,
+        value = value.value,
+        label = label,
+        errorText = errorText,
+        placeholder = placeholder,
+        enabled = enabled,
         onTextChanged = {
            valueLiveData.value = it
         }
@@ -168,6 +168,7 @@ fun OceanTextInput(
 fun OceanTextInput(
     value: String,
     label: String,
+    labelColor: Color = OceanColors.interfaceDarkUp,
     errorText: String? = null,
     placeholder: String = "",
     enabled: Boolean = true,
@@ -183,10 +184,11 @@ fun OceanTextInput(
     CompositionLocalProvider(LocalTextStyle provides localTextStyle) {
         Column(
             modifier = Modifier.fillMaxWidth()
+                .background(color = OceanColors.interfaceLightPure)
         ) {
             Text(
                 text = label,
-                color = if (enabled) OceanColors.interfaceDarkDown else OceanColors.interfaceDarkUp,
+                color = if (enabled) OceanColors.interfaceDarkDown else labelColor,
                 fontSize = OceanFontSize.xxs
             )
             OceanSpacing.StackXXS()

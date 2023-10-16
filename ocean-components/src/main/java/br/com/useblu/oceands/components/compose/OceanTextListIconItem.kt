@@ -266,17 +266,17 @@ fun OceanTextListIconItem(
             }
         }
 
+        badgeText?.let {
+            OceanSpacing.StackXXS()
+
+            OceanBadge(
+                text = it,
+                type = badgeType,
+                size = OceanBadgeSize.Small
+            )
+        }
+
         trailingIcon?.let {
-            badgeText?.let {
-                OceanSpacing.StackXXS()
-
-                OceanBadge(
-                    text = it,
-                    type = badgeType,
-                    size = OceanBadgeSize.Small
-                )
-            }
-
             OceanSpacing.StackXXXS()
 
             OceanIcon(

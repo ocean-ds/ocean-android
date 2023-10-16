@@ -30,7 +30,7 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
 
-@Preview(device = "spec:width=800dp,height=550.9dp,dpi=440")
+@Preview(device = "spec:width=1120dp,height=550.9dp,dpi=440")
 @Composable
 private fun OceanTextListIconItemPreview() {
     Row(
@@ -42,7 +42,7 @@ private fun OceanTextListIconItemPreview() {
     ) {
         Column(
             modifier = Modifier
-                .width(250.dp)
+                .width(360.dp)
         ) {
             OceanTextListIconItem(
                 title = "Title"
@@ -69,13 +69,12 @@ private fun OceanTextListIconItemPreview() {
                 title = "Title",
                 description = "Description",
                 caption = "Caption",
-                badgeText = "Teste"
             )
         }
 
         Column(
             modifier = Modifier
-                .width(250.dp)
+                .width(360.dp)
         ) {
             OceanTextListIconItem(
                 title = "Title",
@@ -102,7 +101,7 @@ private fun OceanTextListIconItemPreview() {
 
         Column(
             modifier = Modifier
-                .width(250.dp)
+                .width(360.dp)
         ) {
             OceanTextListIconItem(
                 title = "Title",
@@ -123,8 +122,10 @@ private fun OceanTextListIconItemPreview() {
 
             OceanTextListIconItem(
                 title = "Title",
-                description = "Description",
-                caption = "Caption",
+                description = "Very long description to check if line breaks",
+                caption = "Very long caption to check if line breaks",
+                isWarningCaption = true,
+                badgeText = "Teste",
                 leadingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
                 trailingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
             )
@@ -196,6 +197,7 @@ fun OceanTextListIconItem(
     modifier: Modifier = Modifier,
     description: String? = null,
     caption: String? = null,
+    isWarningCaption: Boolean = false,
     badgeText: String? = null,
     badgeType: OceanBadgeType = OceanBadgeType.HIGHLIGHT,
     leadingIcon: OceanIcons? = null,
@@ -237,26 +239,15 @@ fun OceanTextListIconItem(
         Column(
             modifier = Modifier.weight(1f)
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = title,
-                    style = OceanTextStyle.paragraph,
-                    color = OceanColors.interfaceDarkPure
-                )
-
-                badgeText?.let {
-                    OceanSpacing.StackXXS()
-
-                    OceanBadge(
-                        text = it,
-                        type = badgeType,
-                        size = OceanBadgeSize.Small
-                    )
-                }
-            }
+            Text(
+                text = title,
+                style = OceanTextStyle.paragraph,
+                color = OceanColors.interfaceDarkPure
+            )
 
             description?.let {
                 Text(
+                    minLines = 1,
                     text = description,
                     style = OceanTextStyle.description
                 )
@@ -266,14 +257,27 @@ fun OceanTextListIconItem(
                 OceanSpacing.StackXXXS()
 
                 Text(
+                    minLines = 1,
                     text = caption,
-                    style = OceanTextStyle.caption
+                    style = OceanTextStyle.caption,
+                    color = if(!isWarningCaption) OceanColors.interfaceDarkDown
+                            else OceanColors.statusWarningDeep
                 )
             }
         }
 
         trailingIcon?.let {
-            OceanSpacing.StackXS()
+            badgeText?.let {
+                OceanSpacing.StackXXS()
+
+                OceanBadge(
+                    text = it,
+                    type = badgeType,
+                    size = OceanBadgeSize.Small
+                )
+            }
+
+            OceanSpacing.StackXXXS()
 
             OceanIcon(
                 iconType = it,

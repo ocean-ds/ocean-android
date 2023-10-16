@@ -1302,6 +1302,10 @@ enum class OceanIcons(
         token = "pencilaltsolid",
         icon = R.drawable.ocean_icon_pencil_alt_solid
     ),
+    PERSON_OUTLINE(
+        token = "personoutline",
+        icon = R.drawable.ocean_icon_person_outline
+    ),
     PETSHOP_OUTLINE(
         token = "petshopoutline",
         icon = R.drawable.ocean_icon_petshop_outline

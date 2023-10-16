@@ -197,7 +197,7 @@ fun OceanTextInput(
         ) {
             Text(
                 text = label,
-                color = if (enabled) OceanColors.interfaceDarkDown else labelColor,
+                color = if (enabled) labelColor else OceanColors.interfaceDarkUp,
                 fontSize = OceanFontSize.xxs
             )
             OceanSpacing.StackXXS()

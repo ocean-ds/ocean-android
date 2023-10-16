@@ -11,7 +11,6 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.text.isDigitsOnly
 import br.com.concrete.canarinho.formatador.Formatador
 import br.com.concrete.canarinho.formatador.FormatadorValor
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -80,8 +79,6 @@ sealed interface OceanInputType {
                     ""
                 }
             }
-
-            if (digitsString.isBlank() || !digitsString.isDigitsOnly()) return ""
 
             val result = BigDecimal(digitsString)
                 .divide(BigDecimal(100))

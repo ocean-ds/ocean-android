@@ -1,6 +1,11 @@
 name: CI
 
-on: push
+on:
+  pull_request
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -13,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Cache Gradle packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -34,7 +39,7 @@ jobs:
       - name: Runs linter
         run: ./gradlew lint
 
-      #- name: Lint commit message
+        #- name: Lint commit message
         #uses: wagoid/commitlint-github-action@v4
 
       - name: Run tests

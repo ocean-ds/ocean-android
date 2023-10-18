@@ -92,7 +92,7 @@ fun OceanCardCrossSell(
                 enabled = !showProgress && onClick != null,
                 onClick = { onClick?.invoke() }
             )
-    ){
+    ) {
         Row(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -126,6 +126,7 @@ fun OceanCardCrossSell(
                         )
                     )
                 }
+
                 imageResource != null -> {
                     Image(
                         painter = painterResource(id = imageResource),
@@ -133,6 +134,7 @@ fun OceanCardCrossSell(
                         modifier = Modifier.size(80.dp)
                     )
                 }
+
                 else -> Spacer(modifier = Modifier.height(80.dp))
             }
         }

@@ -54,10 +54,10 @@
         android:drawable="@drawable/ocean_list_item_hover"
         android:focusable="true"
         android:onClick="@{() -> click.invoke()}"
-        app:clickable_effect="@{true}"
-        app:onLongClickPressed="@{longClick}"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp">
+        android:paddingBottom="16dp"
+        app:clickable_effect="@{true}"
+        app:onLongClickPressed="@{longClick}">
 
         <LinearLayout
             android:id="@+id/text_list_item_selecting_box_container"

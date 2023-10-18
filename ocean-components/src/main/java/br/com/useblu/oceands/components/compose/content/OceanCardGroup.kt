@@ -103,7 +103,7 @@ fun OceanCardGroup(
                     OceanBadge(
                         text = badgeText,
                         type = badgeType,
-                        size = OceanBadgeSize.Small
+                        size = OceanBadgeSize.Medium
                     )
                 }
             }

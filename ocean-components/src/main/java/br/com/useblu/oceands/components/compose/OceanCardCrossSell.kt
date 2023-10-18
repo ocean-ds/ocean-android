@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.IntRange
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -71,13 +72,14 @@ fun OceanCardCrossSell(
     titleColor: Color = Color.Unspecified,
     descriptionColor: Color = Color.Unspecified,
     backgroundColor: Color = OceanColors.interfaceLightUp,
+    @IntRange(0, 255) backgroundAlpha: Int = 255,
     showProgress: Boolean = false,
     onClick: (() -> Unit)? = null
 ) {
     Column(
         modifier = modifier
             .background(
-                color = backgroundColor,
+                color = backgroundColor.copy(alpha = backgroundAlpha / 255f),
                 shape = RoundedCornerShape(8.dp)
             )
             .border(
@@ -90,7 +92,7 @@ fun OceanCardCrossSell(
                 enabled = !showProgress && onClick != null,
                 onClick = { onClick?.invoke() }
             )
-    ){
+    ) {
         Row(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -124,6 +126,7 @@ fun OceanCardCrossSell(
                         )
                     )
                 }
+
                 imageResource != null -> {
                     Image(
                         painter = painterResource(id = imageResource),
@@ -131,6 +134,7 @@ fun OceanCardCrossSell(
                         modifier = Modifier.size(80.dp)
                     )
                 }
+
                 else -> Spacer(modifier = Modifier.height(80.dp))
             }
         }

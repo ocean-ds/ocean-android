@@ -31,16 +31,28 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 @Composable
 fun OceanCardGroupPreview() {
     OceanTheme {
-        OceanCardGroup(
-            title = "Header",
-            subtitle = "Subtitle",
-            badgeText = "110",
-            actionClick = {},
-            actionTitle = "Call to Action",
-            label = "Recomendado",
-            showProgress = false,
-            modifier = Modifier.padding(16.dp)
-        )
+        Column {
+            OceanCardGroup(
+                title = "Header",
+                subtitle = "Subtitle",
+                badgeText = "110",
+                actionClick = {},
+                actionTitle = "Call to Action",
+                label = "Recomendado",
+                showProgress = false,
+                modifier = Modifier.padding(16.dp)
+            )
+
+            OceanCardGroup(
+                title = "Header",
+                subtitle = "Tudo certo! Você não possui boletos pendentes para aprovação",
+                badgeText = "110",
+                actionClick = {},
+                actionTitle = "Call to Action",
+                showProgress = false,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
     }
 }
 
@@ -100,6 +112,8 @@ fun OceanCardGroup(
                 }
 
                 if (badgeText != null) {
+                    OceanSpacing.StackXS()
+                    
                     OceanBadge(
                         text = badgeText,
                         type = badgeType,

@@ -133,10 +133,13 @@ fun OceanTransactionListItem(
                     } else OceanColors.interfaceDarkPure
 
                     var formattedValue = FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(value.toString())
-                    if (valueWithSignal) {
-                        val signal = if (value >= 0) "+" else "-"
 
-                        formattedValue = "$signal $formattedValue"
+                    if (valueWithSignal) {
+                        if (value >= 0) {
+                            formattedValue = "+ $formattedValue"
+                        }
+                    } else {
+                        formattedValue = formattedValue.replace("-", "")
                     }
                     Text(
                         text = formattedValue,

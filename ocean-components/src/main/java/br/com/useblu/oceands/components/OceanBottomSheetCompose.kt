@@ -24,9 +24,9 @@ class OceanBottomSheetCompose : BottomSheetDialogFragment() {
     private var code: String? = null
     private var orientationButtons: Orientation = Orientation.Horizontal
     private var isDismiss: Boolean = true
-    private var textPositive: String = ""
+    private var textPositive: String? = null
     private var textNegative: String? = null
-    private var actionPositive: (() -> Unit) = { }
+    private var actionPositive: (() -> Unit)? = null
     private var actionNegative: (() -> Unit)? = null
     private var isCritical: Boolean = false
     private var composeContent: @Composable ((BottomSheetDialogFragment) -> Unit) = {}
@@ -58,7 +58,7 @@ class OceanBottomSheetCompose : BottomSheetDialogFragment() {
                 BottomButtons(
                     positiveLabel = textPositive,
                     positiveAction = {
-                        actionPositive.invoke()
+                        actionPositive?.invoke()
                         dismiss()
                     },
                     negativeLabel = textNegative,
@@ -144,8 +144,8 @@ private fun BottomButtonsPreview() {
 
 @Composable
 private fun BottomButtons(
-    positiveLabel: String,
-    positiveAction: () -> Unit,
+    positiveLabel: String? = null,
+    positiveAction: (() -> Unit)? = null,
     negativeLabel: String? = null,
     negativeAction: (() -> Unit)? = null,
     isCritical: Boolean = false,
@@ -157,12 +157,14 @@ private fun BottomButtons(
             OceanButtonStyle.PrimaryCriticalMedium
         } else OceanButtonStyle.PrimaryMedium
 
-        OceanButton(
-            text = positiveLabel,
-            buttonStyle = primaryStyle,
-            onClick = { positiveAction.invoke() },
-            modifier = it
-        )
+        if (positiveLabel != null && positiveAction != null) {
+            OceanButton(
+                text = positiveLabel,
+                buttonStyle = primaryStyle,
+                onClick = { positiveAction.invoke() },
+                modifier = it
+            )
+        }
 
         if (negativeLabel != null && negativeAction != null) {
             OceanSpacing.StackXS()

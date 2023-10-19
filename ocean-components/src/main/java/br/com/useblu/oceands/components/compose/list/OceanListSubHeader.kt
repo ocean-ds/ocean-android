@@ -36,7 +36,7 @@ fun OceanListSubHeader(
     modifier: Modifier = Modifier,
     subtitle: String? = null,
     highlighted: String? = null,
-    isSmall: Boolean = true,
+    isSmall: Boolean = false,
     icon: OceanIcons? = null,
 ) {
     val rowHeight = if (isSmall) {

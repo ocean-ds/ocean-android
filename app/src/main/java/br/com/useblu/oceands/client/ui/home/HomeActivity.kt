@@ -6,8 +6,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
@@ -69,10 +72,10 @@ import br.com.useblu.oceands.components.OceanSnackBar
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.OceanTooltip
 import br.com.useblu.oceands.components.compose.OceanIcon
-import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.model.OceanUnorderedListItem
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIcons
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -360,19 +363,24 @@ class HomeActivity : AppCompatActivity() {
             }
             .show()
     }
-    
+
     fun onClickBottomSheetWithCompose(view: View) {
         OceanBottomSheetCompose()
-            .withComposeContent { 
-                OceanIcon(
-                    iconType = OceanIcons.BARCODE_OUTLINE,
-                    modifier = Modifier.size(40.dp)
-                )
-                OceanSpacing.StackXS()
-                Text(
-                    text = "Texto de teste",
-                    style = OceanTextStyle.heading3
-                )
+            .withComposeContent {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    OceanIcon(
+                        iconType = OceanIcons.BARCODE_OUTLINE,
+                        modifier = Modifier.size(40.dp)
+                    )
+                    OceanSpacing.StackXS()
+                    Text(
+                        text = "Texto de teste",
+                        style = OceanTextStyle.heading3
+                    )
+                }
             }
             .withDismiss(true)
             .withCritical(true)

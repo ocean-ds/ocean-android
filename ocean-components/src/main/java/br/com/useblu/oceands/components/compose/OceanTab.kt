@@ -58,28 +58,35 @@ fun OceanTab(
     onSelectedTab: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var selectedTabIndexInternal by remember(selectedTabIndex) {
+        mutableStateOf(selectedTabIndex)
+    }
+
     TabRow(
-        selectedTabIndex = selectedTabIndex,
+        selectedTabIndex = selectedTabIndexInternal,
         modifier = modifier
             .background(color = OceanColors.interfaceLightPure)
             .fillMaxWidth(),
         indicator = { tabPositions ->
-            if (selectedTabIndex < tabPositions.size) {
+            if (selectedTabIndexInternal < tabPositions.size) {
                 TabRowDefaults.Indicator(
-                    modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
+                    modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndexInternal]),
                     color = OceanColors.brandPrimaryPure
                 )
             }
         }
     ) {
         tabs.forEachIndexed { index, tab ->
-            val selected = index == selectedTabIndex
+            val selected = index == selectedTabIndexInternal
             Tab(
                 selected = selected,
                 modifier = Modifier
                     .background(color = OceanColors.interfaceLightPure)
                     .height(56.dp),
-                onClick = { onSelectedTab(index) },
+                onClick = {
+                    onSelectedTab(index)
+                    selectedTabIndexInternal = index
+                },
                 text = {
                     TabText(tab, selected, tab.counter)
                 }

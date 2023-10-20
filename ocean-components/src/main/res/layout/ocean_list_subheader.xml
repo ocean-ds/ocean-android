@@ -98,7 +98,6 @@
             app:ocean_text="@{highlighted}"
             app:ocean_text_format="@{FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
             app:ocean_visible_or_gone="@{highlighted != null}"
-            tools:layout_editor_absoluteX="191dp"
             tools:text="Value" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

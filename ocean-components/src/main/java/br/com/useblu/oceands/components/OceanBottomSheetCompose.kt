@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,17 +19,17 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class OceanBottomSheetCompose: BottomSheetDialogFragment() {
+class OceanBottomSheetCompose : BottomSheetDialogFragment() {
 
     private var code: String? = null
     private var orientationButtons: Orientation = Orientation.Horizontal
     private var isDismiss: Boolean = true
-    private var textPositive: String = ""
+    private var textPositive: String? = null
     private var textNegative: String? = null
-    private var actionPositive: (() -> Unit) = { }
+    private var actionPositive: (() -> Unit)? = null
     private var actionNegative: (() -> Unit)? = null
     private var isCritical: Boolean = false
-    private var composeContent: @Composable (ColumnScope.(BottomSheetDialogFragment) -> Unit) = {}
+    private var composeContent: @Composable ((BottomSheetDialogFragment) -> Unit) = {}
     private lateinit var binding: OceanBottomSheetComposeBinding
 
     override fun onCreateView(
@@ -53,15 +51,14 @@ class OceanBottomSheetCompose: BottomSheetDialogFragment() {
         binding.composeView.setContent {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .fillMaxWidth()
             ) {
                 composeContent(this@OceanBottomSheetCompose)
 
                 BottomButtons(
                     positiveLabel = textPositive,
                     positiveAction = {
-                        actionPositive.invoke()
+                        actionPositive?.invoke()
                         dismiss()
                     },
                     negativeLabel = textNegative,
@@ -88,7 +85,7 @@ class OceanBottomSheetCompose: BottomSheetDialogFragment() {
         bottomSheetBehavior.peekHeight = requireContext().resources.displayMetrics.heightPixels
     }
 
-    fun withComposeContent(content: @Composable ColumnScope.(BottomSheetDialogFragment) -> Unit): OceanBottomSheetCompose {
+    fun withComposeContent(content: @Composable (BottomSheetDialogFragment) -> Unit): OceanBottomSheetCompose {
         composeContent = content
 
         return this
@@ -147,8 +144,8 @@ private fun BottomButtonsPreview() {
 
 @Composable
 private fun BottomButtons(
-    positiveLabel: String,
-    positiveAction: () -> Unit,
+    positiveLabel: String? = null,
+    positiveAction: (() -> Unit)? = null,
     negativeLabel: String? = null,
     negativeAction: (() -> Unit)? = null,
     isCritical: Boolean = false,
@@ -160,12 +157,14 @@ private fun BottomButtons(
             OceanButtonStyle.PrimaryCriticalMedium
         } else OceanButtonStyle.PrimaryMedium
 
-        OceanButton(
-            text = positiveLabel,
-            buttonStyle = primaryStyle,
-            onClick = { positiveAction.invoke() },
-            modifier = it
-        )
+        if (positiveLabel != null && positiveAction != null) {
+            OceanButton(
+                text = positiveLabel,
+                buttonStyle = primaryStyle,
+                onClick = { positiveAction.invoke() },
+                modifier = it
+            )
+        }
 
         if (negativeLabel != null && negativeAction != null) {
             OceanSpacing.StackXS()
@@ -173,7 +172,7 @@ private fun BottomButtons(
             OceanButton(
                 text = negativeLabel,
                 buttonStyle = OceanButtonStyle.SecondaryMedium,
-                onClick = { negativeAction.invoke()},
+                onClick = { negativeAction.invoke() },
                 modifier = it
             )
         }
@@ -190,6 +189,7 @@ private fun BottomButtons(
                 buttons(Modifier.weight(1f))
             }
         }
+
         OceanBottomSheetCompose.Orientation.Vertical -> {
             Column(
                 modifier = modifier

@@ -56,7 +56,7 @@ jobs:
       - name: Publish new version lib
         run: ./gradlew clean ocean-components:publish
         env:
-          GPR_USER: mariofelesdossantosjunior
+          GPR_USER: ocean-ops
           GPR_API_KEY: ${{ secrets.GPR_API_KEY }}
 
       - name: Create Release Notes

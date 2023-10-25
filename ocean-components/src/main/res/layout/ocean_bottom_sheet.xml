@@ -91,11 +91,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/icon_close"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="13dp"
-            android:onClick="@{() -> clickNegative.invoke()}"
             android:src="@drawable/icon_exit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/space"
@@ -107,7 +106,7 @@
             android:layout_height="@dimen/ocean_spacing_stack_xxxs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/icon_close" />
 
         <Space
             android:id="@+id/space4"

@@ -84,6 +84,10 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
             binding.code = it
         }
 
+        binding.iconClose.setOnClickListener {
+            dismiss()
+        }
+
         binding.cancelabled = isDismiss
         binding.isCritical = isCritical
         binding.orientationButtons = orientationButtons

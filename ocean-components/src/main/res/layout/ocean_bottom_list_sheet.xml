@@ -119,9 +119,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
             android:layout_marginHorizontal="16dp"
-            android:fontFamily="@font/font_family_base_medium"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/font_family_base_regular"
             android:text="@{caption}"
             android:gravity="center"
             android:textColor="@color/ocean_color_interface_dark_down"
@@ -134,8 +134,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:ocean_visible_or_gone="@{showFooterButton}">
-
-            <include layout="@layout/ocean_divider" />
 
             <Space
                 android:layout_width="match_parent"

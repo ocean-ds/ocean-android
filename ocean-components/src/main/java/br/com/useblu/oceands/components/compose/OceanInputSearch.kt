@@ -3,6 +3,7 @@ package br.com.useblu.oceands.components.compose
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,6 +24,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
+import kotlinx.coroutines.delay
 
 @Preview
 @Composable
@@ -38,10 +43,17 @@ fun OceanInputSearchPreview() {
             .background(OceanColors.interfaceLightPure)
             .padding(16.dp)
     ){
+        var setFocus by remember{ mutableStateOf(false) }
+        LaunchedEffect(Unit) {
+            delay(2000)
+            setFocus = true
+        }
+
         OceanInputSearch(
             modifier = Modifier.fillMaxWidth(),
-            inputValue = "Blu",
+            inputValue = "",
             placeholder = "Search",
+            requestFocus = setFocus,
             onTextChange = {}
         )
 
@@ -53,6 +65,18 @@ fun OceanInputSearchPreview() {
             placeholder = "Search",
             onTextChange = {}
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OceanInputSearch(
+            modifier = Modifier.fillMaxWidth(),
+            inputValue = "",
+            placeholder = "Search",
+            onTextChange = {}
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
     }
 }
 
@@ -61,10 +85,12 @@ fun OceanInputSearch(
     modifier: Modifier = Modifier,
     inputValue: String = "",
     placeholder: String = "",
+    requestFocus: Boolean = false,
     onTextChange: (String) -> Unit,
 ) {
     var input by remember { mutableStateOf(inputValue) }
-    var isFocused by remember { mutableStateOf(false) }
+    val focusRequester by remember { mutableStateOf(FocusRequester()) }
+    var isFocused by remember { mutableStateOf(requestFocus) }
 
     val containerColor = OceanColors.interfaceLightPure
     val activeColor = OceanColors.interfaceDarkDeep
@@ -73,11 +99,18 @@ fun OceanInputSearch(
     val activeBorderColor = OceanColors.brandPrimaryDown
     val unfocusedBorderColor = OceanColors.brandPrimaryUp
 
+    LaunchedEffect(requestFocus) {
+        if(requestFocus) {
+            focusRequester.requestFocus()
+        }
+    }
+
     Box(
         modifier = modifier
+            .focusable(true)
             .onFocusChanged { isFocused = it.isFocused }
-            .clip(RoundedCornerShape(8.dp))
-            .background(OceanColors.interfaceLightPure),
+            .background(OceanColors.interfaceLightPure)
+            .clip(RoundedCornerShape(8.dp)),
         contentAlignment = Alignment.Center
     ) {
         TextField(
@@ -88,6 +121,7 @@ fun OceanInputSearch(
                     color = if (!isFocused && input.isEmpty()) inactiveColor
                     else if (isFocused) activeBorderColor else unfocusedBorderColor,
                 )
+                .focusRequester(focusRequester)
                 .fillMaxWidth(),
             value = input,
             onValueChange = {
@@ -111,7 +145,6 @@ fun OceanInputSearch(
                 input = input,
             ),
             trailingIcon = trailingIconSetup(
-                isFocused = isFocused,
                 input = input,
                 onClick = {
                     input = ""
@@ -128,23 +161,19 @@ fun OceanInputSearch(
 
 @Composable
 fun trailingIconSetup(
-    isFocused: Boolean,
     input: String,
     onClick: () -> Unit
 ): @Composable (() -> Unit)? {
     val activeColor = OceanColors.interfaceDarkUp
 
-    return if(isFocused && input.isNotEmpty()) {
+    return if(input.isNotEmpty()) {
         {
-            Box(
-                modifier = Modifier.clickable { onClick.invoke() }
-            ) {
-                Icon(
-                    painter = painterResource(id = OceanIcons.X_OUTLINE.icon),
-                    tint = activeColor,
-                    contentDescription = null,
-                )
-            }
+            Icon(
+                modifier = Modifier.clickable { onClick.invoke() },
+                painter = painterResource(id = OceanIcons.X_OUTLINE.icon),
+                tint = activeColor,
+                contentDescription = null,
+            )
         }
     } else null
 }

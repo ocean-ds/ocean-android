@@ -232,20 +232,13 @@ fun leadingIconSetup(
     val activeColor = OceanColors.brandPrimaryPure
     val inactiveColor = OceanColors.interfaceLightDeep
 
+    val iconColor = if (isFocused || input.isNotEmpty()) activeColor else inactiveColor
     return {
-        if (isFocused || input.isNotEmpty()) {
-            Icon(
-                painter = painterResource(id = OceanIcons.SEARCH_OUTLINE.icon),
-                tint = activeColor,
-                contentDescription = null,
-            )
-        } else {
-            Icon(
-                painter = painterResource(id = OceanIcons.SEARCH_OUTLINE.icon),
-                tint = inactiveColor,
-                contentDescription = null,
-            )
-        }
+        Icon(
+            painter = painterResource(id = OceanIcons.SEARCH_OUTLINE.icon),
+            tint = iconColor,
+            contentDescription = null,
+        )
     }
 }
 

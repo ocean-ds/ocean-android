@@ -137,13 +137,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/textTitle"
             style="@style/Ocean.Heading.3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@{isCritical ? @color/ocean_color_status_negative_pure : @color/ocean_color_brand_primary_pure}"
-            app:gravity="@{Gravity.CENTER}"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/space2"

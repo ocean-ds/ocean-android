@@ -18,6 +18,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -86,7 +87,7 @@ fun OceanInputSearchPreview() {
             inputValue = "00000000197",
             placeholder = "Search",
             inputType = OceanInputType.CpfCnpj,
-            onTextChanged = {}
+            onTextChanged = {println(it)}
         )
     }
 }
@@ -100,7 +101,7 @@ fun OceanInputSearch(
     inputType: OceanInputType = OceanInputType.DEFAULT,
     onTextChanged: (String) -> Unit,
 ) {
-    var input by remember {
+    val input = remember {
         val maskedValue = inputType.modifyBeforeOnChange(inputValue)
         mutableStateOf(TextFieldValue(maskedValue))
     }
@@ -132,18 +133,18 @@ fun OceanInputSearch(
             modifier = Modifier
                 .border(
                     shape = RoundedCornerShape(8.dp),
-                    width = if (!isFocused && input.text.isNotEmpty()) 1.dp else 2.dp,
-                    color = if (!isFocused && input.text.isEmpty()) inactiveColor
+                    width = if (!isFocused && input.value.text.isNotEmpty()) 1.dp else 2.dp,
+                    color = if (!isFocused && input.value.text.isEmpty()) inactiveColor
                     else if (isFocused) activeBorderColor else unfocusedBorderColor,
                 )
                 .focusRequester(focusRequester)
                 .fillMaxWidth(),
-            value = input,
+            value = input.value,
             onValueChange = createOnValueChangeHandler(
-                value = input,
+                input = input,
                 inputType = inputType,
                 onTextChanged = {
-                    input = input.copy(text = it)
+                    input.value = input.value.copy(text = it)
                     onTextChanged.invoke(it)
                 }
             ),
@@ -163,17 +164,18 @@ fun OceanInputSearch(
             ),
             leadingIcon = leadingIconSetup(
                 isFocused = isFocused,
-                input = input.text,
+                input = input.value.text,
             ),
             trailingIcon = trailingIconSetup(
-                input = input.text,
+                input = input.value.text,
                 onClick = {
-                    input = input.copy(text = "")
+                    input.value = input.value.copy(text = "")
+                    onTextChanged.invoke(input.value.text)
                 }
             ),
             placeholder = placeholderSetup(
                 isFocused = isFocused,
-                input = input.text,
+                input = input.value.text,
                 placeholder = placeholder
             ),
         )
@@ -182,25 +184,23 @@ fun OceanInputSearch(
 
 @Composable
 fun createOnValueChangeHandler(
-    value: TextFieldValue,
+    input: MutableState<TextFieldValue>,
     inputType: OceanInputType,
     onTextChanged: (String) -> Unit
 ): (TextFieldValue) -> Unit {
 
-    var input by remember { mutableStateOf(value) }
-
     return { newValue: TextFieldValue ->
         val modifiedValue = inputType.modifyBeforeOnChange(newValue.text)
-        if (modifiedValue != input.text) {
+        if (modifiedValue != input.value.text) {
             onTextChanged(modifiedValue)
-            input = newValue.copy(text = modifiedValue)
+            input.value = newValue.copy(text = modifiedValue)
             if (inputType.alwaysGoToEndOfInput()) {
-                input = input.copy(
+                input.value = input.value.copy(
                     selection = TextRange(modifiedValue.length)
                 )
             }
         } else {
-            input = newValue.copy(text = modifiedValue)
+            input.value = newValue.copy(text = modifiedValue)
         }
     }
 }

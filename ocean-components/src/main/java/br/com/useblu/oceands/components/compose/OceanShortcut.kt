@@ -281,6 +281,7 @@ fun OceanShortcut(
     }
 }
 
+@Immutable
 enum class OceanShortcutLayout {
     TinyVertical,
     TinyHorizontal,

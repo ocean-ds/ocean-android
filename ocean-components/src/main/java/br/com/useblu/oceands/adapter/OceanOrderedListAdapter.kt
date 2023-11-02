@@ -34,7 +34,6 @@ class OceanOrderedListAdapter(
         fun bindView(position: Int) {
             itemBinding.item = items[position]
             itemBinding.number = (position + 1).toString()
-            itemBinding.executePendingBindings()
         }
     }
 }

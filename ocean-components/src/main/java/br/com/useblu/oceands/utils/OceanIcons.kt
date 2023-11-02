@@ -1,7 +1,9 @@
 package br.com.useblu.oceands.utils
 
+import androidx.compose.runtime.Immutable
 import br.com.useblu.oceands.R
 
+@Immutable
 enum class OceanIcons(
     val token: String,
     val icon: Int

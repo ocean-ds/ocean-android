@@ -1,7 +1,9 @@
 package br.com.useblu.oceands.model
 
 import android.graphics.drawable.Drawable
+import androidx.compose.runtime.Immutable
 
+@Immutable
 data class OceanTransactionListUIModel(
     val icon: Drawable? = null,
     val highlightedLabel: String? = null,

@@ -311,7 +311,7 @@ class HomeActivity : AppCompatActivity() {
         OceanBottomSheet(this)
             .withTitle("Title")
             .withMessage("Message")
-            .withImage("https://picsum.photos/200/300")
+            .withImage("https://portal-cicloentrada.blu.com.br/assets/icons/coin_cashback-d160ac1ab52cea910c066a48974df9aac6bf755bc6dc83e1763248e6311a0510.png")
             .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
             .withDismiss(true)
             .withActionPositive(R.string.all_button_confirm) {

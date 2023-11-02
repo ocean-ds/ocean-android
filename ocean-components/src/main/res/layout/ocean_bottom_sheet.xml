@@ -121,8 +121,6 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxHeight="90dp"
-            android:minHeight="90dp"
             android:src="@{icon}"
             android:adjustViewBounds="true"
             app:ocean_icon="@{image}"

@@ -27,7 +27,7 @@ dependencyResolutionManagement {
             library("androidKtx", "androidx.core:core-ktx:1.9.0")
             library("androidAppCompat", "androidx.appcompat:appcompat:1.6.1")
 
-            library("skydovesBalloon", "com.github.skydoves:balloon:1.5.2")
+            library("skydovesBalloon", "com.github.skydoves:balloon:1.6.2")
 
             library("androidMaterial", "com.google.android.material:material:1.8.0")
 

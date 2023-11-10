@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="100dp"
+    app:behavior_peekHeight="auto"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
     <data>
@@ -51,100 +51,101 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
         android:background="@drawable/ocean_bottom_sheet_background"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/ocean_spacing_stack_xs">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="13dp"
-            android:layout_gravity="right"
-            android:onClick="@{() -> dismiss.invoke()}"
-            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-            android:src="@drawable/icon_exit"
-            app:ocean_visible_or_gone="@{cancelabled}" />
-
-        <Space
-            android:id="@+id/space4"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_sm"
-            app:ocean_visible_or_gone="@{bodyIcon != null}" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@{bodyIcon}"
-            tools:src="@drawable/icon_generic" />
-
-        <Space
-            android:id="@+id/space2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_sm"
-            app:ocean_visible_or_gone="@{bodyIcon != null &amp;&amp; title != null }"/>
-
-        <TextView
-            android:id="@+id/textTitle"
-            style="@style/Ocean.Heading.3"
+        <LinearLayout
+            android:id="@+id/bottom_list_header_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingStart="@dimen/ocean_spacing_stack_xs"
-            android:paddingEnd="@dimen/ocean_spacing_stack_xs"
-            android:text="@{title}"
-            android:textColor="@color/ocean_color_interface_dark_deep"
-            app:ocean_visible_or_gone="@{title != null}"
-            tools:text="Heading 3" />
+            android:orientation="vertical"
+            android:paddingTop="@dimen/ocean_spacing_stack_xxs"
+            android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
+            android:paddingBottom="@dimen/ocean_spacing_stack_xxxs">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_xs"
-            app:ocean_visible_or_gone="@{title != null}"/>
+            <ImageView
+                android:id="@+id/bottom_list_icon_close"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end"
+                android:padding="6dp"
+                android:contentDescription="@null"
+                android:tint="@color/ocean_color_interface_dark_up"
+                android:src="@drawable/ocean_icon_x_outline"
+                android:onClick="@{() -> dismiss.invoke()}"
+                tools:ignore="UseAppTint" />
+        </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            app:layout_constraintTop_toBottomOf="@id/textTitle"
-            tools:itemCount="4"
-            tools:listitem="@layout/ocean_bottom_list_sheet_item"
-            tools:paddingStart="@dimen/ocean_spacing_stack_xxxs" />
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/bottom_list_content_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/font_family_base_regular"
-            android:text="@{caption}"
-            android:gravity="center"
-            android:textColor="@color/ocean_color_interface_dark_down"
-            app:ocean_visible_or_gone="@{caption != null}"
-            tools:text="Lembre-se de salvar o documento em um local onde consiga encontrar com facilidade." />
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:minHeight="40dp"
+                android:minWidth="40dp"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_sm"
+                android:src="@{bodyIcon}"
+                app:ocean_visible_or_gone="@{bodyIcon != null}"
+                tools:src="@drawable/icon_generic" />
+
+            <TextView
+                android:id="@+id/textTitle"
+                style="@style/Ocean.Heading.3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_sm"
+                android:gravity="center"
+                android:text="@{title}"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                app:ocean_visible_or_gone="@{title != null}"
+                tools:text="Heading 3" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_sm"
+                android:clipToPadding="false"
+                tools:itemCount="4"
+                tools:listitem="@layout/ocean_bottom_list_sheet_item" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@{caption}"
+                android:gravity="center"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                app:ocean_visible_or_gone="@{caption != null}"
+                tools:text="Lembre-se de salvar o documento em um local onde consiga encontrar com facilidade." />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/botton_sheet_list_button_div_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/ocean_spacing_stack_xs"
             android:orientation="vertical"
             app:ocean_visible_or_gone="@{showFooterButton}">
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/ocean_spacing_stack_xxs" />
 
             <include
                 android:id="@+id/bottom_sheet_list_button_secondary"
                 layout="@layout/ocean_button_secondary_md"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
                 android:visibility="gone"
                 app:showProgress="@{loading}" />
 
@@ -153,7 +154,6 @@
                 layout="@layout/ocean_button_primary_md"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
                 app:showProgress="@{loading}" />
         </LinearLayout>
     </LinearLayout>

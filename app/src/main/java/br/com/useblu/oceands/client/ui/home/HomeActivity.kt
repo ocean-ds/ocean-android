@@ -314,10 +314,8 @@ class HomeActivity : AppCompatActivity() {
             .withImage("https://portal-cicloentrada.blu.com.br/assets/icons/coin_cashback-d160ac1ab52cea910c066a48974df9aac6bf755bc6dc83e1763248e6311a0510.png")
             .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
             .withDismiss(true)
-            .withActionPositive(R.string.all_button_confirm) {
-            }
-            .withActionNegative(R.string.all_button_cancel) {
-            }
+            .withActionPositive(R.string.all_button_confirm) {}
+            .withActionNegative(R.string.all_button_cancel) {}
             .show()
     }
 
@@ -328,10 +326,21 @@ class HomeActivity : AppCompatActivity() {
             .withIcon(R.drawable.icon_generic_black)
             .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
             .withDismiss(true)
-            .withActionPositive(R.string.all_button_confirm) {
-            }
-            .withActionNegative(R.string.all_button_cancel) {
-            }
+            .withActionPositive(R.string.all_button_confirm) {}
+            .withActionNegative(R.string.all_button_cancel) {}
+            .show()
+    }
+
+    fun onClickBottomSheetImageVerticalWithCode(view: View) {
+        OceanBottomSheet(this)
+            .withTitle("Title")
+            .withMessage("Message a huge text to test the bottom sheet behavior on deal with multiple lines")
+            .withIcon(R.drawable.icon_blu_plus)
+            .withCode("9999")
+            .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
+            .withDismiss(true)
+            .withActionPositive(R.string.all_button_confirm) {}
+            .withActionNegative(R.string.all_button_cancel) {}
             .show()
     }
 
@@ -342,10 +351,8 @@ class HomeActivity : AppCompatActivity() {
             .withIcon(R.drawable.icon_generic_black)
             .withOrientationButtons(OceanBottomSheet.Orientation.Horizontal)
             .withDismiss(true)
-            .withActionPositive(R.string.all_button_confirm) {
-            }
-            .withActionNegative(R.string.all_button_cancel) {
-            }
+            .withActionPositive(R.string.all_button_confirm) {}
+            .withActionNegative(R.string.all_button_cancel) {}
             .show()
     }
 
@@ -357,10 +364,8 @@ class HomeActivity : AppCompatActivity() {
             .withOrientationButtons(OceanBottomSheet.Orientation.Horizontal)
             .withDismiss(true)
             .withCritical(true)
-            .withActionPositive(R.string.all_button_confirm) {
-            }
-            .withActionNegative(R.string.all_button_cancel) {
-            }
+            .withActionPositive(R.string.all_button_confirm) {}
+            .withActionNegative(R.string.all_button_cancel) {}
             .show()
     }
 

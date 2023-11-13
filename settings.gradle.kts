@@ -29,7 +29,7 @@ dependencyResolutionManagement {
 
             library("skydovesBalloon", "com.github.skydoves:balloon:1.5.2")
 
-            library("androidMaterial", "com.google.android.material:material:1.8.0")
+            library("androidMaterial", "com.google.android.material:material:1.10.0")
 
             library("canarinho", "com.github.concretesolutions:canarinho:2.0.2")
 

@@ -33,7 +33,7 @@ dependencyResolutionManagement {
 
             library("canarinho", "com.github.concretesolutions:canarinho:2.0.2")
 
-            library("glide", "com.github.bumptech.glide:glide:4.15.1")
+            library("glide", "com.github.bumptech.glide:glide:4.16.0")
 
             library("circleIndicator", "me.relex:circleindicator:2.1.6")
 

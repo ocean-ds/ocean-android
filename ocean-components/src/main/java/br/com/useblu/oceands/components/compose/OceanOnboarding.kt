@@ -74,7 +74,7 @@ fun OceanOnboardingPager(
         return currentPage == pages.size - 1
     }
 
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(pageCount = { pages.size })
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
@@ -91,7 +91,6 @@ fun OceanOnboardingPager(
         },
         content = {
             HorizontalPager(
-                pageCount = pages.size,
                 state = pagerState,
                 modifier = Modifier
                     .padding(it)

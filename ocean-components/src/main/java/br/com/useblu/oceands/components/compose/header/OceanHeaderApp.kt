@@ -149,7 +149,7 @@ fun OceanHeaderApp(
     model: OceanHeaderAppModel,
     modifier: Modifier = Modifier
 ) {
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(pageCount = { 2 })
     val currentPage = remember(model.isHeaderCollapsed) {
         pagerState.currentPage
     }
@@ -184,7 +184,6 @@ fun OceanHeaderApp(
                 }
             }
             HorizontalPager(
-                pageCount = 2,
                 state = pagerState,
                 contentPadding = PaddingValues(horizontal = 16.dp),
                 pageSize = balancePageSize,

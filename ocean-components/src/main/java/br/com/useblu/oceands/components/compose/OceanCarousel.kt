@@ -64,7 +64,10 @@ fun OceanCarousel(
     autoCycleTime: Long = 3000,
     initialPage: Int = 0
 ) {
-    val pagerState = rememberPagerState(initialPage = initialPage)
+    val pagerState = rememberPagerState(
+        initialPage = initialPage,
+        pageCount = { items.size }
+    )
 
     LaunchedEffect(key1 = autoCycle) {
         if (autoCycle) {
@@ -85,7 +88,6 @@ fun OceanCarousel(
             .background(color = OceanColors.interfaceLightPure)
     ) {
         HorizontalPager(
-            pageCount = items.size,
             state = pagerState,
             contentPadding = PaddingValues(horizontal = 16.dp),
             pageSpacing = 8.dp,

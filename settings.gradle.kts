@@ -24,7 +24,7 @@ dependencyResolutionManagement {
             version("lifecycleViewModel", "2.6.1")
             library("lifecycleViewModel", "androidx.lifecycle", "lifecycle-viewmodel-ktx").versionRef("lifecycleViewModel")
 
-            library("androidKtx", "androidx.core:core-ktx:1.9.0")
+            library("androidKtx", "androidx.core:core-ktx:1.12.0")
             library("androidAppCompat", "androidx.appcompat:appcompat:1.6.1")
 
             library("skydovesBalloon", "com.github.skydoves:balloon:1.6.2")

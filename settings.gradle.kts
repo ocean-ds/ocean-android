@@ -13,8 +13,8 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("classpath") {
-            library("gradle", "com.android.tools.build:gradle:8.0.2")
-            library("kotlin", "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22")
+            library("gradle", "com.android.tools.build:gradle:8.1.3")
+            library("kotlin", "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20")
         }
 
         create("libs") {
@@ -24,16 +24,16 @@ dependencyResolutionManagement {
             version("lifecycleViewModel", "2.6.1")
             library("lifecycleViewModel", "androidx.lifecycle", "lifecycle-viewmodel-ktx").versionRef("lifecycleViewModel")
 
-            library("androidKtx", "androidx.core:core-ktx:1.9.0")
+            library("androidKtx", "androidx.core:core-ktx:1.12.0")
             library("androidAppCompat", "androidx.appcompat:appcompat:1.6.1")
 
-            library("skydovesBalloon", "com.github.skydoves:balloon:1.5.2")
+            library("skydovesBalloon", "com.github.skydoves:balloon:1.6.2")
 
-            library("androidMaterial", "com.google.android.material:material:1.8.0")
+            library("androidMaterial", "com.google.android.material:material:1.10.0")
 
             library("canarinho", "com.github.concretesolutions:canarinho:2.0.2")
 
-            library("glide", "com.github.bumptech.glide:glide:4.15.1")
+            library("glide", "com.github.bumptech.glide:glide:4.16.0")
 
             library("circleIndicator", "me.relex:circleindicator:2.1.6")
 
@@ -49,13 +49,13 @@ dependencyResolutionManagement {
 
             library("skeletonBones", "com.github.EudyContreras:Skeleton-Bones:v1.4.5")
 
-            library("skydovesLandscapist", "com.github.skydoves:landscapist-glide:2.2.2")
+            library("skydovesLandscapist", "com.github.skydoves:landscapist-glide:2.2.12")
 
             // COMPOSE DEPENDENCIES
             library("compose-lifecycleViewModel", "androidx.lifecycle", "lifecycle-viewmodel-compose").versionRef("lifecycleViewModel")
-            library("compose-activity", "androidx.activity:activity-compose:1.7.2")
+            library("compose-activity", "androidx.activity:activity-compose:1.8.0")
 
-            library("compose-BOM", "androidx.compose:compose-bom:2023.06.01")
+            library("compose-BOM", "androidx.compose:compose-bom:2023.10.01")
             library("compose-androidMaterial3", "androidx.compose.material3", "material3").withoutVersion()
             library("compose-uiToolingPreview", "androidx.compose.ui", "ui-tooling-preview").withoutVersion()
             library("compose-uiViewBinding", "androidx.compose.ui", "ui-viewbinding").withoutVersion()

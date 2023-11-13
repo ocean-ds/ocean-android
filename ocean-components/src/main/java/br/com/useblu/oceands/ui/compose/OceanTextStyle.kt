@@ -38,7 +38,7 @@ private fun TextStylePreview() {
 object OceanTextStyle {
 
     private val heading @Composable get() = TextStyle(
-        color = OceanColors.interfaceDarkPure,
+        color = OceanColors.interfaceDarkDeep,
         fontFamily = OceanFontFamily.BaseExtraBold
     )
 

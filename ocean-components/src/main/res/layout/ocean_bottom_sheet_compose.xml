@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="100dp"
+    app:behavior_peekHeight="auto"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
     <data>
@@ -27,70 +27,67 @@
             type="Boolean" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/ocean_bottom_sheet_background"
-        android:orientation="vertical"
-        android:paddingStart="@dimen/ocean_spacing_stack_xs"
-        android:paddingEnd="@dimen/ocean_spacing_stack_xs"
-        android:paddingBottom="@dimen/ocean_spacing_stack_sm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingBottom="@dimen/ocean_spacing_stack_xs"
+        android:orientation="vertical">
 
-        <Space
-            android:id="@+id/space"
+        <LinearLayout
+            android:id="@+id/bottom_sheet_header_container"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_xs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/ocean_spacing_stack_xxs"
+            android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
+            android:paddingBottom="@dimen/ocean_spacing_stack_xxxs">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="13dp"
-            android:onClick="@{() -> clickNegative.invoke()}"
-            android:src="@drawable/icon_exit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space"
-            app:ocean_visible_or_gone="@{cancelabled}" />
-
-        <Space
-            android:id="@+id/space1"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/ocean_spacing_stack_xxxs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:padding="6dp"
+                android:onClick="@{() -> clickNegative.invoke()}"
+                android:src="@drawable/ocean_icon_x_outline"
+                android:contentDescription="@null"
+                android:tint="@color/ocean_color_interface_dark_up"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/space"
+                app:ocean_visible_or_gone="@{cancelabled}"
+                tools:ignore="UseAppTint" />
+        </LinearLayout>
 
         <androidx.compose.ui.platform.ComposeView
             android:id="@+id/compose_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="@dimen/ocean_spacing_stack_xs"
+            android:paddingEnd="@dimen/ocean_spacing_stack_xs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/space1"/>
 
         <LinearLayout
-            android:id="@+id/container_vertical"
+            android:id="@+id/container_horizontal_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/compose_view"
             app:ocean_visible_or_gone="@{code.length() > 0}">
 
-            <include
-                layout="@layout/ocean_footer_bottom_sheet"
+            <TextView
+                style="@style/Ocean.Description.DarkUp"
+                android:id="@+id/horizontal_text_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:code="@{code}" />
+                android:gravity="center"
+                app:text="@{`Código `+ code}"
+                tools:text="Código 0000" />
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

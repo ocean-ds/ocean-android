@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="100dp"
+    app:behavior_peekHeight="auto"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
     <data>
@@ -69,146 +69,116 @@
             type="Function0&lt;Unit>" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/ocean_bottom_sheet_background"
-        android:orientation="vertical"
-        android:paddingStart="@dimen/ocean_spacing_stack_xs"
-        android:paddingEnd="@dimen/ocean_spacing_stack_xs"
-        android:paddingBottom="@dimen/ocean_spacing_stack_sm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
-        <Space
-            android:id="@+id/space"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_xs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/icon_close"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="13dp"
-            android:src="@drawable/icon_exit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space"
-            app:ocean_visible_or_gone="@{cancelabled}" />
-
-        <Space
-            android:id="@+id/space1"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/ocean_spacing_stack_xxxs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/icon_close" />
-
-        <Space
-            android:id="@+id/space4"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_sm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space1"
-            app:ocean_visible_or_gone="@{icon != null}" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:adjustViewBounds="true"
-            android:src="@{icon}"
-            app:ocean_icon="@{image}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space4"
-            tools:src="@drawable/icon_generic" />
-
-        <Space
-            android:id="@+id/space2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_sm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-        <TextView
-            android:id="@+id/textTitle"
-            style="@style/Ocean.Heading.3"
+        <LinearLayout
+            android:id="@+id/bottom_sheet_header_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@{isCritical ? @color/ocean_color_status_negative_pure : @color/ocean_color_interface_dark_deep}"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space2"
-            app:text="@{title}"
-            tools:text="Heading 3" />
+            android:orientation="vertical"
+            android:paddingTop="@dimen/ocean_spacing_stack_xxs"
+            android:paddingEnd="@dimen/ocean_spacing_stack_xxs"
+            android:paddingBottom="@dimen/ocean_spacing_stack_xxxs">
 
-        <Space
-            android:id="@+id/space3"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_xxs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textTitle"
-            app:ocean_visible_or_gone="@{message.length() > 0}" />
+            <ImageView
+                android:id="@+id/icon_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:padding="6dp"
+                android:contentDescription="@null"
+                android:tint="@color/ocean_color_interface_dark_up"
+                android:src="@drawable/ocean_icon_x_outline"
+                app:ocean_visible_or_gone="@{cancelabled}"
+                tools:ignore="UseAppTint" />
+        </LinearLayout>
 
-        <include
-            android:id="@+id/textMessage"
-            layout="@layout/ocean_paragraph"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:gravity="@{Gravity.CENTER}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space3"
-            app:ocean_visible_or_gone="@{message.length() > 0}"
-            app:text="@{message}" />
-
-        <Space
-            android:id="@+id/space6"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_xxs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textMessage"
-            app:ocean_visible_or_gone="@{subMessage.length() > 0}" />
-
-        <include
-            android:id="@+id/textSubMessage"
-            layout="@layout/ocean_paragraph_highlight"
+        <LinearLayout
+            android:id="@+id/bottom_sheet_content_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:gravity="@{Gravity.CENTER}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space6"
-            app:ocean_visible_or_gone="@{subMessage.length() > 0}"
-            app:text="@{subMessage}" />
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xxs"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/ocean_spacing_stack_xs"
+            android:paddingEnd="@dimen/ocean_spacing_stack_xs">
 
-        <Space
-            android:id="@+id/space5"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ocean_spacing_stack_sm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textSubMessage" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/ocean_spacing_stack_sm"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="40dp"
+                    android:minWidth="40dp"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:src="@{icon}"
+                    app:ocean_icon="@{image}"
+                    tools:src="@drawable/icon_generic" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textTitle"
+                style="@style/Ocean.Heading.3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@{isCritical ? @color/ocean_color_status_negative_pure : @color/ocean_color_interface_dark_deep}"
+                app:text="@{title}"
+                tools:text="Heading 3" />
+
+            <Space
+                android:id="@+id/space3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_spacing_stack_xxs"
+                app:ocean_visible_or_gone="@{message.length() > 0}" />
+
+            <include
+                android:id="@+id/textMessage"
+                layout="@layout/ocean_paragraph"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:gravity="@{Gravity.CENTER}"
+                app:ocean_visible_or_gone="@{message.length() > 0}"
+                app:text="@{message}" />
+
+            <Space
+                android:id="@+id/space6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ocean_spacing_stack_xxs"
+                app:ocean_visible_or_gone="@{subMessage.length() > 0}" />
+
+            <include
+                android:id="@+id/textSubMessage"
+                layout="@layout/ocean_paragraph_highlight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:gravity="@{Gravity.CENTER}"
+                app:ocean_visible_or_gone="@{subMessage.length() > 0}"
+                app:text="@{subMessage}" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/container_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/ocean_spacing_stack_xs"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space5"
-            app:ocean_visible_or_gone="@{orientationButtons == 0}">
+            app:ocean_visible_or_gone="@{orientationButtons == 0}"
+            tools:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -258,12 +228,24 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <include
-                layout="@layout/ocean_footer_bottom_sheet"
+            <LinearLayout
+                android:id="@+id/container_horizontal_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:code="@{code}"
-                app:ocean_visible_or_gone="@{code.length() > 0}" />
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
+                android:orientation="vertical"
+                app:ocean_visible_or_gone="@{code.length() > 0}">
+
+                <TextView
+                    style="@style/Ocean.Description.DarkUp"
+                    android:id="@+id/horizontal_text_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:text="@{`Código `+ code}"
+                    tools:text="Código 0000" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -271,9 +253,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space5"
+            android:padding="@dimen/ocean_spacing_stack_xs"
             app:ocean_visible_or_gone="@{orientationButtons == 1}"
             tools:visibility="gone">
 
@@ -301,13 +281,25 @@
                 app:ocean_visible_or_gone="@{textNegative.length() > 0}"
                 app:text="@{textNegative}" />
 
-            <include
-                layout="@layout/ocean_footer_bottom_sheet"
+            <LinearLayout
+                android:id="@+id/container_vertical_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:code="@{code}"
-                app:ocean_visible_or_gone="@{code.length() > 0}" />
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
+                android:orientation="vertical"
+                app:ocean_visible_or_gone="@{code.length() > 0}">
+
+                <TextView
+                    style="@style/Ocean.Description.DarkUp"
+                    android:id="@+id/vertical_text_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:text="@{`Código `+ code}"
+                    tools:text="Código 0000" />
+            </LinearLayout>
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

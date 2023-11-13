@@ -1,7 +1,7 @@
 object Configs {
-    const val compileSdkVersion = 33
+    const val compileSdkVersion = 34
     const val minSdkVersion = 23
-    const val targetSdkVersion = 33
+    const val targetSdkVersion = 34
     const val kotlinCompilerExtensionVersion = "1.4.8"
     const val gprBaseUrl = "https://maven.pkg.github.com"
     const val gprRepoOwner = "ocean-ds"

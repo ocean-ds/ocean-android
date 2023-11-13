@@ -32,7 +32,7 @@ import kotlinx.coroutines.delay
 @Preview
 @Composable
 fun OceanCarouselPreview() {
-    val tucano = "https://ecrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCYLQmqlADnQuH6Of-4GBuuwXrZj16UEM2Bqu_faLa-Q&s"
+    val tucano = "https://static.mundoeducacao.uol.com.br/mundoeducacao/2022/06/tucano-toco.jpg"
     val carouselItems = listOf(
         OceanCarouselItem(tucano) {
             println("tucano 1")
@@ -50,6 +50,21 @@ fun OceanCarouselPreview() {
             showPageIndicator = true,
             autoCycle = true,
             autoCycleTime = 1500
+        )
+
+        OceanCarousel(
+            carouselItems,
+            showPageIndicator = true,
+            autoCycle = false,
+            autoCycleTime = 1500
+        )
+
+        OceanCarousel(
+            items = carouselItems,
+            showPageIndicator = true,
+            autoCycle = true,
+            autoCycleTime = 1500,
+            initialPage = 2
         )
     }
 }

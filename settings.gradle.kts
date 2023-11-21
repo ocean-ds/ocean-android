@@ -53,7 +53,7 @@ dependencyResolutionManagement {
 
             // COMPOSE DEPENDENCIES
             library("compose-lifecycleViewModel", "androidx.lifecycle", "lifecycle-viewmodel-compose").versionRef("lifecycleViewModel")
-            library("compose-activity", "androidx.activity:activity-compose:1.8.0")
+            library("compose-activity", "androidx.activity:activity-compose:1.8.1")
 
             library("compose-BOM", "androidx.compose:compose-bom:2023.10.01")
             library("compose-androidMaterial3", "androidx.compose.material3", "material3").withoutVersion()

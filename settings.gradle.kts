@@ -13,7 +13,7 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("classpath") {
-            library("gradle", "com.android.tools.build:gradle:8.1.3")
+            library("gradle", "com.android.tools.build:gradle:8.1.4")
             library("kotlin", "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20")
         }
 
@@ -27,7 +27,7 @@ dependencyResolutionManagement {
             library("androidKtx", "androidx.core:core-ktx:1.12.0")
             library("androidAppCompat", "androidx.appcompat:appcompat:1.6.1")
 
-            library("skydovesBalloon", "com.github.skydoves:balloon:1.6.2")
+            library("skydovesBalloon", "com.github.skydoves:balloon:1.6.3")
 
             library("androidMaterial", "com.google.android.material:material:1.10.0")
 
@@ -53,7 +53,7 @@ dependencyResolutionManagement {
 
             // COMPOSE DEPENDENCIES
             library("compose-lifecycleViewModel", "androidx.lifecycle", "lifecycle-viewmodel-compose").versionRef("lifecycleViewModel")
-            library("compose-activity", "androidx.activity:activity-compose:1.8.0")
+            library("compose-activity", "androidx.activity:activity-compose:1.8.1")
 
             library("compose-BOM", "androidx.compose:compose-bom:2023.10.01")
             library("compose-androidMaterial3", "androidx.compose.material3", "material3").withoutVersion()

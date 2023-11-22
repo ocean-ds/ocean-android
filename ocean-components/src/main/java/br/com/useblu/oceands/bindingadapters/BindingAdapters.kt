@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.bindingadapters
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.text.InputType
 import android.text.method.LinkMovementMethod
@@ -24,6 +25,11 @@ import br.com.useblu.oceands.model.OceanAlertType
 import br.com.useblu.oceands.utils.Formatter
 import br.com.useblu.oceands.utils.toOceanIcon
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -229,23 +235,72 @@ fun setFormatTypeCurrency(
 }
 
 @BindingAdapter("ocean_icon")
-fun loadIcon(view: ImageView, token: String?) {
-    if (!token.isNullOrBlank()) {
-        val isUrl = token.contains("http")
-        if (isUrl) {
-            val placeHolder =
-                AppCompatResources.getDrawable(view.context, R.drawable.circle_place_holder)
-            Glide.with(view.context).load(token).placeholder(placeHolder).into(view)
+fun loadIcon(view: ImageView, tokenOrUrl: String?) {
+
+    tokenOrUrl?.let {
+        if (it.contains("http")) {
+
+            val requestOptions = RequestOptions()
+                .placeholder(R.drawable.image_placeholder)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .priority(Priority.HIGH)
+
+            Glide.with(view.context)
+                .asBitmap()
+                .apply(requestOptions)
+                .load(it)
+                .into(customTarget(view))
+
         } else {
-            val context = view.context
-            val icon = AppCompatResources.getDrawable(
-                context,
-                token.toOceanIcon()
-            )
-            view.setImageDrawable(icon)
+           applyImage(it, view)
         }
     }
 }
+
+private fun customTarget(view: ImageView) = object : CustomTarget<Bitmap>() {
+    override fun onResourceReady(
+        resource: Bitmap,
+        transition: Transition<in Bitmap>?
+    ) {
+        adjustImageViewDimensions(view, resource)
+        view.setImageBitmap(resource)
+    }
+
+    override fun onLoadCleared(placeholder: Drawable?) {
+        view.setImageDrawable(placeholder)
+    }
+}
+
+
+private fun applyImage(tokenIcon: String, imageView: ImageView) {
+    val token = tokenIcon.takeIf { it.isNotBlank() } ?: return
+    val icon = AppCompatResources.getDrawable(
+        imageView.context,
+        token.toOceanIcon()
+    )
+    imageView.setImageDrawable(icon)
+}
+
+private fun adjustImageViewDimensions(imageView: ImageView, bitmap: Bitmap) {
+    val layoutParams = imageView.layoutParams ?: return
+
+    val aspectRatio = bitmap.width.toFloat() / bitmap.height.toFloat()
+
+    val maxWidth = 120.dp
+    val maxHeight = 120.dp
+
+    if (bitmap.width > maxWidth || bitmap.height > maxHeight) {
+        if (aspectRatio > 1) {
+            layoutParams.width = maxWidth
+            layoutParams.height = (maxWidth / aspectRatio).toInt()
+        } else {
+            layoutParams.width = (maxHeight * aspectRatio).toInt()
+            layoutParams.height = maxHeight
+        }
+        imageView.layoutParams = layoutParams
+    }
+}
+
 
 @BindingAdapter("is_active", "active_icon", "inactive_icon")
 fun ImageView.loadBottomNavIcon(isActive: Boolean, activeToken: String?, inactiveToken: String?) {

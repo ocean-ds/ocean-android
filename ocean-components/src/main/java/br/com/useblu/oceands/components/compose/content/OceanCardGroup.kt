@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,7 +30,9 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 @Composable
 fun OceanCardGroupPreview() {
     OceanTheme {
-        Column {
+        Column(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure)
+        ) {
             OceanCardGroup(
                 title = "Header",
                 subtitle = "Subtitle",
@@ -75,7 +76,8 @@ fun OceanCardGroup(
                 .padding(top = paddingTop)
                 .border(
                     width = 1.dp,
-                    color = OceanColors.interfaceLightDown,
+                    color = if (label.isNullOrBlank()) OceanColors.interfaceLightDown
+                    else OceanColors.brandPrimaryUp,
                     shape = RoundedCornerShape(8.dp)
                 )
         ) {
@@ -122,8 +124,6 @@ fun OceanCardGroup(
                 }
             }
 
-            Divider(color = OceanColors.interfaceLightDown)
-
             CardCta(
                 showProgress = showProgress,
                 actionTitle = actionTitle,
@@ -155,3 +155,4 @@ fun OceanCardGroup(
         }
     }
 }
+

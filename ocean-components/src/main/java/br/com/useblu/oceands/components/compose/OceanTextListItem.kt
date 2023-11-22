@@ -178,8 +178,8 @@ fun OceanTextListItem(
     textInfoColor: Color? = null,
     selected: Boolean = false,
     textListStyle: OceanTextListStyle = OceanTextListStyle.DEFAULT,
-    showError: Boolean,
-    enabled: Boolean,
+    showError: Boolean = false,
+    enabled: Boolean = true,
     onSelectedBox: ((Boolean) -> Unit)? = null,
     onClick: (() -> Unit)? = null
 ) {

@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -19,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
+import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
@@ -53,11 +55,23 @@ fun PreviewButton() {
             OceanButtonStyle.SecondaryCriticalSmall,
             OceanButtonStyle.SecondaryCriticalMedium,
             OceanButtonStyle.SecondaryCriticalLarge,
+        ),
+        listOf(
+            OceanButtonStyle.TertiarySmall,
+            OceanButtonStyle.TertiaryMedium,
+            OceanButtonStyle.TertiaryLarge,
+        ),
+        listOf(
+            OceanButtonStyle.TertiaryCriticalSmall,
+            OceanButtonStyle.TertiaryCriticalMedium,
+            OceanButtonStyle.TertiaryCriticalLarge,
         )
     )
 
     MaterialTheme {
-        Column {
+        Column(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure)
+        ) {
             OceanSpacing.StackXS()
 
             styles.forEach {

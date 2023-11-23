@@ -41,6 +41,7 @@ private fun OceanTextListItemPreview() {
             state = rememberScrollState(),
             enabled = true
         )
+        .background(color = OceanColors.interfaceLightPure)
     ) {
         OceanTextListItem(
             modifier = Modifier,
@@ -294,10 +295,13 @@ fun OceanTextListItem(
                 }
             }
         }
-        Divider(
-            thickness = 1.dp,
-            color = OceanColors.interfaceLightDown
-        )
+
+        if(textListStyle != OceanTextListStyle.DEFAULT){
+            Divider(
+                thickness = 1.dp,
+                color = OceanColors.interfaceLightDown
+            )
+        }
     }
 }
 

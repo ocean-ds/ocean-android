@@ -58,6 +58,13 @@ private fun OceanTagPreview() {
                 label = "Label",
                 type = OceanTagType.Neutral
             )
+
+            OceanSpacing.StackXXXS()
+
+            OceanTag(
+                label = "Label",
+                type = OceanTagType.NeutralPrimary
+            )
         }
 
         OceanSpacing.StackXS()
@@ -100,6 +107,14 @@ private fun OceanTagPreview() {
                 icon = OceanIcons.PLACEHOLDER_SOLID,
                 type = OceanTagType.Neutral
             )
+
+            OceanSpacing.StackXXXS()
+
+            OceanTag(
+                label = "Label",
+                icon = OceanIcons.PLACEHOLDER_SOLID,
+                type = OceanTagType.NeutralPrimary
+            )
         }
 
         OceanSpacing.StackXS()
@@ -140,6 +155,14 @@ private fun OceanTagPreview() {
             OceanTag(
                 label = "Label",
                 type = OceanTagType.Neutral,
+                isSmall = true
+            )
+
+            OceanSpacing.StackXXXS()
+
+            OceanTag(
+                label = "Label",
+                type = OceanTagType.NeutralPrimary,
                 isSmall = true
             )
         }
@@ -202,6 +225,9 @@ fun getBackgroundColor(type: OceanTagType): Color {
         OceanTagType.Neutral -> {
             OceanColors.interfaceLightUp
         }
+        OceanTagType.NeutralPrimary -> {
+            OceanColors.interfaceLightUp
+        }
         OceanTagType.Complementary -> {
             Color(0xFFEEFAFA)
         }
@@ -221,6 +247,9 @@ fun getTextColor(type: OceanTagType): Color {
     return when (type) {
         OceanTagType.Neutral -> {
             OceanColors.interfaceDarkUp
+        }
+        OceanTagType.NeutralPrimary -> {
+            OceanColors.brandPrimaryDown
         }
         OceanTagType.Complementary -> {
             OceanColors.complementaryPure

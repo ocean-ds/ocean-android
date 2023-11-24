@@ -48,6 +48,17 @@ fun PreviewOceanTopBarInverse() {
             onClickIcon = {},
             onClickToolbar = {},
             visibleShadow = true,
+            iconInvisible = true,
+            menuIcon = OceanIcons.HELP_OUTLINE
+        )
+
+        OceanSpacing.StackSM()
+
+        OceanTopBarInverse(
+            title = "Portabilidade",
+            onClickIcon = {},
+            onClickToolbar = {},
+            visibleShadow = true,
             iconInvisible = true
         )
     }
@@ -58,6 +69,8 @@ fun OceanTopBarInverse(
     title: String,
     icon: OceanIcons? = null,
     onClickIcon: () -> Unit,
+    menuIcon: OceanIcons? = null,
+    onClickMenuIcon: () -> Unit = {},
     onClickToolbar: () -> Unit = {},
     visibleShadow: Boolean = false,
     iconInvisible: Boolean = false
@@ -102,6 +115,20 @@ fun OceanTopBarInverse(
             )
 
             OceanSpacing.StackXS()
+
+            menuIcon?.let {
+                IconButton(
+                    modifier = Modifier.size(56.dp),
+                    onClick = { onClickMenuIcon() }
+                ) {
+                    Icon(
+                        painter = painterResource(id = menuIcon.icon),
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp),
+                        tint = OceanColors.brandPrimaryPure
+                    )
+                }
+            }
         }
 
         if (visibleShadow) {

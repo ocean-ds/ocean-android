@@ -16,6 +16,8 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -80,6 +82,7 @@ import br.com.useblu.oceands.components.OceanDatePickerFullscreen
 import br.com.useblu.oceands.components.OceanSnackBar
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.OceanTooltip
+import br.com.useblu.oceands.components.compose.OceanBottomSheet
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.model.OceanUnorderedListItem
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -101,7 +104,18 @@ class HomeActivity : AppCompatActivity() {
         setContent {
             view = LocalView.current
 
-
+            val showBottomSheet = remember {
+                mutableStateOf(false)
+            }
+            
+            if (showBottomSheet.value) {
+                OceanBottomSheet(
+                    content = {
+                      Text(text = "Exemplo simples de bottom sheet")
+                    },
+                    showBottomSheet = showBottomSheet
+                )
+            }
 
             LazyColumn {
                 textAction(text = "Accordion", onClick = { onClickAccordion() })
@@ -115,7 +129,8 @@ class HomeActivity : AppCompatActivity() {
                 textAction(text = "BottomSheet Vertical with Code", onClick = { onClickBottomSheetImageVerticalWithCode() })
                 textAction(text = "BottomSheet Horizontal", onClick = { onClickBottomSheetHorizontal() })
                 textAction(text = "BottomSheet Critical", onClick = { onClickBottomSheetCritical() })
-                textAction(text = "BottomSheet Compose", onClick = { onClickBottomSheetWithCompose() })
+                textAction(text = "BottomSheet Compose Content", onClick = { onClickBottomSheetWithCompose() })
+                textAction(text = "BottomSheet 100% Compose", onClick = { showBottomSheet.value = true })
                 textAction(text = "BottomSheetList", onClick = { onOceanBottomListSheet() })
                 textAction(text = "BottomSheetList (body Icon)", onClick = { onOceanBottomListSheetWithBodyIcon() })
                 textAction(text = "BottomSheetList (button)", onClick = { onOceanBottomListSheetButton() })
@@ -131,35 +146,35 @@ class HomeActivity : AppCompatActivity() {
                 textAction(text = "Chart Card", onClick = { chartCardClick() })
                 textAction(text = "Checkbox", onClick = { checkbox() })
                 textAction(text = "Chips", onClick = { onClickChips() })
-                textAction(text = "Descriptor List Item", onClick = { descriptorList() })
-                textAction(text = "Donut", onClick = { donutView() })
                 textAction(text = "DatePicker Fullscreen", onClick = { onOceanDatePickerFullScreen() })
+                textAction(text = "Descriptor List Item", onClick = { descriptorList() })
                 textAction(text = "Detailed Card", onClick = { detailedCardClick() })
+                textAction(text = "Donut", onClick = { donutView() })
                 textAction(text = "Footer Blu", onClick = { onFooterBlu() })
                 textAction(text = "Group CTA", onClick = { onClickCta() })
                 textAction(text = "Header App", onClick = { onClickHeaderApp() })
-                textAction(text = "Input", onClick = { onClickInputs() })
                 textAction(text = "Informative Card", onClick = { informativeCardClick() })
+                textAction(text = "Input", onClick = { onClickInputs() })
                 textAction(text = "Options Card", onClick = { clickOptionsCard() })
                 textAction(text = "Progress Bar", onClick = { clickProgressBar() })
                 textAction(text = "Radio", onClick = { onClickRadio() })
+                textAction(text = "Shortcuts", onClick = { shortcuts() })
                 textAction(text = "SnackBar", onClick = { onClickSnackBar(view) })
                 textAction(text = "SnackBar + Action", onClick = { onClickSnackBarAction(view) })
-                textAction(text = "Shortcuts", onClick = { shortcuts() })
-                textAction(text = "Step", onClick = { stepview() })
                 textAction(text = "Status List Item", onClick = { statusListItem() })
+                textAction(text = "Step", onClick = { stepview() })
                 textAction(text = "Switch", onClick = { onClickSwitch() })
                 textAction(text = "Tab", onClick = { onClickTab() })
                 textAction(text = "Tag", onClick = { onClickTags() })
                 textAction(text = "Text Link", onClick = { onClickTextLink() })
-                textAction(text = "Text List Item", onClick = { textListItem() })
+                textAction(text = "Text List Expandable", onClick = { listItemsExpandable() })
                 textAction(text = "Text List Icon Item", onClick = { textListIconItem() })
+                textAction(text = "Text List Item", onClick = { textListItem() })
                 textAction(text = "Text List Inverted Item", onClick = { textListInvertedItem() })
                 textAction(text = "Text List Inline Item", onClick = { textListInlineItem() })
-                textAction(text = "Text List Expandable", onClick = { listItemsExpandable() })
                 textAction(text = "Text List Settings", onClick = { listItemsSettings() })
-                textAction(text = "List Subheader", onClick = { listSubheaderClick() })
                 textAction(text = "List Ordered", onClick = { listOrderedClick() })
+                textAction(text = "List Subheader", onClick = { listSubheaderClick() })
                 textAction(text = "Toast", onClick = { onClickToast() })
                 textAction(text = "Tooltip", onClick = { onClickTooltip(view) })
                 textAction(text = "TopBar", onClick = { topBarClick() })

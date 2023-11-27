@@ -195,6 +195,7 @@ class HomeActivity : AppCompatActivity() {
                 text = text,
                 modifier = Modifier
                     .clickable { onClick() }
+                    .fillMaxWidth()
                     .padding(16.dp),
                 fontSize = 24.sp,
                 color = OceanColors.interfaceDarkDown
@@ -205,7 +206,11 @@ class HomeActivity : AppCompatActivity() {
 
     @Composable
     private fun Divider() {
-        Divider(thickness = 3.dp, modifier = Modifier.padding(start = 10.dp), color = Color(0xFFE7E7E7))
+        Divider(
+            thickness = 1.dp,
+            modifier = Modifier.padding(horizontal = 12.dp),
+            color = Color(0xFFE7E7E7)
+        )
     }
 
     private fun onClickTypography() {

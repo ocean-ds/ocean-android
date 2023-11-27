@@ -1,7 +1,6 @@
 package br.com.useblu.oceands.model
 
 import android.content.Context
-import androidx.compose.runtime.Immutable
 import br.com.useblu.oceands.adapter.OceanFilterChipMultipleOptionsAdapter
 import br.com.useblu.oceands.adapter.OceanFilterChipSingleOptionsAdapter
 import br.com.useblu.oceands.components.OceanOptionsBottomListSheet
@@ -56,14 +55,12 @@ sealed class OceanChipFilterOptions{
         bottomSheet.show()
     }
 
-    @Immutable
     data class SingleChoice(
         override val title: String,
         override val optionsItems: List<FilterOptionsItem>,
         val onSelectItem: (selectedIndex: Int) -> Unit
     ): OceanChipFilterOptions()
 
-    @Immutable
     data class MultipleChoice(
         override val title: String,
         override val optionsItems: List<FilterOptionsItem>,

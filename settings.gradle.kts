@@ -14,7 +14,7 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("classpath") {
             library("gradle", "com.android.tools.build:gradle:8.1.4")
-            library("kotlin", "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20")
+            library("kotlin", "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.21")
         }
 
         create("libs") {

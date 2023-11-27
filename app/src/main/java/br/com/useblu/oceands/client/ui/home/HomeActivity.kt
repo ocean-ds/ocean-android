@@ -107,7 +107,7 @@ class HomeActivity : AppCompatActivity() {
             val showBottomSheet = remember {
                 mutableStateOf(false)
             }
-            
+
             if (showBottomSheet.value) {
                 OceanBottomSheet(
                     content = {

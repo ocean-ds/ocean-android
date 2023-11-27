@@ -69,13 +69,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            app:layout_goneMarginStart="0dp"
             android:gravity="start"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/container_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@id/arrowIcon"
-            app:layout_constraintStart_toEndOf="@+id/container_icon">
+            app:layout_constraintStart_toEndOf="@+id/container_icon"
+            app:layout_constraintTop_toTopOf="@+id/container_icon"
+            app:layout_goneMarginStart="0dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/titleTextView"
@@ -95,8 +96,8 @@
                 android:text="@{description}"
                 android:textColor="@color/ocean_color_interface_dark_down"
                 android:textSize="@dimen/ocean_font_size_xxs"
-                tools:text="Description"
-                app:ocean_visible_or_gone="@{description != null}"/>
+                app:ocean_visible_or_gone="@{description != null}"
+                tools:text="Description" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/captionTextView"

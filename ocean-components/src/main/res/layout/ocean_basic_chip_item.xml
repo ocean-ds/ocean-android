@@ -50,7 +50,7 @@
                 android:layout_height="16dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/ocean_spacing_inline_xxxs"
-                app:ocean_icon="@{item.icon}"
+                app:ocean_icon="@{item.icon.token}"
                 tools:src="@drawable/ocean_icon_information_circle_outline"
                 tools:tint="@color/ocean_color_brand_primary_pure" />
 

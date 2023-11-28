@@ -4,21 +4,32 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
 import br.com.useblu.oceands.adapter.OceanUnorderedListAdapter
 import br.com.useblu.oceands.client.R
-import br.com.useblu.oceands.client.databinding.ActivityHomeBinding
 import br.com.useblu.oceands.client.ui.accordion.AccordionActivity
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.badges.BadgesActivity
@@ -71,12 +82,13 @@ import br.com.useblu.oceands.components.OceanDatePickerFullscreen
 import br.com.useblu.oceands.components.OceanSnackBar
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.OceanTooltip
+import br.com.useblu.oceands.components.compose.OceanBottomSheet
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.model.OceanUnorderedListItem
+import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Calendar
@@ -84,230 +96,334 @@ import java.util.Date
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityHomeBinding
-
-    init {
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-    }
+    private lateinit var view: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+
+        setContent {
+            view = LocalView.current
+
+            val showBottomSheet = remember {
+                mutableStateOf(false)
+            }
+
+            if (showBottomSheet.value) {
+                OceanBottomSheet(
+                    content = {
+                      Text(text = "Exemplo simples de bottom sheet")
+                    },
+                    showBottomSheet = showBottomSheet
+                )
+            }
+
+            LazyColumn {
+                textAction(text = "Accordion", onClick = { onClickAccordion() })
+                textAction(text = "Alerts", onClick = { onClickAlert() })
+                textAction(text = "Badges", onClick = { onClickBadges() })
+                textAction(text = "Balance", onClick = { onClickBalance() })
+                textAction(text = "Buttons", onClick = { onClickButtons() })
+                textAction(text = "Bottom Navigation", onClick = { onClickBottomNavigation() })
+                textAction(text = "BottomSheet with Image", onClick = { onClickBottomSheetImage() })
+                textAction(text = "BottomSheet Vertical", onClick = { onClickBottomSheetVertical() })
+                textAction(text = "BottomSheet Vertical with Code", onClick = { onClickBottomSheetImageVerticalWithCode() })
+                textAction(text = "BottomSheet Horizontal", onClick = { onClickBottomSheetHorizontal() })
+                textAction(text = "BottomSheet Critical", onClick = { onClickBottomSheetCritical() })
+                textAction(text = "BottomSheet Compose Content", onClick = { onClickBottomSheetWithCompose() })
+                textAction(text = "BottomSheet 100% Compose", onClick = { showBottomSheet.value = true })
+                textAction(text = "BottomSheetList", onClick = { onOceanBottomListSheet() })
+                textAction(text = "BottomSheetList (body Icon)", onClick = { onOceanBottomListSheetWithBodyIcon() })
+                textAction(text = "BottomSheetList (button)", onClick = { onOceanBottomListSheetButton() })
+                textAction(text = "BottomSheetList (button with caption)", onClick = { onOceanBottomListSheetButtonWithCaption() })
+                textAction(text = "BottomSheetList (icon)", onClick = { onOceanBottomListSheetIcon() })
+                textAction(text = "BottomSheetList (icon + subtitle)", onClick = { onOceanBottomListSheetIcon() })
+                textAction(text = "BottomSheetList (Generic List)", onClick = { onOceanBottomListSheetWithGenericList() })
+                textAction(text = "BottomSheetList (search)", onClick = { onOceanBottomListSheetWithSearch() })
+                textAction(text = "Card Cross Cell", onClick = { cardCrossCellClick() })
+                textAction(text = "Card Group", onClick = { cardContentClick() })
+                textAction(text = "Card Item", onClick = { onClickCardItem() })
+                textAction(text = "Carousel", onClick = { carousel() })
+                textAction(text = "Chart Card", onClick = { chartCardClick() })
+                textAction(text = "Checkbox", onClick = { checkbox() })
+                textAction(text = "Chips", onClick = { onClickChips() })
+                textAction(text = "DatePicker Fullscreen", onClick = { onOceanDatePickerFullScreen() })
+                textAction(text = "Descriptor List Item", onClick = { descriptorList() })
+                textAction(text = "Detailed Card", onClick = { detailedCardClick() })
+                textAction(text = "Donut", onClick = { donutView() })
+                textAction(text = "Footer Blu", onClick = { onFooterBlu() })
+                textAction(text = "Group CTA", onClick = { onClickCta() })
+                textAction(text = "Header App", onClick = { onClickHeaderApp() })
+                textAction(text = "Informative Card", onClick = { informativeCardClick() })
+                textAction(text = "Input", onClick = { onClickInputs() })
+                textAction(text = "Options Card", onClick = { clickOptionsCard() })
+                textAction(text = "Progress Bar", onClick = { clickProgressBar() })
+                textAction(text = "Radio", onClick = { onClickRadio() })
+                textAction(text = "Shortcuts", onClick = { shortcuts() })
+                textAction(text = "SnackBar", onClick = { onClickSnackBar(view) })
+                textAction(text = "SnackBar + Action", onClick = { onClickSnackBarAction(view) })
+                textAction(text = "Status List Item", onClick = { statusListItem() })
+                textAction(text = "Step", onClick = { stepview() })
+                textAction(text = "Switch", onClick = { onClickSwitch() })
+                textAction(text = "Tab", onClick = { onClickTab() })
+                textAction(text = "Tag", onClick = { onClickTags() })
+                textAction(text = "Text Link", onClick = { onClickTextLink() })
+                textAction(text = "Text List Expandable", onClick = { listItemsExpandable() })
+                textAction(text = "Text List Icon Item", onClick = { textListIconItem() })
+                textAction(text = "Text List Item", onClick = { textListItem() })
+                textAction(text = "Text List Inverted Item", onClick = { textListInvertedItem() })
+                textAction(text = "Text List Inline Item", onClick = { textListInlineItem() })
+                textAction(text = "Text List Settings", onClick = { listItemsSettings() })
+                textAction(text = "List Ordered", onClick = { listOrderedClick() })
+                textAction(text = "List Subheader", onClick = { listSubheaderClick() })
+                textAction(text = "Toast", onClick = { onClickToast() })
+                textAction(text = "Tooltip", onClick = { onClickTooltip(view) })
+                textAction(text = "TopBar", onClick = { topBarClick() })
+                textAction(text = "Transaction List", onClick = { transactionListClick() })
+                textAction(text = "Transaction Footer", onClick = { transactionFooter() })
+                textAction(text = "Typography", onClick = { onClickTypography() })
+                textAction(text = "Unordered List Item", onClick = { onClickUnorderedListItem() })
+            }
+        }
     }
 
-    fun onClickTypography(view: View) {
+    private fun LazyListScope.textAction(
+        text: String,
+        onClick: () -> Unit
+    ) {
+        item {
+            Text(
+                text = text,
+                modifier = Modifier
+                    .clickable { onClick() }
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                fontSize = 24.sp,
+                color = OceanColors.interfaceDarkDown
+            )
+            Divider()
+        }
+    }
+
+    @Composable
+    private fun Divider() {
+        Divider(
+            thickness = 1.dp,
+            modifier = Modifier.padding(horizontal = 12.dp),
+            color = Color(0xFFE7E7E7)
+        )
+    }
+
+    private fun onClickTypography() {
         val intent = Intent(this, TypographyActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickBottomNavigation(view: View) {
+    private fun onClickBottomNavigation() {
         val intent = Intent(this, BottomNavigationActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickUnorderedListItem(view: View) {
+    private fun onClickUnorderedListItem() {
         val intent = Intent(this, UnorderedListItemActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickButtons(view: View) {
+    private fun onClickButtons() {
         val intent = Intent(this, ButtonsActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickCta(view: View) {
+    private fun onClickCta() {
         val intent = Intent(this, GroupCTAActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickHeaderApp(view: View) {
+    private fun onClickHeaderApp() {
         val intent = Intent(this, HeaderAppActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickInputs(view: View) {
+    private fun onClickInputs() {
         val intent = Intent(this, InputActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickAccordion(view: View) {
+    private fun onClickAccordion() {
         val intent = Intent(this, AccordionActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickAlert(view: View) {
+    private fun onClickAlert() {
         val intent = Intent(this, AlertActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickBadges(view: View) {
+    private fun onClickBadges() {
         val intent = Intent(this, BadgesActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickChips(view: View) {
+    private fun onClickChips() {
         val intent = Intent(this, ChipsActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickBalance(view: View) {
+    private fun onClickBalance() {
         val intent = Intent(this, BalanceActivity::class.java)
         startActivity(intent)
     }
 
-    fun topBarClick(view: View) {
+    private fun topBarClick() {
         val intent = Intent(this, TopbarActivity::class.java)
         startActivity(intent)
     }
 
-    fun transactionListClick(view: View) {
+    private fun transactionListClick() {
         val intent = Intent(this, TransactionListItemActivity::class.java)
         startActivity(intent)
     }
 
-    fun listItemsExpandable(view: View) {
+    private fun listItemsExpandable() {
         val intent = Intent(this, TextListExpandableActivity::class.java)
         startActivity(intent)
     }
 
-    fun listItemsSettings(view: View) {
+    private fun listItemsSettings() {
         val intent = Intent(this, SettingsListItemActivity::class.java)
         startActivity(intent)
     }
 
-    fun listSubheaderClick(view: View) {
+    private fun listSubheaderClick() {
         val intent = Intent(this, ListSubheaderActivity::class.java)
         startActivity(intent)
     }
 
-    fun listOrderedClick(view: View) {
+    private fun listOrderedClick() {
         val intent = Intent(this, OrderedListItemActivity::class.java)
         startActivity(intent)
     }
 
-    fun cardContentClick(view: View) {
+    private fun cardContentClick() {
         val intent = Intent(this, CardGroupActivity::class.java)
         startActivity(intent)
     }
 
-    fun cardCrossCellClick(view: View) {
+    private fun cardCrossCellClick() {
         val intent = Intent(this, CardCrossSellActivity::class.java)
         startActivity(intent)
     }
 
-    fun informativeCardClick(view: View) {
+    private fun informativeCardClick() {
         val intent = Intent(this, InformativeCardActivity::class.java)
         startActivity(intent)
     }
 
-    fun carousel(view: View) {
+    private fun carousel() {
         val intent = Intent(this, CarouselActivity::class.java)
         startActivity(intent)
     }
 
-    fun shortcuts(view: View) {
+    private fun shortcuts() {
         val intent = Intent(this, ShortcutsActivity::class.java)
         startActivity(intent)
     }
 
-    fun stepview(view: View) {
+    private fun stepview() {
         val intent = Intent(this, StepViewActivity::class.java)
         startActivity(intent)
     }
 
-    fun statusListItem(view: View) {
+    private fun statusListItem() {
         val intent = Intent(this, StatusListItemActivity::class.java)
         startActivity(intent)
     }
 
-    fun textListIconItem(view: View) {
+    private fun textListIconItem() {
         val intent = Intent(this, TextListIconItemActivity::class.java)
         startActivity(intent)
     }
 
-    fun textListItem(view: View) {
+    private fun textListItem() {
         val intent = Intent(this, TextListItemActivity::class.java)
         startActivity(intent)
     }
 
-    fun textListInvertedItem(view: View) {
+    private fun textListInvertedItem() {
         val intent = Intent(this, TextListInvertedItemActivity::class.java)
         startActivity(intent)
     }
 
-    fun textListInlineItem(view: View) {
+    private fun textListInlineItem() {
         val intent = Intent(this, TextListInlineItemActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickSwitch(view: View) {
+    private fun onClickSwitch() {
         val intent = Intent(this, SwitchsActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickTab(view: View) {
+    private fun onClickTab() {
         val intent = Intent(this, TabActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickTags(view: View) {
+    private fun onClickTags() {
         val intent = Intent(this, TagActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickRadio(view: View) {
+    private fun onClickRadio() {
         val intent = Intent(this, RadioActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickTextLink(view: View) {
+    private fun onClickTextLink() {
         val intent = Intent(this, TextLinkActivity::class.java)
         startActivity(intent)
     }
 
-    fun clickOptionsCard(view: View) {
+    private fun clickOptionsCard() {
         val intent = Intent(this, OptionsCardActivity::class.java)
         startActivity(intent)
     }
 
-    fun clickProgressBar(view: View) {
+    private fun clickProgressBar() {
         val intent = Intent(this, ProgressBarActivity::class.java)
         startActivity(intent)
     }
 
-    fun checkbox(view: View) {
+    private fun checkbox() {
         val intent = Intent(this, CheckBoxActivity::class.java)
         startActivity(intent)
     }
 
-    fun transactionFooter(view: View) {
+    private fun transactionFooter() {
         val intent = Intent(this, TransactionFooterActivity::class.java)
         startActivity(intent)
     }
 
-    fun descriptorList(view: View) {
+    private fun descriptorList() {
         val intent = Intent(this, DescriptorListActivity::class.java)
         startActivity(intent)
     }
 
-    fun donutView(view: View) {
+    private fun donutView() {
         val intent = Intent(this, DonutActivity::class.java)
         startActivity(intent)
     }
 
-    fun detailedCardClick(view: View) {
+    private fun detailedCardClick() {
         val intent = Intent(this, DetailedCardActivity::class.java)
         startActivity(intent)
     }
 
-    fun chartCardClick(view: View) {
+    private fun chartCardClick() {
         val intent = Intent(this, ChartCardActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickBottomSheetImage(view: View) {
+    private fun onClickBottomSheetImage() {
         OceanBottomSheet(this)
             .withTitle("Title")
             .withMessage("Message")
@@ -319,7 +435,7 @@ class HomeActivity : AppCompatActivity() {
             .show()
     }
 
-    fun onClickBottomSheetVertical(view: View) {
+    private fun onClickBottomSheetVertical() {
         OceanBottomSheet(this)
             .withTitle("Title")
             .withMessage("Message")
@@ -331,7 +447,7 @@ class HomeActivity : AppCompatActivity() {
             .show()
     }
 
-    fun onClickBottomSheetImageVerticalWithCode(view: View) {
+    private fun onClickBottomSheetImageVerticalWithCode() {
         OceanBottomSheet(this)
             .withTitle("Title")
             .withMessage("Message a huge text to test the bottom sheet behavior on deal with multiple lines")
@@ -344,7 +460,7 @@ class HomeActivity : AppCompatActivity() {
             .show()
     }
 
-    fun onClickBottomSheetHorizontal(view: View) {
+    private fun onClickBottomSheetHorizontal() {
         OceanBottomSheet(this)
             .withTitle("Title")
             .withMessage("Message")
@@ -356,7 +472,7 @@ class HomeActivity : AppCompatActivity() {
             .show()
     }
 
-    fun onClickBottomSheetCritical(view: View) {
+    private fun onClickBottomSheetCritical() {
         OceanBottomSheet(this)
             .withTitle("Title")
             .withMessage("Message")
@@ -369,7 +485,7 @@ class HomeActivity : AppCompatActivity() {
             .show()
     }
 
-    fun onClickBottomSheetWithCompose(view: View) {
+    private fun onClickBottomSheetWithCompose() {
         OceanBottomSheetCompose()
             .withComposeContent {
                 Column(
@@ -398,7 +514,7 @@ class HomeActivity : AppCompatActivity() {
             .show(supportFragmentManager, "BottomSheetCompose")
     }
 
-    fun onOceanBottomListSheet(view: View) {
+    private fun onOceanBottomListSheet() {
         val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
         OceanBottomListSheet(this)
             .withTitle("Title")
@@ -415,10 +531,10 @@ class HomeActivity : AppCompatActivity() {
             ).show()
     }
 
-    fun onOceanBottomListSheetWithBodyIcon(view: View) {
+    private fun onOceanBottomListSheetWithBodyIcon() {
         val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
         OceanBottomListSheet(this)
-            .withBodyIcon(getDrawable(R.drawable.ocean_icon_retailer_outline))
+            .withBodyIcon(ContextCompat.getDrawable(this, R.drawable.ocean_icon_retailer_outline))
             .withTitle("Title")
             .withSimpleList(
                 items = options,
@@ -433,7 +549,7 @@ class HomeActivity : AppCompatActivity() {
             ).show()
     }
 
-    fun onOceanBottomListSheetWithGenericList(view: View) {
+    private fun onOceanBottomListSheetWithGenericList() {
 
         val bottomSheet = OceanBottomListSheet(this)
 
@@ -465,7 +581,7 @@ class HomeActivity : AppCompatActivity() {
         }.show()
     }
 
-    fun onOceanBottomListSheetButton(view: View) {
+    private fun onOceanBottomListSheetButton() {
         val showLoading = MutableLiveData(false)
         val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
         OceanBottomListSheet(this)
@@ -483,14 +599,14 @@ class HomeActivity : AppCompatActivity() {
             )
             .withFooterButton(
                 text = getString(R.string.all_button_confirm),
-                icon = getDrawable(R.drawable.ocean_icon_retailer_outline),
+                icon = ContextCompat.getDrawable(this, R.drawable.ocean_icon_retailer_outline),
                 click = { showToast(showLoading) },
                 loading = showLoading,
                 useSecondaryStyle = true
             ).show()
     }
 
-    fun onOceanBottomListSheetButtonWithCaption(view: View) {
+    private fun onOceanBottomListSheetButtonWithCaption() {
         val showLoading = MutableLiveData(false)
         val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
 
@@ -530,14 +646,14 @@ class HomeActivity : AppCompatActivity() {
             "Footer button clicked",
             Toast.LENGTH_SHORT
         ).show()
-        GlobalScope.launch {
+        lifecycleScope.launch {
             delay(6000)
             loading.postValue(false)
         }
     }
 
 
-    fun onOceanBottomListSheetIcon(view: View) {
+    private fun onOceanBottomListSheetIcon() {
         val drawableIcon = ContextCompat.getDrawable(this, R.drawable.icon_generic_primary)!!
         val options = listOf(
             OceanBottomListSheetUIModel(drawableIcon, "Title 1", "description 1"),
@@ -558,7 +674,7 @@ class HomeActivity : AppCompatActivity() {
             ).show()
     }
 
-    fun onOceanBottomListSheetWithSearch(view: View) {
+    private fun onOceanBottomListSheetWithSearch() {
         val options = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
         OceanBottomListSheet(this)
             .withTitle("Title")
@@ -579,7 +695,7 @@ class HomeActivity : AppCompatActivity() {
             ).show()
     }
 
-    fun onOceanDatePickerFullScreen(view: View) {
+    private fun onOceanDatePickerFullScreen() {
         val calendarMinDate = Calendar.getInstance()
         calendarMinDate.time = Date()
 
@@ -625,32 +741,32 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    fun onClickToast(view: View) {
+    private fun onClickToast() {
         OceanToast(this)
             .withType(OceanToast.OceanToastType.Warning)
             .withMessage(R.string.message)
             .show()
     }
 
-    fun onClickSnackBar(view: View) {
+    private fun onClickSnackBar(view: View) {
         OceanSnackBar(
-            binding.container,
+            view,
             getString(R.string.lorem_ipsum),
             OceanSnackBar.OceanSnackBarType.Error
         ).show()
     }
 
-    fun onClickSnackBarAction(view: View) {
+    private fun onClickSnackBarAction(view: View) {
         OceanSnackBar(
-            binding.container,
-            getString(R.string.lorem_ipsum),
-            OceanSnackBar.OceanSnackBarType.Success,
-            getString(R.string.help),
-            View.OnClickListener { println("ok") }
+            container = view,
+            message = getString(R.string.lorem_ipsum),
+            type = OceanSnackBar.OceanSnackBarType.Success,
+            actionText = getString(R.string.help),
+            actionClick = { println("ok") }
         ).show()
     }
 
-    fun onClickTooltip(view: View) {
+    private fun onClickTooltip(view: View) {
         val message = getString(R.string.message)
         val tooltip = OceanTooltip(context = this)
             .withMessage(message)
@@ -660,15 +776,15 @@ class HomeActivity : AppCompatActivity() {
             .withAutoDismissDuration(1000)
             .build()
 
-        tooltip.showAlignTop(binding.tooltip)
+        tooltip.showAlignTop(view)
     }
 
-    fun onFooterBlu(view: View) {
+    private fun onFooterBlu() {
         val intent = Intent(this, FooterBluActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickCardItem(view: View) {
+    private fun onClickCardItem() {
         val intent = Intent(this, CardItemActivity::class.java)
         startActivity(intent)
     }

@@ -6,7 +6,6 @@
         <variable
             name="viewmodel"
             type="br.com.useblu.oceands.client.ui.chips.ChipsViewModel" />
-
     </data>
 
 
@@ -49,6 +48,11 @@
             android:id="@+id/livedata"
             app:chips="@{viewmodel.chips}"
             layout="@layout/ocean_chip_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/compose_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

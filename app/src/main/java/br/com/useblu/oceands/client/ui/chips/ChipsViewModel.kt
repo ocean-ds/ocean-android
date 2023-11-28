@@ -5,7 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
-import br.com.useblu.oceands.model.*
+import br.com.useblu.oceands.model.Badge
+import br.com.useblu.oceands.model.FilterOptionsItem
+import br.com.useblu.oceands.model.OceanBadgeType
+import br.com.useblu.oceands.model.OceanBasicChip
+import br.com.useblu.oceands.model.OceanChip
+import br.com.useblu.oceands.model.OceanChipFilterOptions
+import br.com.useblu.oceands.model.OceanChipItemState
+import br.com.useblu.oceands.model.OceanFilterChip
+import br.com.useblu.oceands.utils.OceanIcons
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -137,7 +145,7 @@ class ChipsViewModel : ViewModel() {
             OceanBasicChip(
                 label = allChip.label,
                 id = allChip.id,
-                icon = "informationcircleoutline",
+                icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE,
                 onClick = {
                     println("OceanChipItem 1 $it")
                 }
@@ -184,7 +192,7 @@ class ChipsViewModel : ViewModel() {
             OceanBasicChip(
                 label = toDueChip.label,
                 id = toDueChip.id,
-                icon = "informationcircleoutline",
+                icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE,
                 onClick = {
                     println("OceanChipItem 2 $it")
                 }
@@ -192,7 +200,7 @@ class ChipsViewModel : ViewModel() {
             OceanBasicChip(
                 label = overDueChip.label,
                 id = overDueChip.id,
-                icon = "informationcircleoutline",
+                icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE,
                 onClick = {
                     println("OceanChipItem 3 $it")
                 }
@@ -201,7 +209,7 @@ class ChipsViewModel : ViewModel() {
                 label = unavailableChip.label,
                 id = unavailableChip.id,
                 state = OceanChipItemState.DISABLED_ACTIVE,
-                icon = "informationcircleoutline",
+                icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE,
                 onClick = {
                     println("OceanChipItem 4 $it")
                 }
@@ -210,7 +218,7 @@ class ChipsViewModel : ViewModel() {
                 label = errorChip.label,
                 id = errorChip.id,
                 state = OceanChipItemState.INACTIVE_HOVER,
-                icon = "informationcircleoutline",
+                icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE,
                 onClick = {
                     println("OceanChipItem 5 $it")
                 },

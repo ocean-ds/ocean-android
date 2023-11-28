@@ -1,5 +1,8 @@
 package br.com.useblu.oceands.model
 
+import androidx.compose.runtime.Stable
+
+@Stable
 enum class OceanChipItemState {
     ACTIVE_HOVER, INACTIVE_HOVER, DISABLED_ACTIVE, DISABLED_INACTIVE, DEFAULT;
 

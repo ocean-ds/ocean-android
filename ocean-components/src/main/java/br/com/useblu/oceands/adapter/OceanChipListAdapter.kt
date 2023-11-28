@@ -7,14 +7,11 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.components.OceanOptionsBottomListSheet
 import br.com.useblu.oceands.databinding.OceanBasicChipItemBinding
 import br.com.useblu.oceands.databinding.OceanFilterChipItemBinding
-import br.com.useblu.oceands.model.FilterOptionsItem
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
 import br.com.useblu.oceands.model.OceanChip
-import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
 
@@ -159,55 +156,8 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.icon.setColorFilter(getContentColor(item, context), android.graphics.PorterDuff.Mode.SRC_IN)
 
             binding.chipListItemBackground.setOnClickListener {
-                showBottomSheet(it.context, item)
+                item.filterOptions.showBottomSheet(it.context)
             }
-        }
-
-        private fun List<FilterOptionsItem>.getSelectedIndexes(): List<Int> {
-            return mapIndexed { index, filterOptionsItem ->
-                if (filterOptionsItem.isSelected) {
-                    index
-                } else {
-                    -1
-                }
-            }.filter { it != -1 }
-        }
-
-        private fun showBottomSheet(context: Context, chip: OceanFilterChip) {
-            val options = chip.filterOptions
-            val internalItems = options.optionsItems.map { it.copy() }
-
-            val bottomSheet = OceanOptionsBottomListSheet(context)
-                .withTitle(options.title)
-
-            when (options) {
-                is OceanChipFilterOptions.MultipleChoice -> {
-                    val adapter = OceanFilterChipMultipleOptionsAdapter(internalItems)
-                    bottomSheet.withCustomList(adapter)
-
-                    bottomSheet.withFooterButton(
-                        options.primaryButtonLabel,
-                        options.secondaryButtonLabel,
-                        primaryAction = {
-                            val selectedItems = internalItems.getSelectedIndexes()
-                            options.onPrimaryButtonClick(selectedItems)
-                        },
-                        secondaryAction = {
-                            val selectedItems = internalItems.getSelectedIndexes()
-                            options.onSecondaryButtonClick(selectedItems)
-                        }
-                    )
-                }
-                is OceanChipFilterOptions.SingleChoice -> {
-                    val adapter = OceanFilterChipSingleOptionsAdapter(options) {
-                        options.onSelectItem(it)
-                        bottomSheet.dismiss()
-                    }
-                    bottomSheet.withCustomList(adapter)
-                }
-            }
-
-            bottomSheet.show()
         }
     }
 

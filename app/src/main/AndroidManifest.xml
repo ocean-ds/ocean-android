@@ -45,7 +45,6 @@
         <activity android:name=".ui.buttons.ButtonsActivity" />
         <activity android:name=".ui.headings.HeadingsActivity" />
         <activity android:name=".ui.typography.TypographyActivity" />
-        <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.input.InputActivity" />
         <activity android:name=".ui.alert.AlertActivity" />
         <activity android:name=".ui.toobar.TopbarActivity" />

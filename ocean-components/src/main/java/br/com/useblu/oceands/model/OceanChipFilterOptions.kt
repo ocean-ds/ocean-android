@@ -13,9 +13,7 @@ sealed class OceanChipFilterOptions{
         return mapIndexed { index, filterOptionsItem ->
             if (filterOptionsItem.isSelected) {
                 index
-            } else {
-                -1
-            }
+            } else -1
         }.filter { it != -1 }
     }
 

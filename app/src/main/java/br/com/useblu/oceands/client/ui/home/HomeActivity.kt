@@ -83,6 +83,7 @@ import br.com.useblu.oceands.components.OceanDatePickerFullscreen
 import br.com.useblu.oceands.components.OceanSnackBar
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.OceanTooltip
+import br.com.useblu.oceands.components.compose.BottomSheetButtonsOrientation
 import br.com.useblu.oceands.components.compose.OceanBottomSheet
 import br.com.useblu.oceands.components.compose.OceanBottomSheetModel
 import br.com.useblu.oceands.components.compose.OceanIcon
@@ -114,9 +115,14 @@ class HomeActivity : AppCompatActivity() {
             if (showBottomSheet.value) {
                 OceanBottomSheet(
                     model = OceanBottomSheetModel(
-                        customContent = {
-                            Text(text = "Exemplo simples de bottom sheet")
-                        }
+                        title = "Title",
+                        message = "Message",
+                        subMessage = "SubMessage",
+                        imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
+                        code = 2000,
+                        actionPositive = "Aceitar" to {},
+                        actionNegative = "Cancelar" to {},
+                        buttonsOrientation = BottomSheetButtonsOrientation.Vertical
                     ),
                     showBottomSheet = showBottomSheet
                 )

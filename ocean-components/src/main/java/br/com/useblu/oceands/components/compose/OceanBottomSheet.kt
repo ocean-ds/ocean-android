@@ -1,5 +1,7 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,6 +28,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -70,7 +73,7 @@ private fun OceanBottomSheetPreview() {
                         }
                     },
                     title = "Teste de bottom sheet",
-                    icon = OceanIcons.CLOCK_OUTLINE,
+                    icon = OceanIcons.CLOCK_OUTLINE.icon,
                     isDismissable = false
                 )
             }
@@ -88,6 +91,23 @@ private fun OceanBottomSheetPreview() {
                 )
             }
         )
+
+        BottomSheetPreviewFactory(
+            bottomSheetCta = "Bottom sheet completa (exceto conteúdo custom)",
+            model = {
+                OceanBottomSheetModel(
+                    title = "Title",
+                    message = "Message",
+                    subMessage = "SubMessage",
+                    imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
+                    code = 2000,
+                    actionPositive = "Aceitar" to {},
+                    actionNegative = "Cancelar" to {},
+                    buttonsOrientation = BottomSheetButtonsOrientation.Vertical
+                )
+            }
+        )
+
         BottomSheetPreviewFactory(
             bottomSheetCta = "Bottom sheet com dismiss",
             model = {
@@ -123,7 +143,7 @@ data class OceanBottomSheetModel @OptIn(ExperimentalMaterial3Api::class) constru
     val message: String? = null,
     val subMessage: String? = null,
     val code: Int? = null,
-    val icon: OceanIcons? = null,
+    @DrawableRes val icon: Int? = null,
     val imageUrl: String? = null,
     val actionPositive: Pair<String, () -> Unit>? = null,
     val actionNegative: Pair<String, () -> Unit>? = null,
@@ -158,7 +178,8 @@ fun OceanBottomSheet(
 ) {
     val scope = rememberCoroutineScope()
     val sheetState = rememberModalBottomSheetState(
-        confirmValueChange = { model.isDismissable }
+        confirmValueChange = { model.isDismissable },
+        skipPartiallyExpanded = true
     )
 
     val dimissBottomSheet = remember {
@@ -204,8 +225,13 @@ fun OceanBottomSheet(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 if (model.icon != null) {
-                    OceanIcon(
-                        iconType = model.icon
+                    Image(
+                        painter = painterResource(id = model.icon),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(40.dp)
+                            .padding(bottom = 24.dp)
+                            .padding(8.dp)
                     )
                 }
 

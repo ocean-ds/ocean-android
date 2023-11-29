@@ -110,7 +110,7 @@ class HomeActivity : AppCompatActivity() {
 
             if (showBottomSheet.value) {
                 OceanBottomSheet(
-                    content = {
+                    customContent = {
                       Text(text = "Exemplo simples de bottom sheet")
                     },
                     showBottomSheet = showBottomSheet

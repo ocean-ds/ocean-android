@@ -123,7 +123,7 @@ class HomeActivity : AppCompatActivity() {
                     actionNegative = "Cancelar" to {},
                     buttonsOrientation = BottomSheetButtonsOrientation.Vertical
                 ),
-                showBottomSheet = showBottomSheet
+                showState = showBottomSheet
             )
 
             LazyColumn {

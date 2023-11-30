@@ -165,7 +165,7 @@ private fun BottomSheetPreviewFactory(
     }
 
     OceanBottomSheet(
-        showBottomSheet = showBottomSheet,
+        showState = showBottomSheet,
         model = model(showBottomSheet)
     )
 }
@@ -173,7 +173,7 @@ private fun BottomSheetPreviewFactory(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OceanBottomSheet(
-    showBottomSheet: MutableState<Boolean>,
+    showState: MutableState<Boolean>,
     model: OceanBottomSheetModel
 ) {
     val scope = rememberCoroutineScope()
@@ -187,15 +187,15 @@ fun OceanBottomSheet(
             scope.launch {
                 sheetState.hide()
             }.invokeOnCompletion {
-                showBottomSheet.value = false
+                showState.value = false
             }
         }
     }
 
-    if (showBottomSheet.value) {
+    if (showState.value) {
         ModalBottomSheet(
             onDismissRequest = {
-                showBottomSheet.value = false
+                showState.value = false
             },
             sheetState = sheetState,
             dragHandle = null

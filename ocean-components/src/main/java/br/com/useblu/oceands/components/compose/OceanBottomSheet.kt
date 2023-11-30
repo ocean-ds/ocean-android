@@ -205,6 +205,7 @@ fun OceanBottomSheet(
     }
 
     ModalBottomSheet(
+        sheetState = sheetState,
         onDismissRequest = { onDismiss() },
         dragHandle = null
     ) {

@@ -17,8 +17,10 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -108,23 +110,25 @@ class HomeActivity : AppCompatActivity() {
         setContent {
             view = LocalView.current
 
-            val showBottomSheet = remember {
-                mutableStateOf(false)
-            }
+            var showSheet by remember { mutableStateOf(false) }
 
-            OceanBottomSheet(
-                model = OceanBottomSheetModel(
-                    title = "Title",
-                    message = "Message",
-                    subMessage = "SubMessage",
-                    imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
-                    code = 2000,
-                    actionPositive = "Aceitar" to {},
-                    actionNegative = "Cancelar" to {},
-                    buttonsOrientation = BottomSheetButtonsOrientation.Vertical
-                ),
-                showState = showBottomSheet
-            )
+            if (showSheet) {
+                OceanBottomSheet(
+                    model = OceanBottomSheetModel(
+                        title = "Title",
+                        message = "Message",
+                        subMessage = "SubMessage",
+                        imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
+                        code = 2000,
+                        actionPositive = "Aceitar" to {},
+                        actionNegative = "Cancelar" to {},
+                        buttonsOrientation = BottomSheetButtonsOrientation.Vertical
+                    ),
+                    onDismiss = {
+                        showSheet = false
+                    }
+                )
+            }
 
             LazyColumn {
                 textAction(text = "Accordion", onClick = { onClickAccordion() })
@@ -134,20 +138,44 @@ class HomeActivity : AppCompatActivity() {
                 textAction(text = "Buttons", onClick = { onClickButtons() })
                 textAction(text = "Bottom Navigation", onClick = { onClickBottomNavigation() })
                 textAction(text = "BottomSheet with Image", onClick = { onClickBottomSheetImage() })
-                textAction(text = "BottomSheet Vertical", onClick = { onClickBottomSheetVertical() })
-                textAction(text = "BottomSheet Vertical with Code", onClick = { onClickBottomSheetImageVerticalWithCode() })
-                textAction(text = "BottomSheet Horizontal", onClick = { onClickBottomSheetHorizontal() })
-                textAction(text = "BottomSheet Critical", onClick = { onClickBottomSheetCritical() })
-                textAction(text = "BottomSheet Compose Content", onClick = { onClickBottomSheetWithCompose() })
-                textAction(text = "BottomSheet 100% Compose", onClick = { showBottomSheet.value = true })
+                textAction(
+                    text = "BottomSheet Vertical",
+                    onClick = { onClickBottomSheetVertical() })
+                textAction(
+                    text = "BottomSheet Vertical with Code",
+                    onClick = { onClickBottomSheetImageVerticalWithCode() })
+                textAction(
+                    text = "BottomSheet Horizontal",
+                    onClick = { onClickBottomSheetHorizontal() })
+                textAction(
+                    text = "BottomSheet Critical",
+                    onClick = { onClickBottomSheetCritical() })
+                textAction(
+                    text = "BottomSheet Compose Content",
+                    onClick = { onClickBottomSheetWithCompose() })
+                textAction(text = "BottomSheet 100% Compose", onClick = { showSheet = true })
                 textAction(text = "BottomSheetList", onClick = { onOceanBottomListSheet() })
-                textAction(text = "BottomSheetList (body Icon)", onClick = { onOceanBottomListSheetWithBodyIcon() })
-                textAction(text = "BottomSheetList (button)", onClick = { onOceanBottomListSheetButton() })
-                textAction(text = "BottomSheetList (button with caption)", onClick = { onOceanBottomListSheetButtonWithCaption() })
-                textAction(text = "BottomSheetList (icon)", onClick = { onOceanBottomListSheetIcon() })
-                textAction(text = "BottomSheetList (icon + subtitle)", onClick = { onOceanBottomListSheetIcon() })
-                textAction(text = "BottomSheetList (Generic List)", onClick = { onOceanBottomListSheetWithGenericList() })
-                textAction(text = "BottomSheetList (search)", onClick = { onOceanBottomListSheetWithSearch() })
+                textAction(
+                    text = "BottomSheetList (body Icon)",
+                    onClick = { onOceanBottomListSheetWithBodyIcon() })
+                textAction(
+                    text = "BottomSheetList (button)",
+                    onClick = { onOceanBottomListSheetButton() })
+                textAction(
+                    text = "BottomSheetList (button with caption)",
+                    onClick = { onOceanBottomListSheetButtonWithCaption() })
+                textAction(
+                    text = "BottomSheetList (icon)",
+                    onClick = { onOceanBottomListSheetIcon() })
+                textAction(
+                    text = "BottomSheetList (icon + subtitle)",
+                    onClick = { onOceanBottomListSheetIcon() })
+                textAction(
+                    text = "BottomSheetList (Generic List)",
+                    onClick = { onOceanBottomListSheetWithGenericList() })
+                textAction(
+                    text = "BottomSheetList (search)",
+                    onClick = { onOceanBottomListSheetWithSearch() })
                 textAction(text = "Card Cross Cell", onClick = { cardCrossCellClick() })
                 textAction(text = "Card Group", onClick = { cardContentClick() })
                 textAction(text = "Card Item", onClick = { onClickCardItem() })
@@ -155,7 +183,9 @@ class HomeActivity : AppCompatActivity() {
                 textAction(text = "Chart Card", onClick = { chartCardClick() })
                 textAction(text = "Checkbox", onClick = { checkbox() })
                 textAction(text = "Chips", onClick = { onClickChips() })
-                textAction(text = "DatePicker Fullscreen", onClick = { onOceanDatePickerFullScreen() })
+                textAction(
+                    text = "DatePicker Fullscreen",
+                    onClick = { onOceanDatePickerFullScreen() })
                 textAction(text = "Descriptor List Item", onClick = { descriptorList() })
                 textAction(text = "Detailed Card", onClick = { detailedCardClick() })
                 textAction(text = "Donut", onClick = { donutView() })

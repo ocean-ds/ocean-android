@@ -39,7 +39,6 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
-import kotlinx.coroutines.DisposableHandle
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,7 +62,10 @@ private fun OceanBottomSheetPreview() {
                         Column(Modifier.padding(vertical = 16.dp)) {
                             Text(text = "Teste de bottom sheet")
 
-                            OceanButton(text = "Fechar", buttonStyle = OceanButtonStyle.SecondaryMedium) {
+                            OceanButton(
+                                text = "Fechar",
+                                buttonStyle = OceanButtonStyle.SecondaryMedium
+                            ) {
                                 coroutineScope.launch {
                                     sheetState.hide()
                                 }.invokeOnCompletion {
@@ -74,7 +76,7 @@ private fun OceanBottomSheetPreview() {
                     },
                     title = "Teste de bottom sheet",
                     icon = OceanIcons.CLOCK_OUTLINE.icon,
-                    isDismissable = false
+                    isDismissible = false
                 )
             }
         )
@@ -137,7 +139,7 @@ private fun OceanBottomSheetPreview() {
 @Immutable
 data class OceanBottomSheetModel @OptIn(ExperimentalMaterial3Api::class) constructor(
     val customContent: @Composable (SheetState) -> Unit = {},
-    val isDismissable: Boolean = true,
+    val isDismissible: Boolean = true,
     val isCritical: Boolean = false,
     val title: String? = null,
     val message: String? = null,
@@ -159,147 +161,156 @@ private fun BottomSheetPreviewFactory(
     bottomSheetCta: String,
     model: (MutableState<Boolean>) -> OceanBottomSheetModel
 ) {
-    val showBottomSheet = remember { mutableStateOf(false) }
-    Button(onClick = { showBottomSheet.value = true }) {
+    val showSheet = remember { mutableStateOf(false) }
+
+    Button(
+        onClick = {
+            showSheet.value = true
+        }
+    ) {
         Text(bottomSheetCta)
     }
 
-    OceanBottomSheet(
-        showState = showBottomSheet,
-        model = model(showBottomSheet)
-    )
+    if (showSheet.value) {
+        OceanBottomSheet(
+            model = model(showSheet),
+            onDismiss = {
+                showSheet.value = false
+            }
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OceanBottomSheet(
-    showState: MutableState<Boolean>,
-    model: OceanBottomSheetModel
+    model: OceanBottomSheetModel,
+    onDismiss: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
+
     val sheetState = rememberModalBottomSheetState(
-        confirmValueChange = { model.isDismissable },
+        confirmValueChange = { model.isDismissible },
         skipPartiallyExpanded = true
     )
 
-    val dimissBottomSheet = remember {
+    val onClickDismiss = remember {
         {
             scope.launch {
                 sheetState.hide()
             }.invokeOnCompletion {
-                showState.value = false
+                onDismiss()
             }
         }
     }
 
-    if (showState.value) {
-        ModalBottomSheet(
-            onDismissRequest = {
-                showState.value = false
-            },
-            sheetState = sheetState,
-            dragHandle = null
+    ModalBottomSheet(
+        onDismissRequest = { onDismiss() },
+        dragHandle = null
+    ) {
+        if (model.isDismissible) {
+            IconButton(
+                onClick = {
+                    onClickDismiss()
+                },
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(top = 8.dp, bottom = 4.dp)
+                    .padding(end = 8.dp)
+            ) {
+                OceanIcon(
+                    iconType = OceanIcons.X_OUTLINE,
+                    tint = OceanColors.interfaceDarkUp,
+                    modifier = Modifier.padding(6.dp)
+                )
+            }
+        } else {
+            Spacer(modifier = Modifier.size(40.dp))
+        }
+
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (model.isDismissable) {
-                IconButton(
-                    onClick = { dimissBottomSheet() },
+            if (model.icon != null) {
+                Image(
+                    painter = painterResource(id = model.icon),
+                    contentDescription = null,
                     modifier = Modifier
-                        .align(Alignment.End)
-                        .padding(top = 8.dp, bottom = 4.dp)
-                        .padding(end = 8.dp)
-                ) {
-                    OceanIcon(
-                        iconType = OceanIcons.X_OUTLINE,
-                        tint = OceanColors.interfaceDarkUp,
-                        modifier = Modifier.padding(6.dp)
-                    )
-                }
-            } else {
-                Spacer(modifier = Modifier.size(40.dp))
+                        .size(40.dp)
+                        .padding(bottom = 24.dp)
+                        .padding(8.dp)
+                )
             }
 
-            Column(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                if (model.icon != null) {
-                    Image(
-                        painter = painterResource(id = model.icon),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(40.dp)
-                            .padding(bottom = 24.dp)
-                            .padding(8.dp)
+            if (model.imageUrl != null) {
+                GlideImage(
+                    imageModel = { model.imageUrl },
+                    modifier = Modifier
+                        .heightIn(40.dp, 120.dp)
+                        .widthIn(40.dp, 120.dp)
+                        .padding(bottom = 24.dp)
+                        .padding(8.dp),
+                    imageOptions = ImageOptions(
+                        contentScale = ContentScale.Fit,
+                        alignment = Alignment.Center
                     )
-                }
-
-                if (model.imageUrl != null) {
-                    GlideImage(
-                        imageModel = { model.imageUrl },
-                        modifier = Modifier
-                            .heightIn(40.dp, 120.dp)
-                            .widthIn(40.dp, 120.dp)
-                            .padding(bottom = 24.dp)
-                            .padding(8.dp),
-                        imageOptions = ImageOptions(
-                            contentScale = ContentScale.Fit,
-                            alignment = Alignment.Center
-                        )
-                    )
-                }
-
-                if (model.title != null) {
-                    val textColor = if (model.isCritical) {
-                        OceanColors.statusNegativePure
-                    } else {
-                        OceanColors.interfaceDarkDeep
-                    }
-
-                    Text(
-                        text = model.title,
-                        style = OceanTextStyle.heading3,
-                        color = textColor
-                    )
-                }
-
-                if (model.message != null) {
-                    OceanSpacing.StackXXS()
-                    Text(
-                        text = model.message,
-                        style = OceanTextStyle.paragraph
-                    )
-                }
-
-                if (model.subMessage != null) {
-                    OceanSpacing.StackXXS()
-                    Text(
-                        text = model.subMessage,
-                        style = OceanTextStyle.paragraph,
-                        fontFamily = OceanFontFamily.BaseBold
-                    )
-                }
-
-                model.customContent(sheetState)
-
-                BottomButtons(
-                    positiveButton = model.actionPositive,
-                    negativeButton = model.actionNegative,
-                    isCritical = model.isCritical,
-                    orientation = model.buttonsOrientation,
-                    dismissAction = dimissBottomSheet
                 )
+            }
 
-                if (model.code != null) {
-                    OceanSpacing.StackXS()
-                    Text(
-                        text = "Código: ${model.code}",
-                        style = OceanTextStyle.description,
-                        color = OceanColors.interfaceDarkUp
-                    )
-                    OceanSpacing.StackXXS()
+            if (model.title != null) {
+                val textColor = if (model.isCritical) {
+                    OceanColors.statusNegativePure
+                } else {
+                    OceanColors.interfaceDarkDeep
                 }
+
+                Text(
+                    text = model.title,
+                    style = OceanTextStyle.heading3,
+                    color = textColor
+                )
+            }
+
+            if (model.message != null) {
+                OceanSpacing.StackXXS()
+                Text(
+                    text = model.message,
+                    style = OceanTextStyle.paragraph
+                )
+            }
+
+            if (model.subMessage != null) {
+                OceanSpacing.StackXXS()
+                Text(
+                    text = model.subMessage,
+                    style = OceanTextStyle.paragraph,
+                    fontFamily = OceanFontFamily.BaseBold
+                )
+            }
+
+            model.customContent(sheetState)
+
+            BottomButtons(
+                positiveButton = model.actionPositive,
+                negativeButton = model.actionNegative,
+                isCritical = model.isCritical,
+                orientation = model.buttonsOrientation,
+                onDismiss = {
+                    onClickDismiss()
+                }
+            )
+
+            if (model.code != null) {
+                OceanSpacing.StackXS()
+                Text(
+                    text = "Código: ${model.code}",
+                    style = OceanTextStyle.description,
+                    color = OceanColors.interfaceDarkUp
+                )
+                OceanSpacing.StackXXS()
             }
         }
     }
@@ -311,7 +322,7 @@ private fun BottomButtons(
     negativeButton: Pair<String, () -> Unit>? = null,
     isCritical: Boolean = false,
     orientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
-    dismissAction: () -> DisposableHandle
+    onDismiss: () -> Unit
 ) {
     if (positiveButton == null && negativeButton == null) {
         return
@@ -328,8 +339,8 @@ private fun BottomButtons(
                 buttonStyle = primaryStyle,
                 onClick = {
                     positiveButton.second()
-                    dismissAction()
-              },
+                    onDismiss.invoke()
+                },
                 modifier = it
             )
         }
@@ -342,7 +353,7 @@ private fun BottomButtons(
                 buttonStyle = OceanButtonStyle.SecondaryMedium,
                 onClick = {
                     negativeButton.second()
-                    dismissAction()
+                    onDismiss.invoke()
                 },
                 modifier = it
             )

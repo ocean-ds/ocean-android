@@ -205,6 +205,7 @@ fun OceanBottomSheet(
     }
 
     ModalBottomSheet(
+        containerColor = OceanColors.interfaceLightPure,
         sheetState = sheetState,
         onDismissRequest = { onDismiss() },
         dragHandle = null
@@ -313,6 +314,8 @@ fun OceanBottomSheet(
                 )
                 OceanSpacing.StackXXS()
             }
+
+            OceanSpacing.StackMD()
         }
     }
 }

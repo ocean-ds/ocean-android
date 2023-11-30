@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -82,7 +83,9 @@ import br.com.useblu.oceands.components.OceanDatePickerFullscreen
 import br.com.useblu.oceands.components.OceanSnackBar
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.OceanTooltip
+import br.com.useblu.oceands.components.compose.BottomSheetButtonsOrientation
 import br.com.useblu.oceands.components.compose.OceanBottomSheet
+import br.com.useblu.oceands.components.compose.OceanBottomSheetModel
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.model.OceanUnorderedListItem
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -98,6 +101,7 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var view: View
 
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -108,14 +112,19 @@ class HomeActivity : AppCompatActivity() {
                 mutableStateOf(false)
             }
 
-            if (showBottomSheet.value) {
-                OceanBottomSheet(
-                    content = {
-                      Text(text = "Exemplo simples de bottom sheet")
-                    },
-                    showBottomSheet = showBottomSheet
-                )
-            }
+            OceanBottomSheet(
+                model = OceanBottomSheetModel(
+                    title = "Title",
+                    message = "Message",
+                    subMessage = "SubMessage",
+                    imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
+                    code = 2000,
+                    actionPositive = "Aceitar" to {},
+                    actionNegative = "Cancelar" to {},
+                    buttonsOrientation = BottomSheetButtonsOrientation.Vertical
+                ),
+                showState = showBottomSheet
+            )
 
             LazyColumn {
                 textAction(text = "Accordion", onClick = { onClickAccordion() })

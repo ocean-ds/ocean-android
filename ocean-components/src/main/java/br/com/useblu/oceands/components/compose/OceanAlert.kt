@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,30 +35,35 @@ fun OceanAlertPreview() {
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Default(
                 description = "Default Alert Info",
                 alertType = AlertStyle.StyleInfo(),
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Default(
                 description = "Default Alert Warning",
                 alertType = AlertStyle.StyleWarning(),
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Default(
                 description = "Default Alert Positive",
                 alertType = AlertStyle.StylePositive(),
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Default(
                 description = "Default Alert Negative",
                 alertType = AlertStyle.StyleNegative(),
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
                 title = "Entitled Alert",
                 description = "Entitled Alert Short Info",
@@ -65,6 +71,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
                 title = "Entitled Alert",
                 description = "Entitled Alert Short Warning",
@@ -72,6 +79,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
                 title = "Entitled Alert",
                 description = "Entitled Alert Short Positive",
@@ -79,6 +87,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
                 title = "Entitled Alert",
                 description = "Entitled Alert Short Negative",
@@ -86,6 +95,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledLong(
                 title = "Entitled Alert",
                 description = "Entitled Alert Long Info",
@@ -93,6 +103,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledLong(
                 title = "Entitled Alert",
                 description = "Entitled Alert Long Warning",
@@ -100,6 +111,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledLong(
                 title = "Entitled Alert",
                 description = "Entitled Alert Long Positive",
@@ -107,6 +119,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledLong(
                 title = "Entitled Alert",
                 description = "Entitled Alert Long Negative",
@@ -114,6 +127,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 description = "Untitled Alert Labeled Info",
                 label = "Label",
@@ -121,6 +135,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 description = "Untitled Alert Labeled Warning",
                 label = "Label",
@@ -128,6 +143,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 description = "Untitled Alert Labeled Positive",
                 label = "Label",
@@ -135,6 +151,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 description = "Untitled Alert Labeled Negative",
                 label = "Label",
@@ -142,6 +159,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 title = "Labeled Alert",
                 description = "Entitled Alert Labeled Info",
@@ -150,6 +168,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 title = "Labeled Alert",
                 description = "Entitled Alert Labeled Warning",
@@ -158,6 +177,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 title = "Labeled Alert",
                 description = "Entitled Alert Labeled Positive",
@@ -166,6 +186,7 @@ fun OceanAlertPreview() {
             )
         )
         OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 title = "Labeled Alert",
                 description = "Entitled Alert Labeled Negative",
@@ -182,52 +203,56 @@ fun OceanAlert(
     modifier: Modifier = Modifier,
     type: OceanAlertType,
 ) {
-    Column(modifier = modifier) {
-        when (type) {
-            is OceanAlertType.Default -> {
-                OceanAlertDefaultStyle(
-                    description = type.description,
-                    style = type.alertType,
-                )
-            }
+    when (type) {
+        is OceanAlertType.Default -> {
+            OceanAlertDefaultStyle(
+                modifier = modifier,
+                description = type.description,
+                style = type.alertType,
+            )
+        }
 
-            is OceanAlertType.EntitledShort -> {
-                OceanAlertEntitledShort(
-                    title = type.title,
-                    description = type.description,
-                    style = type.alertType,
-                )
-            }
+        is OceanAlertType.EntitledShort -> {
+            OceanAlertEntitledShort(
+                modifier = modifier,
+                title = type.title,
+                description = type.description,
+                style = type.alertType,
+            )
+        }
 
-            is OceanAlertType.EntitledLong -> {
-                OceanAlertEntitledLong(
-                    title = type.title,
-                    description = type.description,
-                    style = type.alertType,
-                )
-            }
+        is OceanAlertType.EntitledLong -> {
+            OceanAlertEntitledLong(
+                modifier = modifier,
+                title = type.title,
+                description = type.description,
+                style = type.alertType,
+            )
+        }
 
-            is OceanAlertType.Labeled -> {
-                OceanAlertLabeled(
-                    title = type.title,
-                    description = type.description,
-                    label = type.label,
-                    style = type.alertType,
-                    onClickLable = { }
-                )
-            }
+        is OceanAlertType.Labeled -> {
+            OceanAlertLabeled(
+                modifier = modifier,
+                title = type.title,
+                description = type.description,
+                label = type.label,
+                style = type.alertType,
+                onClickLable = { }
+            )
         }
     }
+
 }
 
 @Composable
 fun OceanAlertDefaultStyle(
+    modifier: Modifier = Modifier,
     description: String,
     style: AlertStyle,
 ) {
     Row(
         verticalAlignment = CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .background(
                 color = style.alertBackgroundColor.invoke(),
                 shape = RoundedCornerShape(8.dp)
@@ -251,13 +276,14 @@ fun OceanAlertDefaultStyle(
 
 @Composable
 fun OceanAlertEntitledShort(
+    modifier: Modifier = Modifier,
     title: String,
     description: String,
     style: AlertStyle,
 ) {
     Row(
         verticalAlignment = CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .background(
                 color = style.alertBackgroundColor.invoke(),
                 shape = RoundedCornerShape(8.dp)
@@ -291,12 +317,13 @@ fun OceanAlertEntitledShort(
 
 @Composable
 fun OceanAlertEntitledLong(
+    modifier: Modifier = Modifier,
     title: String,
     description: String,
     style: AlertStyle,
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .background(
                 color = style.alertBackgroundColor.invoke(),
                 shape = RoundedCornerShape(8.dp)
@@ -331,6 +358,7 @@ fun OceanAlertEntitledLong(
 
 @Composable
 fun OceanAlertLabeled(
+    modifier: Modifier = Modifier,
     title: String? = null,
     description: String,
     label: String,
@@ -339,7 +367,7 @@ fun OceanAlertLabeled(
 ) {
     Row(
         verticalAlignment = CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .background(
                 color = style.alertBackgroundColor.invoke(),
                 shape = RoundedCornerShape(8.dp)

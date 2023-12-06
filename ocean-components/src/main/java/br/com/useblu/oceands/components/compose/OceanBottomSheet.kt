@@ -136,8 +136,9 @@ private fun OceanBottomSheetPreview() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Immutable
-data class OceanBottomSheetModel @OptIn(ExperimentalMaterial3Api::class) constructor(
+data class OceanBottomSheetModel(
     val customContent: @Composable (SheetState) -> Unit = {},
     val isDismissible: Boolean = true,
     val isCritical: Boolean = false,
@@ -241,9 +242,10 @@ fun OceanBottomSheet(
                     painter = painterResource(id = model.icon),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(40.dp)
                         .padding(bottom = 24.dp)
                         .padding(8.dp)
+                        .heightIn(40.dp, 120.dp)
+                        .widthIn(40.dp, 120.dp)
                 )
             }
 
@@ -251,10 +253,10 @@ fun OceanBottomSheet(
                 GlideImage(
                     imageModel = { model.imageUrl },
                     modifier = Modifier
-                        .heightIn(40.dp, 120.dp)
-                        .widthIn(40.dp, 120.dp)
                         .padding(bottom = 24.dp)
-                        .padding(8.dp),
+                        .padding(8.dp)
+                        .heightIn(40.dp, 120.dp)
+                        .widthIn(40.dp, 120.dp),
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Fit,
                         alignment = Alignment.Center

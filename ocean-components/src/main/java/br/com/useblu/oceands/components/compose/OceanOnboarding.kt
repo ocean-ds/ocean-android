@@ -40,7 +40,8 @@ fun OceanOnboardingPreview() {
         OceanOnboardingPageModel(
             image = R.drawable.ocean_icon_paper_clip_solid,
             title = "Registre sua primeira chave Pix",
-            subtitle = "Não perca tempo compartilhando dados bancários. A chave é uma forma simples de receber dinheiro"
+            subtitle = "Não perca tempo compartilhando dados bancários. A chave é uma forma simples de receber dinheiro",
+            link = "Descubra como funciona" to { println("link") }
         ),
         OceanOnboardingPageModel(
             image = R.drawable.ocean_icon_adjustments_outline,
@@ -82,12 +83,12 @@ fun OceanOnboardingPager(
             .background(color = OceanColors.interfaceLightPure)
             .fillMaxSize(),
         topBar = {
-             OceanTopBarInverse(
-                 title = "",
-                 icon = OceanIcons.X_OUTLINE,
-                 onClickIcon = { onFinishAction() },
-                 onClickToolbar = { }
-             )
+            OceanTopBarInverse(
+                title = "",
+                icon = OceanIcons.X_OUTLINE,
+                onClickIcon = { onFinishAction() },
+                onClickToolbar = { }
+            )
         },
         content = {
             HorizontalPager(
@@ -103,7 +104,7 @@ fun OceanOnboardingPager(
         bottomBar = {
             Column(
                 modifier = Modifier
-                .background(color = OceanColors.interfaceLightPure)
+                    .background(color = OceanColors.interfaceLightPure)
             ) {
                 OceanPageIndicator(
                     pages = pages.size,
@@ -161,5 +162,16 @@ private fun OceanOnboardingPage(
             style = OceanTextStyle.description,
             textAlign = TextAlign.Center
         )
+
+        page.link?.let {
+
+            OceanSpacing.StackXS()
+
+            OceanLink(
+                text = it.first,
+                linkIcon = OceanLinkIcon.EXTERNAL,
+                onClick = it.second
+            )
+        }
     }
 }

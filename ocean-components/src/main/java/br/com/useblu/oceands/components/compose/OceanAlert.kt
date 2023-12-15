@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.components.compose
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,13 +13,16 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.compose.AlertStyle
 import br.com.useblu.oceands.model.compose.OceanAlertType
+import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 
 
@@ -28,12 +32,12 @@ fun OceanAlertPreview() {
     Column(
         modifier = Modifier
             .background(color = OceanColors.interfaceLightPure)
-            .padding(8.dp)
             .verticalScroll(
                 rememberScrollState()
             ),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
+        val context = LocalContext.current
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Default(
@@ -194,6 +198,54 @@ fun OceanAlertPreview() {
                 alertType = AlertStyle.StyleNegative(),
             )
         )
+        OceanAlert (
+            modifier = Modifier.fillMaxWidth(),
+            type = OceanAlertType.EntitledShortWithAction(
+                title = "Labeled Alert",
+                description = "Entitled Alert Labeled Negative",
+                alertType = AlertStyle.StyleInfo(),
+                actionTitle = "Action",
+                action = {
+                    Toast.makeText(
+                        context,
+                        "Alert Action",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
+        )
+        OceanAlert (
+            modifier = Modifier.fillMaxWidth(),
+            type = OceanAlertType.EntitledShortWithAction(
+                title = "Labeled Alert",
+                description = "Entitled Alert Labeled Negative",
+                alertType = AlertStyle.StyleWarning(),
+                actionTitle = "Action",
+                action = {
+                    Toast.makeText(
+                        context,
+                        "Alert Action",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
+        )
+        OceanAlert (
+            modifier = Modifier.fillMaxWidth(),
+            type = OceanAlertType.EntitledShortWithAction(
+                title = "Labeled Alert",
+                description = "Entitled Alert Labeled Negative",
+                alertType = AlertStyle.StyleNegative(),
+                actionTitle = "Action",
+                action = {
+                    Toast.makeText(
+                        context,
+                        "Alert Action",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
+        )
     }
 }
 
@@ -240,8 +292,17 @@ fun OceanAlert(
                 onClickLable = { }
             )
         }
+        is OceanAlertType.EntitledShortWithAction -> {
+            OceanAlertEntitledShortWithAction(
+                modifier = modifier,
+                title = type.title,
+                description = type.description,
+                style = type.alertType,
+                actionTitle = type.actionTitle,
+                action = type.action
+            )
+        }
     }
-
 }
 
 @Composable
@@ -313,6 +374,68 @@ fun OceanAlertEntitledShort(
             )
         }
     }
+}
+@Composable
+fun OceanAlertEntitledShortWithAction(
+    modifier: Modifier = Modifier,
+    title: String,
+    description: String,
+    style: AlertStyle,
+    actionTitle: String,
+    action: () -> Unit
+) {
+    Row(
+        verticalAlignment = CenterVertically,
+        modifier = modifier
+            .background(
+                color = style.alertBackgroundColor.invoke(),
+                shape = RoundedCornerShape(8.dp)
+            )
+            .padding(16.dp)
+    ) {
+        Column{
+            Icon(
+                modifier = Modifier.padding(end = 8.dp),
+                painter = painterResource(id = style.oceanIcon.icon),
+                tint = style.iconTint.invoke(),
+                contentDescription = null,
+            )
+        }
+        Column( modifier = Modifier
+        ) {
+            Text(
+                text = title,
+                style = style.titleStyle.invoke(),
+                color = style.titleColor.invoke(),
+                maxLines = 2,
+            )
+            Text(
+                text = description,
+                style = style.descriptionStyle.invoke(),
+                color = style.descriptionColor.invoke(),
+                maxLines = 2,
+            )
+        }
+        Column(
+            modifier = Modifier
+                .padding(start = 16.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.End
+        ){
+            OceanButton(
+                text = actionTitle,
+                buttonStyle = alertButtonStyle(style),
+                onClick = action
+            )
+        }
+    }
+}
+
+private fun alertButtonStyle(style: AlertStyle) = when (style) {
+    is AlertStyle.StyleInfo -> OceanButtonStyle.PrimarySmall
+    is AlertStyle.StyleWarning -> OceanButtonStyle.PrimaryWarningSmall
+    is AlertStyle.StyleNegative -> OceanButtonStyle.PrimaryCriticalSmall
+    else -> OceanButtonStyle.PrimarySmall
 }
 
 @Composable

@@ -23,6 +23,10 @@ sealed class OceanButtonStyle(
     data object PrimaryCriticalMedium : OceanButtonStyle(medium, primaryCriticalColors)
     data object PrimaryCriticalLarge : OceanButtonStyle(large, primaryCriticalColors)
 
+    data object PrimaryWarningSmall : OceanButtonStyle(small, primaryWarningColors)
+    data object PrimaryWarningMedium : OceanButtonStyle(medium, primaryCriticalColors)
+    data object PrimaryWarningLarge : OceanButtonStyle(large, primaryCriticalColors)
+
     data object SecondarySmall : OceanButtonStyle(small, secondaryDefaultColors)
     data object SecondaryMedium : OceanButtonStyle(medium, secondaryDefaultColors)
     data object SecondaryLarge : OceanButtonStyle(large, secondaryDefaultColors)
@@ -85,6 +89,10 @@ private val primaryInverseColors = object : IButtonColors {
 private val primaryCriticalColors = object : IButtonColors {
     @Composable
     override fun getColors() = OceanButtonColors.primaryCritical
+}
+private val primaryWarningColors = object : IButtonColors {
+    @Composable
+    override fun getColors() = OceanButtonColors.primaryWarning
 }
 private val secondaryDefaultColors = object : IButtonColors {
     @Composable

@@ -200,12 +200,11 @@ fun OceanAlertPreview() {
         )
         OceanAlert (
             modifier = Modifier.fillMaxWidth(),
-            type = OceanAlertType.EntitledShortWithAction(
+            type = OceanAlertType.EntitledShort(
                 title = "Labeled Alert",
                 description = "Entitled Alert Labeled Negative",
                 alertType = AlertStyle.StyleInfo(),
-                actionTitle = "Action",
-                action = {
+                button = "Action" to {
                     Toast.makeText(
                         context,
                         "Alert Action",
@@ -216,12 +215,11 @@ fun OceanAlertPreview() {
         )
         OceanAlert (
             modifier = Modifier.fillMaxWidth(),
-            type = OceanAlertType.EntitledShortWithAction(
+            type = OceanAlertType.EntitledShort (
                 title = "Labeled Alert",
                 description = "Entitled Alert Labeled Negative",
                 alertType = AlertStyle.StyleWarning(),
-                actionTitle = "Action",
-                action = {
+                button = "Action" to {
                     Toast.makeText(
                         context,
                         "Alert Action",
@@ -232,12 +230,11 @@ fun OceanAlertPreview() {
         )
         OceanAlert (
             modifier = Modifier.fillMaxWidth(),
-            type = OceanAlertType.EntitledShortWithAction(
+            type = OceanAlertType.EntitledShort(
                 title = "Labeled Alert",
                 description = "Entitled Alert Labeled Negative",
                 alertType = AlertStyle.StyleNegative(),
-                actionTitle = "Action",
-                action = {
+                button = "Action" to {
                     Toast.makeText(
                         context,
                         "Alert Action",
@@ -270,6 +267,7 @@ fun OceanAlert(
                 title = type.title,
                 description = type.description,
                 style = type.alertType,
+                button = type.button
             )
         }
 
@@ -290,16 +288,6 @@ fun OceanAlert(
                 label = type.label,
                 style = type.alertType,
                 onClickLable = { }
-            )
-        }
-        is OceanAlertType.EntitledShortWithAction -> {
-            OceanAlertEntitledShortWithAction(
-                modifier = modifier,
-                title = type.title,
-                description = type.description,
-                style = type.alertType,
-                actionTitle = type.actionTitle,
-                action = type.action
             )
         }
     }
@@ -341,6 +329,7 @@ fun OceanAlertEntitledShort(
     title: String,
     description: String,
     style: AlertStyle,
+    button: Pair<String, () -> Unit>? = null
 ) {
     Row(
         verticalAlignment = CenterVertically,
@@ -373,59 +362,20 @@ fun OceanAlertEntitledShort(
                 maxLines = 2,
             )
         }
-    }
-}
-@Composable
-fun OceanAlertEntitledShortWithAction(
-    modifier: Modifier = Modifier,
-    title: String,
-    description: String,
-    style: AlertStyle,
-    actionTitle: String,
-    action: () -> Unit
-) {
-    Row(
-        verticalAlignment = CenterVertically,
-        modifier = modifier
-            .background(
-                color = style.alertBackgroundColor.invoke(),
-                shape = RoundedCornerShape(8.dp)
-            )
-            .padding(16.dp)
-    ) {
-        Column{
-            Icon(
-                modifier = Modifier.padding(end = 8.dp),
-                painter = painterResource(id = style.oceanIcon.icon),
-                tint = style.iconTint.invoke(),
-                contentDescription = null,
-            )
-        }
-        Column {
-            Text(
-                text = title,
-                style = style.titleStyle.invoke(),
-                color = style.titleColor.invoke(),
-                maxLines = 2,
-            )
-            Text(
-                text = description,
-                style = style.descriptionStyle.invoke(),
-                color = style.descriptionColor.invoke(),
-                maxLines = 2,
-            )
-        }
-        Column(
-            modifier = Modifier
-                .padding(start = 16.dp)
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.End
-        ){
-            OceanButton(
-                text = actionTitle,
-                buttonStyle = alertButtonStyle(style),
-                onClick = action
-            )
+
+        button?.let{
+            Column(
+                modifier = Modifier
+                    .padding(start = 16.dp)
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.End
+            ){
+                OceanButton(
+                    text = it.first,
+                    buttonStyle = alertButtonStyle(style),
+                    onClick = it.second
+                )
+            }
         }
     }
 }

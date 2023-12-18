@@ -401,8 +401,7 @@ fun OceanAlertEntitledShortWithAction(
                 contentDescription = null,
             )
         }
-        Column( modifier = Modifier
-        ) {
+        Column {
             Text(
                 text = title,
                 style = style.titleStyle.invoke(),

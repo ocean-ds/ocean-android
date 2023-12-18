@@ -16,7 +16,8 @@ sealed interface OceanAlertType {
     class EntitledShort(
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
         val title: String,
-        val description: String
+        val description: String,
+        val button: Pair<String, () -> Unit>? = null
     ): OceanAlertType
 
     class EntitledLong(

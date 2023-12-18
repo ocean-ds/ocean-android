@@ -48,6 +48,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_constraint_layout"
+        android:background="@color/ocean_color_interface_light_pure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"

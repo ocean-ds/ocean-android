@@ -86,8 +86,9 @@ fun OceanAlertPreview() {
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
                 title = "Entitled Alert",
-                description = "Entitled Alert Short Positive",
+                description = "Confirme suas informações para acessar as funções da conta.",
                 alertType = AlertStyle.StylePositive(),
+                button = "Button" to { }
             )
         )
         OceanAlert(
@@ -198,7 +199,7 @@ fun OceanAlertPreview() {
                 alertType = AlertStyle.StyleNegative(),
             )
         )
-        OceanAlert (
+        OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
                 title = "Labeled Alert",
@@ -213,9 +214,9 @@ fun OceanAlertPreview() {
                 }
             )
         )
-        OceanAlert (
+        OceanAlert(
             modifier = Modifier.fillMaxWidth(),
-            type = OceanAlertType.EntitledShort (
+            type = OceanAlertType.EntitledShort(
                 title = "Labeled Alert",
                 description = "Entitled Alert Labeled Negative",
                 alertType = AlertStyle.StyleWarning(),
@@ -228,7 +229,7 @@ fun OceanAlertPreview() {
                 }
             )
         )
-        OceanAlert (
+        OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
                 title = "Labeled Alert",
@@ -340,36 +341,36 @@ fun OceanAlertEntitledShort(
             )
             .padding(16.dp)
     ) {
-        Column {
-            Icon(
-                modifier = Modifier.padding(end = 8.dp),
-                painter = painterResource(id = style.oceanIcon.icon),
-                tint = style.iconTint.invoke(),
-                contentDescription = null,
-            )
-        }
-        Column {
+        Icon(
+            modifier = Modifier.padding(end = 8.dp),
+            painter = painterResource(id = style.oceanIcon.icon),
+            tint = style.iconTint.invoke(),
+            contentDescription = null
+        )
+
+        Column(
+            modifier = Modifier.weight(1f)
+        ) {
             Text(
                 text = title,
                 style = style.titleStyle.invoke(),
                 color = style.titleColor.invoke(),
-                maxLines = 2,
+                maxLines = 2
             )
             Text(
                 text = description,
                 style = style.descriptionStyle.invoke(),
                 color = style.descriptionColor.invoke(),
-                maxLines = 2,
+                maxLines = 2
             )
         }
 
-        button?.let{
+        button?.let {
             Column(
                 modifier = Modifier
-                    .padding(start = 16.dp)
-                    .fillMaxWidth(),
+                    .padding(start = 16.dp),
                 horizontalAlignment = Alignment.End
-            ){
+            ) {
                 OceanButton(
                     text = it.first,
                     buttonStyle = alertButtonStyle(style),

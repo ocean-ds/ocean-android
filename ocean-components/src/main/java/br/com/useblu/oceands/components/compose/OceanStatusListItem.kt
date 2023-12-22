@@ -197,12 +197,11 @@ fun OceanStatusListItem(
             if (tagLabel != null && tagPosition == OceanStatusListItemTagPosition.BOTTOM) {
                 OceanSpacing.StackXXXS()
                 OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
-
             }
         }
 
         if (badge != null) {
-            OceanBadge(text = badge, type = OceanBadgeType.WARNING, size = OceanBadgeSize.Medium )
+            OceanBadge(text = badge, type = OceanBadgeType.WARNING, size = OceanBadgeSize.Medium)
             OceanSpacing.StackXXXS()
         }
 

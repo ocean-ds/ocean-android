@@ -200,7 +200,7 @@ fun OceanStatusListItem(
         }
 
         if (tagLabel != null && tagPosition == OceanStatusListItemTagPosition.RIGHT) {
-            OceanBadge(text = "66+", type = OceanBadgeType.PRIMARY , size = OceanBadgeSize.Medium )
+            OceanBadge(text = "66+", type = OceanBadgeType.WARNING, size = OceanBadgeSize.Medium )
             OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
         }
 

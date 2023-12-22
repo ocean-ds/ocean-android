@@ -11,6 +11,8 @@
 
         <import type="br.com.useblu.oceands.model.OceanTagType" />
 
+        <import type="br.com.useblu.oceands.model.OceanBadgeType" />
+
         <variable
             name="viewmodel"
             type="br.com.useblu.oceands.client.ui.statuslistitem.StatusListItemViewModel" />
@@ -58,7 +60,9 @@
                 app:showContextMenu="@{true}"
                 app:isReadOnly="@{false}"
                 app:tagType="@{OceanTagType.Positive}"
-                app:click="@{viewmodel::onTouchItem}"/>
+                app:click="@{viewmodel::onTouchItem}"
+                app:badge="@{`66+`}"
+                />
 
             <include
                 layout="@layout/ocean_status_list_item"

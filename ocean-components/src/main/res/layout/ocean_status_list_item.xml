@@ -61,6 +61,10 @@
             name="contextMenuClick"
             type="Function0&lt;Unit>" />
 
+        <variable
+            name="badge"
+            type="String" />
+
 
     </data>
 
@@ -160,6 +164,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <Space
+                    android:layout_width="@dimen/ocean_spacing_stack_xxs"
+                    android:layout_height="match_parent"
+                    app:ocean_visible_or_gone="@{badge != null}" />
+
+                <include
+                    layout="@layout/ocean_badge"
+                    app:text="@{badge}"
+                    app:visible="@{badge != null}" />
+
                 <LinearLayout
                     android:id="@+id/status_item_right_tag_container"
                     android:layout_width="wrap_content"
@@ -182,7 +196,7 @@
                         android:text="@{label}"
                         android:textSize="@dimen/ocean_font_size_xxxs"
                         app:ocean_tag_text_color="@{tagType}"
-                        tools:text="Label" />
+                        tools:text="Badge" />
 
                 </LinearLayout>
 

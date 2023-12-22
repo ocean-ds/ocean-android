@@ -44,6 +44,7 @@ fun OceanStatusListItemPreview() {
                 tagLabel = "Tag",
                 tagType = OceanTagType.Warning,
                 tagIcon = OceanIcons.ACADEMIC_CAP_SOLID,
+                badge = "+66",
                 onClick = {
                     println("click container")
                 }
@@ -149,7 +150,7 @@ fun OceanStatusListItem(
     tagIcon: OceanIcons? = null,
     tagPosition: OceanStatusListItemTagPosition = OceanStatusListItemTagPosition.BOTTOM,
     tagType: OceanTagType = OceanTagType.Warning,
-    badge: OceanBadgeType = OceanBadgeType.PRIMARY,
+    badge: String? = null,
     isReadOnly: Boolean = false,
     isInactive: Boolean = false,
     rightIconType: OceanStatusListItemRightIconType = OceanStatusListItemRightIconType.CHEVRON,
@@ -196,11 +197,16 @@ fun OceanStatusListItem(
             if (tagLabel != null && tagPosition == OceanStatusListItemTagPosition.BOTTOM) {
                 OceanSpacing.StackXXXS()
                 OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
+
             }
         }
 
+        if (badge != null) {
+            OceanBadge(text = badge, type = OceanBadgeType.WARNING, size = OceanBadgeSize.Medium )
+            OceanSpacing.StackXXXS()
+        }
+
         if (tagLabel != null && tagPosition == OceanStatusListItemTagPosition.RIGHT) {
-            OceanBadge(text = "66+", type = OceanBadgeType.WARNING, size = OceanBadgeSize.Medium )
             OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
         }
 

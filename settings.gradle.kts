@@ -49,7 +49,7 @@ dependencyResolutionManagement {
 
             library("skeletonBones", "com.github.EudyContreras:Skeleton-Bones:v1.4.5")
 
-            library("skydovesLandscapist", "com.github.skydoves:landscapist-glide:2.2.12")
+            library("skydovesLandscapist", "com.github.skydoves:landscapist-glide:2.2.13")
 
             // COMPOSE DEPENDENCIES
             library("compose-lifecycleViewModel", "androidx.lifecycle", "lifecycle-viewmodel-compose").versionRef("lifecycleViewModel")

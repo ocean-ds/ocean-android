@@ -27,9 +27,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Composable
 fun OceanSettingsListItemPreview() {
     MaterialTheme {
-        Column(
-            modifier = Modifier.padding(20.dp)
-        ) {
+        Column {
             OceanSettingsListItem(
                 title = "Title",
                 description = "Description",
@@ -106,9 +104,9 @@ fun OceanSettingsListItem(
     error: String? = null,
     showDivider: Boolean = false
 ) {
-    Column {
+    Column(modifier) {
         Row(
-            modifier = modifier
+            modifier = Modifier
                 .background(color = OceanColors.interfaceLightPure)
                 .padding(16.dp)
                 .fillMaxWidth(),

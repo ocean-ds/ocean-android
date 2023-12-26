@@ -23,6 +23,7 @@ import br.com.useblu.oceands.components.compose.OceanChip
 import br.com.useblu.oceands.model.Badge
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
+import br.com.useblu.oceands.model.OceanChip
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -79,7 +80,7 @@ fun OceanFilterBarPreview() {
 @Composable
 fun OceanFilterBar(
     modifier: Modifier = Modifier,
-    filterList: List<OceanBasicChip>
+    filterList: List<OceanChip>
 ) {
     Column(
         modifier = modifier

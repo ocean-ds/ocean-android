@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTag
-import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -30,7 +29,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Preview
 @Composable
 fun OceanTransactionListItemPreview() {
-    OceanTheme {
+    Column {
         OceanTransactionListItem(
             primaryLabel = "Level 1",
             secondaryLabel = "Level 2",
@@ -41,6 +40,32 @@ fun OceanTransactionListItemPreview() {
             valueIsHighlighted = true,
             time = "Time",
             tagTitle = "Title",
+            icon = OceanIcons.LOCK_CLOSED_SOLID
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            value = -10045.32,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            time = "Time",
+            tagTitle = "Title",
+            icon = OceanIcons.LOCK_CLOSED_SOLID
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            value = -10045.32,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            valueIsCanceled = true,
+            time = "Time",
+            tagTitle = "Canceled",
+            tagType = OceanTagType.Negative,
             icon = OceanIcons.LOCK_CLOSED_SOLID
         )
     }
@@ -56,6 +81,7 @@ fun OceanTransactionListItem(
     value: Double? = null,
     valueIsHighlighted: Boolean = false,
     valueWithSignal: Boolean = false,
+    valueIsCanceled: Boolean = false,
     tagTitle: String? = null,
     tagType: OceanTagType = OceanTagType.Warning,
     time: String? = null,
@@ -128,9 +154,11 @@ fun OceanTransactionListItem(
                 horizontalAlignment = Alignment.End
             ) {
                 if (value != null) {
-                    val color = if (valueIsHighlighted && value > 0) {
-                        OceanColors.statusPositiveDeep
-                    } else OceanColors.interfaceDarkPure
+                    val color = when {
+                        valueIsHighlighted && value > 0 -> OceanColors.statusPositiveDeep
+                        valueIsHighlighted && valueIsCanceled -> OceanColors.interfaceDarkUp
+                        else -> OceanColors.interfaceDarkPure
+                    }
 
                     var formattedValue = FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(value.toString())
 

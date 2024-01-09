@@ -51,6 +51,7 @@
                     app:secondaryLabel="@{`Label 2`}"
                     app:tagTitle="@{`Pendente`}"
                     app:time="@{`9:00`}"
+                    app:secondaryValue= "@{`7000000.12`}"
                     app:value="@{`1000000.00`}" />
 
                 <include

@@ -11,6 +11,7 @@ data class OceanTransactionListUIModel(
     val secondaryLabel: String? = null,
     val dimmedLabel: String? = null,
     val value: String? = null,
+    val secondaryValue: String? = null,
     val valueIsHighlighted: Boolean = false,
     val valueWithSignal: Boolean = true,
     val tagTitle: String? = null,

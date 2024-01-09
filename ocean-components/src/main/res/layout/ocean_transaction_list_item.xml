@@ -41,6 +41,10 @@
             type="String" />
 
         <variable
+            name="secondaryValue"
+            type="String" />
+
+        <variable
             name="valueIsHighlighted"
             type="Boolean" />
 
@@ -264,6 +268,22 @@
                     app:ocean_visible_or_gone="@{value != null}"
                     app:show_signal="@{valueWithSignal}"
                     tools:text="-R$ 1.000.000,00" />
+
+                <TextView
+                    android:id="@+id/text_view_secondary_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/font_family_base_medium"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/ocean_color_interface_dark_pure"
+                    android:textSize="@dimen/ocean_font_size_xs"
+                    app:highlighted_text="@{valueIsHighlighted}"
+                    app:ocean_text_format_value="@{FormatTypes.FORMAT_VALUE_WITH_SYMBOL}"
+                    app:ocean_text_value="@{secondaryValue}"
+                    app:ocean_visible_or_gone="@{secondaryValue != null}"
+                    app:show_signal="@{valueWithSignal}"
+                    tools:text="-R$ 9.111.222,33" />
 
                 <Space
                     android:id="@+id/space7"

@@ -80,7 +80,8 @@ fun OceanFilterBarPreview() {
 @Composable
 fun OceanFilterBar(
     modifier: Modifier = Modifier,
-    filterList: List<OceanChip>
+    filterList: List<OceanChip>,
+    showDividerBeforeLastItem: Boolean = true
 ) {
     Column(
         modifier = modifier
@@ -96,7 +97,7 @@ fun OceanFilterBar(
             verticalAlignment = Alignment.CenterVertically
         ) {
             filterList.forEachIndexed { index, itemModel ->
-                if (index == filterList.size - 1) {
+                if (index == filterList.size - 1 && showDividerBeforeLastItem) {
                     Divider(
                         modifier = Modifier
                             .width(1.dp)

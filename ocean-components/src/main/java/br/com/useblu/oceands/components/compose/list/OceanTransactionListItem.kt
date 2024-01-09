@@ -172,8 +172,8 @@ fun OceanTransactionListItem(
             ) {
                 if (primaryValue != null) {
                     val color = when {
-                        valueIsHighlighted && primaryValue > 0 -> OceanColors.statusPositiveDeep
                         valueIsHighlighted && valueIsCanceled -> OceanColors.interfaceDarkUp
+                        valueIsHighlighted && primaryValue > 0 -> OceanColors.statusPositiveDeep
                         else -> OceanColors.interfaceDarkPure
                     }
 

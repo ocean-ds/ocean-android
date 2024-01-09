@@ -70,6 +70,20 @@ fun OceanTransactionListItemPreview() {
             tagType = OceanTagType.Negative,
             icon = OceanIcons.LOCK_CLOSED_SOLID
         )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            value = 10045.32,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            valueIsCanceled = true,
+            time = "Time",
+            tagTitle = "Canceled",
+            tagType = OceanTagType.Negative,
+            icon = OceanIcons.LOCK_CLOSED_SOLID
+        )
     }
 }
 
@@ -160,6 +174,7 @@ fun OceanTransactionListItem(
                     val color = when {
                         valueIsHighlighted && primaryValue > 0 -> OceanColors.statusPositiveDeep
                         valueIsHighlighted && valueIsCanceled -> OceanColors.interfaceDarkUp
+                        valueIsHighlighted && value > 0 -> OceanColors.statusPositiveDeep
                         else -> OceanColors.interfaceDarkPure
                     }
 

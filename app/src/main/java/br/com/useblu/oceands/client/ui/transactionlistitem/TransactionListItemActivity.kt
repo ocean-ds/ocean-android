@@ -63,6 +63,7 @@ class TransactionListItemActivity : AppCompatActivity() {
                 OceanTransactionListUIModel(
                     tagTitle = "Tag $it",
                     value = "-1000000.00",
+                    secondaryValue = "123456.00",
                     primaryLabel = "A LABEL WHICH IS VERY LARGE"
                 )
             }.toList()

@@ -75,7 +75,7 @@ fun OceanTransactionListItemPreview() {
             secondaryLabel = "Level 2",
             dimmedLabel = "Level 3",
             highlightedLabel = "Level 4",
-            value = 10045.32,
+            primaryValue = 10045.32,
             valueWithSignal = true,
             valueIsHighlighted = true,
             valueIsCanceled = true,
@@ -174,7 +174,6 @@ fun OceanTransactionListItem(
                     val color = when {
                         valueIsHighlighted && primaryValue > 0 -> OceanColors.statusPositiveDeep
                         valueIsHighlighted && valueIsCanceled -> OceanColors.interfaceDarkUp
-                        valueIsHighlighted && value > 0 -> OceanColors.statusPositiveDeep
                         else -> OceanColors.interfaceDarkPure
                     }
 

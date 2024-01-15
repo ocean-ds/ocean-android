@@ -20,7 +20,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.model.Badge
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -136,6 +135,16 @@ fun OceanStatusListItemPreview() {
                     println("click right icon")
                 }
             )
+
+            OceanStatusListItem(
+                title = "Title",
+                description = "Description",
+                badge = "6",
+                rightIconType = OceanStatusListItemRightIconType.CHEVRON,
+                onClick = {
+                    println("click container")
+                }
+            )
         }
     }
 }
@@ -151,6 +160,7 @@ fun OceanStatusListItem(
     tagPosition: OceanStatusListItemTagPosition = OceanStatusListItemTagPosition.BOTTOM,
     tagType: OceanTagType = OceanTagType.Warning,
     badge: String? = null,
+    badgeType: OceanBadgeType? = null,
     isReadOnly: Boolean = false,
     isInactive: Boolean = false,
     rightIconType: OceanStatusListItemRightIconType = OceanStatusListItemRightIconType.CHEVRON,
@@ -201,7 +211,7 @@ fun OceanStatusListItem(
         }
 
         if (badge != null) {
-            OceanBadge(text = badge, type = OceanBadgeType.WARNING, size = OceanBadgeSize.Medium)
+            OceanBadge(text = badge, type = badgeType ?: OceanBadgeType.WARNING, size = OceanBadgeSize.Medium)
             OceanSpacing.StackXXXS()
         }
 

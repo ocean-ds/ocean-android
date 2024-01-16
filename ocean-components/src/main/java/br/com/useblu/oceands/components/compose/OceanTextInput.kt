@@ -31,6 +31,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
@@ -65,6 +66,12 @@ fun PreviewOceanTextInput() {
             label = "Label",
             onTextChanged = { text2 = it }
         )
+
+        OceanSpacing.StackXXS()
+
+        OceanButton(text = "Resetar texto", buttonStyle = OceanButtonStyle.SecondaryMedium) {
+            text2 = "user@pag.net"
+        }
 
         OceanSpacing.StackXS()
 
@@ -166,9 +173,13 @@ fun OceanTextInput(
 
             val interactionSource = remember { MutableInteractionSource() }
 
-            var textFieldValue by remember {
+            var textFieldSelection by remember {
+                mutableStateOf(TextRange.Zero)
+            }
+
+            var textFieldValue by remember(value) {
                 val maskedValue = oceanInputType.modifyBeforeOnChange(value)
-                mutableStateOf(TextFieldValue(maskedValue))
+                mutableStateOf(TextFieldValue(maskedValue, textFieldSelection))
             }
 
             BasicTextField(
@@ -180,18 +191,24 @@ fun OceanTextInput(
                         color = OceanColors.interfaceLightPure,
                         shape = RoundedCornerShape(8.dp)
                     ),
-                onValueChange = {
-                    val modifiedValue = oceanInputType.modifyBeforeOnChange(it.text)
+                onValueChange = { changedField ->
+                    val modifiedValue = oceanInputType.modifyBeforeOnChange(changedField.text)
+
                     if (modifiedValue != textFieldValue.text) {
-                        onTextChanged(modifiedValue)
-                        textFieldValue = it.copy(text = modifiedValue)
+                        textFieldValue = changedField.copy(text = modifiedValue)
+
                         if (oceanInputType.alwaysGoToEndOfInput()) {
                             textFieldValue = textFieldValue.copy(
                                 selection = TextRange(modifiedValue.length)
                             )
+                            textFieldSelection = TextRange(modifiedValue.length)
+                        } else {
+                            textFieldSelection = changedField.selection
                         }
+
+                        onTextChanged(modifiedValue)
                     } else {
-                        textFieldValue = it.copy(text = modifiedValue)
+                        textFieldValue = changedField.copy(text = modifiedValue)
                     }
                 },
                 enabled = enabled,

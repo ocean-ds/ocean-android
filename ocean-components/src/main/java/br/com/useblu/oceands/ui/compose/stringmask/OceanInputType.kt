@@ -239,25 +239,24 @@ sealed interface OceanInputType {
         }
     }
 
-    object Date : OceanInputType, StaticStringMask {
-        private const val DATE_DIGITS = "##/##/####"
-
-        override fun getMaxLength() = DATE_DIGITS.count { it == '#' }
+    data object Date : OceanInputType {
 
         override fun getKeyboardType() = KeyboardType.Number
 
-        override fun getMask(currentValue: String): String {
-            return DATE_DIGITS
-        }
-
         override fun modifyBeforeOnChange(text: String): String {
-            val digitsText = text.filter { it.isDigit() }
-            return getMaxLength().let { digitsText.take(it) }
+            val digitsText = text.filter { it.isDigit() }.take(10)
+
+            if (digitsText.length <= 2) return text
+
+            val days = digitsText.take(2)
+
+            if (digitsText.length <= 4) return "$days/${digitsText.drop(2)}"
+
+
+            return "$days/${digitsText.drop(2).take(2)}/${digitsText.drop(4)}"
         }
 
-        override fun getVisualTransformation(): VisualTransformation {
-            return StaticMaskVisualTransformation(this)
-        }
+        override fun getVisualTransformation() = VisualTransformation.None
     }
 }
 

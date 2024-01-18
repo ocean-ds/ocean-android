@@ -106,12 +106,16 @@ fun PreviewOceanTextInputMask() {
             .padding(8.dp)
     ) {
         CreateOceanTextInputPreview("90680120", OceanInputType.CEP)
-        CreateOceanTextInputPreview("51999400685", OceanInputType.Phone)
-        CreateOceanTextInputPreview("067863", OceanInputType.CpfCnpj)
+        CreateOceanTextInputPreview("90680-120", OceanInputType.CEP)
+        CreateOceanTextInputPreview("(51)999400685", OceanInputType.Phone)
+        CreateOceanTextInputPreview("49.944.251/0001-13", OceanInputType.CpfCnpj)
+        CreateOceanTextInputPreview("49944251000113", OceanInputType.CpfCnpj)
+        CreateOceanTextInputPreview("06786397956", OceanInputType.CPF)
         CreateOceanTextInputPreview("", OceanInputType.Currency())
         CreateOceanTextInputPreview("90000", OceanInputType.Currency())
         CreateOceanTextInputPreview("900.00", OceanInputType.Currency(false))
         CreateOceanTextInputPreview("900,00", OceanInputType.Currency(true, showZeroValue = true))
+        CreateOceanTextInputPreview("23/122023", OceanInputType.Date)
     }
 }
 @Composable

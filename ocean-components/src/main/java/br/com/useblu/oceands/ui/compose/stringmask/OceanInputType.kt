@@ -28,9 +28,7 @@ sealed interface OceanInputType {
         return KeyboardType.Text
     }
 
-    fun modifyBeforeOnChange(text: String): String {
-        return getMaxLength()?.let { text.take(it) } ?: text
-    }
+    fun modifyBeforeOnChange(text: String): String
 
     fun alwaysGoToEndOfInput(): Boolean = false
 
@@ -38,14 +36,18 @@ sealed interface OceanInputType {
 
     fun getVisualTransformation(): VisualTransformation
 
-    object DEFAULT: OceanInputType {
+    data object DEFAULT : OceanInputType {
         override fun getVisualTransformation() = VisualTransformation.None
+
+        override fun modifyBeforeOnChange(text: String): String {
+            return getMaxLength()?.let { text.take(it) } ?: text
+        }
     }
 
     data class Currency(
         val showCurrencySymbol: Boolean = true,
         val showZeroValue: Boolean = false
-    ): OceanInputType {
+    ) : OceanInputType {
         override fun getKeyboardType() = KeyboardType.Number
 
         override fun getPrefixComposable(): @Composable (() -> Unit)? {
@@ -67,7 +69,9 @@ sealed interface OceanInputType {
         override fun alwaysGoToEndOfInput() = true
 
         override fun modifyBeforeOnChange(text: String): String {
-            val digitsString = super.modifyBeforeOnChange(text)
+            val truncatedText = getMaxLength()?.let { text.take(it) } ?: text
+
+            val digitsString = truncatedText
                 .filter { it.isDigit() }
 
             if (digitsString.isEmpty() || digitsString.toInt() == 0) {
@@ -88,15 +92,19 @@ sealed interface OceanInputType {
         override fun getVisualTransformation() = VisualTransformation.None
     }
 
-     object BankBillet: OceanInputType, StaticStringMask {
+    object BankBillet : OceanInputType, StaticStringMask {
         private const val BOLETO_NORMAL = "#####.##### #####.###### #####.###### # ##############"
         private const val BOLETO_TRIBUTO = "############ ############ ############ ############"
 
-         override fun getKeyboardType() = KeyboardType.Number
+        override fun getKeyboardType() = KeyboardType.Number
 
-         override fun getMaxLength(): Int {
-             return 48
-         }
+        override fun getMaxLength(): Int {
+            return 48
+        }
+
+        override fun modifyBeforeOnChange(text: String): String {
+            return getMaxLength().let { text.take(it) }
+        }
 
         override fun getMask(currentValue: String): String {
             return if (isTributo(currentValue))
@@ -104,16 +112,16 @@ sealed interface OceanInputType {
             else BOLETO_NORMAL
         }
 
-         override fun getVisualTransformation(): VisualTransformation {
-             return StaticMaskVisualTransformation(this)
-         }
+        override fun getVisualTransformation(): VisualTransformation {
+            return StaticMaskVisualTransformation(this)
+        }
 
         private fun isTributo(e: String): Boolean {
             return e[0] == '8'
         }
     }
 
-    object CEP: OceanInputType, StaticStringMask {
+    object CEP : OceanInputType, StaticStringMask {
         private const val CEP_DIGITOS = "#####-###"
 
         override fun getMaxLength() = 8
@@ -124,17 +132,24 @@ sealed interface OceanInputType {
             return CEP_DIGITOS
         }
 
+        override fun modifyBeforeOnChange(text: String): String {
+            val digitsText = text.filter { it.isDigit() }
+            return getMaxLength().let { digitsText.take(it) }
+        }
+
         override fun getVisualTransformation(): VisualTransformation {
             return StaticMaskVisualTransformation(this)
         }
     }
 
-    object Email: OceanInputType {
+    data object Email : OceanInputType {
         override fun getKeyboardType() = KeyboardType.Email
         override fun getVisualTransformation() = VisualTransformation.None
+
+        override fun modifyBeforeOnChange(text: String) = text
     }
 
-    object Phone: OceanInputType, StaticStringMask {
+    object Phone : OceanInputType, StaticStringMask {
         private const val PHONE_EIGHT_DIGITS = "(##) ####-####"
         private const val PHONE_NINE_DIGITS = "(##) #####-####"
 
@@ -146,6 +161,11 @@ sealed interface OceanInputType {
             return Formatador.Padroes.PADRAO_SOMENTE_NUMEROS.matcher(e).replaceAll("").length > 10
         }
 
+        override fun modifyBeforeOnChange(text: String): String {
+            val digitsText = text.filter { it.isDigit() }
+            return getMaxLength().let { digitsText.take(it) }
+        }
+
         override fun getMask(currentValue: String): String {
             return if (isNineDigits(currentValue)) PHONE_NINE_DIGITS else PHONE_EIGHT_DIGITS
         }
@@ -155,7 +175,7 @@ sealed interface OceanInputType {
         }
     }
 
-    object CPF: OceanInputType, StaticStringMask {
+    object CPF : OceanInputType, StaticStringMask {
         private const val CPF_DIGITS = "###.###.###-##"
 
         override fun getMaxLength() = CPF_DIGITS.count { it == '#' }
@@ -166,12 +186,17 @@ sealed interface OceanInputType {
             return CPF_DIGITS
         }
 
+        override fun modifyBeforeOnChange(text: String): String {
+            val digitsText = text.filter { it.isDigit() }
+            return getMaxLength().let { digitsText.take(it) }
+        }
+
         override fun getVisualTransformation(): VisualTransformation {
             return StaticMaskVisualTransformation(this)
         }
     }
 
-    object CNPJ: OceanInputType, StaticStringMask {
+    object CNPJ : OceanInputType, StaticStringMask {
         private const val CNPJ_DIGITS = "##.###.###/####-##"
 
         override fun getMaxLength() = CNPJ_DIGITS.count { it == '#' }
@@ -182,12 +207,17 @@ sealed interface OceanInputType {
             return CNPJ_DIGITS
         }
 
+        override fun modifyBeforeOnChange(text: String): String {
+            val digitsText = text.filter { it.isDigit() }
+            return getMaxLength().let { digitsText.take(it) }
+        }
+
         override fun getVisualTransformation(): VisualTransformation {
             return StaticMaskVisualTransformation(this)
         }
     }
 
-    object CpfCnpj: OceanInputType, StaticStringMask {
+    object CpfCnpj : OceanInputType, StaticStringMask {
         private const val CPF_DIGITS = "###.###.###-##"
         private const val CNPJ_DIGITS = "##.###.###/####-##"
 
@@ -199,12 +229,17 @@ sealed interface OceanInputType {
             return if (currentValue.length > 11) CNPJ_DIGITS else CPF_DIGITS
         }
 
+        override fun modifyBeforeOnChange(text: String): String {
+            val digitsText = text.filter { it.isDigit() }
+            return getMaxLength().let { digitsText.take(it) }
+        }
+
         override fun getVisualTransformation(): VisualTransformation {
             return StaticMaskVisualTransformation(this)
         }
     }
 
-    object Date: OceanInputType, StaticStringMask {
+    object Date : OceanInputType, StaticStringMask {
         private const val DATE_DIGITS = "##/##/####"
 
         override fun getMaxLength() = DATE_DIGITS.count { it == '#' }
@@ -213,6 +248,11 @@ sealed interface OceanInputType {
 
         override fun getMask(currentValue: String): String {
             return DATE_DIGITS
+        }
+
+        override fun modifyBeforeOnChange(text: String): String {
+            val digitsText = text.filter { it.isDigit() }
+            return getMaxLength().let { digitsText.take(it) }
         }
 
         override fun getVisualTransformation(): VisualTransformation {

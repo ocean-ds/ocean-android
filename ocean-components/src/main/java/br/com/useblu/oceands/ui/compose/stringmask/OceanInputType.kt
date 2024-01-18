@@ -203,5 +203,21 @@ sealed interface OceanInputType {
             return StaticMaskVisualTransformation(this)
         }
     }
+
+    object Date: OceanInputType, StaticStringMask {
+        private const val DATE_DIGITS = "##/##/####"
+
+        override fun getMaxLength() = DATE_DIGITS.count { it == '#' }
+
+        override fun getKeyboardType() = KeyboardType.Number
+
+        override fun getMask(currentValue: String): String {
+            return DATE_DIGITS
+        }
+
+        override fun getVisualTransformation(): VisualTransformation {
+            return StaticMaskVisualTransformation(this)
+        }
+    }
 }
 

@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +31,8 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
+import br.com.useblu.oceands.model.compose.FileStatus
+import br.com.useblu.oceands.model.compose.UploadFileModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -49,8 +52,18 @@ fun OceanFileUploaderPreview() {
                 subtitle = "O arquivo deve estar em formato PDF e ter no máximo 20MB.",
                 onChooseFile = {},
                 selectedFiles = listOf(
-                    "123_cnh.pdf",
-                    "123_cnh.png",
+                    UploadFileModel(
+                        fileName = "123_cnh.pdf",
+                        status = FileStatus.Loading
+                    ),
+                    UploadFileModel(
+                        fileName = "123_cnh.pdf",
+                        status = FileStatus.Success
+                    ),
+                    UploadFileModel(
+                        fileName = "123_cnh.pdf",
+                        status = FileStatus.Error("Erro ao enviar arquivo")
+                    )
                 ),
                 onDeleteFile = {}
             )
@@ -58,18 +71,20 @@ fun OceanFileUploaderPreview() {
     }
 }
 
+
 @Composable
 fun OceanFileUploader(
     title: String,
     subtitle: String,
     modifier: Modifier = Modifier,
     onChooseFile: (file: Uri) -> Unit,
-    selectedFiles: List<String> = emptyList(),
+    selectedFiles: List<UploadFileModel> = emptyList(),
     onDeleteFile: (index: Int) -> Unit,
     maxFiles: Int = 1,
     mimeType: String = "*/*"
 ) {
-    val stroke = Stroke(width = 2f,
+    val stroke = Stroke(
+        width = 2f,
         pathEffect = PathEffect.dashPathEffect(floatArrayOf(12f, 6f), 0f)
     )
 
@@ -140,9 +155,9 @@ fun OceanFileUploader(
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                selectedFiles.forEachIndexed { index, name ->
+                selectedFiles.forEachIndexed { index, model ->
                     SelectedFile(
-                        name = name,
+                        model = model,
                         onClickDeleteFile = { onDeleteFile(index) }
                     )
                 }
@@ -151,11 +166,18 @@ fun OceanFileUploader(
     }
 }
 
+
 @Composable
 private fun SelectedFile(
-    name: String,
+    model: UploadFileModel,
     onClickDeleteFile: () -> Unit
 ) {
+    val borderColor = if (model.status is FileStatus.Error) {
+        OceanColors.statusNegativePure
+    } else {
+        OceanColors.brandPrimaryUp
+    }
+
     Row(
         modifier = Modifier
             .background(
@@ -164,7 +186,7 @@ private fun SelectedFile(
             )
             .border(
                 width = 1.dp,
-                color = OceanColors.brandPrimaryUp,
+                color = borderColor,
                 shape = RoundedCornerShape(8.dp)
             )
             .fillMaxWidth()
@@ -172,16 +194,41 @@ private fun SelectedFile(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        OceanIcon(
-            iconType = OceanIcons.CHECK_CIRCLE_SOLID,
-            tint = OceanColors.statusPositivePure,
-            modifier = Modifier
-                .padding(start = 12.dp)
-                .size(20.dp)
-        )
+        when (model.status) {
+            FileStatus.Loading -> {
+                CircularProgressIndicator(
+                    color = OceanColors.brandPrimaryPure,
+                    modifier = Modifier
+                        .padding(start = 12.dp)
+                        .padding(2.dp)
+                        .size(16.dp),
+                    strokeWidth = 2.dp
+                )
+            }
+
+            FileStatus.Success -> {
+                OceanIcon(
+                    iconType = OceanIcons.CHECK_CIRCLE_SOLID,
+                    tint = OceanColors.statusPositivePure,
+                    modifier = Modifier
+                        .padding(start = 12.dp)
+                        .size(20.dp)
+                )
+            }
+
+            is FileStatus.Error -> {
+                OceanIcon(
+                    iconType = OceanIcons.X_CIRCLE_SOLID,
+                    tint = OceanColors.statusNegativePure,
+                    modifier = Modifier
+                        .padding(start = 12.dp)
+                        .size(20.dp)
+                )
+            }
+        }
 
         OceanText(
-            text = name,
+            text = model.fileName,
             style = OceanTextStyle.description,
             color = OceanColors.interfaceDarkDeep,
             modifier = Modifier.weight(1f)

@@ -178,75 +178,85 @@ private fun SelectedFile(
         OceanColors.brandPrimaryUp
     }
 
-    Row(
-        modifier = Modifier
-            .background(
-                color = OceanColors.interfaceLightPure,
-                shape = RoundedCornerShape(8.dp)
-            )
-            .border(
-                width = 1.dp,
-                color = borderColor,
-                shape = RoundedCornerShape(8.dp)
-            )
-            .fillMaxWidth()
-            .height(48.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        when (model.status) {
-            FileStatus.Loading -> {
-                CircularProgressIndicator(
-                    color = OceanColors.brandPrimaryPure,
-                    modifier = Modifier
-                        .padding(start = 12.dp)
-                        .padding(2.dp)
-                        .size(16.dp),
-                    strokeWidth = 2.dp
+    Column {
+        Row(
+            modifier = Modifier
+                .background(
+                    color = OceanColors.interfaceLightPure,
+                    shape = RoundedCornerShape(8.dp)
                 )
+                .border(
+                    width = 1.dp,
+                    color = borderColor,
+                    shape = RoundedCornerShape(8.dp)
+                )
+                .fillMaxWidth()
+                .height(48.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            when (model.status) {
+                FileStatus.Loading -> {
+                    CircularProgressIndicator(
+                        color = OceanColors.brandPrimaryPure,
+                        modifier = Modifier
+                            .padding(start = 12.dp)
+                            .padding(2.dp)
+                            .size(16.dp),
+                        strokeWidth = 2.dp
+                    )
+                }
+
+                FileStatus.Success -> {
+                    OceanIcon(
+                        iconType = OceanIcons.CHECK_CIRCLE_SOLID,
+                        tint = OceanColors.statusPositivePure,
+                        modifier = Modifier
+                            .padding(start = 12.dp)
+                            .size(20.dp)
+                    )
+                }
+
+                is FileStatus.Error -> {
+                    OceanIcon(
+                        iconType = OceanIcons.X_CIRCLE_SOLID,
+                        tint = OceanColors.statusNegativePure,
+                        modifier = Modifier
+                            .padding(start = 12.dp)
+                            .size(20.dp)
+                    )
+                }
             }
 
-            FileStatus.Success -> {
-                OceanIcon(
-                    iconType = OceanIcons.CHECK_CIRCLE_SOLID,
-                    tint = OceanColors.statusPositivePure,
-                    modifier = Modifier
-                        .padding(start = 12.dp)
-                        .size(20.dp)
-                )
-            }
+            OceanText(
+                text = model.fileName,
+                style = OceanTextStyle.description,
+                color = OceanColors.interfaceDarkDeep,
+                modifier = Modifier.weight(1f)
+            )
 
-            is FileStatus.Error -> {
+            Box(modifier = Modifier
+                .padding(end = 4.dp)
+                .size(40.dp)
+                .clickable {
+                    onClickDeleteFile()
+                }
+            ) {
                 OceanIcon(
-                    iconType = OceanIcons.X_CIRCLE_SOLID,
-                    tint = OceanColors.statusNegativePure,
+                    iconType = OceanIcons.X_SOLID,
+                    tint = OceanColors.interfaceDarkUp,
                     modifier = Modifier
-                        .padding(start = 12.dp)
                         .size(20.dp)
+                        .align(Alignment.Center)
                 )
             }
         }
 
-        OceanText(
-            text = model.fileName,
-            style = OceanTextStyle.description,
-            color = OceanColors.interfaceDarkDeep,
-            modifier = Modifier.weight(1f)
-        )
-
-        Box(modifier = Modifier
-            .padding(end = 4.dp)
-            .size(40.dp)
-            .clickable {
-                onClickDeleteFile()
-            }
-        ) {
-            OceanIcon(
-                iconType = OceanIcons.X_SOLID,
-                tint = OceanColors.interfaceDarkUp,
-                modifier = Modifier
-                    .size(20.dp)
-                    .align(Alignment.Center)
+        if (model.status is FileStatus.Error) {
+            OceanText(
+                text = model.status.error,
+                style = OceanTextStyle.caption,
+                color = OceanColors.statusNegativePure
             )
         }
     }

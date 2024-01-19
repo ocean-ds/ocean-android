@@ -49,6 +49,7 @@ import br.com.useblu.oceands.client.ui.crosscellcard.CardCrossSellActivity
 import br.com.useblu.oceands.client.ui.descriptorlistitem.DescriptorListActivity
 import br.com.useblu.oceands.client.ui.detailed.DetailedCardActivity
 import br.com.useblu.oceands.client.ui.donut.DonutActivity
+import br.com.useblu.oceands.client.ui.fileuploader.FileUploaderActivity
 import br.com.useblu.oceands.client.ui.footer.FooterBluActivity
 import br.com.useblu.oceands.client.ui.groupcta.GroupCTAActivity
 import br.com.useblu.oceands.client.ui.headerapp.HeaderAppActivity
@@ -191,6 +192,7 @@ class HomeActivity : AppCompatActivity() {
                 textAction(text = "Descriptor List Item", onClick = { descriptorList() })
                 textAction(text = "Detailed Card", onClick = { detailedCardClick() })
                 textAction(text = "Donut", onClick = { donutView() })
+                textAction(text = "File Uploader", onClick = { goToFileUploader() })
                 textAction(text = "Footer Blu", onClick = { onFooterBlu() })
                 textAction(text = "Group CTA", onClick = { onClickCta() })
                 textAction(text = "Header App", onClick = { onClickHeaderApp() })
@@ -306,6 +308,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onClickChips() {
         val intent = Intent(this, ChipsActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToFileUploader() {
+        val intent = Intent(this, FileUploaderActivity::class.java)
         startActivity(intent)
     }
 

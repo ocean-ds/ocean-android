@@ -1,13 +1,23 @@
 package br.com.useblu.oceands.components.compose.input
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.PathEffect
@@ -35,7 +45,12 @@ fun OceanFileUploaderPreview() {
         ) {
             OceanFileUploader(
                 title = "Selecione um arquivo do seu celular",
-                subtitle = "O arquivo deve estar em formato PDF e ter no máximo 20MB."
+                subtitle = "O arquivo deve estar em formato PDF e ter no máximo 20MB.",
+                onChooseFile = {},
+                selectedFiles = listOf(
+                    "123_cnh.pdf",
+                    "123_cnh.png",
+                )
             )
         }
     }
@@ -45,7 +60,10 @@ fun OceanFileUploaderPreview() {
 fun OceanFileUploader(
     title: String,
     subtitle: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onChooseFile: (filePath: String) -> Unit,
+    selectedFiles: List<String> = emptyList(),
+    onDeleteFile: (index: Int) -> Unit = {}
 ) {
     val stroke = Stroke(width = 2f,
         pathEffect = PathEffect.dashPathEffect(floatArrayOf(12f, 6f), 0f)
@@ -53,46 +71,131 @@ fun OceanFileUploader(
 
     val borderColor = OceanColors.interfaceLightDeep
 
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
+    val fileChooserLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { imageUri ->
+        if (imageUri != null) {
+            onChooseFile(imageUri.toString())
+        }
+    }
+
+    Column {
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .background(
+                    color = OceanColors.interfaceLightPure,
+                    shape = RoundedCornerShape(8.dp)
+                )
+                .clip(
+                    shape = RoundedCornerShape(8.dp)
+                )
+                .drawBehind {
+                    drawRoundRect(
+                        color = borderColor,
+                        style = stroke,
+                        cornerRadius = CornerRadius(8.dp.toPx())
+                    )
+                }
+                .clickable {
+                    fileChooserLauncher.launch("*/*")
+                }
+                .padding(vertical = 24.dp, horizontal = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            OceanIcon(
+                iconType = OceanIcons.UPLOAD_OUTLINE,
+                tint = OceanColors.brandPrimaryPure
+            )
+
+            OceanSpacing.StackXXS()
+            OceanSpacing.StackXXXS()
+
+            OceanText(
+                text = title,
+                style = OceanTextStyle.description,
+                fontWeight = FontWeight.SemiBold,
+                color = OceanColors.brandPrimaryPure,
+                textAlign = TextAlign.Center
+            )
+
+            OceanSpacing.StackXXS()
+
+            OceanText(
+                text = subtitle,
+                style = OceanTextStyle.caption,
+                color = OceanColors.interfaceDarkUp,
+                textAlign = TextAlign.Center
+            )
+        }
+
+        if (selectedFiles.isNotEmpty()) {
+            OceanSpacing.StackXS()
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                selectedFiles.forEachIndexed { index, name ->
+                    SelectedFile(
+                        name = name,
+                        onClickDeleteFile = { onDeleteFile(index) }
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun SelectedFile(
+    name: String,
+    onClickDeleteFile: () -> Unit
+) {
+    Row(
+        modifier = Modifier
             .background(
                 color = OceanColors.interfaceLightPure,
                 shape = RoundedCornerShape(8.dp)
             )
-            .drawBehind {
-                drawRoundRect(
-                    color = borderColor,
-                    style = stroke,
-                    cornerRadius = CornerRadius(8.dp.toPx())
-                )
-            }
-            .padding(vertical = 24.dp, horizontal = 16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .border(
+                width = 1.dp,
+                color = OceanColors.brandPrimaryUp,
+                shape = RoundedCornerShape(8.dp)
+            )
+            .fillMaxWidth()
+            .height(48.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         OceanIcon(
-            iconType = OceanIcons.UPLOAD_OUTLINE,
-            tint = OceanColors.brandPrimaryPure
+            iconType = OceanIcons.CHECK_CIRCLE_SOLID,
+            tint = OceanColors.statusPositivePure,
+            modifier = Modifier
+                .padding(start = 12.dp)
+                .size(20.dp)
         )
 
-        OceanSpacing.StackXXS()
-        OceanSpacing.StackXXXS()
-
         OceanText(
-            text = title,
+            text = name,
             style = OceanTextStyle.description,
-            fontWeight = FontWeight.SemiBold,
-            color = OceanColors.brandPrimaryPure,
-            textAlign = TextAlign.Center
+            color = OceanColors.interfaceDarkDeep,
+            modifier = Modifier.weight(1f)
         )
 
-        OceanSpacing.StackXXS()
-
-        OceanText(
-            text = subtitle,
-            style = OceanTextStyle.caption,
-            color = OceanColors.interfaceDarkUp,
-            textAlign = TextAlign.Center
-        )
+        Box(modifier = Modifier
+            .padding(end = 4.dp)
+            .size(40.dp)
+            .clickable {
+                onClickDeleteFile()
+            }
+        ) {
+            OceanIcon(
+                iconType = OceanIcons.X_SOLID,
+                tint = OceanColors.interfaceDarkUp,
+                modifier = Modifier
+                    .size(20.dp)
+                    .align(Alignment.Center)
+            )
+        }
     }
 }

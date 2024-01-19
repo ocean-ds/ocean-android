@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -69,9 +71,13 @@ fun PreviewOceanTextInput() {
 
         OceanSpacing.StackXXS()
 
-        OceanButton(text = "Resetar texto", buttonStyle = OceanButtonStyle.SecondaryMedium) {
-            text2 = "user@pag.net"
-        }
+        OceanButton(
+            text = "Resetar texto",
+            buttonStyle = OceanButtonStyle.SecondaryMedium,
+            onClick = {
+                text2 = "user@pag.net"
+            }
+        )
 
         OceanSpacing.StackXS()
 
@@ -102,6 +108,7 @@ fun PreviewOceanTextInput() {
 fun PreviewOceanTextInputMask() {
     Column(
         modifier = Modifier
+            .verticalScroll(rememberScrollState())
             .background(Color.White)
             .padding(8.dp)
     ) {
@@ -115,7 +122,7 @@ fun PreviewOceanTextInputMask() {
         CreateOceanTextInputPreview("90000", OceanInputType.Currency())
         CreateOceanTextInputPreview("900.00", OceanInputType.Currency(false))
         CreateOceanTextInputPreview("900,00", OceanInputType.Currency(true, showZeroValue = true))
-        CreateOceanTextInputPreview("23/122023", OceanInputType.Date)
+        CreateOceanTextInputPreview("23122023", OceanInputType.Date)
     }
 }
 @Composable
@@ -129,8 +136,11 @@ private fun CreateOceanTextInputPreview(
         value = text,
         label = "Label",
         placeholder = "Placeholder",
-        onTextChanged = { text = it },
-        oceanInputType = inputType
+        onTextChanged = {
+            text = it
+            println("text: [$it]")
+        },
+        oceanInputType = inputType,
     )
 }
 

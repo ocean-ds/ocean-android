@@ -127,12 +127,12 @@ fun PreviewButton() {
 @Composable
 fun OceanButton(
     text: String,
-    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
     buttonStyle: OceanButtonStyle,
+    modifier: Modifier = Modifier,
     showProgress: Boolean = false,
     icon: OceanIcons? = null,
-    disabled: Boolean = false,
-    onClick: () -> Unit
+    disabled: Boolean = false
 ) {
     Button(
         onClick = { if (!showProgress) onClick.invoke() },

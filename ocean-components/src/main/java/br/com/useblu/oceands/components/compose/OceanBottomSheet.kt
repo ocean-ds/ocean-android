@@ -66,14 +66,15 @@ private fun OceanBottomSheetPreview() {
 
                             OceanButton(
                                 text = "Fechar",
-                                buttonStyle = OceanButtonStyle.SecondaryMedium
-                            ) {
-                                coroutineScope.launch {
-                                    sheetState.hide()
-                                }.invokeOnCompletion {
-                                    showState.value = false
+                                buttonStyle = OceanButtonStyle.SecondaryMedium,
+                                onClick = {
+                                    coroutineScope.launch {
+                                        sheetState.hide()
+                                    }.invokeOnCompletion {
+                                        showState.value = false
+                                    }
                                 }
-                            }
+                            )
                         }
                     },
                     title = UiText.DynamicString("Teste de bottom sheet"),

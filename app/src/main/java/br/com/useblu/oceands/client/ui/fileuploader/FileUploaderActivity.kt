@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.client.ui.fileuploader
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
@@ -28,18 +29,28 @@ class FileUploaderActivity : AppCompatActivity() {
                 modifier = Modifier.padding(16.dp)
             ) {
                 OceanFileUploader(
-                    title = "Selecione um arquivo do seu celular",
+                    title = "Selecione até dois arquivos",
                     subtitle = "O arquivo deve estar em formato PDF e ter no máximo 20MB.",
                     onChooseFile = {
                         println("File path: $it")
-                        viewModel.onChooseFile(it)
+                        val fileName = getFileName(it)
+                        viewModel.onChooseFile(fileName)
                     },
                     selectedFiles = viewModel.selectedFiles,
                     onDeleteFile = {
                         viewModel.onDeleteFile(it)
-                    }
+                    },
+                    maxFiles = 2
                 )
             }
         }
+    }
+
+    private fun getFileName(uri: Uri): String {
+        val cursor = contentResolver.query(uri, null, null, null, null)
+        cursor?.moveToFirst()
+        val name = cursor?.getString(cursor.getColumnIndexOrThrow("_display_name"))
+        cursor?.close()
+        return name ?: ""
     }
 }

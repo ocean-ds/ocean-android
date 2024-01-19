@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.components.compose.input
 
+import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -50,7 +51,8 @@ fun OceanFileUploaderPreview() {
                 selectedFiles = listOf(
                     "123_cnh.pdf",
                     "123_cnh.png",
-                )
+                ),
+                onDeleteFile = {}
             )
         }
     }
@@ -61,9 +63,11 @@ fun OceanFileUploader(
     title: String,
     subtitle: String,
     modifier: Modifier = Modifier,
-    onChooseFile: (filePath: String) -> Unit,
+    onChooseFile: (file: Uri) -> Unit,
     selectedFiles: List<String> = emptyList(),
-    onDeleteFile: (index: Int) -> Unit = {}
+    onDeleteFile: (index: Int) -> Unit,
+    maxFiles: Int = 1,
+    mimeType: String = "*/*"
 ) {
     val stroke = Stroke(width = 2f,
         pathEffect = PathEffect.dashPathEffect(floatArrayOf(12f, 6f), 0f)
@@ -73,9 +77,9 @@ fun OceanFileUploader(
 
     val fileChooserLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.GetContent()
-    ) { imageUri ->
-        if (imageUri != null) {
-            onChooseFile(imageUri.toString())
+    ) { fileUri ->
+        if (fileUri != null) {
+            onChooseFile(fileUri)
         }
     }
 
@@ -97,9 +101,10 @@ fun OceanFileUploader(
                         cornerRadius = CornerRadius(8.dp.toPx())
                     )
                 }
-                .clickable {
-                    fileChooserLauncher.launch("*/*")
-                }
+                .clickable(
+                    enabled = selectedFiles.size < maxFiles,
+                    onClick = { fileChooserLauncher.launch(mimeType) }
+                )
                 .padding(vertical = 24.dp, horizontal = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

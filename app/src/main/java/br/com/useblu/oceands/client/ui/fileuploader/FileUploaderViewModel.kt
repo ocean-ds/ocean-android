@@ -10,8 +10,8 @@ class FileUploaderViewModel: ViewModel() {
     var selectedFiles by mutableStateOf(emptyList<String>())
         private set
 
-    fun onChooseFile(path: String) {
-        selectedFiles = selectedFiles + path.split("/").last()
+    fun onChooseFile(fileName: String) {
+        selectedFiles = selectedFiles + fileName
     }
 
     fun onDeleteFile(index: Int) {

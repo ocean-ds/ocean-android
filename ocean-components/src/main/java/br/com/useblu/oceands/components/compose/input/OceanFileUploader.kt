@@ -1,15 +1,19 @@
 package br.com.useblu.oceands.components.compose.input
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanIcon
@@ -24,11 +28,16 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Composable
 fun OceanFileUploaderPreview() {
     OceanTheme {
-        OceanFileUploader(
-            title = "Selecione um arquivo do seu celular",
-            subtitle = "O arquivo deve estar em formato PDF e ter no máximo 20MB."
-        )
-
+        Column(
+            modifier = Modifier
+                .background(color = OceanColors.interfaceLightPure)
+                .padding(16.dp)
+        ) {
+            OceanFileUploader(
+                title = "Selecione um arquivo do seu celular",
+                subtitle = "O arquivo deve estar em formato PDF e ter no máximo 20MB."
+            )
+        }
     }
 }
 
@@ -38,15 +47,26 @@ fun OceanFileUploader(
     subtitle: String,
     modifier: Modifier = Modifier
 ) {
+    val stroke = Stroke(width = 2f,
+        pathEffect = PathEffect.dashPathEffect(floatArrayOf(12f, 6f), 0f)
+    )
+
+    val borderColor = OceanColors.interfaceLightDeep
+
     Column(
         modifier = modifier
             .fillMaxWidth()
             .background(
-                color = OceanColors.interfaceLightPure
+                color = OceanColors.interfaceLightPure,
+                shape = RoundedCornerShape(8.dp)
             )
-            .border(
-                border = BorderStroke(1.dp)
-            )
+            .drawBehind {
+                drawRoundRect(
+                    color = borderColor,
+                    style = stroke,
+                    cornerRadius = CornerRadius(8.dp.toPx())
+                )
+            }
             .padding(vertical = 24.dp, horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -62,7 +82,8 @@ fun OceanFileUploader(
             text = title,
             style = OceanTextStyle.description,
             fontWeight = FontWeight.SemiBold,
-            color = OceanColors.brandPrimaryPure
+            color = OceanColors.brandPrimaryPure,
+            textAlign = TextAlign.Center
         )
 
         OceanSpacing.StackXXS()
@@ -70,7 +91,8 @@ fun OceanFileUploader(
         OceanText(
             text = subtitle,
             style = OceanTextStyle.caption,
-            color = OceanColors.interfaceDarkUp
+            color = OceanColors.interfaceDarkUp,
+            textAlign = TextAlign.Center
         )
     }
 }

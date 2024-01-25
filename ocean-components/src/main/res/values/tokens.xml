@@ -13,11 +13,11 @@
   <color name="ocean_color_complementary_down" category="background-color">#6AE5E5</color>
   <color name="ocean_color_complementary_deep" category="background-color">#1C9999</color>
   <color name="ocean_color_interface_light_pure" category="background-color">#FFFFFF</color>
-  <color name="ocean_color_interface_light_up" category="background-color">#F7F9FF</color>
+  <color name="ocean_color_interface_light_up" category="background-color">#F3F5FE</color>
   <color name="ocean_color_interface_light_down" category="background-color">#EBECF5</color>
   <color name="ocean_color_interface_light_deep" category="background-color">#D8DAE8</color>
   <color name="ocean_color_interface_dark_pure" category="background-color">#0C0D14</color>
-  <color name="ocean_color_interface_dark_up" category="background-color">#B6B9CC</color>
+  <color name="ocean_color_interface_dark_up" category="background-color">#AAADC0</color>
   <color name="ocean_color_interface_dark_down" category="background-color">#67697A</color>
   <color name="ocean_color_interface_dark_deep" category="background-color">#393B47</color>
   <color name="ocean_color_status_positive_pure" category="background-color">#3DCC64</color>

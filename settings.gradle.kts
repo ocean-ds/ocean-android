@@ -13,8 +13,8 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("classpath") {
-            library("gradle", "com.android.tools.build:gradle:8.1.4")
-            library("kotlin", "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.21")
+            library("gradle", "com.android.tools.build:gradle:8.2.2")
+            library("kotlin", "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22")
         }
 
         create("libs") {
@@ -55,7 +55,7 @@ dependencyResolutionManagement {
             library("compose-lifecycleViewModel", "androidx.lifecycle", "lifecycle-viewmodel-compose").versionRef("lifecycleViewModel")
             library("compose-activity", "androidx.activity:activity-compose:1.8.1")
 
-            library("compose-BOM", "androidx.compose:compose-bom:2023.10.01")
+            library("compose-BOM", "androidx.compose:compose-bom:2024.01.00")
             library("compose-androidMaterial3", "androidx.compose.material3", "material3").withoutVersion()
             library("compose-uiToolingPreview", "androidx.compose.ui", "ui-tooling-preview").withoutVersion()
             library("compose-uiViewBinding", "androidx.compose.ui", "ui-viewbinding").withoutVersion()

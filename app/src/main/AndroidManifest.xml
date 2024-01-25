@@ -10,15 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.bottomnavigation.BottomNavigationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.donut.DonutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.tab.TabActivity"
-            android:exported="false" />
+        <activity android:name=".ui.fileuploader.FileUploaderActivity" />
+        <activity android:name=".ui.bottomnavigation.BottomNavigationActivity" />
+        <activity android:name=".ui.donut.DonutActivity" />
+        <activity android:name=".ui.tab.TabActivity" />
         <activity android:name=".ui.step.StepViewActivity" />
         <activity android:name=".ui.listsubheader.ListSubheaderActivity" />
         <activity android:name=".ui.cardgroup.CardGroupActivity" />

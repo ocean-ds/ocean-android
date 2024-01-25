@@ -8,8 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview(showBackground = true)
 @Composable
@@ -28,12 +28,9 @@ fun OceanIcon(
     tint: Color = LocalContentColor.current,
     fallbackIcon: OceanIcons? = null
 ) {
-    val icon = iconType.icon
-    val fallback = fallbackIcon?.icon
-
-    if (icon != OceanIcons.UNDEFINED.icon) {
+    if (iconType != OceanIcons.UNDEFINED) {
         Icon(
-            painter = painterResource(id = icon),
+            painter = painterResource(id = iconType.icon),
             contentDescription = null,
             modifier = modifier,
             tint = tint
@@ -42,9 +39,9 @@ fun OceanIcon(
         return
     }
 
-    if (fallback != null) {
+    if (fallbackIcon != null) {
         Icon(
-            painter = painterResource(id = fallback),
+            painter = painterResource(id = fallbackIcon.icon),
             contentDescription = null,
             modifier = modifier,
             tint = tint

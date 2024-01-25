@@ -23,11 +23,7 @@ fun setCustomBehavior(expansionLayout: ExpansionLayout, setCustomBehavior: Boole
     val textviewHeaderLabel = expansionHeader.findViewById<TextView>(R.id.text_view_header_label)
     val textviewHeaderValue = expansionHeader.findViewById<TextView>(R.id.text_view_header_value)
     val textViewHeaderTitle = expansionHeader.findViewById<TextView>(R.id.text_view_header_title)
-    val textViewSummaryExternalBalanceLabel = expansionHeader.findViewById<TextView>(R.id.text_view_summary_external_balance_label)
-    val textViewSummaryExternalBalanceValue = expansionHeader.findViewById<TextView>(R.id.text_view_summary_external_balance_value)
     val headerIndicator = expansionHeader.findViewById<ImageView>(R.id.header_indicator)
-    val buttonExternalBalance = expansionHeader.findViewById<View>(R.id.button_external_balance_button)
-    val containerDivider = expansionHeader.findViewById<View>(R.id.container_divider)
     val shadow = linearLayout.findViewById<View>(R.id.shadow)
 
     expansionLayout.addListener { _, expanded ->
@@ -43,10 +39,6 @@ fun setCustomBehavior(expansionLayout: ExpansionLayout, setCustomBehavior: Boole
                 ), android.graphics.PorterDuff.Mode.SRC_IN
             )
 
-            textViewSummaryExternalBalanceLabel.animateFadeOut()
-            textViewSummaryExternalBalanceValue.animateFadeOut()
-            buttonExternalBalance.animateFadeOut()
-            containerDivider.animateFadeOut()
             shadow.animateFadeOut()
 
         } else {
@@ -57,14 +49,11 @@ fun setCustomBehavior(expansionLayout: ExpansionLayout, setCustomBehavior: Boole
             headerIndicator.setColorFilter(
                 ContextCompat.getColor(
                     headerIndicator.context,
-                    R.color.ocean_color_interface_dark_deep
-                ), android.graphics.PorterDuff.Mode.SRC_IN
+                    R.color.ocean_color_interface_dark_down
+                ),
+                android.graphics.PorterDuff.Mode.SRC_IN
             )
 
-            textViewSummaryExternalBalanceLabel.animateFadeIn()
-            textViewSummaryExternalBalanceValue.animateFadeIn()
-            buttonExternalBalance.animateFadeIn()
-            containerDivider.animateFadeIn()
             shadow.animateFadeIn()
         }
     }

@@ -16,6 +16,7 @@ import br.com.useblu.oceands.utils.FormatTypes
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlin.math.truncate
 
 fun String.formatterDateBR(): String {
     val inFormat = SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy", Locale.US)
@@ -36,7 +37,10 @@ fun Date.oceanFormat(pattern: String): String {
     }.replace(".", "")
 }
 
-fun Double.oceanFormatWithCurrency() = FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(this.toString())
+fun Double.oceanFormatWithCurrency(): String {
+    val twoDecimalPlaces = truncate(this * 100) / 100
+    return FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(twoDecimalPlaces.toString())
+}
 
 fun String.clearSpacing() = replace("\\s+".toRegex(), "").trim()
 

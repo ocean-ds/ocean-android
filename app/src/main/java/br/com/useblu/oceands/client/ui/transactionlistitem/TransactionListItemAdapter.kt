@@ -58,6 +58,7 @@ class TransactionListItemAdapter(
             binding.tagTitle = item.tagTitle
             binding.primaryLabel = item.primaryLabel
             binding.value = item.value
+            binding.secondaryValue = item.secondaryValue
             binding.hasCheckbox = true
             binding.selectionMode = selectionMode
             binding.click = onItemClicked

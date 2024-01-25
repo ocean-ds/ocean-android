@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -65,14 +66,15 @@ private fun OceanBottomSheetPreview() {
 
                             OceanButton(
                                 text = "Fechar",
-                                buttonStyle = OceanButtonStyle.SecondaryMedium
-                            ) {
-                                coroutineScope.launch {
-                                    sheetState.hide()
-                                }.invokeOnCompletion {
-                                    showState.value = false
+                                buttonStyle = OceanButtonStyle.SecondaryMedium,
+                                onClick = {
+                                    coroutineScope.launch {
+                                        sheetState.hide()
+                                    }.invokeOnCompletion {
+                                        showState.value = false
+                                    }
                                 }
-                            }
+                            )
                         }
                     },
                     title = UiText.DynamicString("Teste de bottom sheet"),
@@ -274,27 +276,30 @@ fun OceanBottomSheet(
                     OceanColors.interfaceDarkDeep
                 }
 
-                Text(
+                OceanText(
                     text = model.title.asString(),
                     style = OceanTextStyle.heading3,
-                    color = textColor
+                    color = textColor,
+                    textAlign = TextAlign.Center
                 )
             }
 
             if (model.message != null) {
                 OceanSpacing.StackXXS()
-                Text(
+                OceanText(
                     text = model.message.asString(),
-                    style = OceanTextStyle.paragraph
+                    style = OceanTextStyle.paragraph,
+                    textAlign = TextAlign.Center
                 )
             }
 
             if (model.subMessage != null) {
                 OceanSpacing.StackXXS()
-                Text(
+                OceanText(
                     text = model.subMessage.asString(),
                     style = OceanTextStyle.paragraph,
-                    fontFamily = OceanFontFamily.BaseBold
+                    fontFamily = OceanFontFamily.BaseBold,
+                    textAlign = TextAlign.Center
                 )
             }
 

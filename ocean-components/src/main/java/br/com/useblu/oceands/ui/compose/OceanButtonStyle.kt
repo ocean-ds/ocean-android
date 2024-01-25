@@ -50,7 +50,7 @@ private interface ButtonSizes {
     fun getIconPadding(): Dp = 8.dp
 
     @Composable
-    fun getTextSize() = OceanFontSize.xxs
+    fun getTextSize() = OceanFontSize.xs
 }
 
 private interface IButtonColors {
@@ -67,11 +67,12 @@ private val small = object : ButtonSizes {
     override fun getIconPadding() = 4.dp
 
     @Composable
-    override fun getTextSize() = OceanFontSize.xxxs
+    override fun getTextSize() = OceanFontSize.xxs
 }
 private val medium = object : ButtonSizes {
     override fun getHeight() = 48.dp
     override fun getHorizontalPadding() = 24.dp
+    override fun getIconPadding() = 4.dp
 }
 private val large = object : ButtonSizes {
     override fun getHeight() = 56.dp

@@ -1,12 +1,11 @@
 package br.com.useblu.oceands.utils
 
-import androidx.compose.runtime.Immutable
+import androidx.annotation.DrawableRes
 import br.com.useblu.oceands.R
 
-@Immutable
 enum class OceanIcons(
     val token: String,
-    val icon: Int
+    @DrawableRes val icon: Int
 ) {
     APPAREL_OUTLINE(
         token = "appareloutline",
@@ -2196,7 +2195,7 @@ enum class OceanIcons(
 
     companion object {
         fun fromToken(token: String): OceanIcons {
-            return values().firstOrNull { it.token.equals(token, ignoreCase = true) } ?: UNDEFINED
+            return entries.firstOrNull { it.token.equals(token, ignoreCase = true) } ?: UNDEFINED
         }
     }
 }

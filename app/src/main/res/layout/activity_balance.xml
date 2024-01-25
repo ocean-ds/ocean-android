@@ -17,15 +17,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="@dimen/ocean_spacing_inline_xs"
-        android:paddingBottom="@dimen/ocean_spacing_inline_xs"
-        tools:context=".ui.shortcuts.ShortcutsActivity">
+        tools:context=".ui.balance.BalanceActivity">
 
         <include
             layout="@layout/ocean_balance"
             app:isContentHidden="@{viewmodel.contentIsHidden}"
             app:clickIcon="@{viewmodel::clickIconContentVisibility}"
-            app:headerTitle="@{`Saldo na Blu`}"
+            app:headerTitle="@{viewmodel.headerTitle}"
             app:firstLabel="@{viewmodel.labels.get(0)}"
             app:firstValue="@{viewmodel.values.get(0)}"
             app:secondLabel="@{viewmodel.labels.get(1)}"
@@ -34,12 +32,6 @@
             app:thirdValue="@{viewmodel.values.get(2)}"
             app:fourthLabel="@{viewmodel.labels.get(3)}"
             app:fourthValue="@{viewmodel.values.get(3)}"
-            app:summaryExternalBalanceLabel="@{`Em outras maquininhas`}"
-            app:summaryExternalBalanceValue="@{`R$ 1.000.000,00`}"
-            app:externalBalanceTitle="@{`Em outras maquininhas`}"
-            app:externalBalanceLabel="@{`Saldo total`}"
-            app:externalBalanceValue="@{`R$ 1.000.000,00`}"
-            app:externalBalanceTextButton="@{`como usar`}"
             app:visibleShadow="@{true}"/>
 
     </LinearLayout>

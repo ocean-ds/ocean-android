@@ -6,12 +6,13 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -68,7 +69,7 @@ fun PreviewButton() {
         )
     )
 
-    MaterialTheme {
+    OceanTheme {
         Column(
             modifier = Modifier.background(color = OceanColors.interfaceLightPure)
         ) {
@@ -109,6 +110,16 @@ fun PreviewButton() {
                     println("Botão clicado")
                 }
             )
+
+            OceanButton(
+                text = "Permitir",
+                showProgress = false,
+                modifier = Modifier.padding(top = 16.dp).width(200.dp),
+                buttonStyle = OceanButtonStyle.PrimaryMedium,
+                onClick = {
+                    println("Botão clicado")
+                }
+            )
         }
     }
 }
@@ -116,12 +127,12 @@ fun PreviewButton() {
 @Composable
 fun OceanButton(
     text: String,
-    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
     buttonStyle: OceanButtonStyle,
+    modifier: Modifier = Modifier,
     showProgress: Boolean = false,
     icon: OceanIcons? = null,
-    disabled: Boolean = false,
-    onClick: () -> Unit
+    disabled: Boolean = false
 ) {
     Button(
         onClick = { if (!showProgress) onClick.invoke() },
@@ -136,11 +147,10 @@ fun OceanButton(
     ) {
         if (!showProgress) {
             if (icon != null) {
-
                 Icon(
                     painter = painterResource(id = icon.icon),
                     contentDescription = null,
-                    modifier = Modifier.size(24.dp),
+                    modifier = Modifier.size(22.dp),
                 )
             }
 

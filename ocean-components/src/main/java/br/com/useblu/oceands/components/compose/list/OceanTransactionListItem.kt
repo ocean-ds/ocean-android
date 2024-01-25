@@ -16,8 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTag
-import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
+import br.com.useblu.oceands.extensions.oceanFormatWithCurrency
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -30,17 +30,58 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Preview
 @Composable
 fun OceanTransactionListItemPreview() {
-    OceanTheme {
+    Column {
         OceanTransactionListItem(
             primaryLabel = "Level 1",
             secondaryLabel = "Level 2",
             dimmedLabel = "Level 3",
             highlightedLabel = "Level 4",
-            value = 10045.32,
+            primaryValue = 10045.32,
+            secondaryValue = 10002.78,
             valueWithSignal = true,
             valueIsHighlighted = true,
             time = "Time",
             tagTitle = "Title",
+            icon = OceanIcons.LOCK_CLOSED_SOLID
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            primaryValue = -10045.32,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            time = "Time",
+            tagTitle = "Title",
+            icon = OceanIcons.LOCK_CLOSED_SOLID
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            primaryValue = -10045.32,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            valueIsCanceled = true,
+            time = "Time",
+            tagTitle = "Canceled",
+            tagType = OceanTagType.Negative,
+            icon = OceanIcons.LOCK_CLOSED_SOLID
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            primaryValue = 10045.32,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            valueIsCanceled = true,
+            time = "Time",
+            tagTitle = "Canceled",
+            tagType = OceanTagType.Negative,
             icon = OceanIcons.LOCK_CLOSED_SOLID
         )
     }
@@ -53,9 +94,11 @@ fun OceanTransactionListItem(
     secondaryLabel: String? = null,
     dimmedLabel: String? = null,
     highlightedLabel: String? = null,
-    value: Double? = null,
+    primaryValue: Double? = null,
+    secondaryValue: Double? = null,
     valueIsHighlighted: Boolean = false,
     valueWithSignal: Boolean = false,
+    valueIsCanceled: Boolean = false,
     tagTitle: String? = null,
     tagType: OceanTagType = OceanTagType.Warning,
     time: String? = null,
@@ -127,15 +170,17 @@ fun OceanTransactionListItem(
             Column(
                 horizontalAlignment = Alignment.End
             ) {
-                if (value != null) {
-                    val color = if (valueIsHighlighted && value > 0) {
-                        OceanColors.statusPositiveDeep
-                    } else OceanColors.interfaceDarkPure
+                if (primaryValue != null) {
+                    val color = when {
+                        valueIsHighlighted && valueIsCanceled -> OceanColors.interfaceDarkUp
+                        valueIsHighlighted && primaryValue > 0 -> OceanColors.statusPositiveDeep
+                        else -> OceanColors.interfaceDarkPure
+                    }
 
-                    var formattedValue = FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(value.toString())
+                    var formattedValue = FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(primaryValue.toString())
 
                     if (valueWithSignal) {
-                        if (value >= 0) {
+                        if (primaryValue >= 0) {
                             formattedValue = "+ $formattedValue"
                         }
                     } else {
@@ -143,6 +188,15 @@ fun OceanTransactionListItem(
                     }
                     Text(
                         text = formattedValue,
+                        color = color,
+                        fontFamily = OceanFontFamily.BaseMedium,
+                        style = OceanTextStyle.description
+                    )
+                }
+                if (secondaryValue != null) {
+                    val color = OceanColors.interfaceDarkDown
+                    Text(
+                        text = secondaryValue.oceanFormatWithCurrency(),
                         color = color,
                         fontFamily = OceanFontFamily.BaseMedium,
                         style = OceanTextStyle.description

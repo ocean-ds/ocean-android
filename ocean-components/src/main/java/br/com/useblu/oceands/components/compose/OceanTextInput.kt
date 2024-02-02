@@ -59,6 +59,13 @@ fun PreviewOceanTextInput() {
             onTextChanged = { text1 = it }
         )
 
+        OceanTextInput(
+            value = text1,
+            label = "Label",
+            isTextArea = true,
+            onTextChanged = { text1 = it }
+        )
+
         OceanSpacing.StackXS()
 
         var text2: String by remember { mutableStateOf("user@pag.net") }
@@ -125,6 +132,7 @@ fun PreviewOceanTextInputMask() {
         CreateOceanTextInputPreview("23122023", OceanInputType.Date)
     }
 }
+
 @Composable
 private fun CreateOceanTextInputPreview(
     value: String,
@@ -165,7 +173,8 @@ fun OceanTextInput(
     onTextChanged: (String) -> Unit,
     oceanInputType: OceanInputType = OceanInputType.DEFAULT,
     onClickIcon: (() -> Unit)? = null,
-    icon: OceanIcons? = null
+    icon: OceanIcons? = null,
+    isTextArea: Boolean = false
 ) {
     val localTextStyle = TextStyle(
         fontSize = OceanFontSize.xs,
@@ -196,10 +205,13 @@ fun OceanTextInput(
                 mutableStateOf(TextFieldValue(maskedValue, textFieldSelection))
             }
 
+            val height = if (isTextArea) 150.dp else 48.dp
+            val singleLine = !isTextArea
+
             BasicTextField(
                 value = textFieldValue,
                 modifier = Modifier
-                    .height(48.dp)
+                    .height(height)
                     .fillMaxWidth()
                     .background(
                         color = OceanColors.interfaceLightPure,
@@ -226,7 +238,7 @@ fun OceanTextInput(
                     }
                 },
                 enabled = enabled,
-                singleLine = true,
+                singleLine = singleLine,
                 textStyle = LocalTextStyle.current,
                 keyboardOptions = KeyboardOptions(keyboardType = oceanInputType.getKeyboardType()),
                 cursorBrush = SolidColor(OceanColors.brandPrimaryPure),
@@ -243,7 +255,7 @@ fun OceanTextInput(
                         interactionSource = interactionSource,
                         textFieldColors = getTextFieldColors(),
                         trailingIcon = if (icon != null) {
-                             {
+                            {
                                 OceanIcon(
                                     iconType = icon,
                                     tint = OceanColors.interfaceDarkUp,
@@ -252,7 +264,8 @@ fun OceanTextInput(
                                     }
                                 )
                             }
-                        } else null
+                        } else null,
+                        singleLine = singleLine
                     )
                 }
             )
@@ -296,7 +309,14 @@ private fun OceanTextInputDecorationBox(
     interactionSource: MutableInteractionSource,
     textFieldColors: TextFieldColors,
     trailingIcon: (@Composable () -> Unit)? = null,
+    singleLine: Boolean = true
 ) {
+    val contentPadding = if (singleLine) {
+        PaddingValues(horizontal = 16.dp)
+    } else {
+        PaddingValues(horizontal = 16.dp, vertical = 16.dp)
+    }
+
     OutlinedTextFieldDefaults.DecorationBox(
         value = value,
         visualTransformation = VisualTransformation.None,
@@ -304,12 +324,12 @@ private fun OceanTextInputDecorationBox(
         placeholder = placeholderCompose,
         trailingIcon = trailingIcon,
         prefix = oceanInputType.getPrefixComposable(),
-        singleLine = true,
+        singleLine = singleLine,
         enabled = enabled,
         isError = !errorText.isNullOrEmpty(),
         interactionSource = interactionSource,
         colors = textFieldColors,
-        contentPadding = PaddingValues(horizontal = 16.dp),
+        contentPadding = contentPadding,
         container = {
             OutlinedTextFieldDefaults.ContainerBox(
                 enabled = enabled,

@@ -32,6 +32,12 @@ sealed interface OceanAlertType {
         val description: String,
         val label: String
     ): OceanAlertType
+
+    class Bookmarked(
+        val alertType: AlertStyle = AlertStyle.StyleInfo(),
+        val title: String,
+        val description: String
+    ): OceanAlertType
 }
 
 sealed interface AlertStyle {

@@ -187,12 +187,14 @@ fun OceanTextInput(
             modifier = modifier
                 .fillMaxWidth()
         ) {
-            Text(
-                text = label,
-                color = if (enabled) labelColor else OceanColors.interfaceDarkUp,
-                fontSize = OceanFontSize.xxs
-            )
-            OceanSpacing.StackXXS()
+            if (label.isNotBlank()) {
+                Text(
+                    text = label,
+                    color = if (enabled) labelColor else OceanColors.interfaceDarkUp,
+                    fontSize = OceanFontSize.xxs
+                )
+                OceanSpacing.StackXXS()
+            }
 
             val interactionSource = remember { MutableInteractionSource() }
 

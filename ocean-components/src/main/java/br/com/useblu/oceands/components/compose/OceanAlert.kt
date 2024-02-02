@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.extensions.parseAsHtml
 import br.com.useblu.oceands.model.compose.AlertStyle
 import br.com.useblu.oceands.model.compose.OceanAlertType
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -244,6 +245,14 @@ fun OceanAlertPreview() {
                 }
             )
         )
+        OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
+            type = OceanAlertType.Bookmarked(
+                title = "Labeled Alert",
+                description = "<li>Menu1</li><li>Menu2</li><li>Menu3</li>",
+                alertType = AlertStyle.StyleNegative()
+            )
+        )
     }
 }
 
@@ -289,6 +298,15 @@ fun OceanAlert(
                 label = type.label,
                 style = type.alertType,
                 onClickLable = { }
+            )
+        }
+
+        is OceanAlertType.Bookmarked -> {
+            OceanAlertBookmarked(
+                modifier = modifier,
+                title = type.title,
+                description = type.description,
+                style = type.alertType
             )
         }
     }
@@ -478,5 +496,45 @@ fun OceanAlertLabeled(
                 onClick = onClickLable
             )
         }
+    }
+}
+
+@Composable
+fun OceanAlertBookmarked(
+    modifier: Modifier = Modifier,
+    title: String,
+    description: String,
+    style: AlertStyle
+) {
+    Column(
+        modifier = modifier
+            .background(
+                color = style.alertBackgroundColor.invoke(),
+                shape = RoundedCornerShape(8.dp)
+            )
+            .padding(16.dp)
+    ) {
+        Row(
+            modifier = Modifier.padding(bottom = 12.dp),
+            verticalAlignment = CenterVertically,
+        ) {
+            Icon(
+                modifier = Modifier.padding(end = 8.dp),
+                painter = painterResource(id = style.oceanIcon.icon),
+                tint = style.iconTint.invoke(),
+                contentDescription = null,
+            )
+            Text(
+                text = title,
+                style = style.titleStyle.invoke(),
+                color = style.titleColor.invoke(),
+                maxLines = 2,
+            )
+        }
+        Text(
+            text = description.parseAsHtml().toString(),
+            style = style.descriptionStyle.invoke(),
+            color = style.descriptionColor.invoke(),
+        )
     }
 }

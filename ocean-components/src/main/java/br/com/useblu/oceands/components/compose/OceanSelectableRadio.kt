@@ -88,7 +88,7 @@ fun OceanSelectableRadio(
     }
 
     val onClickSelectableRadio: () -> Unit = {
-        if (enabled && !showError) {
+        if (enabled) {
             isSelected = true
             onSelectedBox?.invoke(isSelected)
         }
@@ -112,7 +112,7 @@ fun OceanSelectableRadio(
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
-                enabled = enabled && !showError,
+                enabled = enabled,
                 onClick = {}
             )
             .border(
@@ -123,7 +123,7 @@ fun OceanSelectableRadio(
                 shape = CircleShape
             )
     ) {
-        if (isSelected && !showError) {
+        if (isSelected) {
             val resourceIcon =
                 if (enabled) R.drawable.icon_radiobutton_checked
                 else R.drawable.icon_radio_button_disabled_checked

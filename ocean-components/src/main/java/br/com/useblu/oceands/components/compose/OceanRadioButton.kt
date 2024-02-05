@@ -24,49 +24,52 @@ import br.com.useblu.oceands.ui.compose.OceanFontSize
 @Preview
 @Composable
 fun OceanRadioButtonPreview() {
-    Row(modifier = Modifier
-        .background(OceanColors.interfaceLightPure)
+    Row(
+        modifier = Modifier
+            .background(OceanColors.interfaceLightPure)
     ) {
-       Column(modifier = Modifier
-           .padding(start = 16.dp)
-       ){
-           OceanRadioButton(
-               label = "Label",
-               onSelected = {
-                   println("radio button selected")
-               }
-           )
-           OceanRadioButton(
-               label = "Label",
-               enabled = false,
-               onSelected = {
-                   println("radio button selected")
-               }
-           )
-       }
-       Column(modifier = Modifier
-           .padding(horizontal = 16.dp)
-       ){
-           OceanRadioButton(
-               label = "Label",
-               selected = true,
-           )
-           OceanRadioButton(
-               label = "Label",
-               selected = true,
-               enabled = false,
-           )
+        Column(
+            modifier = Modifier
+                .padding(start = 16.dp)
+        ) {
+            OceanRadioButton(
+                label = "Label",
+                onSelected = {
+                    println("radio button selected")
+                }
+            )
+            OceanRadioButton(
+                label = "Label",
+                enabled = false,
+                onSelected = {
+                    println("radio button selected")
+                }
+            )
+        }
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+        ) {
+            OceanRadioButton(
+                label = "Label",
+                selected = true,
+            )
+            OceanRadioButton(
+                label = "Label",
+                selected = true,
+                enabled = false,
+            )
 
-           var wasSelected by remember { mutableStateOf(true) }
-           OceanRadioButton(
-               label = "Label",
-               selected = true,
-               errorMessage = if(!wasSelected) "Error message" else "",
-               onSelected = {
-                   wasSelected = !wasSelected
-               }
-           )
-       }
+            var wasSelected by remember { mutableStateOf(true) }
+            OceanRadioButton(
+                label = "Label",
+                selected = true,
+                errorMessage = if (!wasSelected) "Error message" else "",
+                onSelected = {
+                    wasSelected = !wasSelected
+                }
+            )
+        }
     }
 }
 
@@ -75,7 +78,7 @@ fun OceanRadioButton(
     modifier: Modifier = Modifier,
     label: String,
     selected: Boolean = false,
-    errorMessage: String = "",
+    errorMessage: String? = null,
     enabled: Boolean = true,
     onSelected: ((Boolean) -> Unit)? = null,
 ) {
@@ -89,24 +92,26 @@ fun OceanRadioButton(
             enabled = enabled,
             onClick = {}
         )
-    ){
+    ) {
         Row {
             OceanSelectableRadio(
                 interactionSource = interactionSource,
                 selected = selected,
-                showError = errorMessage.isNotBlank(),
+                showError = !errorMessage.isNullOrBlank(),
                 enabled = enabled,
                 onSelectedBox = onSelected
             )
             SelectableBoxLabel(label, enabled)
         }
-        Text(
-            text = errorMessage,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis,
-            fontFamily = OceanFontFamily.BaseRegular,
-            fontSize = OceanFontSize.xxxs,
-            color = OceanColors.statusNegativePure,
-        )
+        if (!errorMessage.isNullOrBlank()) {
+            Text(
+                text = errorMessage,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                fontFamily = OceanFontFamily.BaseRegular,
+                fontSize = OceanFontSize.xxxs,
+                color = OceanColors.statusNegativePure,
+            )
+        }
     }
 }

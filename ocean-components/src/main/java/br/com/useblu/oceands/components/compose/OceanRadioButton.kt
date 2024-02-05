@@ -97,7 +97,7 @@ fun OceanRadioButton(
             OceanSelectableRadio(
                 interactionSource = interactionSource,
                 selected = selected,
-                showError = !errorMessage.isNullOrBlank(),
+                showError = errorMessage != null,
                 enabled = enabled,
                 onSelectedBox = onSelected
             )

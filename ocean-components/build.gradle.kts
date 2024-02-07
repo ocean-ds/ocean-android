@@ -94,11 +94,11 @@ dependencies {
     api(libs.canarinho)
     api(libs.glide)
     api(libs.circleIndicator)
-    api(libs.imageCarousel)
     api(libs.expansionPanel)
     api(libs.calendarView)
     api(libs.mpChart)
     implementation(libs.skeletonBones)
+    implementation(libs.recyclerView)
     implementation(libs.skydovesLandscapist)
 
     // COMPOSE

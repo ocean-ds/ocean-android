@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <import type="android.text.InputType" />
-
-        <variable
-            name="viewmodel"
-            type="br.com.useblu.oceands.client.ui.carousel.CarouselViewModel" />
-
-    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,68 +8,11 @@
         android:orientation="vertical"
         tools:context=".ui.carousel.CarouselActivity">
 
-        <TextView
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/compose_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp"
-            android:text="Default"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <include
-                layout="@layout/ocean_carousel"
-                app:entries="@{viewmodel.entries}"
-                app:withoutIndicator="@{false}"
-                app:autoCycle="@{false}" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp"
-            android:text="Without page indicator"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <include
-                layout="@layout/ocean_carousel"
-                app:entries="@{viewmodel.entries2}"
-                app:withoutIndicator="@{true}"
-                app:autoCycle="@{false}" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="16sp"
-            android:text="Auto cycle"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <include
-                layout="@layout/ocean_carousel"
-                app:entries="@{viewmodel.entries3}"
-                app:withoutIndicator="@{false}"
-                app:autoCycle="@{true}" />
-
-        </LinearLayout>
+            android:layout_height="match_parent"
+            tools:composableName=".ui.carousel.CarouselActivityKt.CarouselActivityContentPreview"/>
 
     </LinearLayout>
 </layout>

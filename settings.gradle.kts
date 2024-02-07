@@ -21,6 +21,8 @@ dependencyResolutionManagement {
             library("constraintLayout", "androidx.constraintlayout:constraintlayout:2.1.4")
             library("lifecycleExtensions", "androidx.lifecycle:lifecycle-extensions:2.2.0")
 
+            library("recyclerView", "androidx.recyclerview:recyclerview:1.2.1")
+
             version("lifecycleViewModel", "2.6.1")
             library("lifecycleViewModel", "androidx.lifecycle", "lifecycle-viewmodel-ktx").versionRef("lifecycleViewModel")
 
@@ -36,8 +38,6 @@ dependencyResolutionManagement {
             library("glide", "com.github.bumptech.glide:glide:4.16.0")
 
             library("circleIndicator", "me.relex:circleindicator:2.1.6")
-
-            library("imageCarousel", "org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.4")
 
             library("expansionPanel", "com.github.florent37:expansionpanel:1.2.4")
 

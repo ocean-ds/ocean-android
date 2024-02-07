@@ -1,8 +1,6 @@
 package br.com.useblu.oceands.components.compose
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,6 +13,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -34,7 +35,8 @@ fun OceanShortcutPreview() {
     val models = listOf(
         OceanShortcutModel(
             label = "TinyVertical",
-            icon = OceanIcons.ACADEMIC_CAP_SOLID
+            icon = OceanIcons.ACADEMIC_CAP_SOLID,
+            action = {}
         ),
         OceanShortcutModel(
             label = "TinyVertical",
@@ -53,12 +55,12 @@ fun OceanShortcutPreview() {
         ),
 
         OceanShortcutModel(
-            label = "Label",
+            label = "TinyVertical Blocked",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             blocked = true
         ),
         OceanShortcutModel(
-            label = "Label",
+            label = "TinyHor Blocked",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             blocked = true,
             layout = OceanShortcutLayout.TinyHorizontal
@@ -174,6 +176,7 @@ fun OceanShortcut(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OceanShortcut(
     label: String,
@@ -203,79 +206,80 @@ fun OceanShortcut(
         OceanColors.interfaceLightDown
     } else OceanColors.interfaceLightDown
 
-    Box(
-        modifier = modifier
-            .background(
-                color = backgroundColor,
-                shape = RoundedCornerShape(8.dp)
-            )
-            .border(
-                width = 1.dp,
-                color = borderColor,
-                shape = RoundedCornerShape(8.dp)
-            )
-            .clickable(
-                enabled = !disabled && !blocked && action != null,
-                onClick = { action?.invoke() }
-            )
-            .fillMaxHeight()
+    Card(
+        modifier = modifier.fillMaxHeight(),
+        shape = RoundedCornerShape(8.dp),
+        border = BorderStroke(
+            width = 1.dp,
+            color = borderColor
+        ),
+        colors = CardDefaults.cardColors(
+            containerColor = backgroundColor,
+            disabledContainerColor = backgroundColor
+        ),
+        enabled = !disabled && !blocked && action != null,
+        onClick = {
+            action?.invoke()
+        }
     ) {
-        if (blocked) {
-            OceanIcon(
-                iconType = OceanIcons.LOCK_CLOSED_SOLID,
-                modifier = Modifier
-                    .padding(top = 8.dp, end = 8.dp)
-                    .size(16.dp)
-                    .align(Alignment.TopEnd),
-                tint = OceanColors.interfaceDarkUp
-            )
-        }
-
-        if (count != null && badgeType != null) {
-            OceanBadge(
-                text = count,
-                type = badgeType,
-                size = OceanBadgeSize.Medium,
-                modifier = Modifier
-                    .padding(top = 8.dp, end = 8.dp)
-                    .align(Alignment.TopEnd)
-            )
-        }
-
-        Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            layout.GetTextIconLayout {
+        Box {
+            if (blocked) {
                 OceanIcon(
-                    iconType = icon,
-                    tint = iconColor,
-                    modifier = Modifier.size(24.dp)
-                )
-
-                layout.GetSpacer()
-
-                Text(
-                    text = label,
-                    style = OceanTextStyle.heading5,
-                    color = titleColor
+                    iconType = OceanIcons.LOCK_CLOSED_SOLID,
+                    modifier = Modifier
+                        .padding(top = 8.dp, end = 8.dp)
+                        .size(16.dp)
+                        .align(Alignment.TopEnd),
+                    tint = OceanColors.interfaceDarkUp
                 )
             }
 
-            if (layout.canShowDescription() && !description.isNullOrBlank()) {
-                val descriptionColor = if (disabled) {
-                    OceanColors.interfaceDarkUp
-                } else OceanColors.interfaceDarkDown
-
-                OceanSpacing.StackXXS()
-
-                Text(
-                    text = description,
-                    style = OceanTextStyle.caption,
-                    color = descriptionColor
+            if (count != null && badgeType != null) {
+                OceanBadge(
+                    text = count,
+                    type = badgeType,
+                    size = OceanBadgeSize.Medium,
+                    modifier = Modifier
+                        .padding(top = 8.dp, end = 8.dp)
+                        .align(Alignment.TopEnd)
                 )
+            }
+
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                layout.GetTextIconLayout {
+                    OceanIcon(
+                        iconType = icon,
+                        tint = iconColor,
+                        modifier = Modifier.size(24.dp)
+                    )
+
+                    layout.GetSpacer()
+
+                    Text(
+                        text = label,
+                        style = OceanTextStyle.heading5,
+                        color = titleColor
+                    )
+                }
+
+                if (layout.canShowDescription() && !description.isNullOrBlank()) {
+                    val descriptionColor = if (disabled) {
+                        OceanColors.interfaceDarkUp
+                    } else OceanColors.interfaceDarkDown
+
+                    OceanSpacing.StackXXS()
+
+                    Text(
+                        text = description,
+                        style = OceanTextStyle.caption,
+                        color = descriptionColor
+                    )
+                }
             }
         }
     }

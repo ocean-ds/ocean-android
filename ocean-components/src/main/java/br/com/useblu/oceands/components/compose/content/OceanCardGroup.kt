@@ -53,6 +53,16 @@ fun OceanCardGroupPreview() {
                 showProgress = false,
                 modifier = Modifier.padding(16.dp)
             )
+
+            OceanCardGroup(
+                title = "Header",
+                subtitle = "Tudo certo! Você não possui boletos pendentes para aprovação",
+                badgeText = "110",
+                actionClick = {},
+                actionTitle = "Call to Action",
+                showProgress = true,
+                modifier = Modifier.padding(16.dp)
+            )
         }
     }
 }

@@ -15,11 +15,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.PathEffect
@@ -41,6 +45,23 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Preview
 @Composable
 fun OceanFileUploaderPreview() {
+    val selectedFiles = remember {
+        mutableStateListOf(
+            UploadFileModel(
+                fileName = "123_cnh.pdf",
+                status = FileStatus.Loading
+            ),
+            UploadFileModel(
+                fileName = "123_cnh.pdf",
+                status = FileStatus.Success
+            ),
+            UploadFileModel(
+                fileName = "123_cnh.pdf",
+                status = FileStatus.Error("Erro ao enviar arquivo")
+            )
+        )
+    }
+
     OceanTheme {
         Column(
             modifier = Modifier
@@ -50,28 +71,26 @@ fun OceanFileUploaderPreview() {
             OceanFileUploader(
                 title = "Selecione um arquivo do seu celular",
                 subtitle = "O arquivo deve estar em formato PDF e ter no máximo 20MB.",
-                onChooseFile = {},
-                selectedFiles = listOf(
-                    UploadFileModel(
-                        fileName = "123_cnh.pdf",
-                        status = FileStatus.Loading
-                    ),
-                    UploadFileModel(
-                        fileName = "123_cnh.pdf",
-                        status = FileStatus.Success
-                    ),
-                    UploadFileModel(
-                        fileName = "123_cnh.pdf",
-                        status = FileStatus.Error("Erro ao enviar arquivo")
+                maxFiles = 3,
+                onChooseFile = {
+                    selectedFiles.add(
+                        UploadFileModel(
+                            fileName = "arquivo.pdf",
+                            status = FileStatus.Success
+                        )
                     )
-                ),
-                onDeleteFile = {}
+                },
+                selectedFiles = selectedFiles,
+                onDeleteFile = {
+                    selectedFiles.removeAt(it)
+                }
             )
         }
     }
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OceanFileUploader(
     title: String,
@@ -99,54 +118,56 @@ fun OceanFileUploader(
     }
 
     Column {
-        Column(
+        Card(
             modifier = modifier
                 .fillMaxWidth()
-                .background(
-                    color = OceanColors.interfaceLightPure,
-                    shape = RoundedCornerShape(8.dp)
-                )
-                .clip(
-                    shape = RoundedCornerShape(8.dp)
-                )
                 .drawBehind {
                     drawRoundRect(
                         color = borderColor,
                         style = stroke,
                         cornerRadius = CornerRadius(8.dp.toPx())
                     )
-                }
-                .clickable(
-                    enabled = selectedFiles.size < maxFiles,
-                    onClick = { fileChooserLauncher.launch(mimeType) }
-                )
-                .padding(vertical = 24.dp, horizontal = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                },
+            colors = CardDefaults.cardColors(
+                containerColor = OceanColors.interfaceLightPure,
+                disabledContainerColor = OceanColors.interfaceLightPure
+            ),
+            shape = RoundedCornerShape(8.dp),
+            enabled = selectedFiles.size < maxFiles,
+            onClick = {
+                fileChooserLauncher.launch(mimeType)
+            }
         ) {
-            OceanIcon(
-                iconType = OceanIcons.UPLOAD_OUTLINE,
-                tint = OceanColors.brandPrimaryPure
-            )
+            Column(
+                modifier = Modifier
+                    .padding(vertical = 24.dp, horizontal = 16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                OceanIcon(
+                    iconType = OceanIcons.UPLOAD_OUTLINE,
+                    tint = OceanColors.brandPrimaryPure
+                )
 
-            OceanSpacing.StackXXS()
-            OceanSpacing.StackXXXS()
+                OceanSpacing.StackXXS()
+                OceanSpacing.StackXXXS()
 
-            OceanText(
-                text = title,
-                style = OceanTextStyle.description,
-                fontWeight = FontWeight.SemiBold,
-                color = OceanColors.brandPrimaryPure,
-                textAlign = TextAlign.Center
-            )
+                OceanText(
+                    text = title,
+                    style = OceanTextStyle.description,
+                    fontWeight = FontWeight.SemiBold,
+                    color = OceanColors.brandPrimaryPure,
+                    textAlign = TextAlign.Center
+                )
 
-            OceanSpacing.StackXXS()
+                OceanSpacing.StackXXS()
 
-            OceanText(
-                text = subtitle,
-                style = OceanTextStyle.caption,
-                color = OceanColors.interfaceDarkUp,
-                textAlign = TextAlign.Center
-            )
+                OceanText(
+                    text = subtitle,
+                    style = OceanTextStyle.caption,
+                    color = OceanColors.interfaceDarkUp,
+                    textAlign = TextAlign.Center
+                )
+            }
         }
 
         if (selectedFiles.isNotEmpty()) {

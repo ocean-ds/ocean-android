@@ -555,7 +555,7 @@ class HomeActivity : AppCompatActivity() {
             .withDismiss(true)
             .withCritical(true)
             .withOrientationButtons(OceanBottomSheetCompose.Orientation.Vertical)
-            .withCode("300")
+            .withCode(300)
             .withActionPositive("Confirm") {
             }
             .withActionNegative("Cancel") {

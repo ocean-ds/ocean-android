@@ -242,8 +242,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    app:text="@{`Código `+ code}"
-                    tools:text="Código 0000" />
+                    app:text="@{`Código: `+ code}"
+                    tools:text="Código: 0000" />
             </LinearLayout>
         </LinearLayout>
 
@@ -295,8 +295,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    app:text="@{`Código `+ code}"
-                    tools:text="Código 0000" />
+                    app:text="@{`Código: `+ code}"
+                    tools:text="Código: 0000" />
             </LinearLayout>
         </LinearLayout>
 

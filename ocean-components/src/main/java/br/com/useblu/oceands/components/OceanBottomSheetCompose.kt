@@ -21,7 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class OceanBottomSheetCompose : BottomSheetDialogFragment() {
 
-    private var code: String? = null
+    private var code: Int? = null
     private var orientationButtons: Orientation = Orientation.Horizontal
     private var isDismiss: Boolean = true
     private var textPositive: String? = null
@@ -91,7 +91,7 @@ class OceanBottomSheetCompose : BottomSheetDialogFragment() {
         return this
     }
 
-    fun withCode(code: String): OceanBottomSheetCompose {
+    fun withCode(code: Int): OceanBottomSheetCompose {
         this.code = code
         return this
     }

@@ -16,7 +16,7 @@
 
         <variable
             name="code"
-            type="String" />
+            type="int" />
 
         <variable
             name="clickNegative"
@@ -32,8 +32,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/ocean_bottom_sheet_background"
-        android:paddingBottom="@dimen/ocean_spacing_stack_xs"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/ocean_spacing_stack_xs">
 
         <LinearLayout
             android:id="@+id/bottom_sheet_header_container"
@@ -49,10 +49,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:padding="6dp"
-                android:onClick="@{() -> clickNegative.invoke()}"
-                android:src="@drawable/ocean_icon_x_outline"
                 android:contentDescription="@null"
+                android:onClick="@{() -> clickNegative.invoke()}"
+                android:padding="6dp"
+                android:src="@drawable/ocean_icon_x_outline"
                 android:tint="@color/ocean_color_interface_dark_up"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/space"
@@ -68,25 +68,25 @@
             android:paddingEnd="@dimen/ocean_spacing_stack_xs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space1"/>
+            app:layout_constraintTop_toBottomOf="@+id/space1" />
 
         <LinearLayout
             android:id="@+id/container_horizontal_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-            android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
             android:orientation="vertical"
-            app:ocean_visible_or_gone="@{code.length() > 0}">
+            android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
+            app:ocean_visible_or_gone="@{code > 0}">
 
             <TextView
-                style="@style/Ocean.Description.DarkUp"
                 android:id="@+id/horizontal_text_code"
+                style="@style/Ocean.Description.DarkUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                app:text="@{`Código `+ code}"
-                tools:text="Código 0000" />
+                app:text="@{`Código: `+ code}"
+                tools:text="Código: 0000" />
         </LinearLayout>
 
     </LinearLayout>

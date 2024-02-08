@@ -8,13 +8,13 @@ import br.com.useblu.oceands.model.OceanCarouselItem
 class CarouselViewModel : ViewModel() {
 
     private val _entries = MutableLiveData<List<OceanCarouselItem>>()
-    val entries: LiveData<List<OceanCarouselItem>> get() = _entries
+    val entries: LiveData<List<OceanCarouselItem>> = _entries
 
     private val _entries2 = MutableLiveData<List<OceanCarouselItem>>()
-    val entries2: LiveData<List<OceanCarouselItem>> get() = _entries2
+    val entries2: LiveData<List<OceanCarouselItem>> = _entries2
 
     private val _entries3 = MutableLiveData<List<OceanCarouselItem>>()
-    val entries3: LiveData<List<OceanCarouselItem>> get() = _entries3
+    val entries3: LiveData<List<OceanCarouselItem>> = _entries3
 
     var items = listOf(
         OceanCarouselItem(

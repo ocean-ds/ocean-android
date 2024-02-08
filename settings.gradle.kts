@@ -21,13 +21,15 @@ dependencyResolutionManagement {
             library("constraintLayout", "androidx.constraintlayout:constraintlayout:2.1.4")
             library("lifecycleExtensions", "androidx.lifecycle:lifecycle-extensions:2.2.0")
 
+            library("recyclerView", "androidx.recyclerview:recyclerview:1.2.1")
+
             version("lifecycleViewModel", "2.6.1")
             library("lifecycleViewModel", "androidx.lifecycle", "lifecycle-viewmodel-ktx").versionRef("lifecycleViewModel")
 
             library("androidKtx", "androidx.core:core-ktx:1.12.0")
             library("androidAppCompat", "androidx.appcompat:appcompat:1.6.1")
 
-            library("skydovesBalloon", "com.github.skydoves:balloon:1.6.3")
+            library("skydovesBalloon", "com.github.skydoves:balloon:1.6.4")
 
             library("androidMaterial", "com.google.android.material:material:1.10.0")
 
@@ -36,8 +38,6 @@ dependencyResolutionManagement {
             library("glide", "com.github.bumptech.glide:glide:4.16.0")
 
             library("circleIndicator", "me.relex:circleindicator:2.1.6")
-
-            library("imageCarousel", "org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.4")
 
             library("expansionPanel", "com.github.florent37:expansionpanel:1.2.4")
 
@@ -53,9 +53,9 @@ dependencyResolutionManagement {
 
             // COMPOSE DEPENDENCIES
             library("compose-lifecycleViewModel", "androidx.lifecycle", "lifecycle-viewmodel-compose").versionRef("lifecycleViewModel")
-            library("compose-activity", "androidx.activity:activity-compose:1.8.1")
+            library("compose-activity", "androidx.activity:activity-compose:1.8.2")
 
-            library("compose-BOM", "androidx.compose:compose-bom:2023.10.01")
+            library("compose-BOM", "androidx.compose:compose-bom:2024.02.00")
             library("compose-androidMaterial3", "androidx.compose.material3", "material3").withoutVersion()
             library("compose-uiToolingPreview", "androidx.compose.ui", "ui-tooling-preview").withoutVersion()
             library("compose-uiViewBinding", "androidx.compose.ui", "ui-viewbinding").withoutVersion()

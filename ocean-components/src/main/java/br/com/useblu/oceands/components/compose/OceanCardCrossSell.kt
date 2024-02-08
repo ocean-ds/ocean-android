@@ -2,10 +2,9 @@ package br.com.useblu.oceands.components.compose
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntRange
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,11 +12,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -60,6 +61,7 @@ fun OceanCardCrossSellPreview() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OceanCardCrossSell(
     title: String,
@@ -76,22 +78,19 @@ fun OceanCardCrossSell(
     showProgress: Boolean = false,
     onClick: (() -> Unit)? = null
 ) {
-    Column(
-        modifier = modifier
-            .background(
-                color = backgroundColor.copy(alpha = backgroundAlpha / 255f),
-                shape = RoundedCornerShape(8.dp)
-            )
-            .border(
-                width = 1.dp,
-                color = OceanColors.interfaceLightDown,
-                shape = RoundedCornerShape(8.dp)
-            )
-            .clip(shape = RoundedCornerShape(8.dp))
-            .clickable(
-                enabled = !showProgress && onClick != null,
-                onClick = { onClick?.invoke() }
-            )
+    Card(
+        modifier = modifier,
+        border = BorderStroke(
+            width = 1.dp,
+            color = OceanColors.interfaceLightDown
+        ),
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = backgroundColor.copy(alpha = backgroundAlpha / 255f),
+            disabledContainerColor = backgroundColor.copy(alpha = backgroundAlpha / 255f)
+        ),
+        enabled = !showProgress && onClick != null,
+        onClick = { onClick?.invoke() }
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
@@ -139,6 +138,11 @@ fun OceanCardCrossSell(
             }
         }
 
-        CardCta(showProgress, actionTitle, actionIcon)
+        CardCta(
+            showProgress = showProgress,
+            actionTitle = actionTitle,
+            actionIcon = actionIcon,
+            actionClick = onClick
+        )
     }
 }

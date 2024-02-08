@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -120,7 +120,7 @@ fun OceanBalanceBluCard(
                 .padding(bottom = 12.dp, top = 8.dp)
                 .padding(horizontal = 16.dp)
         ) {
-            Divider(color = OceanColors.brandPrimaryUp.copy(alpha = 0.4f))
+            HorizontalDivider(color = OceanColors.brandPrimaryUp.copy(alpha = 0.4f))
 
             BluCardBottomBar(model, isCurrentPage)
         }
@@ -266,7 +266,7 @@ private fun ExpandableContent(
 
         Spacer(modifier = Modifier.size(12.dp))
 
-        Divider(color = OceanColors.brandPrimaryUp.copy(alpha = 0.4f))
+        HorizontalDivider(color = OceanColors.brandPrimaryUp.copy(alpha = 0.4f))
 
         ExpandableContentTextRow(
             isLoading = isLoading,

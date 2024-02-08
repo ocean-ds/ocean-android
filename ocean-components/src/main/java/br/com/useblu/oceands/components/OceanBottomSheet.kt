@@ -20,7 +20,7 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
     private var title: String? = null
     private var message: String? = null
     private var subMessage: String? = null
-    private var code: String? = null
+    private var code: Int? = null
     private var orientationButtons: Int = Orientation.Horizontal.direction
     private var isDismiss: Boolean = true
     private var textPositive: String? = context.getString(R.string.ok)
@@ -112,7 +112,7 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
         return this
     }
 
-    fun withCode(code: String): OceanBottomSheet {
+    fun withCode(code: Int): OceanBottomSheet {
         this.code = code
         return this
     }

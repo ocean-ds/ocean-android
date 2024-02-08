@@ -30,7 +30,7 @@
 
         <variable
             name="code"
-            type="String" />
+            type="int" />
 
         <variable
             name="orientationButtons"
@@ -234,7 +234,7 @@
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
                 android:orientation="vertical"
-                app:ocean_visible_or_gone="@{code.length() > 0}">
+                app:ocean_visible_or_gone="@{code > 0}">
 
                 <TextView
                     style="@style/Ocean.Description.DarkUp"
@@ -287,7 +287,7 @@
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
                 android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
                 android:orientation="vertical"
-                app:ocean_visible_or_gone="@{code.length() > 0}">
+                app:ocean_visible_or_gone="@{code > 0}">
 
                 <TextView
                     style="@style/Ocean.Description.DarkUp"

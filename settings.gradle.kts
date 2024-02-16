@@ -66,3 +66,4 @@ dependencyResolutionManagement {
         }
     }
 }
+include(":baselineprofile")

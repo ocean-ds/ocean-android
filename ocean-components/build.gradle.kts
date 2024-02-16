@@ -122,10 +122,7 @@ dependencies {
 }
 
 baselineProfile {
-    automaticGenerationDuringBuild = true
-    saveInSrc = true
-    // Filters the generated profile rules.
-    // This example keeps the classes in the `com.library` package all its subpackages.
+    saveInSrc = false
     filter {
         include("br.com.useblu.oceands.**")
         exclude("br.com.useblu.oceands.client.**")

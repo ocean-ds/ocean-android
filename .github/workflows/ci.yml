@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
@@ -23,6 +23,9 @@ jobs:
           distribution: 'oracle'
           java-version: '17'
           cache: 'gradle'
+
+      - name: Generate baseline profiles
+        run: ./gradlew :ocean-components:generateBaselineProfile
 
       - name: Build the app
         run: ./gradlew build

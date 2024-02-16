@@ -30,8 +30,5 @@ jobs:
       - name: Runs linter
         run: ./gradlew lint
 
-        #- name: Lint commit message
-        #uses: wagoid/commitlint-github-action@v4
-
       - name: Run tests
         run: ./gradlew test

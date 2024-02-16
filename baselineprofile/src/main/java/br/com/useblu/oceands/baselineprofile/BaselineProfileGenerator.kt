@@ -3,7 +3,9 @@ package br.com.useblu.oceands.baselineprofile
 import androidx.benchmark.macro.junit4.BaselineProfileRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.Direction
+import androidx.test.uiautomator.Until
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -43,24 +45,45 @@ class BaselineProfileGenerator {
         // This example works only with the variant with application id `br.com.useblu.oceands.client`."
         rule.collect(
             packageName = "br.com.useblu.oceands.client",
-
-            // See: https://d.android.com/topic/performance/baselineprofiles/dex-layout-optimizations
+            includeInStartupProfile = true
         ) {
-            // This block defines the app's critical user journey. Here we are interested in
-            // optimizing for app startup. But you can also navigate and scroll through your most important UI.
-
-            // Start default activity for your app
             pressHome()
             startActivityAndWait()
 
-            // TODO Write more interactions to optimize advanced journeys of your app.
-            // For example:
-            // 1. Wait until the content is asynchronously loaded
-            // 2. Scroll the feed content
-            // 3. Navigate to detail screen
+            device.findObject(By.text("Buttons")).click()
 
-            // Check UiAutomator documentation for more information how to interact with the app.
-            // https://d.android.com/training/testing/other-components/ui-automator
+            device.waitForIdle()
+
+            device.pressBack()
+
+            device.waitForIdle()
+
+            device.findObject(By.text("Bottom Navigation")).click()
+
+            device.waitForIdle()
+
+            val addItem = device.findObject(By.text("ADD ITEM"))
+            device.waitForIdle()
+
+            addItem.click()
+            addItem.click()
+            addItem.click()
+            addItem.click()
+
+            device.waitForIdle()
+
+            device.pressBack()
+
+            device.waitForIdle()
+
+            val scrollable = device.findObject(By.scrollable(true))
+            val headerApp = scrollable.scrollUntil(Direction.DOWN, Until.findObject(By.text("Header App")))
+
+            device.waitForIdle()
+
+            headerApp.click()
+
+            device.waitForIdle()
         }
     }
 }

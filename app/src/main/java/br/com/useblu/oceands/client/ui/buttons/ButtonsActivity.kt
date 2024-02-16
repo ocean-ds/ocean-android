@@ -53,7 +53,6 @@ class ButtonsActivity : AppCompatActivity() {
                 Modifier.wrapContentWidth()
             }
 
-            val context = LocalContext.current
             OceanButton(
                 text = "Compose Button",
                 icon = if (iconState.value == true) OceanIcons.PLUS_CIRCLE_OUTLINE else null,

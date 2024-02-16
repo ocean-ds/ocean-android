@@ -7,6 +7,9 @@ import androidx.benchmark.macro.StartupTimingMetric
 import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.UiScrollable
+import androidx.test.uiautomator.UiSelector
 
 import org.junit.Rule
 import org.junit.Test
@@ -61,14 +64,35 @@ class StartupBenchmarks {
             measureBlock = {
                 startActivityAndWait()
 
-                // TODO Add interactions to wait for when your app is fully drawn.
-                // The app is fully drawn when Activity.reportFullyDrawn is called.
-                // For Jetpack Compose, you can use ReportDrawn, ReportDrawnWhen and ReportDrawnAfter
-                // from the AndroidX Activity library.
+                device.findObject(By.text("Buttons")).click()
 
-                // Check the UiAutomator documentation for more information on how to
-                // interact with the app.
-                // https://d.android.com/training/testing/other-components/ui-automator
+                device.waitForIdle()
+
+                device.pressBack()
+
+                device.waitForIdle()
+
+                device.findObject(By.text("Bottom Navigation")).click()
+
+                device.waitForIdle()
+
+                val addItem = device.findObject(By.text("ADD ITEM"))
+                addItem.click()
+                addItem.click()
+                addItem.click()
+                addItem.click()
+
+                device.waitForIdle()
+
+                device.pressBack()
+
+                device.waitForIdle()
+
+                UiScrollable(UiSelector().scrollable(true)).scrollIntoView(UiSelector().text("Header App"))
+
+                //device.findObject(By.text("Header App")).click()
+
+                device.waitForIdle()
             }
         )
     }

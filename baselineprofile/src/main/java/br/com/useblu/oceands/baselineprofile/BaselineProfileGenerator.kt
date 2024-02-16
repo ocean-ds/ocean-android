@@ -62,16 +62,6 @@ class BaselineProfileGenerator {
 
             device.waitForIdle()
 
-            val addItem = device.findObject(By.text("ADD ITEM"))
-            device.waitForIdle()
-
-            addItem.click()
-            addItem.click()
-            addItem.click()
-            addItem.click()
-
-            device.waitForIdle()
-
             device.pressBack()
 
             device.waitForIdle()

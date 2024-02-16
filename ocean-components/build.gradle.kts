@@ -122,7 +122,6 @@ dependencies {
 }
 
 baselineProfile {
-    saveInSrc = false
     filter {
         include("br.com.useblu.oceands.**")
         exclude("br.com.useblu.oceands.client.**")

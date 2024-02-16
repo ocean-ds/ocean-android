@@ -8,9 +8,8 @@ import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.uiautomator.By
-import androidx.test.uiautomator.UiScrollable
-import androidx.test.uiautomator.UiSelector
-
+import androidx.test.uiautomator.Direction
+import androidx.test.uiautomator.Until
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -73,24 +72,6 @@ class StartupBenchmarks {
                 device.waitForIdle()
 
                 device.findObject(By.text("Bottom Navigation")).click()
-
-                device.waitForIdle()
-
-                val addItem = device.findObject(By.text("ADD ITEM"))
-                addItem.click()
-                addItem.click()
-                addItem.click()
-                addItem.click()
-
-                device.waitForIdle()
-
-                device.pressBack()
-
-                device.waitForIdle()
-
-                UiScrollable(UiSelector().scrollable(true)).scrollIntoView(UiSelector().text("Header App"))
-
-                //device.findObject(By.text("Header App")).click()
 
                 device.waitForIdle()
             }

@@ -4,8 +4,6 @@ import androidx.benchmark.macro.junit4.BaselineProfileRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.uiautomator.By
-import androidx.test.uiautomator.Direction
-import androidx.test.uiautomator.Until
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -59,19 +57,6 @@ class BaselineProfileGenerator {
             device.waitForIdle()
 
             device.findObject(By.text("Bottom Navigation")).click()
-
-            device.waitForIdle()
-
-            device.pressBack()
-
-            device.waitForIdle()
-
-            val scrollable = device.findObject(By.scrollable(true))
-            val headerApp = scrollable.scrollUntil(Direction.DOWN, Until.findObject(By.text("Header App")))
-
-            device.waitForIdle()
-
-            headerApp.click()
 
             device.waitForIdle()
         }

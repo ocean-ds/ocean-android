@@ -12,7 +12,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           # we actually need "github.event.pull_request.commits + 1" commit
           fetch-depth: 0
@@ -23,6 +23,9 @@ jobs:
           distribution: 'oracle'
           java-version: '17'
           cache: 'gradle'
+
+      - name: Clean Managed Devices
+        run: ./gradlew cleanManagedDevices --unused-only
 
       - name: Generate baseline profiles
         run: ./gradlew :ocean-components:generateBaselineProfile -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules=BaselineProfile -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=20 -Dorg.gradle.workers.max=4

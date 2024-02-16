@@ -123,7 +123,7 @@ dependencies {
 
 baselineProfile {
     automaticGenerationDuringBuild = true
-    saveInSrc = true
+    saveInSrc = false
     filter {
         include("br.com.useblu.oceands.**")
         exclude("br.com.useblu.oceands.client.**")

@@ -24,12 +24,6 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
-      - name: Clean Managed Devices
-        run: ./gradlew cleanManagedDevices --unused-only
-
-      - name: Generate baseline profiles
-        run: ./gradlew :ocean-components:generateBaselineProfile -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules=BaselineProfile -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=20 -Dorg.gradle.workers.max=4
-
       - name: Build the app
         run: ./gradlew build
 

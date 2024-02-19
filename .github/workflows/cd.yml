@@ -47,20 +47,21 @@ jobs:
       - name: Command Update Branch
         run: git pull
 
+      - name: Generate baseline profiles
+        run: |
+          ./gradlew cleanManagedDevices --unused-only
+          ./gradlew clean :ocean-components:generateBaselineProfile -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules=BaselineProfile -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=20 -Dorg.gradle.workers.max=4
+
       - name: Commit changes
+        if: '!cancelled()'
         run: |
           LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/ocean-tokens version`
           git add . && git commit -am "chore: update tokens v$LATEST_VERSION_TOKENS_LIB_NPM [skip ci]" && git push
           git tag -a "v$OCEAN_VERSION" -m "Release of version $OCEAN_VERSION" && git push --tags
 
-      - name: Generate baseline profiles
-        run: |
-          ./gradlew cleanManagedDevices --unused-only
-          ./gradlew :ocean-components:generateBaselineProfile -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules=BaselineProfile -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=20 -Dorg.gradle.workers.max=4
-
       - name: Publish new version lib
         if: '!cancelled()'
-        run: ./gradlew clean ocean-components:publish
+        run: ./gradlew ocean-components:publish
         env:
           GPR_USER: ocean-ops
           GPR_API_KEY: ${{ secrets.GPR_API_KEY }}

@@ -7,6 +7,7 @@ buildscript {
     dependencies {
         classpath(classpath.gradle)
         classpath(classpath.kotlin)
+        classpath(classpath.baselineprofile)
     }
 }
 

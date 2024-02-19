@@ -6,6 +6,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
+    id("androidx.baselineprofile")
 }
 
 fun getVersionName(): String {
@@ -87,6 +88,9 @@ afterEvaluate {
 }
 
 dependencies {
+    implementation(libs.baselineProfileInstaller)
+    "baselineProfile"(project(":baselineprofile"))
+
     implementation(libs.androidKtx)
     implementation(libs.androidAppCompat)
     api(libs.skydovesBalloon)
@@ -115,4 +119,13 @@ dependencies {
     implementation(libs.compose.activity)
     implementation(libs.compose.lifecycleViewModel)
     implementation(libs.compose.runtimeLiveData)
+}
+
+baselineProfile {
+    automaticGenerationDuringBuild = false
+    saveInSrc = true
+    filter {
+        include("br.com.useblu.oceands.**")
+        exclude("br.com.useblu.oceands.client.**")
+    }
 }

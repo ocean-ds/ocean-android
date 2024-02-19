@@ -88,7 +88,7 @@ afterEvaluate {
 }
 
 dependencies {
-    implementation("androidx.profileinstaller:profileinstaller:1.3.1")
+    implementation(libs.baselineProfileInstaller)
     "baselineProfile"(project(":baselineprofile"))
 
     implementation(libs.androidKtx)

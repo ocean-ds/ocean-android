@@ -1,6 +1,8 @@
 include (":playground")
 include (":ocean-components")
 include (":app")
+include(":baselineprofile")
+
 rootProject.name = "ocean-android"
 
 dependencyResolutionManagement {
@@ -15,6 +17,7 @@ dependencyResolutionManagement {
         create("classpath") {
             library("gradle", "com.android.tools.build:gradle:8.2.2")
             library("kotlin", "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22")
+            library("baselineprofile", "androidx.benchmark:benchmark-baseline-profile-gradle-plugin:1.2.3")
         }
 
         create("libs") {
@@ -51,6 +54,8 @@ dependencyResolutionManagement {
 
             library("skydovesLandscapist", "com.github.skydoves:landscapist-glide:2.2.12")
 
+            library("baselineProfileInstaller", "androidx.profileinstaller:profileinstaller:1.3.1")
+
             // COMPOSE DEPENDENCIES
             library("compose-lifecycleViewModel", "androidx.lifecycle", "lifecycle-viewmodel-compose").versionRef("lifecycleViewModel")
             library("compose-activity", "androidx.activity:activity-compose:1.8.2")
@@ -63,7 +68,11 @@ dependencyResolutionManagement {
             library("compose-uiTestJunit4", "androidx.compose.ui", "ui-test-junit4").withoutVersion()
             library("compose-uiTestManifest", "androidx.compose.ui", "ui-test-manifest").withoutVersion()
             library("compose-runtimeLiveData", "androidx.compose.runtime", "runtime-livedata").withoutVersion()
+
+            library("androidJUnit", "androidx.test.ext:junit:1.1.5")
+            library("espresso", "androidx.test.espresso:espresso-core:3.5.1")
+            library("uiAutomator", "androidx.test.uiautomator:uiautomator:2.3.0-rc01")
+            library("benchmarkJUnit", "androidx.benchmark:benchmark-macro-junit4:1.2.3")
         }
     }
 }
-include(":baselineprofile")

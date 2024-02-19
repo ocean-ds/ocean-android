@@ -25,4 +25,4 @@ jobs:
           cache: 'gradle'
 
       - name: Build the app
-        run: ./gradlew build # build = assemble + test + lint
+        run: ./gradlew build -x :baselineprofile:pixel6api31Setup -x :baselineprofile:pixel6api31NonMinifiedReleaseAndroidTest -x :baselineprofile:collectNonMinifiedReleaseBaselineProfile # build = assemble + test + lint

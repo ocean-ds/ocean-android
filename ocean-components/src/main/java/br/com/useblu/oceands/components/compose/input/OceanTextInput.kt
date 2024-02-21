@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components.compose
+package br.com.useblu.oceands.components.compose.input
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -33,6 +33,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.components.compose.OceanButton
+import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -94,7 +96,7 @@ fun PreviewOceanTextInput() {
             label = "Label",
             placeholder = "Teste placeholder",
             onTextChanged = { text3 = it },
-            icon = OceanIcons.CALENDAR_OUTLINE
+            trailingIcon = OceanIcons.CALENDAR_OUTLINE
         )
 
         OceanSpacing.StackXS()
@@ -172,8 +174,9 @@ fun OceanTextInput(
     enabled: Boolean = true,
     onTextChanged: (String) -> Unit,
     oceanInputType: OceanInputType = OceanInputType.DEFAULT,
-    onClickIcon: (() -> Unit)? = null,
-    icon: OceanIcons? = null,
+    leadingIcon: OceanIcons? = null,
+    trailingIcon: OceanIcons? = null,
+    onClickTrailingIcon: (() -> Unit)? = null,
     isTextArea: Boolean = false
 ) {
     val localTextStyle = TextStyle(
@@ -256,13 +259,21 @@ fun OceanTextInput(
                         errorText = errorText,
                         interactionSource = interactionSource,
                         textFieldColors = getTextFieldColors(),
-                        trailingIcon = if (icon != null) {
+                        leadingIcon = if (leadingIcon != null) {
                             {
                                 OceanIcon(
-                                    iconType = icon,
+                                    iconType = leadingIcon,
+                                    tint = OceanColors.interfaceDarkUp
+                                )
+                            }
+                        } else null,
+                        trailingIcon = if (trailingIcon != null) {
+                            {
+                                OceanIcon(
+                                    iconType = trailingIcon,
                                     tint = OceanColors.interfaceDarkUp,
-                                    modifier = Modifier.clickable(onClickIcon != null) {
-                                        onClickIcon?.invoke()
+                                    modifier = Modifier.clickable(onClickTrailingIcon != null) {
+                                        onClickTrailingIcon?.invoke()
                                     }
                                 )
                             }
@@ -310,7 +321,8 @@ private fun OceanTextInputDecorationBox(
     errorText: String?,
     interactionSource: MutableInteractionSource,
     textFieldColors: TextFieldColors,
-    trailingIcon: (@Composable () -> Unit)? = null,
+    leadingIcon: (@Composable () -> Unit)?,
+    trailingIcon: (@Composable () -> Unit)?,
     singleLine: Boolean = true
 ) {
     val contentPadding = if (singleLine) {
@@ -324,6 +336,7 @@ private fun OceanTextInputDecorationBox(
         visualTransformation = VisualTransformation.None,
         innerTextField = innerTextField,
         placeholder = placeholderCompose,
+        leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         prefix = oceanInputType.getPrefixComposable(),
         singleLine = singleLine,

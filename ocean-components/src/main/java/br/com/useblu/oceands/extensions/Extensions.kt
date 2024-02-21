@@ -38,7 +38,7 @@ fun Date.oceanFormat(pattern: String): String {
 }
 
 fun Double.oceanFormatWithCurrency(): String {
-    val twoDecimalPlaces = truncate(this * 100) / 100
+    val twoDecimalPlaces = truncate(this * 1000) / 1000
     return FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(twoDecimalPlaces.toString())
 }
 

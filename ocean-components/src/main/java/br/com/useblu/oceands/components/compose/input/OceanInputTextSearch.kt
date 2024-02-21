@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.stringmask.OceanInputType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -32,11 +33,12 @@ private fun OceanInputTextSearchPreview() {
 
         OceanSpacing.StackXS()
 
-        var text2: String by remember { mutableStateOf("user@pag.net") }
+        var text2: String by remember { mutableStateOf("12356") }
 
         OceanInputTextSearch(
             value = text2,
-            onTextChanged = { text2 = it }
+            onTextChanged = { text2 = it },
+            oceanInputType = OceanInputType.CNPJ
         )
 
         OceanSpacing.StackXXS()
@@ -46,6 +48,8 @@ private fun OceanInputTextSearchPreview() {
 @Composable
 fun OceanInputTextSearch(
     modifier: Modifier = Modifier,
+    oceanInputType: OceanInputType = OceanInputType.DEFAULT,
+    label: String = "",
     onTextChanged: (String) -> Unit,
     value: String,
     placeholder: String = "",
@@ -55,9 +59,10 @@ fun OceanInputTextSearch(
         modifier = modifier,
         onTextChanged = onTextChanged,
         value = value,
+        oceanInputType = oceanInputType,
         leadingIcon = OceanIcons.SEARCH_SOLID,
         placeholder = placeholder,
         errorText = error,
-        label = ""
+        label = label
     )
 }

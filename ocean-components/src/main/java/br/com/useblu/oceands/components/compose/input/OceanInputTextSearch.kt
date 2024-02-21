@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components.compose
+package br.com.useblu.oceands.components.compose.input
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

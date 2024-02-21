@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import br.com.useblu.oceands.utils.FormatTypes
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -37,7 +39,10 @@ fun Date.oceanFormat(pattern: String): String {
     }.replace(".", "")
 }
 
-fun Double.oceanFormatWithCurrency() = FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(this.toString())
+fun Double.oceanFormatWithCurrency(): String {
+    val final = BigDecimal(this).setScale(2, RoundingMode.HALF_EVEN)
+    return FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(final.toString())
+}
 
 fun String.clearSpacing() = replace("\\s+".toRegex(), "").trim()
 

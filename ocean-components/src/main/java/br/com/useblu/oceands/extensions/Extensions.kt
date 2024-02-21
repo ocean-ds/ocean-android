@@ -37,10 +37,7 @@ fun Date.oceanFormat(pattern: String): String {
     }.replace(".", "")
 }
 
-fun Double.oceanFormatWithCurrency(): String {
-    val twoDecimalPlaces = truncate(this * 1000) / 1000
-    return FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(twoDecimalPlaces.toString())
-}
+fun Double.oceanFormatWithCurrency() = FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(this.toString())
 
 fun String.clearSpacing() = replace("\\s+".toRegex(), "").trim()
 

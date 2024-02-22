@@ -1,6 +1,5 @@
-package br.com.useblu.oceands.components.compose
+package br.com.useblu.oceands.components.compose.list
 
-import android.widget.TextView
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -8,18 +7,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.text.HtmlCompat
+import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.model.compose.OceanUnorderedListItemModel
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -61,7 +60,7 @@ fun OceanUnorderedList(
 ) {
     LazyColumn(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(models) {item ->
             OceanUnorderedListItem(item)
@@ -92,7 +91,8 @@ fun OceanUnorderedListItem(
         modifier = Modifier.padding(
             horizontal = 16.dp,
             vertical = 4.dp
-        )
+        ),
+        verticalAlignment = Alignment.Top
     ) {
         val iconSize = if (showIconBackground) 16.dp else 24.dp
 
@@ -110,39 +110,11 @@ fun OceanUnorderedListItem(
             )
         }
 
-        if(!isHtmlString(title)){
-            Text(
-                text = title,
-                style = style,
-                modifier = Modifier
-                    .align(Alignment.Top)
-                    .padding(start = 8.dp)
-            )
-        } else {
-            HtmlText(
-                html = title,
-                modifier = Modifier
-                    .align(Alignment.Top)
-                    .padding(start = 8.dp)
-            )
-        }
+        OceanSpacing.StackXXS()
+
+        OceanText(
+            text = title,
+            style = style
+        )
     }
-}
-
-@Composable
-fun isHtmlString(input: String): Boolean {
-    // Check if the string contains HTML tags
-    return input.contains(Regex("<[^>]*>"))
-}
-
-@Composable
-fun HtmlText(
-    modifier: Modifier = Modifier,
-    html: String,
-) {
-    AndroidView(
-        modifier = modifier,
-        factory = { context -> TextView(context) },
-        update = { it.text = HtmlCompat.fromHtml(html, HtmlCompat.FROM_HTML_MODE_COMPACT) }
-    )
 }

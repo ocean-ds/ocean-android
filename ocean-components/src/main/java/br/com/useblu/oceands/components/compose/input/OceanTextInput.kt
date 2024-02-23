@@ -253,7 +253,10 @@ fun OceanTextInput(
                     OceanTextInputDecorationBox(
                         value = value,
                         innerTextField = innerTextField,
-                        placeholderCompose = getPlaceholder(placeholder, enabled),
+                        placeholderCompose = getPlaceholder(
+                            placeholder,
+                            enabled && value.isBlank()
+                        ),
                         oceanInputType = oceanInputType,
                         enabled = enabled,
                         errorText = errorText,

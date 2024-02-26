@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components.compose
+package br.com.useblu.oceands.components.compose.input
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -29,57 +29,66 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 
 @Preview
 @Composable
-fun SelectableRadioPreview() {
+fun SelectableBoxPreview() {
     Row {
         Column {
-            OceanSelectableRadio(
+            OceanSelectableBox(
                 selected = false,
                 showError = false,
                 enabled = true,
-                onSelectedBox = {
-                    println("radio callback invoked")
-                }
             )
-            OceanSelectableRadio(
+            OceanSelectableBox(
                 selected = false,
                 showError = false,
                 enabled = false,
             )
-            OceanSelectableRadio(
+            OceanSelectableBox(
                 selected = false,
                 showError = true,
                 enabled = false,
             )
         }
         Column {
-            OceanSelectableRadio(
+
+            OceanSelectableBox(
                 selected = true,
                 showError = false,
                 enabled = true,
+                onSelectedBox = { isSelected ->
+                    println("isSelected: $isSelected")
+                }
             )
-            OceanSelectableRadio(
+            OceanSelectableBox(
                 selected = true,
                 showError = false,
                 enabled = false,
             )
-            OceanSelectableRadio(
+            OceanSelectableBox(
                 selected = false,
                 showError = true,
                 enabled = false,
+            )
+            OceanSelectableBox(
+                selected = true,
+                unsettled = true,
+                showError = false,
             )
         }
     }
 }
 
 @Composable
-fun OceanSelectableRadio(
+internal fun OceanSelectableBox(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     selected: Boolean = false,
+    unsettled: Boolean = false,
     showError: Boolean = false,
     enabled: Boolean = true,
     onSelectedBox: ((Boolean) -> Unit)? = null
 ) {
     var isSelected by remember(selected) { mutableStateOf(selected) }
+    var isUnsettled by remember(unsettled) { mutableStateOf(unsettled) }
+
     val boxBorderColor = when {
         showError -> OceanColors.statusNegativePure
         !enabled -> OceanColors.interfaceLightDeep
@@ -87,18 +96,21 @@ fun OceanSelectableRadio(
         else -> OceanColors.interfaceDarkUp
     }
 
-    val onClickSelectableRadio: () -> Unit = {
-        if (enabled) {
+    val onClickSelectableBox: (() -> Unit) = {
+        if (enabled && !isUnsettled) {
+            isSelected = !isSelected
+        } else if (isUnsettled) {
+            isUnsettled = false
             isSelected = true
-            onSelectedBox?.invoke(isSelected)
         }
+        onSelectedBox?.invoke(isSelected)
     }
 
-    LaunchedEffect(key1 = interactionSource ){
+    LaunchedEffect(key1 = interactionSource) {
         interactionSource.interactions.collect {interaction ->
             when(interaction) {
                 is PressInteraction.Press -> {
-                    onClickSelectableRadio()
+                    onClickSelectableBox()
                 }
             }
         }
@@ -109,10 +121,10 @@ fun OceanSelectableRadio(
             .size(20.dp)
             .padding(1.dp)
             .background(OceanColors.interfaceLightPure)
-            .clickable(
+            .clickable (
                 interactionSource = interactionSource,
                 indication = null,
-                enabled = enabled,
+                enabled = enabled && !showError,
                 onClick = {}
             )
             .border(
@@ -120,20 +132,29 @@ fun OceanSelectableRadio(
                     width = 1.dp,
                     color = boxBorderColor
                 ),
-                shape = CircleShape
+                shape = RoundedCornerShape(4.dp)
             )
     ) {
-        if (isSelected) {
-            val resourceIcon =
-                if (enabled) R.drawable.icon_radiobutton_checked
-                else R.drawable.icon_radio_button_disabled_checked
+        if (isSelected && !showError) {
+            if (isUnsettled) {
+                Image(
+                    painter = painterResource(
+                        id = R.drawable.icon_checkbox_unsettled
+                    ),
+                    contentDescription = ""
+                )
+            } else {
+                val resourceIcon =
+                    if (enabled) R.drawable.icon_checkbox_checked
+                    else R.drawable.icon_checkbox_checked_disabled
 
-            Image(
-                painter = painterResource(
-                    id = resourceIcon
-                ),
-                contentDescription = ""
-            )
+                Image(
+                    painter = painterResource(
+                        id = resourceIcon
+                    ),
+                    contentDescription = ""
+                )
+            }
         }
     }
 }

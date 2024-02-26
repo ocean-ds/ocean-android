@@ -27,6 +27,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
+import br.com.useblu.oceands.components.compose.input.OceanSelectableRadio
 import br.com.useblu.oceands.model.OceanTextListStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -231,9 +233,11 @@ fun OceanTextListItem(
                         OceanSelectableRadio(
                             interactionSource = interactionSource,
                             enabled = enabled,
-                            selected = selected,
+                            isSelected = selected,
                             showError = showError,
-                            onSelectedBox = onSelectedBox
+                            onSelectedBox = {
+                                onSelectedBox?.invoke(true)
+                            }
                         )
                     }
                 }

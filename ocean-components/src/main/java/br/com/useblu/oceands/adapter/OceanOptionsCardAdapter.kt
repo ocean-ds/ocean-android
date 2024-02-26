@@ -20,15 +20,14 @@ class OceanOptionsCardAdapter(
         parent: ViewGroup,
         viewType: Int
     ): RecyclerView.ViewHolder {
-
-        when (viewType) {
+        return when (viewType) {
             OptionsCardState.DISABLED.ordinal -> {
                 val itemBinding = ItemOptionCardDisabledAdapterOceanBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
-                return OceanOptionCardDisabledViewHolder(itemBinding)
+                OceanOptionCardDisabledViewHolder(itemBinding)
             }
             else -> {
                 val itemBinding = ItemOptionCardAdapterOceanBinding.inflate(
@@ -36,7 +35,7 @@ class OceanOptionsCardAdapter(
                     parent,
                     false
                 )
-                return OceanOptionCardViewHolder(itemBinding)
+                OceanOptionCardViewHolder(itemBinding)
             }
         }
     }

@@ -1,12 +1,11 @@
 package br.com.useblu.oceands.client.ui.groupcta
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
-import br.com.useblu.oceands.client.databinding.ActivityCardGroupBinding
 import br.com.useblu.oceands.client.databinding.ActivityGroupCtaBinding
 
 class GroupCTAActivity : AppCompatActivity() {

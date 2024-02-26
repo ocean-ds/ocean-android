@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components.compose
+package br.com.useblu.oceands.components.compose.input
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -7,16 +7,19 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -29,66 +32,74 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 
 @Preview
 @Composable
-fun SelectableBoxPreview() {
-    Row {
-        Column {
-            OceanSelectableBox(
-                selected = false,
-                showError = false,
-                enabled = true,
-            )
-            OceanSelectableBox(
-                selected = false,
-                showError = false,
-                enabled = false,
-            )
-            OceanSelectableBox(
-                selected = false,
-                showError = true,
-                enabled = false,
-            )
-        }
-        Column {
+fun SelectableRadioPreview() {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier
+            .background(OceanColors.interfaceLightPure)
+            .padding(16.dp)
+    ) {
+        Text(text = "Checkboxes interagíveis para teste")
+        Row {
+            var selected1 by remember { mutableIntStateOf(-1) }
 
-            OceanSelectableBox(
-                selected = true,
+            OceanSelectableRadio(
+                isSelected = selected1 == 0,
                 showError = false,
-                enabled = true,
-                onSelectedBox = { isSelected ->
-                    println("isSelected: $isSelected")
+                onSelectedBox = {
+                    println("radio callback invoked")
+                    selected1 = 0
                 }
             )
-            OceanSelectableBox(
-                selected = true,
+
+            OceanSelectableRadio(
+                isSelected = selected1 == 1,
+                showError = false,
+                onSelectedBox = {
+                    selected1 = 1
+                }
+            )
+
+            OceanSelectableRadio(
+                isSelected = selected1 == 2,
+                showError = true,
+                onSelectedBox = {
+                    selected1 = 2
+                }
+            )
+        }
+
+        Spacer(modifier = Modifier.size(8.dp))
+
+        Text(text = "Checkboxes estáticos para visualização")
+        Row {
+            OceanSelectableRadio(
+                isSelected = true,
+                showError = false,
+                enabled = true,
+            )
+            OceanSelectableRadio(
+                isSelected = true,
                 showError = false,
                 enabled = false,
             )
-            OceanSelectableBox(
-                selected = false,
+            OceanSelectableRadio(
+                isSelected = false,
                 showError = true,
                 enabled = false,
-            )
-            OceanSelectableBox(
-                selected = true,
-                unsettled = true,
-                showError = false,
             )
         }
     }
 }
 
 @Composable
-fun OceanSelectableBox(
+internal fun OceanSelectableRadio(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    selected: Boolean = false,
-    unsettled: Boolean = false,
+    isSelected: Boolean = false,
     showError: Boolean = false,
     enabled: Boolean = true,
-    onSelectedBox: ((Boolean) -> Unit)? = null
+    onSelectedBox: () -> Unit = {}
 ) {
-    var isSelected by remember(selected) { mutableStateOf(selected) }
-    var isUnsettled by remember(unsettled) { mutableStateOf(unsettled) }
-
     val boxBorderColor = when {
         showError -> OceanColors.statusNegativePure
         !enabled -> OceanColors.interfaceLightDeep
@@ -96,21 +107,17 @@ fun OceanSelectableBox(
         else -> OceanColors.interfaceDarkUp
     }
 
-    val onClickSelectableBox: (() -> Unit) = {
-        if (enabled && !isUnsettled) {
-            isSelected = !isSelected
-        } else if (isUnsettled) {
-            isUnsettled = false
-            isSelected = true
+    val onClickSelectableRadio: () -> Unit = {
+        if (enabled) {
+            onSelectedBox.invoke()
         }
-        onSelectedBox?.invoke(isSelected)
     }
 
     LaunchedEffect(key1 = interactionSource) {
-        interactionSource.interactions.collect {interaction ->
-            when(interaction) {
+        interactionSource.interactions.collect { interaction ->
+            when (interaction) {
                 is PressInteraction.Press -> {
-                    onClickSelectableBox()
+                    onClickSelectableRadio()
                 }
             }
         }
@@ -121,10 +128,10 @@ fun OceanSelectableBox(
             .size(20.dp)
             .padding(1.dp)
             .background(OceanColors.interfaceLightPure)
-            .clickable (
+            .clickable(
                 interactionSource = interactionSource,
                 indication = null,
-                enabled = enabled && !showError,
+                enabled = enabled,
                 onClick = {}
             )
             .border(
@@ -132,29 +139,20 @@ fun OceanSelectableBox(
                     width = 1.dp,
                     color = boxBorderColor
                 ),
-                shape = RoundedCornerShape(4.dp)
+                shape = CircleShape
             )
     ) {
-        if (isSelected && !showError) {
-            if (isUnsettled) {
-                Image(
-                    painter = painterResource(
-                        id = R.drawable.icon_checkbox_unsettled
-                    ),
-                    contentDescription = ""
-                )
-            } else {
-                val resourceIcon =
-                    if (enabled) R.drawable.icon_checkbox_checked
-                    else R.drawable.icon_checkbox_checked_disabled
+        if (isSelected) {
+            val resourceIcon =
+                if (enabled) R.drawable.icon_radiobutton_checked
+                else R.drawable.icon_radio_button_disabled_checked
 
-                Image(
-                    painter = painterResource(
-                        id = resourceIcon
-                    ),
-                    contentDescription = ""
-                )
-            }
+            Image(
+                painter = painterResource(
+                    id = resourceIcon
+                ),
+                contentDescription = ""
+            )
         }
     }
 }

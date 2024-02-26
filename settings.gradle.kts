@@ -52,7 +52,7 @@ dependencyResolutionManagement {
 
             library("skeletonBones", "com.github.EudyContreras:Skeleton-Bones:v1.4.5")
 
-            library("skydovesLandscapist", "com.github.skydoves:landscapist-glide:2.2.12")
+            library("skydovesLandscapist", "com.github.skydoves:landscapist-glide:2.3.1")
 
             library("baselineProfileInstaller", "androidx.profileinstaller:profileinstaller:1.3.1")
 

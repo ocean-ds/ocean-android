@@ -36,7 +36,7 @@ fun OceanAlertPreview() {
             .verticalScroll(
                 rememberScrollState()
             ),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         val context = LocalContext.current
         OceanAlert(
@@ -78,7 +78,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
-                title = "Entitled Alert",
+                title = "Entitled Alert 2",
                 description = "Entitled Alert Short Warning",
                 alertType = AlertStyle.StyleWarning(),
             )
@@ -86,7 +86,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
-                title = "Entitled Alert",
+                title = "Entitled Alert 3",
                 description = "Confirme suas informações para acessar as funções da conta.",
                 alertType = AlertStyle.StylePositive(),
                 button = "Button" to { }
@@ -95,7 +95,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
-                title = "Entitled Alert",
+                title = "Entitled Alert 4",
                 description = "Entitled Alert Short Negative",
                 alertType = AlertStyle.StyleNegative(),
             )
@@ -103,7 +103,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledLong(
-                title = "Entitled Alert",
+                title = "Entitled Alert 5",
                 description = "Entitled Alert Long Info",
                 alertType = AlertStyle.StyleInfo(),
             )
@@ -111,7 +111,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledLong(
-                title = "Entitled Alert",
+                title = "Entitled Alert 6",
                 description = "Entitled Alert Long Warning",
                 alertType = AlertStyle.StyleWarning(),
             )
@@ -119,7 +119,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledLong(
-                title = "Entitled Alert",
+                title = "Entitled Alert 7",
                 description = "Entitled Alert Long Positive",
                 alertType = AlertStyle.StylePositive(),
             )
@@ -127,7 +127,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledLong(
-                title = "Entitled Alert",
+                title = "Entitled Alert 8",
                 description = "Entitled Alert Long Negative",
                 alertType = AlertStyle.StyleNegative(),
             )
@@ -176,7 +176,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
-                title = "Labeled Alert",
+                title = "Labeled Alert 2",
                 description = "Entitled Alert Labeled Warning",
                 label = "Label",
                 alertType = AlertStyle.StyleWarning(),
@@ -185,7 +185,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
-                title = "Labeled Alert",
+                title = "Labeled Alert 3",
                 description = "Entitled Alert Labeled Positive",
                 label = "Label",
                 alertType = AlertStyle.StylePositive(),
@@ -194,7 +194,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
-                title = "Labeled Alert",
+                title = "Labeled Alert 4",
                 description = "Entitled Alert Labeled Negative",
                 label = "Label",
                 alertType = AlertStyle.StyleNegative(),
@@ -203,8 +203,8 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
-                title = "Labeled Alert",
-                description = "Entitled Alert Labeled Negative",
+                title = "Labeled Alert 5",
+                description = "Entitled Alert Labeled Negative 2",
                 alertType = AlertStyle.StyleInfo(),
                 button = "Action" to {
                     Toast.makeText(
@@ -218,13 +218,13 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
-                title = "Labeled Alert",
-                description = "Entitled Alert Labeled Negative",
+                title = "Labeled Alert 6",
+                description = "Entitled Alert Labeled Negative 3",
                 alertType = AlertStyle.StyleWarning(),
                 button = "Action" to {
                     Toast.makeText(
                         context,
-                        "Alert Action",
+                        "Alert Action 2",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -233,13 +233,13 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.EntitledShort(
-                title = "Labeled Alert",
-                description = "Entitled Alert Labeled Negative",
+                title = "Labeled Alert 7",
+                description = "Entitled Alert Labeled Negative 4",
                 alertType = AlertStyle.StyleNegative(),
                 button = "Action" to {
                     Toast.makeText(
                         context,
-                        "Alert Action",
+                        "Alert Action 3",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -248,7 +248,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Bookmarked(
-                title = "Labeled Alert",
+                title = "Labeled Alert 8",
                 description = "<li>Menu1</li><li>Menu2</li><li>Menu3</li>",
                 alertType = AlertStyle.StyleNegative()
             )

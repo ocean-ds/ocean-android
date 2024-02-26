@@ -71,7 +71,7 @@ dependencyResolutionManagement {
 
             library("androidJUnit", "androidx.test.ext:junit:1.1.5")
             library("espresso", "androidx.test.espresso:espresso-core:3.5.1")
-            library("uiAutomator", "androidx.test.uiautomator:uiautomator:2.3.0-rc01")
+            library("uiAutomator", "androidx.test.uiautomator:uiautomator:2.3.0")
             library("benchmarkJUnit", "androidx.benchmark:benchmark-macro-junit4:1.2.3")
         }
     }

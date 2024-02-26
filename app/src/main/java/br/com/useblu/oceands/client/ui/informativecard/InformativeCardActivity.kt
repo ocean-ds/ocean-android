@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityInformativeCardBinding
-import br.com.useblu.oceands.client.databinding.ActivityOptionsCardBinding
 
 class InformativeCardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityInformativeCardBinding

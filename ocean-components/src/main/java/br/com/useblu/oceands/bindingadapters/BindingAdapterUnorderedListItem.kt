@@ -3,7 +3,6 @@ package br.com.useblu.oceands.bindingadapters
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import br.com.useblu.oceands.adapter.OceanOrderedListAdapter
 import br.com.useblu.oceands.adapter.OceanUnorderedListAdapter
 import br.com.useblu.oceands.model.OceanUnorderedListItem
 
@@ -19,7 +18,7 @@ fun setUnorderedListAdapter(
         recyclerView.adapter = oceanOrderedListAdapter
         recyclerView.layoutManager = object: LinearLayoutManager(
             recyclerView.context,
-            LinearLayoutManager.VERTICAL,
+            VERTICAL,
             false
         ) {
             override fun canScrollVertically(): Boolean {

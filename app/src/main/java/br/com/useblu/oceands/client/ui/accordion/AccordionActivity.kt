@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityAccordionBinding
-import br.com.useblu.oceands.client.databinding.ActivityAlertBinding
 
 class AccordionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAccordionBinding

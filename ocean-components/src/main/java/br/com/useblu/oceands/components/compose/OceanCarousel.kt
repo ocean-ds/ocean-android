@@ -92,7 +92,9 @@ fun OceanCarousel(
                     pagerState.animateScrollToPage(
                         page = (pagerState.currentPage + 1) % items.size
                     )
-                } catch (_: Exception) {}
+                } catch (_: Exception) {
+                    // Do nothing
+                }
             }
         }
     }

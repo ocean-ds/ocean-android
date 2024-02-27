@@ -45,8 +45,8 @@ baselineProfile {
 }
 
 dependencies {
-    implementation(libs.androidJUnit)
-    implementation(libs.espresso)
-    implementation(libs.uiAutomator)
-    implementation(libs.benchmarkJUnit)
+    implementation(libs.androidx.junit)
+    implementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.uiautomator)
+    implementation(libs.androidx.benchmark.macro.junit4)
 }

@@ -106,7 +106,7 @@ dependencies {
     implementation(libs.skydovesLandscapist)
 
     // COMPOSE
-    val composeBom = platform(libs.compose.bom)
+    val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
 

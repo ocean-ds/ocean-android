@@ -5,13 +5,8 @@ buildscript {
     }
 
     dependencies {
-        classpath(classpath.gradle)
-        classpath(classpath.kotlin)
-        classpath(classpath.baselineprofile)
+        classpath(libs.gradle)
+        classpath(libs.kotlin.gradle.plugin)
+        classpath(libs.benchmark.baseline.profile.gradle.plugin)
     }
 }
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
-}
-

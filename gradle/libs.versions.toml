@@ -1,0 +1,51 @@
+[versions]
+gradle = "8.2.2"
+kotlinGradlePlugin = "1.9.22"
+benchmarkBaselineProfileGradlePlugin = "1.2.3"
+benchmarkMacroJunit4 = "1.2.3"
+composeBom = "2024.02.01"
+espressoCore = "3.5.1"
+junit = "1.1.5"
+uiautomator = "2.3.0"
+lifecycleViewModel = "2.6.1"
+constraintLayout = "2.1.4"
+androidCoreKtx = "1.12.0"
+
+[libraries]
+androidx-benchmark-macro-junit4 = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junit" }
+androidx-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
+benchmark-baseline-profile-gradle-plugin = { module = "androidx.benchmark:benchmark-baseline-profile-gradle-plugin", version.ref = "benchmarkBaselineProfileGradlePlugin" }
+constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintLayout" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }
+lifecycleExtensions = { module = "androidx.lifecycle:lifecycle-extensions", version = "2.2.0" }
+recyclerView = { module = "androidx.recyclerview:recyclerview", version = "1.2.1" }
+lifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewModel" }
+androidKtx = { module = "androidx.core:core-ktx", version.ref = "androidCoreKtx" }
+androidAppCompat = { module = "androidx.appcompat:appcompat", version = "1.6.1" }
+skydovesBalloon = { module = "com.github.skydoves:balloon", version = "1.6.4" }
+skydovesLandscapist = { module = "com.github.skydoves:landscapist-glide", version = "2.3.1" }
+androidMaterial = { module = "com.google.android.material:material", version = "1.10.0" }
+canarinho = { module = "com.github.concretesolutions:canarinho", version = "2.0.2" }
+glide = { module = "com.github.bumptech.glide:glide", version = "4.16.0" }
+circleIndicator = { module = "me.relex:circleindicator", version = "2.1.6" }
+expansionPanel = { module = "com.github.florent37:expansionpanel", version = "1.2.4" }
+toggleButtonLayout = { module = "com.github.savvyapps:ToggleButtonLayout", version = "1.3.0" }
+calendarView = { module = "com.github.prolificinteractive:material-calendarview", version = "2.0.1" }
+mpChart = { module = "com.github.PhilJay:MPAndroidChart", version = "v3.1.0" }
+skeletonBones = { module = "com.github.EudyContreras:Skeleton-Bones", version = "v1.4.5" }
+baselineProfileInstaller = { module = "androidx.profileinstaller:profileinstaller", version = "1.3.1" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+compose-lifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewModel" }
+compose-activity = { module = "androidx.activity:activity-compose", version = "1.8.2" }
+compose-androidMaterial3 = { group = "androidx.compose.material3", name =  "material3" }
+compose-uiToolingPreview = { group = "androidx.compose.ui", name =  "ui-tooling-preview" }
+compose-uiViewBinding = { group = "androidx.compose.ui", name =  "ui-viewbinding" }
+compose-uiTooling = { group = "androidx.compose.ui", name =  "ui-tooling" }
+compose-uiTestJunit4 = { group = "androidx.compose.ui", name =  "ui-test-junit4" }
+compose-uiTestManifest = { group = "androidx.compose.ui", name =  "ui-test-manifest" }
+compose-runtimeLiveData = { group = "androidx.compose.runtime", name =  "runtime-livedata" }
+
+[plugins]

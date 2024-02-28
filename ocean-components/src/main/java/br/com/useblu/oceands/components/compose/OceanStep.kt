@@ -36,10 +36,11 @@ fun PreviewOceanStep() {
 @Composable
 fun OceanStep(
     @IntRange(from = 1) currentStep: Int,
-    stepCount: Int
+    stepCount: Int,
+    modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = Modifier.height(20.dp),
+        modifier = modifier.height(20.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         for (i in 1 until currentStep.coerceAtMost(stepCount + 1)) {

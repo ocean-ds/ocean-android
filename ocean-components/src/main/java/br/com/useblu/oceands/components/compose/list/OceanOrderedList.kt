@@ -53,7 +53,6 @@ fun OceanOrderedListItem(
 ) {
     Row(
         modifier = Modifier.padding(
-            horizontal = 16.dp,
             vertical = 4.dp
         ),
         verticalAlignment = Alignment.Top

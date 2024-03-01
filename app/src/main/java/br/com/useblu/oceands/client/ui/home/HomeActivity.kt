@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
@@ -96,7 +95,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
-import br.com.useblu.oceands.utils.UiText
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Calendar
@@ -118,14 +116,14 @@ class HomeActivity : AppCompatActivity() {
             if (showSheet) {
                 OceanBottomSheet(
                     model = OceanBottomSheetModel(
-                        title = UiText.DynamicString("Title"),
-                        message = UiText.DynamicString("Message"),
-                        subMessage = UiText.DynamicString("SubMessage"),
+                        title = "Title",
+                        message = "Message",
+                        subMessage = "SubMessage",
                         imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
                         icon = R.drawable.icon_easter_eggs,
                         code = 2000,
-                        actionPositive = UiText.DynamicString("Aceitar") to {},
-                        actionNegative = UiText.DynamicString("Cancelar") to {},
+                        actionPositive = "Aceitar" to {},
+                        actionNegative = "Cancelar" to {},
                         buttonsOrientation = BottomSheetButtonsOrientation.Vertical
                     ),
                     onDismiss = {

@@ -1,0 +1,165 @@
+package br.com.useblu.oceands.components.compose.chart
+
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.components.compose.OceanDivider
+import br.com.useblu.oceands.components.compose.OceanGroupCta
+import br.com.useblu.oceands.components.compose.OceanText
+import br.com.useblu.oceands.model.OceanDonutItem
+import br.com.useblu.oceands.model.OceanDonutModel
+import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.OceanTextStyle
+
+
+@Preview
+@Composable
+private fun OceanChartCardPreview() {
+    Column(
+        modifier = Modifier
+            .background(OceanColors.interfaceLightPure)
+            .padding(16.dp),
+    ) {
+        OceanChartCard(
+            modifier = Modifier,
+            title = "Title",
+            subtitle = "Subtitle",
+            model = donutModel,
+            actionTitle = "Call to Action",
+            callToAction = {}
+        )
+    }
+}
+
+@Composable
+fun OceanChartCard(
+    modifier: Modifier = Modifier,
+    title: String,
+    subtitle: String,
+    showProgress: Boolean = false,
+    model: OceanDonutModel,
+    actionTitle: String? = null,
+    callToAction: (() -> Unit)? = null
+) {
+    Card(
+        modifier = modifier,
+        border = BorderStroke(
+            width = 1.dp,
+            color = OceanColors.interfaceLightDown
+        ),
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = OceanColors.interfaceLightPure,
+            disabledContainerColor = OceanColors.interfaceLightPure
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(24.dp)
+        ) {
+            OceanText(text = title, style = OceanTextStyle.heading4)
+
+            OceanSpacing.StackXXXS()
+
+            OceanText(text = subtitle, style = OceanTextStyle.description)
+
+            OceanSpacing.StackXS()
+
+            OceanDonut(model = model, modifier = Modifier.height(180.dp))
+
+            OceanChardLegend(model)
+        }
+
+        if (actionTitle != null) {
+            OceanDivider()
+
+            OceanGroupCta(
+                title = actionTitle,
+                onClick = { callToAction?.invoke() },
+                showProgress = showProgress
+            )
+        }
+    }
+}
+
+
+@Composable
+fun OceanChardLegend(
+    model: OceanDonutModel,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier
+    ) {
+        model.items.forEach {
+            OceanChartLegendItem(model = it)
+        }
+    }
+}
+
+@Composable
+fun OceanChartLegendItem(
+    model: OceanDonutItem
+) {
+    val alpha = if (model.selected) 1f else 0.4f
+
+    Row(
+        modifier = Modifier
+            .alpha(alpha)
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(8.dp)
+                        .background(
+                            color = colorResource(id = model.color),
+                            shape = CircleShape
+                        )
+                )
+
+                OceanSpacing.StackXXS()
+
+                OceanText(text = model.title, style = OceanTextStyle.description)
+
+                OceanSpacing.StackXXXS()
+
+                // OceanTooltip
+            }
+
+            OceanSpacing.StackXXXS()
+
+            OceanText(
+                modifier = Modifier.padding(start = 16.dp),
+                text = model.subtitle,
+                style = OceanTextStyle.caption
+            )
+        }
+
+        OceanText(text = model.percent, style = OceanTextStyle.description)
+    }
+}

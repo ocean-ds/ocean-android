@@ -60,12 +60,8 @@ class ChartCardViewModel : ViewModel() {
         title = "Title",
         label = "Label",
         items = items,
-        onItemSelected = {
-            selectedItem(it)
-        },
-        onNothingSelected = {
-            reset()
-        }
+        onItemSelected = ::onSelectItem,
+        onNothingSelected = ::reset
     )
 
     private val _oceanDonutLiveData = MutableLiveData<OceanDonutModel>()
@@ -75,13 +71,9 @@ class ChartCardViewModel : ViewModel() {
         _oceanDonutLiveData.postValue(model)
     }
 
-    fun selectedItem(itemSelected: OceanDonutItem) {
+    private fun onSelectItem(itemSelected: OceanDonutItem) {
         items = items.map {
-            if (it == itemSelected) {
-                it.copy(selected = true)
-            } else {
-                it.copy(selected = false)
-            }
+            it.copy(selected = it == itemSelected)
         }
 
         _oceanDonutLiveData.postValue(

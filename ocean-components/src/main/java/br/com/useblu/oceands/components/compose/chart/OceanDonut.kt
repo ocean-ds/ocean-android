@@ -47,11 +47,11 @@ private val items = listOf(
         percent = "30%"
     ),
     OceanDonutItem(
-        title = "Item 5",
+        title = "Item 4",
         valueFormatted = "60",
         value = 60.0f,
         color = R.color.ocean_color_brand_primary_pure,
-        subtitle = "Subtitle 5",
+        subtitle = "Subtitle 4",
         information = "lorem ipsum dolor sit amet.",
         percent = "50%"
     )

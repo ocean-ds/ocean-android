@@ -93,7 +93,8 @@ dependencies {
 
     implementation(libs.androidKtx)
     implementation(libs.androidAppCompat)
-    api(libs.skydovesBalloon)
+    api(libs.skydoves.balloon)
+    api(libs.skydoves.balloon.compose)
     api(libs.androidMaterial)
     api(libs.canarinho)
     api(libs.glide)

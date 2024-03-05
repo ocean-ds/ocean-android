@@ -9,7 +9,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -64,16 +69,26 @@ fun OceanChartBar(
     model: OceanChartModel,
     modifier: Modifier = Modifier
 ) {
+    var windowWidth by remember { mutableIntStateOf(0) }
+
     AndroidView(
-        modifier = modifier.fillMaxSize(),
-        factory = ::BarChart,
+        modifier = modifier
+            .fillMaxSize()
+            .onSizeChanged {
+                windowWidth = it.width
+            },
+        factory = {
+            BarChart(it).apply {
+                setupChart(model)
+            }
+        },
         update = {
-            it.setupChart(model)
+            it.setChartModel(model, windowWidth)
         }
     )
 }
 
-fun BarChart.setupChart(model: OceanChartModel) {
+private fun BarChart.setupChart(model: OceanChartModel) {
     description.isEnabled = false
     legend.isEnabled = false
 
@@ -95,6 +110,13 @@ fun BarChart.setupChart(model: OceanChartModel) {
     xAxis.setCenterAxisLabels(false)
     xAxis.textColor = ContextCompat.getColor(context, R.color.ocean_color_interface_dark_up)
     xAxis.typeface = ResourcesCompat.getFont(context, R.font.font_family_base_medium)
+}
+
+fun BarChart.setChartModel(
+    model: OceanChartModel,
+    windowWidth: Int
+) {
+    if (windowWidth == 0) return
 
     val dataSet = buildDataSet(
         model = model,
@@ -109,7 +131,7 @@ fun BarChart.setupChart(model: OceanChartModel) {
     )
 
     data = BarData(dataSet)
-    data.barWidth = .5f //(16f/width) * model.items.size
+    data.barWidth = (16.dpFloat / windowWidth) * model.items.size
 
     setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
         override fun onValueSelected(e: Entry?, h: Highlight?) {
@@ -123,7 +145,7 @@ fun BarChart.setupChart(model: OceanChartModel) {
 
         private fun repaint(selected: OceanChartItem? = null) {
             data = BarData(buildDataSet(model, selected))
-            data.barWidth = (16.dpFloat/width) * model.items.size
+            data.barWidth = (16.dpFloat/windowWidth) * model.items.size
         }
 
         override fun onNothingSelected() {

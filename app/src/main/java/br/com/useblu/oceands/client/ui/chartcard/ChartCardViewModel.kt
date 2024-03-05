@@ -11,7 +11,7 @@ class ChartCardViewModel : ViewModel() {
     var items = listOf(
         OceanDonutItem(
             title = "Item 1",
-            valueFormatted = "25",
+            valueFormatted = "R$ 25",
             value = 25.0f,
             color = R.color.colorPrimary,
             subtitle = "Subtitle 1",
@@ -20,20 +20,20 @@ class ChartCardViewModel : ViewModel() {
         ),
         OceanDonutItem(
             title = "Item 2",
-            valueFormatted = "75",
+            valueFormatted = "R$ 75",
             value = 75.0f,
             color = R.color.ocean_color_status_negative_pure,
             subtitle = "Subtitle 2",
-            information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            information = "Isto equivale a 75 reais",
             percent = "20%"
         ),
         OceanDonutItem(
             title = "Item 3",
-            valueFormatted = "75",
+            valueFormatted = "R$ 75",
             value = 75.0f,
             color = R.color.ocean_color_status_warning_deep,
             subtitle = "Subtitle 3",
-            information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            information = "Isto equivale a 75 reais",
             percent = "30%"
         ),
         OceanDonutItem(
@@ -42,7 +42,7 @@ class ChartCardViewModel : ViewModel() {
             value = 70.0f,
             color = R.color.colorAccent,
             subtitle = "Subtitle 4",
-            information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            information = "Isto equivale a 70 reais",
             percent = "40%"
         ),
         OceanDonutItem(
@@ -51,21 +51,17 @@ class ChartCardViewModel : ViewModel() {
             value = 60.0f,
             color = R.color.ocean_color_brand_primary_pure,
             subtitle = "Subtitle 5",
-            information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            information = "60 reaissss",
             percent = "50%"
-        ),
+        )
     )
 
     val model = OceanDonutModel(
         title = "Title",
         label = "Label",
         items = items,
-        onItemSelected = {
-            selectedItem(it)
-        },
-        onNothingSelected = {
-            reset()
-        }
+        onItemSelected = ::onSelectItem,
+        onNothingSelected = ::reset
     )
 
     private val _oceanDonutLiveData = MutableLiveData<OceanDonutModel>()
@@ -75,13 +71,9 @@ class ChartCardViewModel : ViewModel() {
         _oceanDonutLiveData.postValue(model)
     }
 
-    fun selectedItem(itemSelected: OceanDonutItem) {
+    private fun onSelectItem(itemSelected: OceanDonutItem) {
         items = items.map {
-            if (it == itemSelected) {
-                it.copy(selected = true)
-            } else {
-                it.copy(selected = false)
-            }
+            it.copy(selected = it == itemSelected)
         }
 
         _oceanDonutLiveData.postValue(

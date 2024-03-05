@@ -29,8 +29,8 @@ import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanGroupCta
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTooltip
-import br.com.useblu.oceands.model.OceanDonutItem
-import br.com.useblu.oceands.model.OceanDonutModel
+import br.com.useblu.oceands.model.chart.OceanChartItem
+import br.com.useblu.oceands.model.chart.OceanChartModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -61,7 +61,7 @@ fun OceanChartCard(
     title: String,
     subtitle: String,
     showProgress: Boolean = false,
-    model: OceanDonutModel,
+    model: OceanChartModel,
     actionTitle: String? = null,
     callToAction: (() -> Unit)? = null
 ) {
@@ -108,7 +108,7 @@ fun OceanChartCard(
 
 @Composable
 fun OceanChardLegend(
-    model: OceanDonutModel,
+    model: OceanChartModel,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -136,7 +136,7 @@ fun OceanChardLegend(
 @Composable
 fun OceanChartLegendItem(
     onClick: () -> Unit,
-    model: OceanDonutItem
+    model: OceanChartItem
 ) {
     val alpha = if (model.selected) 1f else 0.4f
 

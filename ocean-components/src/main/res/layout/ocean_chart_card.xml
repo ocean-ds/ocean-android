@@ -9,7 +9,7 @@
 
         <import type="kotlin.Unit" />
 
-        <import type="br.com.useblu.oceands.model.OceanDonutModel" />
+        <import type="br.com.useblu.oceands.model.chart.OceanChartModel" />
 
         <variable
             name="showProgress"
@@ -25,7 +25,7 @@
 
         <variable
             name="model"
-            type="OceanDonutModel" />
+            type="br.com.useblu.oceands.model.chart.OceanChartModel" />
 
         <variable
             name="actionTitle"

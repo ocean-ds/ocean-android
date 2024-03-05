@@ -4,40 +4,40 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.client.R
-import br.com.useblu.oceands.model.OceanDonutItem
-import br.com.useblu.oceands.model.OceanDonutModel
+import br.com.useblu.oceands.model.chart.OceanChartItem
+import br.com.useblu.oceands.model.chart.OceanChartModel
 
 class DonutViewModel : ViewModel() {
 
-    private val _selectedItem = MutableLiveData<OceanDonutItem?>()
-    val selectedItem: LiveData<OceanDonutItem?> = _selectedItem
+    private val _selectedItem = MutableLiveData<OceanChartItem?>()
+    val selectedItem: LiveData<OceanChartItem?> = _selectedItem
 
     val donutItems = listOf(
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 1",
             value = 25.0f,
             valueFormatted = "R$ 25,00",
             color = R.color.colorPrimary
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 2",
             valueFormatted = "R$ 75,00",
             value = 75.0f,
             color = R.color.colorPrimaryDark
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 3",
             valueFormatted = "R$ 75,00",
             value = 75.0f,
             color = R.color.cardview_shadow_start_color
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 4",
             valueFormatted = "R$ 70,00",
             value = 70.0f,
             color = R.color.colorAccent
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 5",
             valueFormatted = "R$ 60,00",
             value = 60.0f,
@@ -45,7 +45,7 @@ class DonutViewModel : ViewModel() {
         ),
     )
 
-    val emptyDonutModel = OceanDonutModel(
+    val emptyDonutModel = OceanChartModel(
         title = "0",
         label = "Empty Donut",
         items = emptyList(),
@@ -53,7 +53,7 @@ class DonutViewModel : ViewModel() {
         onNothingSelected = { }
     )
 
-    val donutModel = OceanDonutModel(
+    val donutModel = OceanChartModel(
         title = "0",
         label = "Label",
         items = donutItems,

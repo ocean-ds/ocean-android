@@ -12,8 +12,8 @@ import androidx.core.graphics.red
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.extensions.dp
-import br.com.useblu.oceands.model.OceanDonutItem
-import br.com.useblu.oceands.model.OceanDonutModel
+import br.com.useblu.oceands.model.chart.OceanChartItem
+import br.com.useblu.oceands.model.chart.OceanChartModel
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
@@ -23,13 +23,13 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 
 @BindingAdapter("donut_model")
-fun PieChart.setupDonutModel(model: OceanDonutModel?) {
+fun PieChart.setupDonutModel(model: OceanChartModel?) {
     model?.let {
         this.setupChart(model)
     }
 }
 
-fun PieChart.setupChart(model: OceanDonutModel) {
+fun PieChart.setupChart(model: OceanChartModel) {
     description.isEnabled = false
     legend.isEnabled = false
 
@@ -76,7 +76,7 @@ fun PieChart.setupChart(model: OceanDonutModel) {
             model.onItemSelected(item)
         }
 
-        private fun repaint(selected: OceanDonutItem? = null) {
+        private fun repaint(selected: OceanChartItem? = null) {
             data = PieData().apply {
                 dataSet = buildPieDataSet(model, selected)
                 setValueTextColor(android.R.color.transparent)
@@ -94,8 +94,8 @@ fun PieChart.setupChart(model: OceanDonutModel) {
 }
 
 private fun PieChart.buildPieDataSet(
-    model: OceanDonutModel,
-    selected: OceanDonutItem? = null,
+    model: OceanChartModel,
+    selected: OceanChartItem? = null,
 ): PieDataSet {
     val pieEntries = model.items.map {
         PieEntry(it.value)

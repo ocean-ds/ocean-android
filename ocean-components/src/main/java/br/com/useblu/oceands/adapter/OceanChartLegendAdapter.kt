@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.OceanChartLegendBinding
-import br.com.useblu.oceands.model.OceanDonutModel
+import br.com.useblu.oceands.model.chart.OceanChartModel
 
 class OceanChartLegendAdapter(
-    private val data: OceanDonutModel
+    private val data: OceanChartModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(

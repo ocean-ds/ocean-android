@@ -29,7 +29,7 @@ fun PieChart.setupDonutModel(model: OceanDonutModel?) {
     }
 }
 
-private fun PieChart.setupChart(model: OceanDonutModel) {
+fun PieChart.setupChart(model: OceanDonutModel) {
     description.isEnabled = false
     legend.isEnabled = false
 
@@ -60,8 +60,6 @@ private fun PieChart.setupChart(model: OceanDonutModel) {
         )
         setValueTextColor(android.R.color.transparent)
     }
-
-
 
     setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
         override fun onValueSelected(e: Entry?, h: Highlight?) {

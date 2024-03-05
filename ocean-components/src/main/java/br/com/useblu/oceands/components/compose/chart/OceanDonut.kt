@@ -24,16 +24,16 @@ private val items = listOf(
         valueFormatted = "25",
         value = 25.0f,
         color = R.color.ocean_color_interface_dark_down,
-        subtitle = "Subtitle 1",
+        subtitle = "First Subtitle",
         information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         percent = "10%"
     ),
     OceanDonutItem(
         title = "Item 2",
-        valueFormatted = "75",
-        value = 75.0f,
+        valueFormatted = "60",
+        value = 60.0f,
         color = R.color.ocean_color_status_negative_pure,
-        subtitle = "Subtitle 2",
+        subtitle = "Second Subtitle",
         information = "lorem ipsum dolor sit amet, consectetur adipiscing.",
         percent = "20%"
     ),
@@ -42,18 +42,9 @@ private val items = listOf(
         valueFormatted = "75",
         value = 75.0f,
         color = R.color.ocean_color_status_warning_deep,
-        subtitle = "Subtitle 3",
+        subtitle = "Third Subtitle",
         information = "lorem ipsum dolor sit amet, consectetur.",
         percent = "30%"
-    ),
-    OceanDonutItem(
-        title = "Item 4",
-        valueFormatted = "60",
-        value = 60.0f,
-        color = R.color.ocean_color_brand_primary_pure,
-        subtitle = "Subtitle 4",
-        information = "lorem ipsum dolor sit amet.",
-        percent = "50%"
     )
 )
 

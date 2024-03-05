@@ -25,7 +25,13 @@ class ChartCardActivity : AppCompatActivity() {
         binding.composeView.setContent {
             val model = viewModel.oceanDonutLiveData.observeAsState(OceanDonutModel()).value
 
-            OceanChartCard(title = "Title", subtitle = "Subtitle", model = model)
+            OceanChartCard(
+                title = "Title",
+                subtitle = "Subtitle",
+                model = model,
+                actionTitle = "Call to Action",
+                callToAction = viewModel::click
+            )
         }
     }
 }

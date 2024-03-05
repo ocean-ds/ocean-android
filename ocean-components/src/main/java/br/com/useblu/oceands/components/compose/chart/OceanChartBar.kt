@@ -99,8 +99,14 @@ private fun BarChart.setupChart(model: OceanChartModel) {
     setPinchZoom(false)
     isDoubleTapToZoomEnabled = false
 
-    axisLeft.isEnabled = false
     axisRight.isEnabled = false
+
+    axisLeft.setDrawAxisLine(false)
+    axisLeft.setDrawLabels(false)
+    axisLeft.setDrawGridLines(false)
+    axisLeft.setDrawZeroLine(true)
+    axisLeft.axisMinimum = 0f
+    axisLeft.zeroLineColor = ContextCompat.getColor(context, R.color.ocean_color_interface_light_down)
 
     xAxis.setDrawAxisLine(false)
     xAxis.setDrawGridLines(false)
@@ -168,6 +174,9 @@ private fun BarChart.buildDataSet(
     val dataSet = BarDataSet(entries, "")
 
     dataSet.valueFormatter = DefaultValueFormatter(0)
+    dataSet.setValueTextColors(
+        listOf(ContextCompat.getColor(context, R.color.ocean_color_interface_dark_down))
+    )
 
     dataSet.colors = model.items.map {
         if (selected == null) {

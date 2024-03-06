@@ -18,15 +18,9 @@ import java.math.RoundingMode
 
 
 sealed interface OceanInputType {
-    interface StaticStringMask {
-        fun getMask(currentValue: String): String
-    }
-
     fun getMaxLength(): Int? = null
 
-    fun getKeyboardType(): KeyboardType {
-        return KeyboardType.Text
-    }
+    fun getKeyboardType() = KeyboardType.Text
 
     fun transformForInput(text: String) = text
     fun transformForOutput(text: String) = text
@@ -37,16 +31,12 @@ sealed interface OceanInputType {
 
     fun getVisualTransformation(): VisualTransformation = VisualTransformation.None
 
-    fun sanitizeOnlyDigits(text: String): String {
+    fun sanitizeWithDigits(text: String): String {
         val digitsText = text.filter { it.isDigit() }
         return getMaxLength()?.let { digitsText.take(it) } ?: digitsText
     }
 
-    data object DEFAULT : OceanInputType {
-        override fun transformForInput(text: String): String {
-            return getMaxLength()?.let { text.take(it) } ?: text
-        }
-    }
+    data object DEFAULT : OceanInputType
 
     data class Currency(
         val showCurrencySymbol: Boolean = true,
@@ -92,15 +82,13 @@ sealed interface OceanInputType {
         override fun transformForOutput(text: String) = sanitizeText(text)
     }
 
-    object BankBillet : OceanInputType, StaticStringMask {
+    data object BankBillet : OceanInputType {
         private const val BOLETO_NORMAL = "#####.##### #####.###### #####.###### # ##############"
         private const val BOLETO_TRIBUTO = "############ ############ ############ ############"
 
         override fun getKeyboardType() = KeyboardType.Number
 
-        override fun getMaxLength(): Int {
-            return 48
-        }
+        override fun getMaxLength() = 48
 
         override fun transformForInput(text: String): String {
             return text.take(getMaxLength())
@@ -110,14 +98,14 @@ sealed interface OceanInputType {
             return text.take(getMaxLength())
         }
 
-        override fun getMask(currentValue: String): String {
+        private fun getMask(currentValue: String): String {
             return if (isTributo(currentValue))
                 BOLETO_TRIBUTO
             else BOLETO_NORMAL
         }
 
         override fun getVisualTransformation(): VisualTransformation {
-            return StaticMaskVisualTransformation(this)
+            return StaticMaskVisualTransformation(::getMask)
         }
 
         private fun isTributo(e: String): Boolean {
@@ -125,21 +113,19 @@ sealed interface OceanInputType {
         }
     }
 
-    object CEP : OceanInputType, StaticStringMask {
+    object CEP : OceanInputType {
         private const val CEP_DIGITOS = "#####-###"
 
         override fun getMaxLength() = 8
 
         override fun getKeyboardType() = KeyboardType.Number
 
-        override fun getMask(currentValue: String): String {
-            return CEP_DIGITOS
-        }
-
-        override fun transformForInput(text: String) = sanitizeOnlyDigits(text)
+        override fun transformForInput(text: String) = sanitizeWithDigits(text)
 
         override fun getVisualTransformation(): VisualTransformation {
-            return StaticMaskVisualTransformation(this)
+            return StaticMaskVisualTransformation {
+                CEP_DIGITOS
+            }
         }
     }
 
@@ -147,7 +133,7 @@ sealed interface OceanInputType {
         override fun getKeyboardType() = KeyboardType.Email
     }
 
-    object Phone : OceanInputType, StaticStringMask {
+    data object Phone : OceanInputType {
         private const val PHONE_EIGHT_DIGITS = "(##) ####-####"
         private const val PHONE_NINE_DIGITS = "(##) #####-####"
 
@@ -159,57 +145,53 @@ sealed interface OceanInputType {
             return Formatador.Padroes.PADRAO_SOMENTE_NUMEROS.matcher(e).replaceAll("").length > 10
         }
 
-        override fun transformForInput(text: String) = sanitizeOnlyDigits(text)
-        override fun transformForOutput(text: String) = sanitizeOnlyDigits(text)
+        override fun transformForInput(text: String) = sanitizeWithDigits(text)
+        override fun transformForOutput(text: String) = sanitizeWithDigits(text)
 
-        override fun getMask(currentValue: String): String {
+        private fun getMask(currentValue: String): String {
             return if (isNineDigits(currentValue)) PHONE_NINE_DIGITS else PHONE_EIGHT_DIGITS
         }
 
         override fun getVisualTransformation(): VisualTransformation {
-            return StaticMaskVisualTransformation(this)
+            return StaticMaskVisualTransformation(::getMask)
         }
     }
 
-    object CPF : OceanInputType, StaticStringMask {
+    object CPF : OceanInputType {
         private const val CPF_DIGITS = "###.###.###-##"
 
         override fun getMaxLength() = CPF_DIGITS.count { it == '#' }
 
         override fun getKeyboardType() = KeyboardType.Number
 
-        override fun getMask(currentValue: String): String {
-            return CPF_DIGITS
-        }
-
-        override fun transformForInput(text: String) = sanitizeOnlyDigits(text)
-        override fun transformForOutput(text: String) = sanitizeOnlyDigits(text)
+        override fun transformForInput(text: String) = sanitizeWithDigits(text)
+        override fun transformForOutput(text: String) = sanitizeWithDigits(text)
 
         override fun getVisualTransformation(): VisualTransformation {
-            return StaticMaskVisualTransformation(this)
+            return StaticMaskVisualTransformation {
+                CPF_DIGITS
+            }
         }
     }
 
-    object CNPJ : OceanInputType, StaticStringMask {
+    object CNPJ : OceanInputType {
         private const val CNPJ_DIGITS = "##.###.###/####-##"
 
         override fun getMaxLength() = CNPJ_DIGITS.count { it == '#' }
 
         override fun getKeyboardType() = KeyboardType.Number
 
-        override fun getMask(currentValue: String): String {
-            return CNPJ_DIGITS
-        }
-
-        override fun transformForInput(text: String) = sanitizeOnlyDigits(text)
-        override fun transformForOutput(text: String) = sanitizeOnlyDigits(text)
+        override fun transformForInput(text: String) = sanitizeWithDigits(text)
+        override fun transformForOutput(text: String) = sanitizeWithDigits(text)
 
         override fun getVisualTransformation(): VisualTransformation {
-            return StaticMaskVisualTransformation(this)
+            return StaticMaskVisualTransformation {
+                CNPJ_DIGITS
+            }
         }
     }
 
-    object CpfCnpj : OceanInputType, StaticStringMask {
+    object CpfCnpj : OceanInputType {
         private const val CPF_DIGITS = "###.###.###-##"
         private const val CNPJ_DIGITS = "##.###.###/####-##"
 
@@ -217,30 +199,26 @@ sealed interface OceanInputType {
 
         override fun getKeyboardType() = KeyboardType.Number
 
-        override fun getMask(currentValue: String): String {
+        private fun getMask(currentValue: String): String {
             return if (currentValue.length > 11) CNPJ_DIGITS else CPF_DIGITS
         }
 
-        override fun transformForInput(text: String) = sanitizeOnlyDigits(text)
-        override fun transformForOutput(text: String) = sanitizeOnlyDigits(text)
+        override fun transformForInput(text: String) = sanitizeWithDigits(text)
+        override fun transformForOutput(text: String) = sanitizeWithDigits(text)
 
         override fun getVisualTransformation(): VisualTransformation {
-            return StaticMaskVisualTransformation(this)
+            return StaticMaskVisualTransformation(::getMask)
         }
     }
 
-    object Date : OceanInputType, StaticStringMask {
+    object Date : OceanInputType {
         private const val DATE_MASK = "##/##/####"
 
         override fun getKeyboardType() = KeyboardType.Number
 
         override fun getMaxLength() = DATE_MASK.count { it == '#' }
 
-        override fun getMask(currentValue: String): String {
-            return DATE_MASK
-        }
-
-        override fun transformForInput(text: String) = sanitizeOnlyDigits(text)
+        override fun transformForInput(text: String) = sanitizeWithDigits(text)
 
         override fun transformForOutput(text: String): String {
             println("transformForOutput: $text")
@@ -263,7 +241,9 @@ sealed interface OceanInputType {
         }
 
         override fun getVisualTransformation(): VisualTransformation {
-            return StaticMaskVisualTransformation(this)
+            return StaticMaskVisualTransformation {
+                DATE_MASK
+            }
         }
     }
 }

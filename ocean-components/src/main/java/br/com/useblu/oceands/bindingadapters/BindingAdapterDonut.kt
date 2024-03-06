@@ -125,7 +125,7 @@ private fun PieChart.buildPieDataSet(
     return pieDataSet
 }
 
-private fun PieChart.getColor(
+fun PieChart.getColor(
     resId: Int,
     alpha: Int
 ): Int {
@@ -133,7 +133,7 @@ private fun PieChart.getColor(
     return Color.argb(alpha, originalColor.red, originalColor.green, originalColor.blue)
 }
 
-private fun PieChart.getCenterTextStyled(
+ fun PieChart.getCenterTextStyled(
     title: String,
     label: String
 ): SpannableString {

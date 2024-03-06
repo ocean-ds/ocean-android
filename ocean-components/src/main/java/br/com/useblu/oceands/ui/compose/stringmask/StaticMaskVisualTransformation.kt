@@ -6,9 +6,11 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import kotlin.math.absoluteValue
 
-class StaticMaskVisualTransformation(private val oceanInputType: OceanInputType.StaticStringMask) : VisualTransformation {
+class StaticMaskVisualTransformation(
+    private val getMask: (String) -> String
+) : VisualTransformation {
     private fun specialSymbolsIndices(text: String): List<Int> {
-        val mask = oceanInputType.getMask(text)
+        val mask = getMask(text)
         return mask.indices.filter { mask[it] != '#' }
     }
 
@@ -16,7 +18,7 @@ class StaticMaskVisualTransformation(private val oceanInputType: OceanInputType.
         var out = ""
         var maskIndex = 0
 
-        val mask = oceanInputType.getMask(text.text)
+        val mask = getMask(text.text)
         text.forEach { char ->
             while (specialSymbolsIndices(text.text).contains(maskIndex)) {
                 out += mask[maskIndex]
@@ -33,7 +35,7 @@ class StaticMaskVisualTransformation(private val oceanInputType: OceanInputType.
             val offsetValue = offset.absoluteValue
             if (offsetValue == 0) return 0
             var numberOfHashtags = 0
-            val masked = oceanInputType.getMask(text).takeWhile {
+            val masked = getMask(text).takeWhile {
                 if (it == '#') numberOfHashtags++
                 numberOfHashtags < offsetValue
             }
@@ -41,7 +43,7 @@ class StaticMaskVisualTransformation(private val oceanInputType: OceanInputType.
         }
 
         override fun transformedToOriginal(offset: Int): Int {
-            return oceanInputType.getMask(text).take(offset.absoluteValue).count { it == '#' }
+            return getMask(text).take(offset.absoluteValue).count { it == '#' }
         }
     }
 }

@@ -6,11 +6,11 @@
 
         <import type="java.util.List" />
 
-        <import type="br.com.useblu.oceands.model.OceanDonutItem" />
+        <import type="br.com.useblu.oceands.model.chart.OceanChartItem" />
 
         <variable
             name="item"
-            type="OceanDonutItem" />
+            type="br.com.useblu.oceands.model.chart.OceanChartItem" />
 
     </data>
 

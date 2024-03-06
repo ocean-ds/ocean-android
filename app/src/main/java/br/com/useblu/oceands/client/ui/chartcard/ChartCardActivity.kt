@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityChartCardBinding
 import br.com.useblu.oceands.components.compose.chart.OceanChartCard
-import br.com.useblu.oceands.model.OceanDonutModel
+import br.com.useblu.oceands.model.chart.OceanChartModel
 
 class ChartCardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChartCardBinding
@@ -23,7 +23,7 @@ class ChartCardActivity : AppCompatActivity() {
         binding.viewmodel = viewModel
 
         binding.composeView.setContent {
-            val model = viewModel.oceanDonutLiveData.observeAsState(OceanDonutModel()).value
+            val model = viewModel.oceanDonutLiveData.observeAsState(OceanChartModel()).value
 
             OceanChartCard(
                 title = "Title",

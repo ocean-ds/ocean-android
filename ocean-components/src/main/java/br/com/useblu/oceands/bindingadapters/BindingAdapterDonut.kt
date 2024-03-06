@@ -134,7 +134,7 @@ fun Chart<*>.getColor(
     return Color.argb(alpha, originalColor.red, originalColor.green, originalColor.blue)
 }
 
-private fun PieChart.getCenterTextStyled(
+ fun PieChart.getCenterTextStyled(
     title: String,
     label: String
 ): SpannableString {

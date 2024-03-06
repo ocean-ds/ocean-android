@@ -244,7 +244,14 @@ fun OceanTextInput(
                     if (modifiedValue != textFieldValue.text) {
                         textFieldValue = changedField.copy(text = modifiedValue)
 
-                        textFieldSelection = changedField.selection
+                        if (oceanInputType.alwaysGoToEndOfInput()) {
+                            textFieldValue = textFieldValue.copy(
+                                selection = TextRange(modifiedValue.length)
+                            )
+                            textFieldSelection = TextRange(modifiedValue.length)
+                        } else {
+                            textFieldSelection = changedField.selection
+                        }
 
                         onTextChanged(oceanInputType.transformForOutput(changedField.text))
                     } else {

@@ -14,6 +14,7 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.extensions.dp
 import br.com.useblu.oceands.model.chart.OceanChartItem
 import br.com.useblu.oceands.model.chart.OceanChartModel
+import com.github.mikephil.charting.charts.Chart
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
@@ -125,7 +126,7 @@ private fun PieChart.buildPieDataSet(
     return pieDataSet
 }
 
-private fun PieChart.getColor(
+fun Chart<*>.getColor(
     resId: Int,
     alpha: Int
 ): Int {

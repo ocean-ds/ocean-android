@@ -42,6 +42,7 @@ import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
 import br.com.useblu.oceands.client.ui.carditem.CardItemActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
+import br.com.useblu.oceands.client.ui.chartbar.ChartBarActivity
 import br.com.useblu.oceands.client.ui.chartcard.ChartCardActivity
 import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
 import br.com.useblu.oceands.client.ui.chips.ChipsActivity
@@ -182,6 +183,7 @@ class HomeActivity : AppCompatActivity() {
                 textAction(text = "Card Group", onClick = { cardContentClick() })
                 textAction(text = "Card Item", onClick = { onClickCardItem() })
                 textAction(text = "Carousel", onClick = { carousel() })
+                textAction(text = "Chart Bar", onClick = ::chartBarClick)
                 textAction(text = "Chart Card", onClick = { chartCardClick() })
                 textAction(text = "Checkbox", onClick = { checkbox() })
                 textAction(text = "Chips", onClick = { onClickChips() })
@@ -467,6 +469,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun chartCardClick() {
         val intent = Intent(this, ChartCardActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun chartBarClick() {
+        val intent = Intent(this, ChartBarActivity::class.java)
         startActivity(intent)
     }
 

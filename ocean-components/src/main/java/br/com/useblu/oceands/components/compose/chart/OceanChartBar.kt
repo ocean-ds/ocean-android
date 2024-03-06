@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.components.compose.chart
 
-import android.graphics.Color
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,10 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.blue
-import androidx.core.graphics.green
-import androidx.core.graphics.red
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.bindingadapters.getColor
 import br.com.useblu.oceands.extensions.dpFloat
 import br.com.useblu.oceands.model.chart.OceanChartItem
 import br.com.useblu.oceands.model.chart.OceanChartModel
@@ -52,9 +49,8 @@ private fun OceanChartBarPreview() {
         OceanChartBar(
             model = donutModel.copy(
                 items = donutModel.items.map {
-                    val item = it.copy(subtitle = "Jul/23")
-                    listOf(item)
-                }.flatten()
+                    it.copy(title = "Jul/23")
+                }
             ),
             modifier = Modifier
                 .height(180.dp)
@@ -110,7 +106,9 @@ private fun BarChart.setupChart(model: OceanChartModel) {
 
     xAxis.setDrawAxisLine(false)
     xAxis.setDrawGridLines(false)
-    xAxis.valueFormatter = IndexAxisValueFormatter(model.items.map { it.subtitle })
+    xAxis.valueFormatter = IndexAxisValueFormatter(model.items.map { it.title })
+
+    xAxis.textSize = 12f
     xAxis.position = XAxis.XAxisPosition.BOTTOM
     xAxis.setLabelCount(model.items.size, false)
     xAxis.setCenterAxisLabels(false)
@@ -137,7 +135,7 @@ fun BarChart.setChartModel(
     )
 
     data = BarData(dataSet)
-    data.barWidth = (16.dpFloat / windowWidth) * model.items.size
+    data.barWidth = calculateBarWidth(windowWidth, model.items.size)
 
     setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
         override fun onValueSelected(e: Entry?, h: Highlight?) {
@@ -151,7 +149,7 @@ fun BarChart.setChartModel(
 
         private fun repaint(selected: OceanChartItem? = null) {
             data = BarData(buildDataSet(model, selected))
-            data.barWidth = (16.dpFloat/windowWidth) * model.items.size
+            data.barWidth = calculateBarWidth(windowWidth, model.items.size)
         }
 
         override fun onNothingSelected() {
@@ -163,6 +161,12 @@ fun BarChart.setChartModel(
     invalidate()
 }
 
+private fun calculateBarWidth(
+    windowWidthInPx: Int,
+    itemsLength: Int,
+    barWidthInDp: Int = 16
+) = (barWidthInDp.dpFloat / windowWidthInPx) * itemsLength
+
 private fun BarChart.buildDataSet(
     model: OceanChartModel,
     selected: OceanChartItem? = null,
@@ -173,7 +177,11 @@ private fun BarChart.buildDataSet(
 
     val dataSet = BarDataSet(entries, "")
 
+    dataSet.highLightAlpha = 0
+
     dataSet.valueFormatter = DefaultValueFormatter(0)
+    dataSet.valueTextSize = 10f
+
     dataSet.setValueTextColors(
         listOf(ContextCompat.getColor(context, R.color.ocean_color_interface_dark_down))
     )
@@ -197,12 +205,4 @@ private fun BarChart.buildDataSet(
     }
 
     return dataSet
-}
-
-private fun BarChart.getColor(
-    resId: Int,
-    alpha: Int
-): Int {
-    val originalColor = ContextCompat.getColor(context, resId)
-    return Color.argb(alpha, originalColor.red, originalColor.green, originalColor.blue)
 }

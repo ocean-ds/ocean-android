@@ -221,23 +221,16 @@ sealed interface OceanInputType {
         override fun transformForInput(text: String) = sanitizeWithDigits(text)
 
         override fun transformForOutput(text: String): String {
-            println("transformForOutput: $text")
             val digitsText = text.filter { it.isDigit() }.take(10)
 
-            if (digitsText.length <= 2) return text.also {
-                println("transformForOutput result 1: $it")
-            }
+            if (digitsText.length <= 2) return text
 
             val day = digitsText.take(2)
             val month = digitsText.drop(2).take(2)
 
-            if (digitsText.length <= 4) return "$day/$month".also {
-                println("transformForOutput result 2: $it")
-            }
+            if (digitsText.length <= 4) return "$day/$month"
 
-            return "$day/$month/${digitsText.drop(4)}".also {
-                println("transformForOutput result 3: $it")
-            }
+            return "$day/$month/${digitsText.drop(4)}"
         }
 
         override fun getVisualTransformation(): VisualTransformation {

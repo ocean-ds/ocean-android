@@ -239,8 +239,6 @@ fun OceanTextInput(
                 onValueChange = { changedField ->
                     val modifiedValue = changedField.text
 
-                    println(changedField)
-
                     if (modifiedValue != textFieldValue.text) {
                         textFieldValue = changedField.copy(text = modifiedValue)
 

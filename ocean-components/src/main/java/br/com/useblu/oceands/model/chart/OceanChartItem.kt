@@ -1,8 +1,8 @@
-package br.com.useblu.oceands.model
+package br.com.useblu.oceands.model.chart
 
 import androidx.annotation.ColorRes
 
-data class OceanDonutItem(
+data class OceanChartItem(
     val title: String = "",
     val subtitle: String = "",
     val value: Float = 0f,

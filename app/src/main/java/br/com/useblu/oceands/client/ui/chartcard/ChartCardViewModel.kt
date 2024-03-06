@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.client.R
-import br.com.useblu.oceands.model.OceanDonutItem
-import br.com.useblu.oceands.model.OceanDonutModel
+import br.com.useblu.oceands.model.chart.OceanChartItem
+import br.com.useblu.oceands.model.chart.OceanChartModel
 
 class ChartCardViewModel : ViewModel() {
     var items = listOf(
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 1",
             valueFormatted = "R$ 25",
             value = 25.0f,
@@ -18,7 +18,7 @@ class ChartCardViewModel : ViewModel() {
             information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             percent = "10%"
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 2",
             valueFormatted = "R$ 75",
             value = 75.0f,
@@ -27,7 +27,7 @@ class ChartCardViewModel : ViewModel() {
             information = "Isto equivale a 75 reais",
             percent = "20%"
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 3",
             valueFormatted = "R$ 75",
             value = 75.0f,
@@ -36,7 +36,7 @@ class ChartCardViewModel : ViewModel() {
             information = "Isto equivale a 75 reais",
             percent = "30%"
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 4",
             valueFormatted = "70",
             value = 70.0f,
@@ -45,7 +45,7 @@ class ChartCardViewModel : ViewModel() {
             information = "Isto equivale a 70 reais",
             percent = "40%"
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 5",
             valueFormatted = "60",
             value = 60.0f,
@@ -56,7 +56,7 @@ class ChartCardViewModel : ViewModel() {
         )
     )
 
-    val model = OceanDonutModel(
+    val model = OceanChartModel(
         title = "Title",
         label = "Label",
         items = items,
@@ -64,16 +64,16 @@ class ChartCardViewModel : ViewModel() {
         onNothingSelected = ::reset
     )
 
-    private val _oceanDonutLiveData = MutableLiveData<OceanDonutModel>()
-    val oceanDonutLiveData: LiveData<OceanDonutModel> = _oceanDonutLiveData
+    private val _oceanDonutLiveData = MutableLiveData<OceanChartModel>()
+    val oceanDonutLiveData: LiveData<OceanChartModel> = _oceanDonutLiveData
 
     init {
         _oceanDonutLiveData.postValue(model)
     }
 
-    private fun onSelectItem(itemSelected: OceanDonutItem) {
-        items = items.map {
-            it.copy(selected = it == itemSelected)
+    private fun onSelectItem(indexSelected: Int) {
+        items = items.mapIndexed { index, it ->
+            it.copy(selected = index == indexSelected)
         }
 
         _oceanDonutLiveData.postValue(

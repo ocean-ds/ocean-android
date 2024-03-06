@@ -4,12 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -119,7 +120,19 @@ fun OceanTabScrollableSectionPreview() {
                 tabs = tabs,
                 defaultSelectedTab = selectedTabIndex,
                 onSelectedTab = { selectedTabIndex = it },
-                sections = sections
+                sections = {
+                    item {
+                        sections[0]()
+                    }
+
+                    item {
+                        sections[1]()
+                    }
+
+                    item {
+                        sections[2]()
+                    }
+                }
             )
         }
     }
@@ -131,7 +144,7 @@ fun OceanTabScrollableSection(
     tabs: List<OceanTabItemModel>,
     defaultSelectedTab: Int,
     onSelectedTab: (Int) -> Unit,
-    sections: List<@Composable () -> Unit>
+    sections: LazyListScope.() -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     val lazyListState = rememberLazyListState()
@@ -152,23 +165,14 @@ fun OceanTabScrollableSection(
             }
         )
 
-        LaunchedEffect(key1 = remember { derivedStateOf { lazyListState.firstVisibleItemIndex } }) {
+        LaunchedEffect(key1 = lazyListState.firstVisibleItemIndex) {
             onSelectedTab(lazyListState.firstVisibleItemIndex)
         }
 
         LazyColumn(
-            state = lazyListState
-        ) {
-            items(sections.size) { index ->
-                sections[index]()
-            }
-        }
+            modifier = Modifier.fillMaxWidth(),
+            state = lazyListState,
+            content = sections
+        )
     }
-}
-
-@Composable
-fun addSection(
-    content: @Composable () -> Unit
-){
-    sections.add(content)
 }

@@ -114,6 +114,20 @@ fun PreviewOceanTextInput() {
 
 @Preview
 @Composable
+private fun DateInputPreview() {
+    Column(
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .background(Color.White)
+            .padding(8.dp)
+    ) {
+        CreateOceanTextInputPreview("23/12/1999", OceanInputType.Date)
+        CreateOceanTextInputPreview("", OceanInputType.Date)
+    }
+}
+
+@Preview
+@Composable
 fun PreviewOceanTextInputMask() {
     Column(
         modifier = Modifier
@@ -131,7 +145,7 @@ fun PreviewOceanTextInputMask() {
         CreateOceanTextInputPreview("90000", OceanInputType.Currency())
         CreateOceanTextInputPreview("900.00", OceanInputType.Currency(false))
         CreateOceanTextInputPreview("900,00", OceanInputType.Currency(true, showZeroValue = true))
-        CreateOceanTextInputPreview("23122023", OceanInputType.Date)
+        CreateOceanTextInputPreview("23/12/1999", OceanInputType.Date)
     }
 }
 
@@ -148,7 +162,7 @@ private fun CreateOceanTextInputPreview(
         placeholder = "Placeholder",
         onTextChanged = {
             text = it
-            println("text: [$it]")
+            println("text callback: [$it]")
         },
         oceanInputType = inputType,
     )
@@ -206,8 +220,8 @@ fun OceanTextInput(
             }
 
             var textFieldValue by remember(value) {
-                val maskedValue = oceanInputType.modifyBeforeOnChange(value)
-                mutableStateOf(TextFieldValue(maskedValue, textFieldSelection))
+                val sanitizedValue = oceanInputType.transformForInput(value)
+                mutableStateOf(TextFieldValue(sanitizedValue, textFieldSelection))
             }
 
             val height = if (isTextArea) 150.dp else 48.dp
@@ -223,21 +237,16 @@ fun OceanTextInput(
                         shape = RoundedCornerShape(8.dp)
                     ),
                 onValueChange = { changedField ->
-                    val modifiedValue = oceanInputType.modifyBeforeOnChange(changedField.text)
+                    val modifiedValue = changedField.text
+
+                    println(changedField)
 
                     if (modifiedValue != textFieldValue.text) {
                         textFieldValue = changedField.copy(text = modifiedValue)
 
-                        if (oceanInputType.alwaysGoToEndOfInput()) {
-                            textFieldValue = textFieldValue.copy(
-                                selection = TextRange(modifiedValue.length)
-                            )
-                            textFieldSelection = TextRange(modifiedValue.length)
-                        } else {
-                            textFieldSelection = changedField.selection
-                        }
+                        textFieldSelection = changedField.selection
 
-                        onTextChanged(modifiedValue)
+                        onTextChanged(oceanInputType.transformForOutput(changedField.text))
                     } else {
                         textFieldValue = changedField.copy(text = modifiedValue)
                     }

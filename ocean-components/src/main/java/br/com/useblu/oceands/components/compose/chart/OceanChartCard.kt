@@ -112,19 +112,19 @@ fun OceanChardLegend(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier
+        modifier = modifier
     ) {
-        model.items.forEach {
+        model.items.forEachIndexed { index, it ->
             OceanChartLegendItem(
                 model = it,
                 onClick = {
                     if (model.items.all { it.selected }) {
-                        model.onItemSelected(it)
+                        model.onItemSelected(index)
                     } else {
                         if (it.selected) {
                             model.onNothingSelected()
                         } else {
-                            model.onItemSelected(it)
+                            model.onItemSelected(index)
                         }
                     }
                 }

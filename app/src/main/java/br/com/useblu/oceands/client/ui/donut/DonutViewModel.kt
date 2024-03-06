@@ -58,7 +58,7 @@ class DonutViewModel : ViewModel() {
         label = "Label",
         items = donutItems,
         onItemSelected = {
-            _selectedItem.postValue(it)
+            _selectedItem.postValue(donutItems[it])
         },
         onNothingSelected = {
             _selectedItem.postValue(null)

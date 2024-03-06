@@ -74,7 +74,7 @@ fun PieChart.setupChart(model: OceanChartModel) {
 
             repaint(item)
 
-            model.onItemSelected(item)
+            model.onItemSelected(index)
         }
 
         private fun repaint(selected: OceanChartItem? = null) {

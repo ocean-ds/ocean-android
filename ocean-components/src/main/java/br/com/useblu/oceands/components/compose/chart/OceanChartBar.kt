@@ -36,7 +36,6 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 
-
 @Preview
 @Composable
 private fun OceanChartBarPreview() {
@@ -79,7 +78,7 @@ fun OceanChartBar(
             }
         },
         update = {
-            it.setChartModel(model, windowWidth)
+            it.updateChartModel(model, windowWidth)
         }
     )
 }
@@ -116,7 +115,7 @@ private fun BarChart.setupChart(model: OceanChartModel) {
     xAxis.typeface = ResourcesCompat.getFont(context, R.font.font_family_base_medium)
 }
 
-fun BarChart.setChartModel(
+fun BarChart.updateChartModel(
     model: OceanChartModel,
     windowWidth: Int
 ) {
@@ -127,9 +126,8 @@ fun BarChart.setChartModel(
         selected = if (model.items.all { it.selected }) {
             null
         } else {
-            highlightValue(model.items.indexOfFirst {
-                it.selected
-            }.toFloat(), 0, false)
+            val selectedIndex = model.items.indexOfFirst { it.selected }
+            highlightValue(selectedIndex.toFloat(), 0, false)
             model.items.firstOrNull { it.selected }
         }
     )
@@ -140,21 +138,12 @@ fun BarChart.setChartModel(
     setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
         override fun onValueSelected(e: Entry?, h: Highlight?) {
             val index = h?.x?.toInt() ?: return
-            val item = model.items.getOrNull(index) ?: return
 
-            repaint(item)
-
-            model.onItemSelected(item)
-        }
-
-        private fun repaint(selected: OceanChartItem? = null) {
-            data = BarData(buildDataSet(model, selected))
-            data.barWidth = calculateBarWidth(windowWidth, model.items.size)
+            model.onItemSelected(index)
         }
 
         override fun onNothingSelected() {
             model.onNothingSelected()
-            repaint()
         }
     })
 

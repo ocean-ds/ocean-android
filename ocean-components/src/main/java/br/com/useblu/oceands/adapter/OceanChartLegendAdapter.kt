@@ -39,16 +39,15 @@ class OceanChartLegendAdapter(
             itemBinding.item = data.items[position]
             itemBinding.root.setOnClickListener {
                 if (data.items.all { it.selected }) {
-                    data.onItemSelected.invoke(data.items[position])
+                    data.onItemSelected.invoke(position)
                 } else {
                     if (data.items[position].selected) {
                         data.onNothingSelected.invoke()
                     } else {
-                        data.onItemSelected.invoke(data.items[position])
+                        data.onItemSelected.invoke(position)
                     }
                 }
             }
-            itemBinding.executePendingBindings()
         }
     }
 }

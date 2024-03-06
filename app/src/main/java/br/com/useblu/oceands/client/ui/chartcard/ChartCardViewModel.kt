@@ -71,9 +71,9 @@ class ChartCardViewModel : ViewModel() {
         _oceanDonutLiveData.postValue(model)
     }
 
-    private fun onSelectItem(itemSelected: OceanChartItem) {
-        items = items.map {
-            it.copy(selected = it == itemSelected)
+    private fun onSelectItem(indexSelected: Int) {
+        items = items.mapIndexed { index, it ->
+            it.copy(selected = index == indexSelected)
         }
 
         _oceanDonutLiveData.postValue(

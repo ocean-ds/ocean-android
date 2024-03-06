@@ -49,9 +49,9 @@ class ChartBarViewModel : ViewModel() {
         _chartLiveData.postValue(model)
     }
 
-    private fun onSelectItem(itemSelected: OceanChartItem) {
-        items = items.map {
-            it.copy(selected = it == itemSelected)
+    private fun onSelectItem(selectedIndex: Int) {
+        items = items.mapIndexed { index, it ->
+            it.copy(selected = index == selectedIndex)
         }
 
         _chartLiveData.postValue(

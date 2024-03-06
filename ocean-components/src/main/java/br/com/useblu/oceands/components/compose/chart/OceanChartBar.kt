@@ -173,7 +173,7 @@ private fun BarChart.buildDataSet(
 ): BarDataSet {
     val entries = model.items.mapIndexed { index, it ->
         BarEntry(index.toFloat(), it.value)
-    }.ifEmpty { listOf(BarEntry(1f,0f)) }
+    }
 
     val dataSet = BarDataSet(entries, "")
 
@@ -198,10 +198,6 @@ private fun BarChart.buildDataSet(
 
             getColor(resId = it.color, alpha = alpha)
         }
-    }.ifEmpty {
-        listOf(
-            ContextCompat.getColor(context, R.color.ocean_color_interface_light_deep)
-        )
     }
 
     return dataSet

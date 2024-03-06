@@ -145,7 +145,7 @@ fun OceanScrollableTabPreview() {
         ) {
             OceanTabScrollable(
                 tabs = tabs,
-                defaultSelectedTab = selectedTabIndex,
+                currentSelectedTab = selectedTabIndex,
                 onSelectedTab = { selectedTabIndex = it }
             )
         }
@@ -156,28 +156,26 @@ fun OceanScrollableTabPreview() {
 fun OceanTabScrollable(
     modifier: Modifier = Modifier,
     tabs: List<OceanTabItemModel>,
-    defaultSelectedTab: Int,
+    currentSelectedTab: Int,
     onSelectedTab: (Int) -> Unit
 ) {
-    var selectedTab by remember { mutableStateOf(defaultSelectedTab) }
-
     ScrollableTabRow(
         modifier = modifier
             .background(color = OceanColors.interfaceLightPure)
             .fillMaxWidth(),
         edgePadding = 0.dp,
-        selectedTabIndex = selectedTab,
+        selectedTabIndex = currentSelectedTab,
         indicator = { tabPositions ->
-            if (selectedTab < tabPositions.size) {
+            if (currentSelectedTab < tabPositions.size) {
                 SecondaryIndicator(
-                    modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTab]),
+                    modifier = Modifier.tabIndicatorOffset(tabPositions[currentSelectedTab]),
                     color = OceanColors.brandPrimaryPure
                 )
             }
         }
     ) {
         tabs.forEachIndexed { index, tab ->
-            val selected = index == selectedTab
+            val selected = index == currentSelectedTab
             Tab(
                 selected = selected,
                 modifier = Modifier
@@ -185,7 +183,6 @@ fun OceanTabScrollable(
                     .height(56.dp),
                 onClick = {
                     onSelectedTab(index)
-                    selectedTab = index
                 },
                 text = {
                     TabText(tab, selected, tab.counter)

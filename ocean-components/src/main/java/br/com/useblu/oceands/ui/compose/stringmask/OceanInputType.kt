@@ -109,11 +109,11 @@ sealed interface OceanInputType {
         }
 
         private fun isTributo(e: String): Boolean {
-            return e[0] == '8'
+            return e.take(1) == "8"
         }
     }
 
-    object CEP : OceanInputType {
+    data object CEP : OceanInputType {
         private const val CEP_DIGITOS = "#####-###"
 
         override fun getMaxLength() = 8
@@ -157,7 +157,7 @@ sealed interface OceanInputType {
         }
     }
 
-    object CPF : OceanInputType {
+    data object CPF : OceanInputType {
         private const val CPF_DIGITS = "###.###.###-##"
 
         override fun getMaxLength() = CPF_DIGITS.count { it == '#' }
@@ -174,7 +174,7 @@ sealed interface OceanInputType {
         }
     }
 
-    object CNPJ : OceanInputType {
+    data object CNPJ : OceanInputType {
         private const val CNPJ_DIGITS = "##.###.###/####-##"
 
         override fun getMaxLength() = CNPJ_DIGITS.count { it == '#' }
@@ -191,7 +191,7 @@ sealed interface OceanInputType {
         }
     }
 
-    object CpfCnpj : OceanInputType {
+    data object CpfCnpj : OceanInputType {
         private const val CPF_DIGITS = "###.###.###-##"
         private const val CNPJ_DIGITS = "##.###.###/####-##"
 
@@ -211,7 +211,7 @@ sealed interface OceanInputType {
         }
     }
 
-    object Date : OceanInputType {
+    data object Date : OceanInputType {
         private const val DATE_MASK = "##/##/####"
 
         override fun getKeyboardType() = KeyboardType.Number

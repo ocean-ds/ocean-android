@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -64,34 +65,42 @@ private val sections = mutableListOf<@Composable (() -> Unit)>(
     },
     {
         Column {
-            OceanShortcut(model = OceanShortcutModel(
-                label = "MediumVertical Disabled",
-                icon = OceanIcons.ACADEMIC_CAP_SOLID,
-                layout = OceanShortcutLayout.MediumVertical,
-                description = "Lorem ipsum dolor sit amet, consectetur.",
-                disabled = true
-            ))
-            OceanShortcut(model = OceanShortcutModel(
-                label = "MediumVertical Disabled",
-                icon = OceanIcons.ACADEMIC_CAP_SOLID,
-                layout = OceanShortcutLayout.MediumVertical,
-                description = "Lorem ipsum dolor sit amet, consectetur.",
-                disabled = true
-            ))
-            OceanShortcut(model = OceanShortcutModel(
-                label = "MediumVertical Disabled",
-                icon = OceanIcons.ACADEMIC_CAP_SOLID,
-                layout = OceanShortcutLayout.MediumVertical,
-                description = "Lorem ipsum dolor sit amet, consectetur.",
-                disabled = true
-            ))
-            OceanShortcut(model = OceanShortcutModel(
-                label = "MediumVertical Disabled",
-                icon = OceanIcons.ACADEMIC_CAP_SOLID,
-                layout = OceanShortcutLayout.MediumVertical,
-                description = "Lorem ipsum dolor sit amet, consectetur.",
-                disabled = true
-            ))
+            OceanShortcut(
+                model = OceanShortcutModel(
+                    label = "MediumVertical Disabled",
+                    icon = OceanIcons.ACADEMIC_CAP_SOLID,
+                    layout = OceanShortcutLayout.MediumVertical,
+                    description = "Lorem ipsum dolor sit amet, consectetur.",
+                    disabled = true
+                )
+            )
+            OceanShortcut(
+                model = OceanShortcutModel(
+                    label = "MediumVertical Disabled",
+                    icon = OceanIcons.ACADEMIC_CAP_SOLID,
+                    layout = OceanShortcutLayout.MediumVertical,
+                    description = "Lorem ipsum dolor sit amet, consectetur.",
+                    disabled = true
+                )
+            )
+            OceanShortcut(
+                model = OceanShortcutModel(
+                    label = "MediumVertical Disabled",
+                    icon = OceanIcons.ACADEMIC_CAP_SOLID,
+                    layout = OceanShortcutLayout.MediumVertical,
+                    description = "Lorem ipsum dolor sit amet, consectetur.",
+                    disabled = true
+                )
+            )
+            OceanShortcut(
+                model = OceanShortcutModel(
+                    label = "MediumVertical Disabled",
+                    icon = OceanIcons.ACADEMIC_CAP_SOLID,
+                    layout = OceanShortcutLayout.MediumVertical,
+                    description = "Lorem ipsum dolor sit amet, consectetur.",
+                    disabled = true
+                )
+            )
         }
     }
 )
@@ -150,13 +159,13 @@ fun OceanTabScrollableSection(
     val lazyListState = rememberLazyListState()
 
     Column(
-        modifier = modifier
-            .fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Top
     ) {
+        var currentItemIndex by remember { mutableIntStateOf(defaultSelectedTab) }
         OceanTabScrollable(
             tabs = tabs,
-            currentSelectedTab = defaultSelectedTab,
+            currentSelectedTab = currentItemIndex,
             onSelectedTab = {
                 onSelectedTab(it)
                 coroutineScope.launch {
@@ -166,7 +175,8 @@ fun OceanTabScrollableSection(
         )
 
         LaunchedEffect(key1 = lazyListState.firstVisibleItemIndex) {
-            onSelectedTab(lazyListState.firstVisibleItemIndex)
+            currentItemIndex = lazyListState.firstVisibleItemIndex
+            onSelectedTab(currentItemIndex)
         }
 
         LazyColumn(

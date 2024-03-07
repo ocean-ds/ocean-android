@@ -179,7 +179,7 @@ class HomeActivity : AppCompatActivity() {
                 textAction(
                     text = "BottomSheetList (search)",
                     onClick = { onOceanBottomListSheetWithSearch() })
-                textAction(text = "Card Cross Cell", onClick = { cardCrossCellClick() })
+                textAction(text = "Card Cross Sell", onClick = { cardCrossCellClick() })
                 textAction(text = "Card Group", onClick = { cardContentClick() })
                 textAction(text = "Card Item", onClick = { onClickCardItem() })
                 textAction(text = "Carousel", onClick = { carousel() })

@@ -57,7 +57,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     namespace = "br.com.useblu.oceands"
-
 }
 
 afterEvaluate {

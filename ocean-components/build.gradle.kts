@@ -118,8 +118,6 @@ dependencies {
     androidTestImplementation(libs.compose.uiTestJunit4)
     debugImplementation(libs.compose.uiTestManifest)
     implementation(libs.compose.activity)
-    implementation(libs.compose.lifecycleViewModel)
-    implementation(libs.compose.runtimeLiveData)
 }
 
 baselineProfile {

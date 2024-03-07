@@ -114,15 +114,17 @@ fun PreviewOceanTextInput() {
 
 @Preview
 @Composable
-private fun DateInputPreview() {
+private fun CurrencyInputPreview() {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
             .background(Color.White)
             .padding(8.dp)
     ) {
-        CreateOceanTextInputPreview("23/12/1999", OceanInputType.Date)
-        CreateOceanTextInputPreview("", OceanInputType.Date)
+        CreateOceanTextInputPreview("", OceanInputType.Currency())
+        CreateOceanTextInputPreview("90000", OceanInputType.Currency())
+        CreateOceanTextInputPreview("900.00", OceanInputType.Currency(false))
+        CreateOceanTextInputPreview("900,00", OceanInputType.Currency(true, showZeroValue = true))
     }
 }
 
@@ -136,16 +138,12 @@ fun PreviewOceanTextInputMask() {
             .padding(8.dp)
     ) {
         CreateOceanTextInputPreview("90680120", OceanInputType.CEP)
-        CreateOceanTextInputPreview("90680-120", OceanInputType.CEP)
+        CreateOceanTextInputPreview("a@a.com", OceanInputType.Email)
         CreateOceanTextInputPreview("(51)999400685", OceanInputType.Phone)
-        CreateOceanTextInputPreview("49.944.251/0001-13", OceanInputType.CpfCnpj)
         CreateOceanTextInputPreview("49944251000113", OceanInputType.CpfCnpj)
         CreateOceanTextInputPreview("06786397956", OceanInputType.CPF)
-        CreateOceanTextInputPreview("", OceanInputType.Currency())
-        CreateOceanTextInputPreview("90000", OceanInputType.Currency())
-        CreateOceanTextInputPreview("900.00", OceanInputType.Currency(false))
-        CreateOceanTextInputPreview("900,00", OceanInputType.Currency(true, showZeroValue = true))
         CreateOceanTextInputPreview("23/12/1999", OceanInputType.Date)
+        CreateOceanTextInputPreview("12321112312", OceanInputType.BankBillet)
     }
 }
 
@@ -219,16 +217,11 @@ fun OceanTextInput(
                 mutableStateOf(TextRange.Zero)
             }
 
-            var textFieldValue by remember(value) {
-                val sanitizedValue = oceanInputType.transformForInput(value)
-                mutableStateOf(TextFieldValue(sanitizedValue, textFieldSelection))
-            }
-
             val height = if (isTextArea) 150.dp else 48.dp
             val singleLine = !isTextArea
 
             BasicTextField(
-                value = textFieldValue,
+                value = TextFieldValue(oceanInputType.transformForInput(value), textFieldSelection),
                 modifier = Modifier
                     .height(height)
                     .fillMaxWidth()
@@ -239,22 +232,13 @@ fun OceanTextInput(
                 onValueChange = { changedField ->
                     val modifiedValue = changedField.text
 
-                    if (modifiedValue != textFieldValue.text) {
-                        textFieldValue = changedField.copy(text = modifiedValue)
-
-                        if (oceanInputType.alwaysGoToEndOfInput()) {
-                            textFieldValue = textFieldValue.copy(
-                                selection = TextRange(modifiedValue.length)
-                            )
-                            textFieldSelection = TextRange(modifiedValue.length)
-                        } else {
-                            textFieldSelection = changedField.selection
-                        }
-
-                        onTextChanged(oceanInputType.transformForOutput(changedField.text))
+                    textFieldSelection = if (oceanInputType.alwaysGoToEndOfInput()) {
+                        TextRange(modifiedValue.length)
                     } else {
-                        textFieldValue = changedField.copy(text = modifiedValue)
+                        changedField.selection
                     }
+
+                    onTextChanged(oceanInputType.transformForOutput(changedField.text))
                 },
                 enabled = enabled,
                 singleLine = singleLine,

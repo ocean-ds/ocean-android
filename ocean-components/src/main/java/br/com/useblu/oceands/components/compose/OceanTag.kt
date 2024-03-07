@@ -165,6 +165,22 @@ private fun OceanTagPreview() {
                 type = OceanTagType.NeutralPrimary,
                 isSmall = true
             )
+
+            OceanSpacing.StackXXXS()
+
+            OceanTag(
+                label = "Label",
+                type = OceanTagType.Important,
+                isSmall = true
+            )
+
+            OceanSpacing.StackXXXS()
+
+            OceanTag(
+                label = "Label",
+                type = OceanTagType.Highlight,
+                isSmall = true
+            )
         }
     }
 }
@@ -225,43 +241,66 @@ fun getBackgroundColor(type: OceanTagType): Color {
         OceanTagType.Neutral -> {
             OceanColors.interfaceLightUp
         }
+
         OceanTagType.NeutralPrimary -> {
             OceanColors.interfaceLightUp
         }
+
         OceanTagType.Complementary -> {
-            Color(0xFFEEFAFA)
+            OceanColors.complementaryPure.copy(alpha = 0.08f)
         }
+
         OceanTagType.Negative -> {
             OceanColors.statusNegativeUp
         }
+
         OceanTagType.Positive -> {
             OceanColors.statusPositiveUp
         }
+
         OceanTagType.Warning -> {
             OceanColors.statusWarningUp
         }
+
+        OceanTagType.Important -> {
+            OceanColors.highlightPure
+        }
+
+        OceanTagType.Highlight -> {
+            OceanColors.brandPrimaryDown
+        }
     }
 }
+
 @Composable
 fun getTextColor(type: OceanTagType): Color {
     return when (type) {
         OceanTagType.Neutral -> {
             OceanColors.interfaceDarkUp
         }
+
         OceanTagType.NeutralPrimary -> {
             OceanColors.brandPrimaryDown
         }
+
         OceanTagType.Complementary -> {
             OceanColors.complementaryPure
         }
+
         OceanTagType.Negative -> {
             OceanColors.statusNegativePure
         }
+
         OceanTagType.Positive -> {
             OceanColors.statusPositiveDeep
         }
+
         OceanTagType.Warning -> {
             OceanColors.statusWarningDeep
+        }
+
+        OceanTagType.Important, OceanTagType.Highlight -> {
+            OceanColors.interfaceLightPure
         }
     }
 }

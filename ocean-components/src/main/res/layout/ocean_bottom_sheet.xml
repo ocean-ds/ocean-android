@@ -114,7 +114,7 @@
                 android:layout_marginBottom="@dimen/ocean_spacing_stack_sm"
                 android:orientation="horizontal"
                 android:padding="8dp"
-                app:ocean_visible_or_gone="@{image.length() > 0}">
+                app:ocean_visible_or_gone="@{image != null || icon != null}">
 
                 <ImageView
                     android:id="@+id/imageView3"

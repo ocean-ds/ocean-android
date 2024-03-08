@@ -148,6 +148,9 @@ class HomeActivity : AppCompatActivity() {
                     text = "BottomSheet Vertical with Code",
                     onClick = { onClickBottomSheetImageVerticalWithCode() })
                 textAction(
+                    text = "BottomSheet Vertical Without Image",
+                    onClick = { onClickBottomSheetVerticalWithoutImage() })
+                textAction(
                     text = "BottomSheet Horizontal",
                     onClick = { onClickBottomSheetHorizontal() })
                 textAction(
@@ -506,6 +509,18 @@ class HomeActivity : AppCompatActivity() {
             .withTitle("Title")
             .withMessage("Message a huge text to test the bottom sheet behavior on deal with multiple lines")
             .withIcon(R.drawable.icon_blu_plus)
+            .withCode(9999)
+            .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
+            .withDismiss(true)
+            .withActionPositive(R.string.all_button_confirm) {}
+            .withActionNegative(R.string.all_button_cancel) {}
+            .show()
+    }
+
+    private fun onClickBottomSheetVerticalWithoutImage() {
+        OceanBottomSheet(this)
+            .withTitle("Title")
+            .withMessage("Message a huge text to test the bottom sheet behavior on deal with multiple lines")
             .withCode(9999)
             .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
             .withDismiss(true)

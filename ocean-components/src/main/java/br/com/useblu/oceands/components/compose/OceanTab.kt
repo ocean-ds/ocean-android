@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
@@ -30,8 +31,9 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 @Composable
 fun OceanTabPreview() {
     val tabs = listOf(
-        OceanTabItemModel("Oportunidades", 1),
-        OceanTabItemModel("Tab 2", 2)
+        OceanTabItemModel("Tab 1", 1),
+        OceanTabItemModel("Tab 2", 2),
+        OceanTabItemModel("Tab 3", 3)
     )
 
     var selectedTabIndex by remember { mutableStateOf(0) }
@@ -117,6 +119,74 @@ private fun TabText(
                 text = counter.toString(),
                 type = if (selected) OceanBadgeType.PRIMARY else OceanBadgeType.DISABLED,
                 size = OceanBadgeSize.Small
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun OceanScrollableTabPreview() {
+    val tabs = listOf(
+        OceanTabItemModel("Tab 1", 1),
+        OceanTabItemModel("Tab 2", 2),
+        OceanTabItemModel("Tab 3", 3),
+        OceanTabItemModel("Tab 4", 4),
+        OceanTabItemModel("Tab 5", 5),
+    )
+
+    var selectedTabIndex by remember { mutableStateOf(0) }
+
+    MaterialTheme {
+        Column(
+            Modifier
+                .background(color = OceanColors.interfaceLightPure)
+                .height(200.dp)
+        ) {
+            OceanTabScrollable(
+                tabs = tabs,
+                defaultSelectedTab = selectedTabIndex,
+                onSelectedTab = { selectedTabIndex = it }
+            )
+        }
+    }
+}
+
+@Composable
+fun OceanTabScrollable(
+    modifier: Modifier = Modifier,
+    tabs: List<OceanTabItemModel>,
+    defaultSelectedTab: Int,
+    onSelectedTab: (Int) -> Unit
+) {
+    ScrollableTabRow(
+        modifier = modifier
+            .background(color = OceanColors.interfaceLightPure)
+            .fillMaxWidth(),
+        edgePadding = 0.dp,
+        selectedTabIndex = defaultSelectedTab,
+        indicator = { tabPositions ->
+            if (defaultSelectedTab < tabPositions.size) {
+                SecondaryIndicator(
+                    modifier = Modifier.tabIndicatorOffset(tabPositions[defaultSelectedTab]),
+                    color = OceanColors.brandPrimaryPure
+                )
+            }
+        }
+    ) {
+        tabs.forEachIndexed { index, tab ->
+            val selected = index == defaultSelectedTab
+            Tab(
+                selected = selected,
+                modifier = Modifier
+                    .background(color = OceanColors.interfaceLightPure)
+                    .height(56.dp),
+                onClick = {
+                    onSelectedTab(index)
+                },
+                text = {
+                    TabText(tab, selected, tab.counter)
+                }
             )
         }
     }

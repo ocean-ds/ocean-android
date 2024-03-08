@@ -3,75 +3,43 @@ package br.com.useblu.oceands.client.ui.chartbar
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.client.R
-import br.com.useblu.oceands.model.chart.OceanChartItem
-import br.com.useblu.oceands.model.chart.OceanChartModel
+import br.com.useblu.oceands.model.chart.OceanChartBarItem
+import br.com.useblu.oceands.model.chart.OceanChartBarModel
 
 class ChartBarViewModel : ViewModel() {
     var items = listOf(
-        OceanChartItem(
+        OceanChartBarItem(
+            title = "21/02",
+            value = 5.0f
+        ),
+        OceanChartBarItem(
             title = "22/02",
-            value = 5.0f,
-            color = R.color.colorPrimary
+            value = 7.0f
         ),
-        OceanChartItem(
+        OceanChartBarItem(
             title = "23/02",
-            value = 4.0f,
-            color = R.color.ocean_color_status_negative_pure
+            value = 4.0f
         ),
-        OceanChartItem(
+        OceanChartBarItem(
             title = "24/02",
-            value = 10.0f,
-            color = R.color.ocean_color_status_warning_deep,
+            value = 5.0f
         ),
-        OceanChartItem(
+        OceanChartBarItem(
             title = "25/02",
-            value = 7.0f,
-            color = R.color.colorAccent
+            value = 7.0f
         ),
-        OceanChartItem(
+        OceanChartBarItem(
             title = "26/02",
-            value = 6.0f,
-            color = R.color.ocean_color_brand_primary_pure
+            value = 6.0f
         )
     )
 
-    val model = OceanChartModel(
-        items = items,
-        onItemSelected = ::onSelectItem,
-        onNothingSelected = ::reset
+    val model = OceanChartBarModel(
+        items = items
     )
 
-    private val _chartLiveData = MutableLiveData<OceanChartModel>()
-    val chartLiveData: LiveData<OceanChartModel> = _chartLiveData
-
-    init {
-        _chartLiveData.postValue(model)
-    }
-
-    private fun onSelectItem(selectedIndex: Int) {
-        items = items.mapIndexed { index, it ->
-            it.copy(selected = index == selectedIndex)
-        }
-
-        _chartLiveData.postValue(
-            model.copy(
-                items = items
-            )
-        )
-    }
-
-    private fun reset() {
-        items = items.map {
-            it.copy(selected = true)
-        }
-
-        _chartLiveData.postValue(
-            model.copy(
-                items = items
-            )
-        )
-    }
+    private val _chartLiveData = MutableLiveData(model)
+    val chartLiveData: LiveData<OceanChartBarModel> = _chartLiveData
 
     fun click() {
         println("Click")

@@ -87,7 +87,7 @@ private fun BarChart.setupChart(model: OceanChartModel) {
     description.isEnabled = false
     legend.isEnabled = false
 
-    isHighlightPerTapEnabled = model.items.isNotEmpty()
+    isHighlightPerTapEnabled = false
 
     minOffset = 0f
 
@@ -135,18 +135,6 @@ fun BarChart.updateChartModel(
     data = BarData(dataSet)
     data.barWidth = calculateBarWidth(windowWidth, model.items.size)
 
-    setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
-        override fun onValueSelected(e: Entry?, h: Highlight?) {
-            val index = h?.x?.toInt() ?: return
-
-            model.onItemSelected(index)
-        }
-
-        override fun onNothingSelected() {
-            model.onNothingSelected()
-        }
-    })
-
     invalidate()
 }
 
@@ -163,6 +151,8 @@ private fun BarChart.buildDataSet(
     val entries = model.items.mapIndexed { index, it ->
         BarEntry(index.toFloat(), it.value)
     }
+
+    val maxValue = model.items.maxOf { it.value }
 
     val dataSet = BarDataSet(entries, "")
 

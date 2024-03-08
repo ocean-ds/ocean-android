@@ -29,79 +29,31 @@ import kotlinx.coroutines.launch
 private val sections = mutableListOf<@Composable (() -> Unit)>(
     {
         Column {
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
-            Text(text = "asdasdsa")
+            for (item in 0..15) {
+                Text(text = "Texto $item")
+            }
         }
     },
     {
         Column {
-            OceanStep(1, 3)
-            OceanStep(1, 3)
-            OceanStep(1, 3)
-            OceanStep(1, 3)
-            OceanStep(1, 3)
-            OceanStep(1, 3)
-            OceanStep(1, 3)
-            OceanStep(1, 3)
-            OceanStep(1, 3)
-            OceanStep(1, 3)
-            OceanStep(1, 3)
-            OceanStep(1, 3)
-            OceanStep(1, 3)
+            for (item in 1..11) {
+                OceanStep(item, 11)
+            }
         }
     },
     {
         Column {
-            OceanShortcut(
-                model = OceanShortcutModel(
-                    label = "MediumVertical Disabled",
-                    icon = OceanIcons.ACADEMIC_CAP_SOLID,
-                    layout = OceanShortcutLayout.MediumVertical,
-                    description = "Lorem ipsum dolor sit amet, consectetur.",
-                    disabled = true
+            for (item in 0..10) {
+                OceanShortcut(
+                    model = OceanShortcutModel(
+                        label = "MediumVertical Disabled",
+                        icon = OceanIcons.X_OUTLINE,
+                        layout = OceanShortcutLayout.MediumVertical,
+                        description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        disabled = true
+                    )
                 )
-            )
-            OceanShortcut(
-                model = OceanShortcutModel(
-                    label = "MediumVertical Disabled",
-                    icon = OceanIcons.ACADEMIC_CAP_SOLID,
-                    layout = OceanShortcutLayout.MediumVertical,
-                    description = "Lorem ipsum dolor sit amet, consectetur.",
-                    disabled = true
-                )
-            )
-            OceanShortcut(
-                model = OceanShortcutModel(
-                    label = "MediumVertical Disabled",
-                    icon = OceanIcons.ACADEMIC_CAP_SOLID,
-                    layout = OceanShortcutLayout.MediumVertical,
-                    description = "Lorem ipsum dolor sit amet, consectetur.",
-                    disabled = true
-                )
-            )
-            OceanShortcut(
-                model = OceanShortcutModel(
-                    label = "MediumVertical Disabled",
-                    icon = OceanIcons.ACADEMIC_CAP_SOLID,
-                    layout = OceanShortcutLayout.MediumVertical,
-                    description = "Lorem ipsum dolor sit amet, consectetur.",
-                    disabled = true
-                )
-            )
+            }
         }
     }
 )

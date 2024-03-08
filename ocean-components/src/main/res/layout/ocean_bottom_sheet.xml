@@ -90,10 +90,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:padding="6dp"
                 android:contentDescription="@null"
-                android:tint="@color/ocean_color_interface_dark_up"
+                android:padding="6dp"
                 android:src="@drawable/ocean_icon_x_outline"
+                android:tint="@color/ocean_color_interface_dark_up"
                 app:ocean_visible_or_gone="@{cancelabled}"
                 tools:ignore="UseAppTint" />
         </LinearLayout>
@@ -113,17 +113,18 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/ocean_spacing_stack_sm"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:padding="8dp"
+                app:ocean_visible_or_gone="@{image.length() > 0}">
 
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minHeight="40dp"
-                    android:minWidth="40dp"
-                    android:scaleType="fitCenter"
                     android:layout_gravity="center"
                     android:contentDescription="@null"
+                    android:minWidth="40dp"
+                    android:minHeight="40dp"
+                    android:scaleType="fitCenter"
                     android:src="@{icon}"
                     app:ocean_icon="@{image}"
                     tools:src="@drawable/icon_generic" />
@@ -174,8 +175,8 @@
             android:id="@+id/container_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/ocean_spacing_stack_xs"
             android:orientation="vertical"
+            android:padding="@dimen/ocean_spacing_stack_xs"
             app:ocean_visible_or_gone="@{orientationButtons == 0}"
             tools:visibility="visible">
 
@@ -232,13 +233,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-                android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
                 android:orientation="vertical"
+                android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
                 app:ocean_visible_or_gone="@{code > 0}">
 
                 <TextView
-                    style="@style/Ocean.Description.DarkUp"
                     android:id="@+id/horizontal_text_code"
+                    style="@style/Ocean.Description.DarkUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -285,13 +286,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-                android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
                 android:orientation="vertical"
+                android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
                 app:ocean_visible_or_gone="@{code > 0}">
 
                 <TextView
-                    style="@style/Ocean.Description.DarkUp"
                     android:id="@+id/vertical_text_code"
+                    style="@style/Ocean.Description.DarkUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"

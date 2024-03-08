@@ -37,13 +37,13 @@ private val barModel = OceanChartBarModel(
     color = R.color.ocean_color_brand_primary_down,
     highlightColor = R.color.ocean_color_brand_primary_pure,
     items = listOf(
-        OceanChartBarItem(title = "Jul/19", value = 30f),
-        OceanChartBarItem(title = "Jul/20", value = 20f),
-        OceanChartBarItem(title = "Jul/21", value = 20f),
-        OceanChartBarItem(title = "Jul/22", value = 10f),
-        OceanChartBarItem(title = "Jul/23", value = 30f),
-        OceanChartBarItem(title = "Jul/24", value = 25f),
-        OceanChartBarItem(title = "Jul/25", value = 15f)
+        OceanChartBarItem(label = "Jul/19", value = 30f),
+        OceanChartBarItem(label = "Jul/20", value = 20f),
+        OceanChartBarItem(label = "Jul/21", value = 20f),
+        OceanChartBarItem(label = "Jul/22", value = 10f),
+        OceanChartBarItem(label = "Jul/23", value = 30f),
+        OceanChartBarItem(label = "Jul/24", value = 25f),
+        OceanChartBarItem(label = "Jul/25", value = 15f)
     )
 )
 
@@ -112,7 +112,7 @@ private fun BarChart.setupChart(model: OceanChartBarModel) {
 
     xAxis.setDrawAxisLine(false)
     xAxis.setDrawGridLines(false)
-    xAxis.valueFormatter = IndexAxisValueFormatter(model.items.map { it.title })
+    xAxis.valueFormatter = IndexAxisValueFormatter(model.items.map { it.label })
 
     xAxis.textSize = 12f
     xAxis.position = XAxis.XAxisPosition.BOTTOM

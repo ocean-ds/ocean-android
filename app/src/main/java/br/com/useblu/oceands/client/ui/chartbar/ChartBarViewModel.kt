@@ -9,27 +9,27 @@ import br.com.useblu.oceands.model.chart.OceanChartBarModel
 class ChartBarViewModel : ViewModel() {
     var items = listOf(
         OceanChartBarItem(
-            title = "21/02",
+            label = "21/02",
             value = 5.0f
         ),
         OceanChartBarItem(
-            title = "22/02",
+            label = "22/02",
             value = 7.0f
         ),
         OceanChartBarItem(
-            title = "23/02",
+            label = "23/02",
             value = 4.0f
         ),
         OceanChartBarItem(
-            title = "24/02",
+            label = "24/02",
             value = 5.0f
         ),
         OceanChartBarItem(
-            title = "25/02",
+            label = "25/02",
             value = 7.0f
         ),
         OceanChartBarItem(
-            title = "26/02",
+            label = "26/02",
             value = 6.0f
         )
     )

@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.chart.OceanChartBar
-import br.com.useblu.oceands.model.chart.OceanChartModel
+import br.com.useblu.oceands.model.chart.OceanChartBarModel
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 
@@ -24,7 +24,7 @@ class ChartBarActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[ChartBarViewModel::class.java]
 
         setContent {
-            val model = viewModel.chartLiveData.observeAsState(OceanChartModel()).value
+            val model = viewModel.chartLiveData.observeAsState(OceanChartBarModel()).value
 
             Column(
                 modifier = Modifier.padding(24.dp)

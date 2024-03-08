@@ -20,21 +20,32 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.bindingadapters.getColor
 import br.com.useblu.oceands.extensions.dpFloat
-import br.com.useblu.oceands.model.chart.OceanChartItem
-import br.com.useblu.oceands.model.chart.OceanChartModel
+import br.com.useblu.oceands.model.chart.OceanChartBarItem
+import br.com.useblu.oceands.model.chart.OceanChartBarModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.highlight.Highlight
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+
+
+private val barModel = OceanChartBarModel(
+    color = R.color.ocean_color_brand_primary_down,
+    highlightColor = R.color.ocean_color_brand_primary_pure,
+    items = listOf(
+        OceanChartBarItem(label = "Jul/19", value = 30f),
+        OceanChartBarItem(label = "Jul/20", value = 20f),
+        OceanChartBarItem(label = "Jul/21", value = 20f),
+        OceanChartBarItem(label = "Jul/22", value = 10f),
+        OceanChartBarItem(label = "Jul/23", value = 30f),
+        OceanChartBarItem(label = "Jul/24", value = 25f),
+        OceanChartBarItem(label = "Jul/25", value = 15f)
+    )
+)
 
 @Preview
 @Composable
@@ -46,11 +57,7 @@ private fun OceanChartBarPreview() {
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         OceanChartBar(
-            model = donutModel.copy(
-                items = donutModel.items.map {
-                    it.copy(title = "Jul/23")
-                }
-            ),
+            model = barModel,
             modifier = Modifier
                 .height(180.dp)
                 .fillMaxWidth()
@@ -61,7 +68,7 @@ private fun OceanChartBarPreview() {
 
 @Composable
 fun OceanChartBar(
-    model: OceanChartModel,
+    model: OceanChartBarModel,
     modifier: Modifier = Modifier
 ) {
     var windowWidth by remember { mutableIntStateOf(0) }
@@ -83,11 +90,11 @@ fun OceanChartBar(
     )
 }
 
-private fun BarChart.setupChart(model: OceanChartModel) {
+private fun BarChart.setupChart(model: OceanChartBarModel) {
     description.isEnabled = false
     legend.isEnabled = false
 
-    isHighlightPerTapEnabled = model.items.isNotEmpty()
+    isHighlightPerTapEnabled = false
 
     minOffset = 0f
 
@@ -105,7 +112,7 @@ private fun BarChart.setupChart(model: OceanChartModel) {
 
     xAxis.setDrawAxisLine(false)
     xAxis.setDrawGridLines(false)
-    xAxis.valueFormatter = IndexAxisValueFormatter(model.items.map { it.title })
+    xAxis.valueFormatter = IndexAxisValueFormatter(model.items.map { it.label })
 
     xAxis.textSize = 12f
     xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -116,36 +123,15 @@ private fun BarChart.setupChart(model: OceanChartModel) {
 }
 
 fun BarChart.updateChartModel(
-    model: OceanChartModel,
+    model: OceanChartBarModel,
     windowWidth: Int
 ) {
     if (windowWidth == 0) return
 
-    val dataSet = buildDataSet(
-        model = model,
-        selected = if (model.items.all { it.selected }) {
-            null
-        } else {
-            val selectedIndex = model.items.indexOfFirst { it.selected }
-            highlightValue(selectedIndex.toFloat(), 0, false)
-            model.items.firstOrNull { it.selected }
-        }
-    )
+    val dataSet = buildDataSet(model)
 
     data = BarData(dataSet)
     data.barWidth = calculateBarWidth(windowWidth, model.items.size)
-
-    setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
-        override fun onValueSelected(e: Entry?, h: Highlight?) {
-            val index = h?.x?.toInt() ?: return
-
-            model.onItemSelected(index)
-        }
-
-        override fun onNothingSelected() {
-            model.onNothingSelected()
-        }
-    })
 
     invalidate()
 }
@@ -157,12 +143,13 @@ private fun calculateBarWidth(
 ) = (barWidthInDp.dpFloat / windowWidthInPx) * itemsLength
 
 private fun BarChart.buildDataSet(
-    model: OceanChartModel,
-    selected: OceanChartItem? = null,
+    model: OceanChartBarModel
 ): BarDataSet {
     val entries = model.items.mapIndexed { index, it ->
         BarEntry(index.toFloat(), it.value)
     }
+
+    val maxValue = model.items.maxOf { it.value }
 
     val dataSet = BarDataSet(entries, "")
 
@@ -176,16 +163,10 @@ private fun BarChart.buildDataSet(
     )
 
     dataSet.colors = model.items.map {
-        if (selected == null) {
-            ContextCompat.getColor(context, it.color)
+        if (it.value == maxValue) {
+            ContextCompat.getColor(context, model.highlightColor)
         } else {
-            val alpha = if (selected == it) {
-                255
-            } else {
-                41
-            }
-
-            getColor(resId = it.color, alpha = alpha)
+            ContextCompat.getColor(context, model.color)
         }
     }
 

@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -107,7 +108,7 @@ private val sections = mutableListOf<@Composable (() -> Unit)>(
 
 @Preview
 @Composable
-fun OceanTabScrollableSectionPreview() {
+fun OceanTabScrollablePreview() {
     val tabs = listOf(
         OceanTabItemModel("Tab 1", 1),
         OceanTabItemModel("Tab 2", 2),
@@ -124,12 +125,12 @@ fun OceanTabScrollableSectionPreview() {
                 .background(color = OceanColors.interfaceLightPure),
             verticalArrangement = Arrangement.Top
         ) {
-            OceanTabScrollableSection(
+            OceanTabScrollable(
                 modifier = Modifier.fillMaxSize(),
                 tabs = tabs,
                 defaultSelectedTab = selectedTabIndex,
                 onSelectedTab = { selectedTabIndex = it },
-                sections = {
+                content = {
                     item {
                         sections[0]()
                     }
@@ -148,15 +149,18 @@ fun OceanTabScrollableSectionPreview() {
 }
 
 @Composable
-fun OceanTabScrollableSection(
+fun OceanTabScrollable(
     modifier: Modifier = Modifier,
     tabs: List<OceanTabItemModel>,
     defaultSelectedTab: Int,
     onSelectedTab: (Int) -> Unit,
-    sections: LazyListScope.() -> Unit
+    content: LazyListScope.() -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     val lazyListState = rememberLazyListState()
+    val firstVisibleIndex by remember {
+        derivedStateOf { lazyListState.firstVisibleItemIndex }
+    }
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -165,7 +169,7 @@ fun OceanTabScrollableSection(
         var currentItemIndex by remember { mutableIntStateOf(defaultSelectedTab) }
         OceanTabScrollable(
             tabs = tabs,
-            currentSelectedTab = currentItemIndex,
+            defaultSelectedTab = currentItemIndex,
             onSelectedTab = {
                 onSelectedTab(it)
                 coroutineScope.launch {
@@ -174,15 +178,15 @@ fun OceanTabScrollableSection(
             }
         )
 
-        LaunchedEffect(key1 = lazyListState.firstVisibleItemIndex) {
-            currentItemIndex = lazyListState.firstVisibleItemIndex
+        LaunchedEffect(key1 = firstVisibleIndex) {
+            currentItemIndex = firstVisibleIndex
             onSelectedTab(currentItemIndex)
         }
 
         LazyColumn(
             modifier = Modifier.fillMaxWidth(),
             state = lazyListState,
-            content = sections
+            content = content
         )
     }
 }

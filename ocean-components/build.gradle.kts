@@ -57,7 +57,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     namespace = "br.com.useblu.oceands"
-
 }
 
 afterEvaluate {
@@ -93,7 +92,8 @@ dependencies {
 
     implementation(libs.androidKtx)
     implementation(libs.androidAppCompat)
-    api(libs.skydovesBalloon)
+    api(libs.skydoves.balloon)
+    api(libs.skydoves.balloon.compose)
     api(libs.androidMaterial)
     api(libs.canarinho)
     api(libs.glide)
@@ -117,8 +117,6 @@ dependencies {
     androidTestImplementation(libs.compose.uiTestJunit4)
     debugImplementation(libs.compose.uiTestManifest)
     implementation(libs.compose.activity)
-    implementation(libs.compose.lifecycleViewModel)
-    implementation(libs.compose.runtimeLiveData)
 }
 
 baselineProfile {

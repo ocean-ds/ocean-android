@@ -4,84 +4,76 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.client.R
-import br.com.useblu.oceands.model.OceanDonutItem
-import br.com.useblu.oceands.model.OceanDonutModel
+import br.com.useblu.oceands.model.chart.OceanChartItem
+import br.com.useblu.oceands.model.chart.OceanChartModel
 
 class ChartCardViewModel : ViewModel() {
     var items = listOf(
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 1",
-            valueFormatted = "25",
+            valueFormatted = "R$ 25",
             value = 25.0f,
             color = R.color.colorPrimary,
             subtitle = "Subtitle 1",
             information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             percent = "10%"
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 2",
-            valueFormatted = "75",
+            valueFormatted = "R$ 75",
             value = 75.0f,
             color = R.color.ocean_color_status_negative_pure,
             subtitle = "Subtitle 2",
-            information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            information = "Isto equivale a 75 reais",
             percent = "20%"
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 3",
-            valueFormatted = "75",
+            valueFormatted = "R$ 75",
             value = 75.0f,
             color = R.color.ocean_color_status_warning_deep,
             subtitle = "Subtitle 3",
-            information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            information = "Isto equivale a 75 reais",
             percent = "30%"
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 4",
             valueFormatted = "70",
             value = 70.0f,
             color = R.color.colorAccent,
             subtitle = "Subtitle 4",
-            information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            information = "Isto equivale a 70 reais",
             percent = "40%"
         ),
-        OceanDonutItem(
+        OceanChartItem(
             title = "Item 5",
             valueFormatted = "60",
             value = 60.0f,
             color = R.color.ocean_color_brand_primary_pure,
             subtitle = "Subtitle 5",
-            information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            information = "60 reaissss",
             percent = "50%"
-        ),
+        )
     )
 
-    val model = OceanDonutModel(
+    val model = OceanChartModel(
         title = "Title",
         label = "Label",
         items = items,
-        onItemSelected = {
-            selectedItem(it)
-        },
-        onNothingSelected = {
-            reset()
-        }
+        onItemSelected = ::onSelectItem,
+        onNothingSelected = ::reset
     )
 
-    private val _oceanDonutLiveData = MutableLiveData<OceanDonutModel>()
-    val oceanDonutLiveData: LiveData<OceanDonutModel> = _oceanDonutLiveData
+    private val _oceanDonutLiveData = MutableLiveData<OceanChartModel>()
+    val oceanDonutLiveData: LiveData<OceanChartModel> = _oceanDonutLiveData
 
     init {
         _oceanDonutLiveData.postValue(model)
     }
 
-    fun selectedItem(itemSelected: OceanDonutItem) {
-        items = items.map {
-            if (it == itemSelected) {
-                it.copy(selected = true)
-            } else {
-                it.copy(selected = false)
-            }
+    private fun onSelectItem(indexSelected: Int) {
+        items = items.mapIndexed { index, it ->
+            it.copy(selected = index == indexSelected)
         }
 
         _oceanDonutLiveData.postValue(

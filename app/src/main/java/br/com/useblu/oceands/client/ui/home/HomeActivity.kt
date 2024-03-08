@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
@@ -43,6 +42,7 @@ import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
 import br.com.useblu.oceands.client.ui.carditem.CardItemActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
+import br.com.useblu.oceands.client.ui.chartbar.ChartBarActivity
 import br.com.useblu.oceands.client.ui.chartcard.ChartCardActivity
 import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
 import br.com.useblu.oceands.client.ui.chips.ChipsActivity
@@ -96,7 +96,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
-import br.com.useblu.oceands.utils.UiText
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Calendar
@@ -118,14 +117,14 @@ class HomeActivity : AppCompatActivity() {
             if (showSheet) {
                 OceanBottomSheet(
                     model = OceanBottomSheetModel(
-                        title = UiText.DynamicString("Title"),
-                        message = UiText.DynamicString("Message"),
-                        subMessage = UiText.DynamicString("SubMessage"),
+                        title = "Title",
+                        message = "Message",
+                        subMessage = "SubMessage",
                         imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
                         icon = R.drawable.icon_easter_eggs,
                         code = 2000,
-                        actionPositive = UiText.DynamicString("Aceitar") to {},
-                        actionNegative = UiText.DynamicString("Cancelar") to {},
+                        actionPositive = "Aceitar" to {},
+                        actionNegative = "Cancelar" to {},
                         buttonsOrientation = BottomSheetButtonsOrientation.Vertical
                     ),
                     onDismiss = {
@@ -148,6 +147,9 @@ class HomeActivity : AppCompatActivity() {
                 textAction(
                     text = "BottomSheet Vertical with Code",
                     onClick = { onClickBottomSheetImageVerticalWithCode() })
+                textAction(
+                    text = "BottomSheet Vertical Without Image",
+                    onClick = { onClickBottomSheetVerticalWithoutImage() })
                 textAction(
                     text = "BottomSheet Horizontal",
                     onClick = { onClickBottomSheetHorizontal() })
@@ -180,10 +182,11 @@ class HomeActivity : AppCompatActivity() {
                 textAction(
                     text = "BottomSheetList (search)",
                     onClick = { onOceanBottomListSheetWithSearch() })
-                textAction(text = "Card Cross Cell", onClick = { cardCrossCellClick() })
+                textAction(text = "Card Cross Sell", onClick = { cardCrossCellClick() })
                 textAction(text = "Card Group", onClick = { cardContentClick() })
                 textAction(text = "Card Item", onClick = { onClickCardItem() })
                 textAction(text = "Carousel", onClick = { carousel() })
+                textAction(text = "Chart Bar", onClick = ::chartBarClick)
                 textAction(text = "Chart Card", onClick = { chartCardClick() })
                 textAction(text = "Checkbox", onClick = { checkbox() })
                 textAction(text = "Chips", onClick = { onClickChips() })
@@ -472,6 +475,11 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun chartBarClick() {
+        val intent = Intent(this, ChartBarActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun onClickBottomSheetImage() {
         OceanBottomSheet(this)
             .withTitle("Title")
@@ -501,6 +509,18 @@ class HomeActivity : AppCompatActivity() {
             .withTitle("Title")
             .withMessage("Message a huge text to test the bottom sheet behavior on deal with multiple lines")
             .withIcon(R.drawable.icon_blu_plus)
+            .withCode(9999)
+            .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
+            .withDismiss(true)
+            .withActionPositive(R.string.all_button_confirm) {}
+            .withActionNegative(R.string.all_button_cancel) {}
+            .show()
+    }
+
+    private fun onClickBottomSheetVerticalWithoutImage() {
+        OceanBottomSheet(this)
+            .withTitle("Title")
+            .withMessage("Message a huge text to test the bottom sheet behavior on deal with multiple lines")
             .withCode(9999)
             .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
             .withDismiss(true)

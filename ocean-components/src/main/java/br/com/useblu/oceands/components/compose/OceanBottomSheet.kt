@@ -38,7 +38,6 @@ import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
-import br.com.useblu.oceands.utils.UiText
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
 import kotlinx.coroutines.launch
@@ -77,7 +76,7 @@ private fun OceanBottomSheetPreview() {
                             )
                         }
                     },
-                    title = UiText.DynamicString("Teste de bottom sheet"),
+                    title = "Teste de bottom sheet",
                     icon = OceanIcons.CLOCK_OUTLINE.icon,
                     isDismissible = false
                 )
@@ -92,7 +91,7 @@ private fun OceanBottomSheetPreview() {
                         Text(text = "Teste de bottom sheet")
                     },
                     imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
-                    title = UiText.DynamicString("Bottomsheet com Imagem")
+                    title = "Bottomsheet com Imagem"
                 )
             }
         )
@@ -101,13 +100,13 @@ private fun OceanBottomSheetPreview() {
             bottomSheetCta = "Bottom sheet completa (exceto conteúdo custom)",
             model = {
                 OceanBottomSheetModel(
-                    title = UiText.DynamicString("Title"),
-                    message = UiText.DynamicString("Message"),
-                    subMessage = UiText.DynamicString("SubMessage"),
+                    title = "Title",
+                    message = "Message",
+                    subMessage = "SubMessage",
                     imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
                     code = 2000,
-                    actionPositive = UiText.DynamicString("Aceitar") to {},
-                    actionNegative = UiText.DynamicString("Cancelar") to {},
+                    actionPositive = "Aceitar" to {},
+                    actionNegative = "Cancelar" to {},
                     buttonsOrientation = BottomSheetButtonsOrientation.Vertical
                 )
             }
@@ -131,7 +130,7 @@ private fun OceanBottomSheetPreview() {
                     customContent = {
                         Text(text = "Teste de bottom sheet")
                     },
-                    actionPositive = UiText.DynamicString("Botão") to {},
+                    actionPositive = "Botão" to {},
                     code = 2000
                 )
             }
@@ -145,14 +144,14 @@ data class OceanBottomSheetModel(
     val customContent: @Composable (SheetState) -> Unit = {},
     val isDismissible: Boolean = true,
     val isCritical: Boolean = false,
-    val title: UiText? = null,
-    val message: UiText? = null,
-    val subMessage: UiText? = null,
+    val title: String? = null,
+    val message: String? = null,
+    val subMessage: String? = null,
     val code: Int? = null,
     @DrawableRes val icon: Int? = null,
     val imageUrl: String? = null,
-    val actionPositive: Pair<UiText, () -> Unit>? = null,
-    val actionNegative: Pair<UiText, () -> Unit>? = null,
+    val actionPositive: Pair<String, () -> Unit>? = null,
+    val actionNegative: Pair<String, () -> Unit>? = null,
     val buttonsOrientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal
 ) {
     companion object
@@ -277,7 +276,7 @@ fun OceanBottomSheet(
                 }
 
                 OceanText(
-                    text = model.title.asString(),
+                    text = model.title,
                     style = OceanTextStyle.heading3,
                     color = textColor,
                     textAlign = TextAlign.Center
@@ -287,7 +286,7 @@ fun OceanBottomSheet(
             if (model.message != null) {
                 OceanSpacing.StackXXS()
                 OceanText(
-                    text = model.message.asString(),
+                    text = model.message,
                     style = OceanTextStyle.paragraph,
                     textAlign = TextAlign.Center
                 )
@@ -296,7 +295,7 @@ fun OceanBottomSheet(
             if (model.subMessage != null) {
                 OceanSpacing.StackXXS()
                 OceanText(
-                    text = model.subMessage.asString(),
+                    text = model.subMessage,
                     style = OceanTextStyle.paragraph,
                     fontFamily = OceanFontFamily.BaseBold,
                     textAlign = TextAlign.Center
@@ -332,8 +331,8 @@ fun OceanBottomSheet(
 
 @Composable
 private fun BottomButtons(
-    positiveButton: Pair<UiText, () -> Unit>? = null,
-    negativeButton: Pair<UiText, () -> Unit>? = null,
+    positiveButton: Pair<String, () -> Unit>? = null,
+    negativeButton: Pair<String, () -> Unit>? = null,
     isCritical: Boolean = false,
     orientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
     onDismiss: () -> Unit
@@ -349,7 +348,7 @@ private fun BottomButtons(
 
         if (positiveButton != null) {
             OceanButton(
-                text = positiveButton.first.asString(),
+                text = positiveButton.first,
                 buttonStyle = primaryStyle,
                 onClick = {
                     positiveButton.second()
@@ -363,7 +362,7 @@ private fun BottomButtons(
             OceanSpacing.StackXS()
 
             OceanButton(
-                text = negativeButton.first.asString(),
+                text = negativeButton.first,
                 buttonStyle = OceanButtonStyle.SecondaryMedium,
                 onClick = {
                     negativeButton.second()

@@ -2,6 +2,7 @@ package br.com.useblu.oceands.components.compose.list
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -29,6 +30,7 @@ fun OceanUnorderedListItemPreview() {
     val models = listOf(
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
+            description = ">>>>>Descrição do item<<<<<",
             iconType = OceanIcons.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         ),
@@ -74,6 +76,7 @@ fun OceanUnorderedListItem(
 ) {
     OceanUnorderedListItem(
         title = model.title,
+        description = model.description,
         iconType = model.iconType,
         style = model.style ?: OceanTextStyle.description,
         showIconBackground = model.showIconBackground
@@ -83,6 +86,7 @@ fun OceanUnorderedListItem(
 @Composable
 fun OceanUnorderedListItem(
     title: String,
+    description: String = "",
     iconType: OceanIcons,
     style: TextStyle = OceanTextStyle.description,
     showIconBackground: Boolean = false
@@ -112,9 +116,18 @@ fun OceanUnorderedListItem(
 
         OceanSpacing.StackXXS()
 
-        OceanText(
-            text = title,
-            style = style
-        )
+        Column(
+            modifier = Modifier
+                .padding(start = 8.dp)
+        ) {
+            OceanText(
+                text = title,
+                style = style
+            )
+            OceanText(
+                text = description,
+                style = OceanTextStyle.description
+            )
+        }
     }
 }

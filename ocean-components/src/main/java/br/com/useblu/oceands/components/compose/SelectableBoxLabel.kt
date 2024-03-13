@@ -34,14 +34,16 @@ fun SelectableBoxLabel(
             fontFamily = OceanFontFamily.BaseRegular
         ),
         onClick = {
-            val result = annotatedString
-                .getStringAnnotations("URL", it, it)
-                .firstOrNull()
+            if(enabled){
+                val result = annotatedString
+                    .getStringAnnotations("URL", it, it)
+                    .firstOrNull()
 
-            if(result != null) {
-                uriHandler.openUri(result.item)
-            } else{
-                onSelected()
+                if (result != null) {
+                    uriHandler.openUri(result.item)
+                } else {
+                    onSelected()
+                }
             }
         }
     )

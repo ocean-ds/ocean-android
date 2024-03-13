@@ -59,18 +59,18 @@ fun OceanCheckboxPreview() {
             OceanCheckbox(
                 label = stringResource(id = R.string.link),
                 selected = true,
-                enabled = true,
-                unsettled = true,
+                enabled = false,
+                unsettled = false,
                 onSelected = { isSelected ->
                     println("isSelected: $isSelected")
                 }
             )
             OceanCheckbox(
                 label = "Search on <a href=\"https://www.google.com\">Google</a> " +
-                        "or <a href=\"https://www.bing.com\">DuckDuckGo</a>",
+                        "or <a href=\"https://www.duckduckgo.com\">DuckDuckGo</a>",
                 selected = true,
                 enabled = true,
-                unsettled = true,
+                unsettled = false,
                 onSelected = { isSelected ->
                     println("isSelected: $isSelected")
                 }

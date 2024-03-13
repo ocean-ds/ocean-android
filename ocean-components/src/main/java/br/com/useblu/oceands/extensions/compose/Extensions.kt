@@ -37,33 +37,35 @@ fun String.htmlToAnnotatedString(): AnnotatedString {
 }
 
 fun Spanned.toAnnotatedString(): AnnotatedString = buildAnnotatedString {
-    val spanned = this@toAnnotatedString
-    append(spanned.toString())
-    getSpans(0, spanned.length, Any::class.java).forEach { span ->
+    append(this@toAnnotatedString.toString())
+
+    getSpans(0, length, Any::class.java).forEach { span ->
         val start = getSpanStart(span)
         val end = getSpanEnd(span)
-        when (span) {
-            is StyleSpan -> when (span.style) {
-                Typeface.BOLD -> addStyle(SpanStyle(fontWeight = FontWeight.Bold), start, end)
-                Typeface.ITALIC -> addStyle(SpanStyle(fontStyle = FontStyle.Italic), start, end)
-                Typeface.BOLD_ITALIC -> addStyle(SpanStyle(fontWeight = FontWeight.Bold, fontStyle = FontStyle.Italic), start, end)
+
+        val spanStyle = when (span) {
+            is StyleSpan -> {
+                when (span.style) {
+                    Typeface.BOLD -> SpanStyle(fontWeight = FontWeight.Bold)
+                    Typeface.ITALIC -> SpanStyle(fontStyle = FontStyle.Italic)
+                    Typeface.BOLD_ITALIC -> SpanStyle(
+                        fontWeight = FontWeight.Bold,
+                        fontStyle = FontStyle.Italic
+                    )
+                    else -> SpanStyle()
+                }
             }
-            is UnderlineSpan -> addStyle(SpanStyle(textDecoration = TextDecoration.Underline), start, end)
-            is ForegroundColorSpan -> addStyle(SpanStyle(color = Color(span.foregroundColor)), start, end)
+            is UnderlineSpan -> SpanStyle(textDecoration = TextDecoration.Underline)
+            is ForegroundColorSpan -> SpanStyle(color = Color(span.foregroundColor))
             is URLSpan -> {
-                addStyle(
-                    style = SpanStyle(
-                        color = Color(0xFF0025E0), //OceanColors.brandPrimaryPure
-                        textDecoration = TextDecoration.Underline
-                    ), start, end
-                )
-                addStringAnnotation(
-                    tag = "URL",
-                    annotation = span.url,
-                    start = start,
-                    end = end
+                addStringAnnotation(tag = "URL", annotation = span.url, start, end)
+                SpanStyle(
+                    color = Color(0xFF0025E0),
+                    textDecoration = TextDecoration.Underline
                 )
             }
+            else -> SpanStyle()
         }
+        addStyle(spanStyle, start, end)
     }
 }

@@ -65,6 +65,16 @@ fun OceanCheckboxPreview() {
                     println("isSelected: $isSelected")
                 }
             )
+            OceanCheckbox(
+                label = "Search on <a href=\"https://www.google.com\">Google</a> " +
+                        "or <a href=\"https://www.bing.com\">DuckDuckGo</a>",
+                selected = true,
+                enabled = true,
+                unsettled = true,
+                onSelected = { isSelected ->
+                    println("isSelected: $isSelected")
+                }
+            )
         }
         Column(
             modifier = Modifier

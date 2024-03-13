@@ -10,16 +10,26 @@
 
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="@dimen/ocean_spacing_stack_xs">
+        android:layout_height="match_parent">
 
-        <include
-            layout="@layout/ocean_descriptor_list"
-            app:entries="@{viewmodel.entries}" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/ocean_spacing_stack_xs">
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <include
+                layout="@layout/ocean_descriptor_list"
+                app:entries="@{viewmodel.entries}" />
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/compose_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 
 </layout>

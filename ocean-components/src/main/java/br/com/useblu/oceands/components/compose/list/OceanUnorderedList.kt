@@ -64,7 +64,7 @@ fun OceanUnorderedList(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(models) {item ->
+        items(models) { item ->
             OceanUnorderedListItem(item)
         }
     }
@@ -124,10 +124,13 @@ fun OceanUnorderedListItem(
                 text = title,
                 style = style
             )
-            OceanText(
-                text = description,
-                style = OceanTextStyle.description
-            )
+
+            if (description.isNotEmpty()) {
+                OceanText(
+                    text = description,
+                    style = OceanTextStyle.description
+                )
+            }
         }
     }
 }

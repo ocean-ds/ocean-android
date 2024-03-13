@@ -100,7 +100,7 @@ fun OceanCheckbox(
     unsettled: Boolean = false,
     errorMessage: String = "",
     enabled: Boolean = true,
-    onSelected: ((Boolean) -> Unit)? = null,
+    onSelected: (Boolean) -> Unit = { },
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     var isSelected by remember { mutableStateOf(selected) }
@@ -120,8 +120,8 @@ fun OceanCheckbox(
                 label = label,
                 enabled = enabled,
                 onSelected = {
-//                    isSelected = it
-//                    onSelected?.invoke(it)
+                    isSelected = !isSelected
+                    onSelected(isSelected)
                 },
             )
         }

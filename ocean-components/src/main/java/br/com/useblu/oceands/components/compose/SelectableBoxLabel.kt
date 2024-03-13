@@ -17,7 +17,7 @@ import br.com.useblu.oceands.ui.compose.OceanFontSize
 fun SelectableBoxLabel(
     label: String,
     enabled: Boolean,
-    onSelected: () -> Unit
+    onSelected: () -> Unit = {}
 ) {
     val uriHandler = LocalUriHandler.current
     val annotatedString = label.htmlToAnnotatedString()

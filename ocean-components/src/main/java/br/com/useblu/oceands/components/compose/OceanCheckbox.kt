@@ -120,8 +120,8 @@ fun OceanCheckbox(
                 label = label,
                 enabled = enabled,
                 onSelected = {
-                    isSelected = it
-                    onSelected?.invoke(it)
+//                    isSelected = it
+//                    onSelected?.invoke(it)
                 },
             )
         }

@@ -1,71 +1,63 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.R
 import br.com.useblu.oceands.extensions.compose.htmlToAnnotatedString
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
-import br.com.useblu.oceands.ui.compose.OceanFontSize
 
 @Composable
 fun SelectableBoxLabel(
     label: String,
     enabled: Boolean,
-    onSelected: (Boolean) -> Unit
+    onSelected: () -> Unit
 ) {
     val uriHandler = LocalUriHandler.current
-    var layoutResult by remember { mutableStateOf<TextLayoutResult?>(null) }
-    var selected by remember { mutableStateOf(false) }
-
     val annotatedString = label.htmlToAnnotatedString()
 
-    Text(
+    ClickableText(
         text = annotatedString,
         modifier = Modifier
             .padding(horizontal = 8.dp)
-//            .pointerInput(Unit) {
-//                detectTapGestures { offsetPosition ->
-////                    val result = annotatedString
-////                        .getStringAnnotations(0, label.length)
-////                        .firstOrNull() ?: return@detectTapGestures
-////
-////                    if (result.tag == "URL") {
-////                        uriHandler.openUri(result.item)
-////                    } else {
-////                        selected = !selected
-////                        onSelected(selected)
-////                    }
-//
-//                    layoutResult?.let {
-//                        val position = it.getOffsetForPosition(offsetPosition)
-//                        val result = annotatedString
-//                            .getStringAnnotations(position, position)
-//                            .firstOrNull()
-//                            ?: return@detectTapGestures
-//
-//                        if (result.tag == "URL") {
-//                            uriHandler.openUri(result.item)
-//                        }
-//                    }
-//                }
-//            },
-                ,
+            .clickable {
+                onSelected.invoke()
+            },
         maxLines = 2,
         overflow = TextOverflow.Ellipsis,
-        fontSize = OceanFontSize.xxs,
-        color = if (enabled) OceanColors.interfaceDarkDown
-        else OceanColors.interfaceDarkUp,
-        fontFamily = OceanFontFamily.BaseRegular,
-//        onTextLayout = { layoutResult = it }
+        style = TextStyle(
+            color = if (enabled) OceanColors.interfaceDarkDown else OceanColors.interfaceDarkUp,
+            fontSize = 16.sp,
+            fontFamily = OceanFontFamily.BaseRegular
+        ),
+        onClick = {
+            annotatedString
+                .getStringAnnotations("URL", it, it)
+                .firstOrNull()?.let { stringAnnotation ->
+                    uriHandler.openUri(stringAnnotation.item)
+                }
+        }
+    )
+}
+
+@Preview
+@Composable
+private fun SelectableText() {
+    SelectableBoxLabel(
+        label = stringResource(id = R.string.link),
+        enabled = true,
+        onSelected = {
+
+        }
     )
 }

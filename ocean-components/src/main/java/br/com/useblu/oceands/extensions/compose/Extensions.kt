@@ -4,6 +4,7 @@ import android.graphics.Typeface
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.text.style.URLSpan
 import android.text.style.UnderlineSpan
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.CircleShape
@@ -49,6 +50,20 @@ fun Spanned.toAnnotatedString(): AnnotatedString = buildAnnotatedString {
             }
             is UnderlineSpan -> addStyle(SpanStyle(textDecoration = TextDecoration.Underline), start, end)
             is ForegroundColorSpan -> addStyle(SpanStyle(color = Color(span.foregroundColor)), start, end)
+            is URLSpan -> {
+                addStyle(
+                    style = SpanStyle(
+                        color = Color(0xFF0025E0), //OceanColors.brandPrimaryPure
+                        textDecoration = TextDecoration.Underline
+                    ), start, end
+                )
+                addStringAnnotation(
+                    tag = "URL",
+                    annotation = span.url,
+                    start = start,
+                    end = end
+                )
+            }
         }
     }
 }

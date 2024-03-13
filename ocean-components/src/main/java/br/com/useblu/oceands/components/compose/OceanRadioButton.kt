@@ -102,7 +102,7 @@ fun OceanRadioButton(
                 enabled = enabled,
                 onSelectedBox = onSelected
             )
-            SelectableBoxLabel(label, enabled)
+            SelectableBoxLabel(label, enabled, { })
         }
         if (!errorMessage.isNullOrBlank()) {
             Text(

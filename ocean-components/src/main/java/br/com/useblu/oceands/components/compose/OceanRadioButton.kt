@@ -33,42 +33,33 @@ fun OceanRadioButtonPreview() {
             modifier = Modifier
                 .padding(start = 16.dp)
         ) {
-            OceanRadioButton(
+            AddRadioButton(
                 label = "Label",
-                onSelected = {
-                    println("radio button selected")
-                }
             )
-            OceanRadioButton(
+            AddRadioButton(
                 label = "Label",
                 enabled = false,
-                onSelected = {
-                    println("radio button selected")
-                }
             )
         }
         Column(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
         ) {
-            OceanRadioButton(
+            AddRadioButton(
                 label = "Label",
                 selected = true,
             )
-            OceanRadioButton(
+            AddRadioButton(
                 label = "Label",
                 selected = true,
                 enabled = false,
             )
 
-            var wasSelected by remember { mutableStateOf(true) }
-            OceanRadioButton(
+            AddRadioButton(
                 label = "Label",
                 selected = true,
-                errorMessage = if (!wasSelected) "Error message" else "",
-                onSelected = {
-                    wasSelected = !wasSelected
-                }
+                enabled = true,
+                errorMessage = "Error message"
             )
         }
     }
@@ -102,7 +93,11 @@ fun OceanRadioButton(
                 enabled = enabled,
                 onSelectedBox = onSelected
             )
-            SelectableBoxLabel(label, enabled)
+            SelectableBoxLabel(
+                label = label,
+                enabled = enabled,
+                onSelected = onSelected
+            )
         }
         if (!errorMessage.isNullOrBlank()) {
             Text(
@@ -115,4 +110,24 @@ fun OceanRadioButton(
             )
         }
     }
+}
+
+@Composable
+private fun AddRadioButton(
+    label: String,
+    selected: Boolean = false,
+    enabled: Boolean = true,
+    errorMessage: String? = null,
+) {
+    var wasSelected by remember { mutableStateOf(selected) }
+    OceanRadioButton(
+        label = label,
+        selected = wasSelected,
+        errorMessage = errorMessage,
+        enabled = enabled,
+        onSelected = {
+            wasSelected = true
+            println("radio button selected")
+        }
+    )
 }

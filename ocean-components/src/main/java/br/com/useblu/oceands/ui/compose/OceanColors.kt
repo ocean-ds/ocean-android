@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.res.colorResource
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.utils.toOceanColor
 
 @Immutable
 object OceanColors {
@@ -40,4 +41,7 @@ object OceanColors {
     val statusWarningUp @Composable get() = colorResource(id = R.color.ocean_color_status_warning_up)
     val statusWarningDown @Composable get() = colorResource(id = R.color.ocean_color_status_warning_down)
     val statusWarningDeep @Composable get() = colorResource(id = R.color.ocean_color_status_warning_deep)
+
+    @Composable
+    fun fromString(color: String) = colorResource(color.toOceanColor())
 }

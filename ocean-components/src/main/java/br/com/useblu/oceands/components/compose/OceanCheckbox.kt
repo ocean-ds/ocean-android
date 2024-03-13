@@ -34,69 +34,52 @@ fun OceanCheckboxPreview() {
             modifier = Modifier
                 .padding(start = 16.dp)
         ) {
-            OceanCheckbox(
+            AddCheckBox(
                 label = "Label",
-                onSelected = { isSelected ->
-                    println("isSelected: $isSelected")
-                }
             )
-            OceanCheckbox(
+            AddCheckBox(
                 label = "Label",
                 enabled = false,
-                onSelected = { isSelected ->
-                    println("isSelected: $isSelected")
-                }
             )
-            OceanCheckbox(
+            AddCheckBox(
                 label = "Label",
                 selected = true,
                 enabled = true,
                 unsettled = true,
-                onSelected = { isSelected ->
-                    println("isSelected: $isSelected")
-                }
             )
-            OceanCheckbox(
-                label = stringResource(id = R.string.link),
+            AddCheckBox(
+                label = stringResource(
+                    id = R.string.link
+                ),
                 selected = true,
                 enabled = false,
                 unsettled = false,
-                onSelected = { isSelected ->
-                    println("isSelected: $isSelected")
-                }
             )
-            OceanCheckbox(
-                label = "Search on <a href=\"https://www.google.com\">Google</a> " +
+            AddCheckBox(
+                label =  "Search on <a href=\"https://www.google.com\">Google</a> " +
                         "or <a href=\"https://www.duckduckgo.com\">DuckDuckGo</a>",
                 selected = true,
                 enabled = true,
                 unsettled = false,
-                onSelected = { isSelected ->
-                    println("isSelected: $isSelected")
-                }
             )
         }
         Column(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
         ) {
-            OceanCheckbox(
+            AddCheckBox(
                 label = "Label",
                 selected = true,
             )
-            OceanCheckbox(
+            AddCheckBox(
                 label = "Label",
                 selected = true,
                 enabled = false,
             )
-            var wasSelected by remember { mutableStateOf(true) }
-            OceanCheckbox(
+            AddCheckBox(
                 label = "Label",
                 selected = true,
-                errorMessage = if (!wasSelected) "Error message" else "",
-                onSelected = {
-                    wasSelected = !wasSelected
-                }
+                errorMessage = "Error message"
             )
         }
     }
@@ -113,14 +96,13 @@ fun OceanCheckbox(
     onSelected: (Boolean) -> Unit = { },
 ) {
     val interactionSource = remember { MutableInteractionSource() }
-    var isSelected by remember { mutableStateOf(selected) }
 
     Column(modifier = modifier.background(OceanColors.interfaceLightPure)
     ) {
         Row {
             OceanSelectableBox(
                 interactionSource = interactionSource,
-                selected = isSelected,
+                selected = selected,
                 unsettled = unsettled,
                 showError = errorMessage.isNotBlank(),
                 enabled = enabled,
@@ -130,8 +112,7 @@ fun OceanCheckbox(
                 label = label,
                 enabled = enabled,
                 onSelected = {
-                    isSelected = !isSelected
-                    onSelected(isSelected)
+                    onSelected(!selected)
                 },
             )
         }
@@ -146,3 +127,26 @@ fun OceanCheckbox(
     }
 }
 
+
+
+@Composable
+private fun AddCheckBox(
+    label: String,
+    selected: Boolean = false,
+    unsettled: Boolean = false,
+    enabled: Boolean = true,
+    errorMessage: String = "",
+) {
+    var wasSelected by remember { mutableStateOf(selected) }
+    OceanCheckbox(
+        label = label,
+        selected = wasSelected,
+        errorMessage = errorMessage,
+        enabled = enabled,
+        unsettled = unsettled,
+        onSelected = {
+            wasSelected = it
+            println("wasSelected: $wasSelected")
+        }
+    )
+}

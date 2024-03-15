@@ -2,6 +2,7 @@ package br.com.useblu.oceands.components.compose.list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,6 +21,7 @@ fun OceanCalloutListPreview() {
     val model = listOf(
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
+            description = "Descrição do item: <b> detalhadamente! </b>",
             iconType = OceanIcons.SHIELD_CHECK_OUTLINE,
             showIconBackground = false
         ),
@@ -43,7 +45,7 @@ fun OceanCalloutList(
     models: List<OceanUnorderedListItemModel>,
     modifier: Modifier = Modifier
 ) {
-    LazyColumn(
+    Column(
         modifier = modifier
             .background(
                 color = OceanColors.interfaceLightUp,
@@ -54,7 +56,7 @@ fun OceanCalloutList(
             ),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(models) {item ->
+        models.forEach { item ->
             OceanUnorderedListItem(item)
         }
     }

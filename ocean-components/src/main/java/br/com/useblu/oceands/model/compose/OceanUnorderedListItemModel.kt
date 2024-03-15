@@ -7,6 +7,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Immutable
 data class OceanUnorderedListItemModel(
     val title: String,
+    val description: String = "",
     val iconType: OceanIcons,
     val style: TextStyle? = null,
     val showIconBackground: Boolean = false

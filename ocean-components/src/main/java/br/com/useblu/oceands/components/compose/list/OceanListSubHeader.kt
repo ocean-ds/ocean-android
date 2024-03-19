@@ -33,9 +33,14 @@ fun OceanListSubHeaderPreview() {
                 subtitle = "Saldo do dia:"
             )
             OceanListSubHeader(
-                title = "Seg 16 Out 2023",
+                title = "Ter 17 Out 2023",
                 icon = OceanIcons.INFO_OUTLINE,
                 subtitle = "Opa tudo bem?"
+            )
+            OceanListSubHeader(
+                title = "Qua 18 Out 2023",
+                icon = OceanIcons.INFO_OUTLINE,
+                highlighted = "Highlighted value"
             )
         }
     }

@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTag
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
@@ -104,8 +104,8 @@ fun OceanTransactionListItem(
     tagType: OceanTagType = OceanTagType.Warning,
     time: String? = null,
     icon: OceanIcons? = null,
-    trailingIcon: OceanIcons? = null
-
+    trailingIcon: OceanIcons? = null,
+    showDivider: Boolean = true
 ) {
     Column {
         Row(
@@ -245,10 +245,10 @@ fun OceanTransactionListItem(
                     }
                 }
             }
-
-
         }
 
-        HorizontalDivider(color = OceanColors.interfaceLightDown)
+        if (showDivider) {
+            OceanDivider()
+        }
     }
 }

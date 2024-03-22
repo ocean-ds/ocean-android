@@ -182,6 +182,7 @@ fun OceanTextInput(
     modifier: Modifier = Modifier,
     labelColor: Color = OceanColors.interfaceDarkUp,
     errorText: String? = null,
+    helper: String? = null,
     placeholder: String = "",
     enabled: Boolean = true,
     onTextChanged: (String) -> Unit,
@@ -286,7 +287,15 @@ fun OceanTextInput(
                 Text(
                     text = errorText,
                     color = OceanColors.statusNegativePure,
-                    fontFamily = OceanFontFamily.BaseBold,
+                    fontFamily = OceanFontFamily.BaseMedium,
+                    fontSize = OceanFontSize.xxxs
+                )
+            } else if (!helper.isNullOrEmpty()) {
+                OceanSpacing.StackXXXS()
+                Text(
+                    text = helper,
+                    color = OceanColors.interfaceDarkUp,
+                    fontFamily = OceanFontFamily.BaseMedium,
                     fontSize = OceanFontSize.xxxs
                 )
             }

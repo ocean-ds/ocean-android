@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTag
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
@@ -82,7 +82,8 @@ fun OceanTransactionListItemPreview() {
             time = "Time",
             tagTitle = "Canceled",
             tagType = OceanTagType.Negative,
-            icon = OceanIcons.LOCK_CLOSED_SOLID
+            icon = OceanIcons.LOCK_CLOSED_SOLID,
+            trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID
         )
     }
 }
@@ -102,7 +103,9 @@ fun OceanTransactionListItem(
     tagTitle: String? = null,
     tagType: OceanTagType = OceanTagType.Warning,
     time: String? = null,
-    icon: OceanIcons? = null
+    icon: OceanIcons? = null,
+    trailingIcon: OceanIcons? = null,
+    showDivider: Boolean = true
 ) {
     Column {
         Row(
@@ -167,61 +170,85 @@ fun OceanTransactionListItem(
                 }
             }
 
-            Column(
-                horizontalAlignment = Alignment.End
+            Row(
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                if (primaryValue != null) {
-                    val color = when {
-                        valueIsHighlighted && valueIsCanceled -> OceanColors.interfaceDarkUp
-                        valueIsHighlighted && primaryValue > 0 -> OceanColors.statusPositiveDeep
-                        else -> OceanColors.interfaceDarkPure
-                    }
 
-                    var formattedValue = FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(primaryValue.toString())
-
-                    if (valueWithSignal) {
-                        if (primaryValue >= 0) {
-                            formattedValue = "+ $formattedValue"
+                Column(
+                    horizontalAlignment = Alignment.End
+                ) {
+                    if (primaryValue != null) {
+                        val color = when {
+                            valueIsHighlighted && valueIsCanceled -> OceanColors.interfaceDarkUp
+                            valueIsHighlighted && primaryValue > 0 -> OceanColors.statusPositiveDeep
+                            else -> OceanColors.interfaceDarkPure
                         }
-                    } else {
-                        formattedValue = formattedValue.replace("-", "")
+
+                        var formattedValue =
+                            FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(primaryValue.toString())
+
+                        if (valueWithSignal) {
+                            if (primaryValue >= 0) {
+                                formattedValue = "+ $formattedValue"
+                            }
+                        } else {
+                            formattedValue = formattedValue.replace("-", "")
+                        }
+                        Text(
+                            text = formattedValue,
+                            color = color,
+                            fontFamily = OceanFontFamily.BaseMedium,
+                            style = OceanTextStyle.description
+                        )
                     }
-                    Text(
-                        text = formattedValue,
-                        color = color,
-                        fontFamily = OceanFontFamily.BaseMedium,
-                        style = OceanTextStyle.description
-                    )
-                }
-                if (secondaryValue != null) {
-                    val color = OceanColors.interfaceDarkDown
-                    Text(
-                        text = secondaryValue.oceanFormatWithCurrency(),
-                        color = color,
-                        fontFamily = OceanFontFamily.BaseMedium,
-                        style = OceanTextStyle.description
-                    )
+                    if (secondaryValue != null) {
+                        val color = OceanColors.interfaceDarkDown
+                        Text(
+                            text = secondaryValue.oceanFormatWithCurrency(),
+                            color = color,
+                            fontFamily = OceanFontFamily.BaseMedium,
+                            style = OceanTextStyle.description
+                        )
+                    }
+
+                    if (tagTitle != null) {
+                        OceanSpacing.StackXXXS()
+                        OceanTag(
+                            label = tagTitle,
+                            type = tagType
+                        )
+                    }
+
+                    if (time != null) {
+                        OceanSpacing.StackXXXS()
+                        Text(
+                            text = time,
+                            style = OceanTextStyle.caption,
+                            fontFamily = OceanFontFamily.BaseMedium
+                        )
+                    }
                 }
 
-                if (tagTitle != null) {
-                    OceanSpacing.StackXXXS()
-                    OceanTag(
-                        label = tagTitle,
-                        type = tagType
-                    )
-                }
-
-                if (time != null) {
-                    OceanSpacing.StackXXXS()
-                    Text(
-                        text = time,
-                        style = OceanTextStyle.caption,
-                        fontFamily = OceanFontFamily.BaseMedium
-                    )
+                if (trailingIcon != null) {
+                    Box(
+                        modifier = Modifier
+                            .padding(start = 12.dp)
+                            .size(20.dp)
+                    ) {
+                        OceanIcon(
+                            iconType = trailingIcon,
+                            tint = OceanColors.interfaceDarkUp,
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(20.dp)
+                        )
+                    }
                 }
             }
         }
 
-        HorizontalDivider(color = OceanColors.interfaceLightDown)
+        if (showDivider) {
+            OceanDivider()
+        }
     }
 }

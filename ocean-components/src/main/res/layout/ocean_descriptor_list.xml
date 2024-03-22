@@ -9,10 +9,6 @@
         <import type="br.com.useblu.oceands.model.OceanDescriptorListItem" />
 
         <variable
-            name="title"
-            type="String" />
-
-        <variable
             name="entries"
             type="List&lt;OceanDescriptorListItem>" />
 

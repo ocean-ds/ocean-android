@@ -1,6 +1,6 @@
 [versions]
 gradle = "8.3.0"
-kotlinGradlePlugin = "1.9.22"
+kotlinGradlePlugin = "1.9.23"
 benchmarkBaselineProfileGradlePlugin = "1.2.3"
 benchmarkMacroJunit4 = "1.2.3"
 composeBom = "2024.02.01"

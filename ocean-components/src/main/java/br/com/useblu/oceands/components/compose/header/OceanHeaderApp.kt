@@ -263,9 +263,9 @@ fun Header(
     ) {
         Column(
             modifier = Modifier
-                .clickable { model.onClickTitle() }
                 .weight(1f)
                 .padding(horizontal = 16.dp)
+                .clickable { model.onClickTitle() }
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically

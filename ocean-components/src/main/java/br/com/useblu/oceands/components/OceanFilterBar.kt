@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,14 +24,16 @@ import br.com.useblu.oceands.model.Badge
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
 import br.com.useblu.oceands.model.OceanChip
+import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
+import br.com.useblu.oceands.model.OceanFilterChip
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Composable
 @Preview
 fun OceanFilterBarPreview() {
     OceanFilterBar(
-        filterList = listOf (
+        filterList = listOf(
             OceanBasicChip(
                 id = "0",
                 label = "Todos",
@@ -53,15 +54,12 @@ fun OceanFilterBarPreview() {
                 state = OceanChipItemState.INACTIVE_HOVER,
                 onClick = {},
             ),
-            OceanBasicChip(
+            OceanFilterChip(
                 id = "2",
                 label = "Canceladas",
-                badge = Badge(
-                    text = 2,
-                    type = OceanBadgeType.PRIMARY
-                ),
+                badge = null,
                 state = OceanChipItemState.INACTIVE_HOVER,
-                onClick = {},
+                filterOptions = OceanChipFilterOptions.SingleChoice("", emptyList(), {})
             ),
             OceanBasicChip(
                 id = "3",
@@ -72,7 +70,7 @@ fun OceanFilterBarPreview() {
                 ),
                 icon = OceanIcons.ADJUSTMENTS_OUTLINE,
                 state = OceanChipItemState.INACTIVE_HOVER,
-                onClick = {},
+                onClick = {}
             )
         )
     )
@@ -107,8 +105,8 @@ fun OceanFilterBar(
                         color = colorResource(R.color.ocean_color_interface_light_down)
                     )
                 }
-                OceanChip (
-                    model = itemModel,
+                OceanChip(
+                    model = itemModel
                 )
             }
         }

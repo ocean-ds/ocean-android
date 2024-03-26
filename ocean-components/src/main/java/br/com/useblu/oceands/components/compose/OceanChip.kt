@@ -54,6 +54,20 @@ private fun OceanChipPreview() {
                 onPrimaryButtonClick = {},
                 onSecondaryButtonClick = {}
             )
+        ),
+        OceanFilterChip(
+            label = "Filtro Teste",
+            id = "9999",
+            badge = Badge(5, OceanBadgeType.PRIMARY_INVERTED),
+            state = OceanChipItemState.DEFAULT,
+            filterOptions = OceanChipFilterOptions.MultipleChoice(
+                title = "Status do Pagamento",
+                optionsItems = emptyList(),
+                primaryButtonLabel = "Salvar",
+                secondaryButtonLabel = "Limpar",
+                onPrimaryButtonClick = {},
+                onSecondaryButtonClick = {}
+            )
         )
     )
 
@@ -147,7 +161,7 @@ fun OceanFilterChip(
             .clickable {
                 model.filterOptions.showBottomSheet(context)
             }
-            .padding(horizontal = 12.dp),
+            .padding(start = 12.dp, end = 8.dp),
         verticalAlignment = CenterVertically
     ) {
         Text(
@@ -165,6 +179,14 @@ fun OceanFilterChip(
                 size = OceanBadgeSize.Small
             )
         }
+
+        OceanSpacing.StackXXXS()
+
+        OceanIcon(
+            iconType = OceanIcons.CHEVRON_DOWN_SOLID,
+            modifier = Modifier.size(16.dp),
+            tint = getContentColor(model)
+        )
     }
 }
 

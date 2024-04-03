@@ -5,12 +5,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -189,6 +188,7 @@ private fun BottomSheetPreviewFactory(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OceanBottomSheet(
+    modifier: Modifier = Modifier.padding(16.dp),
     model: OceanBottomSheetModel,
     onDismiss: () -> Unit
 ) {
@@ -215,30 +215,28 @@ fun OceanBottomSheet(
         onDismissRequest = { onDismiss() },
         dragHandle = null
     ) {
-        if (model.isDismissible) {
-            IconButton(
-                onClick = {
-                    onClickDismiss()
-                },
-                modifier = Modifier
-                    .align(Alignment.End)
-                    .padding(top = 8.dp, bottom = 4.dp)
-                    .padding(end = 8.dp)
-            ) {
-                OceanIcon(
-                    iconType = OceanIcons.X_OUTLINE,
-                    tint = OceanColors.interfaceDarkUp,
-                    modifier = Modifier.padding(6.dp)
-                )
+        Row(
+            modifier = Modifier
+                .padding(top = 8.dp, bottom = 4.dp, end = 8.dp)
+                .height(40.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ){
+            if (model.isDismissible) {
+                IconButton(
+                    onClick = { onClickDismiss() },
+                ) {
+                    OceanIcon(
+                        iconType = OceanIcons.X_OUTLINE,
+                        tint = OceanColors.interfaceDarkUp,
+                        modifier = Modifier.padding(6.dp)
+                    )
+                }
             }
-        } else {
-            Spacer(modifier = Modifier.size(40.dp))
         }
 
         Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
+            modifier = modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             if (model.icon != null) {

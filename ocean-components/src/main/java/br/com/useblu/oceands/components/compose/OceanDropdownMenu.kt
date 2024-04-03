@@ -15,12 +15,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SheetState
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
@@ -35,6 +38,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.PopupProperties
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
@@ -131,6 +135,60 @@ fun OceanDropDownMenu(
     }
 }
 
+@Preview
+@Composable
+private fun DropdownMenuWithMaxPreview() {
+    Column(
+        modifier = Modifier
+            .background(color = OceanColors.interfaceLightPure)
+            .fillMaxWidth(),
+    ) {
+        DropdownMenuWithMaxWidth()
+    }
+}
+
+@Composable
+fun DropdownMenuWithMaxWidth() {
+    val expanded = remember { mutableStateOf(false) }
+    val items = listOf("Option 1", "Option 2", "Option 3", "Option 4", "Option 5")
+    val selectedIndex = remember { mutableStateOf(0) }
+
+    Box {
+        TextButton(onClick = { expanded.value = true }) {
+            OceanText(items[selectedIndex.value])
+        }
+
+        DropdownMenu(
+            expanded = expanded.value,
+            onDismissRequest = { expanded.value = false },
+            properties = PopupProperties(
+                dismissOnClickOutside = true,
+                dismissOnBackPress = true
+            )
+        ) {
+            items.forEachIndexed { index, s ->
+                DropdownMenuItem(
+                    text = {
+                        Row(
+                            modifier = Modifier.sizeIn(
+                                minWidth = DropdownMenuItemDefaultMinWidth,
+                                maxWidth = DropdownMenuItemDefaultMaxWidth,
+                                minHeight = DropdownMenuItemDefaultMinHeight
+                            ),
+                        ){
+                            OceanText(text = s, modifier = Modifier.fillMaxWidth())
+                        }
+                    },
+                    onClick = {
+                        selectedIndex.value = index
+                        expanded.value = false
+                    }
+                )
+            }
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OceanDropdown(
@@ -208,6 +266,7 @@ private fun OceanDropdown(
                 ExposedDropdownMenu(
                     modifier = Modifier
                         .background(color = OceanColors.interfaceLightPure)
+                        .fillMaxWidth()
                         .height(200.dp),
                     expanded = expanded,
                     onDismissRequest = { expanded = false }

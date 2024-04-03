@@ -1,21 +1,17 @@
 package br.com.useblu.oceands.components.compose
 
 import android.widget.Toast
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -23,7 +19,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SheetState
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
@@ -38,7 +33,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.PopupProperties
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
@@ -135,60 +129,6 @@ fun OceanDropDownMenu(
     }
 }
 
-@Preview
-@Composable
-private fun DropdownMenuWithMaxPreview() {
-    Column(
-        modifier = Modifier
-            .background(color = OceanColors.interfaceLightPure)
-            .fillMaxWidth(),
-    ) {
-        DropdownMenuWithMaxWidth()
-    }
-}
-
-@Composable
-fun DropdownMenuWithMaxWidth() {
-    val expanded = remember { mutableStateOf(false) }
-    val items = listOf("Option 1", "Option 2", "Option 3", "Option 4", "Option 5")
-    val selectedIndex = remember { mutableStateOf(0) }
-
-    Box {
-        TextButton(onClick = { expanded.value = true }) {
-            OceanText(items[selectedIndex.value])
-        }
-
-        DropdownMenu(
-            expanded = expanded.value,
-            onDismissRequest = { expanded.value = false },
-            properties = PopupProperties(
-                dismissOnClickOutside = true,
-                dismissOnBackPress = true
-            )
-        ) {
-            items.forEachIndexed { index, s ->
-                DropdownMenuItem(
-                    text = {
-                        Row(
-                            modifier = Modifier.sizeIn(
-                                minWidth = DropdownMenuItemDefaultMinWidth,
-                                maxWidth = DropdownMenuItemDefaultMaxWidth,
-                                minHeight = DropdownMenuItemDefaultMinHeight
-                            ),
-                        ){
-                            OceanText(text = s, modifier = Modifier.fillMaxWidth())
-                        }
-                    },
-                    onClick = {
-                        selectedIndex.value = index
-                        expanded.value = false
-                    }
-                )
-            }
-        }
-    }
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OceanDropdown(
@@ -213,80 +153,72 @@ private fun OceanDropdown(
         ExposedDropdownMenuBox(
             modifier = Modifier
                 .padding(vertical = 8.dp)
-                .animateContentSize(
-                    animationSpec = spring(
-                        dampingRatio = 0.8f,
-                        stiffness = Spring.StiffnessVeryLow
-                    )
+                .wrapContentSize()
+                .border(
+                    border = BorderStroke(
+                        width = 1.dp,
+                        color = OceanColors.interfaceLightDown
+                    ),
+                    shape = RoundedCornerShape(
+                        topStart = 8.dp, topEnd = 8.dp,
+                        bottomStart = if (expanded) 0.dp else 8.dp,
+                        bottomEnd = if (expanded) 0.dp else 8.dp
+                    ),
                 ),
             expanded = expanded,
             onExpandedChange = { expanded = it }
         ) {
-            Box(
+            Row(
                 modifier = Modifier
                     .menuAnchor()
                     .height(56.dp)
-                    .border(
-                        border = BorderStroke(
-                            width = 1.dp,
-                            color = OceanColors.interfaceLightDown
-                        ),
-                        shape = RoundedCornerShape(
-                            topStart = 8.dp, topEnd = 8.dp,
-                            bottomStart = if (expanded) 0.dp else 8.dp,
-                            bottomEnd = if (expanded) 0.dp else 8.dp
-                        ),
-                    ),
-                contentAlignment = Alignment.CenterStart
+                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp)
-                        .fillMaxWidth(),
-                ) {
-                    OceanText(
-                        modifier = Modifier.weight(9f),
-                        text = itemSelected.ifBlank { defaultOption },
-                        style = TextStyle(
-                            color = OceanColors.interfaceDarkDeep,
-                            fontFamily = OceanFontFamily.BaseRegular,
-                            fontSize = OceanFontSize.xs
-                        ),
-                        maxLines = 1
+                OceanText(
+                    modifier = Modifier.weight(9f),
+                    text = itemSelected.ifBlank { defaultOption },
+                    style = TextStyle(
+                        color = OceanColors.interfaceDarkDeep,
+                        fontFamily = OceanFontFamily.BaseRegular,
+                        fontSize = OceanFontSize.xs
+                    ),
+                    maxLines = 1
+                )
+                Icon(
+                    modifier = Modifier.weight(1f),
+                    painter = painterResource(
+                        id = if (expanded) OceanIcons.CHEVRON_UP_OUTLINE.icon
+                        else OceanIcons.CHEVRON_DOWN_OUTLINE.icon
+                    ),
+                    contentDescription = ""
+                )
+            }
+
+            DropdownMenu(
+                modifier = Modifier
+                    .background(color = OceanColors.interfaceLightPure)
+                    .exposedDropdownSize()
+                    .height(200.dp),
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                options.forEachIndexed { index, item ->
+                    DropdownMenuItem(
+                        contentPadding = PaddingValues(16.dp),
+                        text = {
+                            OceanText(
+                                text = item,
+                                style = OceanTextStyle.paragraph
+                            )
+                        },
+                        onClick = {
+                            expanded = false
+                            itemSelected = item
+                            onItemSelected(index)
+                        }
                     )
-                    Icon(
-                        modifier = Modifier.weight(1f),
-                        painter = painterResource(
-                            id = if (expanded) OceanIcons.CHEVRON_UP_OUTLINE.icon
-                            else OceanIcons.CHEVRON_DOWN_OUTLINE.icon
-                        ),
-                        contentDescription = ""
-                    )
-                }
-                ExposedDropdownMenu(
-                    modifier = Modifier
-                        .background(color = OceanColors.interfaceLightPure)
-                        .fillMaxWidth()
-                        .height(200.dp),
-                    expanded = expanded,
-                    onDismissRequest = { expanded = false }
-                ) {
-                    options.forEachIndexed { index, item ->
-                        DropdownMenuItem(
-                            contentPadding = PaddingValues(16.dp),
-                            text = {
-                                OceanText(
-                                    text = item,
-                                    style = OceanTextStyle.paragraph
-                                )
-                            },
-                            onClick = {
-                                expanded = false
-                                itemSelected = item
-                                onItemSelected(index)
-                            }
-                        )
-                    }
                 }
             }
         }
@@ -349,7 +281,7 @@ private fun OceanBottomSheetDropdown(
             text = label,
             style = OceanTextStyle.description
         )
-        Box(
+        Row (
             modifier = Modifier
                 .padding(vertical = 8.dp)
                 .border(
@@ -362,7 +294,7 @@ private fun OceanBottomSheetDropdown(
                 .height(56.dp)
                 .fillMaxWidth()
                 .clickable { showBottomSheet = true },
-            contentAlignment = Alignment.CenterStart
+            verticalAlignment = Alignment.CenterVertically
 
         ) {
             Row(

@@ -32,6 +32,8 @@ private fun TextStylePreview() {
         Text(text = "Description", style = OceanTextStyle.description)
         Text(text = "Caption", style = OceanTextStyle.caption)
         Text(text = "Lead", style = OceanTextStyle.lead)
+        Text(text = "Error", style = OceanTextStyle.error)
+        Text(text = "Hint", style = OceanTextStyle.hint)
     }
 }
 
@@ -57,6 +59,18 @@ object OceanTextStyle {
         color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular,
         fontSize = OceanFontSize.xxs
+    )
+
+    val error @Composable get() = TextStyle(
+        color = OceanColors.statusNegativePure,
+        fontFamily = OceanFontFamily.BaseMedium,
+        fontSize = OceanFontSize.xxxs
+    )
+
+    val hint @Composable get() = TextStyle(
+        color = OceanColors.interfaceDarkUp,
+        fontFamily = OceanFontFamily.BaseRegular,
+        fontSize = OceanFontSize.xxxs
     )
 
     val caption @Composable get() = TextStyle(

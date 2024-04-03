@@ -60,11 +60,28 @@ fun OceanDropDownMenuPreview() {
         ) {
             val context = LocalContext.current
             val items = List(5) { "Item ${it + 1}" }
+
             OceanDropDownMenu(
-                label = "Label",
+                label = "Dropdown behavior",
                 hint = "Hint",
                 errorText = "",
                 defaultOption = "Default Option",
+                options = items,
+            ) { position ->
+                position?.let {
+                    Toast
+                        .makeText(context, "${items[it]} selected", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+
+            OceanSpacing.StackSM()
+
+            OceanDropDownMenu(
+                label = "BottomSheet behavior",
+                hint = "Hint",
+                defaultOption = "Default Option",
+                behavior = OceanDropdownBehavior.BottomSheet("Escolha uma opção"),
                 options = items,
             ) { position ->
                 position?.let {
@@ -157,7 +174,8 @@ private fun OceanDropdown(
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
-                        color = OceanColors.interfaceLightDown
+                        color = if(errorText.isBlank()) OceanColors.interfaceLightDown
+                                else OceanColors.statusNegativePure
                     ),
                     shape = RoundedCornerShape(
                         topStart = 8.dp, topEnd = 8.dp,
@@ -287,7 +305,8 @@ private fun OceanBottomSheetDropdown(
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
-                        color = OceanColors.interfaceLightDown
+                        color = if(errorText.isBlank()) OceanColors.interfaceLightDown
+                                else OceanColors.statusNegativePure
                     ),
                     shape = RoundedCornerShape(8.dp),
                 )

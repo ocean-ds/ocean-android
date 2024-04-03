@@ -115,7 +115,7 @@ fun OceanDropDownMenuPreview() {
 fun OceanDropDownMenu(
     modifier: Modifier = Modifier,
     label: String,
-    hint: String,
+    hint: String = "",
     defaultOption: String,
     options: List<String>,
     errorText: String = "",
@@ -246,7 +246,8 @@ private fun OceanDropdown(
                 text = errorText,
                 style = OceanTextStyle.error
             )
-        } else {
+        }
+        if(errorText.isBlank() && hint.isNotBlank()){
             OceanText(
                 text = hint,
                 style = OceanTextStyle.hint
@@ -344,7 +345,8 @@ private fun OceanBottomSheetDropdown(
                 text = errorText,
                 style = OceanTextStyle.error
             )
-        } else {
+        }
+        if(errorText.isBlank() && hint.isNotBlank()){
             OceanText(
                 text = hint,
                 style = OceanTextStyle.hint

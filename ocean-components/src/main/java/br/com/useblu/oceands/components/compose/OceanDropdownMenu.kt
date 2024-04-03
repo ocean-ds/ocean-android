@@ -273,7 +273,7 @@ private fun OceanBottomSheetDropdown(
 
     if (showBottomSheet) {
         OceanBottomSheet(
-            modifier = Modifier,
+            modifier = Modifier.padding(horizontal = 2.dp),
             model = OceanBottomSheetModel(
                 customContent = bottomSheetContent(
                     title = title,
@@ -381,7 +381,7 @@ private fun bottomSheetContent(
                             shape = RoundedCornerShape(8.dp)
                         )
                         .padding(horizontal = 16.dp, vertical = 8.dp)
-                        .height(56.dp)
+                        .height(40.dp)
                         .fillMaxWidth()
                         .clickable {
                             itemSelected = index
@@ -403,7 +403,7 @@ private fun bottomSheetContent(
                     modifier = Modifier
                         .padding(horizontal = 16.dp, vertical = 8.dp)
                         .background(color = OceanColors.interfaceLightPure)
-                        .height(56.dp)
+                        .height(40.dp)
                         .fillMaxWidth()
                         .clickable {
                             itemSelected = index

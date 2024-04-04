@@ -89,7 +89,9 @@ fun OceanHeaderAppPreview() {
         modelPreview.value = modelPreview.value.copy(
             balanceBluModel = modelPreview.value.balanceBluModel.copy(
                 onClickExpandScroll = {
-                    modelPreview.value = modelPreview.value.copy(isHeaderCollapsed = false)
+                    modelPreview.value = modelPreview.value.copy(
+                        isHeaderCollapsed = false
+                    )
                 }
             )
         )
@@ -100,7 +102,10 @@ fun OceanHeaderAppPreview() {
             Spacer(modifier = Modifier.size(16.dp))
             Button(
                 onClick = {
-                    modelPreview.value = modelPreview.value.copy(isHeaderCollapsed = !modelPreview.value.isHeaderCollapsed)
+                    modelPreview.value =
+                        modelPreview.value.copy(
+                            isHeaderCollapsed = !modelPreview.value.isHeaderCollapsed
+                        )
                 }
             ) {
                 Text(text = "Toggle collapsed")
@@ -124,7 +129,9 @@ private fun OceanHeaderAppPreviewHideBalance() {
             Spacer(modifier = Modifier.size(16.dp))
             Button(
                 onClick = {
-                    modelPreview.value = modelPreview.value.copy(isHeaderCollapsed = !modelPreview.value.isHeaderCollapsed)
+                    modelPreview.value = modelPreview.value.copy(
+                        isHeaderCollapsed = !modelPreview.value.isHeaderCollapsed
+                    )
                 }
             ) {
                 Text(text = "Toggle collapsed")
@@ -204,6 +211,7 @@ fun OceanHeaderApp(
                             }
                         )
                     }
+
                     1 -> {
                         OceanBalanceOthersCard(model = model.balanceOthersModel)
                     }
@@ -297,12 +305,13 @@ fun Header(
             )
         }
 
-        OceanBluPlus(
-            bluPlusValue = model.bluPlusValue,
-            onClick = model.onClickBluPlus
-        )
-
-        Spacer(modifier = Modifier.size(4.dp))
+        if (!model.hideBluPlus) {
+            OceanBluPlus(
+                bluPlusValue = model.bluPlusValue,
+                onClick = model.onClickBluPlus
+            )
+            Spacer(modifier = Modifier.size(4.dp))
+        }
 
         HeaderMenu(
             model.badgeCount,

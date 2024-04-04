@@ -305,7 +305,7 @@ fun Header(
             )
         }
 
-        if (model.hideBluPlus.not()) {
+        if (!model.hideBluPlus) {
             OceanBluPlus(
                 bluPlusValue = model.bluPlusValue,
                 onClick = model.onClickBluPlus

@@ -11,7 +11,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
@@ -333,7 +332,7 @@ fun OceanAlertDefaultStyle(
             tint = style.iconTint.invoke(),
             contentDescription = null,
         )
-        Text(
+        OceanText(
             text = description,
             style = style.descriptionStyle.invoke(),
             color = style.descriptionColor.invoke(),
@@ -369,13 +368,13 @@ fun OceanAlertEntitledShort(
         Column(
             modifier = Modifier.weight(1f)
         ) {
-            Text(
+            OceanText(
                 text = title,
                 style = style.titleStyle.invoke(),
                 color = style.titleColor.invoke(),
                 maxLines = 2
             )
-            Text(
+            OceanText(
                 text = description,
                 style = style.descriptionStyle.invoke(),
                 color = style.descriptionColor.invoke(),
@@ -431,14 +430,14 @@ fun OceanAlertEntitledLong(
                 tint = style.iconTint.invoke(),
                 contentDescription = null,
             )
-            Text(
+            OceanText(
                 text = title,
                 style = style.titleStyle.invoke(),
                 color = style.titleColor.invoke(),
                 maxLines = 2,
             )
         }
-        Text(
+        OceanText(
             text = description,
             style = style.descriptionStyle.invoke(),
             color = style.descriptionColor.invoke(),
@@ -475,14 +474,14 @@ fun OceanAlertLabeled(
         }
         Column {
             if (title != null) {
-                Text(
+                OceanText(
                     text = title,
                     style = style.titleStyle.invoke(),
                     color = style.titleColor.invoke(),
                     maxLines = 2,
                 )
             }
-            Text(
+            OceanText(
                 text = description,
                 style = style.descriptionStyle.invoke(),
                 color = style.descriptionColor.invoke(),
@@ -524,14 +523,14 @@ fun OceanAlertBookmarked(
                 tint = style.iconTint.invoke(),
                 contentDescription = null,
             )
-            Text(
+            OceanText(
                 text = title,
                 style = style.titleStyle.invoke(),
                 color = style.titleColor.invoke(),
                 maxLines = 2,
             )
         }
-        Text(
+        OceanText(
             text = description.parseAsHtml().toString(),
             style = style.descriptionStyle.invoke(),
             color = style.descriptionColor.invoke(),

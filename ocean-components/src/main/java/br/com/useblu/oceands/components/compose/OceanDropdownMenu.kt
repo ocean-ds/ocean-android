@@ -120,7 +120,7 @@ fun OceanDropDownMenu(
     options: List<String>,
     errorText: String = "",
     behavior: OceanDropdownBehavior = OceanDropdownBehavior.Dropdown,
-    onItemSelected: (Int?) -> Unit
+    onItemSelected: (Int) -> Unit
 ) {
     when (behavior) {
         is OceanDropdownBehavior.Dropdown -> OceanDropdown(

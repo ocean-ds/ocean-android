@@ -1,5 +1,6 @@
 [versions]
 gradle = "8.3.0"
+junitVersion = "4.13.2"
 kotlinGradlePlugin = "1.9.23"
 benchmarkBaselineProfileGradlePlugin = "1.2.3"
 benchmarkMacroJunit4 = "1.2.3"
@@ -19,6 +20,7 @@ androidx-uiautomator = { module = "androidx.test.uiautomator:uiautomator", versi
 benchmark-baseline-profile-gradle-plugin = { module = "androidx.benchmark:benchmark-baseline-profile-gradle-plugin", version.ref = "benchmarkBaselineProfileGradlePlugin" }
 constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintLayout" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+junit = { module = "junit:junit", version.ref = "junitVersion" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }
 lifecycleExtensions = { module = "androidx.lifecycle:lifecycle-extensions", version = "2.2.0" }
 recyclerView = { module = "androidx.recyclerview:recyclerview", version = "1.2.1" }

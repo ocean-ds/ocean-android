@@ -72,14 +72,17 @@ sealed interface OceanInputType {
             }
 
             val result = BigDecimal(digitsString)
-                .divide(BigDecimal(100))
-                .setScale(2, RoundingMode.HALF_DOWN)
+                .divide(BigDecimal(100), 2, RoundingMode.HALF_DOWN)
 
-            return FormatadorValor.VALOR.formata(result.toPlainString())
+            return result.toPlainString()
         }
 
         override fun transformForInput(text: String) = sanitizeText(text)
         override fun transformForOutput(text: String) = sanitizeText(text)
+
+        override fun getVisualTransformation(): VisualTransformation {
+            return CurrencyMaskVisualTransformation()
+        }
     }
 
     data object BankBillet : OceanInputType {

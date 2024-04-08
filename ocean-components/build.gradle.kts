@@ -117,6 +117,8 @@ dependencies {
     androidTestImplementation(libs.compose.uiTestJunit4)
     debugImplementation(libs.compose.uiTestManifest)
     implementation(libs.compose.activity)
+
+    testImplementation(libs.junit)
 }
 
 baselineProfile {

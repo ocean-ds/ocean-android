@@ -121,7 +121,8 @@ private fun CurrencyInputPreview() {
             .background(Color.White)
             .padding(8.dp)
     ) {
-        CreateOceanTextInputPreview("", OceanInputType.Currency())
+        CreateOceanTextInputPreview("12123123456", OceanInputType.Currency())
+        CreateOceanTextInputPreview("12", OceanInputType.Currency())
         CreateOceanTextInputPreview("90000", OceanInputType.Currency())
         CreateOceanTextInputPreview("900.00", OceanInputType.Currency(false))
         CreateOceanTextInputPreview("900,00", OceanInputType.Currency(true, showZeroValue = true))
@@ -232,14 +233,15 @@ fun OceanTextInput(
                     ),
                 onValueChange = { changedField ->
                     val modifiedValue = changedField.text
+                    val outputValue = oceanInputType.transformForOutput(modifiedValue)
 
-                    textFieldSelection = if (oceanInputType.alwaysGoToEndOfInput()) {
-                        TextRange(modifiedValue.length)
+                    textFieldSelection = if (value != outputValue && oceanInputType.alwaysGoToEndOfInput()) {
+                        TextRange(outputValue.length)
                     } else {
                         changedField.selection
                     }
 
-                    onTextChanged(oceanInputType.transformForOutput(changedField.text))
+                    onTextChanged(outputValue)
                 },
                 enabled = enabled,
                 singleLine = singleLine,

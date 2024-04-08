@@ -97,7 +97,8 @@ fun OceanCheckbox(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
-    Column(modifier = modifier.background(OceanColors.interfaceLightPure)
+    Column(
+        modifier = modifier.background(OceanColors.interfaceLightPure)
     ) {
         Row {
             OceanSelectableBox(

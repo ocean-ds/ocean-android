@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTag
+import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.extensions.oceanFormatWithCurrency
 import br.com.useblu.oceands.model.OceanTagType
@@ -85,6 +86,25 @@ fun OceanTransactionListItemPreview() {
             icon = OceanIcons.LOCK_CLOSED_SOLID,
             trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID
         )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            primaryValue = 10045.32,
+            tagTitle = "Expiried",
+            tagType = OceanTagType.Neutral,
+            showCheckbox = true,
+            isCheckboxSelected = false,
+            isDisabled = true
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            primaryValue = 10045.32,
+            tagTitle = "Processando",
+            tagType = OceanTagType.NeutralPrimary,
+            showCheckbox = true,
+            isCheckboxSelected = true
+        )
     }
 }
 
@@ -105,7 +125,10 @@ fun OceanTransactionListItem(
     time: String? = null,
     icon: OceanIcons? = null,
     trailingIcon: OceanIcons? = null,
-    showDivider: Boolean = true
+    showDivider: Boolean = true,
+    showCheckbox: Boolean = false,
+    isCheckboxSelected: Boolean = false,
+    isDisabled: Boolean = false
 ) {
     Column {
         Row(
@@ -114,6 +137,14 @@ fun OceanTransactionListItem(
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            if (showCheckbox) {
+                OceanSelectableBox(
+                    selected = isCheckboxSelected,
+                    enabled = !isDisabled,
+                    modifier = Modifier.padding(end = 16.dp)
+                )
+            }
+
             if (icon != null) {
                 Box(
                     modifier = Modifier
@@ -139,7 +170,7 @@ fun OceanTransactionListItem(
                 if (highlightedLabel != null) {
                     Text(
                         text = highlightedLabel,
-                        color = OceanColors.brandPrimaryDeep,
+                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.brandPrimaryDeep,
                         style = OceanTextStyle.captionBold
                     )
 
@@ -150,14 +181,15 @@ fun OceanTransactionListItem(
                     text = primaryLabel,
                     fontSize = 16.sp,
                     fontFamily = OceanFontFamily.BaseRegular,
-                    color = OceanColors.interfaceDarkPure
+                    color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure
                 )
 
                 if (secondaryLabel != null) {
                     OceanSpacing.StackXXXS()
                     Text(
                         text = secondaryLabel,
-                        style = OceanTextStyle.description
+                        style = OceanTextStyle.description,
+                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown
                     )
                 }
 
@@ -165,85 +197,75 @@ fun OceanTransactionListItem(
                     OceanSpacing.StackXXS()
                     Text(
                         text = dimmedLabel,
-                        style = OceanTextStyle.caption
+                        style = OceanTextStyle.caption,
+                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown
                     )
                 }
             }
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically
+            Column(
+                horizontalAlignment = Alignment.End
             ) {
+                if (primaryValue != null) {
+                    val color = when {
+                        isDisabled || valueIsHighlighted && valueIsCanceled -> OceanColors.interfaceDarkUp
+                        valueIsHighlighted && primaryValue > 0 -> OceanColors.statusPositiveDeep
+                        else -> OceanColors.interfaceDarkPure
+                    }
 
-                Column(
-                    horizontalAlignment = Alignment.End
-                ) {
-                    if (primaryValue != null) {
-                        val color = when {
-                            valueIsHighlighted && valueIsCanceled -> OceanColors.interfaceDarkUp
-                            valueIsHighlighted && primaryValue > 0 -> OceanColors.statusPositiveDeep
-                            else -> OceanColors.interfaceDarkPure
+                    var formattedValue =
+                        FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(primaryValue.toString())
+
+                    if (valueWithSignal) {
+                        if (primaryValue >= 0) {
+                            formattedValue = "+ $formattedValue"
                         }
-
-                        var formattedValue =
-                            FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(primaryValue.toString())
-
-                        if (valueWithSignal) {
-                            if (primaryValue >= 0) {
-                                formattedValue = "+ $formattedValue"
-                            }
-                        } else {
-                            formattedValue = formattedValue.replace("-", "")
-                        }
-                        Text(
-                            text = formattedValue,
-                            color = color,
-                            fontFamily = OceanFontFamily.BaseMedium,
-                            style = OceanTextStyle.description
-                        )
+                    } else {
+                        formattedValue = formattedValue.replace("-", "")
                     }
-                    if (secondaryValue != null) {
-                        val color = OceanColors.interfaceDarkDown
-                        Text(
-                            text = secondaryValue.oceanFormatWithCurrency(),
-                            color = color,
-                            fontFamily = OceanFontFamily.BaseMedium,
-                            style = OceanTextStyle.description
-                        )
-                    }
-
-                    if (tagTitle != null) {
-                        OceanSpacing.StackXXXS()
-                        OceanTag(
-                            label = tagTitle,
-                            type = tagType
-                        )
-                    }
-
-                    if (time != null) {
-                        OceanSpacing.StackXXXS()
-                        Text(
-                            text = time,
-                            style = OceanTextStyle.caption,
-                            fontFamily = OceanFontFamily.BaseMedium
-                        )
-                    }
+                    Text(
+                        text = formattedValue,
+                        color = color,
+                        fontFamily = OceanFontFamily.BaseMedium,
+                        style = OceanTextStyle.description
+                    )
                 }
 
-                if (trailingIcon != null) {
-                    Box(
-                        modifier = Modifier
-                            .padding(start = 12.dp)
-                            .size(20.dp)
-                    ) {
-                        OceanIcon(
-                            iconType = trailingIcon,
-                            tint = OceanColors.interfaceDarkUp,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(20.dp)
-                        )
-                    }
+                if (secondaryValue != null) {
+                    Text(
+                        text = secondaryValue.oceanFormatWithCurrency(),
+                        color = OceanColors.interfaceDarkDown,
+                        fontFamily = OceanFontFamily.BaseMedium,
+                        style = OceanTextStyle.description
+                    )
                 }
+
+                if (tagTitle != null) {
+                    OceanSpacing.StackXXXS()
+                    OceanTag(
+                        label = tagTitle,
+                        type = tagType
+                    )
+                }
+
+                if (time != null) {
+                    OceanSpacing.StackXXXS()
+                    Text(
+                        text = time,
+                        style = OceanTextStyle.caption,
+                        fontFamily = OceanFontFamily.BaseMedium
+                    )
+                }
+            }
+
+            if (trailingIcon != null) {
+                OceanIcon(
+                    iconType = trailingIcon,
+                    tint = OceanColors.interfaceDarkUp,
+                    modifier = Modifier
+                        .padding(start = 12.dp)
+                        .size(20.dp)
+                )
             }
         }
 

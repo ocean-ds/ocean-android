@@ -79,6 +79,7 @@ fun SelectableBoxPreview() {
 
 @Composable
 internal fun OceanSelectableBox(
+    modifier: Modifier = Modifier,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     selected: Boolean = false,
     unsettled: Boolean = false,
@@ -117,7 +118,7 @@ internal fun OceanSelectableBox(
     }
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(20.dp)
             .padding(1.dp)
             .background(OceanColors.interfaceLightPure)

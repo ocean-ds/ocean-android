@@ -5,6 +5,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
+import br.com.concrete.canarinho.formatador.FormatadorValor
 import kotlin.math.absoluteValue
 
 class CurrencyMaskVisualTransformation : VisualTransformation {
@@ -13,11 +14,7 @@ class CurrencyMaskVisualTransformation : VisualTransformation {
             return TransformedText(text, OffsetMapping.Identity)
         }
 
-        val chunks = text.reversed().chunked(3)
-        val decimalChunk = chunks.first().replace('.', ',')
-        val remaingChunks = chunks.drop(1).joinToString(".")
-        val formattedText = (decimalChunk + remaingChunks).reversed()
-
+        val formattedText = FormatadorValor.VALOR.formata(text.text)
         return TransformedText(AnnotatedString(formattedText), offsetTranslator(text.text, formattedText))
     }
 

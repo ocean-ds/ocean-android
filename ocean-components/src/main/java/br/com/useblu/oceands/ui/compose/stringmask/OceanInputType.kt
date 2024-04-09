@@ -26,7 +26,7 @@ sealed interface OceanInputType {
 
     fun alwaysGoToEndOfInput(): Boolean = false
 
-    fun getPrefixComposable(): @Composable (() -> Unit)? = null
+    fun getPrefixComposable(value: String): @Composable (() -> Unit)? = null
 
     fun getVisualTransformation(): VisualTransformation = VisualTransformation.None
 
@@ -43,8 +43,8 @@ sealed interface OceanInputType {
     ) : OceanInputType {
         override fun getKeyboardType() = KeyboardType.Number
 
-        override fun getPrefixComposable(): @Composable (() -> Unit)? {
-            if (!showCurrencySymbol) return null
+        override fun getPrefixComposable(value: String): @Composable (() -> Unit)? {
+            if (!showCurrencySymbol || (value.isBlank() && !showZeroValue)) return null
 
             return {
                 Text(

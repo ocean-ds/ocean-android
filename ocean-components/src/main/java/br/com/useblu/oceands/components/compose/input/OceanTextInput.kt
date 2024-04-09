@@ -121,11 +121,13 @@ private fun CurrencyInputPreview() {
             .background(Color.White)
             .padding(8.dp)
     ) {
+        CreateOceanTextInputPreview("", OceanInputType.Currency())
         CreateOceanTextInputPreview("12123123456", OceanInputType.Currency())
         CreateOceanTextInputPreview("12", OceanInputType.Currency())
         CreateOceanTextInputPreview("90000", OceanInputType.Currency())
         CreateOceanTextInputPreview("900.00", OceanInputType.Currency(false))
         CreateOceanTextInputPreview("900,00", OceanInputType.Currency(true, showZeroValue = true))
+        CreateOceanTextInputPreview("", OceanInputType.Currency(true, showZeroValue = true))
     }
 }
 
@@ -347,7 +349,7 @@ private fun OceanTextInputDecorationBox(
         placeholder = placeholderCompose,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
-        prefix = oceanInputType.getPrefixComposable(),
+        prefix = oceanInputType.getPrefixComposable(value),
         singleLine = singleLine,
         enabled = enabled,
         isError = !errorText.isNullOrEmpty(),

@@ -10,7 +10,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.concrete.canarinho.formatador.Formatador
-import br.com.concrete.canarinho.formatador.FormatadorValor
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import java.math.BigDecimal
@@ -27,7 +26,7 @@ sealed interface OceanInputType {
 
     fun alwaysGoToEndOfInput(): Boolean = false
 
-    fun getPrefixComposable(): @Composable (() -> Unit)? = null
+    fun getPrefixComposable(value: String): @Composable (() -> Unit)? = null
 
     fun getVisualTransformation(): VisualTransformation = VisualTransformation.None
 
@@ -44,8 +43,8 @@ sealed interface OceanInputType {
     ) : OceanInputType {
         override fun getKeyboardType() = KeyboardType.Number
 
-        override fun getPrefixComposable(): @Composable (() -> Unit)? {
-            if (!showCurrencySymbol) return null
+        override fun getPrefixComposable(value: String): @Composable (() -> Unit)? {
+            if (!showCurrencySymbol || (value.isBlank() && !showZeroValue)) return null
 
             return {
                 Text(
@@ -67,19 +66,22 @@ sealed interface OceanInputType {
 
             if (digitsString.isEmpty() || digitsString.all { it == '0' }) {
                 return if (showZeroValue) {
-                    FormatadorValor.VALOR.formata("000")
+                    "0.00"
                 } else ""
             }
 
             val result = BigDecimal(digitsString)
-                .divide(BigDecimal(100))
-                .setScale(2, RoundingMode.HALF_DOWN)
+                .divide(BigDecimal(100), 2, RoundingMode.HALF_DOWN)
 
-            return FormatadorValor.VALOR.formata(result.toPlainString())
+            return result.toPlainString()
         }
 
         override fun transformForInput(text: String) = sanitizeText(text)
         override fun transformForOutput(text: String) = sanitizeText(text)
+
+        override fun getVisualTransformation(): VisualTransformation {
+            return CurrencyMaskVisualTransformation()
+        }
     }
 
     data object BankBillet : OceanInputType {

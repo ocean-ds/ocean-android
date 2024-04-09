@@ -10,7 +10,6 @@ class CurrencyMaskVisualTransformationTest {
     @Test
     fun testOriginalToTransformed_123456() {
         val offsetMapping = currencyMask.offsetTranslator("1234.56", "1.234,56")
-        // 1.234,56
 
         Assert.assertEquals(0, offsetMapping.originalToTransformed(0))
         Assert.assertEquals(1, offsetMapping.originalToTransformed(1))
@@ -25,8 +24,6 @@ class CurrencyMaskVisualTransformationTest {
     @Test
     fun testOriginalToTransformed_12123123456() {
         val offsetMapping = currencyMask.offsetTranslator("121231234.56", "121.231.234,56")
-        // 121231234.56
-        // 121.231.234,56
 
         Assert.assertEquals(0, offsetMapping.originalToTransformed(0))
         Assert.assertEquals(1, offsetMapping.originalToTransformed(1))
@@ -49,8 +46,6 @@ class CurrencyMaskVisualTransformationTest {
     @Test
     fun testTransformedToOriginal_123456() {
         val offsetMapping = currencyMask.offsetTranslator("1234.56", "1.234,56")
-        // 1.234,56
-        // 1234.56
 
         Assert.assertEquals(0, offsetMapping.transformedToOriginal(0))
         Assert.assertEquals(1, offsetMapping.transformedToOriginal(1))
@@ -67,8 +62,6 @@ class CurrencyMaskVisualTransformationTest {
     @Test
     fun testTransformedToOriginal_12123123456() {
         val offsetMapping = currencyMask.offsetTranslator("121231234.56", "121.231.234,56")
-        // 121 231 234.56
-        // 121.231.234,56
 
         Assert.assertEquals(0, offsetMapping.transformedToOriginal(0))
         Assert.assertEquals(1, offsetMapping.transformedToOriginal(1))

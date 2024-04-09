@@ -10,7 +10,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.concrete.canarinho.formatador.Formatador
-import br.com.concrete.canarinho.formatador.FormatadorValor
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import java.math.BigDecimal
@@ -67,7 +66,7 @@ sealed interface OceanInputType {
 
             if (digitsString.isEmpty() || digitsString.all { it == '0' }) {
                 return if (showZeroValue) {
-                    FormatadorValor.VALOR.formata("000")
+                    "0.00"
                 } else ""
             }
 

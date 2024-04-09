@@ -13,6 +13,7 @@ class CurrencyMaskVisualTransformationTest {
         Assert.assertEquals("1.234.567,89", currencyMask.filter(AnnotatedString("1234567.89")).text.text)
         Assert.assertEquals("1.234,56", currencyMask.filter(AnnotatedString("1234.56")).text.text)
         Assert.assertEquals("0,56", currencyMask.filter(AnnotatedString("0.56")).text.text)
+        Assert.assertEquals("", currencyMask.filter(AnnotatedString("")).text.text)
     }
 
     @Test

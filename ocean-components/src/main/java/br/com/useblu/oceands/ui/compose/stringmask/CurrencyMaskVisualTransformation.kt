@@ -9,29 +9,16 @@ import kotlin.math.absoluteValue
 
 class CurrencyMaskVisualTransformation : VisualTransformation {
     override fun filter(text: AnnotatedString): TransformedText {
-        var outputText = ""
-
         if (text.length < 3) {
             return TransformedText(text, OffsetMapping.Identity)
         }
 
-        var charCount = -1
+        val chunks = text.reversed().chunked(3)
+        val decimalChunk = chunks.first().replace('.', ',')
+        val remaingChunks = chunks.drop(1).joinToString(".")
+        val formattedText = (decimalChunk + remaingChunks).reversed()
 
-        text.reversed().forEach { char ->
-            if (char == '.') {
-                outputText += ','
-                charCount = -1
-            } else {
-                if (charCount % 3 == 2) {
-                    outputText += '.'
-                }
-
-                outputText += char
-                charCount++
-            }
-        }
-
-        return TransformedText(AnnotatedString(outputText.reversed()), offsetTranslator(text.text, outputText))
+        return TransformedText(AnnotatedString(formattedText), offsetTranslator(text.text, formattedText))
     }
 
     @VisibleForTesting

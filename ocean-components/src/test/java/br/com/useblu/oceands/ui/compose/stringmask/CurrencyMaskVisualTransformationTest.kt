@@ -1,11 +1,19 @@
 package br.com.useblu.oceands.ui.compose.stringmask
 
+import androidx.compose.ui.text.AnnotatedString
 import org.junit.Assert
 import org.junit.Test
 
 class CurrencyMaskVisualTransformationTest {
 
     private val currencyMask = CurrencyMaskVisualTransformation()
+
+    @Test
+    fun testFilter() {
+        Assert.assertEquals("1.234.567,89", currencyMask.filter(AnnotatedString("1234567.89")).text.text)
+        Assert.assertEquals("1.234,56", currencyMask.filter(AnnotatedString("1234.56")).text.text)
+        Assert.assertEquals("0,56", currencyMask.filter(AnnotatedString("0.56")).text.text)
+    }
 
     @Test
     fun testOriginalToTransformed_123456() {

@@ -35,6 +35,13 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+            isReturnDefaultValues = true
+        }
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -113,12 +120,14 @@ dependencies {
     implementation(libs.compose.androidMaterial3)
     implementation(libs.compose.uiToolingPreview)
     implementation(libs.compose.uiViewBinding)
+    implementation(libs.compose.uiTestManifest)
+    implementation(libs.compose.activity)
     debugImplementation(libs.compose.uiTooling)
     androidTestImplementation(libs.compose.uiTestJunit4)
-    debugImplementation(libs.compose.uiTestManifest)
-    implementation(libs.compose.activity)
+    testImplementation(libs.compose.uiTestJunit4)
 
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
 }
 
 baselineProfile {

@@ -68,7 +68,7 @@ fun OceanDropDownMenuPreview() {
                 defaultOption = "Default Option",
                 options = items,
             ) { position ->
-                position?.let {
+                position.let {
                     Toast
                         .makeText(context, "${items[it]} selected", Toast.LENGTH_SHORT)
                         .show()
@@ -84,7 +84,7 @@ fun OceanDropDownMenuPreview() {
                 behavior = OceanDropdownBehavior.BottomSheet("Escolha uma opção"),
                 options = items,
             ) { position ->
-                position?.let {
+                position.let {
                     Toast
                         .makeText(context, "${items[it]} selected", Toast.LENGTH_SHORT)
                         .show()
@@ -101,7 +101,7 @@ fun OceanDropDownMenuPreview() {
                 behavior = OceanDropdownBehavior.BottomSheet("Escolha uma opção"),
                 options = items,
             ) { position ->
-                position?.let {
+                position.let {
                     Toast
                         .makeText(context, "${items[it]} selected", Toast.LENGTH_SHORT)
                         .show()

@@ -120,11 +120,11 @@ dependencies {
     implementation(libs.compose.androidMaterial3)
     implementation(libs.compose.uiToolingPreview)
     implementation(libs.compose.uiViewBinding)
+    implementation(libs.compose.uiTestManifest)
+    implementation(libs.compose.activity)
     debugImplementation(libs.compose.uiTooling)
     androidTestImplementation(libs.compose.uiTestJunit4)
     testImplementation(libs.compose.uiTestJunit4)
-    implementation(libs.compose.uiTestManifest)
-    implementation(libs.compose.activity)
 
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)

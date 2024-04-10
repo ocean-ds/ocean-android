@@ -113,7 +113,7 @@ private fun DescriptorValuesRow(item: OceanDescriptorListItem) {
         TextDecoration.LineThrough
     } else null
 
-    val valueColor = if (item.newValue == null) {
+    val valueColor = if (item.newValue.isNullOrBlank()) {
         textColor
     } else OceanColors.interfaceDarkDown
 

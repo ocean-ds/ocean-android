@@ -57,6 +57,14 @@ private fun OceanDescriptorListPreview() {
                 newValue = "New Value",
                 color = "colorstatuspositivedeep",
                 icon = OceanIcons.BRIEFCASE_OUTLINE.token
+            ),
+            OceanDescriptorListItem(
+                title = "Title",
+                value = "Value",
+                isBold = true,
+                newValue = "",
+                color = "colorstatusneutraldeep",
+                icon = OceanIcons.BRIEFCASE_OUTLINE.token
             )
         )
     )

@@ -23,6 +23,7 @@ class OceanTextInputTest {
     @get:Rule val composeTestRule = createComposeRule()
 
     private val inputText = mutableStateOf("")
+
     @Test
     fun testCurrencyType() {
         setupComposeContent(OceanInputType.Currency())

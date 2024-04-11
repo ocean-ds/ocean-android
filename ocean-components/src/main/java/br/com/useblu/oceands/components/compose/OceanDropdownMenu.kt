@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -59,7 +61,7 @@ fun OceanDropDownMenuPreview() {
                 .padding(16.dp),
         ) {
             val context = LocalContext.current
-            val items = List(5) { "Item ${it + 1}" }
+            val items = List(13) { "Item ${it + 1}" }
 
             OceanDropDownMenu(
                 label = "Dropdown behavior",
@@ -372,7 +374,9 @@ private fun bottomSheetContent(
     OceanSpacing.StackSM()
 
     Column(
-        modifier = Modifier.padding(horizontal = 4.dp)
+        modifier = Modifier
+            .padding(horizontal = 4.dp)
+            .verticalScroll(rememberScrollState())
     ) {
         options.forEachIndexed { index, item ->
             if (itemSelected == index) {

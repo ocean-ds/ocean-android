@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
@@ -276,7 +277,9 @@ private fun OceanBottomSheetDropdown(
 
     if (showBottomSheet) {
         OceanBottomSheet(
-            modifier = Modifier.padding(horizontal = 2.dp),
+            modifier = Modifier
+                .navigationBarsPadding()
+                .padding(horizontal = 2.dp),
             model = OceanBottomSheetModel(
                 customContent = bottomSheetContent(
                     title = title,

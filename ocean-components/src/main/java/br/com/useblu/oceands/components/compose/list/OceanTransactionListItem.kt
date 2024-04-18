@@ -132,6 +132,7 @@ fun OceanTransactionListItem(
     showCheckbox: Boolean = false,
     isCheckboxSelected: Boolean = false,
     onSelectedBox: ((Boolean) -> Unit)? = null,
+    showError: Boolean = false,
     isDisabled: Boolean = false
 ) {
     Column {
@@ -151,6 +152,7 @@ fun OceanTransactionListItem(
         ) {
             if (showCheckbox) {
                 OceanSelectableBox(
+                    showError = showError,
                     selected = isCheckboxSelected,
                     onSelectedBox = onSelectedBox,
                     enabled = !isDisabled,

@@ -20,10 +20,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
-import br.com.useblu.oceands.utils.OceanIcons
+import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIcons
 
 
 @Preview(device = "spec:width=800dp,height=550.9dp,dpi=440")
@@ -139,6 +140,18 @@ private fun OceanCardListItemPreview() {
                 trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
                 disabled = true
             )
+
+            OceanSpacing.StackXXS()
+
+            OceanCardListItem(
+                title = "Title",
+                description = "Description",
+                caption = "Caption",
+                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIconToken = OceanIcons.PLACEHOLDER_OUTLINE,
+                tagLabel = "Ativo",
+                tagType = OceanTagType.Positive
+            )
         }
     }
 }
@@ -153,6 +166,8 @@ fun OceanCardListItem(
     trailingIconToken: OceanIcons? = null,
     showIconBackground: Boolean = true,
     disabled: Boolean = false,
+    tagLabel: String? = null,
+    tagType: OceanTagType? = null,
     onClick: (() -> Unit)? = null
 ) {
     Row(
@@ -195,11 +210,17 @@ fun OceanCardListItem(
         Column(
             modifier = Modifier.weight(1f)
         ) {
-            Text(
-                text = title,
-                style = OceanTextStyle.paragraph,
-                color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
-            )
+            Row {
+                Text(
+                    text = title,
+                    style = OceanTextStyle.paragraph,
+                    color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
+                )
+
+                if (tagLabel != null && tagType != null) {
+                    OceanTag(label = "Ativo", type = OceanTagType.Positive)
+                }
+            }
 
             description?.let {
                 Text(

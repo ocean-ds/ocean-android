@@ -125,7 +125,7 @@ internal fun OceanSelectableBox(
             .clickable (
                 interactionSource = interactionSource,
                 indication = null,
-                enabled = enabled && !showError,
+                enabled = enabled,
                 onClick = {}
             )
             .border(

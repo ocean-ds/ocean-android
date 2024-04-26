@@ -48,96 +48,94 @@ private fun OceanChartScorePreview() {
             value = 100f
         )
 
-//        OceanSpacing.StackXL()
-//
-//
-//        OceanChartScore(
-//            title = "Title",
-//            description = "Description",
-//            value = 200f
-//        )
-//
-//        OceanSpacing.StackXL()
-//
-//        OceanChartScore(
-//            title = "Title",
-//            description = "Description",
-//            value = 300f
-//        )
-//
-//        OceanSpacing.StackXL()
-//
-//        OceanChartScore(
-//            title = "Title",
-//            description = "Description",
-//            value = 301f
-//        )
-//
-//        OceanSpacing.StackXL()
-//
-//        OceanChartScore(
-//            title = "Title",
-//            description = "Description",
-//            value = 400f
-//        )
-//
-//        OceanSpacing.StackXL()
-//
-//        OceanChartScore(
-//            title = "Title",
-//            description = "Description",
-//            value = 500f
-//        )
-//
-//        OceanSpacing.StackXL()
-//
-//        OceanChartScore(
-//            title = "Title",
-//            description = "Description",
-//            value = 600f
-//        )
-//
-//        OceanSpacing.StackXL()
-//
-//        OceanChartScore(
-//            title = "Title",
-//            description = "Description",
-//            value = 700f
-//        )
-//
-//        OceanSpacing.StackXL()
-//
-//        OceanChartScore(
-//            title = "Title",
-//            description = "Description",
-//            value = 800f
-//        )
-//
-//        OceanSpacing.StackXL()
-//
-//        OceanChartScore(
-//            title = "Title",
-//            description = "Description",
-//            value = 900f
-//        )
-//
-//        OceanSpacing.StackXL()
-//
-//        OceanChartScore(
-//            title = "Title",
-//            description = "Description",
-//            value = 1000f
-//        )
-//
-//        OceanSpacing.StackXL()
-//
-//        OceanChartScore(
-//            title = "Title",
-//            description = "Description",
-//            value = 500f,
-//            minValue = 300f
-//        )
+        OceanSpacing.StackXL()
 
+        OceanChartScore(
+            title = "Title",
+            description = "Description",
+            value = 200f
+        )
+
+        OceanSpacing.StackXL()
+
+        OceanChartScore(
+            title = "Title",
+            description = "Description",
+            value = 300f
+        )
+
+        OceanSpacing.StackXL()
+
+        OceanChartScore(
+            title = "Title",
+            description = "Description",
+            value = 301f
+        )
+
+        OceanSpacing.StackXL()
+
+        OceanChartScore(
+            title = "Title",
+            description = "Description",
+            value = 400f
+        )
+
+        OceanSpacing.StackXL()
+
+        OceanChartScore(
+            title = "Title",
+            description = "Description",
+            value = 500f
+        )
+
+        OceanSpacing.StackXL()
+
+        OceanChartScore(
+            title = "Title",
+            description = "Description",
+            value = 600f
+        )
+
+        OceanSpacing.StackXL()
+
+        OceanChartScore(
+            title = "Title",
+            description = "Description",
+            value = 700f
+        )
+
+        OceanSpacing.StackXL()
+
+        OceanChartScore(
+            title = "Title",
+            description = "Description",
+            value = 800f
+        )
+
+        OceanSpacing.StackXL()
+
+        OceanChartScore(
+            title = "Title",
+            description = "Description",
+            value = 900f
+        )
+
+        OceanSpacing.StackXL()
+
+        OceanChartScore(
+            title = "Title",
+            description = "Description",
+            value = 1000f
+        )
+
+        OceanSpacing.StackXL()
+
+        OceanChartScore(
+            title = "Title",
+            description = "Description",
+            value = 500f,
+            minValue = 300f
+        )
     }
 }
 
@@ -151,7 +149,6 @@ fun OceanChartScore(
     maxValue: Float = 1000f,
     showAnimation: Boolean = false
 ) {
-
     Column(
         modifier = modifier
             .fillMaxWidth()

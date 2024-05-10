@@ -11,33 +11,34 @@ sealed interface OceanAlertType {
     class Default(
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
         val description: String
-    ): OceanAlertType
+    ) : OceanAlertType
 
     class EntitledShort(
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
         val title: String,
         val description: String,
         val button: Pair<String, () -> Unit>? = null
-    ): OceanAlertType
+    ) : OceanAlertType
 
     class EntitledLong(
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
         val title: String,
         val description: String
-    ): OceanAlertType
+    ) : OceanAlertType
 
     class Labeled(
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
         val title: String? = null,
         val description: String,
-        val label: String
-    ): OceanAlertType
+        val label: String,
+        val onClickLabel: () -> Unit = {}
+    ) : OceanAlertType
 
     class Bookmarked(
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
         val title: String,
         val description: String
-    ): OceanAlertType
+    ) : OceanAlertType
 }
 
 sealed interface AlertStyle {
@@ -50,7 +51,7 @@ sealed interface AlertStyle {
     val oceanIcon: OceanIcons
     val iconTint: @Composable () -> Color
 
-    class StyleInfo (
+    class StyleInfo(
         override val titleColor: @Composable () -> Color = { OceanColors.brandPrimaryDown },
         override val titleStyle: @Composable () -> TextStyle = { OceanTextStyle.heading5 },
         override val descriptionStyle: @Composable () -> TextStyle = { OceanTextStyle.caption },
@@ -60,7 +61,7 @@ sealed interface AlertStyle {
         override val iconTint: @Composable () -> Color = { OceanColors.brandPrimaryDown }
     ) : AlertStyle
 
-    class StyleWarning (
+    class StyleWarning(
         override val titleColor: @Composable () -> Color = { OceanColors.statusWarningDeep },
         override val titleStyle: @Composable () -> TextStyle = { OceanTextStyle.heading5 },
         override val descriptionStyle: @Composable () -> TextStyle = { OceanTextStyle.caption },
@@ -70,7 +71,7 @@ sealed interface AlertStyle {
         override val iconTint: @Composable () -> Color = { OceanColors.statusWarningDeep }
     ) : AlertStyle
 
-    class StylePositive (
+    class StylePositive(
         override val titleColor: @Composable () -> Color = { OceanColors.statusPositiveDeep },
         override val titleStyle: @Composable () -> TextStyle = { OceanTextStyle.heading5 },
         override val descriptionStyle: @Composable () -> TextStyle = { OceanTextStyle.caption },
@@ -80,7 +81,7 @@ sealed interface AlertStyle {
         override val iconTint: @Composable () -> Color = { OceanColors.statusPositiveDeep }
     ) : AlertStyle
 
-    class StyleNegative (
+    class StyleNegative(
         override val titleColor: @Composable () -> Color = { OceanColors.statusNegativePure },
         override val titleStyle: @Composable () -> TextStyle = { OceanTextStyle.heading5 },
         override val descriptionStyle: @Composable () -> TextStyle = { OceanTextStyle.caption },

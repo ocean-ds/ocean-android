@@ -40,6 +40,16 @@ fun OceanAlertPreview() {
         val context = LocalContext.current
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
+            type = OceanAlertType.Labeled(
+                description = "Untitled Alert Labeled Positive",
+                label = "Label",
+                alertType = AlertStyle.StylePositive(),
+                onClickLabel = { println("Label Clicked") }
+            )
+        )
+
+        OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Default(
                 description = "Default Alert Info",
                 alertType = AlertStyle.StyleInfo(),
@@ -296,7 +306,7 @@ fun OceanAlert(
                 description = type.description,
                 label = type.label,
                 style = type.alertType,
-                onClickLable = { }
+                onClickLable = type.onClickLabel
             )
         }
 
@@ -492,7 +502,7 @@ fun OceanAlertLabeled(
                 text = label,
                 isSmall = true,
                 linkIcon = OceanLinkIcon.DEFAULT,
-                onClick = onClickLable
+                onClick = { onClickLable.invoke() }
             )
         }
     }

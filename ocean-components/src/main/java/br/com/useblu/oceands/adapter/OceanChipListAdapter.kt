@@ -15,7 +15,7 @@ import br.com.useblu.oceands.model.OceanChip
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
 
-class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class OceanChipListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val items = mutableListOf<OceanChip>()
 
@@ -45,6 +45,7 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 OceanFilterChipViewHolder(itemBinding)
             }
+
             else -> {
                 throw IllegalArgumentException("Invalid view type")
             }
@@ -68,6 +69,7 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is OceanBasicChipViewHolder -> {
                 holder.bindView(item as OceanBasicChip)
             }
+
             is OceanFilterChipViewHolder -> {
                 holder.bindView(item as OceanFilterChip)
             }
@@ -153,7 +155,10 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.item = item
             binding.chipListItemBackground.background = getBackgroundDrawable(item, context)
             binding.label.setTextColor(getContentColor(item, context))
-            binding.icon.setColorFilter(getContentColor(item, context), android.graphics.PorterDuff.Mode.SRC_IN)
+            binding.icon.setColorFilter(
+                getContentColor(item, context),
+                android.graphics.PorterDuff.Mode.SRC_IN
+            )
 
             binding.chipListItemBackground.setOnClickListener {
                 item.filterOptions.showBottomSheet(it.context)
@@ -165,15 +170,18 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         item: OceanChip,
         context: Context
     ) = when (item.state) {
+        OceanChipItemState.DEFAULT_INACTIVE,
         OceanChipItemState.HOVER_INACTIVE -> ContextCompat.getColor(
             context,
             R.color.ocean_color_brand_primary_pure
         )
+
         OceanChipItemState.DISABLED_ACTIVE,
         OceanChipItemState.DISABLED_INACTIVE -> ContextCompat.getColor(
             context,
             R.color.ocean_color_interface_dark_up
         )
+
         OceanChipItemState.HOVER_ACTIVE,
         OceanChipItemState.DEFAULT_ACTIVE -> ContextCompat.getColor(
             context,
@@ -189,18 +197,26 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             context,
             R.drawable.ocean_chip_inactive_hover
         )
+
         OceanChipItemState.HOVER_ACTIVE -> ContextCompat.getDrawable(
             context,
             R.drawable.ocean_chip_active_hover
         )
+
         OceanChipItemState.DEFAULT_ACTIVE -> ContextCompat.getDrawable(
             context,
             R.drawable.ocean_chip_default
         )
+
         OceanChipItemState.DISABLED_ACTIVE,
         OceanChipItemState.DISABLED_INACTIVE -> ContextCompat.getDrawable(
             context,
             R.drawable.ocean_chip_disabled
+        )
+
+        OceanChipItemState.DEFAULT_INACTIVE -> ContextCompat.getDrawable(
+            context,
+            R.drawable.ocean_chip_default_inactive
         )
     }
 

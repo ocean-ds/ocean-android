@@ -41,7 +41,7 @@ fun OceanFilterBarPreview() {
                     text = 2,
                     type = OceanBadgeType.PRIMARY_INVERTED
                 ),
-                state = OceanChipItemState.DEFAULT,
+                state = OceanChipItemState.DEFAULT_ACTIVE,
                 onClick = {},
             ),
             OceanBasicChip(
@@ -51,14 +51,14 @@ fun OceanFilterBarPreview() {
                     text = 2,
                     type = OceanBadgeType.PRIMARY
                 ),
-                state = OceanChipItemState.INACTIVE_HOVER,
+                state = OceanChipItemState.HOVER_INACTIVE,
                 onClick = {},
             ),
             OceanFilterChip(
                 id = "2",
                 label = "Canceladas",
                 badge = null,
-                state = OceanChipItemState.INACTIVE_HOVER,
+                state = OceanChipItemState.HOVER_INACTIVE,
                 filterOptions = OceanChipFilterOptions.SingleChoice("", emptyList(), {})
             ),
             OceanBasicChip(
@@ -69,7 +69,7 @@ fun OceanFilterBarPreview() {
                     type = OceanBadgeType.PRIMARY
                 ),
                 icon = OceanIcons.ADJUSTMENTS_OUTLINE,
-                state = OceanChipItemState.INACTIVE_HOVER,
+                state = OceanChipItemState.HOVER_INACTIVE,
                 onClick = {}
             )
         )

@@ -84,15 +84,15 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemCount(): Int = items.size
 
     private val currentSelectedItem: OceanChip?
-        get() = items.find { it.state == OceanChipItemState.DEFAULT }
+        get() = items.find { it.state == OceanChipItemState.DEFAULT_ACTIVE }
 
     private fun selectItem(item: OceanChip) {
         val selectedItem = items.find { it.id == item.id }
-        selectedItem?.state = OceanChipItemState.DEFAULT
+        selectedItem?.state = OceanChipItemState.DEFAULT_ACTIVE
     }
 
     private fun unselectCurrent() {
-        currentSelectedItem?.state = OceanChipItemState.INACTIVE_HOVER
+        currentSelectedItem?.state = OceanChipItemState.HOVER_INACTIVE
     }
 
     inner class OceanBasicChipViewHolder(
@@ -132,7 +132,7 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 return
             }
 
-            if (item.state == OceanChipItemState.DEFAULT) {
+            if (item.state == OceanChipItemState.DEFAULT_ACTIVE) {
                 if (item.badge.type == OceanBadgeType.PRIMARY) {
                     item.badge.type = OceanBadgeType.PRIMARY_INVERTED
                 }
@@ -165,7 +165,7 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         item: OceanChip,
         context: Context
     ) = when (item.state) {
-        OceanChipItemState.INACTIVE_HOVER -> ContextCompat.getColor(
+        OceanChipItemState.HOVER_INACTIVE -> ContextCompat.getColor(
             context,
             R.color.ocean_color_brand_primary_pure
         )
@@ -174,8 +174,8 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             context,
             R.color.ocean_color_interface_dark_up
         )
-        OceanChipItemState.ACTIVE_HOVER,
-        OceanChipItemState.DEFAULT -> ContextCompat.getColor(
+        OceanChipItemState.HOVER_ACTIVE,
+        OceanChipItemState.DEFAULT_ACTIVE -> ContextCompat.getColor(
             context,
             R.color.ocean_color_interface_light_pure
         )
@@ -185,15 +185,15 @@ class OceanChipListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         item: OceanChip,
         context: Context
     ) = when (item.state) {
-        OceanChipItemState.INACTIVE_HOVER -> ContextCompat.getDrawable(
+        OceanChipItemState.HOVER_INACTIVE -> ContextCompat.getDrawable(
             context,
             R.drawable.ocean_chip_inactive_hover
         )
-        OceanChipItemState.ACTIVE_HOVER -> ContextCompat.getDrawable(
+        OceanChipItemState.HOVER_ACTIVE -> ContextCompat.getDrawable(
             context,
             R.drawable.ocean_chip_active_hover
         )
-        OceanChipItemState.DEFAULT -> ContextCompat.getDrawable(
+        OceanChipItemState.DEFAULT_ACTIVE -> ContextCompat.getDrawable(
             context,
             R.drawable.ocean_chip_default
         )

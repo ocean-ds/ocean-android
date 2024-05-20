@@ -1,5 +1,5 @@
 [versions]
-gradle = "8.3.2"
+gradle = "8.4.1"
 junitVersion = "4.13.2"
 kotlinGradlePlugin = "1.9.24"
 benchmarkBaselineProfileGradlePlugin = "1.2.4"

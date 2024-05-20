@@ -44,7 +44,7 @@ skeletonBones = { module = "com.github.EudyContreras:Skeleton-Bones", version = 
 baselineProfileInstaller = { module = "androidx.profileinstaller:profileinstaller", version = "1.3.1" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 compose-lifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewModel" }
-compose-activity = { module = "androidx.activity:activity-compose", version = "1.8.2" }
+compose-activity = { module = "androidx.activity:activity-compose", version = "1.9.0" }
 compose-androidMaterial3 = { group = "androidx.compose.material3", name =  "material3" }
 compose-uiToolingPreview = { group = "androidx.compose.ui", name =  "ui-tooling-preview" }
 compose-uiViewBinding = { group = "androidx.compose.ui", name =  "ui-viewbinding" }

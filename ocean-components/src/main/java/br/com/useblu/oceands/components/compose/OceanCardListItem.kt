@@ -217,8 +217,8 @@ fun OceanCardListItem(
                     color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
                 )
 
-                if (tagLabel != null && tagType != null) {
-                    OceanTag(label = "Ativo", type = OceanTagType.Positive)
+                if (!tagLabel.isNullOrBlank() && tagType != null) {
+                    OceanTag(label = tagLabel, type = tagType)
                 }
             }
 

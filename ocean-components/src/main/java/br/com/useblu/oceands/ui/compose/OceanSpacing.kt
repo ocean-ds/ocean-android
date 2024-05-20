@@ -10,48 +10,58 @@ import br.com.useblu.oceands.R
 
 @Immutable
 object OceanSpacing {
+    val xxxs @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxxs)
+    val xxs @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxs)
+    val xs @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xs)
+    val sm @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_sm)
+    val md @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_md)
+    val lg @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_lg)
+    val xl @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xl)
+    val xxl @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxl)
+    val xxxl @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxxl)
+
     @Composable
     fun StackXXXS() {
-        Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ocean_spacing_stack_xxxs)))
+        Spacer(modifier = Modifier.size(xxxs))
     }
 
     @Composable
     fun StackXXS() {
-        Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ocean_spacing_stack_xxs)))
+        Spacer(modifier = Modifier.size(xxs))
     }
 
     @Composable
     fun StackXS() {
-        Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ocean_spacing_stack_xs)))
+        Spacer(modifier = Modifier.size(xs))
     }
 
     @Composable
     fun StackSM() {
-        Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ocean_spacing_stack_sm)))
+        Spacer(modifier = Modifier.size(sm))
     }
 
     @Composable
     fun StackMD() {
-        Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ocean_spacing_stack_md)))
+        Spacer(modifier = Modifier.size(md))
     }
 
     @Composable
     fun StackLG() {
-        Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ocean_spacing_stack_lg)))
+        Spacer(modifier = Modifier.size(lg))
     }
 
     @Composable
     fun StackXL() {
-        Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ocean_spacing_stack_xl)))
+        Spacer(modifier = Modifier.size(xl))
     }
 
     @Composable
     fun StackXXL() {
-        Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ocean_spacing_stack_xxl)))
+        Spacer(modifier = Modifier.size(xxl))
     }
 
     @Composable
     fun StackXXXL() {
-        Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.ocean_spacing_stack_xxxl)))
+        Spacer(modifier = Modifier.size(xxxl))
     }
 }

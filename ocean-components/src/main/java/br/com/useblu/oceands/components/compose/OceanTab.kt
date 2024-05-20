@@ -126,7 +126,7 @@ private fun TabText(
 
 @Preview
 @Composable
-fun OceanScrollableTabPreview() {
+private fun OceanTabScrollablePreview() {
     val tabs = listOf(
         OceanTabItemModel("Tab 1", 1),
         OceanTabItemModel("Tab 2", 2),

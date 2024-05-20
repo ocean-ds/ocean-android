@@ -1,12 +1,14 @@
 package br.com.useblu.oceands.components.compose.chart
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -47,7 +49,6 @@ private fun OceanChartScorePreview() {
         )
 
         OceanSpacing.StackXL()
-
 
         OceanChartScore(
             title = "Title",
@@ -135,7 +136,6 @@ private fun OceanChartScorePreview() {
             value = 500f,
             minValue = 300f
         )
-
     }
 }
 
@@ -149,7 +149,6 @@ fun OceanChartScore(
     maxValue: Float = 1000f,
     showAnimation: Boolean = false
 ) {
-
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -170,26 +169,33 @@ fun OceanChartScore(
 
         OceanSpacing.StackXS()
 
-        AndroidView(
+        Box(
             modifier = Modifier
+                .width(180.dp)
+                .height(90.dp)
                 .align(Alignment.CenterHorizontally)
-                .size(180.dp),
-            factory = ::PieChart,
-            update = {
-                it.setupChartScore(
-                    value = value,
-                    showAnimation = showAnimation,
-                    minValue = minValue,
-                    maxValue = maxValue
-                )
-            }
-        )
+                .verticalScroll(rememberScrollState(), enabled = false)
+        ) {
+            AndroidView(
+                modifier = Modifier
+                    .size(180.dp),
+                factory = ::PieChart,
+                update = {
+                    it.setupChartScore(
+                        value = value,
+                        showAnimation = showAnimation,
+                        minValue = minValue,
+                        maxValue = maxValue
+                    )
+                }
+            )
+        }
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 90.dp)
-                .offset(y = (-85).dp),
+                .height(15.dp)
         ) {
             OceanText(
                 modifier = Modifier.weight(1f),

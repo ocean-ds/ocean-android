@@ -71,6 +71,7 @@ fun OceanChartBar(
     model: OceanChartBarModel,
     modifier: Modifier = Modifier
 ) {
+
     var windowWidth by remember { mutableIntStateOf(0) }
 
     AndroidView(
@@ -81,7 +82,7 @@ fun OceanChartBar(
             },
         factory = {
             BarChart(it).apply {
-                setupChart(model)
+                this.setupChart(model)
             }
         },
         update = {
@@ -99,6 +100,7 @@ private fun BarChart.setupChart(model: OceanChartBarModel) {
     minOffset = 0f
 
     setPinchZoom(false)
+    setNoDataText("")
     isDoubleTapToZoomEnabled = false
 
     axisRight.isEnabled = false
@@ -108,7 +110,8 @@ private fun BarChart.setupChart(model: OceanChartBarModel) {
     axisLeft.setDrawGridLines(false)
     axisLeft.setDrawZeroLine(true)
     axisLeft.axisMinimum = 0f
-    axisLeft.zeroLineColor = ContextCompat.getColor(context, R.color.ocean_color_interface_light_down)
+    axisLeft.zeroLineColor =
+        ContextCompat.getColor(context, R.color.ocean_color_interface_light_down)
 
     xAxis.setDrawAxisLine(false)
     xAxis.setDrawGridLines(false)

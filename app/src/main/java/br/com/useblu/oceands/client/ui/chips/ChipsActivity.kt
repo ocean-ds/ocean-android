@@ -30,7 +30,7 @@ class ChipsActivity : AppCompatActivity() {
                 id = "1",
                 label = "Basic Chip",
                 icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE,
-                state = OceanChipItemState.INACTIVE_HOVER,
+                state = OceanChipItemState.HOVER_INACTIVE,
                 badge = Badge(5, OceanBadgeType.PRIMARY),
                 onClick = {
                     OceanBottomSheet(this)

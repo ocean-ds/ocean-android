@@ -37,7 +37,7 @@ private fun OceanChipPreview() {
             id = "1",
             label = "Basic Chip",
             icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE,
-            state = OceanChipItemState.INACTIVE_HOVER,
+            state = OceanChipItemState.HOVER_INACTIVE,
             badge = Badge(5, OceanBadgeType.PRIMARY),
             onClick = {},
         ),
@@ -45,7 +45,7 @@ private fun OceanChipPreview() {
             label = "Filtro Teste",
             id = "9999",
             badge = null,
-            state = OceanChipItemState.DEFAULT,
+            state = OceanChipItemState.DEFAULT_ACTIVE,
             filterOptions = OceanChipFilterOptions.MultipleChoice(
                 title = "Status do Pagamento",
                 optionsItems = emptyList(),
@@ -59,7 +59,7 @@ private fun OceanChipPreview() {
             label = "Filtro Teste",
             id = "9999",
             badge = Badge(5, OceanBadgeType.PRIMARY_INVERTED),
-            state = OceanChipItemState.DEFAULT,
+            state = OceanChipItemState.DEFAULT_ACTIVE,
             filterOptions = OceanChipFilterOptions.MultipleChoice(
                 title = "Status do Pagamento",
                 optionsItems = emptyList(),
@@ -91,6 +91,7 @@ fun OceanChip(
                 model = model
             )
         }
+
         is OceanFilterChip -> {
             OceanFilterChip(
                 model = model
@@ -194,20 +195,22 @@ fun OceanFilterChip(
 private fun getContentColor(
     item: OceanChip
 ) = when (item.state) {
-    OceanChipItemState.INACTIVE_HOVER -> OceanColors.brandPrimaryPure
+    OceanChipItemState.DEFAULT_INACTIVE,
+    OceanChipItemState.HOVER_INACTIVE -> OceanColors.brandPrimaryPure
+    OceanChipItemState.HOVER_ACTIVE,
+    OceanChipItemState.DEFAULT_ACTIVE -> OceanColors.interfaceLightPure
     OceanChipItemState.DISABLED_ACTIVE,
     OceanChipItemState.DISABLED_INACTIVE -> OceanColors.interfaceDarkUp
-    OceanChipItemState.ACTIVE_HOVER,
-    OceanChipItemState.DEFAULT -> OceanColors.interfaceLightPure
 }
 
 @Composable
 private fun getBackgroundColor(
     item: OceanChip
 ) = when (item.state) {
-    OceanChipItemState.INACTIVE_HOVER -> OceanColors.interfaceLightDown
-    OceanChipItemState.ACTIVE_HOVER -> OceanColors.brandPrimaryDown
-    OceanChipItemState.DEFAULT -> OceanColors.brandPrimaryPure
+    OceanChipItemState.HOVER_ACTIVE -> OceanColors.brandPrimaryDown
+    OceanChipItemState.HOVER_INACTIVE -> OceanColors.interfaceLightDown
+    OceanChipItemState.DEFAULT_ACTIVE -> OceanColors.brandPrimaryPure
+    OceanChipItemState.DEFAULT_INACTIVE -> OceanColors.interfaceLightUp
     OceanChipItemState.DISABLED_ACTIVE,
-    OceanChipItemState.DISABLED_INACTIVE -> OceanColors.interfaceLightDown
+    OceanChipItemState.DISABLED_INACTIVE -> OceanColors.interfaceLightUp
 }

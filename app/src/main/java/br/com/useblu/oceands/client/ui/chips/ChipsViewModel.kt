@@ -82,7 +82,7 @@ class ChipsViewModel : ViewModel() {
                 label = "Filtro Teste",
                 id = "9999",
                 badge = multipleChoiceBadge,
-                state = if (multipleChoiceFilterOptions.any { it.isSelected }) OceanChipItemState.DEFAULT else OceanChipItemState.INACTIVE_HOVER,
+                state = if (multipleChoiceFilterOptions.any { it.isSelected }) OceanChipItemState.DEFAULT_ACTIVE else OceanChipItemState.HOVER_INACTIVE,
                 filterOptions = OceanChipFilterOptions.MultipleChoice(
                     title = "Status do Pagamento",
                     optionsItems = multipleChoiceFilterOptions,
@@ -134,7 +134,7 @@ class ChipsViewModel : ViewModel() {
             OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
-                state = OceanChipItemState.INACTIVE_HOVER,
+                state = OceanChipItemState.HOVER_INACTIVE,
                 onClick = {
                     println("OceanChipItem 5 $it")
                 }
@@ -217,7 +217,7 @@ class ChipsViewModel : ViewModel() {
             OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
-                state = OceanChipItemState.INACTIVE_HOVER,
+                state = OceanChipItemState.HOVER_INACTIVE,
                 icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE,
                 onClick = {
                     println("OceanChipItem 5 $it")
@@ -263,7 +263,7 @@ class ChipsViewModel : ViewModel() {
             OceanBasicChip(
                 label = errorChip.label,
                 id = errorChip.id,
-                state = OceanChipItemState.INACTIVE_HOVER,
+                state = OceanChipItemState.HOVER_INACTIVE,
                 badge = Badge(9, OceanBadgeType.PRIMARY_INVERTED),
                 onClick = {
                     println("OceanChipItem 5 $it")

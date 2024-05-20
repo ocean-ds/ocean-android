@@ -4,8 +4,8 @@ import androidx.compose.runtime.Stable
 
 @Stable
 enum class OceanChipItemState {
-    ACTIVE_HOVER, INACTIVE_HOVER, DISABLED_ACTIVE, DISABLED_INACTIVE, DEFAULT;
+    HOVER_ACTIVE, HOVER_INACTIVE, DISABLED_ACTIVE, DISABLED_INACTIVE, DEFAULT_ACTIVE, DEFAULT_INACTIVE;
 
-    fun isActive() = this == ACTIVE_HOVER || this == DEFAULT || this == DISABLED_ACTIVE
+    fun isActive() = this == HOVER_ACTIVE || this == DEFAULT_ACTIVE || this == DISABLED_ACTIVE
     fun isClickable() = this != DISABLED_ACTIVE && this != DISABLED_INACTIVE
 }

@@ -54,3 +54,4 @@ compose-uiTestManifest = { group = "androidx.compose.ui", name =  "ui-test-manif
 compose-runtimeLiveData = { group = "androidx.compose.runtime", name =  "runtime-livedata" }
 
 [plugins]
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinGradlePlugin" }

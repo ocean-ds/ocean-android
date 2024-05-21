@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.components.compose.content
 
+import androidx.annotation.FloatRange
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.CardCta
 import br.com.useblu.oceands.components.compose.OceanBadge
 import br.com.useblu.oceands.components.compose.OceanBadgeSize
+import br.com.useblu.oceands.components.compose.OceanProgressBar
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -41,6 +43,7 @@ fun OceanCardGroupPreview() {
                 actionTitle = "Call to Action",
                 label = "Recomendado",
                 showProgress = false,
+                progressBar = 0.5f,
                 modifier = Modifier.padding(16.dp)
             )
 
@@ -51,6 +54,7 @@ fun OceanCardGroupPreview() {
                 actionClick = {},
                 actionTitle = "Call to Action",
                 showProgress = false,
+                progressBar = 0.75f,
                 modifier = Modifier.padding(16.dp)
             )
 
@@ -76,6 +80,7 @@ fun OceanCardGroup(
     badgeType: OceanBadgeType = OceanBadgeType.WARNING,
     actionTitle: String,
     actionClick: () -> Unit,
+    @FloatRange(0.0, 1.0) progressBar: Float? = null,
     showProgress: Boolean = false,
     label: String? = null
 ) {
@@ -99,7 +104,8 @@ fun OceanCardGroup(
                         color = OceanColors.interfaceLightPure,
                         shape = RoundedCornerShape(topEnd = 8.dp, topStart = 8.dp)
                     )
-                    .padding(16.dp)
+                    .padding(horizontal = 16.dp)
+                    .padding(top = 16.dp)
             ) {
                 Column(
                     modifier = Modifier.weight(1f)
@@ -133,6 +139,18 @@ fun OceanCardGroup(
                     )
                 }
             }
+
+            if (progressBar != null) {
+                OceanSpacing.StackXXS()
+                OceanSpacing.StackXXXS()
+                OceanProgressBar(
+                    progress = progressBar,
+                    modifier = Modifier
+                        .padding(horizontal = OceanSpacing.xs)
+                )
+            }
+
+            OceanSpacing.StackXS()
 
             CardCta(
                 showProgress = showProgress,

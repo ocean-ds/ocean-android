@@ -3,6 +3,7 @@ package br.com.useblu.oceands.components.compose.input
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -216,6 +217,7 @@ fun OceanTextInput(
             }
 
             val interactionSource = remember { MutableInteractionSource() }
+            val isFocused by interactionSource.collectIsFocusedAsState()
 
             var textFieldSelection by remember {
                 mutableStateOf(TextRange.Zero)
@@ -266,7 +268,7 @@ fun OceanTextInput(
                             {
                                 OceanIcon(
                                     iconType = leadingIcon,
-                                    tint = OceanColors.interfaceDarkUp
+                                    tint = if (isFocused) OceanColors.brandPrimaryPure else OceanColors.interfaceDarkUp
                                 )
                             }
                         } else null,

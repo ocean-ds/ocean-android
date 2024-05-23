@@ -7,11 +7,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.extensions.compose.htmlToAnnotatedString
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 @Composable
 fun SelectableBoxLabel(
@@ -24,7 +24,7 @@ fun SelectableBoxLabel(
 
     ClickableText(
         text = annotatedString,
-        modifier = Modifier.padding(horizontal = 8.dp),
+        modifier = Modifier.padding(horizontal = OceanSpacing.xxs),
         maxLines = 2,
         overflow = TextOverflow.Ellipsis,
         style = TextStyle(

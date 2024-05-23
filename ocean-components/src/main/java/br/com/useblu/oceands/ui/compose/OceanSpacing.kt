@@ -77,6 +77,14 @@ object OceanSpacing {
     }
 
     /**
+     * 12dp
+     */
+    @Composable
+    fun StackXXSExtra() {
+        Spacer(modifier = Modifier.size(xxsExtra))
+    }
+
+    /**
      * 16dp
      */
     @Composable

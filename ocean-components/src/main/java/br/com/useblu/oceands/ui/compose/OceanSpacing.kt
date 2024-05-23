@@ -21,6 +21,11 @@ object OceanSpacing {
     val xxs @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxs)
 
     /**
+     * 12dp
+     */
+    val xxsExtra @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxs_extra)
+
+    /**
      * 16dp
      */
     val xs @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xs)

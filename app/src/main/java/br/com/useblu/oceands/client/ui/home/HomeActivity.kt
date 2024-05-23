@@ -123,8 +123,14 @@ class HomeActivity : AppCompatActivity() {
                         imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
                         icon = R.drawable.icon_easter_eggs,
                         code = 2000,
-                        actionPositive = "Aceitar" to {},
-                        actionNegative = "Cancelar" to {},
+                        actionPositive = OceanBottomSheetModel.Button(
+                            text = "Aceitar",
+                            onClick = {}
+                        ),
+                        actionNegative = OceanBottomSheetModel.Button(
+                            text = "Cancelar",
+                            onClick = {}
+                        ),
                         buttonsOrientation = BottomSheetButtonsOrientation.Vertical
                     ),
                     onDismiss = {

@@ -18,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -37,7 +38,7 @@ fun OceanBluPlus(
                 onClick()
             }
             .height(40.dp)
-            .padding(start = 8.dp, end = 4.dp),
+            .padding(start = OceanSpacing.xxs, end = OceanSpacing.xxxs),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(

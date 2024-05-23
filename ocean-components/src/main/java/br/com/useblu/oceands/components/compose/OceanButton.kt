@@ -121,7 +121,7 @@ fun PreviewButton() {
             OceanButton(
                 text = "Permitir",
                 showProgress = isLoading,
-                modifier = Modifier.padding(top = 16.dp).width(200.dp),
+                modifier = Modifier.padding(top = OceanSpacing.xs).width(200.dp),
                 buttonStyle = OceanButtonStyle.PrimaryMedium,
                 onClick = {
                     println("Botão clicado")

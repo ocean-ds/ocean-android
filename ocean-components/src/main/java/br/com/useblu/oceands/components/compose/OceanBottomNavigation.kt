@@ -29,11 +29,11 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.model.compose.OceanBottomNavigationModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.utils.OceanIcons
 
 private val selectedIndex = mutableStateOf(2)
 
@@ -123,7 +123,7 @@ fun OceanBottomNavigation(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = OceanColors.brandPrimaryPure)
-            .padding(4.dp)
+            .padding(OceanSpacing.xxxs)
             .height(64.dp)
     ) {
         val backgroundWidth = if (models.isNotEmpty()) rowWidth.value / models.size

@@ -83,7 +83,10 @@ fun OceanInvertedTextListItem(
     Column(
         modifier = modifier
             .background(OceanColors.interfaceLightPure)
-            .padding(vertical = 8.dp, horizontal = 16.dp)
+            .padding(
+                vertical = OceanSpacing.xxs,
+                horizontal = OceanSpacing.xs
+            )
             .fillMaxWidth()
     ) {
         OceanText(
@@ -125,7 +128,11 @@ sealed interface InvertedTextListType {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (icon != null) {
-                    OceanIcon(iconType = icon, tint = OceanColors.statusPositiveDeep, modifier = Modifier.size(20.dp))
+                    OceanIcon(
+                        iconType = icon,
+                        tint = OceanColors.statusPositiveDeep,
+                        modifier = Modifier.size(20.dp)
+                    )
                     OceanSpacing.StackXXXS()
                 }
 
@@ -144,7 +151,11 @@ sealed interface InvertedTextListType {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (icon != null) {
-                    OceanIcon(iconType = icon, tint = OceanColors.statusWarningDeep, modifier = Modifier.size(20.dp))
+                    OceanIcon(
+                        iconType = icon,
+                        tint = OceanColors.statusWarningDeep,
+                        modifier = Modifier.size(20.dp)
+                    )
                     OceanSpacing.StackXXXS()
                 }
 
@@ -174,7 +185,12 @@ sealed interface InvertedTextListType {
 
                 if (tagLabel != null) {
                     OceanSpacing.StackXXS()
-                    OceanTag(label = tagLabel, type = tagType, icon = tagIcon, isSmall = true)
+                    OceanTag(
+                        label = tagLabel,
+                        type = tagType,
+                        icon = tagIcon,
+                        isSmall = true
+                    )
                 }
             }
         }
@@ -212,7 +228,10 @@ fun OceanInvertedTextListItemSkeleton(items: Int) {
             Column(
                 modifier = Modifier
                     .background(OceanColors.interfaceLightPure)
-                    .padding(vertical = 8.dp, horizontal = 16.dp)
+                    .padding(
+                        vertical = OceanSpacing.xxs,
+                        horizontal = OceanSpacing.xs
+                    )
                     .fillMaxWidth()
             ) {
                 Spacer(

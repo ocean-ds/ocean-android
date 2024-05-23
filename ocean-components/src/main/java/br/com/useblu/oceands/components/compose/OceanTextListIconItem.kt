@@ -211,7 +211,7 @@ fun OceanTextListIconItem(
                 onClick = { onClick?.invoke() }
             )
             .background(color = OceanColors.interfaceLightPure)
-            .padding(16.dp),
+            .padding(OceanSpacing.xs),
         verticalAlignment = Alignment.CenterVertically
     ) {
 

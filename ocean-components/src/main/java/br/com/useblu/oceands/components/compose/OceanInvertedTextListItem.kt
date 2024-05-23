@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -69,6 +70,12 @@ private fun OceanInvertedTextListItemPreview() {
             title = "Title",
             type = InvertedTextListType.StrikeThrough("Text", "Current Text")
         )
+        OceanInvertedTextListItem(
+            modifier = Modifier,
+            title = "Title",
+            backgroundColor = OceanColors.interfaceDarkUp,
+            type = InvertedTextListType.Highlight("Description", tagLabel = "Label")
+        )
 
         OceanInvertedTextListItemSkeleton(2)
     }
@@ -78,12 +85,16 @@ private fun OceanInvertedTextListItemPreview() {
 fun OceanInvertedTextListItem(
     modifier: Modifier = Modifier,
     title: String,
+    backgroundColor: Color = OceanColors.interfaceLightPure,
     type: InvertedTextListType
 ) {
     Column(
         modifier = modifier
-            .background(OceanColors.interfaceLightPure)
-            .padding(vertical = 8.dp, horizontal = 16.dp)
+            .background(backgroundColor)
+            .padding(
+                vertical = OceanSpacing.xxs,
+                horizontal = OceanSpacing.xs
+            )
             .fillMaxWidth()
     ) {
         OceanText(
@@ -98,7 +109,7 @@ fun OceanInvertedTextListItem(
 sealed interface InvertedTextListType {
     @Composable
     fun TypeContent()
-    data class Default(val description: String): InvertedTextListType {
+    data class Default(val description: String) : InvertedTextListType {
         @Composable
         override fun TypeContent() {
             OceanText(
@@ -108,7 +119,8 @@ sealed interface InvertedTextListType {
             )
         }
     }
-    data class Inactive(val description: String): InvertedTextListType {
+
+    data class Inactive(val description: String) : InvertedTextListType {
         @Composable
         override fun TypeContent() {
             OceanText(
@@ -118,14 +130,20 @@ sealed interface InvertedTextListType {
             )
         }
     }
-    data class Positive(val description: String, val icon: OceanIcons? = null): InvertedTextListType {
+
+    data class Positive(val description: String, val icon: OceanIcons? = null) :
+        InvertedTextListType {
         @Composable
         override fun TypeContent() {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (icon != null) {
-                    OceanIcon(iconType = icon, tint = OceanColors.statusPositiveDeep, modifier = Modifier.size(20.dp))
+                    OceanIcon(
+                        iconType = icon,
+                        tint = OceanColors.statusPositiveDeep,
+                        modifier = Modifier.size(20.dp)
+                    )
                     OceanSpacing.StackXXXS()
                 }
 
@@ -137,14 +155,20 @@ sealed interface InvertedTextListType {
             }
         }
     }
-    data class Warning(val description: String, val icon: OceanIcons? = null): InvertedTextListType {
+
+    data class Warning(val description: String, val icon: OceanIcons? = null) :
+        InvertedTextListType {
         @Composable
         override fun TypeContent() {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (icon != null) {
-                    OceanIcon(iconType = icon, tint = OceanColors.statusWarningDeep, modifier = Modifier.size(20.dp))
+                    OceanIcon(
+                        iconType = icon,
+                        tint = OceanColors.statusWarningDeep,
+                        modifier = Modifier.size(20.dp)
+                    )
                     OceanSpacing.StackXXXS()
                 }
 
@@ -162,7 +186,7 @@ sealed interface InvertedTextListType {
         val tagLabel: String? = null,
         val tagIcon: OceanIcons? = null,
         val tagType: OceanTagType = OceanTagType.Positive
-    ): InvertedTextListType {
+    ) : InvertedTextListType {
         @Composable
         override fun TypeContent() {
             Column {
@@ -174,15 +198,21 @@ sealed interface InvertedTextListType {
 
                 if (tagLabel != null) {
                     OceanSpacing.StackXXS()
-                    OceanTag(label = tagLabel, type = tagType, icon = tagIcon, isSmall = true)
+                    OceanTag(
+                        label = tagLabel,
+                        type = tagType,
+                        icon = tagIcon,
+                        isSmall = true
+                    )
                 }
             }
         }
     }
+
     data class StrikeThrough(
         val strikedDescription: String,
         val description: String
-    ): InvertedTextListType {
+    ) : InvertedTextListType {
         @Composable
         override fun TypeContent() {
             Row {
@@ -212,7 +242,10 @@ fun OceanInvertedTextListItemSkeleton(items: Int) {
             Column(
                 modifier = Modifier
                     .background(OceanColors.interfaceLightPure)
-                    .padding(vertical = 8.dp, horizontal = 16.dp)
+                    .padding(
+                        vertical = OceanSpacing.xxs,
+                        horizontal = OceanSpacing.xs
+                    )
                     .fillMaxWidth()
             ) {
                 Spacer(

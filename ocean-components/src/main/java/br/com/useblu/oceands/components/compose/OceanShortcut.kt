@@ -132,7 +132,8 @@ fun OceanShortcutList(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
     ) {
         for (i in models.indices step columns) {
             Row(
@@ -150,8 +151,6 @@ fun OceanShortcutList(
                     }
                 }
             }
-
-            OceanSpacing.StackXS()
         }
     }
 }

@@ -1,8 +1,7 @@
 package br.com.useblu.oceands.components.compose
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -19,13 +19,12 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.compose.OceanTabItemModel
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
-import br.com.useblu.oceands.ui.compose.OceanColors
-import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 import kotlinx.coroutines.launch
 
@@ -40,8 +39,15 @@ private val sections = mutableListOf<@Composable () -> Unit>(
     },
     {
         Column {
-            for (item in 1..11) {
+            for (item in 1..30) {
                 OceanStep(item, 11)
+            }
+        }
+    },
+    {
+        Column {
+            for (item in 0..30) {
+                Text(text = "Texto $item", modifier = Modifier.padding(8.dp))
             }
         }
     },
@@ -68,51 +74,57 @@ private fun OceanScrollableTabPreview() {
     val tabs = listOf(
         OceanTabItemModel("Tab 1", 1),
         OceanTabItemModel("Tab 2", 2),
-        OceanTabItemModel("Tab 3", 3)
+        OceanTabItemModel("Tab 3", 3),
+        OceanTabItemModel("Tab 4")
     )
 
     var selectedTabIndex by remember { mutableIntStateOf(0) }
 
     OceanTheme {
-        OceanScrollableTab(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(color = OceanColors.interfaceLightPure),
-            tabs = tabs,
-            defaultSelectedTab = selectedTabIndex,
-            onSelectedTab = { selectedTabIndex = it },
-            headerContent = {
-                Column {
-                    OceanTopBarInverse(title = "Tela preview", onClickIcon = { })
-                    OceanSpacing.StackXXS()
-
-                    repeat(10) {
-                        OceanText(
-                            text = "Testeeee $it",
-                            modifier = Modifier.padding(16.dp)
-                        )
-                    }
-                }
-            },
-            content = {
-                sections.forEach {
-                    item {
-                        it()
-                    }
-                }
-            },
-            footerContent = {
-                OceanButton(
-                    text = "Teste",
-                    onClick = {},
-                    buttonStyle = OceanButtonStyle.PrimaryMedium
-                )
+        Scaffold(
+            topBar = {
+                OceanTopBarInverse(title = "Tela preview", onClickIcon = {})
             }
-        )
+        ) {
+            OceanScrollableTab(
+                modifier = Modifier
+                    .padding(it)
+                    .fillMaxSize(),
+                tabs = tabs,
+                defaultSelectedTab = selectedTabIndex,
+                onSelectedTab = {
+                    println("new tab index $it")
+                    selectedTabIndex = it
+                },
+                headerContent = {
+                    Column {
+                        repeat(12) {
+                            OceanText(
+                                text = "Testeeee $it",
+                                modifier = Modifier.padding(16.dp)
+                            )
+                        }
+                    }
+                },
+                content = {
+                    sections.forEach {
+                        item {
+                            it()
+                        }
+                    }
+                },
+                footerContent = {
+                    OceanButton(
+                        text = "Teste",
+                        onClick = {},
+                        buttonStyle = OceanButtonStyle.PrimaryMedium
+                    )
+                }
+            )
+        }
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OceanScrollableTab(
     modifier: Modifier = Modifier,
@@ -135,7 +147,14 @@ fun OceanScrollableTab(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Top
     ) {
-        var currentItemIndex by remember { mutableIntStateOf(defaultSelectedTab) }
+        var currentItemIndex by remember(defaultSelectedTab) { mutableIntStateOf(defaultSelectedTab) }
+
+        val headerIsSticky = remember(lazyListState) {
+            derivedStateOf {
+                val items = lazyListState.layoutInfo.visibleItemsInfo
+                !(items.size >= 2 && items[0].index == 0)
+            }
+        }
 
         LaunchedEffect(key1 = firstVisibleIndex) {
             currentItemIndex = (firstVisibleIndex - headerOffset)
@@ -143,37 +162,61 @@ fun OceanScrollableTab(
             onSelectedTab(currentItemIndex)
         }
 
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth(),
-            state = lazyListState,
-            content = {
-                if (headerContent != null) {
-                    item {
-                        headerContent()
-                    }
-                }
-
-                stickyHeader {
-                    OceanTabScrollable(
-                        tabs = tabs,
-                        defaultSelectedTab = currentItemIndex,
-                        onSelectedTab = {
-                            onSelectedTab(it)
-                            coroutineScope.launch {
-                                lazyListState.animateScrollToItem(it + headerOffset)
-                            }
+        Box {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .run {
+                        if (headerIsSticky.value) {
+                            padding(top = 56.dp)
+                        } else this
+                    },
+                state = lazyListState,
+                content = {
+                    if (headerContent != null) {
+                        item {
+                            headerContent()
                         }
-                    )
-                }
+                    }
 
-                content()
-
-                if (footerContent != null) {
                     item {
-                        footerContent()
+                        if (!headerIsSticky.value) {
+                            OceanTabScrollable(
+                                tabs = tabs,
+                                defaultSelectedTab = currentItemIndex,
+                                onSelectedTab = {
+                                    onSelectedTab(it)
+                                    coroutineScope.launch {
+                                        lazyListState.animateScrollToItem(it + headerOffset)
+                                    }
+                                }
+                            )
+                        }
+                    }
+
+                    content()
+
+                    if (footerContent != null) {
+                        item {
+                            footerContent()
+                        }
                     }
                 }
+            )
+
+            if (headerIsSticky.value) {
+                OceanTabScrollable(
+                    tabs = tabs,
+                    defaultSelectedTab = currentItemIndex,
+                    onSelectedTab = {
+                        onSelectedTab(it)
+                        coroutineScope.launch {
+                            lazyListState.animateScrollToItem(it + headerOffset)
+                        }
+                    },
+                    modifier = Modifier.align(Alignment.TopStart)
+                )
             }
-        )
+        }
     }
 }

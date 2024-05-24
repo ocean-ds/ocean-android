@@ -88,13 +88,11 @@ fun OceanCarousel(
         if (autoCycle) {
             while (true) {
                 delay(autoCycleTime)
-                try {
+                runCatching {
                     pagerState.animateScrollToPage(
                         page = (pagerState.currentPage + 1) % items.size
                     )
-                } catch (_: Exception) {
-                    // Do nothing
-                }
+                }.getOrDefault(Unit)
             }
         }
     }
@@ -106,15 +104,15 @@ fun OceanCarousel(
     ) {
         HorizontalPager(
             state = pagerState,
-            contentPadding = PaddingValues(horizontal = 16.dp),
+            contentPadding = PaddingValues(horizontal = OceanSpacing.xs),
             pageSpacing = 8.dp,
             modifier = Modifier.height(140.dp)
-        ) {
+        ) { page ->
             if (LocalInspectionMode.current) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .clickable { items[it].action() }
+                        .clickable { items[page].action() }
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.image_placeholder),
@@ -125,12 +123,12 @@ fun OceanCarousel(
                 }
             } else {
                 GlideImage(
-                    imageModel = { items[it].url },
+                    imageModel = { items[page].url },
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Crop,
                         alignment = Alignment.Center
                     ),
-                    modifier = Modifier.clickable { items[it].action() },
+                    modifier = Modifier.clickable { items[page].action() },
                     failure = {
                         Image(
                             painter = painterResource(id = R.drawable.image_placeholder),

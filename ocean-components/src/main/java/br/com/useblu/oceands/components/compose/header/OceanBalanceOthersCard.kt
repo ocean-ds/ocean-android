@@ -3,11 +3,9 @@ package br.com.useblu.oceands.components.compose.header
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,12 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanFontSize
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 
 @Preview
@@ -55,23 +54,25 @@ fun OceanBalanceOthersCard(
     ) {
         Text(
             text = model.title,
-            fontSize = 12.sp,
-            modifier = Modifier.height(18.dp).padding(horizontal = 16.dp),
+            fontSize = OceanFontSize.xxxs,
             color = OceanColors.brandPrimaryUp,
-            fontFamily = OceanFontFamily.BaseBold
+            fontFamily = OceanFontFamily.BaseBold,
+            modifier = Modifier
+                .height(18.dp)
+                .padding(horizontal = OceanSpacing.xs)
         )
 
-        Spacer(modifier = Modifier.size(4.dp))
+        OceanSpacing.StackXXXS()
 
         Text(
             text = model.description,
-            fontSize = 14.sp,
+            fontSize = OceanFontSize.xxs,
             color = OceanColors.interfaceLightDown,
             fontFamily = OceanFontFamily.BaseRegular,
-            modifier = Modifier.padding(horizontal = 16.dp)
+            modifier = Modifier.padding(horizontal = OceanSpacing.xs)
         )
 
-        Spacer(modifier = Modifier.size(8.dp))
+        OceanSpacing.StackXXS()
 
         OceanButton(
             text = model.buttonCta,
@@ -79,7 +80,7 @@ fun OceanBalanceOthersCard(
             onClick = {
                 model.onClickButton()
             },
-            modifier = Modifier.padding(horizontal = 16.dp)
+            modifier = Modifier.padding(horizontal = OceanSpacing.xs)
         )
     }
 }

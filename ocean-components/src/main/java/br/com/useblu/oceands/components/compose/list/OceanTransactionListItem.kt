@@ -15,7 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTag
@@ -25,6 +24,7 @@ import br.com.useblu.oceands.extensions.oceanFormatWithCurrency
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.FormatTypes
@@ -147,7 +147,7 @@ fun OceanTransactionListItem(
                     indication = null,
                     enabled = !isDisabled
                 ) { }
-                .padding(16.dp),
+                .padding(OceanSpacing.xs),
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (showCheckbox) {
@@ -156,7 +156,7 @@ fun OceanTransactionListItem(
                     selected = isCheckboxSelected,
                     onSelectedBox = onSelectedBox,
                     enabled = !isDisabled,
-                    modifier = Modifier.padding(end = 16.dp),
+                    modifier = Modifier.padding(end = OceanSpacing.xs),
                     interactionSource = interactionSource
                 )
             }
@@ -164,7 +164,7 @@ fun OceanTransactionListItem(
             if (icon != null) {
                 Box(
                     modifier = Modifier
-                        .padding(end = 16.dp)
+                        .padding(end = OceanSpacing.xs)
                         .iconContainerBackground(true)
                         .size(40.dp)
                 ) {
@@ -181,7 +181,7 @@ fun OceanTransactionListItem(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(end = 16.dp)
+                    .padding(end = OceanSpacing.xs)
             ) {
                 if (highlightedLabel != null) {
                     Text(
@@ -195,7 +195,7 @@ fun OceanTransactionListItem(
 
                 Text(
                     text = primaryLabel,
-                    fontSize = 16.sp,
+                    fontSize = OceanFontSize.xs,
                     fontFamily = OceanFontFamily.BaseRegular,
                     color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure
                 )
@@ -279,7 +279,7 @@ fun OceanTransactionListItem(
                     iconType = trailingIcon,
                     tint = OceanColors.interfaceDarkUp,
                     modifier = Modifier
-                        .padding(start = 12.dp)
+                        .padding(start = OceanSpacing.xxsExtra)
                         .size(20.dp)
                 )
             }

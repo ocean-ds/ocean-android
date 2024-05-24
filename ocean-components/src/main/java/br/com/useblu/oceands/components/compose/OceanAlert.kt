@@ -509,7 +509,7 @@ fun OceanAlertLabeled(
                 maxLines = 2,
             )
             OceanLink(
-                modifier = Modifier.padding(bottom = OceanSpacing.xxsExtra),
+                modifier = Modifier.padding(top = OceanSpacing.xxsExtra),
                 text = label,
                 isSmall = true,
                 linkIcon = OceanLinkIcon.DEFAULT,

@@ -115,7 +115,7 @@ fun OceanBasicChip(
             .clickable {
                 model.onClick(true)
             }
-            .padding(horizontal = 12.dp),
+            .padding(horizontal = OceanSpacing.xxsExtra),
         verticalAlignment = CenterVertically
     ) {
         model.icon?.let {
@@ -162,7 +162,7 @@ fun OceanFilterChip(
             .clickable {
                 model.filterOptions.showBottomSheet(context)
             }
-            .padding(start = 12.dp, end = 8.dp),
+            .padding(start = OceanSpacing.xxsExtra, end = OceanSpacing.xxs),
         verticalAlignment = CenterVertically
     ) {
         Text(

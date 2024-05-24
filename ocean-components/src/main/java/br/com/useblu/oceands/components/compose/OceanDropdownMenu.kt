@@ -172,7 +172,7 @@ private fun OceanDropdown(
         )
         ExposedDropdownMenuBox(
             modifier = Modifier
-                .padding(vertical = 8.dp)
+                .padding(vertical = OceanSpacing.xxs)
                 .wrapContentSize()
                 .border(
                     border = BorderStroke(
@@ -193,7 +193,7 @@ private fun OceanDropdown(
                 modifier = Modifier
                     .menuAnchor()
                     .height(56.dp)
-                    .padding(horizontal = 16.dp)
+                    .padding(horizontal = OceanSpacing.xs)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -227,7 +227,7 @@ private fun OceanDropdown(
             ) {
                 options.forEachIndexed { index, item ->
                     DropdownMenuItem(
-                        contentPadding = PaddingValues(16.dp),
+                        contentPadding = PaddingValues(OceanSpacing.xs),
                         text = {
                             OceanText(
                                 text = item,
@@ -307,7 +307,7 @@ private fun OceanBottomSheetDropdown(
         )
         Row (
             modifier = Modifier
-                .padding(vertical = 8.dp)
+                .padding(vertical = OceanSpacing.xxs)
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
@@ -323,7 +323,7 @@ private fun OceanBottomSheetDropdown(
 
         ) {
             Row(
-                modifier = Modifier.padding(horizontal = 16.dp),
+                modifier = Modifier.padding(horizontal = OceanSpacing.xs),
             ) {
                 OceanText(
                     modifier = Modifier.weight(9f),
@@ -378,7 +378,7 @@ private fun bottomSheetContent(
 
     Column(
         modifier = Modifier
-            .padding(horizontal = 4.dp)
+            .padding(horizontal = OceanSpacing.xxxs)
             .verticalScroll(rememberScrollState())
     ) {
         options.forEachIndexed { index, item ->
@@ -389,7 +389,7 @@ private fun bottomSheetContent(
                             color = OceanColors.interfaceLightUp,
                             shape = RoundedCornerShape(8.dp)
                         )
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxs)
                         .height(40.dp)
                         .fillMaxWidth()
                         .clickable {
@@ -410,7 +410,7 @@ private fun bottomSheetContent(
             } else {
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxs)
                         .background(color = OceanColors.interfaceLightPure)
                         .height(40.dp)
                         .fillMaxWidth()

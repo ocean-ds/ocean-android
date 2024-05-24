@@ -90,11 +90,11 @@ fun OceanOnboardingPager(
                 onClickToolbar = { }
             )
         },
-        content = {
+        content = { paddingValues ->
             HorizontalPager(
                 state = pagerState,
                 modifier = Modifier
-                    .padding(it)
+                    .padding(paddingValues)
                     .fillMaxSize()
                     .background(color = OceanColors.interfaceLightPure)
             ) { index ->
@@ -115,7 +115,7 @@ fun OceanOnboardingPager(
                 OceanButton(
                     text = if (pagerState.isLastPage()) finishButtonLabel else stringResource(R.string.button_advance),
                     modifier = Modifier
-                        .padding(16.dp)
+                        .padding(OceanSpacing.xs)
                         .fillMaxWidth(),
                     buttonStyle = OceanButtonStyle.PrimaryMedium,
                     onClick = {
@@ -139,8 +139,8 @@ private fun OceanOnboardingPage(
 ) {
     Column(
         modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .padding(bottom = 24.dp)
+            .padding(horizontal = OceanSpacing.xs)
+            .padding(bottom = OceanSpacing.sm)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center

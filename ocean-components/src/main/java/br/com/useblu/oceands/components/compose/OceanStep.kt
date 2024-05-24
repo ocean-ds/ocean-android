@@ -6,7 +6,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -20,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 
 @Preview
@@ -104,7 +104,7 @@ fun StepCircle(
                     .background(color = color)
             )
         } else {
-            Spacer(modifier = Modifier.width(4.dp))
+            OceanSpacing.StackXXXS()
         }
 
         Box(
@@ -125,7 +125,7 @@ fun StepCircle(
                     .background(color = OceanColors.interfaceLightDown)
             )
         } else {
-            Spacer(modifier = Modifier.width(4.dp))
+            OceanSpacing.StackXXXS()
         }
     }
 }

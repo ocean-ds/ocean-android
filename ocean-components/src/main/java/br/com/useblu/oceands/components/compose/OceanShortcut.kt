@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -137,7 +136,7 @@ fun OceanShortcutList(
     ) {
         for (i in models.indices step columns) {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
                 modifier = Modifier.height(IntrinsicSize.Min)
             ) {
                 for (j in 0 until columns) {
@@ -176,7 +175,6 @@ fun OceanShortcut(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OceanShortcut(
     label: String,
@@ -227,7 +225,7 @@ fun OceanShortcut(
                 OceanIcon(
                     iconType = OceanIcons.LOCK_CLOSED_SOLID,
                     modifier = Modifier
-                        .padding(top = 8.dp, end = 8.dp)
+                        .padding(top = OceanSpacing.xxs, end = OceanSpacing.xxs)
                         .size(16.dp)
                         .align(Alignment.TopEnd),
                     tint = OceanColors.interfaceDarkUp
@@ -240,14 +238,14 @@ fun OceanShortcut(
                     type = badgeType,
                     size = OceanBadgeSize.Medium,
                     modifier = Modifier
-                        .padding(top = 8.dp, end = 8.dp)
+                        .padding(top = OceanSpacing.xxs, end = OceanSpacing.xxs)
                         .align(Alignment.TopEnd)
                 )
             }
 
             Column(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(OceanSpacing.xs)
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {

@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 
 @Preview
 @Composable
@@ -43,7 +44,7 @@ fun OceanEyebrow(
     Text(
         text = text.uppercase(),
         style = TextStyle(
-            fontSize = 12.sp,
+            fontSize = OceanFontSize.xxs,
             fontFamily = OceanFontFamily.BaseMedium,
             color = textColor,
             letterSpacing = 2.16.sp,

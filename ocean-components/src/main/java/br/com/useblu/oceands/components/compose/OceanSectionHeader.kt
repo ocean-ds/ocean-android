@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 
 @Preview
@@ -31,13 +32,12 @@ fun OceanSectionHeader(
     title: String
 ) {
     Row(
-        modifier = modifier
-            .height(20.dp)
+        modifier = modifier.height(20.dp)
     ) {
         OceanText(
             text = title,
             modifier = Modifier
-                .padding(horizontal = 16.dp),
+                .padding(horizontal = OceanSpacing.xs),
             style = OceanTextStyle.heading5,
             color = OceanColors.interfaceDarkUp
         )

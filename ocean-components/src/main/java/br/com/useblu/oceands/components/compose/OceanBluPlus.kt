@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -37,7 +37,7 @@ fun OceanBluPlus(
                 onClick()
             }
             .height(40.dp)
-            .padding(start = 8.dp, end = 4.dp),
+            .padding(start = OceanSpacing.xxs, end = OceanSpacing.xxxs),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
@@ -45,7 +45,7 @@ fun OceanBluPlus(
             modifier = Modifier.size(20.dp)
         )
 
-        Spacer(modifier = Modifier.size(4.dp))
+        OceanSpacing.StackXXXS()
 
         Text(
             bluPlusValue.toString(),
@@ -53,7 +53,7 @@ fun OceanBluPlus(
             color = OceanColors.interfaceLightPure
         )
 
-        Spacer(modifier = Modifier.size(4.dp))
+        OceanSpacing.StackXXXS()
 
         OceanIcon(
             iconType = OceanIcons.CHEVRON_RIGHT_SOLID,

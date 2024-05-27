@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -47,7 +48,7 @@ fun OceanPageIndicator(
             )
 
             val width = animateDpAsState(
-                targetValue = if (isSelected) 8.dp else 4.dp,
+                targetValue = if (isSelected) OceanSpacing.xxs else OceanSpacing.xxxs,
                 label = "Page Indicator Width",
                 animationSpec = tween(300)
             )

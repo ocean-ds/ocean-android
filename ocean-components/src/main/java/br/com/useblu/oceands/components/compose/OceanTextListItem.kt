@@ -31,6 +31,7 @@ import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.components.compose.input.OceanSelectableRadio
 import br.com.useblu.oceands.model.OceanTextListStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -194,9 +195,9 @@ fun OceanTextListItem(
         Row(
             modifier = Modifier
                 .background(OceanColors.interfaceLightPure)
-                .padding(start = 16.dp)
-                .padding(end = 8.dp)
-                .padding(vertical = 8.dp)
+                .padding(start = OceanSpacing.xs)
+                .padding(end = OceanSpacing.xxs)
+                .padding(vertical = OceanSpacing.xxs)
                 .fillMaxWidth()
                 .clickable(
                     interactionSource = interactionSource,
@@ -213,7 +214,7 @@ fun OceanTextListItem(
                     Column(
                         modifier = Modifier
                             .align(Alignment.CenterVertically)
-                            .padding(end = 16.dp)
+                            .padding(end = OceanSpacing.xs)
                     ) {
                         OceanSelectableBox(
                             interactionSource = interactionSource,
@@ -228,7 +229,7 @@ fun OceanTextListItem(
                     Column(
                         modifier = Modifier
                             .align(Alignment.CenterVertically)
-                            .padding(end = 16.dp)
+                            .padding(end = OceanSpacing.xs)
                     ) {
                         OceanSelectableRadio(
                             interactionSource = interactionSource,
@@ -246,7 +247,7 @@ fun OceanTextListItem(
 
             Column(
                 modifier = Modifier
-                    .padding(end = 8.dp)
+                    .padding(end = OceanSpacing.xxs)
                     .weight(2f)
             ) {
                 val titleColor =
@@ -264,7 +265,7 @@ fun OceanTextListItem(
                     else OceanColors.interfaceLightDeep
 
                 Text(
-                    modifier = Modifier.padding(bottom = 4.dp),
+                    modifier = Modifier.padding(bottom = OceanSpacing.xxxs),
                     text = description,
                     style = OceanTextStyle.description,
                     color = descriptionColor
@@ -316,11 +317,11 @@ fun OceanTextListItemSkeleton(items: Int) {
             Column(
                 modifier = Modifier
                     .background(OceanColors.interfaceLightPure)
-                    .padding(16.dp)
+                    .padding(OceanSpacing.xs)
                     .fillMaxWidth()
             ) {
                 Row(
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    modifier = Modifier.padding(bottom = OceanSpacing.xxs)
                 ) {
                     Spacer(
                         modifier = Modifier

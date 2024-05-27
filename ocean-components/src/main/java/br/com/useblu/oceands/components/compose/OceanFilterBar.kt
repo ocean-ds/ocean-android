@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components
+package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
@@ -19,7 +19,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.components.compose.OceanChip
 import br.com.useblu.oceands.model.Badge
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanBasicChip
@@ -27,6 +26,7 @@ import br.com.useblu.oceands.model.OceanChip
 import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Composable
@@ -85,14 +85,14 @@ fun OceanFilterBar(
     Column(
         modifier = modifier
             .background(color = colorResource(R.color.ocean_color_interface_light_pure))
-            .padding(16.dp)
+            .padding(OceanSpacing.xs)
     ) {
         Row(
             modifier = Modifier
                 .horizontalScroll(rememberScrollState())
                 .height(32.dp)
                 .fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
             verticalAlignment = Alignment.CenterVertically
         ) {
             filterList.forEachIndexed { index, itemModel ->

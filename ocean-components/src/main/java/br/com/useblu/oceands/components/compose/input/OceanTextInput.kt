@@ -339,9 +339,9 @@ private fun OceanTextInputDecorationBox(
     singleLine: Boolean = true
 ) {
     val contentPadding = if (singleLine) {
-        PaddingValues(horizontal = 16.dp)
+        PaddingValues(horizontal = OceanSpacing.xs)
     } else {
-        PaddingValues(horizontal = 16.dp, vertical = 16.dp)
+        PaddingValues(horizontal =  OceanSpacing.xs, vertical =  OceanSpacing.xs)
     }
 
     OutlinedTextFieldDefaults.DecorationBox(

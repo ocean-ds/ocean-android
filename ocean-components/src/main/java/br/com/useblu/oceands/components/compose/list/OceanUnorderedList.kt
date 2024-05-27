@@ -60,7 +60,7 @@ fun OceanUnorderedList(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
     ) {
         models.forEach { item ->
             OceanUnorderedListItem(item)
@@ -91,8 +91,8 @@ fun OceanUnorderedListItem(
 ) {
     Row(
         modifier = Modifier.padding(
-            horizontal = 16.dp,
-            vertical = 4.dp
+            horizontal = OceanSpacing.xs,
+            vertical = OceanSpacing.xxxs
         ),
         verticalAlignment = Alignment.Top
     ) {
@@ -116,7 +116,7 @@ fun OceanUnorderedListItem(
 
         Column(
             modifier = Modifier
-                .padding(start = 8.dp)
+                .padding(start = OceanSpacing.xxs)
         ) {
             OceanText(
                 text = title,

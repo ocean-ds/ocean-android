@@ -108,7 +108,7 @@ fun OceanSettingsListItem(
         Row(
             modifier = Modifier
                 .background(color = OceanColors.interfaceLightPure)
-                .padding(16.dp)
+                .padding(OceanSpacing.xs)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {

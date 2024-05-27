@@ -336,21 +336,21 @@ fun OceanAlertDefaultStyle(
         verticalAlignment = CenterVertically,
         modifier = modifier
             .background(
-                color = style.alertBackgroundColor.invoke(),
+                color = style.alertBackgroundColor(),
                 shape = RoundedCornerShape(8.dp)
             )
-            .padding(16.dp)
+            .padding(OceanSpacing.xs)
     ) {
         Icon(
-            modifier = Modifier.padding(end = 8.dp),
+            modifier = Modifier.padding(end = OceanSpacing.xxs),
             painter = painterResource(id = style.oceanIcon.icon),
-            tint = style.iconTint.invoke(),
+            tint = style.iconTint(),
             contentDescription = null,
         )
         OceanText(
             text = description,
-            style = style.descriptionStyle.invoke(),
-            color = style.descriptionColor.invoke(),
+            style = style.descriptionStyle(),
+            color = style.descriptionColor(),
             maxLines = 2,
         )
     }
@@ -369,15 +369,15 @@ fun OceanAlertEntitledShort(
         verticalAlignment = CenterVertically,
         modifier = modifier
             .background(
-                color = style.alertBackgroundColor.invoke(),
+                color = style.alertBackgroundColor(),
                 shape = RoundedCornerShape(8.dp)
             )
-            .padding(16.dp)
+            .padding(OceanSpacing.xs)
     ) {
         Icon(
-            modifier = Modifier.padding(end = 8.dp),
+            modifier = Modifier.padding(end = OceanSpacing.xxs),
             painter = painterResource(id = style.oceanIcon.icon),
-            tint = style.iconTint.invoke(),
+            tint = style.iconTint(),
             contentDescription = null
         )
 
@@ -389,8 +389,8 @@ fun OceanAlertEntitledShort(
             ){
                 OceanText(
                     text = title,
-                    style = style.titleStyle.invoke(),
-                    color = style.titleColor.invoke(),
+                    style = style.titleStyle(),
+                    color = style.titleColor(),
                     maxLines = 2
                 )
 
@@ -410,8 +410,8 @@ fun OceanAlertEntitledShort(
 
             OceanText(
                 text = description,
-                style = style.descriptionStyle.invoke(),
-                color = style.descriptionColor.invoke(),
+                style = style.descriptionStyle(),
+                color = style.descriptionColor(),
                 maxLines = 2
             )
         }
@@ -419,7 +419,7 @@ fun OceanAlertEntitledShort(
         button?.let {
             Column(
                 modifier = Modifier
-                    .padding(start = 16.dp),
+                    .padding(start = OceanSpacing.xs),
                 horizontalAlignment = Alignment.End
             ) {
                 OceanButton(
@@ -449,32 +449,19 @@ fun OceanAlertEntitledLong(
     Column(
         modifier = modifier
             .background(
-                color = style.alertBackgroundColor.invoke(),
+                color = style.alertBackgroundColor(),
                 shape = RoundedCornerShape(8.dp)
             )
-            .padding(16.dp)
+            .padding(OceanSpacing.xs)
     ) {
-        Row(
-            modifier = Modifier.padding(bottom = 12.dp),
-            verticalAlignment = CenterVertically,
-        ) {
-            Icon(
-                modifier = Modifier.padding(end = 8.dp),
-                painter = painterResource(id = style.oceanIcon.icon),
-                tint = style.iconTint.invoke(),
-                contentDescription = null,
-            )
-            OceanText(
-                text = title,
-                style = style.titleStyle.invoke(),
-                color = style.titleColor.invoke(),
-                maxLines = 2,
-            )
-        }
+        BaseAlertContent(
+            style = style,
+            title = title
+        )
         OceanText(
             text = description,
-            style = style.descriptionStyle.invoke(),
-            color = style.descriptionColor.invoke(),
+            style = style.descriptionStyle(),
+            color = style.descriptionColor(),
             maxLines = 2,
         )
     }
@@ -493,16 +480,16 @@ fun OceanAlertLabeled(
         verticalAlignment = CenterVertically,
         modifier = modifier
             .background(
-                color = style.alertBackgroundColor.invoke(),
+                color = style.alertBackgroundColor(),
                 shape = RoundedCornerShape(8.dp)
             )
-            .padding(16.dp)
+            .padding(OceanSpacing.xs)
     ) {
         Column {
             Icon(
-                modifier = Modifier.padding(end = 8.dp),
+                modifier = Modifier.padding(end = OceanSpacing.xxs),
                 painter = painterResource(id = style.oceanIcon.icon),
-                tint = style.iconTint.invoke(),
+                tint = style.iconTint(),
                 contentDescription = null,
             )
         }
@@ -510,23 +497,23 @@ fun OceanAlertLabeled(
             if (title != null) {
                 OceanText(
                     text = title,
-                    style = style.titleStyle.invoke(),
-                    color = style.titleColor.invoke(),
+                    style = style.titleStyle(),
+                    color = style.titleColor(),
                     maxLines = 2,
                 )
             }
             OceanText(
                 text = description,
-                style = style.descriptionStyle.invoke(),
-                color = style.descriptionColor.invoke(),
+                style = style.descriptionStyle(),
+                color = style.descriptionColor(),
                 maxLines = 2,
             )
             OceanLink(
-                modifier = Modifier.padding(top = 12.dp),
+                modifier = Modifier.padding(top = OceanSpacing.xxsExtra),
                 text = label,
                 isSmall = true,
                 linkIcon = OceanLinkIcon.DEFAULT,
-                onClick = { onClickLable.invoke() }
+                onClick = { onClickLable() }
             )
         }
     }
@@ -542,32 +529,43 @@ fun OceanAlertBookmarked(
     Column(
         modifier = modifier
             .background(
-                color = style.alertBackgroundColor.invoke(),
+                color = style.alertBackgroundColor(),
                 shape = RoundedCornerShape(8.dp)
             )
-            .padding(16.dp)
+            .padding(OceanSpacing.xs)
     ) {
-        Row(
-            modifier = Modifier.padding(bottom = 12.dp),
-            verticalAlignment = CenterVertically,
-        ) {
-            Icon(
-                modifier = Modifier.padding(end = 8.dp),
-                painter = painterResource(id = style.oceanIcon.icon),
-                tint = style.iconTint.invoke(),
-                contentDescription = null,
-            )
-            OceanText(
-                text = title,
-                style = style.titleStyle.invoke(),
-                color = style.titleColor.invoke(),
-                maxLines = 2,
-            )
-        }
+        BaseAlertContent(
+            style = style,
+            title = title
+        )
         OceanText(
             text = description.parseAsHtml().toString(),
-            style = style.descriptionStyle.invoke(),
-            color = style.descriptionColor.invoke(),
+            style = style.descriptionStyle(),
+            color = style.descriptionColor(),
+        )
+    }
+}
+
+@Composable
+private fun BaseAlertContent(
+    style: AlertStyle,
+    title: String,
+) {
+    Row(
+        modifier = Modifier.padding(bottom = OceanSpacing.xxsExtra),
+        verticalAlignment = CenterVertically,
+    ) {
+        Icon(
+            modifier = Modifier.padding(end = OceanSpacing.xxs),
+            painter = painterResource(id = style.oceanIcon.icon),
+            tint = style.iconTint(),
+            contentDescription = null,
+        )
+        OceanText(
+            text = title,
+            style = style.titleStyle(),
+            color = style.titleColor(),
+            maxLines = 2,
         )
     }
 }

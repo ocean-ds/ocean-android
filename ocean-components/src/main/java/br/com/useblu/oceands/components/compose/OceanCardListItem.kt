@@ -184,7 +184,7 @@ fun OceanCardListItem(
                 color = OceanColors.interfaceLightDown,
                 shape = RoundedCornerShape(8.dp)
             )
-            .padding(16.dp),
+            .padding(OceanSpacing.xs),
         verticalAlignment = Alignment.CenterVertically
     ) {
         leadingIconToken?.let {

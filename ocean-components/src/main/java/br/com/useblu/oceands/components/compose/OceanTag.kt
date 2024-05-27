@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -192,7 +193,7 @@ fun OceanTag(
     icon: OceanIcons? = null,
     isSmall: Boolean = false
 ) {
-    val size = if (isSmall) 16.dp else 20.dp
+    val height = if (isSmall) 16.dp else 20.dp
     val textColor = getTextColor(type = type)
     val backgroundColor = getBackgroundColor(type = type)
 
@@ -202,7 +203,7 @@ fun OceanTag(
                 color = backgroundColor,
                 shape = RoundedCornerShape(16.dp)
             )
-            .height(size),
+            .height(height),
         verticalAlignment = Alignment.CenterVertically
 
     ) {
@@ -224,7 +225,7 @@ fun OceanTag(
         Text(
             text = label,
             color = textColor,
-            fontSize = if (isSmall) 10.sp else 12.sp
+            fontSize = if (isSmall) 10.sp else OceanFontSize.xxxs
         )
 
         if (isSmall) {

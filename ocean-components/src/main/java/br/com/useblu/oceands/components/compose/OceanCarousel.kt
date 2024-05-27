@@ -92,7 +92,7 @@ fun OceanCarousel(
                     pagerState.animateScrollToPage(
                         page = (pagerState.currentPage + 1) % items.size
                     )
-                }.getOrDefault(Unit)
+                }
             }
         }
     }

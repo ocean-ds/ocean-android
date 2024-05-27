@@ -87,8 +87,8 @@ fun OceanCarousel(
     LaunchedEffect(key1 = autoCycle) {
         if (autoCycle) {
             while (true) {
-                delay(autoCycleTime)
                 runCatching {
+                    delay(autoCycleTime)
                     pagerState.animateScrollToPage(
                         page = (pagerState.currentPage + 1) % items.size
                     )

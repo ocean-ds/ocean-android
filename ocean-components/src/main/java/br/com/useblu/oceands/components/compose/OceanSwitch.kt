@@ -71,7 +71,7 @@ fun OceanSwitch(
     enabled: Boolean = true,
     onCheckedChange: (Boolean) -> Unit = {}
 ) {
-    var isChecked by remember { mutableStateOf(checked) }
+    var isChecked by remember(checked) { mutableStateOf(checked) }
 
     Switch(
         modifier = modifier,

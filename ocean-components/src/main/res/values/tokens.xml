@@ -49,7 +49,6 @@
   <dimen name="ocean_spacing_inset_xl" category="spacing">40dp</dimen>
   <dimen name="ocean_spacing_stack_xxxs" category="spacing">4dp</dimen>
   <dimen name="ocean_spacing_stack_xxs" category="spacing">8dp</dimen>
-  <dimen name="ocean_spacing_stack_xxs_extra" category="spacing">12dp</dimen>
   <dimen name="ocean_spacing_stack_xs" category="spacing">16dp</dimen>
   <dimen name="ocean_spacing_stack_sm" category="spacing">24dp</dimen>
   <dimen name="ocean_spacing_stack_md" category="spacing">32dp</dimen>

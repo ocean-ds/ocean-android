@@ -17,6 +17,7 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 fun SelectableBoxLabel(
     label: String,
     enabled: Boolean,
+    isBold: Boolean = false,
     onSelected: () -> Unit = {}
 ) {
     val uriHandler = LocalUriHandler.current
@@ -28,13 +29,24 @@ fun SelectableBoxLabel(
         maxLines = 2,
         overflow = TextOverflow.Ellipsis,
         style = TextStyle(
-            color = if (enabled) OceanColors.interfaceDarkDown
-                    else OceanColors.interfaceDarkUp,
+            color = if (enabled) {
+                if (isBold) {
+                    OceanColors.interfaceDarkDeep
+                } else {
+                    OceanColors.interfaceDarkDown
+                }
+            } else {
+                OceanColors.interfaceDarkUp
+            },
             fontSize = OceanFontSize.xxs,
-            fontFamily = OceanFontFamily.BaseRegular
+            fontFamily = if (isBold) {
+                OceanFontFamily.BaseBold
+            } else {
+                OceanFontFamily.BaseRegular
+            }
         ),
         onClick = {
-            if(enabled){
+            if (enabled) {
                 val result = annotatedString
                     .getStringAnnotations("URL", it, it)
                     .firstOrNull()

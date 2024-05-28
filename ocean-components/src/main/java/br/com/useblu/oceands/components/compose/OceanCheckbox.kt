@@ -46,6 +46,7 @@ fun OceanCheckboxPreview() {
                 selected = true,
                 enabled = true,
                 unsettled = true,
+                isBold = true
             )
             AddCheckBox(
                 label = stringResource(
@@ -94,11 +95,12 @@ fun OceanCheckbox(
     errorMessage: String = "",
     enabled: Boolean = true,
     onSelected: (Boolean) -> Unit = { },
+    isBold: Boolean = false
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
     Column(
-        modifier = modifier.background(OceanColors.interfaceLightPure)
+        modifier = modifier
     ) {
         Row {
             OceanSelectableBox(
@@ -112,6 +114,7 @@ fun OceanCheckbox(
             SelectableBoxLabel(
                 label = label,
                 enabled = enabled,
+                isBold = isBold,
                 onSelected = {
                     onSelected(!selected)
                 },
@@ -137,6 +140,7 @@ private fun AddCheckBox(
     unsettled: Boolean = false,
     enabled: Boolean = true,
     errorMessage: String = "",
+    isBold: Boolean = false
 ) {
     var wasSelected by remember { mutableStateOf(selected) }
     OceanCheckbox(
@@ -145,6 +149,7 @@ private fun AddCheckBox(
         errorMessage = errorMessage,
         enabled = enabled,
         unsettled = unsettled,
+        isBold = isBold,
         onSelected = {
             wasSelected = it
             println("wasSelected: $wasSelected")

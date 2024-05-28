@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -74,7 +75,7 @@ fun OceanSwitch(
     var isChecked by remember(checked) { mutableStateOf(checked) }
 
     Switch(
-        modifier = modifier,
+        modifier = modifier.scale(0.8f, 0.7f),
         enabled = enabled,
         checked = isChecked,
         onCheckedChange = {

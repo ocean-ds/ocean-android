@@ -131,11 +131,11 @@ class HomeActivity : AppCompatActivity() {
                             text = "Cancelar",
                             onClick = {}
                         ),
-                        buttonsOrientation = BottomSheetButtonsOrientation.Vertical
-                    ),
-                    onDismiss = {
-                        showSheet = false
-                    }
+                        buttonsOrientation = BottomSheetButtonsOrientation.Vertical,
+                        onDismiss = {
+                            showSheet = false
+                        }
+                    )
                 )
             }
 

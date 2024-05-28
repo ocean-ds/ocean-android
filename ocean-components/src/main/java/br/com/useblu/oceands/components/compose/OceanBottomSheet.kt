@@ -77,7 +77,10 @@ private fun OceanBottomSheetPreview() {
                     },
                     title = "Teste de bottom sheet",
                     icon = OceanIcons.CLOCK_OUTLINE.icon,
-                    isDismissible = false
+                    isDismissible = false,
+                    onDismiss = {
+                        showState.value = false
+                    }
                 )
             }
         )
@@ -90,7 +93,10 @@ private fun OceanBottomSheetPreview() {
                         Text(text = "Teste de bottom sheet")
                     },
                     imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
-                    title = "Bottomsheet com Imagem"
+                    title = "Bottomsheet com Imagem",
+                    onDismiss = {
+                        it.value = false
+                    }
                 )
             }
         )
@@ -112,7 +118,10 @@ private fun OceanBottomSheetPreview() {
                         text = "Cancelar",
                         onClick = {}
                     ),
-                    buttonsOrientation = BottomSheetButtonsOrientation.Vertical
+                    buttonsOrientation = BottomSheetButtonsOrientation.Vertical,
+                    onDismiss = {
+                        it.value = false
+                    }
                 )
             }
         )
@@ -123,6 +132,9 @@ private fun OceanBottomSheetPreview() {
                 OceanBottomSheetModel(
                     customContent = {
                         Text(text = "Teste de bottom sheet")
+                    },
+                    onDismiss = {
+                        it.value = false
                     }
                 )
             }
@@ -142,7 +154,10 @@ private fun OceanBottomSheetPreview() {
                             println("Botão clicado")
                         },
                     ),
-                    code = 2000
+                    code = 2000,
+                    onDismiss = {
+                        it.value = false
+                    }
                 )
             }
         )
@@ -163,7 +178,8 @@ data class OceanBottomSheetModel(
     val imageUrl: String? = null,
     val actionPositive: Button? = null,
     val actionNegative: Button? = null,
-    val buttonsOrientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal
+    val buttonsOrientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
+    val onDismiss: () -> Unit
 ) {
     companion object
 
@@ -196,10 +212,7 @@ private fun BottomSheetPreviewFactory(
 
     if (showSheet.value) {
         OceanBottomSheet(
-            model = model(showSheet),
-            onDismiss = {
-                showSheet.value = false
-            }
+            model = model(showSheet)
         )
     }
 }
@@ -207,9 +220,8 @@ private fun BottomSheetPreviewFactory(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OceanBottomSheet(
-    modifier: Modifier = Modifier.padding(OceanSpacing.xs),
-    model: OceanBottomSheetModel,
-    onDismiss: () -> Unit
+    modifier: Modifier = Modifier,
+    model: OceanBottomSheetModel
 ) {
     val scope = rememberCoroutineScope()
 
@@ -223,7 +235,7 @@ fun OceanBottomSheet(
             scope.launch {
                 sheetState.hide()
             }.invokeOnCompletion {
-                onDismiss()
+                model.onDismiss()
             }
         }
     }
@@ -231,7 +243,7 @@ fun OceanBottomSheet(
     ModalBottomSheet(
         containerColor = OceanColors.interfaceLightPure,
         sheetState = sheetState,
-        onDismissRequest = { onDismiss() },
+        onDismissRequest = { model.onDismiss() },
         dragHandle = null
     ) {
         Row(
@@ -259,7 +271,9 @@ fun OceanBottomSheet(
         }
 
         Column(
-            modifier = modifier.fillMaxWidth(),
+            modifier = modifier
+                .padding(OceanSpacing.xs)
+                .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             if (model.icon != null) {

@@ -292,9 +292,8 @@ private fun OceanBottomSheetDropdown(
                         showBottomSheet = false
                     }
                 ),
-            ),
-
-            onDismiss = { showBottomSheet = false }
+                onDismiss = { showBottomSheet = false }
+            )
         )
     }
 

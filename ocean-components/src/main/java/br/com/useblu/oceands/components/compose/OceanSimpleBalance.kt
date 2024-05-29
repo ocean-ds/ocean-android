@@ -27,9 +27,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.utils.FormatTypes
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -80,13 +81,31 @@ fun OceanSimpleBalance(
     }
 
     var isContentExpanded by remember {
-        mutableStateOf(true)
+        mutableStateOf(false)
     }
 
     val animatedRotation = animateFloatAsState(
         targetValue = if (isContentExpanded) 180f else 0f,
         label = "Expand rotation"
     )
+
+    val formattedFirstValue = if (isContentHiddenInternal) {
+        FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN
+    } else {
+        FormatTypes.FORMAT_VALUE_WITH_SYMBOL
+    }.format(firstValue)
+
+    val formattedSecondValue = if (isContentHiddenInternal) {
+        FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN
+    } else {
+        FormatTypes.FORMAT_VALUE_WITH_SYMBOL
+    }.format(secondValue)
+
+    val formattedThridValue = if (isContentHiddenInternal) {
+        FormatTypes.FORMAT_VALUE_WITH_SYMBOL_HIDDEN
+    } else {
+        FormatTypes.FORMAT_VALUE_WITH_SYMBOL
+    }.format(thirdValue)
 
     Column(
         modifier = modifier
@@ -98,8 +117,8 @@ fun OceanSimpleBalance(
         ) {
             Box(
                 modifier = Modifier
-                    .padding(4.dp)
-                    .size(48.dp)
+                    .padding(OceanSpacing.xxxs)
+                    .size(OceanSpacing.xl)
                     .clickable(
                         indication = null,
                         interactionSource = remember { MutableInteractionSource() },
@@ -114,7 +133,7 @@ fun OceanSimpleBalance(
                     tint = OceanColors.interfaceDarkUp,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .size(24.dp),
+                        .size(OceanSpacing.sm),
                 )
             }
 
@@ -128,20 +147,21 @@ fun OceanSimpleBalance(
                         modifier = Modifier
                             .padding(horizontal = OceanSpacing.xxxs),
                         text = headerTitle,
-                        fontSize = 16.sp,
+                        fontSize = OceanFontSize.xs,
                         color = OceanColors.brandPrimaryPure,
                         fontWeight = FontWeight.Bold
                     )
                 } else {
                     OceanText(
                         text = firstLabel,
-                        fontSize = 12.sp,
+                        fontSize = OceanFontSize.xxxs,
                         color = OceanColors.interfaceDarkDeep,
                         fontWeight = FontWeight.SemiBold
                     )
+
                     OceanText(
-                        text = firstValue,
-                        fontSize = 14.sp,
+                        text = formattedFirstValue,
+                        fontSize = OceanFontSize.xxs,
                         color = OceanColors.interfaceDarkDeep,
                         fontWeight = FontWeight.Bold
                     )
@@ -149,8 +169,8 @@ fun OceanSimpleBalance(
             }
 
             Box(modifier = Modifier
-                .padding(4.dp)
-                .size(48.dp)
+                .padding(OceanSpacing.xxxs)
+                .size(OceanSpacing.xl)
                 .clickable(
                     enabled = true,
                     indication = null,
@@ -175,7 +195,7 @@ fun OceanSimpleBalance(
         ) {
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 16.dp)
+                    .padding(horizontal = OceanSpacing.xs)
                     .padding(bottom = OceanSpacing.xxsExtra)
             ) {
                 Row(
@@ -183,7 +203,7 @@ fun OceanSimpleBalance(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     OceanText(text = firstLabel)
-                    OceanText(text = firstValue)
+                    OceanText(text = formattedFirstValue)
                 }
 
                 OceanDivider(Modifier.padding(vertical = OceanSpacing.xxsExtra))
@@ -193,7 +213,7 @@ fun OceanSimpleBalance(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     OceanText(text = secondLabel)
-                    OceanText(text = secondValue)
+                    OceanText(text = formattedSecondValue)
                 }
 
                 OceanDivider(Modifier.padding(vertical = OceanSpacing.xxsExtra))
@@ -203,7 +223,7 @@ fun OceanSimpleBalance(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     OceanText(text = thirdLabel)
-                    OceanText(text = thirdValue)
+                    OceanText(text = formattedThridValue)
                 }
             }
         }
@@ -212,7 +232,7 @@ fun OceanSimpleBalance(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(8.dp)
+                    .height(OceanSpacing.xxs)
                     .background(
                         Brush.verticalGradient(
                             listOf(

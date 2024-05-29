@@ -1,15 +1,19 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +22,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,20 +36,22 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Composable
 private fun OceanSimpleBalancePreview() {
     OceanTheme {
-        OceanSimpleBalance(
-            headerTitle = "Saldo",
-            firstLabel = "Saldo disponível",
-            firstValue = "R$ 1.000,00",
-            secondLabel = "Saldo a receber",
-            secondValue = "R$ 1.000,00",
-            thirdLabel = "Saldo a pagar",
-            thirdValue = "R$ 1.000,00",
-            fourthLabel = "Saldo total",
-            fourthValue = "R$ 1.000,00",
-            onClickHideIcon = {},
-            isContentHidden = false,
-            visibleShadow = true
-        )
+        Scaffold {
+            OceanSimpleBalance(
+                modifier = Modifier.padding(it),
+                headerTitle = "Saldo na Blu",
+                firstLabel = "Saldo total",
+                firstValue = "R$ 1.500,00",
+                secondLabel = "Saldo atual",
+                secondValue = "R$ 1.000,00",
+                thirdLabel = "Agenda",
+                thirdValue = "R$ 500,00",
+                onClickHideIcon = {},
+                isContentHidden = false,
+                isVisibleShadow = true
+            )
+        }
+
     }
 }
 
@@ -57,11 +66,9 @@ fun OceanSimpleBalance(
     secondValue: String,
     thirdLabel: String,
     thirdValue: String,
-    fourthLabel: String,
-    fourthValue: String,
-    onClickHideIcon: (Boolean) -> Unit = {},
+    onClickHideIcon: (isContentHidden: Boolean) -> Unit = {},
     isContentHidden: Boolean,
-    visibleShadow: Boolean
+    isVisibleShadow: Boolean
 ) {
     var isContentHiddenInternal by remember(isContentHidden) {
         mutableStateOf(isContentHidden)
@@ -72,15 +79,19 @@ fun OceanSimpleBalance(
         onClickHideIcon(isContentHiddenInternal)
     }
 
+    var isContentExpanded by remember {
+        mutableStateOf(true)
+    }
+
     val animatedRotation = animateFloatAsState(
-        targetValue = if (isContentHiddenInternal) 180f else 0f,
+        targetValue = if (isContentExpanded) 180f else 0f,
         label = "Expand rotation"
     )
 
     Column(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
             .background(color = OceanColors.interfaceLightPure)
-            .padding(end = 16.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -100,7 +111,7 @@ fun OceanSimpleBalance(
                 } else OceanIcons.EYE_OUTLINE
                 OceanIcon(
                     iconType = icon,
-                    tint = OceanColors.brandPrimaryUp,
+                    tint = OceanColors.interfaceDarkUp,
                     modifier = Modifier
                         .align(Alignment.Center)
                         .size(24.dp),
@@ -108,35 +119,109 @@ fun OceanSimpleBalance(
             }
 
             Column(
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
                     .padding(horizontal = OceanSpacing.xxxs)
+                    .weight(1f)
             ) {
-                OceanText(text = firstLabel)
-                OceanText(
-                    text = firstValue,
-                    fontSize = 14.sp,
-                )
+                if (isContentExpanded) {
+                    OceanText(
+                        modifier = Modifier
+                            .padding(horizontal = OceanSpacing.xxxs),
+                        text = headerTitle,
+                        fontSize = 16.sp,
+                        color = OceanColors.brandPrimaryPure,
+                        fontWeight = FontWeight.Bold
+                    )
+                } else {
+                    OceanText(
+                        text = firstLabel,
+                        fontSize = 12.sp,
+                        color = OceanColors.interfaceDarkDeep,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    OceanText(
+                        text = firstValue,
+                        fontSize = 14.sp,
+                        color = OceanColors.interfaceDarkDeep,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
 
             Box(modifier = Modifier
-                .size(40.dp)
+                .padding(4.dp)
+                .size(48.dp)
                 .clickable(
                     enabled = true,
                     indication = null,
                     interactionSource = remember { MutableInteractionSource() },
                 ) {
-
+                    isContentExpanded = !isContentExpanded
                 }
             ) {
                 OceanIcon(
                     iconType = OceanIcons.CHEVRON_DOWN_OUTLINE,
-                    tint = OceanColors.brandPrimaryUp,
+                    tint = OceanColors.interfaceDarkUp,
                     modifier = Modifier
                         .size(20.dp)
-                        .align(Alignment.CenterEnd)
+                        .align(Alignment.Center)
                         .rotate(animatedRotation.value)
                 )
             }
+        }
+
+        AnimatedVisibility(
+            visible = isContentExpanded
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .padding(bottom = OceanSpacing.xxsExtra)
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    OceanText(text = firstLabel)
+                    OceanText(text = firstValue)
+                }
+
+                OceanDivider(Modifier.padding(vertical = OceanSpacing.xxsExtra))
+
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    OceanText(text = secondLabel)
+                    OceanText(text = secondValue)
+                }
+
+                OceanDivider(Modifier.padding(vertical = OceanSpacing.xxsExtra))
+
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    OceanText(text = thirdLabel)
+                    OceanText(text = thirdValue)
+                }
+            }
+        }
+
+        if (isVisibleShadow) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(8.dp)
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(
+                                Color(0x0C0D1414),
+                                Color.Transparent
+                            )
+                        )
+                    )
+            )
         }
     }
 }

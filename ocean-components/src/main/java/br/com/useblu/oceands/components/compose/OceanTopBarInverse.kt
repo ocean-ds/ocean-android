@@ -140,7 +140,7 @@ fun OceanTopBarInverse(
                         Brush.verticalGradient(
                             listOf(
                                 Color(0x0C0D1414),
-                                Color.White
+                                Color.Transparent
                             )
                         )
                     )

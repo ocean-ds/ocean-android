@@ -29,12 +29,6 @@ import br.com.useblu.oceands.utils.OceanIcons
 private fun OceanTransactionFooterPreview() {
     val entries = listOf(
         OceanTransactionFooterItem(
-            label = "Label0",
-            value = "R$ 40,00",
-            color = "colorStatusPositiveDeep",
-            icon = "tagsolid"
-        ),
-        OceanTransactionFooterItem(
             label = "Label1",
             value = "R$ 40,00",
             newValue = "Zero",
@@ -43,33 +37,23 @@ private fun OceanTransactionFooterPreview() {
         ),
         OceanTransactionFooterItem(
             label = "Label2",
-            value = "R$ 10,00",
-            color = "colorStatusPositiveDeep",
-        ),
-        OceanTransactionFooterItem(
-            label = "Label3",
-            value = "Zero",
-            color = "colorStatusPositiveDeep",
-        ),
-        OceanTransactionFooterItem(
-            label = "Label4",
             value = "R$ 40,00",
             color = "colorInterfaceDarkDown",
         ),
         OceanTransactionFooterItem(
-            label = "Label5",
+            label = "Label3",
             value = "Calculada no dia",
             color = "colorStatusNeutralDeep",
         ),
         OceanTransactionFooterItem(
-            label = "Label6",
+            label = "Label4",
             value = "R$ 10,00",
             tooltip = "tooltip",
             color = "colorStatusPositiveDeep",
             icon = "tagsolid"
         ),
         OceanTransactionFooterItem(
-            label = "Label7",
+            label = "Label5",
             value = "R$ 40,00",
             color = "colorInterfaceDarkPure",
             isBold = true,
@@ -90,7 +74,7 @@ private fun OceanTransactionFooterPreview() {
                 onClick = {},
                 buttonStyle = OceanButtonStyle.SecondaryMedium
             ),
-            buttonsOrientation = Orientation.Horizontal
+            buttonsOrientation = Orientation.Vertical
         )
     }
 }

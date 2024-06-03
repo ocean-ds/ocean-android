@@ -84,7 +84,8 @@ private fun OceanCardListItemPreview() {
                 title = "Title",
                 description = "Description",
                 caption = "Caption",
-                leadingIconToken = OceanIcons.PLACEHOLDER_OUTLINE
+                leadingIconToken = OceanIcons.PAGBLU_OUTLINE,
+                isSelected = true
             )
 
             OceanSpacing.StackXXS()
@@ -168,39 +169,57 @@ fun OceanCardListItem(
     disabled: Boolean = false,
     tagLabel: String? = null,
     tagType: OceanTagType? = null,
-    onClick: (() -> Unit)? = null
+    onClick: () -> Unit = {},
+    isSelected: Boolean = false
 ) {
+    val backgroundColor = if (isSelected) {
+        OceanColors.interfaceLightUp
+    } else OceanColors.interfaceLightPure
+
+    val borderColor = if (isSelected) {
+        OceanColors.brandPrimaryUp
+    } else OceanColors.interfaceLightDown
+
+    val iconBackgroundColor = if (isSelected) {
+        OceanColors.brandPrimaryDown
+    } else OceanColors.interfaceLightUp
+
     Row(
         modifier = modifier
             .clickable(
-                enabled = onClick != null && !disabled,
-                onClick = { onClick?.invoke() }
+                enabled = !disabled,
+                onClick = onClick
             )
             .background(
-                color = OceanColors.interfaceLightPure,
+                color = backgroundColor,
+                shape = RoundedCornerShape(8.dp)
             )
             .border(
                 width = 1.dp,
-                color = OceanColors.interfaceLightDown,
+                color = borderColor,
                 shape = RoundedCornerShape(8.dp)
             )
             .padding(OceanSpacing.xs),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        leadingIconToken?.let {
+        if (leadingIconToken != null) {
             val iconSize = if (showIconBackground) 24.dp else 20.dp
 
             Box(
                 modifier = Modifier
                     .size(40.dp)
-                    .iconContainerBackground(showIconBackground)
+                    .iconContainerBackground(showIconBackground, iconBackgroundColor)
             ) {
                 OceanIcon(
-                    iconType = it,
+                    iconType = leadingIconToken,
                     modifier = Modifier
                         .align(Alignment.Center)
                         .size(iconSize),
-                    tint = if (disabled) OceanColors.interfaceLightDeep else OceanColors.brandPrimaryDown
+                    tint = when {
+                        disabled -> OceanColors.interfaceLightDeep
+                        isSelected -> OceanColors.interfaceLightPure
+                        else -> OceanColors.brandPrimaryDown
+                    }
                 )
             }
 

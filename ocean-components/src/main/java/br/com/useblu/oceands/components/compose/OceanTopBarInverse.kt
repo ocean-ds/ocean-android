@@ -101,6 +101,9 @@ fun OceanTopBarInverse(
                         tint = OceanColors.brandPrimaryPure
                     )
                 }
+            } else {
+                OceanSpacing.StackXXS()
+                OceanSpacing.StackXL()
             }
 
             OceanSpacing.StackXS()
@@ -116,7 +119,7 @@ fun OceanTopBarInverse(
 
             OceanSpacing.StackXS()
 
-            menuIcon?.let {
+            if (menuIcon != null) {
                 IconButton(
                     modifier = Modifier.size(56.dp),
                     onClick = { onClickMenuIcon() }
@@ -128,6 +131,9 @@ fun OceanTopBarInverse(
                         tint = OceanColors.brandPrimaryPure
                     )
                 }
+            } else {
+                OceanSpacing.StackXXS()
+                OceanSpacing.StackXL()
             }
         }
 

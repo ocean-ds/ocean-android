@@ -116,7 +116,7 @@ fun OceanTransactionFooter(
                 OceanButton(
                     text = secondButton.text,
                     icon = secondButton.icon,
-                    buttonStyle = OceanButtonStyle.SecondaryMedium,
+                    buttonStyle = secondButton.buttonStyle,
                     onClick = secondButton.onClick,
                     modifier = it
                 )

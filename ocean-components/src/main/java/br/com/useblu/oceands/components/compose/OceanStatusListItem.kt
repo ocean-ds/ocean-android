@@ -191,6 +191,7 @@ fun OceanStatusListItem(
                 Text(
                     text = it,
                     style = OceanTextStyle.description,
+                    modifier = Modifier.padding(end = OceanSpacing.xs),
                     color = if (isInactive) OceanColors.interfaceDarkUp else Color.Unspecified
                 )
             }
@@ -199,6 +200,7 @@ fun OceanStatusListItem(
                 OceanSpacing.StackXXXS()
                 Text(
                     text = it,
+                    modifier = Modifier.padding(end = OceanSpacing.xs),
                     style = OceanTextStyle.caption,
                     color = if (isInactive) OceanColors.interfaceDarkUp else Color.Unspecified
                 )

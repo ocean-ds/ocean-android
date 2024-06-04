@@ -176,6 +176,8 @@ data class OceanBottomSheetModel(
     val code: Int? = null,
     @DrawableRes val icon: Int? = null,
     val imageUrl: String? = null,
+    val maxWidth: Int? = null,
+    val maxHeight: Int? = null,
     val actionPositive: Button? = null,
     val actionNegative: Button? = null,
     val buttonsOrientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
@@ -294,8 +296,8 @@ fun OceanBottomSheet(
                     modifier = Modifier
                         .padding(bottom = OceanSpacing.sm)
                         .padding(OceanSpacing.xxs)
-                        .heightIn(40.dp, 120.dp)
-                        .widthIn(40.dp, 120.dp),
+                        .heightIn(40.dp, model.maxHeight?.dp ?: 120.dp)
+                        .widthIn(40.dp, model.maxWidth?.dp ?: 120.dp),
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Fit,
                         alignment = Alignment.Center

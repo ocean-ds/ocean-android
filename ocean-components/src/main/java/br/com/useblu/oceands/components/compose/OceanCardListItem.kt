@@ -42,7 +42,8 @@ private fun OceanCardListItemPreview() {
                 .width(250.dp)
         ) {
             OceanCardListItem(
-                title = "Title"
+                title = "Title",
+                onClick = {}
             )
 
             OceanSpacing.StackXXS()
@@ -169,7 +170,7 @@ fun OceanCardListItem(
     disabled: Boolean = false,
     tagLabel: String? = null,
     tagType: OceanTagType? = null,
-    onClick: () -> Unit = {},
+    onClick: (() -> Unit)? = null,
     isSelected: Boolean = false
 ) {
     val backgroundColor = if (isSelected) {
@@ -187,8 +188,8 @@ fun OceanCardListItem(
     Row(
         modifier = modifier
             .clickable(
-                enabled = !disabled,
-                onClick = onClick
+                enabled = onClick != null && !disabled,
+                onClick = { onClick?.invoke() }
             )
             .background(
                 color = backgroundColor,

@@ -30,6 +30,8 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
     private var actionPositive: (() -> Unit?)? = null
     private var actionNegative: (() -> Unit?)? = null
     private var isCritical: Boolean = false
+    private var imageMaxWidth: Int? = null
+    private var imageMaxHeight: Int? = null
 
     private lateinit var binding: OceanBottomSheetBinding
 
@@ -78,6 +80,14 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
 
         image?.let {
             binding.image = it
+        }
+
+        imageMaxWidth?.let {
+            binding.imageMaxWidth = it
+        }
+
+        imageMaxHeight?.let {
+            binding.imageMaxHeight = it
         }
 
         code?.let {
@@ -147,6 +157,16 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
 
     fun withImage(image: String): OceanBottomSheet {
         this.image = image
+        return this
+    }
+
+    fun withImageMaxWidth(maxWidth: Int): OceanBottomSheet {
+        this.imageMaxWidth = maxWidth
+        return this
+    }
+
+    fun withImageMaxHeight(maxHeight: Int): OceanBottomSheet {
+        this.imageMaxHeight = maxHeight
         return this
     }
 

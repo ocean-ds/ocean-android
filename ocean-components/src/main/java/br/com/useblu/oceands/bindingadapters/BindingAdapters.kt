@@ -234,8 +234,13 @@ fun setFormatTypeCurrency(
     }
 }
 
-@BindingAdapter("ocean_icon")
-fun loadIcon(view: ImageView, tokenOrUrl: String?) {
+@BindingAdapter("ocean_icon", "ocean_icon_max_width", "ocean_icon_max_height", requireAll = false)
+fun loadIcon(
+    view: ImageView,
+    tokenOrUrl: String?,
+    maxWidth: Int? = null,
+    maxHeight: Int? = null
+) {
 
     tokenOrUrl?.let {
         if (it.contains("http")) {
@@ -249,20 +254,30 @@ fun loadIcon(view: ImageView, tokenOrUrl: String?) {
                 .asBitmap()
                 .apply(requestOptions)
                 .load(it)
-                .into(customTarget(view))
+                .into(
+                    customTarget(
+                        view = view,
+                        maxWidth = if(maxWidth != null && maxWidth != 0) maxWidth else 120,
+                        maxHeight = if(maxHeight != null && maxHeight != 0) maxHeight else 120
+                    )
+                )
 
         } else {
-           applyImage(it, view)
+            applyImage(it, view)
         }
     }
 }
 
-private fun customTarget(view: ImageView) = object : CustomTarget<Bitmap>() {
+private fun customTarget(
+    view: ImageView,
+    maxWidth: Int,
+    maxHeight: Int
+) = object : CustomTarget<Bitmap>() {
     override fun onResourceReady(
         resource: Bitmap,
         transition: Transition<in Bitmap>?
     ) {
-        adjustImageViewDimensions(view, resource)
+        adjustImageViewDimensions(view, resource, maxWidth, maxHeight)
         view.setImageBitmap(resource)
     }
 
@@ -281,21 +296,26 @@ private fun applyImage(tokenIcon: String, imageView: ImageView) {
     imageView.setImageDrawable(icon)
 }
 
-private fun adjustImageViewDimensions(imageView: ImageView, bitmap: Bitmap) {
+private fun adjustImageViewDimensions(
+    imageView: ImageView,
+    bitmap: Bitmap,
+    maxWidth: Int,
+    maxHeight: Int
+) {
     val layoutParams = imageView.layoutParams ?: return
 
     val aspectRatio = bitmap.width.toFloat() / bitmap.height.toFloat()
 
-    val maxWidth = 120.dp
-    val maxHeight = 120.dp
+    val maxWidthFinal = maxWidth.dp
+    val maxHeightFinal = maxHeight.dp
 
-    if (bitmap.width > maxWidth || bitmap.height > maxHeight) {
+    if (bitmap.width > maxWidthFinal || bitmap.height > maxHeightFinal) {
         if (aspectRatio > 1) {
-            layoutParams.width = maxWidth
-            layoutParams.height = (maxWidth / aspectRatio).toInt()
+            layoutParams.width = maxWidthFinal
+            layoutParams.height = (maxWidthFinal / aspectRatio).toInt()
         } else {
-            layoutParams.width = (maxHeight * aspectRatio).toInt()
-            layoutParams.height = maxHeight
+            layoutParams.width = (maxHeightFinal * aspectRatio).toInt()
+            layoutParams.height = maxHeightFinal
         }
         imageView.layoutParams = layoutParams
     }

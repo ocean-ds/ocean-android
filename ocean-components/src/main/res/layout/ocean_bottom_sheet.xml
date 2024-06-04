@@ -53,6 +53,14 @@
             type="String" />
 
         <variable
+            name="imageMaxWidth"
+            type="int" />
+
+        <variable
+            name="imageMaxHeight"
+            type="int" />
+
+        <variable
             name="textPositive"
             type="String" />
 
@@ -127,6 +135,8 @@
                     android:scaleType="fitCenter"
                     android:src="@{icon}"
                     app:ocean_icon="@{image}"
+                    app:ocean_icon_max_width="@{imageMaxWidth}"
+                    app:ocean_icon_max_height="@{imageMaxHeight}"
                     tools:src="@drawable/icon_generic" />
             </LinearLayout>
 

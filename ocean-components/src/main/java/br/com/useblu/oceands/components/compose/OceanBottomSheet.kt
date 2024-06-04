@@ -389,8 +389,8 @@ private fun BottomButtons(
                 buttonStyle = primaryStyle,
                 icon = positiveButton.icon,
                 onClick = {
-                    positiveButton.onClick.invoke()
                     onDismiss.invoke()
+                    positiveButton.onClick.invoke()
                 },
                 modifier = it
             )
@@ -404,8 +404,8 @@ private fun BottomButtons(
                 icon = negativeButton.icon,
                 buttonStyle = OceanButtonStyle.SecondaryMedium,
                 onClick = {
-                    negativeButton.onClick.invoke()
                     onDismiss.invoke()
+                    negativeButton.onClick.invoke()
                 },
                 modifier = it
             )

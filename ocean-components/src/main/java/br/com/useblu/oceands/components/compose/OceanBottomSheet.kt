@@ -225,22 +225,11 @@ fun OceanBottomSheet(
     modifier: Modifier = Modifier,
     model: OceanBottomSheetModel
 ) {
-    val scope = rememberCoroutineScope()
 
     val sheetState = rememberModalBottomSheetState(
         confirmValueChange = { model.isDismissible },
         skipPartiallyExpanded = true
     )
-
-    val onClickDismiss = remember {
-        {
-            scope.launch {
-                sheetState.hide()
-            }.invokeOnCompletion {
-                model.onDismiss()
-            }
-        }
-    }
 
     ModalBottomSheet(
         containerColor = OceanColors.interfaceLightPure,
@@ -261,7 +250,7 @@ fun OceanBottomSheet(
         ) {
             if (model.isDismissible) {
                 IconButton(
-                    onClick = { onClickDismiss() },
+                    onClick = { model.onDismiss() },
                 ) {
                     OceanIcon(
                         iconType = OceanIcons.X_OUTLINE,
@@ -347,7 +336,7 @@ fun OceanBottomSheet(
                 isCritical = model.isCritical,
                 orientation = model.buttonsOrientation,
                 onDismiss = {
-                    onClickDismiss()
+                    model.onDismiss()
                 }
             )
 
@@ -389,8 +378,9 @@ private fun BottomButtons(
                 buttonStyle = primaryStyle,
                 icon = positiveButton.icon,
                 onClick = {
-                    onDismiss.invoke()
-                    positiveButton.onClick.invoke()
+                    onDismiss.invoke().run {
+                        positiveButton.onClick.invoke()
+                    }
                 },
                 modifier = it
             )
@@ -404,8 +394,9 @@ private fun BottomButtons(
                 icon = negativeButton.icon,
                 buttonStyle = OceanButtonStyle.SecondaryMedium,
                 onClick = {
-                    onDismiss.invoke()
-                    negativeButton.onClick.invoke()
+                    onDismiss.invoke().run {
+                        negativeButton.onClick.invoke()
+                    }
                 },
                 modifier = it
             )

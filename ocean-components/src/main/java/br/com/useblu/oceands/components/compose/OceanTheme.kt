@@ -16,7 +16,8 @@ fun OceanTheme(
             bodyLarge = TextStyle(fontFamily = OceanFontFamily.BaseRegular)
         ),
         colorScheme = MaterialTheme.colorScheme.copy(
-            background = OceanColors.interfaceLightPure
+            background = OceanColors.interfaceLightPure,
+            surface = OceanColors.interfaceLightPure
         )
     ) {
         content()

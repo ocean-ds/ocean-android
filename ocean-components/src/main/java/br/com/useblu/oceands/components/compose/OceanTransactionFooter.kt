@@ -91,7 +91,7 @@ fun OceanTransactionFooter(
         modifier = modifier
             .background(OceanColors.interfaceLightPure)
             .padding(OceanSpacing.xs),
-        verticalArrangement = Arrangement.spacedBy(OceanSpacing.sm)
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
@@ -116,7 +116,7 @@ fun OceanTransactionFooter(
                 OceanButton(
                     text = secondButton.text,
                     icon = secondButton.icon,
-                    buttonStyle = OceanButtonStyle.SecondaryMedium,
+                    buttonStyle = secondButton.buttonStyle,
                     onClick = secondButton.onClick,
                     modifier = it
                 )
@@ -141,7 +141,6 @@ fun OceanTransactionFooter(
                 }
             }
         }
-
     }
 }
 

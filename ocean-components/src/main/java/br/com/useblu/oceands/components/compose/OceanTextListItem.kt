@@ -52,7 +52,9 @@ private fun OceanTextListItemPreview() {
             description = "Description",
             selected = false,
             showError = false,
-            enabled = true
+            enabled = true,
+            onClick = {},
+            showClickableChevron = false
         )
         OceanTextListItem(
             modifier = Modifier,
@@ -185,6 +187,7 @@ fun OceanTextListItem(
     showError: Boolean = false,
     enabled: Boolean = true,
     onSelectedBox: ((Boolean) -> Unit)? = null,
+    showClickableChevron: Boolean = true,
     onClick: (() -> Unit)? = null
 ) {
     Column(
@@ -287,7 +290,7 @@ fun OceanTextListItem(
                     )
                 }
             }
-            if (onClick != null) {
+            if (onClick != null && showClickableChevron) {
                 Column(
                     Modifier
                         .align(Alignment.CenterVertically)

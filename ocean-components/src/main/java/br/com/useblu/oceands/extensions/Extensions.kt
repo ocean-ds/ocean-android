@@ -26,6 +26,10 @@ fun String.formatterDateBR(): String {
     return date?.let { outFormat.format(it) } ?: ""
 }
 
+/**
+ * Patterns default
+ * dd/MM/yyyy
+ */
 fun Date.oceanFormatDefault(): String = oceanFormat("dd/MM/yyyy")
 
 fun Date.oceanFormat(pattern: String): String {

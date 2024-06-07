@@ -119,6 +119,7 @@ fun OceanTransactionListItem(
     dimmedLabel: String? = null,
     highlightedLabel: String? = null,
     primaryValue: Double? = null,
+    primaryValueFormatted: String? = null,
     secondaryValue: Double? = null,
     valueIsHighlighted: Boolean = false,
     valueWithSignal: Boolean = false,
@@ -241,6 +242,21 @@ fun OceanTransactionListItem(
                     }
                     Text(
                         text = formattedValue,
+                        color = color,
+                        fontFamily = OceanFontFamily.BaseMedium,
+                        style = OceanTextStyle.description
+                    )
+                }
+
+                if(!primaryValueFormatted.isNullOrBlank()){
+                    val color = when {
+                        isDisabled -> OceanColors.interfaceDarkUp
+                        valueIsHighlighted -> OceanColors.statusPositiveDeep
+                        else -> OceanColors.interfaceDarkPure
+                    }
+
+                    Text(
+                        text = primaryValueFormatted,
                         color = color,
                         fontFamily = OceanFontFamily.BaseMedium,
                         style = OceanTextStyle.description

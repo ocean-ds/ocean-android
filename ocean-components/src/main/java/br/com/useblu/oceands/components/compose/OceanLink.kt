@@ -151,7 +151,7 @@ fun OceanLink(
 
 
 enum class OceanLinkType {
-    PRIMARY, INVERSE, NEUTRAL;
+    PRIMARY, INVERSE, NEUTRAL, WARNING;
 
     @Composable
     fun getTextColor(): Color {
@@ -159,6 +159,7 @@ enum class OceanLinkType {
             PRIMARY -> OceanColors.brandPrimaryPure
             INVERSE -> OceanColors.complementaryDown
             NEUTRAL -> OceanColors.interfaceDarkDown
+            WARNING -> OceanColors.statusWarningDeep
         }
     }
 }

@@ -45,9 +45,9 @@ fun OceanAlertPreview() {
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 description = "Untitled Alert Labeled Positive",
-                label = "Label",
+                link = "Label",
                 alertType = AlertStyle.StylePositive(),
-                onClickLabel = { println("Label Clicked") }
+                onClick = { println("Label Clicked") }
             )
         )
 
@@ -149,7 +149,7 @@ fun OceanAlertPreview() {
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 description = "Untitled Alert Labeled Info",
-                label = "Label",
+                link = "Label",
                 alertType = AlertStyle.StyleInfo(),
             )
         )
@@ -157,7 +157,7 @@ fun OceanAlertPreview() {
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 description = "Untitled Alert Labeled Warning",
-                label = "Label",
+                link = "Label",
                 alertType = AlertStyle.StyleWarning(),
             )
         )
@@ -165,7 +165,7 @@ fun OceanAlertPreview() {
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 description = "Untitled Alert Labeled Positive",
-                label = "Label",
+                link = "Label",
                 alertType = AlertStyle.StylePositive(),
             )
         )
@@ -173,7 +173,7 @@ fun OceanAlertPreview() {
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
                 description = "Untitled Alert Labeled Negative",
-                label = "Label",
+                link = "Label",
                 alertType = AlertStyle.StyleNegative(),
             )
         )
@@ -182,7 +182,7 @@ fun OceanAlertPreview() {
             type = OceanAlertType.Labeled(
                 title = "Labeled Alert",
                 description = "Entitled Alert Labeled Info",
-                label = "Label",
+                link = "Label",
                 alertType = AlertStyle.StyleInfo(),
             )
         )
@@ -191,7 +191,7 @@ fun OceanAlertPreview() {
             type = OceanAlertType.Labeled(
                 title = "Labeled Alert 2",
                 description = "Entitled Alert Labeled Warning",
-                label = "Label",
+                link = "Label",
                 alertType = AlertStyle.StyleWarning(),
             )
         )
@@ -200,7 +200,7 @@ fun OceanAlertPreview() {
             type = OceanAlertType.Labeled(
                 title = "Labeled Alert 3",
                 description = "Entitled Alert Labeled Positive",
-                label = "Label",
+                link = "Label",
                 alertType = AlertStyle.StylePositive(),
             )
         )
@@ -209,7 +209,7 @@ fun OceanAlertPreview() {
             type = OceanAlertType.Labeled(
                 title = "Labeled Alert 4",
                 description = "Entitled Alert Labeled Negative",
-                label = "Label",
+                link = "Label",
                 alertType = AlertStyle.StyleNegative(),
             )
         )
@@ -309,9 +309,11 @@ fun OceanAlert(
                 modifier = modifier,
                 title = type.title,
                 description = type.description,
-                label = type.label,
+                link = type.link,
+                linkType = type.linkType,
+                linkIcon = type.linkIcon,
                 style = type.alertType,
-                onClickLable = type.onClickLabel
+                onClick = type.onClick
             )
         }
 
@@ -472,9 +474,11 @@ fun OceanAlertLabeled(
     modifier: Modifier = Modifier,
     title: String? = null,
     description: String,
-    label: String,
+    link: String,
+    linkType: OceanLinkType,
+    linkIcon: OceanLinkIcon,
     style: AlertStyle,
-    onClickLable: () -> Unit
+    onClick: () -> Unit
 ) {
     Row(
         verticalAlignment = CenterVertically,
@@ -510,10 +514,11 @@ fun OceanAlertLabeled(
             )
             OceanLink(
                 modifier = Modifier.padding(top = OceanSpacing.xxsExtra),
-                text = label,
+                type = linkType,
+                text = link,
                 isSmall = true,
-                linkIcon = OceanLinkIcon.DEFAULT,
-                onClick = { onClickLable() }
+                linkIcon = linkIcon,
+                onClick = { onClick() }
             )
         }
     }

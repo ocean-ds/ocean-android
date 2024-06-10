@@ -36,6 +36,12 @@ private fun OceanTransactionFooterPreview() {
             icon = "tagsolid"
         ),
         OceanTransactionFooterItem(
+            label = "Label1 - teste",
+            value = "R$ 40,00",
+            newValue = "",
+            color = "colorStatusPositiveDeep"
+        ),
+        OceanTransactionFooterItem(
             label = "Label2",
             value = "R$ 40,00",
             color = "colorInterfaceDarkDown",
@@ -188,7 +194,7 @@ private fun TransactionFooterItem(
                 )
             }
 
-            val textColor = if (item.newValue == null || item.value.isNullOrBlank()) {
+            val textColor = if (item.newValue.isNullOrBlank() || item.value.isNullOrBlank()) {
                 OceanColors.fromString(color = item.color ?: "")
             } else OceanColors.interfaceDarkDown
 

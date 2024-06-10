@@ -43,7 +43,7 @@ fun OceanStatusListItemPreview() {
                 tagLabel = "Tag",
                 tagType = OceanTagType.Warning,
                 tagIcon = OceanIcons.ACADEMIC_CAP_SOLID,
-                badge = "+66",
+                badge = "66+",
                 onClick = {
                     println("click container")
                 }
@@ -157,8 +157,8 @@ fun OceanStatusListItem(
     caption: String? = null,
     tagLabel: String? = null,
     tagIcon: OceanIcons? = null,
-    tagPosition: OceanStatusListItemTagPosition = OceanStatusListItemTagPosition.BOTTOM,
-    tagType: OceanTagType = OceanTagType.Warning,
+    tagPosition: OceanStatusListItemTagPosition? = OceanStatusListItemTagPosition.BOTTOM,
+    tagType: OceanTagType? = OceanTagType.Warning,
     badge: String? = null,
     badgeType: OceanBadgeType? = null,
     isReadOnly: Boolean = false,
@@ -174,7 +174,7 @@ fun OceanStatusListItem(
                 onClick = { onClick?.invoke() }
             )
             .background(color = OceanColors.interfaceLightPure)
-            .padding(16.dp)
+            .padding(OceanSpacing.xs)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -191,6 +191,7 @@ fun OceanStatusListItem(
                 Text(
                     text = it,
                     style = OceanTextStyle.description,
+                    modifier = Modifier.padding(end = OceanSpacing.xs),
                     color = if (isInactive) OceanColors.interfaceDarkUp else Color.Unspecified
                 )
             }
@@ -199,24 +200,33 @@ fun OceanStatusListItem(
                 OceanSpacing.StackXXXS()
                 Text(
                     text = it,
+                    modifier = Modifier.padding(end = OceanSpacing.xs),
                     style = OceanTextStyle.caption,
                     color = if (isInactive) OceanColors.interfaceDarkUp else Color.Unspecified
                 )
             }
 
-            if (tagLabel != null && tagPosition == OceanStatusListItemTagPosition.BOTTOM) {
-                OceanSpacing.StackXXXS()
-                OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
+            tagLabel?.let {
+                if (tagType != null && tagPosition == OceanStatusListItemTagPosition.BOTTOM) {
+                    OceanSpacing.StackXXXS()
+                    OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
+                }
             }
         }
 
-        if (badge != null) {
-            OceanBadge(text = badge, type = badgeType ?: OceanBadgeType.WARNING, size = OceanBadgeSize.Medium)
+        badge?.let {
+            OceanBadge(
+                text = badge,
+                type = badgeType ?: OceanBadgeType.WARNING,
+                size = OceanBadgeSize.Medium
+            )
             OceanSpacing.StackXXXS()
         }
 
-        if (tagLabel != null && tagPosition == OceanStatusListItemTagPosition.RIGHT) {
-            OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
+        tagLabel?.let {
+            if (tagType != null && tagPosition == OceanStatusListItemTagPosition.RIGHT) {
+                OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
+            }
         }
 
         if (!isReadOnly) {
@@ -224,6 +234,7 @@ fun OceanStatusListItem(
                 OceanStatusListItemRightIconType.CHEVRON -> {
                     R.drawable.icon_chevron_right
                 }
+
                 OceanStatusListItemRightIconType.CONTEXT_MENU -> {
                     R.drawable.icon_vertical_solid_dots
                 }

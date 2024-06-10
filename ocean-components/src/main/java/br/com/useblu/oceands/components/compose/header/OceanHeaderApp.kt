@@ -46,6 +46,8 @@ import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
 import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanFontSize
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 import kotlinx.coroutines.launch
 
@@ -99,7 +101,9 @@ fun OceanHeaderAppPreview() {
     OceanTheme {
         Column {
             OceanHeaderApp(modelPreview.value)
-            Spacer(modifier = Modifier.size(16.dp))
+
+            OceanSpacing.StackXS()
+
             Button(
                 onClick = {
                     modelPreview.value =
@@ -126,7 +130,9 @@ private fun OceanHeaderAppPreviewHideBalance() {
     OceanTheme {
         Column {
             OceanHeaderApp(modelPreview.value)
-            Spacer(modifier = Modifier.size(16.dp))
+
+            OceanSpacing.StackXS()
+
             Button(
                 onClick = {
                     modelPreview.value = modelPreview.value.copy(
@@ -192,12 +198,12 @@ fun OceanHeaderApp(
             }
             HorizontalPager(
                 state = pagerState,
-                contentPadding = PaddingValues(horizontal = 16.dp),
+                contentPadding = PaddingValues(horizontal = OceanSpacing.xs),
                 pageSize = balancePageSize,
-                pageSpacing = 8.dp,
+                pageSpacing =  OceanSpacing.xxs,
                 verticalAlignment = Alignment.Top,
                 modifier = Modifier
-                    .padding(top = 4.dp)
+                    .padding(top = OceanSpacing.xxxs)
             ) { page ->
                 when (page) {
                     0 -> {
@@ -272,7 +278,7 @@ fun Header(
         Column(
             modifier = Modifier
                 .weight(1f)
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = OceanSpacing.xs)
                 .clickable { model.onClickTitle() }
         ) {
             Row(
@@ -287,7 +293,9 @@ fun Header(
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f, false)
                 )
+
                 Spacer(modifier = Modifier.size(2.dp))
+
                 OceanIcon(
                     iconType = OceanIcons.CHEVRON_DOWN_SOLID,
                     modifier = Modifier.size(16.dp),
@@ -295,13 +303,13 @@ fun Header(
                 )
             }
 
-            Spacer(modifier = Modifier.size(4.dp))
+            OceanSpacing.StackXXXS()
 
             Text(
                 text = model.formattedCnpj,
                 fontFamily = OceanFontFamily.BaseRegular,
                 color = OceanColors.brandPrimaryUp,
-                fontSize = 12.sp
+                fontSize = OceanFontSize.xxxs
             )
         }
 
@@ -310,7 +318,8 @@ fun Header(
                 bluPlusValue = model.bluPlusValue,
                 onClick = model.onClickBluPlus
             )
-            Spacer(modifier = Modifier.size(4.dp))
+
+            OceanSpacing.StackXXXS()
         }
 
         HeaderMenu(
@@ -318,7 +327,7 @@ fun Header(
             model.onClickMenu
         )
 
-        Spacer(modifier = Modifier.size(4.dp))
+        OceanSpacing.StackXXXS()
     }
 }
 
@@ -348,7 +357,7 @@ private fun HeaderMenu(
                 type = OceanBadgeType.WARNING,
                 size = OceanBadgeSize.Small,
                 modifier = Modifier
-                    .padding(8.dp)
+                    .padding(OceanSpacing.xxs)
                     .align(Alignment.TopEnd)
             )
         }

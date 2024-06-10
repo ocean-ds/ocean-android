@@ -14,11 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.utils.OceanIcons
 
 
 @Preview
@@ -110,7 +110,7 @@ fun OceanSnackBar(
                 Text(
                     text = actionText,
                     fontFamily = OceanFontFamily.BaseBold,
-                    fontSize = 14.sp,
+                    fontSize = OceanFontSize.xxs,
                     color = type.getColor()
                 )
             }
@@ -134,7 +134,7 @@ fun OceanSnackBar(
             Text(
                 text = text,
                 fontFamily = OceanFontFamily.BaseRegular,
-                fontSize = 14.sp,
+                fontSize = OceanFontSize.xxs,
                 color = OceanColors.interfaceLightPure
             )
         }

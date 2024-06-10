@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- BORDER RADIUS TOKENS -->
     <dimen name="ocean_border_radius_sm">4dp</dimen>
     <dimen name="ocean_border_radius_md">8dp</dimen>
     <dimen name="ocean_border_radius_lg">16dp</dimen>
@@ -12,8 +13,11 @@
     <dimen name="ocean_button_min_height_medium">48dp</dimen>
     <dimen name="ocean_button_min_height_large">56dp</dimen>
 
-    <!-- NEW TOKENS PROPOSAL - ONLY ANDROID -->
+    <!-- SPACING TOKENS -->
+    <dimen name="ocean_spacing_stack_xxs_extra" category="spacing">12dp</dimen>
     <dimen name="ocean_spacing_inline_xx" category="spacing">56dp</dimen>
+
+    <!-- BORDER THICKNESS TOKENS -->
     <dimen name="ocean_border_width_hairline" category="spacing">1dp</dimen>
 
     <dimen name="ocean_line_height_tight_android" category="font-line-height">0.9</dimen>

@@ -18,7 +18,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
@@ -89,8 +88,6 @@ fun OceanFileUploaderPreview() {
     }
 }
 
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OceanFileUploader(
     title: String,
@@ -140,7 +137,7 @@ fun OceanFileUploader(
         ) {
             Column(
                 modifier = Modifier
-                    .padding(vertical = 24.dp, horizontal = 16.dp),
+                    .padding(vertical = OceanSpacing.sm, horizontal = OceanSpacing.xs),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 OceanIcon(
@@ -148,8 +145,7 @@ fun OceanFileUploader(
                     tint = OceanColors.brandPrimaryPure
                 )
 
-                OceanSpacing.StackXXS()
-                OceanSpacing.StackXXXS()
+                OceanSpacing.StackXXSExtra()
 
                 OceanText(
                     text = title,
@@ -174,7 +170,7 @@ fun OceanFileUploader(
             OceanSpacing.StackXS()
 
             Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
             ) {
                 selectedFiles.forEachIndexed { index, model ->
                     SelectedFile(
@@ -214,14 +210,14 @@ private fun SelectedFile(
                 .fillMaxWidth()
                 .height(48.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
         ) {
             when (model.status) {
                 FileStatus.Loading -> {
                     CircularProgressIndicator(
                         color = OceanColors.brandPrimaryPure,
                         modifier = Modifier
-                            .padding(start = 12.dp)
+                            .padding(start = OceanSpacing.xxsExtra)
                             .padding(2.dp)
                             .size(16.dp),
                         strokeWidth = 2.dp
@@ -233,7 +229,7 @@ private fun SelectedFile(
                         iconType = OceanIcons.CHECK_CIRCLE_SOLID,
                         tint = OceanColors.statusPositivePure,
                         modifier = Modifier
-                            .padding(start = 12.dp)
+                            .padding(start = OceanSpacing.xxsExtra)
                             .size(20.dp)
                     )
                 }
@@ -243,7 +239,7 @@ private fun SelectedFile(
                         iconType = OceanIcons.X_CIRCLE_SOLID,
                         tint = OceanColors.statusNegativePure,
                         modifier = Modifier
-                            .padding(start = 12.dp)
+                            .padding(start = OceanSpacing.xxsExtra)
                             .size(20.dp)
                     )
                 }
@@ -257,7 +253,7 @@ private fun SelectedFile(
             )
 
             Box(modifier = Modifier
-                .padding(end = 4.dp)
+                .padding(end = OceanSpacing.xxxs)
                 .size(40.dp)
                 .clickable {
                     onClickDeleteFile()

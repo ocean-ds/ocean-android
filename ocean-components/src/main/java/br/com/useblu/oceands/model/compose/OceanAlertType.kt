@@ -3,6 +3,8 @@ package br.com.useblu.oceands.model.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import br.com.useblu.oceands.components.compose.OceanLinkIcon
+import br.com.useblu.oceands.components.compose.OceanLinkType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
@@ -17,7 +19,8 @@ sealed interface OceanAlertType {
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
         val title: String,
         val description: String,
-        val button: Pair<String, () -> Unit>? = null
+        val button: Pair<String, () -> Unit>? = null,
+        val tooltip: String? = null
     ) : OceanAlertType
 
     class EntitledLong(
@@ -30,8 +33,10 @@ sealed interface OceanAlertType {
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
         val title: String? = null,
         val description: String,
-        val label: String,
-        val onClickLabel: () -> Unit = {}
+        val link: String,
+        val linkType: OceanLinkType = OceanLinkType.PRIMARY,
+        val linkIcon: OceanLinkIcon = OceanLinkIcon.DEFAULT,
+        val onClick: () -> Unit = {},
     ) : OceanAlertType
 
     class Bookmarked(

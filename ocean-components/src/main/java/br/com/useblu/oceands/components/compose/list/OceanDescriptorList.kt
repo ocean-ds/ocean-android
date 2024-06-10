@@ -17,6 +17,7 @@ import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.model.OceanDescriptorListItem
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -80,7 +81,7 @@ fun OceanDescriptorList(
     ) {
         items.forEach {
             if (it.isDivider == true) {
-                OceanDivider(modifier = Modifier.padding(top = 16.dp))
+                OceanDivider(modifier = Modifier.padding(top =  OceanSpacing.xs))
             } else {
                 OceanDescriptorItem(item = it)
             }
@@ -96,7 +97,7 @@ fun OceanDescriptorItem(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 16.dp)
+            .padding(top =  OceanSpacing.xs)
     ) {
         OceanText(
             text = item.title ?: "",
@@ -132,7 +133,7 @@ private fun DescriptorValuesRow(item: OceanDescriptorListItem) {
             OceanIcon(
                 iconType = OceanIcons.fromToken(item.icon),
                 modifier = Modifier
-                    .padding(end = 4.dp)
+                    .padding(end =  OceanSpacing.xxxs)
                     .size(16.dp)
             )
         }
@@ -142,7 +143,7 @@ private fun DescriptorValuesRow(item: OceanDescriptorListItem) {
             style = valueStyle,
             textDecoration = valueDecoration,
             modifier = Modifier
-                .padding(end = 4.dp),
+                .padding(end =  OceanSpacing.xxxs),
             color = valueColor
         )
 

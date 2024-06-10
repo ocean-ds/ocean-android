@@ -68,8 +68,8 @@ fun OceanAccordion(
                 .clickable {
                     expandedContent = !expandedContent
                 }
-                .padding(top = if (expandedContent) 12.dp else 16.dp)
-                .padding(bottom = if (expandedContent) 8.dp else 16.dp)
+                .padding(top = if (expandedContent) OceanSpacing.xxsExtra else OceanSpacing.xs)
+                .padding(bottom = if (expandedContent) OceanSpacing.xxs else OceanSpacing.xs)
         ) {
             Text(
                 text = title,

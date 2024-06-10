@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -37,6 +36,7 @@ import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.FormatTypes.Companion.FORMAT_VALUE_WITH_SYMBOL
 import br.com.useblu.oceands.utils.FormatTypes.Companion.FORMAT_VALUE_WITH_SYMBOL_HIDDEN
@@ -264,7 +264,7 @@ private fun ExpandableContent(
             value = model.secondValue
         )
 
-        Spacer(modifier = Modifier.size(12.dp))
+        OceanSpacing.StackXXSExtra()
 
         HorizontalDivider(color = OceanColors.brandPrimaryUp.copy(alpha = 0.4f))
 
@@ -287,7 +287,7 @@ private fun ExpandableContentTextRow(
     value: String
 ) {
     Row(
-        modifier = Modifier.padding(top = 12.dp),
+        modifier = Modifier.padding(top = OceanSpacing.xxsExtra),
         verticalAlignment = Alignment.Top
     ) {
         Text(
@@ -297,7 +297,7 @@ private fun ExpandableContentTextRow(
             color = OceanColors.interfaceLightPure
         )
 
-        Spacer(modifier = Modifier.size(16.dp))
+        OceanSpacing.StackXS()
 
         if (isLoading) {
             Box(
@@ -306,7 +306,7 @@ private fun ExpandableContentTextRow(
                     .width(72.dp)
                     .clip(RoundedCornerShape(4.dp))
                     .background(shimmeringBrush)
-                    .padding(vertical = 8.dp)
+                    .padding(vertical = OceanSpacing.xxs)
             )
         } else {
             val text = if (isContentHidden) {
@@ -330,7 +330,7 @@ private fun BluCardBottomBar(
     isCurrentPage: Boolean
 ) {
     Row(
-        modifier = Modifier.padding(top = 8.dp),
+        modifier = Modifier.padding(top = OceanSpacing.xxs),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
@@ -339,7 +339,7 @@ private fun BluCardBottomBar(
             color = OceanColors.interfaceLightDown
         )
 
-        Spacer(modifier = Modifier.size(16.dp))
+        OceanSpacing.StackXS()
 
         OceanButton(
             text = model.buttonCta,

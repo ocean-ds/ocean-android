@@ -16,7 +16,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.CardCta
 import br.com.useblu.oceands.components.compose.OceanBadge
 import br.com.useblu.oceands.components.compose.OceanBadgeSize
@@ -25,6 +24,7 @@ import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 
@@ -104,8 +104,8 @@ fun OceanCardGroup(
                         color = OceanColors.interfaceLightPure,
                         shape = RoundedCornerShape(topEnd = 8.dp, topStart = 8.dp)
                     )
-                    .padding(horizontal = 16.dp)
-                    .padding(top = 16.dp)
+                    .padding(horizontal =  OceanSpacing.xs)
+                    .padding(top = OceanSpacing.xs)
             ) {
                 Column(
                     modifier = Modifier.weight(1f)
@@ -113,7 +113,7 @@ fun OceanCardGroup(
                     Text(
                         text = title,
                         fontFamily = OceanFontFamily.BaseExtraBold,
-                        fontSize = 16.sp,
+                        fontSize = OceanFontSize.xs,
                         color = OceanColors.interfaceDarkDeep
                     )
 
@@ -123,7 +123,7 @@ fun OceanCardGroup(
                         Text(
                             text = subtitle,
                             fontFamily = OceanFontFamily.BaseRegular,
-                            fontSize = 14.sp,
+                            fontSize = OceanFontSize.xxs,
                             color = OceanColors.interfaceDarkDown
                         )
                     }
@@ -162,7 +162,7 @@ fun OceanCardGroup(
         if (label != null) {
             Box(
                 modifier = Modifier
-                    .padding(start = 16.dp)
+                    .padding(start = OceanSpacing.xs)
                     .height(18.dp)
                     .background(
                         color = OceanColors.brandPrimaryDown,
@@ -173,7 +173,7 @@ fun OceanCardGroup(
             ) {
                 Text(
                     text = label,
-                    fontSize = 11.sp,
+                    fontSize = OceanFontSize.xxxs,
                     color = OceanColors.interfaceLightPure,
                     fontFamily = OceanFontFamily.BaseBold,
                     modifier = Modifier

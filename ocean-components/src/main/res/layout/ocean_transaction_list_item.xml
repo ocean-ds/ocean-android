@@ -128,11 +128,11 @@
                     android:layout_width="@dimen/ocean_spacing_stack_lg"
                     android:layout_height="@dimen/ocean_spacing_stack_lg"
                     android:layout_marginEnd="@dimen/ocean_spacing_inset_sm"
+                    android:background="@drawable/circle_place_holder"
+                    android:padding="@dimen/ocean_spacing_inset_xs"
                     android:src="@{icon}"
                     app:ocean_visible_or_gone="@{icon != null &amp;&amp; !hasCheckbox }"
                     app:tint="@color/ocean_color_interface_dark_up"
-                    android:background="@drawable/circle_place_holder"
-                    android:padding="@dimen/ocean_spacing_inset_xs"
                     tools:src="@drawable/icon_generic_primary"
                     tools:visibility="gone" />
             </LinearLayout>
@@ -174,14 +174,14 @@
                     android:text="@{highlightedLabel}"
                     android:textColor="@color/ocean_color_brand_primary_deep"
                     android:textSize="@dimen/ocean_font_size_xxxs"
-                    app:ocean_visible_or_gone="@{highlightedLabel != null}"
+                    app:ocean_visible_or_gone="@{highlightedLabel != null &amp;&amp; !highlightedLabel.empty}"
                     tools:text="Level 4" />
 
                 <Space
                     android:id="@+id/space4"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ocean_spacing_stack_xxs"
-                    app:ocean_visible_or_gone="@{highlightedLabel != null}" />
+                    app:ocean_visible_or_gone="@{highlightedLabel != null &amp;&amp; !highlightedLabel.empty}" />
 
                 <TextView
                     android:id="@+id/text_view_level_1"
@@ -193,14 +193,14 @@
                     android:text="@{primaryLabel}"
                     android:textColor="@color/ocean_color_interface_dark_pure"
                     android:textSize="@dimen/ocean_font_size_xs"
-                    app:ocean_visible_or_gone="@{primaryLabel != null}"
+                    app:ocean_visible_or_gone="@{primaryLabel != null &amp;&amp; !primaryLabel.empty}"
                     tools:text="Level 1" />
 
                 <Space
                     android:id="@+id/space5"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ocean_spacing_stack_xxxs"
-                    app:ocean_visible_or_gone="@{primaryLabel != null}" />
+                    app:ocean_visible_or_gone="@{primaryLabel != null &amp;&amp; !primaryLabel.empty}" />
 
                 <TextView
                     android:id="@+id/text_view_level_2"
@@ -212,14 +212,14 @@
                     android:text="@{secondaryLabel}"
                     android:textColor="@color/ocean_color_interface_dark_deep"
                     android:textSize="@dimen/ocean_font_size_xxs"
-                    app:ocean_visible_or_gone="@{secondaryLabel != null}"
+                    app:ocean_visible_or_gone="@{secondaryLabel != null &amp;&amp; !secondaryLabel.empty}"
                     tools:text="Level 2" />
 
                 <Space
                     android:id="@+id/space6"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ocean_spacing_stack_xxs"
-                    app:ocean_visible_or_gone="@{secondaryLabel != null}" />
+                    app:ocean_visible_or_gone="@{secondaryLabel != null  &amp;&amp; !secondaryLabel.empty}" />
 
                 <TextView
                     android:id="@+id/text_view_level_3"
@@ -231,7 +231,7 @@
                     android:text="@{dimmedLabel}"
                     android:textColor="@color/ocean_color_interface_dark_up"
                     android:textSize="@dimen/ocean_font_size_xxxs"
-                    app:ocean_visible_or_gone="@{dimmedLabel != null}"
+                    app:ocean_visible_or_gone="@{dimmedLabel != null &amp;&amp; !dimmedLabel.empty}"
                     tools:text="Level 3" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>

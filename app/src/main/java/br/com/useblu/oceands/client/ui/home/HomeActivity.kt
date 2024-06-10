@@ -123,13 +123,19 @@ class HomeActivity : AppCompatActivity() {
                         imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
                         icon = R.drawable.icon_easter_eggs,
                         code = 2000,
-                        actionPositive = "Aceitar" to {},
-                        actionNegative = "Cancelar" to {},
-                        buttonsOrientation = BottomSheetButtonsOrientation.Vertical
-                    ),
-                    onDismiss = {
-                        showSheet = false
-                    }
+                        actionPositive = OceanBottomSheetModel.Button(
+                            text = "Aceitar",
+                            onClick = {}
+                        ),
+                        actionNegative = OceanBottomSheetModel.Button(
+                            text = "Cancelar",
+                            onClick = {}
+                        ),
+                        buttonsOrientation = BottomSheetButtonsOrientation.Vertical,
+                        onDismiss = {
+                            showSheet = false
+                        }
+                    )
                 )
             }
 
@@ -484,7 +490,8 @@ class HomeActivity : AppCompatActivity() {
         OceanBottomSheet(this)
             .withTitle("Title")
             .withMessage("Message")
-            .withImage("https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png")
+            .withImage("https://portal-cicloentrada.blu.com.br/assets/icons/file_atention-247822d15d4579d8a5bfb259082e7fda55ac77a1a8991c14cb69f3584bd0c6f6.png")
+            .withImageMaxHeight(60)
             .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
             .withDismiss(true)
             .withActionPositive(R.string.all_button_confirm) {}

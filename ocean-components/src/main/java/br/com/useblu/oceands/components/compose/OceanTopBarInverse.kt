@@ -8,10 +8,18 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MenuItemColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -61,7 +69,86 @@ fun PreviewOceanTopBarInverse() {
             visibleShadow = true,
             iconInvisible = true
         )
+
+        OceanSpacing.StackSM()
+
+        var expanded by remember { mutableStateOf(false) }
+
+        OceanTopBarInverse(
+            title = "Portabilidade DropDown",
+            onClickIcon = {},
+            onClickToolbar = {},
+            visibleShadow = true,
+            iconInvisible = true,
+            actions = {
+                Column {
+                    IconButton(
+                        onClick = { expanded = true }
+                    ) {
+                        OceanIcon(
+                            tint = OceanColors.brandPrimaryPure,
+                            iconType = OceanIcons.DOTS_VERTICAL_OUTLINE
+                        )
+                    }
+                    DropdownMenu(
+                        modifier = Modifier.background(
+                            color = OceanColors.interfaceLightPure,
+                            shape = RoundedCornerShape(size = 8.dp)
+                        ),
+                        expanded = expanded,
+                        onDismissRequest = { }
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text(text = "Ver contrato") },
+                            onClick = { },
+                            leadingIcon = {
+                                OceanIcon(
+                                    OceanIcons.DOCUMENT_TEXT_OUTLINE
+                                )
+                            }
+                        )
+
+                        DropdownMenuItem(
+                            text = {
+                                Text(
+                                    color = OceanColors.statusNegativePure,
+                                    text = "Recusar contrato"
+                                )
+                                   },
+                            onClick = { },
+                            leadingIcon = {
+                                OceanIcon(
+                                    iconType = OceanIcons.X_CIRCLE_SOLID,
+                                    tint = OceanColors.statusNegativePure
+                                )
+                            }
+                        )
+                    }
+                }
+            }
+        )
     }
+}
+
+@Composable
+fun OceanTopBarInverse(
+    title: String,
+    icon: OceanIcons? = null,
+    onClickIcon: () -> Unit,
+    actions: @Composable () -> Unit,
+    onClickToolbar: () -> Unit = {},
+    visibleShadow: Boolean = false,
+    iconInvisible: Boolean = false,
+) {
+    TopBar(
+        onClickToolbar = onClickToolbar,
+        icon = icon,
+        iconInvisible = iconInvisible,
+        onClickIcon = onClickIcon,
+        title = title,
+        visibleShadow = visibleShadow,
+        actions = actions
+    )
 }
 
 @Composable
@@ -74,6 +161,30 @@ fun OceanTopBarInverse(
     onClickToolbar: () -> Unit = {},
     visibleShadow: Boolean = false,
     iconInvisible: Boolean = false
+) {
+    TopBar(
+        onClickToolbar = onClickToolbar,
+        icon = icon,
+        iconInvisible = iconInvisible,
+        onClickIcon = onClickIcon,
+        title = title,
+        menuIcon = menuIcon,
+        onClickMenuIcon = onClickMenuIcon,
+        visibleShadow = visibleShadow
+    )
+}
+
+@Composable
+private fun TopBar(
+    onClickToolbar: () -> Unit,
+    icon: OceanIcons?,
+    iconInvisible: Boolean,
+    onClickIcon: () -> Unit,
+    title: String,
+    menuIcon: OceanIcons? = null,
+    onClickMenuIcon: (() -> Unit)? = null,
+    actions: (@Composable () -> Unit)? = null,
+    visibleShadow: Boolean
 ) {
     Column(
         modifier = Modifier.background(OceanColors.interfaceLightPure)
@@ -135,6 +246,8 @@ fun OceanTopBarInverse(
                 OceanSpacing.StackXXS()
                 OceanSpacing.StackXL()
             }
+
+            actions?.invoke()
         }
 
         if (visibleShadow) {

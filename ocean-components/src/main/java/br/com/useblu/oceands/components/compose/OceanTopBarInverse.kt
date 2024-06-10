@@ -229,8 +229,8 @@ private fun TopBar(
             )
 
             OceanSpacing.StackXS()
-
-            if (menuIcon != null) {
+            
+            if (menuIcon != null && onClickMenuIcon != null) {
                 IconButton(
                     modifier = Modifier.size(56.dp),
                     onClick = { onClickMenuIcon() }

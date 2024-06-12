@@ -14,7 +14,6 @@
     <dimen name="ocean_button_min_height_large">56dp</dimen>
 
     <!-- SPACING TOKENS -->
-    <dimen name="ocean_spacing_stack_xxs_extra" category="spacing">12dp</dimen>
     <dimen name="ocean_spacing_inline_xx" category="spacing">56dp</dimen>
 
     <!-- BORDER THICKNESS TOKENS -->

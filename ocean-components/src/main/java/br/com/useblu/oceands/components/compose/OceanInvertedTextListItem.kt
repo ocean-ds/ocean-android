@@ -58,7 +58,7 @@ private fun OceanInvertedTextListItemPreview() {
         OceanInvertedTextListItem(
             modifier = Modifier,
             title = "Title",
-            type = InvertedTextListType.DefaultWithIcon(
+            type = InvertedTextListType.Default(
                 description = "Description",
                 colorDescription = OceanColors.brandPrimaryDown,
                 icon = OceanIcons.DOCUMENT_TEXT_SOLID,
@@ -119,14 +119,32 @@ fun OceanInvertedTextListItem(
 sealed interface InvertedTextListType {
     @Composable
     fun TypeContent()
-    data class Default(val description: String) : InvertedTextListType {
+    data class Default(
+        val description: String,
+        val colorDescription: Color? = null,
+        val icon: OceanIcons? = null,
+        val colorIcon: Color? = null
+    ) : InvertedTextListType {
         @Composable
         override fun TypeContent() {
-            OceanText(
-                text = description,
-                style = OceanTextStyle.paragraph,
-                color = OceanColors.interfaceDarkPure
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (icon != null) {
+                    OceanIcon(
+                        iconType = icon,
+                        tint = colorIcon ?: OceanColors.statusWarningDeep,
+                        modifier = Modifier.size(20.dp)
+                    )
+                    OceanSpacing.StackXXXS()
+                }
+
+                OceanText(
+                    text = description,
+                    style = OceanTextStyle.paragraph,
+                    color = colorDescription ?: OceanColors.statusWarningDeep
+                )
+            }
         }
     }
 
@@ -215,35 +233,6 @@ sealed interface InvertedTextListType {
                         isSmall = true
                     )
                 }
-            }
-        }
-    }
-
-    data class DefaultWithIcon(
-        val description: String,
-        val colorDescription: Color? = null,
-        val icon: OceanIcons? = null,
-        val colorIcon: Color? = null
-    ) : InvertedTextListType {
-        @Composable
-        override fun TypeContent() {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                if (icon != null) {
-                    OceanIcon(
-                        iconType = icon,
-                        tint = colorIcon ?: OceanColors.statusWarningDeep,
-                        modifier = Modifier.size(20.dp)
-                    )
-                    OceanSpacing.StackXXXS()
-                }
-
-                OceanText(
-                    text = description,
-                    style = OceanTextStyle.paragraph,
-                    color = colorDescription ?: OceanColors.statusWarningDeep
-                )
             }
         }
     }

@@ -142,7 +142,7 @@ sealed interface InvertedTextListType {
                 OceanText(
                     text = description,
                     style = OceanTextStyle.paragraph,
-                    color = colorDescription ?: OceanColors.statusWarningDeep
+                    color = colorDescription ?: OceanColors.interfaceDarkDeep
                 )
             }
         }

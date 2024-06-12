@@ -46,7 +46,10 @@ fun OceanTransactionListItemPreview() {
             valueIsHighlighted = true,
             time = "Time",
             tagTitle = "Title",
-            icon = OceanIcons.LOCK_CLOSED_SOLID
+            icon = OceanIcons.LOCK_CLOSED_SOLID,
+            onClick = {
+                println("Clicked")
+            }
         )
         OceanTransactionListItem(
             primaryLabel = "Level 1",
@@ -134,7 +137,8 @@ fun OceanTransactionListItem(
     isCheckboxSelected: Boolean = false,
     onSelectedBox: ((Boolean) -> Unit)? = null,
     showError: Boolean = false,
-    isDisabled: Boolean = false
+    isDisabled: Boolean = false,
+    onClick: () -> Unit = {}
 ) {
     Column {
         val interactionSource = remember {
@@ -144,10 +148,11 @@ fun OceanTransactionListItem(
             modifier = modifier
                 .background(color = OceanColors.interfaceLightPure)
                 .clickable(
+                    onClick = onClick,
                     interactionSource = interactionSource,
                     indication = null,
                     enabled = !isDisabled
-                ) { }
+                )
                 .padding(OceanSpacing.xs),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -248,7 +253,7 @@ fun OceanTransactionListItem(
                     )
                 }
 
-                if(!primaryValueFormatted.isNullOrBlank()){
+                if (!primaryValueFormatted.isNullOrBlank()) {
                     val color = when {
                         isDisabled -> OceanColors.interfaceDarkUp
                         valueIsHighlighted -> OceanColors.statusPositiveDeep

@@ -34,6 +34,7 @@
   <color name="ocean_color_status_negative_deep" category="background-color">#D31441</color>
   <dimen name="ocean_spacing_inline_xxxs" category="spacing">4dp</dimen>
   <dimen name="ocean_spacing_inline_xxs" category="spacing">8dp</dimen>
+  <dimen name="ocean_spacing_inline_xxs_extra" category="spacing">12dp</dimen>
   <dimen name="ocean_spacing_inline_xs" category="spacing">16dp</dimen>
   <dimen name="ocean_spacing_inline_sm" category="spacing">24dp</dimen>
   <dimen name="ocean_spacing_inline_md" category="spacing">32dp</dimen>
@@ -49,6 +50,7 @@
   <dimen name="ocean_spacing_inset_xl" category="spacing">40dp</dimen>
   <dimen name="ocean_spacing_stack_xxxs" category="spacing">4dp</dimen>
   <dimen name="ocean_spacing_stack_xxs" category="spacing">8dp</dimen>
+  <dimen name="ocean_spacing_stack_xxs_extra" category="spacing">12dp</dimen>
   <dimen name="ocean_spacing_stack_xs" category="spacing">16dp</dimen>
   <dimen name="ocean_spacing_stack_sm" category="spacing">24dp</dimen>
   <dimen name="ocean_spacing_stack_md" category="spacing">32dp</dimen>

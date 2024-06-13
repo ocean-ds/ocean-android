@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanDivider
@@ -41,6 +42,24 @@ fun OceanTransactionListItemPreview() {
             dimmedLabel = "Level 3",
             highlightedLabel = "Level 4",
             primaryValue = 10045.32,
+            secondaryValue = 10002.78,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            time = "Time",
+            tagTitle = "Title",
+            icon = OceanIcons.LOCK_CLOSED_SOLID,
+            onClick = {
+                println("Clicked")
+            }
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            primaryValueFormatted = "R$ 10.045,32",
+            primaryValueFormattedColor = OceanColors.interfaceDarkUp,
+            primaryValueFormattedIsStrike = true,
             secondaryValue = 10002.78,
             valueWithSignal = true,
             valueIsHighlighted = true,
@@ -123,6 +142,8 @@ fun OceanTransactionListItem(
     highlightedLabel: String? = null,
     primaryValue: Double? = null,
     primaryValueFormatted: String? = null,
+    primaryValueFormattedColor: Color? = null,
+    primaryValueFormattedIsStrike: Boolean = false,
     secondaryValue: Double? = null,
     valueIsHighlighted: Boolean = false,
     valueWithSignal: Boolean = false,
@@ -255,6 +276,7 @@ fun OceanTransactionListItem(
 
                 if (!primaryValueFormatted.isNullOrBlank()) {
                     val color = when {
+                        primaryValueFormattedColor != null -> primaryValueFormattedColor
                         isDisabled -> OceanColors.interfaceDarkUp
                         valueIsHighlighted -> OceanColors.statusPositiveDeep
                         else -> OceanColors.interfaceDarkPure
@@ -264,7 +286,11 @@ fun OceanTransactionListItem(
                         text = primaryValueFormatted,
                         color = color,
                         fontFamily = OceanFontFamily.BaseMedium,
-                        style = OceanTextStyle.description
+                        style = if (primaryValueFormattedIsStrike) {
+                            OceanTextStyle.descriptionStrike
+                        } else {
+                            OceanTextStyle.description
+                        }
                     )
                 }
 

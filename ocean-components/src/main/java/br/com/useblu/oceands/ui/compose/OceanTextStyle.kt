@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -30,6 +31,7 @@ private fun TextStylePreview() {
         Text(text = "Subtitle 2", style = OceanTextStyle.subtitle2)
         Text(text = "Paragraph", style = OceanTextStyle.paragraph)
         Text(text = "Description", style = OceanTextStyle.description)
+        Text(text = "Description Strike", style = OceanTextStyle.descriptionStrike)
         Text(text = "Caption", style = OceanTextStyle.caption)
         Text(text = "Lead", style = OceanTextStyle.lead)
         Text(text = "Error", style = OceanTextStyle.error)
@@ -58,7 +60,14 @@ object OceanTextStyle {
     val description @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular,
-        fontSize = OceanFontSize.xxs
+        fontSize = OceanFontSize.xxs,
+    )
+
+    val descriptionStrike @Composable get() = TextStyle(
+        color = OceanColors.interfaceDarkDown,
+        fontFamily = OceanFontFamily.BaseRegular,
+        fontSize = OceanFontSize.xxs,
+        textDecoration = TextDecoration.LineThrough
     )
 
     val error @Composable get() = TextStyle(

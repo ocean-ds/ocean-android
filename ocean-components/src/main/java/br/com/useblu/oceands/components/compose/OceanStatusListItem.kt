@@ -53,6 +53,7 @@ fun OceanStatusListItemPreview() {
                 title = "Title",
                 description = "Description",
                 caption = "Caption",
+                captionColor = Color.Red,
                 tagLabel = "Tag",
                 tagType = OceanTagType.Warning,
                 tagPosition = OceanStatusListItemTagPosition.RIGHT,
@@ -155,6 +156,7 @@ fun OceanStatusListItem(
     modifier: Modifier = Modifier,
     description: String? = null,
     caption: String? = null,
+    captionColor: Color = Color.Unspecified,
     tagLabel: String? = null,
     tagIcon: OceanIcons? = null,
     tagPosition: OceanStatusListItemTagPosition? = OceanStatusListItemTagPosition.BOTTOM,
@@ -202,7 +204,7 @@ fun OceanStatusListItem(
                     text = it,
                     modifier = Modifier.padding(end = OceanSpacing.xs),
                     style = OceanTextStyle.caption,
-                    color = if (isInactive) OceanColors.interfaceDarkUp else Color.Unspecified
+                    color = if (isInactive) OceanColors.interfaceDarkUp else captionColor
                 )
             }
 

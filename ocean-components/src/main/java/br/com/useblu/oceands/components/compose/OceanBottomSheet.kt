@@ -63,7 +63,7 @@ private fun OceanBottomSheetPreview() {
                             val coroutineScope = rememberCoroutineScope()
                             Column(Modifier.padding(vertical = 16.dp)) {
                                 Text(text = "Teste de bottom sheet")
-                                
+
                                 OceanRadioButton(label = "Testeeee")
 
                                 OceanButton(
@@ -374,12 +374,14 @@ private fun BottomButtons(
         return
     }
 
-    val buttons: @Composable (Modifier) -> Unit = {
-        val primaryStyle = if (isCritical) {
-            OceanButtonStyle.PrimaryCriticalMedium
-        } else OceanButtonStyle.PrimaryMedium
+    val buttons = mutableListOf<@Composable (Modifier) -> Unit>()
 
-        if (positiveButton != null) {
+    if (positiveButton != null) {
+        buttons.add {
+            val primaryStyle = if (isCritical) {
+                OceanButtonStyle.PrimaryCriticalMedium
+            } else OceanButtonStyle.PrimaryMedium
+
             OceanButton(
                 text = positiveButton.text,
                 buttonStyle = primaryStyle,
@@ -392,10 +394,10 @@ private fun BottomButtons(
                 modifier = it
             )
         }
+    }
 
-        if (negativeButton != null) {
-            OceanSpacing.StackXS()
-
+    if (negativeButton != null) {
+        buttons.add {
             OceanButton(
                 text = negativeButton.text,
                 icon = negativeButton.icon,
@@ -416,17 +418,23 @@ private fun BottomButtons(
     when (orientation) {
         BottomSheetButtonsOrientation.Horizontal -> {
             Row(
-                modifier = modifier
+                modifier = modifier,
+                horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
             ) {
-                buttons(Modifier.weight(1f))
+                buttons.reversed().forEach {
+                    it(Modifier.weight(1f))
+                }
             }
         }
 
         BottomSheetButtonsOrientation.Vertical -> {
             Column(
-                modifier = modifier
+                modifier = modifier,
+                verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
             ) {
-                buttons(Modifier.fillMaxWidth())
+                buttons.forEach {
+                    it(Modifier.fillMaxWidth())
+                }
             }
         }
     }

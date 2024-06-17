@@ -193,7 +193,8 @@ data class OceanBottomSheetModel(
     class Button(
         val text: String,
         val icon: OceanIcons? = null,
-        val onClick: () -> Unit
+        val onClick: () -> Unit,
+        val isDisabled: Boolean = false
     )
 }
 
@@ -391,7 +392,8 @@ private fun BottomButtons(
                         positiveButton.onClick.invoke()
                     }
                 },
-                modifier = it
+                modifier = it,
+                disabled = positiveButton.isDisabled
             )
         }
     }
@@ -407,7 +409,8 @@ private fun BottomButtons(
                         negativeButton.onClick.invoke()
                     }
                 },
-                modifier = it
+                modifier = it,
+                disabled = negativeButton.isDisabled
             )
         }
     }

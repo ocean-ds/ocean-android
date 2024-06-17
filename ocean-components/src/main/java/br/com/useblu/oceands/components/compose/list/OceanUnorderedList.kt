@@ -28,9 +28,10 @@ fun OceanUnorderedListItemPreview() {
     val models = listOf(
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
-            description = ">>>>>Descrição do item<<<<<",
-            iconType = OceanIcons.SHIELD_CHECK_OUTLINE,
-            showIconBackground = false
+            description = "Para começar ",
+            style = OceanTextStyle.heading5,
+            iconType = OceanIcons.CHEVRON_RIGHT_SOLID,
+            showIconBackground = true
         ),
         OceanUnorderedListItemModel(
             title = "Mais segurança: aprove, na hora, suas transações feitas pelo app",
@@ -116,7 +117,6 @@ fun OceanUnorderedListItem(
 
         Column(
             modifier = Modifier
-                .padding(start = OceanSpacing.xxs)
         ) {
             OceanText(
                 text = title,
@@ -124,6 +124,8 @@ fun OceanUnorderedListItem(
             )
 
             if (description.isNotEmpty()) {
+                OceanSpacing.StackXXXS()
+
                 OceanText(
                     text = description,
                     style = OceanTextStyle.description

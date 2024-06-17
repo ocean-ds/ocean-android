@@ -29,9 +29,9 @@ android {
     targetProjectPath = ":app"
 
     testOptions.managedDevices.devices {
-        create<ManagedVirtualDevice>("pixel7Api31") {
+        create<ManagedVirtualDevice>("pixel7Api30") {
             device = "Pixel 7"
-            apiLevel = 31
+            apiLevel = 30
             systemImageSource = "aosp"
         }
     }
@@ -40,7 +40,7 @@ android {
 // This is the configuration block for the Baseline Profile plugin.
 // You can specify to run the generators on a managed devices or connected devices.
 baselineProfile {
-    managedDevices += "pixel7Api31"
+    managedDevices += "pixel7Api30"
     useConnectedDevices = false
 }
 

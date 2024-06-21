@@ -30,7 +30,7 @@ class OceanTextInputTest {
 
         composeTestRule.onNode(isFocusable()).run {
             performTextInput("1")
-            this.assert(hasText("0,011"))
+            this.assert(hasText("0,01"))
             performTextInput("2")
             this.assert(hasText("0,12"))
             performKeyPress(

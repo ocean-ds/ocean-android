@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("androidx.baselineprofile")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -27,10 +28,6 @@ android {
         dataBinding = true
         viewBinding = true
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Configs.kotlinCompilerExtensionVersion
     }
 
     compileOptions {

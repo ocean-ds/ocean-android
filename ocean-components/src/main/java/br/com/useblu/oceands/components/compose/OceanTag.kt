@@ -72,6 +72,7 @@ private fun OceanTagPreview() {
 
         Column {
             OceanTag(
+                showIcon = true,
                 label = "Label",
                 icon = OceanIcons.LOCK_CLOSED_OUTLINE,
                 type = OceanTagType.Positive
@@ -190,6 +191,7 @@ private fun OceanTagPreview() {
 fun OceanTag(
     label: String,
     type: OceanTagType,
+    showIcon: Boolean = true,
     icon: OceanIcons? = null,
     isSmall: Boolean = false
 ) {
@@ -207,15 +209,19 @@ fun OceanTag(
         verticalAlignment = Alignment.CenterVertically
 
     ) {
-
-        if (icon != null) {
+        if (showIcon) {
             Spacer(modifier = Modifier.size(6.dp))
 
-            OceanIcon(
-                iconType = icon,
-                tint = textColor,
-                modifier = Modifier.size(16.dp)
-            )
+            val defaultIcon = icon ?: getIconDefault(type)
+
+            if (defaultIcon != null) {
+                OceanIcon(
+                    iconType = defaultIcon ,
+                    tint = textColor,
+                    modifier = Modifier.size(16.dp)
+                )
+            }
+
         } else if (!isSmall) {
             OceanSpacing.StackXXXS()
         }
@@ -234,6 +240,25 @@ fun OceanTag(
             OceanSpacing.StackXXS()
         }
     }
+}
+
+fun getIconDefault(
+    type: OceanTagType
+): OceanIcons? = when (type) {
+
+    OceanTagType.Negative -> {
+        OceanIcons.X_CIRCLE_SOLID
+    }
+
+    OceanTagType.Positive -> {
+        OceanIcons.CHECK_CIRCLE_SOLID
+    }
+
+    OceanTagType.Warning -> {
+        OceanIcons.EXCLAMATION_CIRCLE_SOLID
+    }
+
+    else -> null
 }
 
 @Composable

@@ -72,7 +72,6 @@ private fun OceanTagPreview() {
 
         Column {
             OceanTag(
-                showIcon = true,
                 label = "Label",
                 icon = OceanIcons.LOCK_CLOSED_OUTLINE,
                 type = OceanTagType.Positive
@@ -212,16 +211,15 @@ fun OceanTag(
         if (showIcon) {
             Spacer(modifier = Modifier.size(6.dp))
 
-            val defaultIcon = icon ?: getIconDefault(type)
+            val finalIcon = icon ?: getIconDefault(type)
 
-            if (defaultIcon != null) {
+            if (finalIcon != null) {
                 OceanIcon(
-                    iconType = defaultIcon ,
+                    iconType = finalIcon,
                     tint = textColor,
                     modifier = Modifier.size(16.dp)
                 )
             }
-
         } else if (!isSmall) {
             OceanSpacing.StackXXXS()
         }

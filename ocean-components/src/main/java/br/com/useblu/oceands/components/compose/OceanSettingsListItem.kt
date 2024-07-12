@@ -172,7 +172,8 @@ fun OceanSettingsListItem(
             if (status == OceanSettingsStatus.PENDING) {
                 OceanTag(
                     label = actionText ?: "",
-                    type = OceanTagType.Warning
+                    type = OceanTagType.Warning,
+                    showIcon = false
                 )
             }
         }

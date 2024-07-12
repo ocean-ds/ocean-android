@@ -10,3 +10,7 @@ buildscript {
         classpath(libs.benchmark.baseline.profile.gradle.plugin)
     }
 }
+
+plugins {
+    alias(libs.plugins.compose.compiler) apply false
+}

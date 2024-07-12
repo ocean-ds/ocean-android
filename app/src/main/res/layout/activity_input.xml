@@ -208,7 +208,7 @@
                 android:layout_height="20dp" />
 
             <include
-                layout="@layout/ocean_button_primary_sm"
+                layout="@layout/ocean_button_primary_md"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -222,7 +222,7 @@
                 android:layout_height="20dp" />
 
             <include
-                layout="@layout/ocean_button_primary_critical_sm"
+                layout="@layout/ocean_button_primary_critical_md"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

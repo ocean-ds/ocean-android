@@ -13,9 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTag
@@ -25,6 +25,7 @@ import br.com.useblu.oceands.extensions.oceanFormatWithCurrency
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.FormatTypes
@@ -46,7 +47,28 @@ fun OceanTransactionListItemPreview() {
             valueIsHighlighted = true,
             time = "Time",
             tagTitle = "Title",
-            icon = OceanIcons.LOCK_CLOSED_SOLID
+            icon = OceanIcons.LOCK_CLOSED_SOLID,
+            onClick = {
+                println("Clicked")
+            }
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            primaryValueFormatted = "R$ 10.045,32",
+            primaryValueFormattedColor = OceanColors.interfaceDarkUp,
+            primaryValueFormattedIsStrike = true,
+            secondaryValue = 10002.78,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            time = "Time",
+            tagTitle = "Title",
+            icon = OceanIcons.LOCK_CLOSED_SOLID,
+            onClick = {
+                println("Clicked")
+            }
         )
         OceanTransactionListItem(
             primaryLabel = "Level 1",
@@ -119,6 +141,9 @@ fun OceanTransactionListItem(
     dimmedLabel: String? = null,
     highlightedLabel: String? = null,
     primaryValue: Double? = null,
+    primaryValueFormatted: String? = null,
+    primaryValueFormattedColor: Color? = null,
+    primaryValueFormattedIsStrike: Boolean = false,
     secondaryValue: Double? = null,
     valueIsHighlighted: Boolean = false,
     valueWithSignal: Boolean = false,
@@ -133,7 +158,8 @@ fun OceanTransactionListItem(
     isCheckboxSelected: Boolean = false,
     onSelectedBox: ((Boolean) -> Unit)? = null,
     showError: Boolean = false,
-    isDisabled: Boolean = false
+    isDisabled: Boolean = false,
+    onClick: () -> Unit = {}
 ) {
     Column {
         val interactionSource = remember {
@@ -143,11 +169,12 @@ fun OceanTransactionListItem(
             modifier = modifier
                 .background(color = OceanColors.interfaceLightPure)
                 .clickable(
+                    onClick = onClick,
                     interactionSource = interactionSource,
                     indication = null,
                     enabled = !isDisabled
-                ) { }
-                .padding(16.dp),
+                )
+                .padding(OceanSpacing.xs),
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (showCheckbox) {
@@ -156,7 +183,7 @@ fun OceanTransactionListItem(
                     selected = isCheckboxSelected,
                     onSelectedBox = onSelectedBox,
                     enabled = !isDisabled,
-                    modifier = Modifier.padding(end = 16.dp),
+                    modifier = Modifier.padding(end = OceanSpacing.xs),
                     interactionSource = interactionSource
                 )
             }
@@ -164,7 +191,7 @@ fun OceanTransactionListItem(
             if (icon != null) {
                 Box(
                     modifier = Modifier
-                        .padding(end = 16.dp)
+                        .padding(end = OceanSpacing.xs)
                         .iconContainerBackground(true)
                         .size(40.dp)
                 ) {
@@ -181,7 +208,7 @@ fun OceanTransactionListItem(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(end = 16.dp)
+                    .padding(end = OceanSpacing.xs)
             ) {
                 if (highlightedLabel != null) {
                     Text(
@@ -195,7 +222,7 @@ fun OceanTransactionListItem(
 
                 Text(
                     text = primaryLabel,
-                    fontSize = 16.sp,
+                    fontSize = OceanFontSize.xs,
                     fontFamily = OceanFontFamily.BaseRegular,
                     color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure
                 )
@@ -247,6 +274,26 @@ fun OceanTransactionListItem(
                     )
                 }
 
+                if (!primaryValueFormatted.isNullOrBlank()) {
+                    val color = when {
+                        primaryValueFormattedColor != null -> primaryValueFormattedColor
+                        isDisabled -> OceanColors.interfaceDarkUp
+                        valueIsHighlighted -> OceanColors.statusPositiveDeep
+                        else -> OceanColors.interfaceDarkPure
+                    }
+
+                    Text(
+                        text = primaryValueFormatted,
+                        color = color,
+                        fontFamily = OceanFontFamily.BaseMedium,
+                        style = if (primaryValueFormattedIsStrike) {
+                            OceanTextStyle.descriptionStrike
+                        } else {
+                            OceanTextStyle.description
+                        }
+                    )
+                }
+
                 if (secondaryValue != null) {
                     Text(
                         text = secondaryValue.oceanFormatWithCurrency(),
@@ -279,7 +326,7 @@ fun OceanTransactionListItem(
                     iconType = trailingIcon,
                     tint = OceanColors.interfaceDarkUp,
                     modifier = Modifier
-                        .padding(start = 12.dp)
+                        .padding(start = OceanSpacing.xxsExtra)
                         .size(20.dp)
                 )
             }

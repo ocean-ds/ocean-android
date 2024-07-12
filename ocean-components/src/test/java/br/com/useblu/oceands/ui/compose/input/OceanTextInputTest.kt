@@ -73,9 +73,57 @@ class OceanTextInputTest {
             this.assert(hasText("12345-36"))
             performTextInput("4")
             this.assert(hasText("12345-346"))
+            performKeyPress(
+                KeyEvent(
+                    NativeKeyEvent(
+                        NativeKeyEvent.ACTION_DOWN,
+                        NativeKeyEvent.KEYCODE_DPAD_RIGHT
+                    )
+                )
+            )
+            performTextInput("4")
+            this.assert(hasText("12345-346"))
         }
 
         Assert.assertEquals("12345346", inputText.value)
+    }
+
+    @Test
+    fun testPhoneType() {
+        setupComposeContent(OceanInputType.Phone)
+
+        composeTestRule.onNode(isFocusable()).run {
+            performTextInput("121")
+            this.assert(hasText("(12) 1"))
+            performTextInput("2345678")
+            this.assert(hasText("(12) 1234-5678"))
+            performTextInput("9")
+            this.assert(hasText("(12) 12345-6789"))
+            performTextInput("2")
+            this.assert(hasText("(12) 12345-6789"))
+        }
+
+        Assert.assertEquals("12123456789", inputText.value)
+    }
+
+    @Test
+    fun testDateType() {
+        setupComposeContent(OceanInputType.Date)
+
+        composeTestRule.onNode(isFocusable()).run {
+            performTextInput("12")
+            this.assert(hasText("12"))
+            performTextInput("1")
+            this.assert(hasText("12/1"))
+            performTextInput("2")
+            this.assert(hasText("12/12"))
+            performTextInput("2000")
+            this.assert(hasText("12/12/2000"))
+            performTextInput("2")
+            this.assert(hasText("12/12/2000"))
+        }
+
+        Assert.assertEquals("12/12/2000", inputText.value)
     }
 
     private fun setupComposeContent(

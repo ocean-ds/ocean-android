@@ -2,6 +2,7 @@ package br.com.useblu.oceands.components.compose
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -45,95 +46,126 @@ import kotlinx.coroutines.launch
 @Preview
 @Composable
 private fun OceanBottomSheetPreview() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    OceanTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-        BottomSheetPreviewFactory(
-            bottomSheetCta = "Bottom sheet",
-            model = { showState ->
-                OceanBottomSheetModel(
-                    customContent = { sheetState ->
-                        val coroutineScope = rememberCoroutineScope()
-                        Column(Modifier.padding(vertical = 16.dp)) {
-                            Text(text = "Teste de bottom sheet")
+            BottomSheetPreviewFactory(
+                bottomSheetCta = "Bottom sheet",
+                model = { showState ->
+                    OceanBottomSheetModel(
+                        customContent = { sheetState ->
+                            val coroutineScope = rememberCoroutineScope()
+                            Column(Modifier.padding(vertical = 16.dp)) {
+                                Text(text = "Teste de bottom sheet")
 
-                            OceanButton(
-                                text = "Fechar",
-                                buttonStyle = OceanButtonStyle.SecondaryMedium,
-                                onClick = {
-                                    coroutineScope.launch {
-                                        sheetState.hide()
-                                    }.invokeOnCompletion {
-                                        showState.value = false
+                                OceanRadioButton(label = "Testeeee")
+
+                                OceanButton(
+                                    text = "Fechar",
+                                    buttonStyle = OceanButtonStyle.SecondaryMedium,
+                                    onClick = {
+                                        coroutineScope.launch {
+                                            sheetState.hide()
+                                        }.invokeOnCompletion {
+                                            showState.value = false
+                                        }
                                     }
-                                }
-                            )
+                                )
+                            }
+                        },
+                        title = "Teste de bottom sheet",
+                        icon = OceanIcons.CLOCK_OUTLINE.icon,
+                        isDismissible = false,
+                        onDismiss = {
+                            showState.value = false
                         }
-                    },
-                    title = "Teste de bottom sheet",
-                    icon = OceanIcons.CLOCK_OUTLINE.icon,
-                    isDismissible = false
-                )
-            }
-        )
+                    )
+                }
+            )
 
-        BottomSheetPreviewFactory(
-            bottomSheetCta = "Bottom sheet com imagem",
-            model = {
-                OceanBottomSheetModel(
-                    customContent = {
-                        Text(text = "Teste de bottom sheet")
-                    },
-                    imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
-                    title = "Bottomsheet com Imagem"
-                )
-            }
-        )
+            BottomSheetPreviewFactory(
+                bottomSheetCta = "Bottom sheet com imagem",
+                model = {
+                    OceanBottomSheetModel(
+                        customContent = {
+                            Text(text = "Teste de bottom sheet")
+                        },
+                        imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
+                        title = "Bottomsheet com Imagem",
+                        onDismiss = {
+                            it.value = false
+                        }
+                    )
+                }
+            )
 
-        BottomSheetPreviewFactory(
-            bottomSheetCta = "Bottom sheet completa (exceto conteúdo custom)",
-            model = {
-                OceanBottomSheetModel(
-                    title = "Title",
-                    message = "Message",
-                    subMessage = "SubMessage",
-                    imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
-                    code = 2000,
-                    actionPositive = "Aceitar" to {},
-                    actionNegative = "Cancelar" to {},
-                    buttonsOrientation = BottomSheetButtonsOrientation.Vertical
-                )
-            }
-        )
+            BottomSheetPreviewFactory(
+                bottomSheetCta = "Bottom sheet completa (exceto conteúdo custom)",
+                model = {
+                    OceanBottomSheetModel(
+                        title = "Title",
+                        message = "Message",
+                        subMessage = "SubMessage",
+                        imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
+                        code = 2000,
+                        actionPositive = OceanBottomSheetModel.Button(
+                            text = "Aceitar",
+                            onClick = {}
+                        ),
+                        actionNegative = OceanBottomSheetModel.Button(
+                            text = "Cancelar",
+                            onClick = {}
+                        ),
+                        buttonsOrientation = BottomSheetButtonsOrientation.Vertical,
+                        onDismiss = {
+                            it.value = false
+                        }
+                    )
+                }
+            )
 
-        BottomSheetPreviewFactory(
-            bottomSheetCta = "Bottom sheet com dismiss",
-            model = {
-                OceanBottomSheetModel(
-                    customContent = {
-                        Text(text = "Teste de bottom sheet")
-                    }
-                )
-            }
-        )
+            BottomSheetPreviewFactory(
+                bottomSheetCta = "Bottom sheet com dismiss",
+                model = {
+                    OceanBottomSheetModel(
+                        customContent = {
+                            Text(text = "Teste de bottom sheet")
+                        },
+                        onDismiss = {
+                            it.value = false
+                        }
+                    )
+                }
+            )
 
-        BottomSheetPreviewFactory(
-            bottomSheetCta = "Bottom sheet com botão",
-            model = {
-                OceanBottomSheetModel(
-                    customContent = {
-                        Text(text = "Teste de bottom sheet")
-                    },
-                    actionPositive = "Botão" to {},
-                    code = 2000
-                )
-            }
-        )
+            BottomSheetPreviewFactory(
+                bottomSheetCta = "Bottom sheet com botão",
+                model = {
+                    OceanBottomSheetModel(
+                        customContent = {
+                            Text(text = "Teste de bottom sheet")
+                        },
+                        actionPositive = OceanBottomSheetModel.Button(
+                            text = "Botão",
+                            icon = OceanIcons.WHATSAPP_SOLID,
+                            onClick = {
+                                println("Botão clicado")
+                            },
+                        ),
+                        code = 2000,
+                        onDismiss = {
+                            it.value = false
+                        }
+                    )
+                }
+            )
+        }
     }
 }
 
@@ -149,12 +181,23 @@ data class OceanBottomSheetModel(
     val code: Int? = null,
     @DrawableRes val icon: Int? = null,
     val imageUrl: String? = null,
-    val actionPositive: Pair<String, () -> Unit>? = null,
-    val actionNegative: Pair<String, () -> Unit>? = null,
-    val buttonsOrientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal
+    val maxWidth: Int? = null,
+    val maxHeight: Int? = null,
+    val actionPositive: Button? = null,
+    val actionNegative: Button? = null,
+    val buttonsOrientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
+    val onDismiss: () -> Unit
 ) {
     companion object
+
+    class Button(
+        val text: String,
+        val icon: OceanIcons? = null,
+        val onClick: () -> Unit,
+        val isDisabled: Boolean = false
+    )
 }
+
 
 enum class BottomSheetButtonsOrientation {
     Horizontal, Vertical
@@ -177,10 +220,7 @@ private fun BottomSheetPreviewFactory(
 
     if (showSheet.value) {
         OceanBottomSheet(
-            model = model(showSheet),
-            onDismiss = {
-                showSheet.value = false
-            }
+            model = model(showSheet)
         )
     }
 }
@@ -188,43 +228,36 @@ private fun BottomSheetPreviewFactory(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OceanBottomSheet(
-    modifier: Modifier = Modifier.padding(16.dp),
-    model: OceanBottomSheetModel,
-    onDismiss: () -> Unit
+    modifier: Modifier = Modifier,
+    model: OceanBottomSheetModel
 ) {
-    val scope = rememberCoroutineScope()
 
     val sheetState = rememberModalBottomSheetState(
         confirmValueChange = { model.isDismissible },
         skipPartiallyExpanded = true
     )
 
-    val onClickDismiss = remember {
-        {
-            scope.launch {
-                sheetState.hide()
-            }.invokeOnCompletion {
-                onDismiss()
-            }
-        }
-    }
-
     ModalBottomSheet(
         containerColor = OceanColors.interfaceLightPure,
         sheetState = sheetState,
-        onDismissRequest = { onDismiss() },
+        onDismissRequest = { model.onDismiss() },
         dragHandle = null
     ) {
         Row(
             modifier = Modifier
-                .padding(top = 8.dp, bottom = 4.dp, end = 8.dp)
+                .background(OceanColors.interfaceLightPure)
+                .padding(
+                    top = OceanSpacing.xxs,
+                    bottom = OceanSpacing.xxxs,
+                    end = OceanSpacing.xxs
+                )
                 .height(40.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.End
-        ){
+        ) {
             if (model.isDismissible) {
                 IconButton(
-                    onClick = { onClickDismiss() },
+                    onClick = { model.onDismiss() },
                 ) {
                     OceanIcon(
                         iconType = OceanIcons.X_OUTLINE,
@@ -236,7 +269,10 @@ fun OceanBottomSheet(
         }
 
         Column(
-            modifier = modifier.fillMaxWidth(),
+            modifier = modifier
+                .background(OceanColors.interfaceLightPure)
+                .padding(OceanSpacing.xs)
+                .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             if (model.icon != null) {
@@ -244,8 +280,8 @@ fun OceanBottomSheet(
                     painter = painterResource(id = model.icon),
                     contentDescription = null,
                     modifier = Modifier
-                        .padding(bottom = 24.dp)
-                        .padding(8.dp)
+                        .padding(bottom = OceanSpacing.sm)
+                        .padding(OceanSpacing.xxs)
                         .heightIn(40.dp, 120.dp)
                         .widthIn(40.dp, 120.dp)
                 )
@@ -255,10 +291,10 @@ fun OceanBottomSheet(
                 GlideImage(
                     imageModel = { model.imageUrl },
                     modifier = Modifier
-                        .padding(bottom = 24.dp)
-                        .padding(8.dp)
-                        .heightIn(40.dp, 120.dp)
-                        .widthIn(40.dp, 120.dp),
+                        .padding(bottom = OceanSpacing.sm)
+                        .padding(OceanSpacing.xxs)
+                        .heightIn(40.dp, model.maxHeight?.dp ?: 120.dp)
+                        .widthIn(40.dp, model.maxWidth?.dp ?: 120.dp),
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Fit,
                         alignment = Alignment.Center
@@ -308,7 +344,7 @@ fun OceanBottomSheet(
                 isCritical = model.isCritical,
                 orientation = model.buttonsOrientation,
                 onDismiss = {
-                    onClickDismiss()
+                    model.onDismiss()
                 }
             )
 
@@ -329,8 +365,8 @@ fun OceanBottomSheet(
 
 @Composable
 private fun BottomButtons(
-    positiveButton: Pair<String, () -> Unit>? = null,
-    negativeButton: Pair<String, () -> Unit>? = null,
+    positiveButton: OceanBottomSheetModel.Button? = null,
+    negativeButton: OceanBottomSheetModel.Button? = null,
     isCritical: Boolean = false,
     orientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
     onDismiss: () -> Unit
@@ -339,55 +375,69 @@ private fun BottomButtons(
         return
     }
 
-    val buttons: @Composable (Modifier) -> Unit = {
-        val primaryStyle = if (isCritical) {
-            OceanButtonStyle.PrimaryCriticalMedium
-        } else OceanButtonStyle.PrimaryMedium
+    val buttons = mutableListOf<@Composable (Modifier) -> Unit>()
 
-        if (positiveButton != null) {
+    if (positiveButton != null) {
+        buttons.add {
+            val primaryStyle = if (isCritical) {
+                OceanButtonStyle.PrimaryCriticalMedium
+            } else OceanButtonStyle.PrimaryMedium
+
             OceanButton(
-                text = positiveButton.first,
+                text = positiveButton.text,
                 buttonStyle = primaryStyle,
+                icon = positiveButton.icon,
                 onClick = {
-                    positiveButton.second()
-                    onDismiss.invoke()
+                    onDismiss.invoke().run {
+                        positiveButton.onClick.invoke()
+                    }
                 },
-                modifier = it
+                modifier = it,
+                disabled = positiveButton.isDisabled
             )
         }
+    }
 
-        if (negativeButton != null) {
-            OceanSpacing.StackXS()
-
+    if (negativeButton != null) {
+        buttons.add {
             OceanButton(
-                text = negativeButton.first,
+                text = negativeButton.text,
+                icon = negativeButton.icon,
                 buttonStyle = OceanButtonStyle.SecondaryMedium,
                 onClick = {
-                    negativeButton.second()
-                    onDismiss.invoke()
+                    onDismiss.invoke().run {
+                        negativeButton.onClick.invoke()
+                    }
                 },
-                modifier = it
+                modifier = it,
+                disabled = negativeButton.isDisabled
             )
         }
     }
 
     val modifier = Modifier
-        .padding(top = 24.dp)
+        .padding(top = OceanSpacing.sm)
 
     when (orientation) {
         BottomSheetButtonsOrientation.Horizontal -> {
             Row(
-                modifier = modifier
+                modifier = modifier,
+                horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
             ) {
-                buttons(Modifier.weight(1f))
+                buttons.reversed().forEach {
+                    it(Modifier.weight(1f))
+                }
             }
         }
 
         BottomSheetButtonsOrientation.Vertical -> {
             Column(
-                modifier = modifier
+                modifier = modifier,
+                verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
             ) {
-                buttons(Modifier.fillMaxWidth())
+                buttons.forEach {
+                    it(Modifier.fillMaxWidth())
+                }
             }
         }
     }

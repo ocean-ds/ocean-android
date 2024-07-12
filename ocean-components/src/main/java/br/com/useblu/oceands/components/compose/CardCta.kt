@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -67,8 +69,8 @@ fun CardCta(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 14.dp),
+                .height(48.dp)
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
             if (!showProgress) {
@@ -79,14 +81,14 @@ fun CardCta(
                     fontSize = 14.sp,
                     modifier = Modifier
                         .weight(1f)
-                        .padding(horizontal = 16.dp)
+                        .padding(horizontal = OceanSpacing.xs)
                 )
 
                 OceanIcon(
                     iconType = actionIcon,
                     tint = OceanColors.brandPrimaryPure,
                     modifier = Modifier
-                        .padding(end = 8.dp)
+                        .padding(end = OceanSpacing.xxs)
                         .size(20.dp)
                 )
             } else {

@@ -9,7 +9,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.concrete.canarinho.formatador.Formatador
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import java.math.BigDecimal
@@ -123,6 +122,7 @@ sealed interface OceanInputType {
         override fun getKeyboardType() = KeyboardType.Number
 
         override fun transformForInput(text: String) = sanitizeWithDigits(text)
+        override fun transformForOutput(text: String) = sanitizeWithDigits(text)
 
         override fun getVisualTransformation(): VisualTransformation {
             return StaticMaskVisualTransformation {
@@ -143,8 +143,8 @@ sealed interface OceanInputType {
 
         override fun getKeyboardType() = KeyboardType.Number
 
-        private fun isNineDigits(e: String): Boolean {
-            return Formatador.Padroes.PADRAO_SOMENTE_NUMEROS.matcher(e).replaceAll("").length > 10
+        private fun isNineDigits(text: String): Boolean {
+            return text.filter { it.isDigit() }.length > 10
         }
 
         override fun transformForInput(text: String) = sanitizeWithDigits(text)
@@ -223,7 +223,7 @@ sealed interface OceanInputType {
         override fun transformForInput(text: String) = sanitizeWithDigits(text)
 
         override fun transformForOutput(text: String): String {
-            val digitsText = text.filter { it.isDigit() }.take(10)
+            val digitsText = text.filter { it.isDigit() }.take(8)
 
             if (digitsText.length <= 2) return text
 

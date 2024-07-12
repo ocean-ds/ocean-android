@@ -108,7 +108,7 @@ fun OceanSettingsListItem(
         Row(
             modifier = Modifier
                 .background(color = OceanColors.interfaceLightPure)
-                .padding(16.dp)
+                .padding(OceanSpacing.xs)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -172,7 +172,8 @@ fun OceanSettingsListItem(
             if (status == OceanSettingsStatus.PENDING) {
                 OceanTag(
                     label = actionText ?: "",
-                    type = OceanTagType.Warning
+                    type = OceanTagType.Warning,
+                    showIcon = false
                 )
             }
         }

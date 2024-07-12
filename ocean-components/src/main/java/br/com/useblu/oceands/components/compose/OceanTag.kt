@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -189,10 +190,11 @@ private fun OceanTagPreview() {
 fun OceanTag(
     label: String,
     type: OceanTagType,
+    showIcon: Boolean = true,
     icon: OceanIcons? = null,
     isSmall: Boolean = false
 ) {
-    val size = if (isSmall) 16.dp else 20.dp
+    val height = if (isSmall) 16.dp else 20.dp
     val textColor = getTextColor(type = type)
     val backgroundColor = getBackgroundColor(type = type)
 
@@ -202,19 +204,22 @@ fun OceanTag(
                 color = backgroundColor,
                 shape = RoundedCornerShape(16.dp)
             )
-            .height(size),
+            .height(height),
         verticalAlignment = Alignment.CenterVertically
 
     ) {
-
-        if (icon != null) {
+        if (showIcon) {
             Spacer(modifier = Modifier.size(6.dp))
 
-            OceanIcon(
-                iconType = icon,
-                tint = textColor,
-                modifier = Modifier.size(16.dp)
-            )
+            val finalIcon = icon ?: getIconDefault(type)
+
+            if (finalIcon != null) {
+                OceanIcon(
+                    iconType = finalIcon,
+                    tint = textColor,
+                    modifier = Modifier.size(16.dp)
+                )
+            }
         } else if (!isSmall) {
             OceanSpacing.StackXXXS()
         }
@@ -224,7 +229,7 @@ fun OceanTag(
         Text(
             text = label,
             color = textColor,
-            fontSize = if (isSmall) 10.sp else 12.sp
+            fontSize = if (isSmall) 10.sp else OceanFontSize.xxxs
         )
 
         if (isSmall) {
@@ -233,6 +238,25 @@ fun OceanTag(
             OceanSpacing.StackXXS()
         }
     }
+}
+
+fun getIconDefault(
+    type: OceanTagType
+): OceanIcons? = when (type) {
+
+    OceanTagType.Negative -> {
+        OceanIcons.X_CIRCLE_SOLID
+    }
+
+    OceanTagType.Positive -> {
+        OceanIcons.CHECK_CIRCLE_SOLID
+    }
+
+    OceanTagType.Warning -> {
+        OceanIcons.EXCLAMATION_CIRCLE_SOLID
+    }
+
+    else -> null
 }
 
 @Composable

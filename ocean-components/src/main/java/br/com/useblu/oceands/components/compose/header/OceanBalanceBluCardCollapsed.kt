@@ -22,6 +22,7 @@ import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.shimmeringBrush
 import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 
 
@@ -61,7 +62,7 @@ fun OceanBalanceBluCardCollapsed(
         modifier = modifier
             .background(color = Color(0xFF2244E8))
             .height(58.dp)
-            .padding(horizontal = 16.dp),
+            .padding(horizontal =  OceanSpacing.xs),
         verticalAlignment = Alignment.CenterVertically
     ) {
         BalanceCardMainValues(onClickToggleHideContent, isContentHidden, model, isLoading, shimmeringBrush)

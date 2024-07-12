@@ -121,7 +121,9 @@ fun PreviewButton() {
             OceanButton(
                 text = "Permitir",
                 showProgress = isLoading,
-                modifier = Modifier.padding(top = 16.dp).width(200.dp),
+                modifier = Modifier
+                    .padding(top = OceanSpacing.xs)
+                    .width(200.dp),
                 buttonStyle = OceanButtonStyle.PrimaryMedium,
                 onClick = {
                     println("Botão clicado")
@@ -130,6 +132,35 @@ fun PreviewButton() {
             )
         }
     }
+}
+
+enum class Orientation {
+    Horizontal, Vertical
+}
+
+data class OceanButtonModel(
+    val text: String,
+    val onClick: () -> Unit,
+    val buttonStyle: OceanButtonStyle,
+    val showProgress: Boolean = false,
+    val icon: OceanIcons? = null,
+    val disabled: Boolean = false
+)
+
+@Composable
+fun OceanButton(
+    modifier: Modifier = Modifier,
+    button: OceanButtonModel
+) {
+    OceanButton(
+        text = button.text,
+        onClick = button.onClick,
+        buttonStyle = button.buttonStyle,
+        modifier = modifier,
+        showProgress = button.showProgress,
+        icon = button.icon,
+        disabled = button.disabled
+    )
 }
 
 @Composable

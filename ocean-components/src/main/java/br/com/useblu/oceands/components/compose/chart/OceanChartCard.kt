@@ -78,7 +78,7 @@ fun OceanChartCard(
         )
     ) {
         Column(
-            modifier = Modifier.padding(24.dp)
+            modifier = Modifier.padding(OceanSpacing.sm)
         ) {
             OceanText(text = title, style = OceanTextStyle.heading4)
 

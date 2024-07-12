@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.compose.OceanTextListIconItemModel
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -202,6 +202,7 @@ fun OceanTextListIconItem(
     badgeType: OceanBadgeType = OceanBadgeType.HIGHLIGHT,
     leadingIcon: OceanIcons? = null,
     trailingIcon: OceanIcons? = null,
+    showIconBackground: Boolean = true,
     onClick: (() -> Unit)? = null
 ) {
     Row(
@@ -211,18 +212,16 @@ fun OceanTextListIconItem(
                 onClick = { onClick?.invoke() }
             )
             .background(color = OceanColors.interfaceLightPure)
-            .padding(16.dp),
+            .padding(OceanSpacing.xs),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
         leadingIcon?.let {
+
             Box(
                 modifier = Modifier
                     .size(40.dp)
-                    .background(
-                        color = OceanColors.interfaceLightUp,
-                        shape = CircleShape
-                    )
+                    .iconContainerBackground(showIconBackground)
             ) {
                 OceanIcon(
                     iconType = it,

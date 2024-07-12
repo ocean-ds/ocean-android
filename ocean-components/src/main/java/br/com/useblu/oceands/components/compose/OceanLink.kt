@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanFontSize
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 import java.util.Locale
 
@@ -122,9 +124,9 @@ fun OceanLink(
         }
 
         val textSize = if (isSmall) {
-            12.sp
+            OceanFontSize.xxxs
         } else {
-            16.sp
+            OceanFontSize.xs
         }
 
         Text(
@@ -136,14 +138,12 @@ fun OceanLink(
         )
 
         linkIcon.getIcon()?.let {
-            val iconModifier = Modifier
-                .size(16.dp)
-                .padding(start = 2.dp)
-
             OceanIcon(
                 iconType = it,
-                modifier = iconModifier,
-                tint = textColor
+                tint = textColor,
+                modifier = Modifier
+                    .padding(start = OceanSpacing.xxxs)
+                    .size(16.dp),
             )
         }
     }
@@ -151,7 +151,7 @@ fun OceanLink(
 
 
 enum class OceanLinkType {
-    PRIMARY, INVERSE, NEUTRAL;
+    PRIMARY, INVERSE, NEUTRAL, WARNING;
 
     @Composable
     fun getTextColor(): Color {
@@ -159,6 +159,7 @@ enum class OceanLinkType {
             PRIMARY -> OceanColors.brandPrimaryPure
             INVERSE -> OceanColors.complementaryDown
             NEUTRAL -> OceanColors.interfaceDarkDown
+            WARNING -> OceanColors.statusWarningDeep
         }
     }
 }

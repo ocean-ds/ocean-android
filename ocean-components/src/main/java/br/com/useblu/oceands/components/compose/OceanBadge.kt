@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 
 @Preview(showBackground = true)
@@ -111,7 +112,7 @@ fun OceanBadge(
             val padding = if (size is OceanBadgeSize.Small && formattedText.length <= 1) {
                 0.dp
             } else {
-                4.dp
+                OceanSpacing.xxxs
             }
 
             Text(
@@ -119,7 +120,11 @@ fun OceanBadge(
                 fontSize = size.getTextSize(),
                 fontFamily = OceanFontFamily.BaseExtraBold,
                 modifier = Modifier.padding(horizontal = padding),
-                color = if (type != OceanBadgeType.PRIMARY_INVERTED) OceanColors.interfaceLightPure else OceanColors.brandPrimaryPure
+                color = if (type != OceanBadgeType.PRIMARY_INVERTED) {
+                    OceanColors.interfaceLightPure
+                } else {
+                    OceanColors.brandPrimaryPure
+                }
             )
         }
     }
@@ -128,11 +133,13 @@ fun OceanBadge(
 sealed interface OceanBadgeSize {
     fun getTextSize() = 10.sp
     fun getMinSize() = 8.dp
-    object Dot: OceanBadgeSize
-    object Small: OceanBadgeSize {
+
+    data object Dot : OceanBadgeSize
+    data object Small : OceanBadgeSize {
         override fun getMinSize() = 16.dp
     }
-    object Medium: OceanBadgeSize {
+
+    data object Medium : OceanBadgeSize {
         override fun getMinSize() = 24.dp
         override fun getTextSize() = 12.sp
     }

@@ -13,11 +13,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -63,7 +63,7 @@ fun OceanListSubHeader(
         modifier = modifier
             .background(color = OceanColors.interfaceLightUp)
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = OceanSpacing.xs)
             .height(rowHeight),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -81,20 +81,20 @@ fun OceanListSubHeader(
             text = title,
             fontFamily = OceanFontFamily.BaseRegular,
             color = OceanColors.interfaceDarkDown,
-            fontSize = 12.sp,
+            fontSize = OceanFontSize.xxxs,
             modifier = Modifier.weight(1f)
         )
 
         Column(
             horizontalAlignment = Alignment.End,
-            modifier = Modifier.padding(start = 8.dp)
+            modifier = Modifier.padding(start =  OceanSpacing.xxs)
         ) {
             if (subtitle != null) {
                 Text(
                     text = subtitle,
                     fontFamily = OceanFontFamily.BaseRegular,
                     color = OceanColors.interfaceDarkDown,
-                    fontSize = 12.sp
+                    fontSize = OceanFontSize.xxxs
                 )
             }
 
@@ -103,7 +103,7 @@ fun OceanListSubHeader(
                     text = highlighted,
                     fontFamily = OceanFontFamily.BaseExtraBold,
                     color = OceanColors.interfaceDarkDown,
-                    fontSize = 12.sp
+                    fontSize = OceanFontSize.xxxs
                 )
             }
         }

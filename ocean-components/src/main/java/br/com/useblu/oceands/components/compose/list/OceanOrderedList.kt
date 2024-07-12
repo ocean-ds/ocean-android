@@ -53,7 +53,7 @@ fun OceanOrderedListItem(
 ) {
     Row(
         modifier = Modifier.padding(
-            vertical = 4.dp
+            vertical = OceanSpacing.xxxs
         ),
         verticalAlignment = Alignment.Top
     ) {

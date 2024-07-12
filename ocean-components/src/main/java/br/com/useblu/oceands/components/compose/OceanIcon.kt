@@ -2,7 +2,6 @@ package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,7 +24,7 @@ fun OceanIconPreview() {
 fun OceanIcon(
     iconType: OceanIcons,
     modifier: Modifier = Modifier,
-    tint: Color = LocalContentColor.current,
+    tint: Color = Color.Unspecified,
     fallbackIcon: OceanIcons? = null
 ) {
     if (iconType != OceanIcons.UNDEFINED) {

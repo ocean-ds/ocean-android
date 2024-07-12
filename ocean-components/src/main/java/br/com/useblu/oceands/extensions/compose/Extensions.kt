@@ -8,8 +8,8 @@ import android.text.style.URLSpan
 import android.text.style.UnderlineSpan
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -20,16 +20,21 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.core.text.HtmlCompat
 import br.com.useblu.oceands.ui.compose.OceanColors
 
-fun Modifier.iconContainerBackground(showBackground: Boolean) = composed {
-    if (showBackground) {
+@Composable
+fun Modifier.iconContainerBackground(
+    showBackground: Boolean,
+    color: Color = OceanColors.interfaceLightUp
+): Modifier {
+    return if (showBackground) {
         this.background(
-            color = OceanColors.interfaceLightUp,
+            color = color,
             shape = CircleShape
         )
     } else {
         this
     }
 }
+
 
 fun String.htmlToAnnotatedString(): AnnotatedString {
     val spanned = HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -52,9 +57,11 @@ fun Spanned.toAnnotatedString(): AnnotatedString = buildAnnotatedString {
                         fontWeight = FontWeight.Bold,
                         fontStyle = FontStyle.Italic
                     )
+
                     else -> SpanStyle()
                 }
             }
+
             is UnderlineSpan -> SpanStyle(textDecoration = TextDecoration.Underline)
             is ForegroundColorSpan -> SpanStyle(color = Color(span.foregroundColor))
             is URLSpan -> {
@@ -64,6 +71,7 @@ fun Spanned.toAnnotatedString(): AnnotatedString = buildAnnotatedString {
                     textDecoration = TextDecoration.Underline
                 )
             }
+
             else -> SpanStyle()
         }
         addStyle(spanStyle, start, end)

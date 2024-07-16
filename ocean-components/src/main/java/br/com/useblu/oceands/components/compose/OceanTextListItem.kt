@@ -200,7 +200,7 @@ fun OceanTextListItem(
                 .background(OceanColors.interfaceLightPure)
                 .padding(start = OceanSpacing.xs)
                 .padding(end = OceanSpacing.xxs)
-                .padding(vertical = OceanSpacing.xxs)
+                .padding(vertical = OceanSpacing.xs)
                 .fillMaxWidth()
                 .clickable(
                     interactionSource = interactionSource,

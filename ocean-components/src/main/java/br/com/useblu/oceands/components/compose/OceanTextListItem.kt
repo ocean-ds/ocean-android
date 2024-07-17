@@ -200,7 +200,7 @@ fun OceanTextListItem(
                 .background(OceanColors.interfaceLightPure)
                 .padding(start = OceanSpacing.xs)
                 .padding(end = OceanSpacing.xxs)
-                .padding(vertical = OceanSpacing.xxs)
+                .padding(vertical = OceanSpacing.xxsExtra)
                 .fillMaxWidth()
                 .clickable(
                     interactionSource = interactionSource,
@@ -250,7 +250,10 @@ fun OceanTextListItem(
 
             Column(
                 modifier = Modifier
-                    .padding(end = OceanSpacing.xxs)
+                    .padding(
+                        end = if(onClick != null && showClickableChevron) OceanSpacing.xxsExtra
+                              else OceanSpacing.xxs
+                    )
                     .weight(2f)
             ) {
                 val titleColor =

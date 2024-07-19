@@ -1,4 +1,3 @@
 <resources>
-    <string name="app_name">playground</string>
-    <string name="test">Ocean DS</string>
+    <string name="app_name">Ocean DS Playground</string>
 </resources>

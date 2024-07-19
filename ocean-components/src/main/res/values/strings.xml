@@ -9,8 +9,6 @@
     <string name="empty"></string>
     <string name="b_token">bToken</string>
     <string name="ok">OK</string>
-    <string name="button_edit">Editar</string>
-    <string name="button_delete">Excluir</string>
     <string name="message">Message</string>
     <string name="positive">Positive</string>
     <string name="negative">Negative</string>
@@ -21,10 +19,8 @@
     <string name="custom_icon">Custom icon</string>
     <string name="not_found_results"><![CDATA[Não foram econtrados resultados para <br> ”<b>%s</b>”]]></string>
     <string name="all_text_exclude">Excluir</string>
-    <string name="all_text_save">Salvar</string>
     <string name="transfer_button_item_edit">Editar</string>
     <string name="button_confirm">Confirmar</string>
-    <string name="title_calendar_datePicker">Agendar para</string>
     <string name="footer_relationship_center">Central de relacionamento</string>
     <string name="footer_telephone_relationship_center">3003 0807</string>
     <string name="footer_capitals_metropolitan_regions">(Capitais e regiões metropolitanas)</string>
@@ -34,8 +30,6 @@
     <string name="footer_service_description">Atendimento das 9h às 17h30 em dias úteis.</string>
     <string name="link"><![CDATA[Teste de link <a href="https://www.google.pl/">Google</a>]]></string>
     <string name="action_title">Call to Action</string>
-    <string name="expandir_saldo_content_description">Expandir saldo</string>
-    <string name="toggle_visibility_content_description">Alternar visibilidade dos valores</string>
     <string name="button_advance">Avançar</string>
 
 </resources>

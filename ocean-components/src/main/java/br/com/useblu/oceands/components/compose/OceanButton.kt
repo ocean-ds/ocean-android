@@ -13,7 +13,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -198,7 +197,7 @@ fun OceanButton(
                 Spacer(modifier = Modifier.size(buttonStyle.getIconPadding()))
             }
 
-            Text(
+            OceanText(
                 text = text,
                 fontSize = buttonStyle.getTextSize(),
                 fontFamily = OceanFontFamily.BaseBold,

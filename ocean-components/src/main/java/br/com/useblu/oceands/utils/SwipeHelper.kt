@@ -3,7 +3,11 @@ package br.com.useblu.oceands.utils
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Point
+import android.graphics.Rect
+import android.graphics.RectF
 import android.os.SystemClock
 import android.text.Layout
 import android.text.StaticLayout
@@ -19,7 +23,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.R
-import java.util.*
+import java.util.LinkedList
+import java.util.Queue
 
 abstract class SwipeHelper(private val context: Context, private val recyclerView: RecyclerView) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -169,7 +174,7 @@ abstract class SwipeHelper(private val context: Context, private val recyclerVie
             duration = 600
             addUpdateListener {
                 val dX = it.animatedValue as Int
-                var mX = x - dX
+                val mX = x - dX
 
                 recyclerView.dispatchTouchEvent(
                     MotionEvent.obtain(

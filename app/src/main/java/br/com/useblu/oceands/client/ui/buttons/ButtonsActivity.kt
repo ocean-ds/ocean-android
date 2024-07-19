@@ -42,22 +42,87 @@ class ButtonsActivity : AppCompatActivity() {
         this.initToggleListeners()
 
         binding.composeView.setContent {
-            val iconState = viewModel.isIconEnabled.observeAsState()
-            val buttonState = viewModel.buttonState.observeAsState()
-            val blockState = viewModel.isWidthStateBlocked.observeAsState()
+            val iconState = viewModel.isIconEnabled.observeAsState(false)
+            val buttonState = viewModel.buttonState.observeAsState("Default")
+            val blockState = viewModel.isWidthStateBlocked.observeAsState(false)
+            val buttonType = viewModel.buttonType.observeAsState("Primary").value
+            val buttonSize = viewModel.buttonSize.observeAsState("Large").value
 
-            val modifier = if (blockState.value == true) {
+            val modifier = if (blockState.value) {
                 Modifier.fillMaxWidth()
             } else {
                 Modifier.wrapContentWidth()
             }
 
+            val buttonStyle = when (buttonType) {
+                "Primary" -> {
+                    when (buttonSize) {
+                        "Large" -> OceanButtonStyle.PrimaryLarge
+                        "Medium" -> OceanButtonStyle.PrimaryMedium
+                        "Small" -> OceanButtonStyle.PrimarySmall
+                        else -> OceanButtonStyle.PrimaryMedium
+                    }
+                }
+                "Critical" -> {
+                    when (buttonSize) {
+                        "Large" -> OceanButtonStyle.PrimaryCriticalLarge
+                        "Medium" -> OceanButtonStyle.PrimaryCriticalMedium
+                        "Small" -> OceanButtonStyle.PrimaryCriticalSmall
+                        else -> OceanButtonStyle.PrimaryCriticalMedium
+                    }
+                }
+                "Secondary" -> {
+                    when (buttonSize) {
+                        "Large" -> OceanButtonStyle.SecondaryLarge
+                        "Medium" -> OceanButtonStyle.SecondaryMedium
+                        "Small" -> OceanButtonStyle.SecondarySmall
+                        else -> OceanButtonStyle.SecondaryMedium
+                    }
+
+                }
+                "Secondary Critical" -> {
+                    when (buttonSize) {
+                        "Large" -> OceanButtonStyle.SecondaryCriticalLarge
+                        "Medium" -> OceanButtonStyle.SecondaryCriticalMedium
+                        "Small" -> OceanButtonStyle.SecondaryCriticalSmall
+                        else -> OceanButtonStyle.SecondaryCriticalMedium
+                    }
+                }
+                "Inverse" -> {
+                    when (buttonSize) {
+                        "Large" -> OceanButtonStyle.PrimaryInverseLarge
+                        "Medium" -> OceanButtonStyle.PrimaryInverseMedium
+                        "Small" -> OceanButtonStyle.PrimaryInverseSmall
+                        else -> OceanButtonStyle.PrimaryInverseMedium
+                    }
+                }
+                "Text" -> {
+                    when (buttonSize) {
+                        "Large" -> OceanButtonStyle.TertiaryLarge
+                        "Medium" -> OceanButtonStyle.TertiaryMedium
+                        "Small" -> OceanButtonStyle.TertiarySmall
+                        else -> OceanButtonStyle.TertiaryMedium
+                    }
+                }
+                "Text Critical" -> {
+                    when (buttonSize) {
+                        "Large" -> OceanButtonStyle.TertiaryCriticalLarge
+                        "Medium" -> OceanButtonStyle.TertiaryCriticalMedium
+                        "Small" -> OceanButtonStyle.TertiaryCriticalSmall
+                        else -> OceanButtonStyle.TertiaryCriticalMedium
+                    }
+                }
+                else -> {
+                    OceanButtonStyle.PrimaryMedium
+                }
+            }
+
             OceanButton(
-                text = "Compose Button",
-                icon = if (iconState.value == true) OceanIcons.PLUS_CIRCLE_OUTLINE else null,
-                showProgress = (buttonState.value ?: "") == "Loading",
-                disabled = (buttonState.value ?: "") == "Disabled",
-                buttonStyle = OceanButtonStyle.PrimaryMedium,
+                text = "Compose $buttonType Button",
+                icon = if (iconState.value) OceanIcons.PLUS_CIRCLE_OUTLINE else null,
+                showProgress = buttonState.value == "Loading",
+                disabled = buttonState.value == "Disabled",
+                buttonStyle = buttonStyle,
                 modifier = modifier,
                 onClick = {}
             )
@@ -69,13 +134,13 @@ class ButtonsActivity : AppCompatActivity() {
         binding.toggleIconState.setToggled(R.id.toggle_icon_none, true)
         binding.toggleBlockedState.setToggled(R.id.toggle_width_default, true)
         binding.toggleState.setToggled(R.id.toggle_state_default, true)
-        binding.toggleSize.setToggled(R.id.toggle_size_large, true)
+        binding.toggleSize.setToggled(R.id.toggle_size_medium, true)
 
         viewModel.setButtonType("Primary")
         viewModel.setIconEnabled(false)
         viewModel.setWidthStateBlocked(false)
         viewModel.setState("Default")
-        viewModel.setButtonSize("Large")
+        viewModel.setButtonSize("Medium")
     }
 
     private fun initToggleListeners() {

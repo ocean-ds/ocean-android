@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ocean_color_icon_default" category="background-color">#000</color>
-    <color name="color_header_app_skeleton_shimmer">#66FFFFFF</color>
-    <color name="color_header_app_skeleton">#3DB8C3FF</color>
     <color name="white">#ffffff</color>
 </resources>

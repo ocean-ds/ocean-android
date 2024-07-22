@@ -7,6 +7,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("androidx.baselineprofile")
+    alias(libs.plugins.compose.compiler)
 }
 
 fun getVersionName(): String {
@@ -53,10 +54,6 @@ android {
         dataBinding = true
         viewBinding = true
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Configs.kotlinCompilerExtensionVersion
     }
 
     compileOptions {

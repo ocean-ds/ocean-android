@@ -5,15 +5,16 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MenuItemColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -38,11 +39,18 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Preview
 @Composable
 fun PreviewOceanTopBarInverse() {
-    Column(
-        modifier = Modifier.background(OceanColors.interfaceLightPure)
-    ) {
+    Column {
         OceanTopBarInverse(
-            title = "Portabilidade",
+            title = "Compartlihar comprovante",
+            onClickIcon = {},
+            onClickToolbar = {},
+            visibleShadow = true
+        )
+
+        OceanSpacing.StackSM()
+
+        OceanTopBarInverse(
+            title = "Compartlihar comprovante",
             icon = OceanIcons.X_OUTLINE,
             onClickIcon = {},
             onClickToolbar = {},
@@ -50,6 +58,7 @@ fun PreviewOceanTopBarInverse() {
         )
 
         OceanSpacing.StackSM()
+
 
         OceanTopBarInverse(
             title = "Portabilidade",
@@ -83,6 +92,7 @@ fun PreviewOceanTopBarInverse() {
             actions = {
                 Column {
                     IconButton(
+                        modifier = Modifier.size(50.dp),
                         onClick = { expanded = true }
                     ) {
                         OceanIcon(
@@ -191,11 +201,9 @@ private fun TopBar(
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
                 .height(56.dp)
-                .clickable {
-                    onClickToolbar()
-                },
+                .fillMaxSize()
+                .clickable { onClickToolbar() },
             verticalAlignment = Alignment.CenterVertically
         ) {
             val topBarIcon = icon ?: OceanIcons.ARROW_LEFT_OUTLINE
@@ -212,23 +220,21 @@ private fun TopBar(
                         tint = OceanColors.brandPrimaryPure
                     )
                 }
-            } else {
-                OceanSpacing.StackXXS()
-                OceanSpacing.StackXL()
             }
+            val paddingEnd = if (menuIcon == null && actions == null) OceanSpacing.xs else 0.dp
+            val paddingStart = if (iconInvisible) OceanSpacing.xs else 0.dp
 
-            OceanSpacing.StackXS()
-
-            Text(
+            OceanText(
                 text = title,
                 fontSize = OceanFontSize.sm,
                 fontFamily = OceanFontFamily.HighlightExtraBold,
                 color = OceanColors.brandPrimaryPure,
-                modifier = Modifier.weight(1f),
-                textAlign = if (iconInvisible) TextAlign.Center else TextAlign.Start
+                modifier = Modifier
+                    .padding(vertical = OceanSpacing.xs)
+                    .padding(start = paddingStart, end = paddingEnd)
+                    .weight(1f),
+                textAlign = TextAlign.Center
             )
-
-            OceanSpacing.StackXS()
             
             if (menuIcon != null && onClickMenuIcon != null) {
                 IconButton(
@@ -242,9 +248,6 @@ private fun TopBar(
                         tint = OceanColors.brandPrimaryPure
                     )
                 }
-            } else {
-                OceanSpacing.StackXXS()
-                OceanSpacing.StackXL()
             }
 
             actions?.invoke()

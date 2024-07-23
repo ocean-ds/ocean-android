@@ -21,7 +21,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -209,7 +208,7 @@ private fun TopBar(
 
             if (!iconInvisible) {
                 IconButton(
-                    onClick = { onClickIcon() },
+                    onClick = onClickIcon,
                     modifier = Modifier.size(iconButtonSize)
                 ) {
                     Icon(
@@ -237,7 +236,7 @@ private fun TopBar(
 
             if (menuIcon != null && onClickMenuIcon != null) {
                 IconButton(
-                    onClick = { onClickMenuIcon() },
+                    onClick = onClickMenuIcon,
                     modifier = Modifier.size(iconButtonSize)
                 ) {
                     Icon(
@@ -250,11 +249,7 @@ private fun TopBar(
             }
 
             if (actions != null) {
-                Box(
-                    contentAlignment = Alignment.Center,
-                    content = { actions() },
-                    modifier = Modifier.size(iconButtonSize)
-                )
+                actions()
             }
         }
 

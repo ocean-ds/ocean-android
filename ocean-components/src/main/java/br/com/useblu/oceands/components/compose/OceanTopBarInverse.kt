@@ -5,27 +5,26 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MenuItemColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -38,11 +37,18 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Preview
 @Composable
 fun PreviewOceanTopBarInverse() {
-    Column(
-        modifier = Modifier.background(OceanColors.interfaceLightPure)
-    ) {
+    Column {
         OceanTopBarInverse(
-            title = "Portabilidade",
+            title = "Compartlihar comprovante",
+            onClickIcon = {},
+            onClickToolbar = {},
+            visibleShadow = true
+        )
+
+        OceanSpacing.StackSM()
+
+        OceanTopBarInverse(
+            title = "Um texto muito grande para caber numa linha só",
             icon = OceanIcons.X_OUTLINE,
             onClickIcon = {},
             onClickToolbar = {},
@@ -50,6 +56,7 @@ fun PreviewOceanTopBarInverse() {
         )
 
         OceanSpacing.StackSM()
+
 
         OceanTopBarInverse(
             title = "Portabilidade",
@@ -83,6 +90,7 @@ fun PreviewOceanTopBarInverse() {
             actions = {
                 Column {
                     IconButton(
+                        modifier = Modifier.size(50.dp),
                         onClick = { expanded = true }
                     ) {
                         OceanIcon(
@@ -114,7 +122,7 @@ fun PreviewOceanTopBarInverse() {
                                     color = OceanColors.statusNegativePure,
                                     text = "Recusar contrato"
                                 )
-                                   },
+                            },
                             onClick = { },
                             leadingIcon = {
                                 OceanIcon(
@@ -191,19 +199,17 @@ private fun TopBar(
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
                 .height(56.dp)
-                .clickable {
-                    onClickToolbar()
-                },
-            verticalAlignment = Alignment.CenterVertically
+                .fillMaxSize()
+                .clickable { onClickToolbar() },
         ) {
             val topBarIcon = icon ?: OceanIcons.ARROW_LEFT_OUTLINE
+            val iconButtonSize = 56.dp
 
             if (!iconInvisible) {
                 IconButton(
-                    modifier = Modifier.size(56.dp),
-                    onClick = { onClickIcon() }
+                    onClick = onClickIcon,
+                    modifier = Modifier.size(iconButtonSize)
                 ) {
                     Icon(
                         painter = painterResource(id = topBarIcon.icon),
@@ -212,42 +218,39 @@ private fun TopBar(
                         tint = OceanColors.brandPrimaryPure
                     )
                 }
-            } else {
-                OceanSpacing.StackXXS()
-                OceanSpacing.StackXL()
             }
 
-            OceanSpacing.StackXS()
+            val paddingEnd = if (menuIcon == null && actions == null) OceanSpacing.xs else 0.dp
+            val paddingStart = if (iconInvisible) OceanSpacing.xs else 0.dp
 
-            Text(
+            OceanText(
                 text = title,
                 fontSize = OceanFontSize.sm,
                 fontFamily = OceanFontFamily.HighlightExtraBold,
                 color = OceanColors.brandPrimaryPure,
-                modifier = Modifier.weight(1f),
-                textAlign = if (iconInvisible) TextAlign.Center else TextAlign.Start
+                modifier = Modifier
+                    .padding(vertical = OceanSpacing.xs)
+                    .padding(start = paddingStart, end = paddingEnd)
+                    .weight(1f)
             )
 
-            OceanSpacing.StackXS()
-            
             if (menuIcon != null && onClickMenuIcon != null) {
                 IconButton(
-                    modifier = Modifier.size(56.dp),
-                    onClick = { onClickMenuIcon() }
+                    onClick = onClickMenuIcon,
+                    modifier = Modifier.size(iconButtonSize)
                 ) {
                     Icon(
                         painter = painterResource(id = menuIcon.icon),
                         contentDescription = null,
-                        modifier = Modifier.size(24.dp),
-                        tint = OceanColors.brandPrimaryPure
+                        tint = OceanColors.brandPrimaryPure,
+                        modifier = Modifier.size(24.dp)
                     )
                 }
-            } else {
-                OceanSpacing.StackXXS()
-                OceanSpacing.StackXL()
             }
 
-            actions?.invoke()
+            if (actions != null) {
+                actions()
+            }
         }
 
         if (visibleShadow) {

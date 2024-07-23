@@ -2188,6 +2188,10 @@ enum class OceanIcons(
         token = "scoreoutline",
         icon = R.drawable.ocean_icon_score_outline
     ),
+    CONTACTLESS_OUTLINE(
+        token = "contactlessoutline",
+        icon = R.drawable.ocean_icon_contactless_outline
+    ),
     EASTER_EGGS(
         token = "eastereggs",
         icon = R.drawable.icon_easter_eggs

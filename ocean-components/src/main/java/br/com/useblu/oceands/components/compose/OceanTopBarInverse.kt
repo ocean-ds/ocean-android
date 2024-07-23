@@ -26,7 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -50,7 +49,7 @@ fun PreviewOceanTopBarInverse() {
         OceanSpacing.StackSM()
 
         OceanTopBarInverse(
-            title = "Compartlihar comprovante",
+            title = "Um texto muito grande para caber numa linha só",
             icon = OceanIcons.X_OUTLINE,
             onClickIcon = {},
             onClickToolbar = {},
@@ -124,7 +123,7 @@ fun PreviewOceanTopBarInverse() {
                                     color = OceanColors.statusNegativePure,
                                     text = "Recusar contrato"
                                 )
-                                   },
+                            },
                             onClick = { },
                             leadingIcon = {
                                 OceanIcon(
@@ -204,14 +203,14 @@ private fun TopBar(
                 .height(56.dp)
                 .fillMaxSize()
                 .clickable { onClickToolbar() },
-            verticalAlignment = Alignment.CenterVertically
         ) {
             val topBarIcon = icon ?: OceanIcons.ARROW_LEFT_OUTLINE
+            val iconButtonSize = 56.dp
 
             if (!iconInvisible) {
                 IconButton(
-                    modifier = Modifier.size(56.dp),
-                    onClick = { onClickIcon() }
+                    onClick = { onClickIcon() },
+                    modifier = Modifier.size(iconButtonSize)
                 ) {
                     Icon(
                         painter = painterResource(id = topBarIcon.icon),
@@ -221,6 +220,7 @@ private fun TopBar(
                     )
                 }
             }
+
             val paddingEnd = if (menuIcon == null && actions == null) OceanSpacing.xs else 0.dp
             val paddingStart = if (iconInvisible) OceanSpacing.xs else 0.dp
 
@@ -232,25 +232,30 @@ private fun TopBar(
                 modifier = Modifier
                     .padding(vertical = OceanSpacing.xs)
                     .padding(start = paddingStart, end = paddingEnd)
-                    .weight(1f),
-                textAlign = TextAlign.Center
+                    .weight(1f)
             )
-            
+
             if (menuIcon != null && onClickMenuIcon != null) {
                 IconButton(
-                    modifier = Modifier.size(56.dp),
-                    onClick = { onClickMenuIcon() }
+                    onClick = { onClickMenuIcon() },
+                    modifier = Modifier.size(iconButtonSize)
                 ) {
                     Icon(
                         painter = painterResource(id = menuIcon.icon),
                         contentDescription = null,
-                        modifier = Modifier.size(24.dp),
-                        tint = OceanColors.brandPrimaryPure
+                        tint = OceanColors.brandPrimaryPure,
+                        modifier = Modifier.size(24.dp)
                     )
                 }
             }
 
-            actions?.invoke()
+            if (actions != null) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    content = { actions() },
+                    modifier = Modifier.size(iconButtonSize)
+                )
+            }
         }
 
         if (visibleShadow) {

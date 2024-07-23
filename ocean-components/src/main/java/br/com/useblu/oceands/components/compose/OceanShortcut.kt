@@ -35,11 +35,15 @@ fun OceanShortcutPreview() {
         OceanShortcutModel(
             label = "TinyVertical",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
-            action = {}
+            action = {},
+            badgeType = OceanBadgeType.HIGHLIGHT,
+            count = "Novo"
         ),
         OceanShortcutModel(
             label = "TinyVertical",
-            icon = OceanIcons.ACADEMIC_CAP_SOLID
+            icon = OceanIcons.ACADEMIC_CAP_SOLID,
+            badgeType = OceanBadgeType.WARNING,
+            count = "120"
         ),
 
         OceanShortcutModel(
@@ -75,7 +79,9 @@ fun OceanShortcutPreview() {
         OceanShortcutModel(
             label = "Small",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
-            layout = OceanShortcutLayout.Small
+            layout = OceanShortcutLayout.Small,
+            badgeType = OceanBadgeType.HIGHLIGHT,
+            count = "Novo"
         ),
 
         OceanShortcutModel(
@@ -235,7 +241,7 @@ fun OceanShortcut(
                 OceanBadge(
                     text = count,
                     type = badgeType,
-                    size = OceanBadgeSize.Medium,
+                    size = OceanBadgeSize.Small,
                     modifier = Modifier
                         .padding(top = OceanSpacing.xxs, end = OceanSpacing.xxs)
                         .align(Alignment.TopEnd)

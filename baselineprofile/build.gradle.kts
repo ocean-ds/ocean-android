@@ -1,4 +1,4 @@
-import com.android.build.api.dsl.ManagedVirtualDevice
+import com.android.build.gradle.internal.dsl.ManagedVirtualDevice
 
 plugins {
     id("com.android.test")
@@ -11,12 +11,12 @@ android {
     compileSdk = 34
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     defaultConfig {
@@ -29,11 +29,11 @@ android {
     targetProjectPath = ":app"
 
     testOptions.managedDevices.devices {
-        create<ManagedVirtualDevice>("pixel7Api30") {
+        add(ManagedVirtualDevice("pixel7Api30").apply {
             device = "Pixel 7"
             apiLevel = 30
             systemImageSource = "aosp"
-        }
+        })
     }
 }
 

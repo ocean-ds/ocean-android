@@ -1,13 +1,14 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,42 +26,37 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 private fun OceanTagPreview() {
-    Row {
-        Column {
+    Row(
+        modifier = Modifier.padding(OceanSpacing.xxxs),
+        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
+    ) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
+        ) {
             OceanTag(
                 label = "Label",
                 type = OceanTagType.Positive
             )
-
-            OceanSpacing.StackXXXS()
 
             OceanTag(
                 label = "Label",
                 type = OceanTagType.Warning
             )
 
-            OceanSpacing.StackXXXS()
-
             OceanTag(
                 label = "Label",
                 type = OceanTagType.Negative
             )
-
-            OceanSpacing.StackXXXS()
 
             OceanTag(
                 label = "Label",
                 type = OceanTagType.Complementary
             )
 
-            OceanSpacing.StackXXXS()
-
             OceanTag(
                 label = "Label",
                 type = OceanTagType.Neutral
             )
-
-            OceanSpacing.StackXXXS()
 
             OceanTag(
                 label = "Label",
@@ -68,16 +64,14 @@ private fun OceanTagPreview() {
             )
         }
 
-        OceanSpacing.StackXS()
-
-        Column {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
+        ) {
             OceanTag(
                 label = "Label",
                 icon = OceanIcons.LOCK_CLOSED_OUTLINE,
                 type = OceanTagType.Positive
             )
-
-            OceanSpacing.StackXXXS()
 
             OceanTag(
                 label = "Label",
@@ -85,15 +79,11 @@ private fun OceanTagPreview() {
                 type = OceanTagType.Warning
             )
 
-            OceanSpacing.StackXXXS()
-
             OceanTag(
                 label = "Label",
                 icon = OceanIcons.PLACEHOLDER_SOLID,
                 type = OceanTagType.Negative
             )
-
-            OceanSpacing.StackXXXS()
 
             OceanTag(
                 label = "Label",
@@ -101,15 +91,11 @@ private fun OceanTagPreview() {
                 type = OceanTagType.Complementary
             )
 
-            OceanSpacing.StackXXXS()
-
             OceanTag(
                 label = "Label",
                 icon = OceanIcons.PLACEHOLDER_SOLID,
                 type = OceanTagType.Neutral
             )
-
-            OceanSpacing.StackXXXS()
 
             OceanTag(
                 label = "Label",
@@ -118,16 +104,14 @@ private fun OceanTagPreview() {
             )
         }
 
-        OceanSpacing.StackXS()
-
-        Column {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
+        ) {
             OceanTag(
                 label = "Label",
                 type = OceanTagType.Positive,
                 isSmall = true
             )
-
-            OceanSpacing.StackXXXS()
 
             OceanTag(
                 label = "Label",
@@ -135,15 +119,11 @@ private fun OceanTagPreview() {
                 isSmall = true
             )
 
-            OceanSpacing.StackXXXS()
-
             OceanTag(
                 label = "Label",
                 type = OceanTagType.Negative,
                 isSmall = true
             )
-
-            OceanSpacing.StackXXXS()
 
             OceanTag(
                 label = "Label",
@@ -151,15 +131,11 @@ private fun OceanTagPreview() {
                 isSmall = true
             )
 
-            OceanSpacing.StackXXXS()
-
             OceanTag(
                 label = "Label",
                 type = OceanTagType.Neutral,
                 isSmall = true
             )
-
-            OceanSpacing.StackXXXS()
 
             OceanTag(
                 label = "Label",
@@ -167,15 +143,11 @@ private fun OceanTagPreview() {
                 isSmall = true
             )
 
-            OceanSpacing.StackXXXS()
-
             OceanTag(
                 label = "Label",
                 type = OceanTagType.Important,
                 isSmall = true
             )
-
-            OceanSpacing.StackXXXS()
 
             OceanTag(
                 label = "Label",
@@ -188,6 +160,7 @@ private fun OceanTagPreview() {
 
 @Composable
 fun OceanTag(
+    modifier: Modifier = Modifier,
     label: String,
     type: OceanTagType,
     showIcon: Boolean = true,
@@ -199,16 +172,15 @@ fun OceanTag(
     val backgroundColor = getBackgroundColor(type = type)
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .background(
                 color = backgroundColor,
                 shape = RoundedCornerShape(16.dp)
             )
             .height(height),
         verticalAlignment = Alignment.CenterVertically
-
     ) {
-        if (showIcon) {
+        if (!isSmall && showIcon) {
             Spacer(modifier = Modifier.size(6.dp))
 
             val finalIcon = icon ?: getIconDefault(type)
@@ -220,13 +192,14 @@ fun OceanTag(
                     modifier = Modifier.size(16.dp)
                 )
             }
-        } else if (!isSmall) {
             OceanSpacing.StackXXXS()
         }
 
-        OceanSpacing.StackXXXS()
+        if (isSmall) {
+            OceanSpacing.StackXXXS()
+        }
 
-        Text(
+        OceanText(
             text = label,
             color = textColor,
             fontSize = if (isSmall) 10.sp else OceanFontSize.xxxs

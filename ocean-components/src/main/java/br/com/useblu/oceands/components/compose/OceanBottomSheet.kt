@@ -390,9 +390,8 @@ private fun BottomButtons(
                 buttonStyle = primaryStyle,
                 icon = positiveButton.icon,
                 onClick = {
-                    onDismiss.invoke().run {
-                        positiveButton.onClick.invoke()
-                    }
+                    positiveButton.onClick.invoke()
+                    onDismiss.invoke()
                 },
                 modifier = it,
                 disabled = positiveButton.isDisabled

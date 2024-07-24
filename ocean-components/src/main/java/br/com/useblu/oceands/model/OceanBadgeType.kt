@@ -5,18 +5,16 @@ enum class OceanBadgeType {
     PRIMARY,
     PRIMARY_INVERTED,
     WARNING,
-    DISABLED,
-    CHIP_HOVER;
+    DISABLED;
 
     companion object {
         fun fromString(value: String): OceanBadgeType? {
             return when (value.lowercase()) {
                 "highlight" -> HIGHLIGHT
                 "primary" -> PRIMARY
-                "primaryinverted" -> PRIMARY_INVERTED
+                "primaryinverted", "chiphover" -> PRIMARY_INVERTED
                 "warning" -> WARNING
                 "disabled" -> DISABLED
-                "chiphover" -> CHIP_HOVER
                 else -> null
             }
         }

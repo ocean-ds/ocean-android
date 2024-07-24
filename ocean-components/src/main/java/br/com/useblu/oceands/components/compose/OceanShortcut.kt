@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanBadgeType
+import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -36,14 +37,12 @@ fun OceanShortcutPreview() {
             label = "TinyVertical",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             action = {},
-            badgeType = OceanBadgeType.HIGHLIGHT,
-            count = "Novo"
+            tag = OceanShortcutTag("Novo", OceanTagType.Important)
         ),
         OceanShortcutModel(
             label = "TinyVertical",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
-            badgeType = OceanBadgeType.WARNING,
-            count = "120"
+            badge = OceanShortcutBadge(count = 120, type = OceanBadgeType.WARNING)
         ),
 
         OceanShortcutModel(
@@ -73,15 +72,13 @@ fun OceanShortcutPreview() {
             label = "Small",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.Small,
-            badgeType = OceanBadgeType.WARNING,
-            count = "120"
+            badge = OceanShortcutBadge(count = 120, type = OceanBadgeType.WARNING)
         ),
         OceanShortcutModel(
             label = "Small",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.Small,
-            badgeType = OceanBadgeType.HIGHLIGHT,
-            count = "Novo"
+            tag = OceanShortcutTag("Novo", OceanTagType.Highlight)
         ),
 
         OceanShortcutModel(
@@ -171,8 +168,8 @@ fun OceanShortcut(
         icon = model.icon,
         modifier = modifier,
         description = model.description,
-        count = model.count,
-        badgeType = model.badgeType,
+        badge = model.badge,
+        tag = model.tag,
         action = model.action,
         layout = model.layout,
         blocked = model.blocked,
@@ -180,14 +177,24 @@ fun OceanShortcut(
     )
 }
 
+data class OceanShortcutBadge(
+    val count: Int,
+    val type: OceanBadgeType
+)
+
+data class OceanShortcutTag(
+    val text: String,
+    val type: OceanTagType
+)
+
 @Composable
 fun OceanShortcut(
     label: String,
     icon: OceanIcons,
     modifier: Modifier = Modifier,
     description: String? = null,
-    count: String? = null,
-    badgeType: OceanBadgeType? = null,
+    badge: OceanShortcutBadge? = null,
+    tag: OceanShortcutTag? = null,
     action: (() -> Unit)? = null,
     layout: OceanShortcutLayout = OceanShortcutLayout.TinyVertical,
     blocked: Boolean = false,
@@ -237,15 +244,27 @@ fun OceanShortcut(
                 )
             }
 
-            if (count != null && badgeType != null) {
-                OceanBadge(
-                    text = count,
-                    type = badgeType,
-                    size = OceanBadgeSize.Small,
-                    modifier = Modifier
-                        .padding(top = OceanSpacing.xxs, end = OceanSpacing.xxs)
-                        .align(Alignment.TopEnd)
-                )
+            when {
+                tag != null ->  {
+                    OceanTag(
+                        label = tag.text,
+                        type = tag.type,
+                        isSmall = true,
+                        modifier = Modifier
+                            .padding(top = OceanSpacing.xxs, end = OceanSpacing.xxs)
+                            .align(Alignment.TopEnd)
+                    )
+                }
+                badge != null -> {
+                    OceanBadge(
+                        text = badge.count.toString(),
+                        type = badge.type,
+                        size = OceanBadgeSize.Small,
+                        modifier = Modifier
+                            .padding(top = OceanSpacing.xxs, end = OceanSpacing.xxs)
+                            .align(Alignment.TopEnd)
+                    )
+                }
             }
 
             Column(
@@ -336,8 +355,8 @@ data class OceanShortcutModel(
     val label: String,
     val description: String? = null,
     val icon: OceanIcons,
-    val count: String? = null,
-    val badgeType: OceanBadgeType? = null,
+    val badge: OceanShortcutBadge? = null,
+    val tag: OceanShortcutTag? = null,
     val action: (() -> Unit)? = null,
     val layout: OceanShortcutLayout = OceanShortcutLayout.TinyVertical,
     val blocked: Boolean = false,

@@ -21,7 +21,7 @@ jobs:
       - name: Generate baseline profiles
         run: |
           ./gradlew cleanManagedDevices --unused-only
-          ./gradlew clean :ocean-components:generateBaselineProfile -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules=BaselineProfile -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=20 -Dorg.gradle.workers.max=4
+          ./gradlew :ocean-components:generateBaselineProfile -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules=BaselineProfile -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=20 -Dorg.gradle.workers.max=4
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6

@@ -86,7 +86,6 @@ fun OceanBadge(
         OceanBadgeType.PRIMARY_INVERTED -> OceanColors.interfaceLightPure
         OceanBadgeType.WARNING -> OceanColors.statusWarningDeep
         OceanBadgeType.DISABLED -> OceanColors.interfaceDarkUp
-        OceanBadgeType.CHIP_HOVER -> OceanColors.interfaceLightPure
     }
 
     val formattedText = text.toIntOrNull()?.let {

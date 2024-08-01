@@ -75,6 +75,10 @@
         <variable
             name="clickNegative"
             type="Function0&lt;Unit>" />
+
+        <variable
+            name="buildVersion"
+            type="String" />
     </data>
 
     <LinearLayout
@@ -256,6 +260,26 @@
                     app:text="@{`Código: `+ code}"
                     tools:text="Código: 0000" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
+                app:ocean_visible_or_gone="@{!buildVersion.isEmpty()}">
+
+                <TextView
+                    android:id="@+id/build_version"
+                    style="@style/Ocean.Description.DarkUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:text="@{`Versão `+ buildVersion}"
+                    tools:text="Versão 0000" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

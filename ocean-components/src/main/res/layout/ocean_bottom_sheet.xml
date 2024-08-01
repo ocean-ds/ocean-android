@@ -270,7 +270,7 @@
                 app:ocean_visible_or_gone="@{!buildVersion.isEmpty()}">
 
                 <TextView
-                    android:id="@+id/build_version"
+                    android:id="@+id/text_build_version"
                     style="@style/Ocean.Description.DarkUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

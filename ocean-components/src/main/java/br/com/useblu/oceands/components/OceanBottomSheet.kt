@@ -21,6 +21,7 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
     private var message: String? = null
     private var subMessage: String? = null
     private var code: Int? = null
+    private var buildVersion: String? = null
     private var orientationButtons: Int = Orientation.Horizontal.direction
     private var isDismiss: Boolean = true
     private var textPositive: String? = context.getString(R.string.ok)
@@ -94,6 +95,10 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
             binding.code = it
         }
 
+        buildVersion?.let {
+            binding.buildVersion = it
+        }
+
         binding.iconClose.setOnClickListener {
             dismiss()
         }
@@ -124,6 +129,11 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
 
     fun withCode(code: Int): OceanBottomSheet {
         this.code = code
+        return this
+    }
+
+    fun withBuildVersion(buildVersion: String): OceanBottomSheet {
+        this.buildVersion = buildVersion
         return this
     }
 

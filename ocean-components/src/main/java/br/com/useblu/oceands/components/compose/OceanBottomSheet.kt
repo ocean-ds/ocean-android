@@ -115,7 +115,7 @@ private fun OceanBottomSheetPreview() {
                         message = "Message",
                         subMessage = "SubMessage",
                         imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
-                        code = 2000,
+                        code = 2000.toString(),
                         actionPositive = OceanBottomSheetModel.Button(
                             text = "Aceitar",
                             onClick = {}
@@ -160,7 +160,7 @@ private fun OceanBottomSheetPreview() {
                                 println("Botão clicado")
                             },
                         ),
-                        code = 2000,
+                        code = 2000.toString(),
                         onDismiss = {
                             it.value = false
                         }
@@ -180,7 +180,7 @@ data class OceanBottomSheetModel(
     val title: String? = null,
     val message: String? = null,
     val subMessage: String? = null,
-    val code: Int? = null,
+    val code: String? = null,
     @DrawableRes val icon: Int? = null,
     val imageUrl: String? = null,
     val maxWidth: Int? = null,

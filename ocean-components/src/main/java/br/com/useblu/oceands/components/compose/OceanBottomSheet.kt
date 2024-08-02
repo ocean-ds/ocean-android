@@ -98,6 +98,7 @@ private fun OceanBottomSheetPreview() {
                         customContent = {
                             Text(text = "Teste de bottom sheet")
                         },
+                        description = "Código: ABC123",
                         imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
                         title = "Bottomsheet com Imagem",
                         onDismiss = {
@@ -115,7 +116,7 @@ private fun OceanBottomSheetPreview() {
                         message = "Message",
                         subMessage = "SubMessage",
                         imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
-                        code = 2000.toString(),
+                        code = 2000,
                         actionPositive = OceanBottomSheetModel.Button(
                             text = "Aceitar",
                             onClick = {}
@@ -160,7 +161,7 @@ private fun OceanBottomSheetPreview() {
                                 println("Botão clicado")
                             },
                         ),
-                        code = 2000.toString(),
+                        code = 2000,
                         onDismiss = {
                             it.value = false
                         }
@@ -180,7 +181,8 @@ data class OceanBottomSheetModel(
     val title: String? = null,
     val message: String? = null,
     val subMessage: String? = null,
-    val code: String? = null,
+    val code: Int? = null,
+    val description: String? = null,
     @DrawableRes val icon: Int? = null,
     val imageUrl: String? = null,
     val maxWidth: Int? = null,
@@ -190,14 +192,14 @@ data class OceanBottomSheetModel(
     val buttonsOrientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
     val onDismiss: () -> Unit
 ) {
-    companion object
-
-    class Button(
+    data class Button(
         val text: String,
         val icon: OceanIcons? = null,
         val onClick: () -> Unit,
         val isDisabled: Boolean = false
     )
+
+    companion object
 }
 
 
@@ -244,7 +246,7 @@ fun OceanBottomSheet(
         sheetState = sheetState,
         onDismissRequest = { model.onDismiss() },
         dragHandle = null,
-        properties =  ModalBottomSheetDefaults.properties(shouldDismissOnBackPress = model.isDismissible)
+        properties = ModalBottomSheetDefaults.properties(shouldDismissOnBackPress = model.isDismissible)
     ) {
         Row(
             modifier = Modifier
@@ -352,10 +354,12 @@ fun OceanBottomSheet(
                 }
             )
 
-            if (model.code != null) {
+            if (model.code != null || model.description != null) {
+                val description = model.description ?: "Código: ${model.code}"
+
                 OceanSpacing.StackXS()
-                Text(
-                    text = "Código: ${model.code}",
+                OceanText(
+                    text = description,
                     style = OceanTextStyle.description,
                     color = OceanColors.interfaceDarkUp
                 )

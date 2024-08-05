@@ -517,6 +517,7 @@ class HomeActivity : AppCompatActivity() {
             .withMessage("Message a huge text to test the bottom sheet behavior on deal with multiple lines")
             .withIcon(R.drawable.icon_blu_plus)
             .withCode(9999)
+            .withBuildVersion("Versão 5.0 45884")
             .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
             .withDismiss(true)
             .withActionPositive(R.string.all_button_confirm) {}

@@ -266,8 +266,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
-                app:ocean_visible_or_gone="@{!buildVersion.isEmpty()}">
+                android:paddingBottom="@dimen/ocean_spacing_stack_xxs">
 
                 <TextView
                     android:id="@+id/text_build_version"

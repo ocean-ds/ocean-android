@@ -242,43 +242,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/container_horizontal_code"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
-                app:ocean_visible_or_gone="@{code > 0}">
-
-                <TextView
-                    android:id="@+id/horizontal_text_code"
-                    style="@style/Ocean.Description.DarkUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:text="@{`Código: `+ code}"
-                    tools:text="Código: 0000" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/ocean_spacing_stack_xxs">
-
-                <TextView
-                    android:id="@+id/text_build_version"
-                    style="@style/Ocean.Description.DarkUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:text="@{`Versão `+ buildVersion}"
-                    tools:text="Versão 0000" />
-
-            </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
@@ -313,25 +276,43 @@
                 app:click="@{clickNegative::invoke}"
                 app:ocean_visible_or_gone="@{textNegative.length() > 0}"
                 app:text="@{textNegative}" />
+        </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/container_vertical_code"
+        <LinearLayout
+            android:id="@+id/container_horizontal_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/ocean_spacing_stack_xs"
+            app:ocean_visible_or_gone="@{code > 0}">
+
+            <TextView
+                android:id="@+id/horizontal_text_code"
+                style="@style/Ocean.Description.DarkUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/ocean_spacing_stack_xxs"
-                app:ocean_visible_or_gone="@{code > 0}">
+                android:gravity="center"
+                app:text="@{`Código: `+ code}"
+                tools:text="Código: 0000" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/vertical_text_code"
-                    style="@style/Ocean.Description.DarkUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:text="@{`Código: `+ code}"
-                    tools:text="Código: 0000" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/ocean_spacing_stack_xs"
+            app:ocean_visible_or_gone="@{buildVersion != null &amp;&amp; !buildVersion.isEmpty()}">
+
+            <TextView
+                android:id="@+id/text_build_version"
+                style="@style/Ocean.Description.DarkUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:text="@{`Versão `+ buildVersion}"
+                tools:text="Versão 0000" />
+
         </LinearLayout>
 
     </LinearLayout>

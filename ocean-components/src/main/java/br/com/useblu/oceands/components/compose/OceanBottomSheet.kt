@@ -190,7 +190,7 @@ data class OceanBottomSheetModel(
     val actionPositive: Button? = null,
     val actionNegative: Button? = null,
     val buttonsOrientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
-    val onDismiss: (Boolean) -> Unit
+    val onDismiss: (dismissedByUser: Boolean) -> Unit
 ) {
     data class Button(
         val text: String,

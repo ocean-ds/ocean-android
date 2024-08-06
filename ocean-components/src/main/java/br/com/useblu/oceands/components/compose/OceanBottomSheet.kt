@@ -93,7 +93,7 @@ private fun OceanBottomSheetPreview() {
 
             BottomSheetPreviewFactory(
                 bottomSheetCta = "Bottom sheet com imagem",
-                model = {
+                model = { showState ->
                     OceanBottomSheetModel(
                         customContent = {
                             Text(text = "Teste de bottom sheet")
@@ -102,7 +102,7 @@ private fun OceanBottomSheetPreview() {
                         imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
                         title = "Bottomsheet com Imagem",
                         onDismiss = {
-                            it.value = false
+                            showState.value = false
                         }
                     )
                 }
@@ -110,7 +110,7 @@ private fun OceanBottomSheetPreview() {
 
             BottomSheetPreviewFactory(
                 bottomSheetCta = "Bottom sheet completa (exceto conteúdo custom)",
-                model = {
+                model = { showState ->
                     OceanBottomSheetModel(
                         title = "Title",
                         message = "Message",
@@ -127,7 +127,7 @@ private fun OceanBottomSheetPreview() {
                         ),
                         buttonsOrientation = BottomSheetButtonsOrientation.Vertical,
                         onDismiss = {
-                            it.value = false
+                            showState.value = false
                         }
                     )
                 }
@@ -135,13 +135,13 @@ private fun OceanBottomSheetPreview() {
 
             BottomSheetPreviewFactory(
                 bottomSheetCta = "Bottom sheet com dismiss",
-                model = {
+                model = { showState ->
                     OceanBottomSheetModel(
                         customContent = {
                             Text(text = "Teste de bottom sheet")
                         },
                         onDismiss = {
-                            it.value = false
+                            showState.value = false
                         }
                     )
                 }
@@ -149,7 +149,7 @@ private fun OceanBottomSheetPreview() {
 
             BottomSheetPreviewFactory(
                 bottomSheetCta = "Bottom sheet com botão",
-                model = {
+                model = { showState ->
                     OceanBottomSheetModel(
                         customContent = {
                             Text(text = "Teste de bottom sheet")
@@ -163,7 +163,7 @@ private fun OceanBottomSheetPreview() {
                         ),
                         code = 2000,
                         onDismiss = {
-                            it.value = false
+                            showState.value = false
                         }
                     )
                 }
@@ -190,7 +190,7 @@ data class OceanBottomSheetModel(
     val actionPositive: Button? = null,
     val actionNegative: Button? = null,
     val buttonsOrientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
-    val onDismiss: () -> Unit
+    val onDismiss: (dismissedByUser: Boolean) -> Unit
 ) {
     data class Button(
         val text: String,
@@ -244,7 +244,7 @@ fun OceanBottomSheet(
     ModalBottomSheet(
         containerColor = OceanColors.interfaceLightPure,
         sheetState = sheetState,
-        onDismissRequest = { model.onDismiss() },
+        onDismissRequest = { model.onDismiss(true) },
         dragHandle = null,
         properties = ModalBottomSheetDefaults.properties(shouldDismissOnBackPress = model.isDismissible)
     ) {
@@ -263,7 +263,7 @@ fun OceanBottomSheet(
             if (model.isDismissible) {
                 IconButton(
                     modifier = Modifier.testTag("close_modal"),
-                    onClick = { model.onDismiss() },
+                    onClick = { model.onDismiss(true) },
                 ) {
                     OceanIcon(
                         iconType = OceanIcons.X_OUTLINE,
@@ -350,7 +350,7 @@ fun OceanBottomSheet(
                 isCritical = model.isCritical,
                 orientation = model.buttonsOrientation,
                 onDismiss = {
-                    model.onDismiss()
+                    model.onDismiss(false)
                 }
             )
 
@@ -412,9 +412,8 @@ private fun BottomButtons(
                 icon = negativeButton.icon,
                 buttonStyle = OceanButtonStyle.SecondaryMedium,
                 onClick = {
-                    onDismiss.invoke().run {
-                        negativeButton.onClick.invoke()
-                    }
+                    negativeButton.onClick.invoke()
+                    onDismiss.invoke()
                 },
                 modifier = it,
                 disabled = negativeButton.isDisabled

@@ -125,15 +125,20 @@ class HomeActivity : AppCompatActivity() {
                         code = 2000,
                         actionPositive = OceanBottomSheetModel.Button(
                             text = "Aceitar",
-                            onClick = {}
+                            onClick = {
+                                println("Positive Button Clicked")
+                            }
                         ),
                         actionNegative = OceanBottomSheetModel.Button(
                             text = "Cancelar",
-                            onClick = {}
+                            onClick = {
+                                println("Negative Button Clicked")
+                            }
                         ),
                         buttonsOrientation = BottomSheetButtonsOrientation.Vertical,
                         onDismiss = {
                             showSheet = false
+                            println("Dismissed: $it")
                         }
                     )
                 )

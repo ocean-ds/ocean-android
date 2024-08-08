@@ -1,127 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/ocean_color_interface_light_up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="horizontal"
+        android:padding="@dimen/ocean_spacing_stack_sm">
 
-        <TextView
-            android:id="@+id/text_relationship_center"
-            android:layout_width="156dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-            android:fontFamily="@font/font_family_base_regular"
-            android:text="@string/footer_relationship_center"
-            android:textColor="@color/ocean_color_interface_dark_deep"
-            android:textSize="@dimen/ocean_font_size_xxxs"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/telephone_relationship_center"
-            android:layout_width="156dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:fontFamily="@font/font_family_base_bold"
-            android:text="@string/footer_telephone_relationship_center"
-            android:textColor="@color/ocean_color_interface_dark_deep"
-            android:textSize="@dimen/ocean_font_size_xxxs"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_relationship_center" />
-
-        <TextView
-            android:id="@+id/text_capitals_metropolitan_regions"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/font_family_base_regular"
-            android:text="@string/footer_capitals_metropolitan_regions"
-            android:textColor="@color/ocean_color_interface_dark_deep"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toStartOf="@+id/telephone_ombudsman"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/telephone_relationship_center" />
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/telephone_other_regions"
-            android:layout_width="156dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-            android:fontFamily="@font/font_family_base_bold"
-            android:text="@string/footer_phones"
-            android:textColor="@color/ocean_color_interface_dark_deep"
-            android:textSize="@dimen/ocean_font_size_xxxs"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_capitals_metropolitan_regions" />
+            <TextView
+                android:id="@+id/text_relationship_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@string/footer_relationship_center"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                android:textSize="@dimen/ocean_font_size_xxxs" />
 
-        <TextView
-            android:id="@+id/text_other_regions"
-            android:layout_width="156dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
-            android:layout_marginBottom="@dimen/ocean_spacing_stack_sm"
-            android:fontFamily="@font/font_family_base_regular"
-            android:text="@string/footer_other_regions"
-            android:textColor="@color/ocean_color_interface_dark_deep"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/telephone_other_regions" />
+            <TextView
+                android:id="@+id/telephone_relationship_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_bold"
+                android:text="@string/footer_telephone_relationship_center"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                android:textSize="@dimen/ocean_font_size_xxxs" />
 
-        <TextView
-            android:id="@+id/text_ombudsman"
-            android:layout_width="156dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-            android:fontFamily="@font/font_family_base_regular"
-            android:text="@string/footer_ombudsman"
-            android:textColor="@color/ocean_color_interface_dark_deep"
-            android:textSize="@dimen/ocean_font_size_xxxs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_relationship_center"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_capitals_metropolitan_regions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@string/footer_capitals_metropolitan_regions"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                android:textSize="10sp" />
 
-        <TextView
-            android:id="@+id/telephone_ombudsman"
-            android:layout_width="156dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-            android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
-            android:fontFamily="@font/font_family_base_bold"
-            android:text="@string/footer_phones"
-            android:textColor="@color/ocean_color_interface_dark_deep"
-            android:textSize="@dimen/ocean_font_size_xxxs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/telephone_relationship_center"
-            app:layout_constraintTop_toBottomOf="@+id/text_ombudsman" />
+            <TextView
+                android:id="@+id/telephone_other_regions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
+                android:fontFamily="@font/font_family_base_bold"
+                android:text="@string/footer_phones"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                android:textSize="@dimen/ocean_font_size_xxxs" />
 
-        <TextView
-            android:id="@+id/text_service_description"
+            <TextView
+                android:id="@+id/text_other_regions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@string/footer_other_regions"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="@dimen/ocean_spacing_stack_sm"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="@dimen/ocean_spacing_stack_xxxs"
-            android:layout_marginEnd="@dimen/ocean_spacing_stack_md"
-            android:fontFamily="@font/font_family_base_regular"
-            android:text="@string/footer_service_description"
-            android:textColor="@color/ocean_color_interface_dark_deep"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/telephone_ombudsman"
-            app:layout_constraintTop_toBottomOf="@+id/telephone_ombudsman" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/text_ombudsman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@string/footer_ombudsman"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                android:textSize="@dimen/ocean_font_size_xxxs" />
 
+            <TextView
+                android:id="@+id/telephone_ombudsman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_bold"
+                android:text="@string/footer_phones"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                android:textSize="@dimen/ocean_font_size_xxxs" />
+
+            <TextView
+                android:id="@+id/text_service_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_family_base_regular"
+                android:text="@string/footer_service_description"
+                android:textColor="@color/ocean_color_interface_dark_deep"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
 </layout>

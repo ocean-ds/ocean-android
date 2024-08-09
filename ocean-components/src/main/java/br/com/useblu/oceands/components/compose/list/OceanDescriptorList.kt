@@ -30,6 +30,9 @@ private fun OceanDescriptorListPreview() {
             .padding(16.dp),
         items = listOf(
             OceanDescriptorListItem(
+                title = "Pagador",
+            ),
+            OceanDescriptorListItem(
                 title = "Title",
                 value = "Value",
                 color = "colorstatuspositivedeep"
@@ -81,7 +84,7 @@ fun OceanDescriptorList(
     ) {
         items.forEach {
             if (it.isDivider == true) {
-                OceanDivider(modifier = Modifier.padding(top =  OceanSpacing.xs))
+                OceanDivider(modifier = Modifier.padding(top = OceanSpacing.xs))
             } else {
                 OceanDescriptorItem(item = it)
             }
@@ -97,12 +100,22 @@ fun OceanDescriptorItem(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top =  OceanSpacing.xs)
+            .padding(top = OceanSpacing.xs)
     ) {
-        OceanText(
-            text = item.title ?: "",
-            style = OceanTextStyle.description
-        )
+        if (!item.title.isNullOrBlank()) {
+            if (!item.value.isNullOrBlank()) {
+                OceanText(
+                    text = item.title,
+                    style = OceanTextStyle.description
+                )
+            } else {
+                OceanText(
+                    text = item.title,
+                    style = OceanTextStyle.heading5,
+                    color = OceanColors.interfaceDarkUp
+                )
+            }
+        }
 
         DescriptorValuesRow(item)
     }
@@ -114,11 +127,11 @@ private fun DescriptorValuesRow(item: OceanDescriptorListItem) {
         OceanColors.fromString(color = item.color)
     } else OceanColors.interfaceDarkDown
 
-    val valueStyle = if (item.isBold == true) {
+    val valueStyle = if (item.isBold) {
         OceanTextStyle.heading3
     } else OceanTextStyle.paragraph
 
-    val valueDecoration = if (item.isStrike == true) {
+    val valueDecoration = if (item.isStrike) {
         TextDecoration.LineThrough
     } else null
 
@@ -133,19 +146,21 @@ private fun DescriptorValuesRow(item: OceanDescriptorListItem) {
             OceanIcon(
                 iconType = OceanIcons.fromToken(item.icon),
                 modifier = Modifier
-                    .padding(end =  OceanSpacing.xxxs)
+                    .padding(end = OceanSpacing.xxxs)
                     .size(16.dp)
             )
         }
 
-        OceanText(
-            text = item.value ?: "",
-            style = valueStyle,
-            textDecoration = valueDecoration,
-            modifier = Modifier
-                .padding(end =  OceanSpacing.xxxs),
-            color = valueColor
-        )
+        if (!item.value.isNullOrBlank()) {
+            OceanText(
+                text = item.value,
+                style = valueStyle,
+                textDecoration = valueDecoration,
+                modifier = Modifier
+                    .padding(end = OceanSpacing.xxxs),
+                color = valueColor
+            )
+        }
 
         if (!item.newValue.isNullOrBlank()) {
             OceanText(

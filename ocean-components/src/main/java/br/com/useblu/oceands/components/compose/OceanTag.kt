@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -181,10 +180,10 @@ fun OceanTag(
             .height(height),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if(!isSmall){
+        if (!isSmall) {
             OceanSpacing.StackXXS()
 
-            if(showIcon){
+            if (showIcon) {
                 val finalIcon = icon ?: getIconDefault(type)
 
                 if (finalIcon != null) {
@@ -197,7 +196,7 @@ fun OceanTag(
                     OceanSpacing.StackXXXS()
                 }
             }
-        }else{
+        } else {
             OceanSpacing.StackXXXS()
         }
 

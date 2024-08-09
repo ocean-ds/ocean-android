@@ -40,7 +40,8 @@ private fun OceanTagPreview() {
 
             OceanTag(
                 label = "Label",
-                type = OceanTagType.Warning
+                type = OceanTagType.Warning,
+                showIcon = false
             )
 
             OceanTag(
@@ -180,22 +181,23 @@ fun OceanTag(
             .height(height),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (!isSmall && showIcon) {
-            Spacer(modifier = Modifier.size(6.dp))
+        if(!isSmall){
+            OceanSpacing.StackXXS()
 
-            val finalIcon = icon ?: getIconDefault(type)
+            if(showIcon){
+                val finalIcon = icon ?: getIconDefault(type)
 
-            if (finalIcon != null) {
-                OceanIcon(
-                    iconType = finalIcon,
-                    tint = textColor,
-                    modifier = Modifier.size(16.dp)
-                )
+                if (finalIcon != null) {
+                    OceanIcon(
+                        iconType = finalIcon,
+                        tint = textColor,
+                        modifier = Modifier.size(16.dp)
+                    )
+
+                    OceanSpacing.StackXXXS()
+                }
             }
-            OceanSpacing.StackXXXS()
-        }
-
-        if (isSmall) {
+        }else{
             OceanSpacing.StackXXXS()
         }
 

@@ -3,6 +3,7 @@ package br.com.useblu.oceands.extensions.compose
 import android.graphics.Typeface
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.text.style.StrikethroughSpan
 import android.text.style.StyleSpan
 import android.text.style.URLSpan
 import android.text.style.UnderlineSpan
@@ -63,6 +64,7 @@ fun Spanned.toAnnotatedString(): AnnotatedString = buildAnnotatedString {
             }
 
             is UnderlineSpan -> SpanStyle(textDecoration = TextDecoration.Underline)
+            is StrikethroughSpan -> SpanStyle(textDecoration = TextDecoration.LineThrough)
             is ForegroundColorSpan -> SpanStyle(color = Color(span.foregroundColor))
             is URLSpan -> {
                 addStringAnnotation(tag = "URL", annotation = span.url, start, end)

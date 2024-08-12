@@ -33,7 +33,7 @@ private fun OceanTagPreview() {
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
         ) {
             OceanTag(
-                label = "Label",
+                label = "<del>11,03%</del> por <b>7,33%</b>",
                 type = OceanTagType.Positive
             )
 

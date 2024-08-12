@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -40,7 +39,8 @@ private fun OceanTagPreview() {
 
             OceanTag(
                 label = "Label",
-                type = OceanTagType.Warning
+                type = OceanTagType.Warning,
+                showIcon = false
             )
 
             OceanTag(
@@ -180,22 +180,23 @@ fun OceanTag(
             .height(height),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (!isSmall && showIcon) {
-            Spacer(modifier = Modifier.size(6.dp))
+        if (!isSmall) {
+            OceanSpacing.StackXXS()
 
-            val finalIcon = icon ?: getIconDefault(type)
+            if (showIcon) {
+                val finalIcon = icon ?: getIconDefault(type)
 
-            if (finalIcon != null) {
-                OceanIcon(
-                    iconType = finalIcon,
-                    tint = textColor,
-                    modifier = Modifier.size(16.dp)
-                )
+                if (finalIcon != null) {
+                    OceanIcon(
+                        iconType = finalIcon,
+                        tint = textColor,
+                        modifier = Modifier.size(16.dp)
+                    )
+
+                    OceanSpacing.StackXXXS()
+                }
             }
-            OceanSpacing.StackXXXS()
-        }
-
-        if (isSmall) {
+        } else {
             OceanSpacing.StackXXXS()
         }
 

@@ -111,6 +111,7 @@ fun OceanTransactionFooter(
 
         val buttons: @Composable (Modifier) -> Unit = {
             OceanButton(
+                showProgress = firstButton.showProgress,
                 text = firstButton.text,
                 buttonStyle = firstButton.buttonStyle,
                 icon = firstButton.icon,
@@ -120,6 +121,7 @@ fun OceanTransactionFooter(
 
             if (secondButton != null) {
                 OceanButton(
+                    showProgress = secondButton.showProgress,
                     text = secondButton.text,
                     icon = secondButton.icon,
                     buttonStyle = secondButton.buttonStyle,

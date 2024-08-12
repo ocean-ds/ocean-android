@@ -6,7 +6,7 @@ data class OceanDescriptorListItem(
     val newValue: String? = null,
     val color: String? = null,
     val icon: String? = null,
-    val isBold: Boolean? = false,
-    val isDivider: Boolean? = false,
-    val isStrike: Boolean? = !newValue.isNullOrBlank()
+    val isBold: Boolean = false,
+    val isDivider: Boolean = false,
+    val isStrike: Boolean = !newValue.isNullOrBlank()
 )

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -78,7 +79,9 @@ fun OceanUnorderedListItem(
         description = model.description,
         iconType = model.iconType,
         style = model.style ?: OceanTextStyle.description,
-        showIconBackground = model.showIconBackground
+        showIconBackground = model.showIconBackground,
+        iconColor = model.iconColor,
+        roundBackgroundColor = model.roundBackgroundColor
     )
 }
 
@@ -88,7 +91,9 @@ fun OceanUnorderedListItem(
     description: String = "",
     iconType: OceanIcons,
     style: TextStyle = OceanTextStyle.description,
-    showIconBackground: Boolean = false
+    showIconBackground: Boolean = false,
+    iconColor: Color? = null,
+    roundBackgroundColor: Color? = null
 ) {
     Row(
         modifier = Modifier.padding(
@@ -102,14 +107,17 @@ fun OceanUnorderedListItem(
         Box(
             modifier = Modifier
                 .size(24.dp)
-                .iconContainerBackground(showIconBackground)
+                .iconContainerBackground(
+                    showBackground = showIconBackground,
+                    color = roundBackgroundColor ?: OceanColors.interfaceLightUp
+                )
         ) {
             OceanIcon(
                 iconType = iconType,
                 modifier = Modifier
                     .align(Alignment.Center)
                     .size(iconSize),
-                tint = OceanColors.brandPrimaryDown
+                tint = iconColor ?: OceanColors.brandPrimaryDown
             )
         }
 

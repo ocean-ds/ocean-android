@@ -2196,6 +2196,10 @@ enum class OceanIcons(
         token = "eastereggs",
         icon = R.drawable.icon_easter_eggs
     ),
+    COINS_HAND_OUTLINE(
+        token = "coinshandoutline",
+        icon = R.drawable.icon_easter_eggs
+    ),
     UNDEFINED(
         token = "",
         icon = R.drawable.ocean_icon_placeholder_solid

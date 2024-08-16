@@ -35,7 +35,7 @@ fun OceanSettingsListItemPreview() {
                 description = "11,06%",
                 newValue = "7,11%",
                 actionText = "Entenda o cálculo",
-                status = OceanSettingsStatus.UNDERSTAND,
+                status = OceanSettingsStatus.CHANGED_TERTIARY,
                 showDivider = true,
                 onClick = {
                     println("click BLOCKED_ACTIVATED")
@@ -113,14 +113,16 @@ fun OceanSettingsListItem(
     description: String? = null,
     caption: String? = null,
     newValue: String? = null,
-    isStrike: Boolean? = !newValue.isNullOrBlank(),
     onClick: (() -> Unit)? = null,
     actionText: String? = null,
     status: OceanSettingsStatus,
     error: String? = null,
     showDivider: Boolean = false
 ) {
-    val valueDecoration = if (isStrike == true) {
+
+    val isStrike = !newValue.isNullOrBlank()
+
+    val decoration = if (isStrike) {
         TextDecoration.LineThrough
     } else null
 
@@ -147,7 +149,7 @@ fun OceanSettingsListItem(
                         Text(
                             text = description,
                             style = OceanTextStyle.paragraph,
-                            textDecoration =  if (!newValue.isNullOrBlank()) { valueDecoration } else null,
+                            textDecoration =  if (!newValue.isNullOrBlank()) { decoration } else null,
                             color = if (status == OceanSettingsStatus.ACTIVATED || status == OceanSettingsStatus.BLOCKED) OceanColors.interfaceDarkDeep else OceanColors.interfaceDarkUp
                         )
 
@@ -184,7 +186,7 @@ fun OceanSettingsListItem(
             val buttonStyle = when (status) {
                 OceanSettingsStatus.DEFAULT -> OceanButtonStyle.PrimarySmall
                 OceanSettingsStatus.ACTIVATED -> OceanButtonStyle.SecondarySmall
-                OceanSettingsStatus.UNDERSTAND -> OceanButtonStyle.TertiaryMedium
+                OceanSettingsStatus.CHANGED_TERTIARY -> OceanButtonStyle.TertiaryMedium
                 else -> null
             }
 

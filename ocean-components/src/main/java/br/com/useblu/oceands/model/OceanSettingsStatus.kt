@@ -5,5 +5,6 @@ enum class OceanSettingsStatus {
     PENDING,
     ACTIVATED,
     BLOCKED_ACTIVATED,
-    BLOCKED
+    BLOCKED,
+    CHANGED_TERTIARY
 }

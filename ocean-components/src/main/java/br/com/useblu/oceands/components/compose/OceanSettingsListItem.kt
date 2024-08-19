@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanSettingsStatus
@@ -28,6 +29,19 @@ import br.com.useblu.oceands.utils.OceanIcons
 fun OceanSettingsListItemPreview() {
     MaterialTheme {
         Column {
+
+            OceanSettingsListItem(
+                title = "Taxa Promocional",
+                description = "11,06%",
+                newValue = "7,11%",
+                actionText = "Entenda o cálculo",
+                status = OceanSettingsStatus.CHANGED_TERTIARY,
+                showDivider = true,
+                onClick = {
+                    println("click BLOCKED_ACTIVATED")
+                }
+            )
+
             OceanSettingsListItem(
                 title = "Title",
                 description = "Description",
@@ -98,12 +112,20 @@ fun OceanSettingsListItem(
     modifier: Modifier = Modifier,
     description: String? = null,
     caption: String? = null,
+    newValue: String? = null,
     onClick: (() -> Unit)? = null,
     actionText: String? = null,
     status: OceanSettingsStatus,
     error: String? = null,
     showDivider: Boolean = false
 ) {
+
+    val isStrike = !newValue.isNullOrBlank()
+
+    val decoration = if (isStrike) {
+        TextDecoration.LineThrough
+    } else null
+
     Column(modifier) {
         Row(
             modifier = Modifier
@@ -121,11 +143,25 @@ fun OceanSettingsListItem(
                 )
 
                 if (description != null) {
-                    Text(
-                        text = description,
-                        style = OceanTextStyle.paragraph,
-                        color = if (status == OceanSettingsStatus.ACTIVATED || status == OceanSettingsStatus.BLOCKED) OceanColors.interfaceDarkDeep else OceanColors.interfaceDarkUp
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = description,
+                            style = OceanTextStyle.paragraph,
+                            textDecoration =  if (!newValue.isNullOrBlank()) { decoration } else null,
+                            color = if (status == OceanSettingsStatus.ACTIVATED || status == OceanSettingsStatus.BLOCKED) OceanColors.interfaceDarkDeep else OceanColors.interfaceDarkUp
+                        )
+
+                        if (!newValue.isNullOrBlank()) {
+                            Text(
+                                modifier = Modifier.padding(start = OceanSpacing.xxxs),
+                                text = newValue,
+                                style = OceanTextStyle.paragraph,
+                                color = OceanColors.statusPositiveDeep
+                            )
+                        }
+                    }
                 }
 
                 if (caption != null) {
@@ -150,6 +186,7 @@ fun OceanSettingsListItem(
             val buttonStyle = when (status) {
                 OceanSettingsStatus.DEFAULT -> OceanButtonStyle.PrimarySmall
                 OceanSettingsStatus.ACTIVATED -> OceanButtonStyle.SecondarySmall
+                OceanSettingsStatus.CHANGED_TERTIARY -> OceanButtonStyle.TertiaryMedium
                 else -> null
             }
 

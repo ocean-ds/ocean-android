@@ -19,9 +19,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
@@ -68,7 +70,10 @@ private fun OceanInvertedTextListItemPreview() {
         OceanInvertedTextListItem(
             modifier = Modifier,
             title = "Title",
-            type = InvertedTextListType.Highlight("Description")
+            type = InvertedTextListType.Highlight(
+                description = "Description",
+                fontSize = OceanFontSize.xs
+            )
         )
         OceanInvertedTextListItem(
             modifier = Modifier,
@@ -213,7 +218,8 @@ sealed interface InvertedTextListType {
         val description: String,
         val tagLabel: String? = null,
         val tagIcon: OceanIcons? = null,
-        val tagType: OceanTagType = OceanTagType.Positive
+        val tagType: OceanTagType = OceanTagType.Positive,
+        val fontSize: TextUnit = TextUnit.Unspecified
     ) : InvertedTextListType {
         @Composable
         override fun TypeContent() {
@@ -221,7 +227,8 @@ sealed interface InvertedTextListType {
                 OceanText(
                     text = description,
                     style = OceanTextStyle.lead,
-                    color = OceanColors.interfaceDarkPure
+                    color = OceanColors.interfaceDarkPure,
+                    fontSize = fontSize
                 )
 
                 if (tagLabel != null) {

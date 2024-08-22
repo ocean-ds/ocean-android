@@ -502,6 +502,9 @@ class HomeActivity : AppCompatActivity() {
             .withImageMaxHeight(60)
             .withOrientationButtons(OceanBottomSheet.Orientation.Vertical)
             .withDismiss(true)
+            .withOnDismiss {
+                println("OnClick exit")
+            }
             .withActionPositive(R.string.all_button_confirm) {}
             .withActionNegative(R.string.all_button_cancel) {}
             .show()

@@ -15,41 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.header.model.OceanHeaderStyle
-import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
-import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
 import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 
-
-private val modelPreview = OceanHeaderAppModel(
-    clientName = "Fabricante 3 - Fluxo dia atual teste 2",
-    formattedCnpj = "32.677.554/0001-14",
-    balanceBluModel = OceanBalanceBluModel(
-        firstLabel = "First Label",
-        firstValue = "-35,63",
-        secondLabel = "Second Label",
-        secondValue = "10,00",
-        thirdLabel = "Third Label",
-        thirdValue = "50,00",
-        buttonCta = "Extrato",
-        buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu",
-        onClickButton = {
-            println("Click blu")
-        }
-    ),
-    balanceOthersModel = OceanBalanceOthersModel(
-        title = "Saldo em Outras maquininhas",
-        description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
-        buttonCta = "Extrato",
-        buttonCtaCollapsed = "Extrato",
-        onClickButton = {
-            println("Click others")
-        }
-    ),
-    isLoading = false,
-    isHeaderCollapsed = false
-)
 
 @Composable
 @Preview

@@ -51,7 +51,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 import kotlinx.coroutines.launch
 
 
-private val modelPreview = OceanHeaderAppModel(
+val modelPreview = OceanHeaderAppModel(
     clientName = "Fabricante 3 - Fluxo dia atual teste 2",
     formattedCnpj = "32.677.554/0001-14",
     balanceBluModel = OceanBalanceBluModel(

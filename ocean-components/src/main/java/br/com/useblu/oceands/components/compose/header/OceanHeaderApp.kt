@@ -34,7 +34,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanBadge
 import br.com.useblu.oceands.components.compose.OceanBadgeSize
 import br.com.useblu.oceands.components.compose.OceanBluPlus
@@ -52,7 +51,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 import kotlinx.coroutines.launch
 
 
-private val modelPreview = OceanHeaderAppModel(
+val modelPreview = OceanHeaderAppModel(
     clientName = "Fabricante 3 - Fluxo dia atual teste 2",
     formattedCnpj = "32.677.554/0001-14",
     balanceBluModel = OceanBalanceBluModel(
@@ -156,6 +155,7 @@ private val balancePageSize = object : PageSize {
     }
 }
 
+@Deprecated("Use OceanHeader instead")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OceanHeaderApp(
@@ -173,7 +173,7 @@ fun OceanHeaderApp(
         modifier = modifier
             .background(color = OceanColors.brandPrimaryPure)
     ) {
-        Header(model = model)
+        MinimalHeader(model = model)
 
         if (model.hideBalance) {
             return@Column
@@ -266,12 +266,13 @@ private fun PageIndicator(
 }
 
 @Composable
-fun Header(
+fun MinimalHeader(
     model: OceanHeaderAppModel,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
+            .background(OceanColors.brandPrimaryPure)
             .height(64.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -288,7 +289,7 @@ fun Header(
                     text = model.clientName,
                     fontFamily = OceanFontFamily.HighlightExtraBold,
                     color = OceanColors.interfaceLightPure,
-                    fontSize = 16.sp,
+                    fontSize = OceanFontSize.xs,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f, false)
@@ -322,7 +323,7 @@ fun Header(
             OceanSpacing.StackXXXS()
         }
 
-        HeaderMenu(
+        MinimalHeaderMenu(
             model.badgeCount,
             model.onClickMenu
         )
@@ -332,7 +333,7 @@ fun Header(
 }
 
 @Composable
-private fun HeaderMenu(
+private fun MinimalHeaderMenu(
     badgeCount: Int,
     onClickMenu: () -> Unit
 ) {

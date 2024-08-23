@@ -1,12 +1,11 @@
 package br.com.useblu.oceands.components.compose.header
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -62,21 +61,20 @@ fun OceanBalanceBluCardCollapsed(
         modifier = modifier
             .background(color = Color(0xFF2244E8))
             .height(58.dp)
-            .padding(horizontal =  OceanSpacing.xs),
+            .padding(start = OceanSpacing.xs),
         verticalAlignment = Alignment.CenterVertically
     ) {
         BalanceCardMainValues(onClickToggleHideContent, isContentHidden, model, isLoading, shimmeringBrush)
-
-        Box(modifier = Modifier
-            .size(40.dp)
-            .clickable { model.onClickExpandScroll() }
+        IconButton(
+            modifier = Modifier.size(52.dp),
+            onClick = {
+                model.onClickExpandScroll()
+            }
         ) {
             OceanIcon(
                 iconType = OceanIcons.CHEVRON_DOWN_OUTLINE,
                 tint = OceanColors.brandPrimaryUp,
-                modifier = Modifier
-                    .size(20.dp)
-                    .align(Alignment.CenterEnd)
+                modifier = Modifier.size(20.dp)
             )
         }
     }

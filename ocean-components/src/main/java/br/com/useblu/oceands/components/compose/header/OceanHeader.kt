@@ -86,7 +86,9 @@ fun OceanHeaderMinimalPreview() {
 @Preview
 fun OceanHeaderSmallPreview() {
     var modelPreview by remember {
-        mutableStateOf(modelPreview)
+        mutableStateOf(
+            modelPreview.copy(isHeaderCollapsed = true)
+        )
     }
 
     LaunchedEffect(key1 = true) {

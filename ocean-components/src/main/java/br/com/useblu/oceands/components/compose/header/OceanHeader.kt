@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -88,17 +89,17 @@ fun OceanHeaderSmallPreview() {
         mutableStateOf(modelPreview)
     }
 
-//    LaunchedEffect(key1 = true) {
-//        modelPreview = modelPreview.copy(
-//            balanceBluModel = modelPreview.balanceBluModel.copy(
-//                onClickExpandScroll = {
-//                    modelPreview = modelPreview.copy(
-//                        isHeaderCollapsed = false
-//                    )
-//                }
-//            )
-//        )
-//    }
+    LaunchedEffect(key1 = true) {
+        modelPreview = modelPreview.copy(
+            balanceBluModel = modelPreview.balanceBluModel.copy(
+                onClickExpandScroll = {
+                    modelPreview = modelPreview.copy(
+                        isHeaderCollapsed = false
+                    )
+                }
+            )
+        )
+    }
 
     OceanTheme {
         Column {
@@ -164,7 +165,7 @@ private fun SmallHeader(
     var isContentHidden by remember { mutableStateOf(false) }
 
     when {
-       // model.hideBalance -> return
+        model.hideBalance -> return
         model.isHeaderCollapsed -> {
             OceanBalanceBluCardCollapsed(
                 model = model.balanceBluModel,

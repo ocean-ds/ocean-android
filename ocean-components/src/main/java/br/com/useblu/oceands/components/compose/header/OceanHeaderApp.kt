@@ -155,6 +155,7 @@ private val balancePageSize = object : PageSize {
     }
 }
 
+@Deprecated("Use OceanHeader instead")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OceanHeaderApp(

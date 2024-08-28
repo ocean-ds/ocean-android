@@ -24,6 +24,7 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
     private var buildVersion: String? = null
     private var orientationButtons: Int = Orientation.Horizontal.direction
     private var isDismiss: Boolean = true
+    private var onDismiss: (() -> Unit?)? = null
     private var textPositive: String? = context.getString(R.string.ok)
     private var textNegative: String? = null
     private var icon: Drawable? = null
@@ -101,6 +102,7 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
 
         binding.iconClose.setOnClickListener {
             dismiss()
+            onDismiss?.let { it() }
         }
 
         binding.cancelabled = isDismiss
@@ -182,6 +184,11 @@ class OceanBottomSheet(context: Context) : BottomSheetDialog(context) {
 
     fun withDismiss(dismiss: Boolean): OceanBottomSheet {
         this.isDismiss = dismiss
+        return this
+    }
+
+    fun withOnDismiss(callBack: () -> Unit): OceanBottomSheet {
+        this.onDismiss = callBack
         return this
     }
 

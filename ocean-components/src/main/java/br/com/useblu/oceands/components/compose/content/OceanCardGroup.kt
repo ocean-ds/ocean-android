@@ -20,12 +20,16 @@ import br.com.useblu.oceands.components.compose.CardCta
 import br.com.useblu.oceands.components.compose.OceanBadge
 import br.com.useblu.oceands.components.compose.OceanBadgeSize
 import br.com.useblu.oceands.components.compose.OceanProgressBar
+import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
+import br.com.useblu.oceands.components.compose.content.CardGroupType.DEFAULT
+import br.com.useblu.oceands.components.compose.content.CardGroupType.INVERTED
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.OceanTextStyle
 
 
 @Preview
@@ -67,6 +71,17 @@ fun OceanCardGroupPreview() {
                 showProgress = true,
                 modifier = Modifier.padding(16.dp)
             )
+
+            OceanCardGroup(
+                title = "Sua economia atual",
+                subtitle = "R$ 10.000,00",
+                caption = "Valor total que você deixou de pagar, em taxa de antecipação.",
+                type = INVERTED,
+                actionClick = {},
+                actionTitle = "Call to Action",
+                showProgress = false,
+                modifier = Modifier.padding(16.dp)
+            )
         }
     }
 }
@@ -76,13 +91,15 @@ fun OceanCardGroup(
     title: String,
     modifier: Modifier = Modifier,
     subtitle: String? = null,
+    caption: String? = null,
     badgeText: String? = null,
     badgeType: OceanBadgeType = OceanBadgeType.WARNING,
     actionTitle: String,
     actionClick: () -> Unit,
     @FloatRange(0.0, 1.0) progressBar: Float? = null,
     showProgress: Boolean = false,
-    label: String? = null
+    label: String? = null,
+    type: CardGroupType = DEFAULT
 ) {
     Box(modifier = modifier) {
         val paddingTop = if (label != null) 9.dp else 0.dp
@@ -104,26 +121,28 @@ fun OceanCardGroup(
                         color = OceanColors.interfaceLightPure,
                         shape = RoundedCornerShape(topEnd = 8.dp, topStart = 8.dp)
                     )
-                    .padding(horizontal =  OceanSpacing.xs)
+                    .padding(horizontal = OceanSpacing.xs)
                     .padding(top = OceanSpacing.xs)
             ) {
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(
-                        text = title,
-                        fontFamily = OceanFontFamily.BaseExtraBold,
-                        fontSize = OceanFontSize.xs,
-                        color = OceanColors.interfaceDarkDeep
-                    )
+                    when (type) {
+                        DEFAULT -> {
+                            ContentDefault(title, subtitle)
+                        }
 
-                    if (subtitle != null) {
+                        INVERTED -> {
+                            ContentInverted(title, subtitle)
+                        }
+                    }
+
+                    if (caption != null) {
                         OceanSpacing.StackXXS()
 
-                        Text(
-                            text = subtitle,
-                            fontFamily = OceanFontFamily.BaseRegular,
-                            fontSize = OceanFontSize.xxs,
+                        OceanText(
+                            text = caption,
+                            style = OceanTextStyle.captionBold,
                             color = OceanColors.interfaceDarkDown
                         )
                     }
@@ -131,7 +150,7 @@ fun OceanCardGroup(
 
                 if (badgeText != null) {
                     OceanSpacing.StackXS()
-                    
+
                     OceanBadge(
                         text = badgeText,
                         type = badgeType,
@@ -182,5 +201,57 @@ fun OceanCardGroup(
             }
         }
     }
+}
+
+@Composable
+private fun ContentDefault(
+    title: String,
+    subtitle: String?
+) {
+    Text(
+        text = title,
+        fontFamily = OceanFontFamily.BaseExtraBold,
+        fontSize = OceanFontSize.xs,
+        color = OceanColors.interfaceDarkDeep
+    )
+
+    if (subtitle != null) {
+        OceanSpacing.StackXXS()
+
+        Text(
+            text = subtitle,
+            fontFamily = OceanFontFamily.BaseRegular,
+            fontSize = OceanFontSize.xxs,
+            color = OceanColors.interfaceDarkDown
+        )
+    }
+}
+
+@Composable
+private fun ContentInverted(
+    title: String,
+    subtitle: String?
+) {
+    OceanText(
+        text = title,
+        style = OceanTextStyle.description,
+        color = OceanColors.interfaceDarkDown
+    )
+
+    if (subtitle != null) {
+        OceanSpacing.StackXXS()
+
+        OceanText(
+            text = subtitle,
+            style = OceanTextStyle.heading4,
+            color = OceanColors.interfaceDarkDeep
+        )
+    }
+}
+
+
+enum class CardGroupType {
+    DEFAULT,
+    INVERTED
 }
 

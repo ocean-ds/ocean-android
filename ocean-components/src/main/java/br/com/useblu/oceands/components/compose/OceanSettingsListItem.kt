@@ -234,7 +234,7 @@ fun OceanSettingsListItem(
 private fun SettingsListItemPreview(){
     Column{
         OceanSettingsListItem(
-            style = SettingsListItemStyle.ButtonDefault(
+            style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Default(
                     title = "Title",
                     description = "Description",
@@ -247,11 +247,12 @@ private fun SettingsListItemPreview(){
             ),
         )
         OceanSettingsListItem(
-            style = SettingsListItemStyle.ButtonInverted(
+            style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Inverted(
                     title = "Title",
                     description = "Description very large to be able to see the line break",
                 ),
+                textError = "Error",
                 buttonText = "Click me",
                 buttonStyle = OceanButtonStyle.TertiarySmall,
                 onClick = { println("Button Clicked") }
@@ -273,7 +274,7 @@ private fun SettingsListItemPreview(){
             ),
         )
         OceanSettingsListItem(
-            style = SettingsListItemStyle.TagInverted(
+            style = SettingsListItemStyle.Tag(
                 contentStyle = ContentListStyle.Inverted(
                     title = "Title",
                     description = "Description",
@@ -298,7 +299,7 @@ private fun SettingsListItemPreview(){
             ),
         )
         OceanSettingsListItem(
-            style = SettingsListItemStyle.BlockedInverted(
+            style = SettingsListItemStyle.Blocked(
                 contentStyle = ContentListStyle.Inverted(
                     title = "Title",
                     description = "Description",
@@ -318,16 +319,8 @@ fun OceanSettingsListItem(
     enabled: Boolean = true,
 ) {
     when(style) {
-        is SettingsListItemStyle.ButtonDefault -> {
+        is SettingsListItemStyle.Button -> {
             SettingsListItemButton(
-                modifier = modifier,
-                contentStyle = style.contentStyle,
-                style = style,
-                enabled = enabled,
-            )
-        }
-        is SettingsListItemStyle.ButtonInverted -> {
-            SettingsListItemButtonInverted(
                 modifier = modifier,
                 contentStyle = style.contentStyle,
                 style = style,
@@ -342,23 +335,8 @@ fun OceanSettingsListItem(
                 enabled = enabled,
             )
         }
-        is SettingsListItemStyle.TagInverted -> {
-            SettingsListItemTagInverted(
-                modifier = modifier,
-                contentStyle = style.contentStyle,
-                style = style,
-                enabled = enabled,
-            )
-        }
         is SettingsListItemStyle.Blocked -> {
             SettingsListItemBlocked(
-                modifier = modifier,
-                style = style,
-                enabled = enabled,
-            )
-        }
-        is SettingsListItemStyle.BlockedInverted -> {
-            SettingsListItemBlockedInverted(
                 modifier = modifier,
                 style = style,
                 enabled = enabled,
@@ -370,8 +348,8 @@ fun OceanSettingsListItem(
 @Composable
 private fun SettingsListItemButton(
     modifier : Modifier = Modifier,
-    contentStyle: ContentListStyle.Default,
-    style: SettingsListItemStyle.ButtonDefault,
+    contentStyle: ContentListStyle,
+    style: SettingsListItemStyle.Button,
     enabled: Boolean,
 ) {
     Row (
@@ -387,55 +365,17 @@ private fun SettingsListItemButton(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
         ) {
-            OceanContentList(
-                style = contentStyle,
-                enabled = enabled,
-            )
-
-            if(style.textError.isNotEmpty()){
-                OceanText(
-                    text = style.textError,
-                    style = OceanTextStyle.caption,
-                    color = OceanColors.statusNegativePure,
-                    maxLines = 2
+            if(contentStyle is ContentListStyle.Default){
+                OceanContentList(
+                    style = contentStyle,
+                    enabled = enabled,
+                )
+            } else if(contentStyle is ContentListStyle.Inverted){
+                OceanContentList(
+                    style = contentStyle,
+                    enabled = enabled,
                 )
             }
-        }
-
-        OceanButton(
-            modifier = Modifier.align(Alignment.CenterVertically),
-            text = style.buttonText,
-            buttonStyle = style.buttonStyle,
-            disabled = !enabled,
-            onClick = style.onClick,
-        )
-    }
-}
-
-@Composable
-private fun SettingsListItemButtonInverted(
-    modifier : Modifier = Modifier,
-    contentStyle: ContentListStyle.Inverted,
-    style: SettingsListItemStyle.ButtonInverted,
-    enabled: Boolean,
-) {
-    Row (
-        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
-        modifier = modifier
-            .border(
-                color = OceanColors.interfaceLightDown,
-                bottom = 1.dp
-            )
-            .padding(OceanSpacing.xs)
-    ){
-        Column (
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
-        ) {
-            OceanContentList(
-                style = contentStyle,
-                enabled = enabled,
-            )
 
             if(style.textError.isNotEmpty()){
                 OceanText(
@@ -460,7 +400,7 @@ private fun SettingsListItemButtonInverted(
 @Composable
 private fun SettingsListItemTag(
     modifier : Modifier = Modifier,
-    contentStyle: ContentListStyle.Default,
+    contentStyle: ContentListStyle,
     style: SettingsListItemStyle.Tag,
     enabled: Boolean,
 ) {
@@ -477,53 +417,17 @@ private fun SettingsListItemTag(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
         ) {
-            OceanContentList(
-                style = contentStyle,
-                enabled = enabled,
-            )
-
-            if(style.textError.isNotEmpty()){
-                OceanText(
-                    text = style.textError,
-                    style = OceanTextStyle.caption,
-                    color = OceanColors.statusNegativePure,
-                    maxLines = 2
+            if(contentStyle is ContentListStyle.Default){
+                OceanContentList(
+                    style = contentStyle,
+                    enabled = enabled,
+                )
+            } else if(contentStyle is ContentListStyle.Inverted){
+                OceanContentList(
+                    style = contentStyle,
+                    enabled = enabled,
                 )
             }
-        }
-
-        OceanTag(
-            modifier = Modifier.align(Alignment.CenterVertically),
-            style = style.tagStyle,
-            enabled = enabled,
-        )
-    }
-}
-
-@Composable
-private fun SettingsListItemTagInverted(
-    modifier : Modifier = Modifier,
-    contentStyle: ContentListStyle.Inverted,
-    style: SettingsListItemStyle.TagInverted,
-    enabled: Boolean,
-) {
-    Row (
-        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
-        modifier = modifier
-            .border(
-                color = OceanColors.interfaceLightDown,
-                bottom = 1.dp
-            )
-            .padding(OceanSpacing.xs)
-    ){
-        Column (
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
-        ) {
-            OceanContentList(
-                style = contentStyle,
-                enabled = enabled,
-            )
 
             if(style.textError.isNotEmpty()){
                 OceanText(
@@ -562,45 +466,17 @@ private fun SettingsListItemBlocked(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
         ) {
-            OceanContentList(
-                style = style.contentStyle,
-                enabled = enabled,
-            )
-        }
-
-        OceanIcon(
-            modifier = Modifier
-                .size(20.dp)
-                .align(Alignment.CenterVertically),
-            iconType = style.icon,
-            tint = OceanColors.interfaceDarkUp
-        )
-    }
-}
-
-@Composable
-private fun SettingsListItemBlockedInverted(
-    modifier : Modifier = Modifier,
-    style: SettingsListItemStyle.BlockedInverted,
-    enabled: Boolean,
-) {
-    Row (
-        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
-        modifier = modifier
-            .border(
-                color = OceanColors.interfaceLightDown,
-                bottom = 1.dp
-            )
-            .padding(OceanSpacing.xs)
-    ){
-        Column (
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
-        ) {
-            OceanContentList(
-                style = style.contentStyle,
-                enabled = enabled,
-            )
+            if(style.contentStyle is ContentListStyle.Default){
+                OceanContentList(
+                    style = style.contentStyle,
+                    enabled = enabled,
+                )
+            } else if(style.contentStyle is ContentListStyle.Inverted){
+                OceanContentList(
+                    style = style.contentStyle,
+                    enabled = enabled,
+                )
+            }
         }
 
         OceanIcon(
@@ -614,16 +490,8 @@ private fun SettingsListItemBlockedInverted(
 }
 
 sealed interface SettingsListItemStyle {
-    data class ButtonDefault(
-        val contentStyle: ContentListStyle.Default,
-        val textError: String = "",
-        val buttonText: String,
-        val buttonStyle: OceanButtonStyle,
-        val onClick: () -> Unit = {},
-    ) : SettingsListItemStyle
-
-    data class ButtonInverted(
-        val contentStyle: ContentListStyle.Inverted,
+    data class Button(
+        val contentStyle: ContentListStyle,
         val textError: String = "",
         val buttonText: String,
         val buttonStyle: OceanButtonStyle,
@@ -631,24 +499,13 @@ sealed interface SettingsListItemStyle {
     ) : SettingsListItemStyle
 
     data class Tag(
-        val contentStyle: ContentListStyle.Default,
-        val textError: String = "",
-        val tagStyle: OceanTagStyle,
-    ) : SettingsListItemStyle
-
-    data class TagInverted(
-        val contentStyle: ContentListStyle.Inverted,
+        val contentStyle: ContentListStyle,
         val textError: String = "",
         val tagStyle: OceanTagStyle,
     ) : SettingsListItemStyle
 
     data class Blocked(
-        val contentStyle: ContentListStyle.Default,
-        val icon: OceanIcons = OceanIcons.LOCK_CLOSED_SOLID,
-    ) : SettingsListItemStyle
-
-    data class BlockedInverted(
-        val contentStyle: ContentListStyle.Inverted,
+        val contentStyle: ContentListStyle,
         val icon: OceanIcons = OceanIcons.LOCK_CLOSED_SOLID,
     ) : SettingsListItemStyle
 }

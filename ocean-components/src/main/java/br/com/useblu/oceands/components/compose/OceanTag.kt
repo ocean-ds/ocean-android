@@ -474,7 +474,9 @@ private fun DefaultMediumTag(
     val textColor = getTextColor(
         type = if(enabled) style.type else OceanTagType.Neutral
     )
-    val backgroundColor = getBackgroundColor(type = style.type)
+    val backgroundColor = getBackgroundColor(
+        type = if(enabled) style.type else OceanTagType.Neutral
+    )
 
     Row(
         modifier = modifier
@@ -515,7 +517,9 @@ private fun DefaultSmallTag(
     val textColor = getTextColor(
         type = if(enabled) style.type else OceanTagType.Neutral
     )
-    val backgroundColor = getBackgroundColor(type = style.type)
+    val backgroundColor = getBackgroundColor(
+        type = if(enabled) style.type else OceanTagType.Neutral
+    )
 
     Row(
         modifier = modifier

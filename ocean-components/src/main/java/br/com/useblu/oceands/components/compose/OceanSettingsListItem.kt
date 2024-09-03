@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.extensions.compose.border
 import br.com.useblu.oceands.model.OceanSettingsStatus
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -224,7 +225,11 @@ fun OceanSettingsListItem(
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xFFFFFFFF,
+    heightDp = 300
+)
 @Composable
 private fun SettingsListItemPreview(){
     Column{
@@ -281,6 +286,10 @@ private fun SettingsListItemButton(
     Row (
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
         modifier = modifier
+            .border(
+                color = OceanColors.interfaceLightDown,
+                bottom = 1.dp
+            )
             .padding(OceanSpacing.xs)
     ){
         Column (

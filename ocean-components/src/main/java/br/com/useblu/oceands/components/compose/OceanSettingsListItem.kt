@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -221,4 +222,111 @@ fun OceanSettingsListItem(
             )
         }
     }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Composable
+private fun SettingsListItemPreview(){
+    Column{
+        OceanSettingsListItem(
+            contentStyle = ContentListStyle.Default(
+                title = "Title",
+                description = "Description",
+                caption = "Caption"
+            ),
+            style = SettingsListItemStyle.Button(
+                textError = "Error",
+                buttonText = "Button",
+                buttonStyle = OceanButtonStyle.PrimarySmall,
+                onClick = { println("Button Clicked") }
+            ),
+        )
+    }
+}
+
+
+@Composable
+fun OceanSettingsListItem(
+    modifier: Modifier = Modifier,
+    contentStyle: ContentListStyle,
+    style: SettingsListItemStyle,
+    enabled: Boolean = true,
+    onClick : () -> Unit = {}
+) {
+    when(style) {
+        is SettingsListItemStyle.Button -> {
+            SettingsListItemButton(
+                modifier = modifier,
+                contentStyle = contentStyle,
+                style = style,
+                enabled = enabled,
+            )
+        }
+        is SettingsListItemStyle.Tag -> {
+
+        }
+        is SettingsListItemStyle.Blocked -> {
+
+        }
+    }
+}
+
+@Composable
+private fun SettingsListItemButton(
+    modifier : Modifier = Modifier,
+    contentStyle: ContentListStyle,
+    style: SettingsListItemStyle.Button,
+    enabled: Boolean,
+) {
+    Row (
+        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
+        modifier = modifier
+            .padding(OceanSpacing.xs)
+    ){
+        Column (
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
+        ) {
+            OceanContentList(
+                style = contentStyle,
+                enabled = enabled,
+            )
+
+            if(style.textError.isNotEmpty()){
+                OceanText(
+                    text = style.textError,
+                    style = OceanTextStyle.caption,
+                    color = OceanColors.statusNegativePure,
+                    maxLines = 2
+                )
+            }
+        }
+
+        OceanButton(
+            modifier = Modifier.align(Alignment.CenterVertically),
+            text = style.buttonText,
+            buttonStyle = style.buttonStyle,
+            disabled = !enabled,
+            onClick = style.onClick,
+        )
+    }
+}
+
+
+sealed interface SettingsListItemStyle {
+    data class Button(
+        val textError: String = "",
+        val buttonText: String,
+        val buttonStyle: OceanButtonStyle,
+        val onClick: () -> Unit = {},
+    ) : SettingsListItemStyle
+
+    data class Tag(
+        val textError: String = "",
+        val tagStyle: OceanTagStyle
+    ) : SettingsListItemStyle
+
+    data class Blocked(
+        val icon: OceanIcons,
+    ) : SettingsListItemStyle
 }

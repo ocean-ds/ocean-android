@@ -267,16 +267,12 @@ private fun DefaultContentList(
     style: ContentListStyle.Default,
     enabled: Boolean = true
 ) {
-    val textColor: @Composable (TextStyle, Boolean) -> TextStyle = { textStyle, isEnabled ->
-        if (isEnabled) textStyle else textStyle.copy(color = OceanColors.interfaceDarkUp)
-    }
-
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
         OceanText(
             text = style.title,
-            style = textColor(
+            style = configTextStyle(
                 OceanTextStyle.paragraph.copy(OceanColors.interfaceDarkPure),
                 enabled
             )
@@ -285,7 +281,7 @@ private fun DefaultContentList(
         if (style.description.isNotBlank()) {
             OceanText(
                 text = style.description,
-                style = textColor(OceanTextStyle.description, enabled)
+                style = configTextStyle(OceanTextStyle.description, enabled)
             )
         }
 
@@ -293,7 +289,7 @@ private fun DefaultContentList(
             OceanSpacing.StackXXS()
             OceanText(
                 text = style.caption,
-                style = textColor(OceanTextStyle.captionBold, enabled)
+                style = configTextStyle(OceanTextStyle.captionBold, enabled)
             )
         }
     }
@@ -305,16 +301,12 @@ private fun InvertedContentList(
     style: ContentListStyle.Inverted,
     enabled: Boolean = true
 ) {
-    val textColor: @Composable (TextStyle, Boolean) -> TextStyle = { textStyle, isEnabled ->
-        if (isEnabled) textStyle else textStyle.copy(color = OceanColors.interfaceDarkUp)
-    }
-
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
         OceanText(
             text = style.title,
-            style = textColor(
+            style = configTextStyle(
                 OceanTextStyle.description,
                 enabled
             )
@@ -322,7 +314,7 @@ private fun InvertedContentList(
 
         OceanText(
             text = style.description,
-            style = textColor(
+            style = configTextStyle(
                 OceanTextStyle.paragraph.copy(OceanColors.interfaceDarkPure),
                 enabled
             )
@@ -333,7 +325,7 @@ private fun InvertedContentList(
         if (style.caption.isNotBlank()) {
             OceanText(
                 text = style.caption,
-                style = textColor(OceanTextStyle.captionBold, enabled)
+                style = configTextStyle(OceanTextStyle.captionBold, enabled)
             )
         }
     }
@@ -345,16 +337,6 @@ private fun TransactionContentList(
     style: ContentListStyle.Transaction,
     enabled: Boolean = true
 ) {
-    val textStyle: @Composable (TextStyle, Boolean) -> TextStyle = { originalStyle, isEnabled ->
-        if (isEnabled) originalStyle else originalStyle.copy(color = OceanColors.interfaceDarkUp)
-    }
-
-    val strikeThrough: @Composable (TextStyle, TransactionType) -> TextStyle =
-        { originalStyle, type ->
-            if (type != TransactionType.CANCELED) originalStyle
-            else originalStyle.copy(textDecoration = TextDecoration.LineThrough)
-        }
-
     val (color, value) = when (style.type) {
         TransactionType.DEFAULT -> OceanColors.interfaceDarkPure to style.value
         TransactionType.OUTFLOW -> OceanColors.interfaceDarkPure to "- ${style.value}"
@@ -370,7 +352,7 @@ private fun TransactionContentList(
         OceanText(
             text = value,
             style = strikeThrough(
-                textStyle(OceanTextStyle.paragraph.copy(color = color), enabled),
+                configTextStyle(OceanTextStyle.paragraph.copy(color = color), enabled),
                 style.type
             )
         )
@@ -385,13 +367,33 @@ private fun TransactionContentList(
         if (style.caption.isNotBlank()) {
             OceanText(
                 text = style.caption,
-                style = textStyle(
+                style = configTextStyle(
                     OceanTextStyle.captionBold,
                     enabled
                 )
             )
         }
     }
+}
+
+@Composable
+private fun configTextStyle(
+    originalStyle: TextStyle,
+    isEnabled: Boolean
+): TextStyle = if (isEnabled) {
+    originalStyle
+} else {
+    originalStyle.copy(color = OceanColors.interfaceDarkUp)
+}
+
+@Composable
+fun strikeThrough(
+    originalStyle: TextStyle,
+    type: TransactionType
+): TextStyle = if (type != TransactionType.CANCELED) {
+    originalStyle
+} else {
+    originalStyle.copy(textDecoration = TextDecoration.LineThrough)
 }
 
 sealed interface ContentListStyle {

@@ -11,6 +11,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -18,6 +20,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.core.text.HtmlCompat
 import br.com.useblu.oceands.ui.compose.OceanColors
 
@@ -77,5 +81,62 @@ fun Spanned.toAnnotatedString(): AnnotatedString = buildAnnotatedString {
             else -> SpanStyle()
         }
         addStyle(spanStyle, start, end)
+    }
+}
+
+fun Modifier.border(
+    color: Color,
+    top: Dp = 0.dp,
+    bottom: Dp = 0.dp,
+    start: Dp = 0.dp,
+    end: Dp = 0.dp
+) : Modifier {
+
+    return drawWithContent {
+        drawContent()
+
+        val thicknesses = mapOf(
+            "top" to top,
+            "bottom" to bottom,
+            "start" to start,
+            "end" to end
+        ).mapValues { it.value.toPx() }
+
+        thicknesses.forEach { (key, value) ->
+            if (value > 0) {
+                val (startOffset, endOffset) = when (key) {
+                    "top" -> Pair(
+                        Offset(0f, value),
+                        Offset(size.width, value)
+                    )
+
+                    "bottom" -> Pair(
+                        Offset(0f, size.height - value),
+                        Offset(size.width, size.height - value)
+                    )
+
+                    "start" -> Pair(
+                        Offset(value, 0f),
+                        Offset(value, size.height)
+                    )
+
+                    "end" -> Pair(
+                        Offset(size.width - value, 0f),
+                        Offset(size.width - value, size.height)
+                    )
+
+                    else -> Pair(
+                        Offset.Zero,
+                        Offset.Zero
+                    )
+                }
+                drawLine(
+                    color = color,
+                    start = startOffset,
+                    end = endOffset,
+                    strokeWidth = value
+                )
+            }
+        }
     }
 }

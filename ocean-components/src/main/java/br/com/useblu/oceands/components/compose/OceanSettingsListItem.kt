@@ -112,6 +112,7 @@ fun OceanSettingsListItemPreview() {
     }
 }
 
+@Deprecated("Use OceanSettingsListItem with SettingsListItemStyle")
 @Composable
 fun OceanSettingsListItem(
     title: String,

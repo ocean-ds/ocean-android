@@ -410,15 +410,13 @@ sealed interface ContentListStyle {
     ) : ContentListStyle
 }
 
-sealed class ContentListTransactionStyle : ContentListStyle {
-
+sealed class ContentListTransactionStyle {
     data class Transaction(
         val value: String,
         val tagStyle: OceanTagStyle? = null,
         val caption: String = "",
         val type: TransactionType = TransactionType.DEFAULT
     ) : ContentListStyle
-
 }
 
 enum class TransactionType {

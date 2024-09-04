@@ -112,7 +112,7 @@ private fun OceanContentListTransactionPreview() {
     ) {
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListStyle.Transaction(
+            style = ContentListTransactionStyle.Transaction(
                 value = "R$ 1.000,00",
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
@@ -124,7 +124,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListStyle.Transaction(
+            style = ContentListTransactionStyle.Transaction(
                 value = "R$ 1.000,00",
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
@@ -137,7 +137,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListStyle.Transaction(
+            style = ContentListTransactionStyle.Transaction(
                 value = "R$ 1.000,00",
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
@@ -148,7 +148,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListStyle.Transaction(
+            style = ContentListTransactionStyle.Transaction(
                 value = "R$ 1.000,00",
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
@@ -160,7 +160,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListStyle.Transaction(
+            style = ContentListTransactionStyle.Transaction(
                 value = "R$ 1.000,00",
                 caption = "Caption"
             ),
@@ -168,7 +168,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListStyle.Transaction(
+            style = ContentListTransactionStyle.Transaction(
                 value = "R$ 1.000,00",
                 type = TransactionType.DEFAULT
             ),
@@ -176,7 +176,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListStyle.Transaction(
+            style = ContentListTransactionStyle.Transaction(
                 value = "R$ 1.000,00",
                 type = TransactionType.OUTFLOW
             ),
@@ -184,7 +184,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListStyle.Transaction(
+            style = ContentListTransactionStyle.Transaction(
                 value = "R$ 1.000,00",
                 type = TransactionType.INFLOW,
             ),
@@ -192,7 +192,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListStyle.Transaction(
+            style = ContentListTransactionStyle.Transaction(
                 value = "R$ 1.000,00",
                 type = TransactionType.CANCELED
             ),
@@ -225,7 +225,7 @@ fun OceanContentList(
             enabled = enabled
         )
 
-        is ContentListStyle.Transaction -> TransactionContentList(
+        is ContentListTransactionStyle.Transaction -> TransactionContentList(
             modifier = modifier,
             style = style,
             enabled = enabled
@@ -334,7 +334,7 @@ private fun InvertedContentList(
 @Composable
 private fun TransactionContentList(
     modifier: Modifier,
-    style: ContentListStyle.Transaction,
+    style: ContentListTransactionStyle.Transaction,
     enabled: Boolean = true
 ) {
     val (color, value) = when (style.type) {
@@ -408,6 +408,9 @@ sealed interface ContentListStyle {
         val description: String,
         val caption: String = ""
     ) : ContentListStyle
+}
+
+sealed class ContentListTransactionStyle : ContentListStyle {
 
     data class Transaction(
         val value: String,
@@ -415,6 +418,7 @@ sealed interface ContentListStyle {
         val caption: String = "",
         val type: TransactionType = TransactionType.DEFAULT
     ) : ContentListStyle
+
 }
 
 enum class TransactionType {

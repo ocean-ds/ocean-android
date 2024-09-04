@@ -159,7 +159,11 @@ fun OceanSettingsListItem(
                             textDecoration = if (!newValue.isNullOrBlank()) {
                                 decoration
                             } else null,
-                            color = if (status == OceanSettingsStatus.ACTIVATED || status == OceanSettingsStatus.BLOCKED) OceanColors.interfaceDarkDeep else OceanColors.interfaceDarkUp
+                            color = if (status == OceanSettingsStatus.ACTIVATED || status == OceanSettingsStatus.BLOCKED) {
+                                OceanColors.interfaceDarkDeep
+                            } else {
+                                OceanColors.interfaceDarkUp
+                            }
                         )
 
                         if (!newValue.isNullOrBlank()) {
@@ -370,34 +374,11 @@ fun OceanSettingsListItem(
         return
     }
 
-    when (style) {
-        is SettingsListItemStyle.Button -> {
-            SettingsListItemButton(
-                modifier = modifier,
-                contentStyle = style.contentStyle,
-                style = style,
-                enabled = enabled,
-            )
-        }
-
-        is SettingsListItemStyle.Tag -> {
-            SettingsListItemTag(
-                modifier = modifier,
-                contentStyle = style.contentStyle,
-                style = style,
-                enabled = enabled,
-            )
-        }
-
-        is SettingsListItemStyle.Blocked -> {
-            SettingsListItemBlocked(
-                modifier = modifier,
-                style = style,
-                contentStyle = style.contentStyle,
-                enabled = enabled,
-            )
-        }
-    }
+    SettingsListItem(
+        modifier = modifier,
+        style = style,
+        enabled = enabled,
+    )
 }
 
 @Composable
@@ -437,14 +418,11 @@ private fun SettingsListItemSkeleton() {
 }
 
 @Composable
-private fun SettingsListItemButton(
+private fun SettingsListItem(
     modifier: Modifier = Modifier,
-    contentStyle: ContentListStyle,
-    style: SettingsListItemStyle.Button,
+    style: SettingsListItemStyle,
     enabled: Boolean,
 ) {
-    if (contentStyle is ContentListStyle.Transaction)
-        throw IllegalArgumentException("ContentListStyle.Transaction is not allowed here")
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
@@ -455,117 +433,80 @@ private fun SettingsListItemButton(
             )
             .padding(OceanSpacing.xs)
     ) {
-        Column(
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
-        ) {
-            ContentList(
-                contentStyle = contentStyle,
-                enabled = enabled
-            )
+        when (style) {
+            is SettingsListItemStyle.Blocked -> {
+                SettingContent(
+                    modifier = Modifier.weight(1f),
+                    style = style.contentStyle,
+                    enabled = enabled
+                )
 
-            if (style.textError.isNotEmpty()) {
-                OceanText(
-                    text = style.textError,
-                    style = OceanTextStyle.caption,
-                    color = OceanColors.statusNegativePure,
-                    maxLines = 2
+                OceanIcon(
+                    modifier = Modifier
+                        .size(20.dp)
+                        .align(Alignment.CenterVertically),
+                    iconType = style.icon,
+                    tint = OceanColors.interfaceDarkUp
+                )
+            }
+
+            is SettingsListItemStyle.Button -> {
+                SettingContent(
+                    modifier = Modifier.weight(1f),
+                    style = style.contentStyle,
+                    enabled = enabled
+                )
+
+                OceanButton(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    text = style.buttonText,
+                    buttonStyle = style.buttonStyle,
+                    disabled = !enabled,
+                    onClick = style.onClick,
+                )
+            }
+
+            is SettingsListItemStyle.Tag -> {
+                SettingContent(
+                    modifier = Modifier.weight(1f),
+                    style = style.contentStyle,
+                    enabled = enabled
+                )
+
+                OceanTag(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    style = style.tagStyle,
+                    enabled = enabled,
                 )
             }
         }
-
-        OceanButton(
-            modifier = Modifier.align(Alignment.CenterVertically),
-            text = style.buttonText,
-            buttonStyle = style.buttonStyle,
-            disabled = !enabled,
-            onClick = style.onClick,
-        )
     }
 }
 
 @Composable
-private fun SettingsListItemTag(
+private fun SettingContent(
     modifier: Modifier = Modifier,
-    contentStyle: ContentListStyle,
-    style: SettingsListItemStyle.Tag,
+    style: ContentListStyle,
     enabled: Boolean,
+    textError: String = ""
 ) {
-    if (contentStyle is ContentListStyle.Transaction)
-        throw IllegalArgumentException("ContentListStyle.Transaction is not allowed here")
-
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
-        modifier = modifier
-            .border(
-                color = OceanColors.interfaceLightDown,
-                bottom = 1.dp
-            )
-            .padding(OceanSpacing.xs)
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
     ) {
-        Column(
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
-        ) {
-            ContentList(
-                contentStyle = contentStyle,
-                enabled = enabled
-            )
-
-            if (style.textError.isNotEmpty()) {
-                OceanText(
-                    text = style.textError,
-                    style = OceanTextStyle.caption,
-                    color = OceanColors.statusNegativePure,
-                    maxLines = 2
-                )
-            }
-        }
-
-        OceanTag(
-            modifier = Modifier.align(Alignment.CenterVertically),
-            style = style.tagStyle,
-            enabled = enabled,
+        ContentList(
+            contentStyle = style,
+            enabled = enabled
         )
-    }
-}
 
-@Composable
-private fun SettingsListItemBlocked(
-    modifier: Modifier = Modifier,
-    style: SettingsListItemStyle.Blocked,
-    contentStyle: ContentListStyle,
-    enabled: Boolean,
-) {
-    if (contentStyle is ContentListStyle.Transaction)
-        throw IllegalArgumentException("ContentListStyle.Transaction is not allowed here")
-
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
-        modifier = modifier
-            .border(
-                color = OceanColors.interfaceLightDown,
-                bottom = 1.dp
-            )
-            .padding(OceanSpacing.xs)
-    ) {
-        Column(
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
-        ) {
-            ContentList(
-                contentStyle = contentStyle,
-                enabled = enabled
+        if (textError.isNotEmpty()) {
+            OceanText(
+                text = textError,
+                style = OceanTextStyle.caption,
+                color = OceanColors.statusNegativePure,
+                maxLines = 2
             )
         }
-
-        OceanIcon(
-            modifier = Modifier
-                .size(20.dp)
-                .align(Alignment.CenterVertically),
-            iconType = style.icon,
-            tint = OceanColors.interfaceDarkUp
-        )
     }
 }
 
@@ -574,23 +515,10 @@ private fun ContentList(
     contentStyle: ContentListStyle,
     enabled: Boolean
 ) {
-    when (contentStyle) {
-        is ContentListStyle.Default -> {
-            OceanContentList(
-                style = contentStyle,
-                enabled = enabled,
-            )
-        }
-
-        is ContentListStyle.Inverted -> {
-            OceanContentList(
-                style = contentStyle,
-                enabled = enabled,
-            )
-        }
-
-        else -> Unit
-    }
+    OceanContentList(
+        style = contentStyle,
+        enabled = enabled,
+    )
 }
 
 sealed interface SettingsListItemStyle {

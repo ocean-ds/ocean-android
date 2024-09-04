@@ -392,6 +392,7 @@ fun OceanSettingsListItem(
             SettingsListItemBlocked(
                 modifier = modifier,
                 style = style,
+                contentStyle = style.contentStyle,
                 enabled = enabled,
             )
         }
@@ -441,6 +442,9 @@ private fun SettingsListItemButton(
     style: SettingsListItemStyle.Button,
     enabled: Boolean,
 ) {
+    if(contentStyle is ContentListStyle.Transaction)
+        throw IllegalArgumentException("ContentListStyle.Transaction is not allowed here")
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
         modifier = modifier
@@ -469,9 +473,7 @@ private fun SettingsListItemButton(
                     )
                 }
 
-                else -> {
-                    return@Row
-                }
+                else -> Unit
             }
 
             if (style.textError.isNotEmpty()) {
@@ -501,6 +503,9 @@ private fun SettingsListItemTag(
     style: SettingsListItemStyle.Tag,
     enabled: Boolean,
 ) {
+    if (contentStyle is ContentListStyle.Transaction)
+        throw IllegalArgumentException("ContentListStyle.Transaction is not allowed here")
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
         modifier = modifier
@@ -514,16 +519,22 @@ private fun SettingsListItemTag(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
         ) {
-            if (contentStyle is ContentListStyle.Default) {
-                OceanContentList(
-                    style = contentStyle,
-                    enabled = enabled,
-                )
-            } else if (contentStyle is ContentListStyle.Inverted) {
-                OceanContentList(
-                    style = contentStyle,
-                    enabled = enabled,
-                )
+            when (contentStyle) {
+                is ContentListStyle.Default -> {
+                    OceanContentList(
+                        style = contentStyle,
+                        enabled = enabled,
+                    )
+                }
+
+                is ContentListStyle.Inverted -> {
+                    OceanContentList(
+                        style = contentStyle,
+                        enabled = enabled,
+                    )
+                }
+
+                else -> Unit
             }
 
             if (style.textError.isNotEmpty()) {
@@ -548,8 +559,12 @@ private fun SettingsListItemTag(
 private fun SettingsListItemBlocked(
     modifier: Modifier = Modifier,
     style: SettingsListItemStyle.Blocked,
+    contentStyle: ContentListStyle,
     enabled: Boolean,
 ) {
+    if (contentStyle is ContentListStyle.Transaction)
+        throw IllegalArgumentException("ContentListStyle.Transaction is not allowed here")
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
         modifier = modifier
@@ -563,16 +578,22 @@ private fun SettingsListItemBlocked(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
         ) {
-            if (style.contentStyle is ContentListStyle.Default) {
-                OceanContentList(
-                    style = style.contentStyle,
-                    enabled = enabled,
-                )
-            } else if (style.contentStyle is ContentListStyle.Inverted) {
-                OceanContentList(
-                    style = style.contentStyle,
-                    enabled = enabled,
-                )
+            when (contentStyle) {
+                is ContentListStyle.Default -> {
+                    OceanContentList(
+                        style = contentStyle,
+                        enabled = enabled,
+                    )
+                }
+
+                is ContentListStyle.Inverted -> {
+                    OceanContentList(
+                        style = contentStyle,
+                        enabled = enabled,
+                    )
+                }
+
+                else -> Unit
             }
         }
 

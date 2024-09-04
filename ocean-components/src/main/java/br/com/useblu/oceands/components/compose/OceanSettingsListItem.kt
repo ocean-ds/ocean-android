@@ -247,6 +247,17 @@ private fun SettingsListItemPreview() {
         OceanSettingsListItem(
             style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Default(
+                    title = "Taxa Promocional",
+                    description = "<span style=\"color: #AAADC0;\"><strike>11,06%</strike></span> <span style=\"color: #2DA94F;\">7,11%</span>\n",
+                ),
+                buttonText = "Entenda o cálculo",
+                buttonStyle = OceanButtonStyle.TertiarySmall,
+                onClick = { println("Button Clicked") }
+            ),
+        )
+        OceanSettingsListItem(
+            style = SettingsListItemStyle.Button(
+                contentStyle = ContentListStyle.Default(
                     title = "Title",
                     description = "Description",
                     caption = "Caption"
@@ -374,11 +385,63 @@ fun OceanSettingsListItem(
         return
     }
 
-    SettingsListItem(
-        modifier = modifier,
-        style = style,
-        enabled = enabled,
-    )
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
+        modifier = modifier
+            .border(
+                color = OceanColors.interfaceLightDown,
+                bottom = 1.dp
+            )
+            .padding(OceanSpacing.xs)
+    ) {
+        when (style) {
+            is SettingsListItemStyle.Blocked -> {
+                SettingsListTextContent(
+                    modifier = Modifier.weight(1f),
+                    style = style.contentStyle,
+                    enabled = enabled
+                )
+
+                OceanIcon(
+                    modifier = Modifier
+                        .size(20.dp)
+                        .align(Alignment.CenterVertically),
+                    iconType = style.icon,
+                    tint = OceanColors.interfaceDarkUp
+                )
+            }
+
+            is SettingsListItemStyle.Button -> {
+                SettingsListTextContent(
+                    modifier = Modifier.weight(1f),
+                    style = style.contentStyle,
+                    enabled = enabled
+                )
+
+                OceanButton(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    text = style.buttonText,
+                    buttonStyle = style.buttonStyle,
+                    disabled = !enabled,
+                    onClick = style.onClick,
+                )
+            }
+
+            is SettingsListItemStyle.Tag -> {
+                SettingsListTextContent(
+                    modifier = Modifier.weight(1f),
+                    style = style.contentStyle,
+                    enabled = enabled
+                )
+
+                OceanTag(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    style = style.tagStyle,
+                    enabled = enabled,
+                )
+            }
+        }
+    }
 }
 
 @Composable
@@ -418,73 +481,7 @@ private fun SettingsListItemSkeleton() {
 }
 
 @Composable
-private fun SettingsListItem(
-    modifier: Modifier = Modifier,
-    style: SettingsListItemStyle,
-    enabled: Boolean,
-) {
-
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
-        modifier = modifier
-            .border(
-                color = OceanColors.interfaceLightDown,
-                bottom = 1.dp
-            )
-            .padding(OceanSpacing.xs)
-    ) {
-        when (style) {
-            is SettingsListItemStyle.Blocked -> {
-                SettingContent(
-                    modifier = Modifier.weight(1f),
-                    style = style.contentStyle,
-                    enabled = enabled
-                )
-
-                OceanIcon(
-                    modifier = Modifier
-                        .size(20.dp)
-                        .align(Alignment.CenterVertically),
-                    iconType = style.icon,
-                    tint = OceanColors.interfaceDarkUp
-                )
-            }
-
-            is SettingsListItemStyle.Button -> {
-                SettingContent(
-                    modifier = Modifier.weight(1f),
-                    style = style.contentStyle,
-                    enabled = enabled
-                )
-
-                OceanButton(
-                    modifier = Modifier.align(Alignment.CenterVertically),
-                    text = style.buttonText,
-                    buttonStyle = style.buttonStyle,
-                    disabled = !enabled,
-                    onClick = style.onClick,
-                )
-            }
-
-            is SettingsListItemStyle.Tag -> {
-                SettingContent(
-                    modifier = Modifier.weight(1f),
-                    style = style.contentStyle,
-                    enabled = enabled
-                )
-
-                OceanTag(
-                    modifier = Modifier.align(Alignment.CenterVertically),
-                    style = style.tagStyle,
-                    enabled = enabled,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun SettingContent(
+private fun SettingsListTextContent(
     modifier: Modifier = Modifier,
     style: ContentListStyle,
     enabled: Boolean,
@@ -494,9 +491,9 @@ private fun SettingContent(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
     ) {
-        ContentList(
-            contentStyle = style,
-            enabled = enabled
+        OceanContentList(
+            style = style,
+            enabled = enabled,
         )
 
         if (textError.isNotEmpty()) {
@@ -508,17 +505,6 @@ private fun SettingContent(
             )
         }
     }
-}
-
-@Composable
-private fun ContentList(
-    contentStyle: ContentListStyle,
-    enabled: Boolean
-) {
-    OceanContentList(
-        style = contentStyle,
-        enabled = enabled,
-    )
 }
 
 sealed interface SettingsListItemStyle {

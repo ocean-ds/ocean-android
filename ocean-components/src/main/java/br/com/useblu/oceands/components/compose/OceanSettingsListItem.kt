@@ -442,7 +442,7 @@ private fun SettingsListItemButton(
     style: SettingsListItemStyle.Button,
     enabled: Boolean,
 ) {
-    if(contentStyle is ContentListStyle.Transaction)
+    if (contentStyle is ContentListStyle.Transaction)
         throw IllegalArgumentException("ContentListStyle.Transaction is not allowed here")
 
     Row(
@@ -458,23 +458,10 @@ private fun SettingsListItemButton(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
         ) {
-            when (contentStyle) {
-                is ContentListStyle.Default -> {
-                    OceanContentList(
-                        style = contentStyle,
-                        enabled = enabled,
-                    )
-                }
-
-                is ContentListStyle.Inverted -> {
-                    OceanContentList(
-                        style = contentStyle,
-                        enabled = enabled,
-                    )
-                }
-
-                else -> Unit
-            }
+            ContentList(
+                contentStyle = contentStyle,
+                enabled = enabled
+            )
 
             if (style.textError.isNotEmpty()) {
                 OceanText(
@@ -519,23 +506,10 @@ private fun SettingsListItemTag(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
         ) {
-            when (contentStyle) {
-                is ContentListStyle.Default -> {
-                    OceanContentList(
-                        style = contentStyle,
-                        enabled = enabled,
-                    )
-                }
-
-                is ContentListStyle.Inverted -> {
-                    OceanContentList(
-                        style = contentStyle,
-                        enabled = enabled,
-                    )
-                }
-
-                else -> Unit
-            }
+            ContentList(
+                contentStyle = contentStyle,
+                enabled = enabled
+            )
 
             if (style.textError.isNotEmpty()) {
                 OceanText(
@@ -578,23 +552,10 @@ private fun SettingsListItemBlocked(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
         ) {
-            when (contentStyle) {
-                is ContentListStyle.Default -> {
-                    OceanContentList(
-                        style = contentStyle,
-                        enabled = enabled,
-                    )
-                }
-
-                is ContentListStyle.Inverted -> {
-                    OceanContentList(
-                        style = contentStyle,
-                        enabled = enabled,
-                    )
-                }
-
-                else -> Unit
-            }
+            ContentList(
+                contentStyle = contentStyle,
+                enabled = enabled
+            )
         }
 
         OceanIcon(
@@ -604,6 +565,30 @@ private fun SettingsListItemBlocked(
             iconType = style.icon,
             tint = OceanColors.interfaceDarkUp
         )
+    }
+}
+
+@Composable
+private fun ContentList(
+    contentStyle: ContentListStyle,
+    enabled: Boolean
+) {
+    when (contentStyle) {
+        is ContentListStyle.Default -> {
+            OceanContentList(
+                style = contentStyle,
+                enabled = enabled,
+            )
+        }
+
+        is ContentListStyle.Inverted -> {
+            OceanContentList(
+                style = contentStyle,
+                enabled = enabled,
+            )
+        }
+
+        else -> Unit
     }
 }
 

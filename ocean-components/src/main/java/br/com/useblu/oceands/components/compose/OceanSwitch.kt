@@ -75,7 +75,7 @@ fun OceanSwitch(
     var isChecked by remember(checked) { mutableStateOf(checked) }
 
     Switch(
-        modifier = modifier.scale(0.8f, 0.7f),
+        modifier = modifier.scale(0.8f, 0.8f),
         enabled = enabled,
         checked = isChecked,
         onCheckedChange = {

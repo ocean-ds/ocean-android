@@ -134,6 +134,24 @@ private fun CurrencyInputPreview() {
 
 @Preview
 @Composable
+private fun PercentageInputPreview() {
+    Column(
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+            .background(Color.White)
+            .padding(8.dp)
+    ) {
+        CreateOceanTextInputPreview("", OceanInputType.Percentage(maxValue = 100.0))
+        CreateOceanTextInputPreview("100", OceanInputType.Percentage(maxValue = 55.4))
+        CreateOceanTextInputPreview("12", OceanInputType.Percentage())
+        CreateOceanTextInputPreview("10000", OceanInputType.Percentage())
+        CreateOceanTextInputPreview("100.00", OceanInputType.Percentage(false))
+        CreateOceanTextInputPreview("", OceanInputType.Percentage(true))
+    }
+}
+
+@Preview
+@Composable
 fun PreviewOceanTextInputMask() {
     Column(
         modifier = Modifier

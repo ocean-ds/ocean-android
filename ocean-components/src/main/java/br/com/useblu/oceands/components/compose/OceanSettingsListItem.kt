@@ -379,6 +379,7 @@ fun OceanSettingsListItem(
     style: SettingsListItemStyle,
     enabled: Boolean = true,
     isLoading: Boolean = false,
+    showDivider: Boolean = false
 ) {
     if (isLoading) {
         SettingsListItemSkeleton()
@@ -387,12 +388,7 @@ fun OceanSettingsListItem(
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
-        modifier = modifier
-            .border(
-                color = OceanColors.interfaceLightDown,
-                bottom = 1.dp
-            )
-            .padding(OceanSpacing.xs)
+        modifier = modifier.padding(OceanSpacing.xs)
     ) {
         when (style) {
             is SettingsListItemStyle.Blocked -> {
@@ -442,18 +438,19 @@ fun OceanSettingsListItem(
             }
         }
     }
+
+    if (showDivider) {
+        HorizontalDivider(
+            color = OceanColors.interfaceLightDown
+        )
+    }
 }
 
 @Composable
 private fun SettingsListItemSkeleton() {
     OceanShimmering { brush ->
         Row(
-            modifier = Modifier
-                .border(
-                    color = OceanColors.interfaceLightDown,
-                    bottom = 1.dp
-                )
-                .padding(OceanSpacing.xs)
+            modifier = Modifier.padding(OceanSpacing.xs)
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),

@@ -41,4 +41,14 @@ dependencies {
     implementation(libs.constraintLayout)
     implementation(libs.lifecycleExtensions)
     implementation(libs.lifecycleViewModel)
+
+    implementation(libs.skydoves.balloon)
+    implementation(libs.skydoves.balloon.compose)
+    implementation(libs.androidMaterial)
+    implementation(libs.canarinho)
+    implementation(libs.glide)
+    implementation(libs.circleIndicator)
+    implementation(libs.expansionPanel)
+    implementation(libs.calendarView)
+    implementation(libs.mpChart)
 }

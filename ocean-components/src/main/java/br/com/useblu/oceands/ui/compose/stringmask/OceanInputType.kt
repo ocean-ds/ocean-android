@@ -36,6 +36,10 @@ sealed interface OceanInputType {
 
     data object DEFAULT : OceanInputType
 
+    data object Number : OceanInputType {
+        override fun getKeyboardType() = KeyboardType.Number
+    }
+
     data class Currency(
         val showCurrencySymbol: Boolean = true,
         val showZeroValue: Boolean = false
@@ -80,6 +84,38 @@ sealed interface OceanInputType {
 
         override fun getVisualTransformation(): VisualTransformation {
             return CurrencyMaskVisualTransformation()
+        }
+    }
+
+    data class Percentage(
+        val showZeroValue: Boolean = false,
+        val maxValue: Double = 100.0
+    ) : OceanInputType {
+        override fun getKeyboardType() = KeyboardType.Number
+
+        override fun alwaysGoToEndOfInput() = true
+
+        private fun sanitizeText(text: String): String {
+            val digitsString = text.filter { it.isDigit() }
+
+            if (digitsString.isEmpty() || digitsString.all { it == '0' }) {
+                return if (showZeroValue) {
+                    "0.00"
+                } else ""
+            }
+
+            val result = BigDecimal(digitsString)
+                .divide(BigDecimal(100), 2, RoundingMode.HALF_DOWN)
+                .coerceAtMost(BigDecimal(maxValue).setScale(2, RoundingMode.HALF_DOWN))
+
+            return result.toPlainString()
+        }
+
+        override fun transformForInput(text: String) = sanitizeText(text)
+        override fun transformForOutput(text: String) = sanitizeText(text)
+
+        override fun getVisualTransformation(): VisualTransformation {
+            return PercentageMaskVisualTransformation()
         }
     }
 

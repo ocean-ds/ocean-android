@@ -5,13 +5,13 @@ import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 import br.com.concrete.canarinho.formatador.FormatadorValor
 
-class CurrencyMaskVisualTransformation : NumberVisualTransformation() {
+class PercentageMaskVisualTransformation : NumberVisualTransformation() {
     override fun filter(text: AnnotatedString): TransformedText {
         if (text.length < 3) {
             return TransformedText(text, OffsetMapping.Identity)
         }
 
-        val formattedText = FormatadorValor.VALOR.formata(text.text)
+        val formattedText = FormatadorValor.VALOR.formata(text.text) + " %"
         return TransformedText(AnnotatedString(formattedText), offsetTranslator(text.text, formattedText))
     }
 }

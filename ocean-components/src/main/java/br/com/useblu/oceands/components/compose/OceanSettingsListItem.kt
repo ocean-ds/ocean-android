@@ -20,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.useblu.oceands.extensions.compose.border
 import br.com.useblu.oceands.model.OceanSettingsStatus
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -255,6 +254,21 @@ private fun SettingsListItemPreview() {
                 onClick = { println("Button Clicked") }
             ),
         )
+
+        OceanSettingsListItem(
+            style = SettingsListItemStyle.Button(
+                contentStyle = ContentListStyle.Strikethrough(
+                    title = "Taxa Promocional - Strikethrough",
+                    description = "11.06%",
+                    newValue = "7.33%",
+                ),
+                textError = "Error",
+                buttonText = "Entenda o cálculo",
+                buttonStyle = OceanButtonStyle.TertiarySmall,
+                onClick = { println("Button Clicked") }
+            ),
+        )
+
         OceanSettingsListItem(
             style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Default(
@@ -280,6 +294,8 @@ private fun SettingsListItemPreview() {
                 onClick = { println("Button Clicked") }
             ),
         )
+
+
         OceanSettingsListItem(
             style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Inverted(

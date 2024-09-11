@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,7 +17,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.useblu.oceands.model.OceanSettingsStatus
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -27,7 +25,7 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 @Preview(
     showBackground = true,
     backgroundColor = 0xFFFFFFFF,
-    heightDp = 620
+    heightDp = 700
 )
 @Composable
 private fun OceanContentListPreview() {
@@ -95,12 +93,24 @@ private fun OceanContentListPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
+            style = ContentListStyle.Strikethrough(
+                title = "Title",
+                description = "Description",
+                newValue = "New Value",
+                caption = "Caption"
+            ),
+            isLoading = false
+        )
+
+        OceanSpacing.StackXXS()
+        OceanContentList(
             style = ContentListStyle.Inverted(
                 title = "Title",
-                description = "Description"
+                description = "Description",
             ),
             isLoading = true
         )
+
     }
 }
 
@@ -347,13 +357,6 @@ private fun StrikethroughContentList(
     style: ContentListStyle.Strikethrough,
     enabled: Boolean = true
 ) {
-
-    val isStrike = !style.newValue.isNullOrBlank()
-
-    val decoration = if (isStrike) {
-        TextDecoration.LineThrough
-    } else null
-
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
@@ -371,13 +374,11 @@ private fun StrikethroughContentList(
             OceanText(
                 text = style.description,
                 style = OceanTextStyle.paragraph,
-                textDecoration = if (!style.newValue.isNullOrBlank()) {
-                    decoration
-                } else null,
+                textDecoration = if (style.newValue.isNotBlank()) TextDecoration.LineThrough else null,
                 color = OceanColors.interfaceDarkDown
             )
 
-            if (!style.newValue.isNullOrBlank()) {
+            if (style.newValue.isNotBlank()) {
                 OceanText(
                     modifier = Modifier.padding(start = OceanSpacing.xxxs),
                     text = style.newValue,
@@ -480,7 +481,7 @@ sealed interface ContentListStyle {
         val title: String,
         val description: String,
         val caption: String = "",
-        val newValue: String? = null
+        val newValue: String = ""
     ) : ContentListStyle
 }
 

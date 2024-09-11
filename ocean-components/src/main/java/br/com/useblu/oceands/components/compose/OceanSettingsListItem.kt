@@ -280,6 +280,21 @@ private fun SettingsListItemPreview() {
                 onClick = { println("Button Clicked") }
             ),
         )
+
+        OceanSettingsListItem(
+            style = SettingsListItemStyle.Button(
+                contentStyle = ContentListStyle.Strikethrough(
+                    title = "Taxa Promocional - Strikethrough",
+                    description = "11.06%",
+                    newValue = "7.33%",
+                ),
+                textError = "Error",
+                buttonText = "Entenda o cálculo",
+                buttonStyle = OceanButtonStyle.TertiarySmall,
+                onClick = { println("Button Clicked") }
+            ),
+        )
+        
         OceanSettingsListItem(
             style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Inverted(

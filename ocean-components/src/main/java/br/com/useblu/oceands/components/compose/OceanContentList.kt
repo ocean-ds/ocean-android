@@ -3,11 +3,14 @@ package br.com.useblu.oceands.components.compose
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,6 +18,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.model.OceanSettingsStatus
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -230,6 +234,12 @@ fun OceanContentList(
             style = style,
             enabled = enabled
         )
+
+        is ContentListStyle.Strikethrough -> StrikethroughContentList(
+            modifier = modifier,
+            style = style,
+            enabled = enabled
+        )
     }
 }
 
@@ -332,6 +342,63 @@ private fun InvertedContentList(
 }
 
 @Composable
+private fun StrikethroughContentList(
+    modifier: Modifier,
+    style: ContentListStyle.Strikethrough,
+    enabled: Boolean = true
+) {
+
+    val isStrike = !style.newValue.isNullOrBlank()
+
+    val decoration = if (isStrike) {
+        TextDecoration.LineThrough
+    } else null
+
+    Column(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        OceanText(
+            text = style.title,
+            style = configTextStyle(
+                OceanTextStyle.description,
+                enabled
+            )
+        )
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            OceanText(
+                text = style.description,
+                style = OceanTextStyle.paragraph,
+                textDecoration = if (!style.newValue.isNullOrBlank()) {
+                    decoration
+                } else null,
+                color = OceanColors.interfaceDarkDown
+            )
+
+            if (!style.newValue.isNullOrBlank()) {
+                OceanText(
+                    modifier = Modifier.padding(start = OceanSpacing.xxxs),
+                    text = style.newValue,
+                    style = OceanTextStyle.paragraph,
+                    color = OceanColors.statusPositiveDeep
+                )
+            }
+        }
+
+        if (style.caption.isNotBlank()) {
+            OceanText(
+                text = style.caption,
+                style = configTextStyle(OceanTextStyle.captionBold, enabled)
+            )
+        }
+
+        OceanSpacing.StackXXS()
+    }
+}
+
+@Composable
 private fun TransactionContentList(
     modifier: Modifier,
     style: ContentListTransactionStyle.Transaction,
@@ -407,6 +474,13 @@ sealed interface ContentListStyle {
         val title: String,
         val description: String,
         val caption: String = ""
+    ) : ContentListStyle
+
+    data class Strikethrough(
+        val title: String,
+        val description: String,
+        val caption: String = "",
+        val newValue: String? = null
     ) : ContentListStyle
 }
 

@@ -25,7 +25,7 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 @Preview(
     showBackground = true,
     backgroundColor = 0xFFFFFFFF,
-    heightDp = 700
+    heightDp = 800
 )
 @Composable
 private fun OceanContentListPreview() {
@@ -100,6 +100,18 @@ private fun OceanContentListPreview() {
                 caption = "Caption"
             ),
             isLoading = false
+        )
+
+        OceanSpacing.StackXXS()
+        OceanContentList(
+            style = ContentListStyle.Inverted(
+                title = "Title",
+                description = "Description",
+                caption = "Caption",
+                unchanged = true
+            ),
+            isLoading = false,
+            enabled = true
         )
 
         OceanSpacing.StackXXS()
@@ -336,7 +348,7 @@ private fun InvertedContentList(
             text = style.description,
             style = configTextStyle(
                 OceanTextStyle.paragraph.copy(OceanColors.interfaceDarkPure),
-                enabled
+                enabled && !style.unchanged
             )
         )
 
@@ -474,7 +486,8 @@ sealed interface ContentListStyle {
     data class Inverted(
         val title: String,
         val description: String,
-        val caption: String = ""
+        val caption: String = "",
+        val unchanged: Boolean = false
     ) : ContentListStyle
 
     data class Strikethrough(

@@ -382,6 +382,7 @@ private fun SettingsListItemPreview() {
                 ),
                 buttonStyle = OceanButtonStyle.PrimaryCriticalSmall,
                 buttonText = "Click me",
+                onClick = { println("Button Clicked") }
             ),
             isLoading = true
         )
@@ -526,7 +527,7 @@ sealed interface SettingsListItemStyle {
         val textError: String = "",
         val buttonText: String,
         val buttonStyle: OceanButtonStyle,
-        val onClick: () -> Unit = {},
+        val onClick: () -> Unit,
     ) : SettingsListItemStyle
 
     data class Tag(

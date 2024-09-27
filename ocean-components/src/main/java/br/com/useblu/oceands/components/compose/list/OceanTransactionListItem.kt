@@ -14,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanDivider
@@ -150,6 +151,7 @@ fun OceanTransactionListItem(
     valueIsCanceled: Boolean = false,
     tagTitle: String? = null,
     tagType: OceanTagType = OceanTagType.Warning,
+    showTagIcon: Boolean = true,
     time: String? = null,
     icon: OceanIcons? = null,
     trailingIcon: OceanIcons? = null,
@@ -240,6 +242,8 @@ fun OceanTransactionListItem(
                     OceanSpacing.StackXXS()
                     Text(
                         text = dimmedLabel,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
                         style = OceanTextStyle.caption,
                         color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown
                     )
@@ -307,7 +311,8 @@ fun OceanTransactionListItem(
                     OceanSpacing.StackXXXS()
                     OceanTag(
                         label = tagTitle,
-                        type = tagType
+                        type = tagType,
+                        showIcon = showTagIcon
                     )
                 }
 

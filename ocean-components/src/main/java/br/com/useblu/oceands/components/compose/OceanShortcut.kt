@@ -245,7 +245,7 @@ fun OceanShortcut(
             }
 
             when {
-                tag != null ->  {
+                tag != null -> {
                     OceanTag(
                         label = tag.text,
                         type = tag.type,
@@ -255,15 +255,19 @@ fun OceanShortcut(
                             .align(Alignment.TopEnd)
                     )
                 }
+
                 badge != null -> {
-                    OceanBadge(
-                        text = badge.count.toString(),
-                        type = badge.type,
-                        size = OceanBadgeSize.Small,
+                    Box(
                         modifier = Modifier
                             .padding(top = OceanSpacing.xxs, end = OceanSpacing.xxs)
                             .align(Alignment.TopEnd)
-                    )
+                    ) {
+                        OceanBadge(
+                            text = badge.count.toString(),
+                            type = badge.type,
+                            size = OceanBadgeSize.Small,
+                        )
+                    }
                 }
             }
 
@@ -320,6 +324,7 @@ enum class OceanShortcutLayout {
         when (this) {
             TinyVertical,
             TinyHorizontal -> OceanSpacing.StackXXS()
+
             Small -> Spacer(modifier = Modifier.size(30.dp))
             MediumVertical -> OceanSpacing.StackXS()
             MediumHorizontal -> OceanSpacing.StackXXS()
@@ -336,6 +341,7 @@ enum class OceanShortcutLayout {
                     content()
                 }
             }
+
             TinyHorizontal,
             MediumHorizontal -> {
                 Row(

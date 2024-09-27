@@ -200,7 +200,7 @@ fun OceanHeaderApp(
                 state = pagerState,
                 contentPadding = PaddingValues(horizontal = OceanSpacing.xs),
                 pageSize = balancePageSize,
-                pageSpacing =  OceanSpacing.xxs,
+                pageSpacing = OceanSpacing.xxs,
                 verticalAlignment = Alignment.Top,
                 modifier = Modifier
                     .padding(top = OceanSpacing.xxxs)
@@ -353,14 +353,17 @@ private fun MinimalHeaderMenu(
         )
 
         if (badgeCount > 0) {
-            OceanBadge(
-                text = badgeCount.toString(),
-                type = OceanBadgeType.WARNING,
-                size = OceanBadgeSize.Small,
+            Box(
                 modifier = Modifier
                     .padding(OceanSpacing.xxs)
                     .align(Alignment.TopEnd)
-            )
+            ) {
+                OceanBadge(
+                    text = badgeCount.toString(),
+                    type = OceanBadgeType.WARNING,
+                    size = OceanBadgeSize.Small,
+                )
+            }
         }
     }
 }

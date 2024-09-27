@@ -1,17 +1,16 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,7 +26,7 @@ fun OceanBadgePreview() {
     Row {
         Column {
             OceanBadge(
-                text = "120",
+                text = "1",
                 OceanBadgeType.PRIMARY,
                 OceanBadgeSize.Small
             )
@@ -78,7 +77,6 @@ fun OceanBadge(
     text: String,
     type: OceanBadgeType,
     size: OceanBadgeSize,
-    modifier: Modifier = Modifier
 ) {
     val backgroundColor = when (type) {
         OceanBadgeType.HIGHLIGHT -> OceanColors.highlightPure
@@ -96,29 +94,29 @@ fun OceanBadge(
         }
     } ?: text
 
-    Row(
-        modifier = modifier
+    Box(
+        modifier = Modifier
             .background(
                 color = backgroundColor,
-                shape = RoundedCornerShape(40.dp)
-            )
-            .height(size.getMinSize())
-            .defaultMinSize(minWidth = size.getMinSize()),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
+                shape = CircleShape
+            ),
+        contentAlignment = Alignment.Center
     ) {
         if (size != OceanBadgeSize.Dot) {
-            val padding = if (size is OceanBadgeSize.Small && formattedText.length <= 1) {
-                0.dp
+            val padding = if (formattedText.length == 1) {
+                7.dp
             } else {
-                OceanSpacing.xxxs
+                4.dp
             }
 
             Text(
+                modifier = Modifier.padding(
+                    horizontal = padding
+                ),
                 text = formattedText,
+                textAlign = TextAlign.Center,
                 fontSize = size.getTextSize(),
                 fontFamily = OceanFontFamily.BaseExtraBold,
-                modifier = Modifier.padding(horizontal = padding),
                 color = if (type != OceanBadgeType.PRIMARY_INVERTED) {
                     OceanColors.interfaceLightPure
                 } else {

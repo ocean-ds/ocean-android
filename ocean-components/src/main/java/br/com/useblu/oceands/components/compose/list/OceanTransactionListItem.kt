@@ -151,7 +151,7 @@ fun OceanTransactionListItem(
     valueIsCanceled: Boolean = false,
     tagTitle: String? = null,
     tagType: OceanTagType = OceanTagType.Warning,
-    showTagIcon: Boolean = true,
+    showTagIcon: Boolean = false,
     time: String? = null,
     icon: OceanIcons? = null,
     trailingIcon: OceanIcons? = null,

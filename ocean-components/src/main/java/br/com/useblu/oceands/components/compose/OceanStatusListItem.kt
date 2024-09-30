@@ -211,7 +211,15 @@ fun OceanStatusListItem(
             tagLabel?.let {
                 if (tagType != null && tagPosition == OceanStatusListItemTagPosition.BOTTOM) {
                     OceanSpacing.StackXXXS()
-                    OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
+                    OceanTag(
+                        style = OceanTagStyle.Default(
+                            label = tagLabel,
+                            type = tagType,
+                            layout = OceanTagLayout.Medium(
+                                icon = tagIcon ?: OceanIcons.ACADEMIC_CAP_SOLID
+                            )
+                        )
+                    )
                 }
             }
         }

@@ -352,9 +352,8 @@ private fun InvertedContentList(
             )
         )
 
-        OceanSpacing.StackXXS()
-
         if (style.caption.isNotBlank()) {
+            OceanSpacing.StackXXS()
             OceanText(
                 text = style.caption,
                 style = configTextStyle(OceanTextStyle.captionBold, enabled)
@@ -401,13 +400,12 @@ private fun StrikethroughContentList(
         }
 
         if (style.caption.isNotBlank()) {
+            OceanSpacing.StackXXS()
             OceanText(
                 text = style.caption,
                 style = configTextStyle(OceanTextStyle.captionBold, enabled)
             )
         }
-
-        OceanSpacing.StackXXS()
     }
 }
 

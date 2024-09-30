@@ -149,6 +149,7 @@ fun OceanTransactionListItem(
     valueIsHighlighted: Boolean = false,
     valueWithSignal: Boolean = false,
     valueIsCanceled: Boolean = false,
+    valueIsStrike: Boolean = false,
     tagTitle: String? = null,
     tagType: OceanTagType = OceanTagType.Warning,
     showTagIcon: Boolean = false,
@@ -274,7 +275,11 @@ fun OceanTransactionListItem(
                         text = formattedValue,
                         color = color,
                         fontFamily = OceanFontFamily.BaseMedium,
-                        style = OceanTextStyle.description
+                        style = if (valueIsStrike) {
+                            OceanTextStyle.descriptionStrike
+                        } else {
+                            OceanTextStyle.description
+                        }
                     )
                 }
 

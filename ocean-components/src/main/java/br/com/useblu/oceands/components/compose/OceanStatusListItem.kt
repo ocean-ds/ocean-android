@@ -227,7 +227,15 @@ fun OceanStatusListItem(
 
         tagLabel?.let {
             if (tagType != null && tagPosition == OceanStatusListItemTagPosition.RIGHT) {
-                OceanTag(label = tagLabel, type = tagType, icon = tagIcon)
+                OceanTag(
+                    style = OceanTagStyle.Default(
+                        label = tagLabel,
+                        type = tagType,
+                        layout = OceanTagLayout.Medium(
+                            icon = tagIcon ?: getIconDefault(tagType)
+                        )
+                    )
+                )
             }
         }
 

@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
@@ -53,12 +54,40 @@ fun OceanTabPreview() {
     }
 }
 
+@Preview
+@Composable
+private fun OceanTabScrollablePreview() {
+    val tabs = listOf(
+        OceanTabItemModel("Tab 1", 1),
+        OceanTabItemModel("Tab 2", 2, OceanBadgeType.WARNING),
+        OceanTabItemModel("Tab 3", 3),
+        OceanTabItemModel("Tab 4", 4),
+        OceanTabItemModel("Tab 5", 5),
+    )
+
+    var selectedTabIndex by remember { mutableStateOf(0) }
+
+    MaterialTheme {
+        Column(
+            Modifier
+                .background(color = OceanColors.interfaceLightPure)
+                .height(200.dp)
+        ) {
+            OceanTabScrollable(
+                tabs = tabs,
+                defaultSelectedTab = selectedTabIndex,
+                onSelectedTab = { selectedTabIndex = it }
+            )
+        }
+    }
+}
+
 @Composable
 fun OceanTab(
+    modifier: Modifier = Modifier,
     tabs: List<OceanTabItemModel>,
     selectedTabIndex: Int,
-    onSelectedTab: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    onSelectedTab: (Int) -> Unit
 ) {
     var selectedTabIndexInternal by remember(selectedTabIndex) {
         mutableStateOf(selectedTabIndex)
@@ -90,63 +119,13 @@ fun OceanTab(
                     selectedTabIndexInternal = index
                 },
                 text = {
-                    TabText(tab, selected, tab.counter)
+                    TabText(
+                        tab,
+                        selected,
+                        tab.counter,
+                        tab.badgeType
+                    )
                 }
-            )
-        }
-    }
-}
-
-@Composable
-private fun TabText(
-    tab: OceanTabItemModel,
-    selected: Boolean,
-    counter: Int?
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = tab.label,
-            style = OceanTextStyle.heading4,
-            color = if (selected) OceanColors.brandPrimaryPure else OceanColors.interfaceDarkUp
-        )
-
-        if (tab.counter != null) {
-            OceanSpacing.StackXXS()
-
-            OceanBadge(
-                text = counter.toString(),
-                type = if (selected) OceanBadgeType.PRIMARY else OceanBadgeType.DISABLED,
-                size = OceanBadgeSize.Small
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun OceanTabScrollablePreview() {
-    val tabs = listOf(
-        OceanTabItemModel("Tab 1", 1),
-        OceanTabItemModel("Tab 2", 2),
-        OceanTabItemModel("Tab 3", 3),
-        OceanTabItemModel("Tab 4", 4),
-        OceanTabItemModel("Tab 5", 5),
-    )
-
-    var selectedTabIndex by remember { mutableStateOf(0) }
-
-    MaterialTheme {
-        Column(
-            Modifier
-                .background(color = OceanColors.interfaceLightPure)
-                .height(200.dp)
-        ) {
-            OceanTabScrollable(
-                tabs = tabs,
-                defaultSelectedTab = selectedTabIndex,
-                onSelectedTab = { selectedTabIndex = it }
             )
         }
     }
@@ -163,7 +142,7 @@ fun OceanTabScrollable(
         modifier = modifier
             .background(color = OceanColors.interfaceLightPure)
             .fillMaxWidth(),
-        edgePadding = 0.dp,
+        edgePadding = TabRowDefaults.ScrollableTabRowEdgeStartPadding,
         selectedTabIndex = defaultSelectedTab,
         indicator = { tabPositions ->
             if (defaultSelectedTab < tabPositions.size) {
@@ -185,8 +164,41 @@ fun OceanTabScrollable(
                     onSelectedTab(index)
                 },
                 text = {
-                    TabText(tab, selected, tab.counter)
+                    TabText(
+                        tab,
+                        selected,
+                        tab.counter,
+                        tab.badgeType
+                    )
                 }
+            )
+        }
+    }
+}
+
+@Composable
+private fun TabText(
+    tab: OceanTabItemModel,
+    selected: Boolean,
+    counter: Int?,
+    badgeType: OceanBadgeType = OceanBadgeType.PRIMARY
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = tab.label,
+            style = OceanTextStyle.heading4,
+            color = if (selected) OceanColors.brandPrimaryPure else OceanColors.interfaceDarkUp
+        )
+
+        if (tab.counter != null) {
+            OceanSpacing.StackXXS()
+
+            OceanBadge(
+                text = counter.toString(),
+                type = if (selected) badgeType else OceanBadgeType.DISABLED,
+                size = OceanBadgeSize.Small
             )
         }
     }

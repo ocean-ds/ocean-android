@@ -160,6 +160,7 @@ private fun OceanTagPreview() {
     }
 }
 
+@Deprecated("Use OceanTag with style parameter instead")
 @Composable
 fun OceanTag(
     modifier: Modifier = Modifier,
@@ -437,6 +438,7 @@ fun OceanTag(
                 style = style,
             )
         }
+        is OceanTagStyle.None -> Unit
     }
 }
 
@@ -655,6 +657,7 @@ fun getTextColor(type: OceanTagType): Color {
 }
 
 sealed interface OceanTagStyle {
+    data object None : OceanTagStyle
     data class Default(
         val label: String,
         val layout: OceanTagLayout,

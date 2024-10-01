@@ -12,11 +12,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
@@ -92,10 +94,13 @@ private fun OceanInvertedTextListItemPreview() {
             type = InvertedTextListType.Highlight("Description", tagLabel = "Label")
         )
 
-        OceanInvertedTextListItemSkeleton(2)
+        OceanInvertedTextListItemSkeleton(1)
     }
 }
 
+@Deprecated(
+    "Deprecated! Use OceanInvertedTextListItem with InvertedListItemStyle instead",
+)
 @Composable
 fun OceanInvertedTextListItem(
     modifier: Modifier = Modifier,
@@ -302,4 +307,330 @@ fun OceanInvertedTextListItemSkeleton(items: Int) {
             }
         }
     }
+}
+
+@Preview
+@Composable
+private fun InvertedTextListPreview() {
+    Column(
+        modifier = Modifier
+            .background(color = OceanColors.interfaceLightDown)
+            .padding(OceanSpacing.xxs),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        OceanInvertedTextListItem(
+            style = InvertedListItemStyle.Default(
+                content = ContentListStyle.Inverted(
+                    title = "Title",
+                    description = "Description",
+                    caption = "Caption"
+                ),
+                tagStyle = OceanTagStyle.Default(
+                    label = "Label",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Warning
+                )
+            )
+        )
+        OceanInvertedTextListItem(
+            style = InvertedListItemStyle.Default(
+                content = ContentListStyle.Inverted(
+                    title = "Title",
+                    description = "Description",
+                    unchanged = true
+                ),
+                tagStyle = OceanTagStyle.Default(
+                    label = "Label",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Warning
+                )
+            )
+        )
+        OceanInvertedTextListItem(
+            style = InvertedListItemStyle.ContentInfo(
+                title = "Title",
+                description = "Description",
+                descriptionStyle = DescriptionStyle.Default(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    color = OceanColors.statusWarningDeep
+                )
+            )
+        )
+        OceanInvertedTextListItem(
+            style = InvertedListItemStyle.ContentInfo(
+                title = "Title",
+                description = "Description",
+                descriptionStyle = DescriptionStyle.Default(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    color = OceanColors.statusPositiveDeep
+                )
+            )
+        )
+        OceanInvertedTextListItem(
+            style = InvertedListItemStyle.Highlight(
+                title = "Title",
+                description = "Description",
+                tagStyle = OceanTagStyle.Default(
+                    label = "Label",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Warning
+                )
+            )
+        )
+        OceanInvertedTextListItem(
+            style = InvertedListItemStyle.HighlightLead(
+                title = "Title",
+                description = "Description",
+            )
+        )
+        OceanInvertedTextListItem(
+            style = InvertedListItemStyle.Strikethrough(
+                title = "Title",
+                strokeText = "Stroke",
+                actualText = "Actual"
+            )
+        )
+        OceanInvertedTextListItem(
+            isLoading = true,
+            style = InvertedListItemStyle.Default(
+                content = ContentListStyle.Inverted(
+                    title = "Title",
+                    description = "Description",
+                    caption = ""
+                ),
+                tagStyle = OceanTagStyle.Default(
+                    label = "Label",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Warning
+                )
+            )
+        )
+    }
+}
+
+
+@Composable
+fun OceanInvertedTextListItem(
+    modifier: Modifier = Modifier,
+    style: InvertedListItemStyle,
+    isLoading: Boolean = false
+) {
+    if (isLoading) {
+        OceanInvertedTextListItemSkeleton(1)
+        return
+    }
+
+    when (style) {
+        is InvertedListItemStyle.Default -> {
+            DefaultInvertedTextList(
+                modifier = modifier,
+                content = style.content,
+                tagStyle = style.tagStyle
+            )
+        }
+
+        is InvertedListItemStyle.ContentInfo -> {
+            ContentInfoInvertedTextList(
+                modifier = modifier,
+                style = style
+            )
+        }
+
+        is InvertedListItemStyle.Strikethrough -> {
+            StrikethroughInvertedTextList(
+                modifier = modifier,
+                content = ContentListStyle.Strikethrough(
+                    title = style.title,
+                    description = style.strokeText,
+                    newValue = style.actualText
+                )
+            )
+        }
+
+        is InvertedListItemStyle.Highlight -> {
+            HighlightInvertedTextList(
+                modifier = modifier,
+                style = style
+            )
+        }
+
+        is InvertedListItemStyle.HighlightLead -> {
+            HighlightLeadInvertedTextList(
+                modifier = modifier,
+                style = style
+            )
+        }
+    }
+}
+
+@Composable
+private fun DefaultInvertedTextList(
+    modifier: Modifier = Modifier,
+    content: ContentListStyle.Inverted,
+    tagStyle: OceanTagStyle
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
+        modifier = modifier
+            .background(color = OceanColors.interfaceLightPure)
+            .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxsExtra)
+            .fillMaxWidth()
+    ) {
+        OceanContentList(
+            style = content,
+            modifier = Modifier.weight(1f)
+        )
+
+        OceanTag(
+            style = tagStyle
+        )
+    }
+}
+
+@Composable
+private fun StrikethroughInvertedTextList(
+    modifier: Modifier = Modifier,
+    content: ContentListStyle.Strikethrough,
+) {
+    Column(
+        modifier = modifier
+            .background(color = OceanColors.interfaceLightPure)
+            .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxsExtra)
+            .fillMaxWidth()
+    ) {
+        OceanContentList(
+            style = content,
+        )
+    }
+}
+
+@Composable
+private fun ContentInfoInvertedTextList(
+    modifier: Modifier = Modifier,
+    style: InvertedListItemStyle.ContentInfo
+) {
+    Column(
+        modifier = modifier
+            .background(color = OceanColors.interfaceLightPure)
+            .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxsExtra)
+            .fillMaxWidth()
+    ) {
+        OceanText(
+            text = style.title,
+            style = OceanTextStyle.paragraph,
+            color = OceanColors.interfaceDarkPure
+        )
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            if(style.descriptionStyle.icon != OceanIcons.UNDEFINED) {
+                Icon(
+                    painter = painterResource(id = style.descriptionStyle.icon.icon),
+                    tint = style.descriptionStyle.color,
+                    contentDescription = null
+                )
+            }
+            OceanText(
+                text = style.description,
+                style = OceanTextStyle.paragraph.copy(
+                    color = style.descriptionStyle.color
+                ),
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+}
+
+@Composable
+private fun HighlightInvertedTextList(
+    modifier: Modifier = Modifier,
+    style: InvertedListItemStyle.Highlight
+) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs),
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .background(color = OceanColors.interfaceLightPure)
+            .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxsExtra)
+    ) {
+        Column(
+            modifier = Modifier.weight(1f)
+        ) {
+            OceanText(
+                text = style.title,
+                style = OceanTextStyle.paragraph,
+                color = OceanColors.interfaceDarkPure
+            )
+            OceanText(
+                text = style.description,
+                style = OceanTextStyle.heading4,
+            )
+        }
+        if (style.tagStyle != OceanTagStyle.None) {
+            OceanTag(
+                style = style.tagStyle
+            )
+        }
+    }
+}
+@Composable
+private fun HighlightLeadInvertedTextList(
+    modifier: Modifier = Modifier,
+    style: InvertedListItemStyle.HighlightLead
+) {
+    Column(
+        modifier = modifier
+            .background(color = OceanColors.interfaceLightPure)
+            .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxsExtra)
+            .fillMaxWidth()
+    ) {
+        OceanText(
+            text = style.title,
+            style = OceanTextStyle.paragraph,
+            color = OceanColors.interfaceDarkPure
+        )
+        OceanText(
+            text = style.description,
+            style = OceanTextStyle.lead,
+        )
+    }
+}
+
+sealed interface InvertedListItemStyle {
+    data class Default(
+        val content: ContentListStyle.Inverted,
+        val tagStyle: OceanTagStyle = OceanTagStyle.None
+    ) : InvertedListItemStyle
+
+    data class ContentInfo(
+        val title: String,
+        val description: String,
+        val descriptionStyle: DescriptionStyle.Default
+    ) : InvertedListItemStyle
+
+    data class Strikethrough(
+        val title: String,
+        val strokeText: String,
+        val actualText: String
+    ) : InvertedListItemStyle
+
+    data class Highlight(
+        val title: String,
+        val description: String,
+        val tagStyle: OceanTagStyle = OceanTagStyle.None
+    ) : InvertedListItemStyle
+
+    data class HighlightLead(
+        val title: String,
+        val description: String,
+    ) : InvertedListItemStyle
+}
+
+sealed interface DescriptionStyle {
+    data class Default(
+        val icon: OceanIcons = OceanIcons.UNDEFINED,
+        val color: Color = Color.Unspecified
+    ) : DescriptionStyle
 }

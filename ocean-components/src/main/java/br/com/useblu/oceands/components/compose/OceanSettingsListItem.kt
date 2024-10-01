@@ -194,7 +194,9 @@ fun OceanSettingsListItem(
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
-        modifier = modifier.padding(OceanSpacing.xs)
+        modifier = modifier
+            .background(color = OceanColors.interfaceLightPure)
+            .padding(OceanSpacing.xs)
     ) {
         when (style) {
             is SettingsListItemStyle.Blocked -> {
@@ -256,7 +258,9 @@ fun OceanSettingsListItem(
 private fun SettingsListItemSkeleton() {
     OceanShimmering { brush ->
         Row(
-            modifier = Modifier.padding(OceanSpacing.xs)
+            modifier = Modifier
+                .background(color = OceanColors.interfaceLightPure)
+                .padding(OceanSpacing.xs)
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),

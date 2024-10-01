@@ -238,7 +238,15 @@ fun OceanCardListItem(
                     )
 
                     if (!tagLabel.isNullOrBlank() && tagType != null) {
-                        OceanTag(label = tagLabel, type = tagType)
+                        OceanTag(
+                            style = OceanTagStyle.Default(
+                                label = tagLabel,
+                                type = tagType,
+                                layout = OceanTagLayout.Medium(
+                                    icon = getIconDefault(tagType)
+                                )
+                            )
+                        )
                     }
                 }
 

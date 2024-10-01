@@ -247,9 +247,11 @@ fun OceanShortcut(
             when {
                 tag != null -> {
                     OceanTag(
-                        label = tag.text,
-                        type = tag.type,
-                        isSmall = true,
+                        style = OceanTagStyle.Default(
+                            label = tag.text,
+                            type = tag.type,
+                            layout = OceanTagLayout.Small()
+                        ),
                         modifier = Modifier
                             .padding(top = OceanSpacing.xxs, end = OceanSpacing.xxs)
                             .align(Alignment.TopEnd)

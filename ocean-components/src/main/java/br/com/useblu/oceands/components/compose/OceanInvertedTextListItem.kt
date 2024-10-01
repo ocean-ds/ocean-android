@@ -233,11 +233,12 @@ sealed interface InvertedTextListType {
 
                 if (tagLabel != null) {
                     OceanSpacing.StackXXS()
-                    OceanTag(
-                        label = tagLabel,
-                        type = tagType,
-                        icon = tagIcon,
-                        isSmall = true
+                  OceanTag(
+                        style = OceanTagStyle.Default(
+                            label = tagLabel,
+                            type = tagType,
+                            layout = OceanTagLayout.Small()
+                        )
                     )
                 }
             }

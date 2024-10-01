@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTag
+import br.com.useblu.oceands.components.compose.OceanTagLayout
+import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.extensions.oceanFormatWithCurrency
@@ -152,7 +154,6 @@ fun OceanTransactionListItem(
     valueIsStrike: Boolean = false,
     tagTitle: String? = null,
     tagType: OceanTagType = OceanTagType.Warning,
-    showTagIcon: Boolean = false,
     time: String? = null,
     icon: OceanIcons? = null,
     trailingIcon: OceanIcons? = null,
@@ -315,9 +316,11 @@ fun OceanTransactionListItem(
                 if (tagTitle != null) {
                     OceanSpacing.StackXXXS()
                     OceanTag(
-                        label = tagTitle,
-                        type = tagType,
-                        showIcon = showTagIcon
+                        style = OceanTagStyle.Default(
+                            label = tagTitle,
+                            type = tagType,
+                            layout = OceanTagLayout.Small()
+                        )
                     )
                 }
 

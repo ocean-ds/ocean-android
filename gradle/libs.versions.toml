@@ -41,7 +41,7 @@ toggleButtonLayout = { module = "com.github.savvyapps:ToggleButtonLayout", versi
 calendarView = { module = "com.github.prolificinteractive:material-calendarview", version = "2.0.1" }
 mpChart = { module = "com.github.PhilJay:MPAndroidChart", version = "v3.1.0" }
 skeletonBones = { module = "com.github.EudyContreras:Skeleton-Bones", version = "v1.4.5" }
-baselineProfileInstaller = { module = "androidx.profileinstaller:profileinstaller", version = "1.3.1" }
+baselineProfileInstaller = { module = "androidx.profileinstaller:profileinstaller", version = "1.4.1" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 compose-lifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewModel" }
 compose-activity = { module = "androidx.activity:activity-compose", version = "1.9.0" }

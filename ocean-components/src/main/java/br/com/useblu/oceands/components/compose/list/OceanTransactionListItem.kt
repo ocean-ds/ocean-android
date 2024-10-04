@@ -32,6 +32,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.components.compose.ChildListItemStyle
+import br.com.useblu.oceands.components.compose.ChildScope
 import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.ContentListTransactionStyle
 import br.com.useblu.oceands.components.compose.OceanContentList
@@ -41,7 +43,6 @@ import br.com.useblu.oceands.components.compose.OceanShimmering
 import br.com.useblu.oceands.components.compose.OceanTag
 import br.com.useblu.oceands.components.compose.OceanTagLayout
 import br.com.useblu.oceands.components.compose.OceanTagStyle
-import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.TransactionType
 import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
@@ -375,7 +376,7 @@ fun OceanTransactionListItem(
 @Preview(
     showBackground = true,
     backgroundColor = 0xFFFFFFFF,
-    heightDp = 700
+    heightDp = 750
 )
 @Composable
 private fun TransactionListItemPreview() {
@@ -386,7 +387,7 @@ private fun TransactionListItemPreview() {
             .verticalScroll(rememberScrollState())
     ) {
         OceanTransactionListItem(
-            style = TransactionListItemStyle.Default(
+            style = TransactionListItemStyle.CommonStyle.Default(
                 contentInfo = ContentListStyle.Default(
                     title = "Title",
                     description = "Subtitle to long to be displayed on a single line",
@@ -407,7 +408,7 @@ private fun TransactionListItemPreview() {
         )
         OceanTransactionListItem(
             enabled = false,
-            style = TransactionListItemStyle.Default(
+            style = TransactionListItemStyle.CommonStyle.Default(
                 contentInfo = ContentListStyle.Default(
                     title = "Title",
                     description = "Subtitle to long to be displayed on a single line",
@@ -427,7 +428,7 @@ private fun TransactionListItemPreview() {
             )
         )
         OceanTransactionListItem(
-            style = TransactionListItemStyle.Selectable(
+            style = TransactionListItemStyle.CommonStyle.Selectable(
                 contentInfo = ContentListStyle.Default(
                     title = "Title",
                     description = "Subtitle to long to be displayed on a single line",
@@ -448,8 +449,7 @@ private fun TransactionListItemPreview() {
             )
         )
         OceanTransactionListItem(
-            isLoading = false,
-            style = TransactionListItemStyle.WithChild(
+            style = TransactionListItemStyle.WithChildStyle.Child (
                 contentInfo = ContentListStyle.Default(
                     title = "Title",
                     description = "Subtitle to long to be displayed on a single line",
@@ -466,26 +466,30 @@ private fun TransactionListItemPreview() {
                     type = TransactionType.INFLOW,
                 ),
                 onClick = { println("Clicked") },
-                children = listOf(
-                    ChildListItemStyle.Child(
-                        icon = OceanIcons.PLACEHOLDER_SOLID,
-                        description = "Description",
-                        value = "R$ 1.000.000,00",
-                        type = TransactionType.OUTFLOW
-                    ),
-                    ChildListItemStyle.Child(
-                        icon = OceanIcons.PLACEHOLDER_SOLID,
-                        description = "Description",
-                        value = "R$ 2.000.000,00",
-                        type = TransactionType.INFLOW
-                    )
+            )
+        ) {
+
+            OceanChildListItem(
+                style = ChildListItemStyle.Child(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    description = "Description",
+                    value = "R$ 1.000.000,00",
+                    type = TransactionType.OUTFLOW
                 )
             )
-        )
+            OceanChildListItem(
+                style = ChildListItemStyle.Child(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    description = "Description",
+                    value = "R$ 2.000.000,00",
+                    type = TransactionType.INFLOW
+                )
+            )
+        }
 
         OceanTransactionListItem(
             isLoading = true,
-            style = TransactionListItemStyle.WithChild(
+            style = TransactionListItemStyle.WithChildStyle.Child(
                 contentInfo = ContentListStyle.Default(
                     title = "Title",
                     description = "Subtitle to long to be displayed on a single line",
@@ -501,35 +505,37 @@ private fun TransactionListItemPreview() {
                     ),
                     type = TransactionType.OUTFLOW,
                 ),
-                children = List(3) {
-                    ChildListItemStyle.Child(
-                        icon = OceanIcons.PLACEHOLDER_SOLID,
-                        description = "Description",
-                        value = "R$ 1.000.000,00",
-                        type = TransactionType.DEFAULT
-                    )
-                },
                 onClick = { println("Clicked") }
             )
-        )
+        ){
+            OceanChildListItem(
+                isLoading = true,
+                style = ChildListItemStyle.Child(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    description = "Description",
+                    value = "R$ 2.000.000,00",
+                    type = TransactionType.INFLOW
+                )
+            )
+        }
     }
 }
 
 @Composable
 fun OceanTransactionListItem(
     modifier: Modifier = Modifier,
-    style: TransactionListItemStyle,
+    style: TransactionListItemStyle.CommonStyle,
     isLoading: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
 ) {
+    if (isLoading) {
+        TransactionListItemSkeleton()
+        return
+    }
 
     when (style) {
-        is TransactionListItemStyle.Default -> {
-            if (isLoading) {
-                TransactionListItemSkeleton()
-                return
-            }
+        is TransactionListItemStyle.CommonStyle.Default -> {
             DefaultTransactionListItem(
                 modifier = modifier,
                 contentInfo = style.contentInfo,
@@ -540,11 +546,7 @@ fun OceanTransactionListItem(
             )
         }
 
-        is TransactionListItemStyle.Selectable -> {
-            if (isLoading) {
-                TransactionListItemSkeleton()
-                return
-            }
+        is TransactionListItemStyle.CommonStyle.Selectable -> {
             SelectableTransactionListItem(
                 modifier = modifier,
                 enabled = enabled,
@@ -553,24 +555,6 @@ fun OceanTransactionListItem(
                 contentInfo = style.contentInfo,
                 contentValues = style.contentValues,
                 onSelectBox = style.onSelectBox,
-            )
-        }
-
-        is TransactionListItemStyle.WithChild -> {
-            if (isLoading) {
-                TransactionListItemSkeleton(
-                    repeatChild = style.children.size
-                )
-                return
-            }
-            TransactionListItemWithChild(
-                modifier = modifier,
-                readOnly = readOnly,
-                enabled = enabled,
-                contentInfo = style.contentInfo,
-                contentValues = style.contentValues,
-                children = style.children,
-                onClick = style.onClick,
             )
         }
     }
@@ -655,7 +639,7 @@ fun SelectableTransactionListItem(
             .padding(OceanSpacing.xs)
             .clickable(
                 enabled = enabled && !readOnly,
-                onClick =  {
+                onClick = {
                     boxSelected = !boxSelected
                     onSelectBox(boxSelected)
                 }
@@ -691,25 +675,29 @@ fun SelectableTransactionListItem(
 }
 
 @Composable
-private fun TransactionListItemWithChild(
-    modifier: Modifier,
-    enabled: Boolean,
-    readOnly: Boolean,
-    contentInfo: ContentListStyle,
-    contentValues: ContentListStyle,
-    onClick: () -> Unit,
-    children: List<ChildListItemStyle.Child>
+private fun OceanTransactionListItem(
+    modifier: Modifier = Modifier,
+    style: TransactionListItemStyle.WithChildStyle.Child,
+    isLoading: Boolean = false,
+    children: @Composable ChildScope.() -> Unit
 ) {
+    if(isLoading){
+        Column {
+            TransactionListItemSkeleton()
+            ChildScope.children()
+        }
+        return
+    }
+
     val interactionSource = remember { MutableInteractionSource() }
 
     Row(
         modifier = modifier
             .background(OceanColors.interfaceLightPure)
             .clickable(
-                enabled = enabled && !readOnly,
                 interactionSource = interactionSource,
                 indication = null,
-                onClick = onClick
+                onClick = style.onClick
             )
     ) {
         Column(
@@ -722,101 +710,45 @@ private fun TransactionListItemWithChild(
                     .padding(end = OceanSpacing.xxsExtra)
             ) {
                 OceanContentList(
-                    style = contentInfo,
-                    enabled = enabled,
+                    style = style.contentInfo,
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .padding(start = OceanSpacing.xs)
                         .weight(1f)
                 )
                 OceanContentList(
-                    style = contentValues,
-                    enabled = enabled,
+                    style = style.contentValues,
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .padding(start = OceanSpacing.xxs)
                         .weight(1f)
                 )
             }
-            children.forEach { child ->
-                OceanChildListItem(
-                    style = child
-                )
-            }
+            ChildScope.children()
         }
         Column(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
         ) {
-            if (!readOnly) {
-                IconButton(
-                    onClick = onClick,
-                    interactionSource = interactionSource,
-                    modifier = Modifier
-                        .padding(end = OceanSpacing.xxs)
-                        .size(20.dp)
-                ) {
-                    Image(
-                        painter = painterResource(id = OceanIcons.CHEVRON_RIGHT_OUTLINE.icon),
-                        contentDescription = null,
-                        colorFilter =
-                        if (!enabled) ColorFilter.tint(OceanColors.interfaceDarkUp)
-                        else null
-                    )
-                }
-            } else {
-                OceanSpacing.StackXS()
+            IconButton(
+                onClick = style.onClick,
+                interactionSource = interactionSource,
+                modifier = Modifier
+                    .padding(end = OceanSpacing.xxs)
+                    .size(20.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = OceanIcons.CHEVRON_RIGHT_OUTLINE.icon),
+                    contentDescription = null,
+                )
             }
+            OceanSpacing.StackXS()
         }
     }
 }
 
 @Composable
-fun OceanChildListItem(
-    modifier: Modifier = Modifier,
-    style: ChildListItemStyle.Child,
-) {
-    val (color, value) = when (style.type) {
-        TransactionType.DEFAULT -> OceanColors.interfaceDarkPure to style.value
-        TransactionType.OUTFLOW -> OceanColors.interfaceDarkPure to "- ${style.value}"
-        TransactionType.INFLOW -> OceanColors.statusPositiveDeep to "+ ${style.value}"
-        TransactionType.CANCELED -> OceanColors.interfaceDarkUp to style.value
-    }
-
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .background(OceanColors.interfaceLightPure)
-            .padding(OceanSpacing.xxsExtra)
-    ) {
-        Image(
-            painter = painterResource(id = style.icon.icon),
-            contentDescription = null,
-            modifier = Modifier
-                .size(24.dp)
-                .padding(end = OceanSpacing.xxsExtra)
-                .weight(0.2f)
-        )
-        OceanText(
-            text = style.description,
-            style = OceanTextStyle.description,
-            modifier = Modifier
-                .padding(end = OceanSpacing.xxs)
-                .weight(1f)
-        )
-        OceanText(
-            text = value,
-            style = OceanTextStyle.paragraph.copy(
-                color = color
-            )
-        )
-    }
-}
-
-@Composable
-private fun TransactionListItemSkeleton(
-    repeatChild: Int = 0
-) {
+private fun TransactionListItemSkeleton() {
     Column {
         Row(
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.md),
@@ -873,48 +805,6 @@ private fun TransactionListItemSkeleton(
                 }
             }
         }
-        if (repeatChild != 0) {
-            OceanChildListItemSkeleton(repeatChild)
-        }
-    }
-}
-
-@Composable
-private fun OceanChildListItemSkeleton(
-    repeat: Int
-) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
-        modifier = Modifier
-            .background(color = OceanColors.interfaceLightPure)
-            .padding(horizontal = OceanSpacing.xs)
-            .padding(top = OceanSpacing.xxsExtra, bottom = OceanSpacing.xxsExtra)
-    ) {
-        OceanShimmering { brush ->
-            repeat(repeat) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(OceanSpacing.md),
-                    modifier = Modifier
-                        .background(OceanColors.interfaceLightPure)
-                ) {
-                    Spacer(
-                        modifier = Modifier
-                            .background(brush, RoundedCornerShape(4.dp))
-                            .height(16.dp)
-                            .width(120.dp)
-                            .weight(2f)
-                    )
-                    Spacer(
-                        modifier = Modifier
-                            .background(brush, RoundedCornerShape(4.dp))
-                            .height(16.dp)
-                            .width(80.dp)
-                            .weight(1f)
-                    )
-                }
-            }
-        }
     }
 }
 
@@ -923,32 +813,26 @@ sealed interface TransactionListItemStyle {
     val contentInfo: ContentListStyle
     val contentValues: ContentListStyle
 
-    data class Default(
-        override val contentInfo: ContentListStyle,
-        override val contentValues: ContentListStyle,
-        val onClick: () -> Unit
-    ) : TransactionListItemStyle
+    sealed interface CommonStyle : TransactionListItemStyle {
+        data class Default(
+            override val contentInfo: ContentListStyle,
+            override val contentValues: ContentListStyle,
+            val onClick: () -> Unit
+        ) : CommonStyle
 
-    data class WithChild(
-        override val contentInfo: ContentListStyle,
-        override val contentValues: ContentListStyle,
-        val onClick: () -> Unit,
-        val children: List<ChildListItemStyle.Child>,
-    ) : TransactionListItemStyle
+        data class Selectable(
+            override val contentInfo: ContentListStyle,
+            override val contentValues: ContentListStyle,
+            val selected: Boolean = false,
+            val onSelectBox: (Boolean) -> Unit,
+        ) : CommonStyle
+    }
 
-    data class Selectable(
-        override val contentInfo: ContentListStyle,
-        override val contentValues: ContentListStyle,
-        val selected: Boolean = false,
-        val onSelectBox: (Boolean) -> Unit,
-    ) : TransactionListItemStyle
-}
-
-sealed interface ChildListItemStyle {
-    data class Child(
-        val icon: OceanIcons,
-        val description: String,
-        val value: String,
-        val type: TransactionType,
-    ) : ChildListItemStyle
+    sealed interface WithChildStyle: TransactionListItemStyle {
+        data class Child(
+            override val contentInfo: ContentListStyle,
+            override val contentValues: ContentListStyle,
+            val onClick: () -> Unit,
+        ): WithChildStyle
+    }
 }

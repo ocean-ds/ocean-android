@@ -38,7 +38,7 @@ private fun OceanChildListItemPreview() {
             .background(color = OceanColors.interfaceLightDeep)
             .verticalScroll(rememberScrollState())
     ) {
-        OceanChildListItem(
+        ChildListItem(
             style = ChildListItemStyle.Child(
                 icon = OceanIcons.PLACEHOLDER_SOLID,
                 description = "Description",
@@ -47,7 +47,7 @@ private fun OceanChildListItemPreview() {
             )
         )
 
-        OceanChildListItem(
+        ChildListItem(
             style = ChildListItemStyle.Child(
                 icon = OceanIcons.PLACEHOLDER_SOLID,
                 description = "Description",
@@ -56,7 +56,7 @@ private fun OceanChildListItemPreview() {
             )
         )
 
-        OceanChildListItem(
+        ChildListItem(
             style = ChildListItemStyle.Child(
                 icon = OceanIcons.PLACEHOLDER_SOLID,
                 description = "Description",
@@ -65,7 +65,7 @@ private fun OceanChildListItemPreview() {
             )
         )
 
-        OceanChildListItem(
+        ChildListItem(
             style = ChildListItemStyle.Child(
                 icon = OceanIcons.PLACEHOLDER_SOLID,
                 description = "Description",
@@ -74,7 +74,7 @@ private fun OceanChildListItemPreview() {
             )
         )
 
-        OceanChildListItem(
+        ChildListItem(
             isLoading = true,
             style = ChildListItemStyle.Child(
                 icon = OceanIcons.PLACEHOLDER_SOLID,
@@ -87,7 +87,7 @@ private fun OceanChildListItemPreview() {
 }
 
 @Composable
-fun OceanChildListItem(
+private fun ChildListItem(
     modifier: Modifier = Modifier,
     style: ChildListItemStyle.Child,
     isLoading: Boolean = false,
@@ -169,7 +169,22 @@ private fun ChildListItemSkeleton() {
     }
 }
 
-class ChildScope
+
+data object ChildScope {
+
+    @Composable
+    fun OceanChildListItem(
+        modifier: Modifier = Modifier,
+        style: ChildListItemStyle.Child,
+        isLoading: Boolean = false,
+    ) {
+        ChildListItem(
+            modifier = modifier,
+            style = style,
+            isLoading = isLoading
+        )
+    }
+}
 
 sealed interface ChildListItemStyle {
     data class Child(

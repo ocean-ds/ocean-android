@@ -2192,13 +2192,33 @@ enum class OceanIcons(
         token = "contactlessoutline",
         icon = R.drawable.ocean_icon_contactless_outline
     ),
-    EASTER_EGGS(
-        token = "eastereggs",
-        icon = R.drawable.icon_easter_eggs
-    ),
     COINS_HAND_OUTLINE(
         token = "coinshandoutline",
         icon = R.drawable.ocean_icon_coins_hand_outline
+    ),
+    PIGGY_BANK_OUTLINE(
+        token = "piggybankoutline",
+        icon = R.drawable.icon_piggybankoutline
+    ),
+    TARGET_OUTLINE(
+        token = "targetoutline",
+        icon = R.drawable.icon_targetoutline
+    ),
+    COINS_SWAP_OUTLINE(
+        token = "coinsswapoutline",
+        icon = R.drawable.icon_coinsswapoutline
+    ),
+    CONTACT_BOOK_OUTLINE_2(
+        token = "contactbookoutline2",
+        icon = R.drawable.icon_contactbookoutline2
+    ),
+    FACTORY_OUTLINE(
+        token = "factoryoutline",
+        icon = R.drawable.icon_factoryoutline
+    ),
+    EASTER_EGGS(
+        token = "eastereggs",
+        icon = R.drawable.icon_easter_eggs
     ),
     UNDEFINED(
         token = "",

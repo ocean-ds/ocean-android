@@ -380,6 +380,22 @@ fun OceanTransactionListItem(
 )
 @Composable
 private fun TransactionListItemPreview() {
+    val commonContentInfo = ContentListStyle.Default(
+        title = "Title",
+        description = "Subtitle to long to be displayed on a single line",
+        caption = "Caption",
+    )
+    val commonContentValue = ContentListTransactionStyle.Transaction(
+        value = "R$ 1.000.000.000,00",
+        caption = "Aditional info",
+        tagStyle = OceanTagStyle.Default(
+            label = "Title",
+            type = OceanTagType.Warning,
+            layout = OceanTagLayout.Small()
+        ),
+        type = TransactionType.OUTFLOW,
+    )
+
     Column(
         verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs),
         modifier = Modifier
@@ -388,83 +404,31 @@ private fun TransactionListItemPreview() {
     ) {
         OceanTransactionListItem(
             style = TransactionListItemStyle.CommonStyle.Default(
-                contentInfo = ContentListStyle.Default(
-                    title = "Title",
-                    description = "Subtitle to long to be displayed on a single line",
-                    caption = "Caption",
-                ),
-                contentValues = ContentListTransactionStyle.Transaction(
-                    value = "R$ 1.000.000.000,00",
-                    caption = "Aditional info",
-                    tagStyle = OceanTagStyle.Default(
-                        label = "Title",
-                        type = OceanTagType.Warning,
-                        layout = OceanTagLayout.Small()
-                    ),
-                    type = TransactionType.OUTFLOW,
-                ),
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
                 onClick = { println("Clicked") }
             )
         )
         OceanTransactionListItem(
             enabled = false,
             style = TransactionListItemStyle.CommonStyle.Default(
-                contentInfo = ContentListStyle.Default(
-                    title = "Title",
-                    description = "Subtitle to long to be displayed on a single line",
-                    caption = "Caption",
-                ),
-                contentValues = ContentListTransactionStyle.Transaction(
-                    value = "R$ 1.000.000.000,00",
-                    caption = "Aditional info",
-                    tagStyle = OceanTagStyle.Default(
-                        label = "Title",
-                        type = OceanTagType.Warning,
-                        layout = OceanTagLayout.Small()
-                    ),
-                    type = TransactionType.OUTFLOW,
-                ),
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
                 onClick = { println("Clicked") }
             )
         )
         OceanTransactionListItem(
             style = TransactionListItemStyle.CommonStyle.Selectable(
-                contentInfo = ContentListStyle.Default(
-                    title = "Title",
-                    description = "Subtitle to long to be displayed on a single line",
-                    caption = "Caption",
-                ),
-                contentValues = ContentListTransactionStyle.Transaction(
-                    value = "R$ 1.900.000.000,00",
-                    caption = "Aditional info",
-                    tagStyle = OceanTagStyle.Default(
-                        label = "Title",
-                        type = OceanTagType.Warning,
-                        layout = OceanTagLayout.Small()
-                    ),
-                    type = TransactionType.OUTFLOW,
-                ),
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
                 selected = true,
                 onSelectBox = { println("Selected: $it") }
             )
         )
         OceanTransactionListItem(
             style = TransactionListItemStyle.WithChildStyle.Child (
-                contentInfo = ContentListStyle.Default(
-                    title = "Title",
-                    description = "Subtitle to long to be displayed on a single line",
-                    caption = "Caption",
-                ),
-                contentValues = ContentListTransactionStyle.Transaction(
-                    value = "R$ 2.000.000,00",
-                    caption = "Aditional info",
-                    tagStyle = OceanTagStyle.Default(
-                        label = "Title",
-                        type = OceanTagType.Warning,
-                        layout = OceanTagLayout.Small()
-                    ),
-                    type = TransactionType.INFLOW,
-                ),
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
                 onClick = { println("Clicked") },
             )
         ) {
@@ -490,21 +454,8 @@ private fun TransactionListItemPreview() {
         OceanTransactionListItem(
             isLoading = true,
             style = TransactionListItemStyle.WithChildStyle.Child(
-                contentInfo = ContentListStyle.Default(
-                    title = "Title",
-                    description = "Subtitle to long to be displayed on a single line",
-                    caption = "Caption",
-                ),
-                contentValues = ContentListTransactionStyle.Transaction(
-                    value = "R$ 1.000.000.000,00",
-                    caption = "Aditional info",
-                    tagStyle = OceanTagStyle.Default(
-                        label = "Title",
-                        type = OceanTagType.Warning,
-                        layout = OceanTagLayout.Small()
-                    ),
-                    type = TransactionType.OUTFLOW,
-                ),
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
                 onClick = { println("Clicked") }
             )
         ){

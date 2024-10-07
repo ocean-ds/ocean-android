@@ -1,27 +1,49 @@
 package br.com.useblu.oceands.components.compose.list
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.components.compose.ChildListItemStyle
+import br.com.useblu.oceands.components.compose.ChildScope
+import br.com.useblu.oceands.components.compose.ContentListStyle
+import br.com.useblu.oceands.components.compose.ContentListTransactionStyle
+import br.com.useblu.oceands.components.compose.OceanContentList
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanShimmering
 import br.com.useblu.oceands.components.compose.OceanTag
 import br.com.useblu.oceands.components.compose.OceanTagLayout
 import br.com.useblu.oceands.components.compose.OceanTagStyle
+import br.com.useblu.oceands.components.compose.TransactionType
 import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.extensions.oceanFormatWithCurrency
@@ -348,5 +370,420 @@ fun OceanTransactionListItem(
         if (showDivider) {
             OceanDivider()
         }
+    }
+}
+
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xFFFFFFFF,
+    heightDp = 750
+)
+@Composable
+private fun TransactionListItemPreview() {
+    val commonContentInfo = ContentListStyle.Default(
+        title = "Title",
+        description = "Subtitle to long to be displayed on a single line",
+        caption = "Caption",
+    )
+    val commonContentValue = ContentListTransactionStyle.Transaction(
+        value = "R$ 1.000.000.000,00",
+        caption = "Aditional info",
+        tagStyle = OceanTagStyle.Default(
+            label = "Title",
+            type = OceanTagType.Warning,
+            layout = OceanTagLayout.Small()
+        ),
+        type = TransactionType.OUTFLOW,
+    )
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs),
+        modifier = Modifier
+            .background(color = OceanColors.interfaceLightDeep)
+            .verticalScroll(rememberScrollState())
+    ) {
+        OceanTransactionListItem(
+            style = TransactionListItemStyle.CommonStyle.Default(
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
+                onClick = { println("Clicked") }
+            )
+        )
+        OceanTransactionListItem(
+            enabled = false,
+            style = TransactionListItemStyle.CommonStyle.Default(
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
+                onClick = { println("Clicked") }
+            )
+        )
+        OceanTransactionListItem(
+            style = TransactionListItemStyle.CommonStyle.Selectable(
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
+                selected = true,
+                onSelectBox = { println("Selected: $it") }
+            )
+        )
+        OceanTransactionListItem(
+            style = TransactionListItemStyle.WithChildStyle.Child (
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
+                onClick = { println("Clicked") },
+            )
+        ) {
+
+            OceanChildListItem(
+                style = ChildListItemStyle.Child(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    description = "Description",
+                    value = "R$ 1.000.000,00",
+                    type = TransactionType.OUTFLOW
+                )
+            )
+            OceanChildListItem(
+                style = ChildListItemStyle.Child(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    description = "Description",
+                    value = "R$ 2.000.000,00",
+                    type = TransactionType.INFLOW
+                )
+            )
+        }
+
+        OceanTransactionListItem(
+            isLoading = true,
+            style = TransactionListItemStyle.WithChildStyle.Child(
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
+                onClick = { println("Clicked") }
+            )
+        ){
+            OceanChildListItem(
+                isLoading = true,
+                style = ChildListItemStyle.Child(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    description = "Description",
+                    value = "R$ 2.000.000,00",
+                    type = TransactionType.INFLOW
+                )
+            )
+        }
+    }
+}
+
+@Composable
+fun OceanTransactionListItem(
+    modifier: Modifier = Modifier,
+    style: TransactionListItemStyle.CommonStyle,
+    isLoading: Boolean = false,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+) {
+    if (isLoading) {
+        TransactionListItemSkeleton()
+        return
+    }
+
+    when (style) {
+        is TransactionListItemStyle.CommonStyle.Default -> {
+            DefaultTransactionListItem(
+                modifier = modifier,
+                contentInfo = style.contentInfo,
+                contentValues = style.contentValues,
+                onClick = style.onClick,
+                enabled = enabled,
+                readOnly = readOnly
+            )
+        }
+
+        is TransactionListItemStyle.CommonStyle.Selectable -> {
+            SelectableTransactionListItem(
+                modifier = modifier,
+                enabled = enabled,
+                readOnly = readOnly,
+                selected = style.selected,
+                contentInfo = style.contentInfo,
+                contentValues = style.contentValues,
+                onSelectBox = style.onSelectBox,
+            )
+        }
+    }
+}
+
+@Composable
+private fun DefaultTransactionListItem(
+    modifier: Modifier,
+    enabled: Boolean,
+    readOnly: Boolean,
+    contentInfo: ContentListStyle,
+    contentValues: ContentListStyle,
+    onClick: () -> Unit,
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+
+    Row(
+        modifier = modifier
+            .background(OceanColors.interfaceLightPure)
+            .padding(vertical = OceanSpacing.xs)
+            .clickable(
+                enabled = enabled && !readOnly,
+                interactionSource = interactionSource,
+                indication = null,
+                onClick = onClick
+            )
+    ) {
+        OceanContentList(
+            style = contentInfo,
+            enabled = enabled,
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .padding(start = OceanSpacing.xs)
+                .weight(1f)
+        )
+        OceanContentList(
+            style = contentValues,
+            enabled = enabled,
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .padding(start = OceanSpacing.xxs)
+                .weight(1f)
+        )
+        if (!readOnly) {
+            IconButton(
+                onClick = onClick,
+                interactionSource = interactionSource,
+                modifier = Modifier
+                    .padding(start = OceanSpacing.xxsExtra, end = OceanSpacing.xxs)
+                    .size(20.dp)
+                    .align(Alignment.CenterVertically)
+            ) {
+                Image(
+                    painter = painterResource(id = OceanIcons.CHEVRON_RIGHT_OUTLINE.icon),
+                    contentDescription = null,
+                    colorFilter =
+                    if (!enabled) ColorFilter.tint(OceanColors.interfaceDarkUp)
+                    else null
+                )
+            }
+        } else {
+            OceanSpacing.StackXS()
+        }
+    }
+}
+
+@Composable
+fun SelectableTransactionListItem(
+    modifier: Modifier,
+    contentInfo: ContentListStyle,
+    contentValues: ContentListStyle,
+    enabled: Boolean,
+    readOnly: Boolean,
+    selected: Boolean,
+    onSelectBox: (Boolean) -> Unit,
+) {
+    var boxSelected by remember { mutableStateOf(selected) }
+
+    Row(
+        modifier = modifier
+            .background(OceanColors.interfaceLightPure)
+            .padding(OceanSpacing.xs)
+            .clickable(
+                enabled = enabled && !readOnly,
+                onClick = {
+                    boxSelected = !boxSelected
+                    onSelectBox(boxSelected)
+                }
+            )
+    ) {
+        OceanSelectableBox(
+            enabled = enabled,
+            selected = boxSelected,
+            onSelectedBox = {
+                boxSelected = it
+                onSelectBox(boxSelected)
+            },
+            modifier = Modifier
+                .padding(end = OceanSpacing.xxsExtra)
+                .align(Alignment.CenterVertically),
+        )
+        OceanContentList(
+            style = contentInfo,
+            enabled = enabled,
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .weight(1f)
+        )
+        OceanContentList(
+            style = contentValues,
+            enabled = enabled,
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .padding(start = OceanSpacing.xxs)
+                .weight(1.1f)
+        )
+    }
+}
+
+@Composable
+private fun OceanTransactionListItem(
+    modifier: Modifier = Modifier,
+    style: TransactionListItemStyle.WithChildStyle.Child,
+    isLoading: Boolean = false,
+    children: @Composable ChildScope.() -> Unit
+) {
+    if(isLoading){
+        Column {
+            TransactionListItemSkeleton()
+            ChildScope.children()
+        }
+        return
+    }
+
+    val interactionSource = remember { MutableInteractionSource() }
+
+    Row(
+        modifier = modifier
+            .background(OceanColors.interfaceLightPure)
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null,
+                onClick = style.onClick
+            )
+    ) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+        ) {
+            Row(
+                modifier = modifier
+                    .padding(vertical = OceanSpacing.xs)
+                    .padding(end = OceanSpacing.xxsExtra)
+            ) {
+                OceanContentList(
+                    style = style.contentInfo,
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .padding(start = OceanSpacing.xs)
+                        .weight(1f)
+                )
+                OceanContentList(
+                    style = style.contentValues,
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .padding(start = OceanSpacing.xxs)
+                        .weight(1f)
+                )
+            }
+            ChildScope.children()
+        }
+        Column(
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+        ) {
+            IconButton(
+                onClick = style.onClick,
+                interactionSource = interactionSource,
+                modifier = Modifier
+                    .padding(end = OceanSpacing.xxs)
+                    .size(20.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = OceanIcons.CHEVRON_RIGHT_OUTLINE.icon),
+                    contentDescription = null,
+                )
+            }
+            OceanSpacing.StackXS()
+        }
+    }
+}
+
+@Composable
+private fun TransactionListItemSkeleton() {
+    Column {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(OceanSpacing.md),
+            modifier = Modifier
+                .background(OceanColors.interfaceLightPure)
+                .padding(OceanSpacing.xs)
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
+                modifier = Modifier
+                    .weight(2f)
+            ) {
+                OceanShimmering { brush ->
+                    Spacer(
+                        modifier = Modifier
+                            .background(brush, RoundedCornerShape(4.dp))
+                            .width(120.dp)
+                            .height(16.dp)
+                    )
+                    repeat(2) {
+                        Spacer(
+                            modifier = Modifier
+                                .background(brush, RoundedCornerShape(4.dp))
+                                .fillMaxWidth()
+                                .height(16.dp)
+                        )
+                    }
+                }
+            }
+            Column(
+                verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
+                horizontalAlignment = Alignment.End,
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                OceanShimmering { brush ->
+                    repeat(3) {
+                        if (it == 1) {
+                            Spacer(
+                                modifier = Modifier
+                                    .background(brush, RoundedCornerShape(4.dp))
+                                    .width(80.dp)
+                                    .height(16.dp)
+                            )
+                        } else {
+                            Spacer(
+                                modifier = Modifier
+                                    .background(brush, RoundedCornerShape(4.dp))
+                                    .fillMaxWidth()
+                                    .height(16.dp)
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+sealed interface TransactionListItemStyle {
+
+    val contentInfo: ContentListStyle
+    val contentValues: ContentListStyle
+
+    sealed interface CommonStyle : TransactionListItemStyle {
+        data class Default(
+            override val contentInfo: ContentListStyle,
+            override val contentValues: ContentListStyle,
+            val onClick: () -> Unit
+        ) : CommonStyle
+
+        data class Selectable(
+            override val contentInfo: ContentListStyle,
+            override val contentValues: ContentListStyle,
+            val selected: Boolean = false,
+            val onSelectBox: (Boolean) -> Unit,
+        ) : CommonStyle
+    }
+
+    sealed interface WithChildStyle: TransactionListItemStyle {
+        data class Child(
+            override val contentInfo: ContentListStyle,
+            override val contentValues: ContentListStyle,
+            val onClick: () -> Unit,
+        ): WithChildStyle
     }
 }

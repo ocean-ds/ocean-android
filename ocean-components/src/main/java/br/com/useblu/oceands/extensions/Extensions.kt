@@ -70,7 +70,7 @@ fun MenuItem.setTitleColor(color: Int) {
 }
 
 fun String.parseAsHtml(): Spanned {
-    return HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)
+    return HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_COMPACT)
 }
 
 fun View.animateFadeIn() {

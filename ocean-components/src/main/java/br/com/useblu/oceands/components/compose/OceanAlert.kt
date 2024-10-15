@@ -18,10 +18,10 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
-import br.com.useblu.oceands.extensions.parseAsHtml
 import br.com.useblu.oceands.model.compose.AlertStyle
 import br.com.useblu.oceands.model.compose.OceanAlertType
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -262,10 +262,12 @@ fun OceanAlertPreview() {
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Bookmarked(
                 title = "Labeled Alert 8",
-                description = "<li>Menu1</li><li>Menu2</li><li>Menu3</li>",
+                description = stringResource(R.string.text_with_html),
                 alertType = AlertStyle.StyleNegative()
             )
         )
+
+        OceanSpacing.StackLG()
     }
 }
 
@@ -349,11 +351,17 @@ fun OceanAlertDefaultStyle(
             tint = style.iconTint(),
             contentDescription = null,
         )
-        OceanText(
+
+        val color = style.descriptionColor()
+        val textSize = style.descriptionStyle().fontSize
+
+        OceanHtmlText(
+            modifier = modifier,
             text = description,
-            style = style.descriptionStyle(),
-            color = style.descriptionColor(),
-            maxLines = 2,
+            color = color,
+            fontSize = textSize,
+            fontFamily = R.font.font_family_base_regular,
+            maxLines = 2
         )
     }
 }
@@ -386,9 +394,9 @@ fun OceanAlertEntitledShort(
         Column(
             modifier = Modifier.weight(1f)
         ) {
-            Row (
+            Row(
                 verticalAlignment = CenterVertically
-            ){
+            ) {
                 OceanText(
                     text = title,
                     style = style.titleStyle(),
@@ -410,10 +418,15 @@ fun OceanAlertEntitledShort(
                 }
             }
 
-            OceanText(
+            val color = style.descriptionColor()
+            val textSize = style.descriptionStyle().fontSize
+
+            OceanHtmlText(
+                modifier = modifier,
                 text = description,
-                style = style.descriptionStyle(),
-                color = style.descriptionColor(),
+                color = color,
+                fontSize = textSize,
+                fontFamily = R.font.font_family_base_regular,
                 maxLines = 2
             )
         }
@@ -460,12 +473,19 @@ fun OceanAlertEntitledLong(
             style = style,
             title = title
         )
-        OceanText(
+
+        val color = style.descriptionColor()
+        val textSize = style.descriptionStyle().fontSize
+
+        OceanHtmlText(
+            modifier = modifier,
             text = description,
-            style = style.descriptionStyle(),
-            color = style.descriptionColor(),
-            maxLines = 2,
+            color = color,
+            fontSize = textSize,
+            fontFamily = R.font.font_family_base_regular,
+            maxLines = 2
         )
+
     }
 }
 
@@ -506,12 +526,19 @@ fun OceanAlertLabeled(
                     maxLines = 2,
                 )
             }
-            OceanText(
+
+            val color = style.descriptionColor()
+            val textSize = style.descriptionStyle().fontSize
+
+            OceanHtmlText(
+                modifier = modifier,
                 text = description,
-                style = style.descriptionStyle(),
-                color = style.descriptionColor(),
-                maxLines = 2,
+                color = color,
+                fontSize = textSize,
+                fontFamily = R.font.font_family_base_regular,
+                maxLines = 2
             )
+
             OceanLink(
                 modifier = Modifier.padding(top = OceanSpacing.xxsExtra),
                 type = linkType,
@@ -543,10 +570,16 @@ fun OceanAlertBookmarked(
             style = style,
             title = title
         )
-        OceanText(
-            text = description.parseAsHtml().toString(),
-            style = style.descriptionStyle(),
-            color = style.descriptionColor(),
+
+        val color = style.descriptionColor()
+        val textSize = style.descriptionStyle().fontSize
+
+        OceanHtmlText(
+            modifier = modifier,
+            text = description,
+            color = color,
+            fontSize = textSize,
+            fontFamily = R.font.font_family_base_regular,
         )
     }
 }

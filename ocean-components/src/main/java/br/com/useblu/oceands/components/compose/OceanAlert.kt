@@ -356,7 +356,6 @@ fun OceanAlertDefaultStyle(
         val textSize = style.descriptionStyle().fontSize
 
         OceanHtmlText(
-            modifier = modifier,
             text = description,
             color = color,
             fontSize = textSize,
@@ -422,7 +421,6 @@ fun OceanAlertEntitledShort(
             val textSize = style.descriptionStyle().fontSize
 
             OceanHtmlText(
-                modifier = modifier,
                 text = description,
                 color = color,
                 fontSize = textSize,
@@ -478,7 +476,6 @@ fun OceanAlertEntitledLong(
         val textSize = style.descriptionStyle().fontSize
 
         OceanHtmlText(
-            modifier = modifier,
             text = description,
             color = color,
             fontSize = textSize,
@@ -531,7 +528,6 @@ fun OceanAlertLabeled(
             val textSize = style.descriptionStyle().fontSize
 
             OceanHtmlText(
-                modifier = modifier,
                 text = description,
                 color = color,
                 fontSize = textSize,
@@ -575,7 +571,6 @@ fun OceanAlertBookmarked(
         val textSize = style.descriptionStyle().fontSize
 
         OceanHtmlText(
-            modifier = modifier,
             text = description,
             color = color,
             fontSize = textSize,

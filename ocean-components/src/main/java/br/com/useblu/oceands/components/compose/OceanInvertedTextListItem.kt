@@ -238,7 +238,7 @@ sealed interface InvertedTextListType {
 
                 if (tagLabel != null) {
                     OceanSpacing.StackXXS()
-                  OceanTag(
+                    OceanTag(
                         style = OceanTagStyle.Default(
                             label = tagLabel,
                             type = tagType,
@@ -319,6 +319,7 @@ private fun InvertedTextListPreview() {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
             style = InvertedListItemStyle.Default(
                 content = ContentListStyle.Inverted(
                     title = "Title",
@@ -333,6 +334,7 @@ private fun InvertedTextListPreview() {
             )
         )
         OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
             style = InvertedListItemStyle.Default(
                 content = ContentListStyle.Inverted(
                     title = "Title",
@@ -347,6 +349,7 @@ private fun InvertedTextListPreview() {
             )
         )
         OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
             style = InvertedListItemStyle.ContentInfo(
                 title = "Title",
                 description = "Description",
@@ -357,6 +360,7 @@ private fun InvertedTextListPreview() {
             )
         )
         OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
             style = InvertedListItemStyle.ContentInfo(
                 title = "Title",
                 description = "Description",
@@ -367,6 +371,7 @@ private fun InvertedTextListPreview() {
             )
         )
         OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
             style = InvertedListItemStyle.Highlight(
                 title = "Title",
                 description = "Description",
@@ -378,12 +383,14 @@ private fun InvertedTextListPreview() {
             )
         )
         OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
             style = InvertedListItemStyle.HighlightLead(
                 title = "Title",
                 description = "Description",
             )
         )
         OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
             style = InvertedListItemStyle.Strikethrough(
                 title = "Title",
                 strokeText = "Stroke",
@@ -391,6 +398,7 @@ private fun InvertedTextListPreview() {
             )
         )
         OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
             isLoading = true,
             style = InvertedListItemStyle.Default(
                 content = ContentListStyle.Inverted(
@@ -473,7 +481,6 @@ private fun DefaultInvertedTextList(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
         modifier = modifier
-            .background(color = OceanColors.interfaceLightPure)
             .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxsExtra)
             .fillMaxWidth()
     ) {
@@ -495,7 +502,6 @@ private fun StrikethroughInvertedTextList(
 ) {
     Column(
         modifier = modifier
-            .background(color = OceanColors.interfaceLightPure)
             .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxsExtra)
             .fillMaxWidth()
     ) {
@@ -512,7 +518,6 @@ private fun ContentInfoInvertedTextList(
 ) {
     Column(
         modifier = modifier
-            .background(color = OceanColors.interfaceLightPure)
             .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxsExtra)
             .fillMaxWidth()
     ) {
@@ -525,7 +530,7 @@ private fun ContentInfoInvertedTextList(
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if(style.descriptionStyle.icon != OceanIcons.UNDEFINED) {
+            if (style.descriptionStyle.icon != OceanIcons.UNDEFINED) {
                 Icon(
                     painter = painterResource(id = style.descriptionStyle.icon.icon),
                     tint = style.descriptionStyle.color,
@@ -552,7 +557,6 @@ private fun HighlightInvertedTextList(
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .background(color = OceanColors.interfaceLightPure)
             .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxsExtra)
     ) {
         Column(
@@ -575,6 +579,7 @@ private fun HighlightInvertedTextList(
         }
     }
 }
+
 @Composable
 private fun HighlightLeadInvertedTextList(
     modifier: Modifier = Modifier,
@@ -582,7 +587,6 @@ private fun HighlightLeadInvertedTextList(
 ) {
     Column(
         modifier = modifier
-            .background(color = OceanColors.interfaceLightPure)
             .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxsExtra)
             .fillMaxWidth()
     ) {

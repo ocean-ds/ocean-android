@@ -523,8 +523,8 @@ private fun ContentInfoInvertedTextList(
     ) {
         OceanText(
             text = style.title,
-            style = OceanTextStyle.paragraph,
-            color = OceanColors.interfaceDarkPure
+            style = OceanTextStyle.description,
+            color = OceanColors.interfaceDarkDown
         )
         Row(
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs),
@@ -564,8 +564,8 @@ private fun HighlightInvertedTextList(
         ) {
             OceanText(
                 text = style.title,
-                style = OceanTextStyle.paragraph,
-                color = OceanColors.interfaceDarkPure
+                style = OceanTextStyle.description,
+                color = OceanColors.interfaceDarkDown
             )
             OceanText(
                 text = style.description,
@@ -592,8 +592,8 @@ private fun HighlightLeadInvertedTextList(
     ) {
         OceanText(
             text = style.title,
-            style = OceanTextStyle.paragraph,
-            color = OceanColors.interfaceDarkPure
+            style = OceanTextStyle.description,
+            color = OceanColors.interfaceDarkDown
         )
         OceanText(
             text = style.description,

@@ -18,91 +18,13 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
-import java.util.Locale
 
-@Preview
-@Composable
-fun OceanLinkPreview() {
-    val isSmallOptions = listOf(false, true)
-
-    MaterialTheme {
-        Column(
-            modifier = Modifier
-                .background(color = Color.White)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            isSmallOptions.forEach { isSmall ->
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Text(
-                        text = if (isSmall) "Small" else "Medium",
-                        fontSize = 32.sp
-                    )
-
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        OceanLinkIcon.entries.forEach {
-                            Column(
-                                verticalArrangement = Arrangement.spacedBy(8.dp)
-                            ) {
-                                Text(
-                                    text = it.name.lowercase()
-                                        .replaceFirstChar {
-                                            if (it.isLowerCase()) it.titlecase(
-                                                Locale.ROOT
-                                            ) else it.toString()
-                                        },
-                                    fontSize = 20.sp
-                                )
-
-                                OceanLink(
-                                    text = "Link Text",
-                                    linkIcon = it,
-                                    isSmall = isSmall,
-                                    onClick = {}
-                                )
-
-                                OceanLink(
-                                    text = "Link Text",
-                                    type = OceanLinkType.INVERSE,
-                                    linkIcon = it,
-                                    isSmall = isSmall,
-                                    onClick = {}
-                                )
-
-                                OceanLink(
-                                    text = "Link Text",
-                                    type = OceanLinkType.NEUTRAL,
-                                    linkIcon = it,
-                                    isSmall = isSmall,
-                                    onClick = {}
-                                )
-
-                                OceanLink(
-                                    text = "Link Text",
-                                    isDisabled = true,
-                                    linkIcon = it,
-                                    isSmall = isSmall,
-                                    onClick = {}
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
+@Deprecated("Use OceanLink with style instead")
 @Composable
 fun OceanLink(
     text: String,
@@ -179,7 +101,7 @@ enum class OceanLinkIcon {
 
 @Preview
 @Composable
-fun OceanLinkPreview2() {
+fun OceanLinkPreview() {
     val text = "Link Text"
     val stylesOptions = listOf(
         LinkStyle.Medium(text),

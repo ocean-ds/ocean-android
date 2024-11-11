@@ -104,9 +104,9 @@ enum class OceanLinkIcon {
 fun OceanLinkPreview() {
     val text = "Link Text"
     val stylesOptions = listOf(
-        LinkStyle.Medium(text),
-        LinkStyle.Small(text),
-        LinkStyle.Tiny(text),
+        LinkStyle(text = text, type = LinkType.Medium),
+        LinkStyle(text = text, type = LinkType.Small),
+        LinkStyle(text = text, type = LinkType.Tiny)
     )
     val icons = listOf(
         OceanIcons.UNDEFINED,
@@ -131,9 +131,9 @@ fun OceanLinkPreview() {
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     OceanText(
-                        text = when (style) {
-                            is LinkStyle.Tiny -> "Tiny"
-                            is LinkStyle.Small -> "Small"
+                        text = when (style.type) {
+                            LinkType.Tiny -> "Tiny"
+                            LinkType.Small -> "Small"
                             else -> "Medium"
                         },
                         fontSize = OceanFontSize.lg
@@ -171,8 +171,8 @@ private fun ShowLink(
     icon: OceanIcons,
     enabled: Boolean
 ) {
-    when (style) {
-        is LinkStyle.Medium -> OceanLink(
+    when (style.type) {
+        LinkType.Medium -> OceanLink(
             style = style.copy(
                 color = color,
                 icon = icon
@@ -181,7 +181,7 @@ private fun ShowLink(
             onClick = {},
         )
 
-        is LinkStyle.Small -> OceanLink(
+        LinkType.Small -> OceanLink(
             style = style.copy(
                 color = color,
                 icon = icon
@@ -190,7 +190,7 @@ private fun ShowLink(
             onClick = {},
         )
 
-        is LinkStyle.Tiny -> {
+        LinkType.Tiny -> {
             OceanLink(
                 style = style.copy(
                     color = color,
@@ -209,20 +209,20 @@ fun OceanLink(
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
-    when (style) {
-        is LinkStyle.Medium -> MediumLink(
+    when (style.type) {
+        LinkType.Medium -> MediumLink(
             style = style,
             onClick = onClick,
             enabled = enabled
         )
 
-        is LinkStyle.Small -> SmallLink(
+        LinkType.Small -> SmallLink(
             style = style,
             onClick = onClick,
             enabled = enabled
         )
 
-        is LinkStyle.Tiny -> TinyLink(
+        LinkType.Tiny -> TinyLink(
             style = style,
             onClick = onClick,
             enabled = enabled
@@ -232,7 +232,7 @@ fun OceanLink(
 
 @Composable
 private fun MediumLink(
-    style: LinkStyle.Medium,
+    style: LinkStyle,
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
@@ -251,7 +251,7 @@ private fun MediumLink(
 
 @Composable
 private fun SmallLink(
-    style: LinkStyle.Small,
+    style: LinkStyle,
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
@@ -270,7 +270,7 @@ private fun SmallLink(
 
 @Composable
 private fun TinyLink(
-    style: LinkStyle.Tiny,
+    style: LinkStyle,
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
@@ -325,26 +325,10 @@ private fun LinkText(
     }
 }
 
-sealed interface LinkStyle {
-    val text: String
-    val color: Color
-    val icon: OceanIcons
-
-    data class Medium(
-        override val text: String,
-        override val color: Color = Color.Unspecified,
-        override val icon: OceanIcons = OceanIcons.UNDEFINED,
-    ) : LinkStyle
-
-    data class Small(
-        override val text: String,
-        override val color: Color = Color.Unspecified,
-        override val icon: OceanIcons = OceanIcons.UNDEFINED,
-    ) : LinkStyle
-
-    data class Tiny(
-        override val text: String,
-        override val color: Color = Color.Unspecified,
-        override val icon: OceanIcons = OceanIcons.UNDEFINED,
-    ) : LinkStyle
-}
+data class LinkStyle(
+    val text: String,
+    val color: Color = Color.Unspecified,
+    val icon: OceanIcons = OceanIcons.UNDEFINED,
+    val type: LinkType = LinkType.Medium,
+)
+enum class LinkType { Medium, Small, Tiny }

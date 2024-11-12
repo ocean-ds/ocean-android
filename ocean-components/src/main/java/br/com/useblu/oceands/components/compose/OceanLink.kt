@@ -13,94 +13,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
-import java.util.Locale
 
-@Preview
-@Composable
-fun OceanLinkPreview() {
-    val isSmallOptions = listOf(false, true)
-
-    MaterialTheme {
-        Column(
-            modifier = Modifier
-                .background(color = Color.White)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            isSmallOptions.forEach { isSmall ->
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Text(
-                        text = if (isSmall) "Small" else "Medium",
-                        fontSize = 32.sp
-                    )
-
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        OceanLinkIcon.values().forEach {
-                            Column(
-                                verticalArrangement = Arrangement.spacedBy(8.dp)
-                            ) {
-                                Text(
-                                    text = it.name.lowercase()
-                                        .replaceFirstChar {
-                                            if (it.isLowerCase()) it.titlecase(
-                                                Locale.ROOT
-                                            ) else it.toString()
-                                        },
-                                    fontSize = 20.sp
-                                )
-
-                                OceanLink(
-                                    text = "Link Text",
-                                    linkIcon = it,
-                                    isSmall = isSmall,
-                                    onClick = {}
-                                )
-
-                                OceanLink(
-                                    text = "Link Text",
-                                    type = OceanLinkType.INVERSE,
-                                    linkIcon = it,
-                                    isSmall = isSmall,
-                                    onClick = {}
-                                )
-
-                                OceanLink(
-                                    text = "Link Text",
-                                    type = OceanLinkType.NEUTRAL,
-                                    linkIcon = it,
-                                    isSmall = isSmall,
-                                    onClick = {}
-                                )
-
-                                OceanLink(
-                                    text = "Link Text",
-                                    isDisabled = true,
-                                    linkIcon = it,
-                                    isSmall = isSmall,
-                                    onClick = {}
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
+@Deprecated("Use OceanLink with style instead")
 @Composable
 fun OceanLink(
     text: String,
@@ -149,7 +73,6 @@ fun OceanLink(
     }
 }
 
-
 enum class OceanLinkType {
     PRIMARY, INVERSE, NEUTRAL, WARNING;
 
@@ -175,3 +98,237 @@ enum class OceanLinkIcon {
         }
     }
 }
+
+@Preview
+@Composable
+fun OceanLinkPreview() {
+    val text = "Link Text"
+    val stylesOptions = listOf(
+        LinkStyle(text = text, type = LinkType.Medium),
+        LinkStyle(text = text, type = LinkType.Small),
+        LinkStyle(text = text, type = LinkType.Tiny)
+    )
+    val icons = listOf(
+        OceanIcons.UNDEFINED,
+        OceanIcons.CHEVRON_RIGHT_SOLID,
+        OceanIcons.EXTERNAL_LINK_SOLID
+    )
+    val colors = listOf(
+        Color.Unspecified,
+        OceanColors.complementaryDown,
+        OceanColors.interfaceDarkDown
+    )
+
+    MaterialTheme {
+        Column(
+            modifier = Modifier
+                .background(color = Color.White)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            stylesOptions.forEach { style ->
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    OceanText(
+                        text = when (style.type) {
+                            LinkType.Tiny -> "Tiny"
+                            LinkType.Small -> "Small"
+                            else -> "Medium"
+                        },
+                        fontSize = OceanFontSize.lg
+                    )
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        icons.forEach { icon ->
+                            Column {
+                                OceanText(
+                                    text = when (icon) {
+                                        OceanIcons.CHEVRON_RIGHT_SOLID -> "Chevron"
+                                        OceanIcons.EXTERNAL_LINK_SOLID -> "External"
+                                        else -> "Default"
+                                    },
+                                    fontSize = OceanFontSize.sm
+                                )
+                                colors.forEachIndexed { index, color ->
+                                    ShowLink(style, color, icon, true)
+                                }
+                                ShowLink(style, Color.Unspecified, icon, false)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ShowLink(
+    style: LinkStyle,
+    color: Color,
+    icon: OceanIcons,
+    enabled: Boolean
+) {
+    when (style.type) {
+        LinkType.Medium -> OceanLink(
+            style = style.copy(
+                color = color,
+                icon = icon
+            ),
+            enabled = enabled,
+            onClick = {},
+        )
+
+        LinkType.Small -> OceanLink(
+            style = style.copy(
+                color = color,
+                icon = icon
+            ),
+            enabled = enabled,
+            onClick = {},
+        )
+
+        LinkType.Tiny -> {
+            OceanLink(
+                style = style.copy(
+                    color = color,
+                    icon = icon
+                ),
+                enabled = enabled,
+                onClick = {},
+            )
+        }
+    }
+}
+
+@Composable
+fun OceanLink(
+    style: LinkStyle,
+    enabled: Boolean = true,
+    onClick: () -> Unit,
+) {
+    when (style.type) {
+        LinkType.Medium -> MediumLink(
+            style = style,
+            onClick = onClick,
+            enabled = enabled
+        )
+
+        LinkType.Small -> SmallLink(
+            style = style,
+            onClick = onClick,
+            enabled = enabled
+        )
+
+        LinkType.Tiny -> TinyLink(
+            style = style,
+            onClick = onClick,
+            enabled = enabled
+        )
+    }
+}
+
+@Composable
+private fun MediumLink(
+    style: LinkStyle,
+    enabled: Boolean = true,
+    onClick: () -> Unit,
+) {
+    LinkText(
+        text = style.text,
+        style = TextStyle(
+            color = if (enabled) style.color else OceanColors.interfaceDarkUp,
+            fontSize = OceanFontSize.xs,
+        ),
+        enabled = enabled,
+        icon = style.icon,
+        iconSize = 16.dp,
+        onClick = onClick,
+    )
+}
+
+@Composable
+private fun SmallLink(
+    style: LinkStyle,
+    enabled: Boolean = true,
+    onClick: () -> Unit,
+) {
+    LinkText(
+        text = style.text,
+        style = TextStyle(
+            color = if (enabled) style.color else OceanColors.interfaceDarkUp,
+            fontSize = OceanFontSize.xxs,
+        ),
+        enabled = enabled,
+        icon = style.icon,
+        iconSize = 16.dp,
+        onClick = onClick,
+    )
+}
+
+@Composable
+private fun TinyLink(
+    style: LinkStyle,
+    enabled: Boolean = true,
+    onClick: () -> Unit,
+) {
+    LinkText(
+        text = style.text,
+        style = TextStyle(
+            color = if (enabled) style.color else OceanColors.interfaceDarkUp,
+            fontSize = OceanFontSize.xxxs,
+        ),
+        enabled = enabled,
+        icon = style.icon,
+        iconSize = 14.dp,
+        onClick = onClick,
+    )
+}
+
+@Composable
+private fun LinkText(
+    text: String,
+    style: TextStyle,
+    icon: OceanIcons,
+    iconSize: Dp,
+    enabled: Boolean = true,
+    onClick: () -> Unit
+) {
+    val color =
+        if (style.color != Color.Unspecified) style.color
+        else OceanColors.brandPrimaryPure
+
+    Row(
+        modifier = Modifier
+            .clickable(enabled = enabled, onClick = onClick),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        OceanText(
+            text = text,
+            color = color,
+            fontSize = style.fontSize,
+            textDecoration = TextDecoration.Underline,
+            fontFamily = OceanFontFamily.BaseMedium
+        )
+
+        if (icon != OceanIcons.UNDEFINED) {
+            OceanIcon(
+                iconType = icon,
+                tint = color,
+                modifier = Modifier
+                    .padding(start = OceanSpacing.xxxs)
+                    .size(iconSize),
+            )
+        }
+    }
+}
+
+data class LinkStyle(
+    val text: String,
+    val color: Color = Color.Unspecified,
+    val icon: OceanIcons = OceanIcons.UNDEFINED,
+    val type: LinkType = LinkType.Medium,
+)
+enum class LinkType { Medium, Small, Tiny }

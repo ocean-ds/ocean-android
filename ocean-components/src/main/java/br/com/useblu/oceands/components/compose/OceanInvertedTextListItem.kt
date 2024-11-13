@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -364,6 +365,8 @@ private fun InvertedTextListPreview() {
             style = InvertedListItemStyle.ContentInfo(
                 title = "Title",
                 description = "Description",
+                captionTitle = "Testeeeeee",
+                captionSubtitle = "123123123",
                 descriptionStyle = DescriptionStyle.Default(
                     icon = OceanIcons.PLACEHOLDER_SOLID,
                     color = OceanColors.statusPositiveDeep
@@ -532,17 +535,36 @@ private fun ContentInfoInvertedTextList(
         ) {
             if (style.descriptionStyle.icon != OceanIcons.UNDEFINED) {
                 Icon(
+                    modifier = Modifier.size(20.dp),
                     painter = painterResource(id = style.descriptionStyle.icon.icon),
                     tint = style.descriptionStyle.color,
                     contentDescription = null
                 )
             }
+
             OceanText(
                 text = style.description,
                 style = OceanTextStyle.paragraph.copy(
-                    color = style.descriptionStyle.color
+                    color = style.descriptionStyle.color,
+                    fontFamily = OceanFontFamily.BaseBold
                 ),
                 modifier = Modifier.weight(1f)
+            )
+        }
+
+        if (style.captionTitle != null) {
+            OceanText(
+                modifier = Modifier.padding(top = OceanSpacing.xxs),
+                text = style.captionTitle,
+                style = OceanTextStyle.captionBold,
+                color = OceanColors.interfaceDarkDown
+            )
+        }
+        if (style.captionSubtitle != null) {
+            OceanText(
+                text = style.captionSubtitle,
+                style = OceanTextStyle.captionBold,
+                color = OceanColors.interfaceDarkDown
             )
         }
     }
@@ -611,7 +633,9 @@ sealed interface InvertedListItemStyle {
     data class ContentInfo(
         val title: String,
         val description: String,
-        val descriptionStyle: DescriptionStyle.Default
+        val descriptionStyle: DescriptionStyle.Default,
+        val captionTitle: String? = null,
+        val captionSubtitle: String? = null
     ) : InvertedListItemStyle
 
     data class Strikethrough(

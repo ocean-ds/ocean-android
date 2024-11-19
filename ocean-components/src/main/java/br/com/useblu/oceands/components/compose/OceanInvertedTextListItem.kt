@@ -26,78 +26,9 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
-import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
-
-@Preview
-@Composable
-private fun OceanInvertedTextListItemPreview() {
-    Column(
-        modifier = Modifier
-            .background(color = OceanColors.interfaceLightDown)
-            .padding(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        OceanInvertedTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            type = InvertedTextListType.Default("Description")
-        )
-        OceanInvertedTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            type = InvertedTextListType.Inactive("Description")
-        )
-        OceanInvertedTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            type = InvertedTextListType.Positive("Description", icon = OceanIcons.EYE_OFF_OUTLINE)
-        )
-        OceanInvertedTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            type = InvertedTextListType.Warning("Description")
-        )
-        OceanInvertedTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            type = InvertedTextListType.Default(
-                description = "Description",
-                colorDescription = OceanColors.brandPrimaryDown,
-                icon = OceanIcons.DOCUMENT_TEXT_SOLID,
-                colorIcon = OceanColors.brandPrimaryDown
-            )
-        )
-        OceanInvertedTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            type = InvertedTextListType.Highlight(
-                description = "Description",
-                fontSize = OceanFontSize.xs
-            )
-        )
-        OceanInvertedTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            type = InvertedTextListType.Highlight("Description", tagLabel = "Label")
-        )
-        OceanInvertedTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            type = InvertedTextListType.StrikeThrough("Text", "Current Text")
-        )
-        OceanInvertedTextListItem(
-            modifier = Modifier,
-            title = "Title",
-            backgroundColor = OceanColors.interfaceDarkUp,
-            type = InvertedTextListType.Highlight("Description", tagLabel = "Label")
-        )
-
-        OceanInvertedTextListItemSkeleton(1)
-    }
-}
 
 @Deprecated(
     "Deprecated! Use OceanInvertedTextListItem with InvertedListItemStyle instead",
@@ -310,7 +241,7 @@ fun OceanInvertedTextListItemSkeleton(items: Int) {
     }
 }
 
-@Preview
+@Preview(heightDp = 1024)
 @Composable
 private fun InvertedTextListPreview() {
     Column(
@@ -365,11 +296,22 @@ private fun InvertedTextListPreview() {
             style = InvertedListItemStyle.ContentInfo(
                 title = "Title",
                 description = "Description",
-                captionTitle = "Testeeeeee",
-                captionSubtitle = "123123123",
                 descriptionStyle = DescriptionStyle.Default(
                     icon = OceanIcons.PLACEHOLDER_SOLID,
                     color = OceanColors.statusPositiveDeep
+                )
+            )
+        )
+
+        OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
+            style = InvertedListItemStyle.ContentInfo(
+                title = "Title",
+                description = "Description",
+                caption = "Caption",
+                descriptionStyle = DescriptionStyle.Default(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    color = OceanColors.statusNegativePure
                 )
             )
         )
@@ -387,9 +329,30 @@ private fun InvertedTextListPreview() {
         )
         OceanInvertedTextListItem(
             modifier = Modifier.background(color = OceanColors.interfaceLightPure),
+            style = InvertedListItemStyle.Highlight(
+                title = "Title",
+                description = "Description",
+                caption = "Caption",
+                tagStyle = OceanTagStyle.Default(
+                    label = "Label",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Warning
+                )
+            )
+        )
+        OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
             style = InvertedListItemStyle.HighlightLead(
                 title = "Title",
                 description = "Description",
+            )
+        )
+        OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
+            style = InvertedListItemStyle.HighlightLead(
+                title = "Title",
+                description = "Description",
+                caption = "Caption"
             )
         )
         OceanInvertedTextListItem(
@@ -398,6 +361,15 @@ private fun InvertedTextListPreview() {
                 title = "Title",
                 strokeText = "Stroke",
                 actualText = "Actual"
+            )
+        )
+        OceanInvertedTextListItem(
+            modifier = Modifier.background(color = OceanColors.interfaceLightPure),
+            style = InvertedListItemStyle.Strikethrough(
+                title = "Title",
+                strokeText = "Stroke",
+                actualText = "Actual",
+                caption = "Caption"
             )
         )
         OceanInvertedTextListItem(
@@ -443,7 +415,12 @@ fun OceanInvertedTextListItem(
         is InvertedListItemStyle.ContentInfo -> {
             ContentInfoInvertedTextList(
                 modifier = modifier,
-                style = style
+                style = ContentListStyle.Default(
+                    title = style.title,
+                    description = style.description,
+                    caption = style.caption
+                ),
+                descriptionStyle = style.descriptionStyle
             )
         }
 
@@ -453,7 +430,8 @@ fun OceanInvertedTextListItem(
                 content = ContentListStyle.Strikethrough(
                     title = style.title,
                     description = style.strokeText,
-                    newValue = style.actualText
+                    newValue = style.actualText,
+                    caption = style.caption
                 )
             )
         }
@@ -461,14 +439,23 @@ fun OceanInvertedTextListItem(
         is InvertedListItemStyle.Highlight -> {
             HighlightInvertedTextList(
                 modifier = modifier,
-                style = style
+                style = ContentListStyle.Default(
+                    title = style.title,
+                    description = style.description,
+                    caption = style.caption
+                ),
+                tagStyle = style.tagStyle
             )
         }
 
         is InvertedListItemStyle.HighlightLead -> {
             HighlightLeadInvertedTextList(
                 modifier = modifier,
-                style = style
+                style = ContentListStyle.Default(
+                    title = style.title,
+                    description = style.description,
+                    caption = style.caption
+                )
             )
         }
     }
@@ -517,7 +504,8 @@ private fun StrikethroughInvertedTextList(
 @Composable
 private fun ContentInfoInvertedTextList(
     modifier: Modifier = Modifier,
-    style: InvertedListItemStyle.ContentInfo
+    style: ContentListStyle.Default,
+    descriptionStyle: DescriptionStyle.Default
 ) {
     Column(
         modifier = modifier
@@ -533,11 +521,11 @@ private fun ContentInfoInvertedTextList(
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (style.descriptionStyle.icon != OceanIcons.UNDEFINED) {
+            if (descriptionStyle.icon != OceanIcons.UNDEFINED) {
                 Icon(
                     modifier = Modifier.size(20.dp),
-                    painter = painterResource(id = style.descriptionStyle.icon.icon),
-                    tint = style.descriptionStyle.color,
+                    painter = painterResource(id = descriptionStyle.icon.icon),
+                    tint = descriptionStyle.color,
                     contentDescription = null
                 )
             }
@@ -545,24 +533,17 @@ private fun ContentInfoInvertedTextList(
             OceanText(
                 text = style.description,
                 style = OceanTextStyle.paragraph.copy(
-                    color = style.descriptionStyle.color,
+                    color = descriptionStyle.color,
                     fontFamily = OceanFontFamily.BaseBold
                 ),
                 modifier = Modifier.weight(1f)
             )
         }
 
-        if (style.captionTitle != null) {
+        if (style.caption.isNotBlank()) {
             OceanText(
                 modifier = Modifier.padding(top = OceanSpacing.xxs),
-                text = style.captionTitle,
-                style = OceanTextStyle.captionBold,
-                color = OceanColors.interfaceDarkDown
-            )
-        }
-        if (style.captionSubtitle != null) {
-            OceanText(
-                text = style.captionSubtitle,
+                text = style.caption,
                 style = OceanTextStyle.captionBold,
                 color = OceanColors.interfaceDarkDown
             )
@@ -573,7 +554,8 @@ private fun ContentInfoInvertedTextList(
 @Composable
 private fun HighlightInvertedTextList(
     modifier: Modifier = Modifier,
-    style: InvertedListItemStyle.Highlight
+    style: ContentListStyle.Default,
+    tagStyle: OceanTagStyle
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs),
@@ -589,14 +571,24 @@ private fun HighlightInvertedTextList(
                 style = OceanTextStyle.description,
                 color = OceanColors.interfaceDarkDown
             )
+
             OceanText(
                 text = style.description,
                 style = OceanTextStyle.heading4,
             )
+
+            if (style.caption.isNotBlank()) {
+                OceanText(
+                    modifier = Modifier.padding(top = OceanSpacing.xxs),
+                    text = style.caption,
+                    style = OceanTextStyle.captionBold,
+                    color = OceanColors.interfaceDarkDown
+                )
+            }
         }
-        if (style.tagStyle != OceanTagStyle.None) {
+        if (tagStyle != OceanTagStyle.None) {
             OceanTag(
-                style = style.tagStyle
+                style = tagStyle
             )
         }
     }
@@ -605,7 +597,7 @@ private fun HighlightInvertedTextList(
 @Composable
 private fun HighlightLeadInvertedTextList(
     modifier: Modifier = Modifier,
-    style: InvertedListItemStyle.HighlightLead
+    style: ContentListStyle.Default
 ) {
     Column(
         modifier = modifier
@@ -617,42 +609,54 @@ private fun HighlightLeadInvertedTextList(
             style = OceanTextStyle.description,
             color = OceanColors.interfaceDarkDown
         )
+
         OceanText(
             text = style.description,
             style = OceanTextStyle.lead,
         )
+
+        if (style.caption.isNotBlank()) {
+            OceanText(
+                modifier = Modifier.padding(top = OceanSpacing.xxs),
+                text = style.caption,
+                style = OceanTextStyle.captionBold,
+                color = OceanColors.interfaceDarkDown
+            )
+        }
     }
 }
 
 sealed interface InvertedListItemStyle {
     data class Default(
         val content: ContentListStyle.Inverted,
-        val tagStyle: OceanTagStyle = OceanTagStyle.None
+        val tagStyle: OceanTagStyle = OceanTagStyle.None,
     ) : InvertedListItemStyle
 
     data class ContentInfo(
         val title: String,
         val description: String,
+        val caption: String = "",
         val descriptionStyle: DescriptionStyle.Default,
-        val captionTitle: String? = null,
-        val captionSubtitle: String? = null
     ) : InvertedListItemStyle
 
     data class Strikethrough(
         val title: String,
         val strokeText: String,
-        val actualText: String
+        val actualText: String,
+        val caption: String = "",
     ) : InvertedListItemStyle
 
     data class Highlight(
         val title: String,
         val description: String,
+        val caption: String = "",
         val tagStyle: OceanTagStyle = OceanTagStyle.None
     ) : InvertedListItemStyle
 
     data class HighlightLead(
         val title: String,
         val description: String,
+        val caption: String = "",
     ) : InvertedListItemStyle
 }
 

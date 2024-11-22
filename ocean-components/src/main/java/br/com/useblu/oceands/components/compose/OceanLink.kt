@@ -205,24 +205,28 @@ private fun ShowLink(
 
 @Composable
 fun OceanLink(
+    modifier: Modifier = Modifier,
     style: LinkStyle,
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
     when (style.type) {
         LinkType.Medium -> MediumLink(
+            modifier = modifier,
             style = style,
             onClick = onClick,
             enabled = enabled
         )
 
         LinkType.Small -> SmallLink(
+            modifier = modifier,
             style = style,
             onClick = onClick,
             enabled = enabled
         )
 
         LinkType.Tiny -> TinyLink(
+            modifier = modifier,
             style = style,
             onClick = onClick,
             enabled = enabled
@@ -232,11 +236,13 @@ fun OceanLink(
 
 @Composable
 private fun MediumLink(
+    modifier: Modifier,
     style: LinkStyle,
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
     LinkText(
+        modifier = modifier,
         text = style.text,
         style = TextStyle(
             color = if (enabled) style.color else OceanColors.interfaceDarkUp,
@@ -251,11 +257,13 @@ private fun MediumLink(
 
 @Composable
 private fun SmallLink(
+    modifier: Modifier,
     style: LinkStyle,
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
     LinkText(
+        modifier = modifier,
         text = style.text,
         style = TextStyle(
             color = if (enabled) style.color else OceanColors.interfaceDarkUp,
@@ -270,11 +278,13 @@ private fun SmallLink(
 
 @Composable
 private fun TinyLink(
+    modifier: Modifier,
     style: LinkStyle,
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
     LinkText(
+        modifier = modifier,
         text = style.text,
         style = TextStyle(
             color = if (enabled) style.color else OceanColors.interfaceDarkUp,
@@ -289,6 +299,7 @@ private fun TinyLink(
 
 @Composable
 private fun LinkText(
+    modifier: Modifier,
     text: String,
     style: TextStyle,
     icon: OceanIcons,
@@ -301,7 +312,7 @@ private fun LinkText(
         else OceanColors.brandPrimaryPure
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .clickable(enabled = enabled, onClick = onClick),
         verticalAlignment = Alignment.CenterVertically
     ) {

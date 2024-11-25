@@ -534,7 +534,7 @@ private fun ContentInfoInvertedTextList(
                 text = style.description,
                 style = OceanTextStyle.paragraph.copy(
                     color = descriptionStyle.color,
-                    fontFamily = OceanFontFamily.BaseBold
+                    fontFamily = OceanFontFamily.BaseRegular
                 ),
                 modifier = Modifier.weight(1f)
             )

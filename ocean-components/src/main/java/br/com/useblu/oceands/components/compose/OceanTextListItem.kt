@@ -36,7 +36,7 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
 
-@Preview
+@Preview(heightDp = 1024)
 @Composable
 private fun OceanTextListItemPreview() {
     Column(
@@ -183,6 +183,7 @@ fun OceanTextListItem(
     textInfo: String = "",
     textInfoColor: Color? = null,
     selected: Boolean = false,
+    showDivider: Boolean = true,
     textListStyle: OceanTextListStyle = OceanTextListStyle.DEFAULT,
     showError: Boolean = false,
     enabled: Boolean = true,
@@ -307,7 +308,7 @@ fun OceanTextListItem(
             }
         }
 
-        if(textListStyle != OceanTextListStyle.DEFAULT){
+        if(textListStyle != OceanTextListStyle.DEFAULT && showDivider){
             HorizontalDivider(
                 thickness = 1.dp,
                 color = OceanColors.interfaceLightDown

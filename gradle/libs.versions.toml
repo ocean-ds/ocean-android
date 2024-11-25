@@ -11,7 +11,7 @@ robolectric = "4.14.1"
 uiautomator = "2.3.0"
 lifecycleViewModel = "2.8.7"
 constraintLayout = "2.1.4"
-androidCoreKtx = "1.13.1"
+androidCoreKtx = "1.15.0"
 
 [libraries]
 androidx-benchmark-macro-junit4 = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }

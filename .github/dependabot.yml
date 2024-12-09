@@ -7,12 +7,5 @@ updates:
       time: "03:00"
       timezone: Brazil/East
     open-pull-requests-limit: 20
-    reviewers:
-      - "ocean-ds/core-android"
-      - "mariofelesdossantosjunior"
-      - "fernandozblu"
-    assignees:
-      - "mariofelesdossantosjunior"
-      - "fernandozblu"
     commit-message:
       prefix: "chore"

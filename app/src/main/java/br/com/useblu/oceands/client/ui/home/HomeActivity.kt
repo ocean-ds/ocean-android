@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -91,6 +93,7 @@ import br.com.useblu.oceands.components.compose.BottomSheetButtonsOrientation
 import br.com.useblu.oceands.components.compose.OceanBottomSheet
 import br.com.useblu.oceands.components.compose.OceanBottomSheetModel
 import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanUnorderedListItem
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -108,141 +111,147 @@ class HomeActivity : AppCompatActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         setContent {
             view = LocalView.current
 
             var showSheet by remember { mutableStateOf(false) }
+            OceanTheme {
+                Scaffold {
+                    if (showSheet) {
+                        OceanBottomSheet(
+                            model = OceanBottomSheetModel(
+                                title = "Title",
+                                message = "Message",
+                                subMessage = "SubMessage",
+                                imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
+                                icon = R.drawable.icon_easter_eggs,
+                                code = 2000,
+                                actionPositive = OceanBottomSheetModel.Button(
+                                    text = "Aceitar",
+                                    onClick = {
+                                        println("Positive Button Clicked")
+                                    }
+                                ),
+                                actionNegative = OceanBottomSheetModel.Button(
+                                    text = "Cancelar",
+                                    onClick = {
+                                        println("Negative Button Clicked")
+                                    }
+                                ),
+                                buttonsOrientation = BottomSheetButtonsOrientation.Vertical,
+                                onDismiss = {
+                                    showSheet = false
+                                    println("Dismissed: $it")
+                                }
+                            )
+                        )
+                    }
 
-            if (showSheet) {
-                OceanBottomSheet(
-                    model = OceanBottomSheetModel(
-                        title = "Title",
-                        message = "Message",
-                        subMessage = "SubMessage",
-                        imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
-                        icon = R.drawable.icon_easter_eggs,
-                        code = 2000,
-                        actionPositive = OceanBottomSheetModel.Button(
-                            text = "Aceitar",
-                            onClick = {
-                                println("Positive Button Clicked")
-                            }
-                        ),
-                        actionNegative = OceanBottomSheetModel.Button(
-                            text = "Cancelar",
-                            onClick = {
-                                println("Negative Button Clicked")
-                            }
-                        ),
-                        buttonsOrientation = BottomSheetButtonsOrientation.Vertical,
-                        onDismiss = {
-                            showSheet = false
-                            println("Dismissed: $it")
-                        }
-                    )
-                )
-            }
-
-            LazyColumn {
-                textAction(text = "Accordion", onClick = { onClickAccordion() })
-                textAction(text = "Alerts", onClick = { onClickAlert() })
-                textAction(text = "Badges", onClick = { onClickBadges() })
-                textAction(text = "Balance", onClick = { onClickBalance() })
-                textAction(text = "Buttons", onClick = { onClickButtons() })
-                textAction(text = "Bottom Navigation", onClick = { onClickBottomNavigation() })
-                textAction(text = "BottomSheet with Image", onClick = { onClickBottomSheetImage() })
-                textAction(
-                    text = "BottomSheet Vertical",
-                    onClick = { onClickBottomSheetVertical() })
-                textAction(
-                    text = "BottomSheet Vertical with Code",
-                    onClick = { onClickBottomSheetImageVerticalWithCode() })
-                textAction(
-                    text = "BottomSheet Vertical with BuildVersion",
-                    onClick = { onClickBottomSheetImageVerticalWithBuildVersion() })
-                textAction(
-                    text = "BottomSheet Vertical Without Image",
-                    onClick = { onClickBottomSheetVerticalWithoutImage() })
-                textAction(
-                    text = "BottomSheet Horizontal",
-                    onClick = { onClickBottomSheetHorizontal() })
-                textAction(
-                    text = "BottomSheet Critical",
-                    onClick = { onClickBottomSheetCritical() })
-                textAction(
-                    text = "BottomSheet Compose Content",
-                    onClick = { onClickBottomSheetWithCompose() })
-                textAction(text = "BottomSheet 100% Compose", onClick = { showSheet = true })
-                textAction(text = "BottomSheetList", onClick = { onOceanBottomListSheet() })
-                textAction(
-                    text = "BottomSheetList (body Icon)",
-                    onClick = { onOceanBottomListSheetWithBodyIcon() })
-                textAction(
-                    text = "BottomSheetList (button)",
-                    onClick = { onOceanBottomListSheetButton() })
-                textAction(
-                    text = "BottomSheetList (button with caption)",
-                    onClick = { onOceanBottomListSheetButtonWithCaption() })
-                textAction(
-                    text = "BottomSheetList (icon)",
-                    onClick = { onOceanBottomListSheetIcon() })
-                textAction(
-                    text = "BottomSheetList (icon + subtitle)",
-                    onClick = { onOceanBottomListSheetIcon() })
-                textAction(
-                    text = "BottomSheetList (Generic List)",
-                    onClick = { onOceanBottomListSheetWithGenericList() })
-                textAction(
-                    text = "BottomSheetList (search)",
-                    onClick = { onOceanBottomListSheetWithSearch() })
-                textAction(text = "Card Cross Sell", onClick = { cardCrossCellClick() })
-                textAction(text = "Card Group", onClick = { cardContentClick() })
-                textAction(text = "Card Item", onClick = { onClickCardItem() })
-                textAction(text = "Carousel", onClick = { carousel() })
-                textAction(text = "Chart Bar", onClick = ::chartBarClick)
-                textAction(text = "Chart Card", onClick = { chartCardClick() })
-                textAction(text = "Checkbox", onClick = { checkbox() })
-                textAction(text = "Chips", onClick = { onClickChips() })
-                textAction(
-                    text = "DatePicker Fullscreen",
-                    onClick = { onOceanDatePickerFullScreen() })
-                textAction(text = "Descriptor List Item", onClick = { descriptorList() })
-                textAction(text = "Detailed Card", onClick = { detailedCardClick() })
-                textAction(text = "Donut", onClick = { donutView() })
-                textAction(text = "File Uploader", onClick = { goToFileUploader() })
-                textAction(text = "Footer Blu", onClick = { onFooterBlu() })
-                textAction(text = "Group CTA", onClick = { onClickCta() })
-                textAction(text = "Header App", onClick = { onClickHeaderApp() })
-                textAction(text = "Informative Card", onClick = { informativeCardClick() })
-                textAction(text = "Input", onClick = { onClickInputs() })
-                textAction(text = "Options Card", onClick = { clickOptionsCard() })
-                textAction(text = "Progress Bar", onClick = { clickProgressBar() })
-                textAction(text = "Radio", onClick = { onClickRadio() })
-                textAction(text = "Shortcuts", onClick = { shortcuts() })
-                textAction(text = "SnackBar", onClick = { onClickSnackBar(view) })
-                textAction(text = "SnackBar + Action", onClick = { onClickSnackBarAction(view) })
-                textAction(text = "Status List Item", onClick = { statusListItem() })
-                textAction(text = "Step", onClick = { stepview() })
-                textAction(text = "Switch", onClick = { onClickSwitch() })
-                textAction(text = "Tab", onClick = { onClickTab() })
-                textAction(text = "Tag", onClick = { onClickTags() })
-                textAction(text = "Text Link", onClick = { onClickTextLink() })
-                textAction(text = "Text List Expandable", onClick = { listItemsExpandable() })
-                textAction(text = "Text List Icon Item", onClick = { textListIconItem() })
-                textAction(text = "Text List Item", onClick = { textListItem() })
-                textAction(text = "Text List Inverted Item", onClick = { textListInvertedItem() })
-                textAction(text = "Text List Inline Item", onClick = { textListInlineItem() })
-                textAction(text = "Text List Settings", onClick = { listItemsSettings() })
-                textAction(text = "List Ordered", onClick = { listOrderedClick() })
-                textAction(text = "List Subheader", onClick = { listSubheaderClick() })
-                textAction(text = "Toast", onClick = { onClickToast() })
-                textAction(text = "Tooltip", onClick = { onClickTooltip(view) })
-                textAction(text = "TopBar", onClick = { topBarClick() })
-                textAction(text = "Transaction List", onClick = { transactionListClick() })
-                textAction(text = "Transaction Footer", onClick = { transactionFooter() })
-                textAction(text = "Typography", onClick = { onClickTypography() })
-                textAction(text = "Unordered List Item", onClick = { onClickUnorderedListItem() })
+                    LazyColumn(
+                        modifier = Modifier.padding(it)
+                    ) {
+                        textAction(text = "Accordion", onClick = { onClickAccordion() })
+                        textAction(text = "Alerts", onClick = { onClickAlert() })
+                        textAction(text = "Badges", onClick = { onClickBadges() })
+                        textAction(text = "Balance", onClick = { onClickBalance() })
+                        textAction(text = "Buttons", onClick = { onClickButtons() })
+                        textAction(text = "Bottom Navigation", onClick = { onClickBottomNavigation() })
+                        textAction(text = "BottomSheet with Image", onClick = { onClickBottomSheetImage() })
+                        textAction(
+                            text = "BottomSheet Vertical",
+                            onClick = { onClickBottomSheetVertical() })
+                        textAction(
+                            text = "BottomSheet Vertical with Code",
+                            onClick = { onClickBottomSheetImageVerticalWithCode() })
+                        textAction(
+                            text = "BottomSheet Vertical with BuildVersion",
+                            onClick = { onClickBottomSheetImageVerticalWithBuildVersion() })
+                        textAction(
+                            text = "BottomSheet Vertical Without Image",
+                            onClick = { onClickBottomSheetVerticalWithoutImage() })
+                        textAction(
+                            text = "BottomSheet Horizontal",
+                            onClick = { onClickBottomSheetHorizontal() })
+                        textAction(
+                            text = "BottomSheet Critical",
+                            onClick = { onClickBottomSheetCritical() })
+                        textAction(
+                            text = "BottomSheet Compose Content",
+                            onClick = { onClickBottomSheetWithCompose() })
+                        textAction(text = "BottomSheet 100% Compose", onClick = { showSheet = true })
+                        textAction(text = "BottomSheetList", onClick = { onOceanBottomListSheet() })
+                        textAction(
+                            text = "BottomSheetList (body Icon)",
+                            onClick = { onOceanBottomListSheetWithBodyIcon() })
+                        textAction(
+                            text = "BottomSheetList (button)",
+                            onClick = { onOceanBottomListSheetButton() })
+                        textAction(
+                            text = "BottomSheetList (button with caption)",
+                            onClick = { onOceanBottomListSheetButtonWithCaption() })
+                        textAction(
+                            text = "BottomSheetList (icon)",
+                            onClick = { onOceanBottomListSheetIcon() })
+                        textAction(
+                            text = "BottomSheetList (icon + subtitle)",
+                            onClick = { onOceanBottomListSheetIcon() })
+                        textAction(
+                            text = "BottomSheetList (Generic List)",
+                            onClick = { onOceanBottomListSheetWithGenericList() })
+                        textAction(
+                            text = "BottomSheetList (search)",
+                            onClick = { onOceanBottomListSheetWithSearch() })
+                        textAction(text = "Card Cross Sell", onClick = { cardCrossCellClick() })
+                        textAction(text = "Card Group", onClick = { cardContentClick() })
+                        textAction(text = "Card Item", onClick = { onClickCardItem() })
+                        textAction(text = "Carousel", onClick = { carousel() })
+                        textAction(text = "Chart Bar", onClick = ::chartBarClick)
+                        textAction(text = "Chart Card", onClick = { chartCardClick() })
+                        textAction(text = "Checkbox", onClick = { checkbox() })
+                        textAction(text = "Chips", onClick = { onClickChips() })
+                        textAction(
+                            text = "DatePicker Fullscreen",
+                            onClick = { onOceanDatePickerFullScreen() })
+                        textAction(text = "Descriptor List Item", onClick = { descriptorList() })
+                        textAction(text = "Detailed Card", onClick = { detailedCardClick() })
+                        textAction(text = "Donut", onClick = { donutView() })
+                        textAction(text = "File Uploader", onClick = { goToFileUploader() })
+                        textAction(text = "Footer Blu", onClick = { onFooterBlu() })
+                        textAction(text = "Group CTA", onClick = { onClickCta() })
+                        textAction(text = "Header App", onClick = { onClickHeaderApp() })
+                        textAction(text = "Informative Card", onClick = { informativeCardClick() })
+                        textAction(text = "Input", onClick = { onClickInputs() })
+                        textAction(text = "Options Card", onClick = { clickOptionsCard() })
+                        textAction(text = "Progress Bar", onClick = { clickProgressBar() })
+                        textAction(text = "Radio", onClick = { onClickRadio() })
+                        textAction(text = "Shortcuts", onClick = { shortcuts() })
+                        textAction(text = "SnackBar", onClick = { onClickSnackBar(view) })
+                        textAction(text = "SnackBar + Action", onClick = { onClickSnackBarAction(view) })
+                        textAction(text = "Status List Item", onClick = { statusListItem() })
+                        textAction(text = "Step", onClick = { stepview() })
+                        textAction(text = "Switch", onClick = { onClickSwitch() })
+                        textAction(text = "Tab", onClick = { onClickTab() })
+                        textAction(text = "Tag", onClick = { onClickTags() })
+                        textAction(text = "Text Link", onClick = { onClickTextLink() })
+                        textAction(text = "Text List Expandable", onClick = { listItemsExpandable() })
+                        textAction(text = "Text List Icon Item", onClick = { textListIconItem() })
+                        textAction(text = "Text List Item", onClick = { textListItem() })
+                        textAction(text = "Text List Inverted Item", onClick = { textListInvertedItem() })
+                        textAction(text = "Text List Inline Item", onClick = { textListInlineItem() })
+                        textAction(text = "Text List Settings", onClick = { listItemsSettings() })
+                        textAction(text = "List Ordered", onClick = { listOrderedClick() })
+                        textAction(text = "List Subheader", onClick = { listSubheaderClick() })
+                        textAction(text = "Toast", onClick = { onClickToast() })
+                        textAction(text = "Tooltip", onClick = { onClickTooltip(view) })
+                        textAction(text = "TopBar", onClick = { topBarClick() })
+                        textAction(text = "Transaction List", onClick = { transactionListClick() })
+                        textAction(text = "Transaction Footer", onClick = { transactionFooter() })
+                        textAction(text = "Typography", onClick = { onClickTypography() })
+                        textAction(text = "Unordered List Item", onClick = { onClickUnorderedListItem() })
+                    }
+                }
             }
         }
     }

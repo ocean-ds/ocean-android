@@ -10,72 +10,61 @@
             type="br.com.useblu.oceands.client.ui.toobar.TopbarViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
-        tools:context=".ui.toobar.TopbarActivity">
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/compose_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingVertical="@dimen/ocean_spacing_inline_xs">
+            android:layout_height="wrap_content" />
 
-            <include
-                android:id="@+id/topbar_default"
-                layout="@layout/ocean_top_bar"
-                app:click="@{viewmodel::clickBack}"
-                app:iconInvisible="@{false}"
-                app:title="@{@string/title}" />
+        <include
+            android:id="@+id/topbar_default"
+            layout="@layout/ocean_top_bar"
+            app:click="@{viewmodel::clickBack}"
+            app:iconInvisible="@{false}"
+            app:title="@{@string/title}" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <include
+            android:id="@+id/topbar_primary"
+            layout="@layout/ocean_top_bar_inverse"
+            app:title="@{@string/title}" />
 
-            <include
-                android:id="@+id/topbar_primary"
-                layout="@layout/ocean_top_bar_inverse"
-                app:title="@{@string/title}" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
-            <androidx.compose.ui.platform.ComposeView
-                android:id="@+id/compose_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <include
+            android:id="@+id/topbar_complementary"
+            layout="@layout/ocean_top_bar_complementary"
+            app:title="@{@string/title}" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <include
-                android:id="@+id/topbar_complementary"
-                layout="@layout/ocean_top_bar_complementary"
-                app:title="@{@string/title}" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
 
-            <Button
-                android:id="@+id/button_show_shadow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Show Shadow"
-                android:onClick="@{() -> viewmodel.showShadow()}"/>
+        <Button
+            android:id="@+id/button_show_shadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewmodel.showShadow()}"
+            android:text="Show Shadow" />
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </ScrollView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>

@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.extensions.compose
 
+import android.app.Activity
 import android.graphics.Typeface
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
@@ -8,12 +9,19 @@ import android.text.style.StyleSpan
 import android.text.style.URLSpan
 import android.text.style.UnderlineSpan
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -23,6 +31,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.text.HtmlCompat
+import androidx.core.view.WindowCompat
 import br.com.useblu.oceands.ui.compose.OceanColors
 
 @Composable
@@ -139,4 +148,33 @@ fun Modifier.border(
             }
         }
     }
+}
+
+fun Color.isDarkColor(): Boolean {
+    val darkness = 1 - (this.red * 0.299 + this.green * 0.587 + this.blue * 0.114)
+    return darkness >= 0.5
+}
+
+@Composable
+fun Modifier.topBarBackground(color: Color): Modifier {
+    val view = LocalView.current
+
+    val currentWindow = (view.context as? Activity)?.window
+
+    if (currentWindow != null) {
+        SideEffect {
+            WindowCompat.getInsetsController(currentWindow, view)
+                .isAppearanceLightStatusBars = !color.isDarkColor()
+        }
+    }
+
+    return this.then(
+        background(color)
+    ).then(
+        windowInsetsPadding(
+            WindowInsets.systemBars.only(
+                WindowInsetsSides.Horizontal + WindowInsetsSides.Top
+            )
+        )
+    )
 }

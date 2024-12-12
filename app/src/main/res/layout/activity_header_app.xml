@@ -1,50 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-
-        <variable
-            name="viewmodel"
-            type="br.com.useblu.oceands.client.ui.headerapp.HeaderAppViewModel" />
-
-    </data>
-
-    <LinearLayout
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/compose_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.headerapp.HeaderAppActivity">
+        android:layout_height="wrap_content" />
 
-        <androidx.compose.ui.platform.ComposeView
-            android:id="@+id/compose_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/toggle_scroll_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Toggle scroll"
-            android:layout_gravity="center"/>
-
-        <Button
-            android:id="@+id/toggle_loading_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Toggle loading"
-            android:layout_gravity="center"/>
-
-        <Button
-            android:id="@+id/toggle_hide_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Toggle esconder saldo"
-            android:layout_gravity="center"/>
-
-    </LinearLayout>
 </layout>

@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -161,7 +162,11 @@ fun Modifier.topBarBackground(color: Color): Modifier {
 
     val currentWindow = (view.context as? Activity)?.window
 
-    if (currentWindow != null) {
+    val windowInsets = WindowInsets.systemBars.only(
+        WindowInsetsSides.Horizontal + WindowInsetsSides.Top
+    )
+
+    if (currentWindow != null && windowInsets.getTop(LocalDensity.current) > 0) {
         SideEffect {
             WindowCompat.getInsetsController(currentWindow, view)
                 .isAppearanceLightStatusBars = !color.isDarkColor()
@@ -171,10 +176,6 @@ fun Modifier.topBarBackground(color: Color): Modifier {
     return this.then(
         background(color)
     ).then(
-        windowInsetsPadding(
-            WindowInsets.systemBars.only(
-                WindowInsetsSides.Horizontal + WindowInsetsSides.Top
-            )
-        )
+        windowInsetsPadding(windowInsets)
     )
 }

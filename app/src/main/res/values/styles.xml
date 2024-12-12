@@ -1,10 +1,16 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Ocean">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+<!--        <item name="android:windowBackground">@color/ocean_color_brand_primary_pure</item>-->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="dialogCornerRadius">10dp</item>
+
+        <!--Required Api 21 above-->
+        <item name="android:autofilledHighlight">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.BottomSheetDialog</item>
     </style>
 
 </resources>

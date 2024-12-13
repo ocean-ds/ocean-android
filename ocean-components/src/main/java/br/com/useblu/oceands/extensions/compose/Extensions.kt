@@ -173,9 +173,7 @@ fun Modifier.topBarBackground(color: Color): Modifier {
         }
     }
 
-    return this.then(
-        background(color)
-    ).then(
-        windowInsetsPadding(windowInsets)
-    )
+    return this
+        .background(color)
+        .windowInsetsPadding(windowInsets)
 }

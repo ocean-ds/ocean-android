@@ -155,7 +155,8 @@ private fun MinimalHeaderMenu(
             tint = OceanColors.interfaceLightPure
         )
 
-        if (badgeCount > 0) {
+        val shouldShowBadge = badgeCount > 0
+        if (shouldShowBadge) {
             Box(
                 modifier = Modifier
                     .padding(OceanSpacing.xxs)

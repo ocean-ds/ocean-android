@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.extensions.compose.topBarBackground
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
@@ -195,7 +196,8 @@ private fun TopBar(
     visibleShadow: Boolean
 ) {
     Column(
-        modifier = Modifier.background(OceanColors.interfaceLightPure)
+        modifier = Modifier
+            .topBarBackground(OceanColors.interfaceLightPure)
     ) {
         Row(
             modifier = Modifier

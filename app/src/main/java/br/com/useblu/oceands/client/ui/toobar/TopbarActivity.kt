@@ -40,7 +40,7 @@ class TopbarActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
         binding.composeView.setContent {
             val shadowState = viewModel.shadowState.observeAsState(false)
             OceanTopBarInverse(
-                title = "Title",
+                title = "TopBar Compose",
                 onClickIcon = { println("onClick") },
                 onClickToolbar = { println("onClickToolbar") },
                 visibleShadow = shadowState.value
@@ -68,14 +68,17 @@ class TopbarActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
                 println("Click item small")
                 true
             }
+
             R.id.toggle_size_medium -> {
                 println("Click item medium")
                 true
             }
+
             R.id.toggle_size_large -> {
                 println("Click item large")
                 true
             }
+
             else -> false
         }
     }

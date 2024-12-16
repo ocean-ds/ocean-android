@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
@@ -31,7 +32,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun OceanCarouselWithComponents(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     pagerModifier: Modifier = Modifier,
     items: Array<OceanCarouselComponentItem>,
     indicator: OceanCarouselIndicator = OceanCarouselIndicator.PAGE,
@@ -124,6 +125,8 @@ private fun PageIndicator(
         OceanCarouselIndicator.PAGE -> {
             if (type.canShowPages(count = pages)) {
                 OceanPageIndicator(
+                    modifier = Modifier
+                        .padding(top = OceanSpacing.xxs),
                     pages = pages,
                     pagerState = pagerState
                 )

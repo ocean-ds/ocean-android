@@ -44,6 +44,7 @@ import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
 import br.com.useblu.oceands.client.ui.carditem.CardItemActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
+import br.com.useblu.oceands.client.ui.carouselwithcomponents.CarouselWithComponentsActivity
 import br.com.useblu.oceands.client.ui.chartbar.ChartBarActivity
 import br.com.useblu.oceands.client.ui.chartcard.ChartCardActivity
 import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
@@ -207,6 +208,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Card Group", onClick = { cardContentClick() })
                         textAction(text = "Card Item", onClick = { onClickCardItem() })
                         textAction(text = "Carousel", onClick = { carousel() })
+                        textAction(text = "Carousel With Components", onClick = { carouselWithComponents() })
                         textAction(text = "Chart Bar", onClick = ::chartBarClick)
                         textAction(text = "Chart Card", onClick = { chartCardClick() })
                         textAction(text = "Checkbox", onClick = { checkbox() })
@@ -395,6 +397,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun carousel() {
         val intent = Intent(this, CarouselActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun carouselWithComponents() {
+        val intent = Intent(this, CarouselWithComponentsActivity::class.java)
         startActivity(intent)
     }
 

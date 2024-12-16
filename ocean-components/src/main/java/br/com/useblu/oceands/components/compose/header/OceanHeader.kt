@@ -76,7 +76,7 @@ fun MinimalHeader(
     Row(
         modifier = modifier
             .background(OceanColors.brandPrimaryPure)
-            .height(64.dp),
+            .height(OceanSpacing.xxl),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(

@@ -1,16 +1,13 @@
 package br.com.useblu.oceands.model.compose.carouselwithcomponents
 
 enum class OceanCarouselIndicator {
-    PAGE {
-        override fun canShowPages(count: Int): Boolean {
-            return count > 1
-        }
-    },
-    NONE {
-        override fun canShowPages(count: Int): Boolean {
-            return false
-        }
-    };
+    PAGE,
+    NONE;
 
-    abstract fun canShowPages(count: Int): Boolean
+    fun canShowPages(count: Int): Boolean {
+        return when(this) {
+            PAGE -> count > 1
+            NONE -> false
+        }
+    }
 }

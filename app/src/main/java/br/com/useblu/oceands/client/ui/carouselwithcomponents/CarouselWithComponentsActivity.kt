@@ -79,24 +79,24 @@ private fun CarouselWithComponentsActivityContent(
         ) {
             Text(text = "Default", modifier = Modifier.padding(horizontal = 16.dp))
             OceanCarouselWithComponents(
-                items = firstEntries.toTypedArray()
+                items = firstEntries
             )
 
             Text(text = "Without page indicator", modifier = Modifier.padding(horizontal = 16.dp))
             OceanCarouselWithComponents(
-                items = secondEntries.toTypedArray(),
+                items = secondEntries,
                 indicator = OceanCarouselIndicator.NONE
             )
 
             Text(text = "Auto cycle", modifier = Modifier.padding(horizontal = 16.dp))
             OceanCarouselWithComponents(
-                items = thirdEntries.toTypedArray(),
+                items = thirdEntries,
                 cycle = OceanCarouselCycle.Auto(time = 1000)
             )
 
             Text(text = "Unique item", modifier = Modifier.padding(horizontal = 16.dp))
             OceanCarouselWithComponents(
-                items = fourthEntries.toTypedArray()
+                items = fourthEntries
             )
         }
     }

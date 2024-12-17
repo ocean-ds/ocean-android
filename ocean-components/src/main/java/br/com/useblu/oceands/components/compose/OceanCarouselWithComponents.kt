@@ -32,7 +32,7 @@ import kotlinx.coroutines.delay
 fun OceanCarouselWithComponents(
     modifier: Modifier = Modifier,
     pagerModifier: Modifier = Modifier,
-    items: Array<OceanCarouselComponentItem>,
+    items: List<OceanCarouselComponentItem>,
     indicator: OceanCarouselIndicator = OceanCarouselIndicator.PAGE,
     cycle: OceanCarouselCycle = OceanCarouselCycle.Manual,
     initialPage: Int = 0
@@ -106,7 +106,7 @@ private fun CarouselCycle(
                         pagerState.animateScrollToPage(
                             page = (pagerState.currentPage + 1) % pagerState.pageCount
                         )
-                    }.getOrThrow()
+                    }.getOrNull()
                 }
             }
         }
@@ -154,7 +154,7 @@ fun OceanCarouselWithComponentsPreview() {
 
     OceanCarouselWithComponents(
         modifier = Modifier,
-        items = carouselItems.toTypedArray(),
+        items = carouselItems,
         indicator = OceanCarouselIndicator.PAGE,
         cycle = OceanCarouselCycle.Manual,
         initialPage = 0

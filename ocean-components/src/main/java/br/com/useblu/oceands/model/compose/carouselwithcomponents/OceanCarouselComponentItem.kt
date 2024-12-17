@@ -7,4 +7,4 @@ import androidx.compose.runtime.Immutable
 data class OceanCarouselComponentItem(
     val component: @Composable (() -> Unit),
     val action: () -> Unit = {}
-) {}
+)

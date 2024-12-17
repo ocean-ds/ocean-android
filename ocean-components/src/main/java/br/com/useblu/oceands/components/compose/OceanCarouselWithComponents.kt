@@ -100,14 +100,7 @@ private fun CarouselCycle(
                 return@LaunchedEffect
             }
             is OceanCarouselCycle.Auto -> {
-                while (true) {
-                    runCatching {
-                        delay(timeMillis = cycle.time)
-                        pagerState.animateScrollToPage(
-                            page = (pagerState.currentPage + 1) % pagerState.pageCount
-                        )
-                    }.getOrNull()
-                }
+                doCycle(cycle = cycle, pagerState = pagerState)
             }
         }
     }
@@ -161,5 +154,12 @@ fun OceanCarouselWithComponentsPreview() {
     )
 }
 
-
-
+private suspend fun doCycle(cycle: OceanCarouselCycle.Auto, pagerState: PagerState) {
+    run {
+        delay(timeMillis = cycle.time)
+        pagerState.animateScrollToPage(
+            page = (pagerState.currentPage + 1) % pagerState.pageCount
+        )
+        doCycle(cycle = cycle, pagerState = pagerState)
+    }
+}

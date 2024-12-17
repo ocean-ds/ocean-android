@@ -155,7 +155,7 @@ fun OceanCarouselWithComponentsPreview() {
 }
 
 private suspend fun doCycle(cycle: OceanCarouselCycle.Auto, pagerState: PagerState) {
-    run {
+    runCatching {
         delay(timeMillis = cycle.time)
         pagerState.animateScrollToPage(
             page = (pagerState.currentPage + 1) % pagerState.pageCount

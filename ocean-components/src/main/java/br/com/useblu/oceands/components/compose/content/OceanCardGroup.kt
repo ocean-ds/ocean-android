@@ -20,11 +20,16 @@ import br.com.useblu.oceands.components.compose.CardCta
 import br.com.useblu.oceands.components.compose.OceanBadge
 import br.com.useblu.oceands.components.compose.OceanBadgeSize
 import br.com.useblu.oceands.components.compose.OceanProgressBar
+import br.com.useblu.oceands.components.compose.OceanTag
+import br.com.useblu.oceands.components.compose.OceanTagLayout
+import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.content.CardGroupType.DEFAULT
 import br.com.useblu.oceands.components.compose.content.CardGroupType.INVERTED
 import br.com.useblu.oceands.model.OceanBadgeType
+import br.com.useblu.oceands.model.compose.OceanTagModel
+import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
@@ -48,7 +53,11 @@ fun OceanCardGroupPreview() {
                 label = "Recomendado",
                 showProgress = false,
                 progressBar = 0.5f,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
+                tag = OceanTagModel(
+                    type = OceanTagType.Warning,
+                    text = "Warning tag example"
+                )
             )
 
             OceanCardGroup(
@@ -59,7 +68,11 @@ fun OceanCardGroupPreview() {
                 actionTitle = "Call to Action",
                 showProgress = false,
                 progressBar = 0.75f,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
+                tag = OceanTagModel(
+                    type = OceanTagType.Highlight,
+                    text = "Highlight tag example"
+                )
             )
 
             OceanCardGroup(
@@ -99,7 +112,8 @@ fun OceanCardGroup(
     @FloatRange(0.0, 1.0) progressBar: Float? = null,
     showProgress: Boolean = false,
     label: String? = null,
-    type: CardGroupType = DEFAULT
+    type: CardGroupType = DEFAULT,
+    tag: OceanTagModel? = null
 ) {
     Box(modifier = modifier) {
         val paddingTop = if (label != null) 9.dp else 0.dp
@@ -144,6 +158,18 @@ fun OceanCardGroup(
                             text = caption,
                             style = OceanTextStyle.captionBold,
                             color = OceanColors.interfaceDarkDown
+                        )
+                    }
+
+                    tag?.let { tag ->
+                        OceanTag(
+                            modifier = Modifier
+                                .padding(top = OceanSpacing.xxs),
+                            style = OceanTagStyle.Default(
+                                label = tag.text,
+                                layout = OceanTagLayout.Medium(),
+                                type = tag.type
+                            )
                         )
                     }
                 }

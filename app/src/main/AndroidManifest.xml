@@ -23,6 +23,7 @@
         <activity android:name=".ui.balance.BalanceActivity" />
         <activity android:name=".ui.shortcuts.ShortcutsActivity" />
         <activity android:name=".ui.carousel.CarouselActivity" />
+        <activity android:name=".ui.carouselwithcomponents.CarouselWithComponentsActivity" />
         <activity android:name=".ui.caption.CaptionActivity" />
         <activity android:name=".ui.chips.ChipsActivity" />
         <activity android:name=".ui.description.DescriptionActivity" />

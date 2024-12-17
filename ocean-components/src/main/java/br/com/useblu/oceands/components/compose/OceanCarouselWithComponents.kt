@@ -108,7 +108,7 @@ private fun CarouselCycle(
                         pagerState.animateScrollToPage(
                             page = (pagerState.currentPage + 1) % pagerState.pageCount
                         )
-                    }
+                    }.getOrThrow()
                 }
             }
         }

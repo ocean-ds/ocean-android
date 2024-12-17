@@ -46,7 +46,6 @@ fun OceanCarouselWithComponents(
 
     CarouselCycle(
         cycle = cycle,
-        items = items,
         pagerState = pagerState
     )
 
@@ -95,7 +94,6 @@ fun OceanCarouselWithComponents(
 @Composable
 private fun CarouselCycle(
     cycle: OceanCarouselCycle,
-    items: Array<OceanCarouselComponentItem>,
     pagerState: PagerState,
 ) {
     LaunchedEffect(key1 = cycle) {
@@ -104,11 +102,13 @@ private fun CarouselCycle(
                 return@LaunchedEffect
             }
             is OceanCarouselCycle.Auto -> {
-                runCatching {
-                    delay(timeMillis = cycle.time)
-                    pagerState.animateScrollToPage(
-                        page = (pagerState.currentPage + 1) % items.size
-                    )
+                while (true) {
+                    runCatching {
+                        delay(timeMillis = cycle.time)
+                        pagerState.animateScrollToPage(
+                            page = (pagerState.currentPage + 1) % pagerState.pageCount
+                        )
+                    }
                 }
             }
         }

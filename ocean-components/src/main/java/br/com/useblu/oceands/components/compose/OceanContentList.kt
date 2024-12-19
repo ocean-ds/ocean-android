@@ -106,7 +106,7 @@ private fun OceanContentListPreview() {
         OceanContentList(
             style = ContentListStyle.Inverted(
                 title = "Title",
-                description = "Description",
+                description = "Description Unchanged",
                 caption = "Caption",
                 unchanged = true
             ),
@@ -122,7 +122,6 @@ private fun OceanContentListPreview() {
             ),
             isLoading = true
         )
-
     }
 }
 
@@ -138,7 +137,7 @@ private fun OceanContentListTransactionPreview() {
     ) {
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListTransactionStyle.Transaction(
+            style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
@@ -150,7 +149,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListTransactionStyle.Transaction(
+            style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
@@ -163,7 +162,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListTransactionStyle.Transaction(
+            style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
@@ -174,7 +173,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListTransactionStyle.Transaction(
+            style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
@@ -186,7 +185,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListTransactionStyle.Transaction(
+            style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 caption = "Caption"
             ),
@@ -194,7 +193,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListTransactionStyle.Transaction(
+            style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 type = TransactionType.DEFAULT
             ),
@@ -202,7 +201,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListTransactionStyle.Transaction(
+            style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 type = TransactionType.OUTFLOW
             ),
@@ -210,7 +209,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListTransactionStyle.Transaction(
+            style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 type = TransactionType.INFLOW,
             ),
@@ -218,7 +217,7 @@ private fun OceanContentListTransactionPreview() {
 
         OceanSpacing.StackXXS()
         OceanContentList(
-            style = ContentListTransactionStyle.Transaction(
+            style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 type = TransactionType.CANCELED
             ),
@@ -251,7 +250,7 @@ fun OceanContentList(
             enabled = enabled
         )
 
-        is ContentListTransactionStyle.Transaction -> TransactionContentList(
+        is ContentListStyle.Transaction -> TransactionContentList(
             modifier = modifier,
             style = style,
             enabled = enabled
@@ -305,7 +304,7 @@ private fun DefaultContentList(
         OceanText(
             text = style.title,
             style = configTextStyle(
-                OceanTextStyle.paragraph.copy(OceanColors.interfaceDarkPure),
+                style.titleStyle ?: OceanTextStyle.paragraph.copy(OceanColors.interfaceDarkPure),
                 enabled
             )
         )
@@ -313,7 +312,10 @@ private fun DefaultContentList(
         if (style.description.isNotBlank()) {
             OceanText(
                 text = style.description,
-                style = configTextStyle(OceanTextStyle.description, enabled)
+                style = configTextStyle(
+                    style.descriptionStyle ?: OceanTextStyle.description,
+                    enabled
+                )
             )
         }
 
@@ -339,7 +341,7 @@ private fun InvertedContentList(
         OceanText(
             text = style.title,
             style = configTextStyle(
-                OceanTextStyle.description,
+                style.titleStyle ?: OceanTextStyle.description,
                 enabled
             )
         )
@@ -347,7 +349,8 @@ private fun InvertedContentList(
         OceanText(
             text = style.description,
             style = configTextStyle(
-                OceanTextStyle.paragraph.copy(OceanColors.interfaceDarkPure),
+                style.descriptionStyle
+                    ?: OceanTextStyle.paragraph.copy(OceanColors.interfaceDarkPure),
                 enabled && !style.unchanged
             )
         )
@@ -374,7 +377,7 @@ private fun StrikethroughContentList(
         OceanText(
             text = style.title,
             style = configTextStyle(
-                OceanTextStyle.description,
+                style.titleStyle ?: OceanTextStyle.description,
                 enabled
             )
         )
@@ -384,7 +387,7 @@ private fun StrikethroughContentList(
         ) {
             OceanText(
                 text = style.description,
-                style = OceanTextStyle.paragraph,
+                style = style.descriptionStyle ?: OceanTextStyle.paragraph,
                 textDecoration = if (style.newValue.isNotBlank()) TextDecoration.LineThrough else null,
                 color = OceanColors.interfaceDarkDown
             )
@@ -393,7 +396,7 @@ private fun StrikethroughContentList(
                 OceanText(
                     modifier = Modifier.padding(start = OceanSpacing.xxxs),
                     text = style.newValue,
-                    style = OceanTextStyle.paragraph,
+                    style = style.descriptionStyle ?: OceanTextStyle.paragraph,
                     color = OceanColors.statusPositiveDeep
                 )
             }
@@ -412,7 +415,7 @@ private fun StrikethroughContentList(
 @Composable
 private fun TransactionContentList(
     modifier: Modifier,
-    style: ContentListTransactionStyle.Transaction,
+    style: ContentListStyle.Transaction,
     enabled: Boolean = true
 ) {
     val (color, value) = when (style.type) {
@@ -477,26 +480,30 @@ fun strikeThrough(
 sealed interface ContentListStyle {
     data class Default(
         val title: String,
+        val titleStyle: TextStyle? = null,
         val description: String = "",
+        val descriptionStyle: TextStyle? = null,
         val caption: String = ""
     ) : ContentListStyle
 
     data class Inverted(
         val title: String,
+        val titleStyle: TextStyle? = null,
         val description: String,
+        val descriptionStyle: TextStyle? = null,
         val caption: String = "",
         val unchanged: Boolean = false
     ) : ContentListStyle
 
     data class Strikethrough(
         val title: String,
+        val titleStyle: TextStyle? = null,
         val description: String,
+        val descriptionStyle: TextStyle? = null,
         val caption: String = "",
         val newValue: String = ""
     ) : ContentListStyle
-}
 
-sealed class ContentListTransactionStyle {
     data class Transaction(
         val value: String,
         val tagStyle: OceanTagStyle? = null,

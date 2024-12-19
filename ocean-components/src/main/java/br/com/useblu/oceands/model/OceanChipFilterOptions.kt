@@ -5,7 +5,7 @@ import br.com.useblu.oceands.adapter.OceanFilterChipMultipleOptionsAdapter
 import br.com.useblu.oceands.adapter.OceanFilterChipSingleOptionsAdapter
 import br.com.useblu.oceands.components.OceanOptionsBottomListSheet
 
-sealed class OceanChipFilterOptions{
+sealed class OceanChipFilterOptions {
     abstract val title: String
     abstract val optionsItems: List<FilterOptionsItem>
 
@@ -41,6 +41,7 @@ sealed class OceanChipFilterOptions{
                     }
                 )
             }
+
             is SingleChoice -> {
                 val adapter = OceanFilterChipSingleOptionsAdapter(this) {
                     onSelectItem(it)
@@ -57,7 +58,7 @@ sealed class OceanChipFilterOptions{
         override val title: String,
         override val optionsItems: List<FilterOptionsItem>,
         val onSelectItem: (selectedIndex: Int) -> Unit
-    ): OceanChipFilterOptions()
+    ) : OceanChipFilterOptions()
 
     data class MultipleChoice(
         override val title: String,
@@ -67,7 +68,7 @@ sealed class OceanChipFilterOptions{
         val showSelectAllButton: Boolean = false,
         val primaryButtonLabel: String,
         val secondaryButtonLabel: String
-    ): OceanChipFilterOptions()
+    ) : OceanChipFilterOptions()
 }
 
 data class FilterOptionsItem(

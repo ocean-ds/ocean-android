@@ -349,9 +349,9 @@ private fun InvertedContentList(
         OceanText(
             text = style.description,
             style = configTextStyle(
-                style.descriptionStyle
+                originalStyle = style.descriptionStyle
                     ?: OceanTextStyle.paragraph.copy(OceanColors.interfaceDarkPure),
-                enabled && !style.unchanged
+                isEnabled = enabled && !style.unchanged
             )
         )
 

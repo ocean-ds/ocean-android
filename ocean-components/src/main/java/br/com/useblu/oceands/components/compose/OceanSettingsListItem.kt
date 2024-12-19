@@ -62,7 +62,8 @@ private fun SettingsListItemPreview() {
             style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Default(
                     title = "Title",
-                    description = "Description",
+                    description = "Description Lead",
+                    descriptionStyle = OceanTextStyle.lead,
                     caption = "Caption"
                 ),
                 textError = "Error",
@@ -166,8 +167,7 @@ private fun SettingsListItemPreview() {
             style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Inverted(
                     title = "Title",
-                    description = "Description Lead",
-                    descriptionStyle = OceanTextStyle.lead,
+                    description = "Description",
                     caption = "Caption"
                 ),
                 buttonStyle = OceanButtonStyle.PrimaryCriticalSmall,

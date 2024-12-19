@@ -62,7 +62,8 @@ private fun SettingsListItemPreview() {
             style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Default(
                     title = "Title",
-                    description = "Description",
+                    description = "Description Lead",
+                    descriptionStyle = OceanTextStyle.lead,
                     caption = "Caption"
                 ),
                 textError = "Error",

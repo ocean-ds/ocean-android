@@ -154,7 +154,7 @@ fun OceanCarouselWithComponentsPreview() {
     )
 }
 
-private tailrec suspend fun doCycle(cycle: OceanCarouselCycle.Auto, pagerState: PagerState) {
+private suspend fun doCycle(cycle: OceanCarouselCycle.Auto, pagerState: PagerState) {
     runCatching {
         delay(timeMillis = cycle.time)
         pagerState.animateScrollToPage(

@@ -94,10 +94,10 @@ class OceanSnackBar(
         }
     }
 
-    sealed class OceanSnackBarType {
-        object Information : OceanSnackBarType()
-        object Error : OceanSnackBarType()
-        object Success : OceanSnackBarType()
-        object Warning : OceanSnackBarType()
+    sealed interface OceanSnackBarType {
+        object Information : OceanSnackBarType
+        object Error : OceanSnackBarType
+        object Success : OceanSnackBarType
+        object Warning : OceanSnackBarType
     }
 }

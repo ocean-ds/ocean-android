@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.ChildListItemStyle
 import br.com.useblu.oceands.components.compose.ChildScope
 import br.com.useblu.oceands.components.compose.ContentListStyle
-import br.com.useblu.oceands.components.compose.ContentListTransactionStyle
 import br.com.useblu.oceands.components.compose.OceanContentList
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
@@ -385,7 +384,7 @@ private fun TransactionListItemPreview() {
         description = "Subtitle to long to be displayed on a single line",
         caption = "Caption",
     )
-    val commonContentValue = ContentListTransactionStyle.Transaction(
+    val commonContentValue = ContentListStyle.Transaction(
         value = "R$ 1.000.000.000,00",
         caption = "Aditional info",
         tagStyle = OceanTagStyle.Default(

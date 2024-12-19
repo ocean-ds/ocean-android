@@ -65,10 +65,10 @@ class OceanToast(
         return this
     }
 
-    sealed class OceanToastType {
-        object Information : OceanToastType()
-        object Error : OceanToastType()
-        object Success : OceanToastType()
-        object Warning : OceanToastType()
+    sealed interface OceanToastType {
+        object Information : OceanToastType
+        object Error : OceanToastType
+        object Success : OceanToastType
+        object Warning : OceanToastType
     }
 }

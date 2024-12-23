@@ -8,9 +8,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 
 @Preview
@@ -36,6 +38,7 @@ private fun TextStylePreview() {
         Text(text = "Lead", style = OceanTextStyle.lead)
         Text(text = "Error", style = OceanTextStyle.error)
         Text(text = "Hint", style = OceanTextStyle.hint)
+        Text(text = "EYEBROW", style = OceanTextStyle.eyebrow)
     }
 }
 
@@ -49,6 +52,14 @@ object OceanTextStyle {
     private val subtitle @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular
+    )
+
+    val eyebrow @Composable get() = TextStyle(
+        color = OceanColors.interfaceDarkDown,
+        fontFamily = OceanFontFamily.BaseRegular,
+        fontWeight = FontWeight(700),
+        fontSize = OceanFontSize.xxxs,
+        letterSpacing = 2.16.sp
     )
 
     val paragraph @Composable get() = TextStyle(

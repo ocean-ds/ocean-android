@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,6 +29,7 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import kotlinx.coroutines.delay
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OceanCarouselWithComponents(
     modifier: Modifier = Modifier,
@@ -89,6 +91,7 @@ fun OceanCarouselWithComponents(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun CarouselCycle(
     cycle: OceanCarouselCycle,
@@ -106,6 +109,7 @@ private fun CarouselCycle(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun PageIndicator(
     type: OceanCarouselIndicator,
@@ -154,6 +158,7 @@ fun OceanCarouselWithComponentsPreview() {
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 private suspend fun doCycle(cycle: OceanCarouselCycle.Auto, pagerState: PagerState) {
     runCatching {
         delay(timeMillis = cycle.time)

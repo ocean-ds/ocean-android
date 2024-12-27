@@ -4,7 +4,7 @@ junitVersion = "4.13.2"
 kotlinGradlePlugin = "2.0.10"
 benchmarkBaselineProfileGradlePlugin = "1.3.3"
 benchmarkMacroJunit4 = "1.3.3"
-composeBom = "2024.10.00"
+composeBom = "2024.08.00"
 espressoCore = "3.6.1"
 junit = "1.2.1"
 robolectric = "4.14.1"
@@ -12,6 +12,7 @@ uiautomator = "2.3.0"
 lifecycleViewModel = "2.8.7"
 constraintLayout = "2.1.4"
 androidCoreKtx = "1.13.1"
+skydovesBalloonVersion = "1.6.7"
 
 [libraries]
 androidx-benchmark-macro-junit4 = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }
@@ -29,8 +30,8 @@ lifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", ve
 androidKtx = { module = "androidx.core:core-ktx", version.ref = "androidCoreKtx" }
 androidAppCompat = { module = "androidx.appcompat:appcompat", version = "1.7.0" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
-skydoves-balloon = { module = "com.github.skydoves:balloon", version = "1.6.8" }
-skydoves-balloon-compose = { module = "com.github.skydoves:balloon-compose", version = "1.6.8" }
+skydoves-balloon = { module = "com.github.skydoves:balloon", version.ref = "skydovesBalloonVersion" }
+skydoves-balloon-compose = { module = "com.github.skydoves:balloon-compose", version.ref = "skydovesBalloonVersion" }
 skydovesLandscapist = { module = "com.github.skydoves:landscapist-glide", version = "2.3.6" }
 androidMaterial = { module = "com.google.android.material:material", version = "1.12.0" }
 canarinho = { module = "com.github.concretesolutions:canarinho", version = "2.0.2" }

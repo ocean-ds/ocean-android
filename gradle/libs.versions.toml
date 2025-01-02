@@ -32,7 +32,7 @@ androidAppCompat = { module = "androidx.appcompat:appcompat", version = "1.7.0" 
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 skydoves-balloon = { module = "com.github.skydoves:balloon", version.ref = "skydovesBalloonVersion" }
 skydoves-balloon-compose = { module = "com.github.skydoves:balloon-compose", version.ref = "skydovesBalloonVersion" }
-skydovesLandscapist = { module = "com.github.skydoves:landscapist-glide", version = "2.3.6" }
+skydovesLandscapist = { module = "com.github.skydoves:landscapist-glide", version = "2.4.5" }
 androidMaterial = { module = "com.google.android.material:material", version = "1.12.0" }
 canarinho = { module = "com.github.concretesolutions:canarinho", version = "2.0.2" }
 glide = { module = "com.github.bumptech.glide:glide", version = "4.16.0" }

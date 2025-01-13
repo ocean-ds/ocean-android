@@ -217,7 +217,7 @@ fun OceanStatusListItem(
                             label = tagLabel,
                             type = tagType,
                             layout = OceanTagLayout.Medium(
-                                icon = if (showTagIconDefault) getIconDefault(tagType) else tagIcon
+                                icon = getTagIcon(showTagIconDefault, tagType, tagIcon)
                             )
                         )
                     )
@@ -241,7 +241,7 @@ fun OceanStatusListItem(
                         label = tagLabel,
                         type = tagType,
                         layout = OceanTagLayout.Medium(
-                            icon = if (showTagIconDefault) getIconDefault(tagType) else tagIcon
+                            icon = getTagIcon(showTagIconDefault, tagType, tagIcon)
                         )
                     )
                 )
@@ -285,6 +285,13 @@ fun OceanStatusListItem(
         }
     }
 }
+
+@Composable
+private fun getTagIcon(
+    showTagIconDefault: Boolean,
+    tagType: OceanTagType,
+    tagIcon: OceanIcons?
+) = if (showTagIconDefault) getIconDefault(tagType) else tagIcon
 
 enum class OceanStatusListItemTagPosition {
     BOTTOM,

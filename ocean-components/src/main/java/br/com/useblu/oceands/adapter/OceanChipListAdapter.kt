@@ -161,7 +161,7 @@ class OceanChipListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             )
 
             binding.chipListItemBackground.setOnClickListener {
-                item.filterOptions.showBottomSheet(it.context)
+                item.bottomSheet.showBottomSheet(it.context)
             }
         }
     }

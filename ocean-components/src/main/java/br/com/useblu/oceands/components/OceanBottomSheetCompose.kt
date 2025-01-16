@@ -26,6 +26,7 @@ class OceanBottomSheetCompose : BottomSheetDialogFragment() {
     private var isDismiss: Boolean = true
     private var textPositive: String? = null
     private var textNegative: String? = null
+    private var positiveValidation: (() -> Boolean)? = null
     private var actionPositive: (() -> Unit)? = null
     private var actionNegative: (() -> Unit)? = null
     private var isCritical: Boolean = false
@@ -58,6 +59,9 @@ class OceanBottomSheetCompose : BottomSheetDialogFragment() {
                 BottomButtons(
                     positiveLabel = textPositive,
                     positiveAction = {
+                        positiveValidation?.let {
+                            if (!it()) return@BottomButtons
+                        }
                         actionPositive?.invoke()
                         dismiss()
                     },
@@ -106,9 +110,10 @@ class OceanBottomSheetCompose : BottomSheetDialogFragment() {
         return this
     }
 
-    fun withActionPositive(text: String, callBack: () -> Unit): OceanBottomSheetCompose {
+    fun withActionPositive(text: String, validation: (() -> Boolean)? = null, callBack: () -> Unit): OceanBottomSheetCompose {
         this.textPositive = text
         this.actionPositive = callBack
+        this.positiveValidation = validation
         return this
     }
 
@@ -157,22 +162,21 @@ private fun BottomButtons(
             OceanButtonStyle.PrimaryCriticalMedium
         } else OceanButtonStyle.PrimaryMedium
 
-        if (positiveLabel != null && positiveAction != null) {
-            OceanButton(
-                text = positiveLabel,
-                buttonStyle = primaryStyle,
-                onClick = { positiveAction.invoke() },
-                modifier = it
-            )
-        }
-
         if (negativeLabel != null && negativeAction != null) {
-            OceanSpacing.StackXS()
-
             OceanButton(
                 text = negativeLabel,
                 buttonStyle = OceanButtonStyle.SecondaryMedium,
                 onClick = { negativeAction.invoke() },
+                modifier = it
+            )
+        }
+
+        if (positiveLabel != null && positiveAction != null) {
+            OceanSpacing.StackXS()
+            OceanButton(
+                text = positiveLabel,
+                buttonStyle = primaryStyle,
+                onClick = { positiveAction.invoke() },
                 modifier = it
             )
         }

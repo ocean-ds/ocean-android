@@ -29,6 +29,7 @@ internal class OceanDateRangeSelectFilterSheet(
     currentEndDate: String,
     private val maxDate: Calendar? = null,
     private val datePattern: String = "dd/MM/yyyy",
+    private val placeholder: String = "dd/mm/aaaa",
     private val context: Context
 ) {
     private var uiState by mutableStateOf(
@@ -75,7 +76,7 @@ internal class OceanDateRangeSelectFilterSheet(
                 errorText = uiState.errorBeginDate,
                 value = uiState.beginDate,
                 label = context.getString(R.string.date_range_begin_date),
-                placeholder = datePattern.lowercase(),
+                placeholder = placeholder,
                 onClickTrailingIcon = { onEvent(OceanDateRangeSelectFilterEvent.OnClickBeginDateCalendar) },
                 onTextChanged = { text ->
                     onEvent(OceanDateRangeSelectFilterEvent.OnTextChangedBeginDate(text))
@@ -91,7 +92,7 @@ internal class OceanDateRangeSelectFilterSheet(
                 errorText = uiState.errorEndDate,
                 value = uiState.endDate,
                 label = context.getString(R.string.date_range_end_date),
-                placeholder = datePattern.lowercase(),
+                placeholder = placeholder,
                 onClickTrailingIcon = { onEvent(OceanDateRangeSelectFilterEvent.OnClickEndDateCalendar) },
                 onTextChanged = { text ->
                     onEvent(OceanDateRangeSelectFilterEvent.OnTextChangedEndDate(text))

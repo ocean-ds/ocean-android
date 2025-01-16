@@ -25,7 +25,7 @@ gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 junit = { module = "junit:junit", version.ref = "junitVersion" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }
 lifecycleExtensions = { module = "androidx.lifecycle:lifecycle-extensions", version = "2.2.0" }
-recyclerView = { module = "androidx.recyclerview:recyclerview", version = "1.3.2" }
+recyclerView = { module = "androidx.recyclerview:recyclerview", version = "1.4.0" }
 lifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewModel" }
 androidKtx = { module = "androidx.core:core-ktx", version.ref = "androidCoreKtx" }
 androidAppCompat = { module = "androidx.appcompat:appcompat", version = "1.7.0" }

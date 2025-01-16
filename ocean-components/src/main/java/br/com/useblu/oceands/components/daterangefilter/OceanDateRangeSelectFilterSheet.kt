@@ -75,7 +75,7 @@ internal class OceanDateRangeSelectFilterSheet(
                 errorText = uiState.errorBeginDate,
                 value = uiState.beginDate,
                 label = context.getString(R.string.date_range_begin_date),
-                placeholder = datePattern,
+                placeholder = datePattern.lowercase(),
                 onClickTrailingIcon = { onEvent(OceanDateRangeSelectFilterEvent.OnClickBeginDateCalendar) },
                 onTextChanged = { text ->
                     onEvent(OceanDateRangeSelectFilterEvent.OnTextChangedBeginDate(text))
@@ -91,7 +91,7 @@ internal class OceanDateRangeSelectFilterSheet(
                 errorText = uiState.errorEndDate,
                 value = uiState.endDate,
                 label = context.getString(R.string.date_range_end_date),
-                placeholder = datePattern,
+                placeholder = datePattern.lowercase(),
                 onClickTrailingIcon = { onEvent(OceanDateRangeSelectFilterEvent.OnClickEndDateCalendar) },
                 onTextChanged = { text ->
                     onEvent(OceanDateRangeSelectFilterEvent.OnTextChangedEndDate(text))

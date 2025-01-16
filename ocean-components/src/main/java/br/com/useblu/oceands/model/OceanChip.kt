@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import br.com.useblu.oceands.components.OceanBottomSheetCompose
-import br.com.useblu.oceands.components.OceanDateRangeSelectFilterSheet
+import br.com.useblu.oceands.components.daterangefilter.OceanDateRangeSelectFilterSheet
 import br.com.useblu.oceands.extensions.getSupportFragmentManager
 import br.com.useblu.oceands.utils.OceanIcons
 

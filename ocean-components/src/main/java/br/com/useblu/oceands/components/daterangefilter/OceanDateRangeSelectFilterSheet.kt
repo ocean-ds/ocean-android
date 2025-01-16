@@ -1,45 +1,54 @@
-package br.com.useblu.oceands.components
+package br.com.useblu.oceands.components.daterangefilter
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import br.com.useblu.oceands.R
+import br.com.useblu.oceands.components.OceanBottomSheetCompose
+import br.com.useblu.oceands.components.OceanDatePickerFullscreen
 import br.com.useblu.oceands.components.compose.input.OceanTextInput
 import br.com.useblu.oceands.extensions.getSupportFragmentManager
+import br.com.useblu.oceands.extensions.isValidDate
+import br.com.useblu.oceands.extensions.oceanFormat
+import br.com.useblu.oceands.extensions.toDate
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.stringmask.OceanInputType
 import br.com.useblu.oceands.utils.OceanIcons
+import java.util.Calendar
+import java.util.Date
 
 internal class OceanDateRangeSelectFilterSheet(
     currentBeginDate: String,
     currentEndDate: String,
-    val context: Context // TODO: add min/max range
+    private val maxDate: Calendar? = null,
+    private val datePattern: String = "dd/MM/yyyy",
+    private val context: Context
 ) {
-    private var uiState by mutableStateOf(OceanDateRangeSelectFilterUIState(
+    private var uiState by mutableStateOf(
+        OceanDateRangeSelectFilterUIState(
         beginDate = currentBeginDate,
         endDate = currentEndDate
-    ))
+    )
+    )
 
     fun showBottomSheet(onResult: (String, String) -> Unit) {
         OceanBottomSheetCompose()
             .withActionPositive(
-                text = "Filtrar(add)",
+                text = context.getString(R.string.date_range_button_confirm),
                 callBack = {
                     onResult(uiState.beginDate, uiState.endDate)
                 },
                 validation = ::isDateRangeValid
             )
             .withActionNegative(
-                text = "Limpar(add)",
+                text = context.getString(R.string.date_range_button_clear),
                 callBack = {
                     onResult("", "")
                 }
@@ -50,12 +59,9 @@ internal class OceanDateRangeSelectFilterSheet(
 
     @Composable
     private fun DateRangeContent() {
-        Column(
-//            modifier = Modifier
-//                .padding(horizontal = OceanSpacing.xs)
-        ) {
+        Column {
             Text(
-                text = "Período(add)",
+                text = context.getString(R.string.date_range_filter_title),
                 style = OceanTextStyle.heading4,
                 color = OceanColors.interfaceDarkDeep
             )
@@ -68,8 +74,8 @@ internal class OceanDateRangeSelectFilterSheet(
                 labelColor = OceanColors.interfaceDarkDown,
                 errorText = uiState.errorBeginDate,
                 value = uiState.beginDate,
-                label = "Data inicial(add)",
-                placeholder = "dd/mm/aaaa",
+                label = context.getString(R.string.date_range_begin_date),
+                placeholder = datePattern,
                 onClickTrailingIcon = { onEvent(OceanDateRangeSelectFilterEvent.OnClickBeginDateCalendar) },
                 onTextChanged = { text ->
                     onEvent(OceanDateRangeSelectFilterEvent.OnTextChangedBeginDate(text))
@@ -84,8 +90,8 @@ internal class OceanDateRangeSelectFilterSheet(
                 labelColor = OceanColors.interfaceDarkDown,
                 errorText = uiState.errorEndDate,
                 value = uiState.endDate,
-                label = "Data final(add)",
-                placeholder = "dd/mm/aaaa",
+                label = context.getString(R.string.date_range_end_date),
+                placeholder = datePattern,
                 onClickTrailingIcon = { onEvent(OceanDateRangeSelectFilterEvent.OnClickEndDateCalendar) },
                 onTextChanged = { text ->
                     onEvent(OceanDateRangeSelectFilterEvent.OnTextChangedEndDate(text))
@@ -96,7 +102,54 @@ internal class OceanDateRangeSelectFilterSheet(
 
     @VisibleForTesting
     fun isDateRangeValid(): Boolean {
-        return uiState.beginDate.isNotEmpty() && uiState.endDate.isNotEmpty()
+        val beginDate = uiState.beginDate
+        val endDate = uiState.endDate
+        var hasErrors = false
+
+        if (beginDate.isBlank() && endDate.isBlank()) {
+            return true
+        }
+
+        if (beginDate.isValidDate(pattern = datePattern).not() || datePattern.length < 10) {
+            uiState = uiState.copy(
+                errorBeginDate = context.getString(R.string.date_range_invalid_date_error)
+            )
+            hasErrors = true
+        }
+
+        if (endDate.isValidDate(pattern = datePattern).not() || datePattern.length < 10) {
+            uiState = uiState.copy(
+                errorEndDate = context.getString(R.string.date_range_invalid_date_error)
+            )
+            hasErrors = true
+        }
+
+        if (beginDate.isBlank()) {
+            uiState = uiState.copy(
+                errorBeginDate = context.getString(R.string.date_range_empty_error)
+            )
+            hasErrors = true
+        }
+
+        if (endDate.isBlank()) {
+            uiState = uiState.copy(
+                errorEndDate = context.getString(R.string.date_range_empty_error)
+            )
+            hasErrors = true
+        }
+
+        if (hasErrors.not()) {
+            val beginDateParsed = beginDate.toDate(pattern = datePattern) ?: Date()
+            val endDateParsed = endDate.toDate(pattern = datePattern) ?: Date()
+            if (beginDateParsed > endDateParsed) {
+                uiState = uiState.copy(
+                    errorBeginDate = context.getString(R.string.date_range_invalid_range_error)
+                )
+                hasErrors = true
+            }
+        }
+
+        return !hasErrors
     }
 
     @VisibleForTesting
@@ -109,35 +162,25 @@ internal class OceanDateRangeSelectFilterSheet(
                 uiState = uiState.copy(endDate = event.text)
             }
             is OceanDateRangeSelectFilterEvent.OnClickBeginDateCalendar -> {
-                OceanDatePickerFullscreen(manager = context.getSupportFragmentManager())
-                    .withTitle("Teste") // TODO: add min/max range
-                    .withOnConfirm { date ->
-                        uiState = uiState.copy(beginDate = date.toString()) // TODO: format date
-                    }
-                    .show()
+                showDatePicker(title = context.getString(R.string.date_range_begin_date)) { beginDate ->
+                    uiState = uiState.copy(beginDate = beginDate)
+                }
             }
             is OceanDateRangeSelectFilterEvent.OnClickEndDateCalendar -> {
-                OceanDatePickerFullscreen(manager = context.getSupportFragmentManager())
-                    .withTitle("Teste") // TODO: add min/max range
-                    .withOnConfirm { date ->
-                        uiState = uiState.copy(endDate = date.toString()) // TODO: format date
-                    }
-                    .show()
+                showDatePicker(title = context.getString(R.string.date_range_end_date)) { endDate ->
+                    uiState = uiState.copy(endDate = endDate)
+                }
             }
         }
     }
-}
 
-internal data class OceanDateRangeSelectFilterUIState(
-    val beginDate: String = "",
-    val endDate: String = "",
-    val errorBeginDate: String? = null,
-    val errorEndDate: String? = null
-)
-
-internal sealed interface OceanDateRangeSelectFilterEvent {
-    data class OnTextChangedBeginDate(val text: String) : OceanDateRangeSelectFilterEvent
-    data class OnTextChangedEndDate(val text: String) : OceanDateRangeSelectFilterEvent
-    data object OnClickBeginDateCalendar : OceanDateRangeSelectFilterEvent
-    data object OnClickEndDateCalendar : OceanDateRangeSelectFilterEvent
+    private fun showDatePicker(title: String, onResult: (String) -> Unit) {
+        OceanDatePickerFullscreen(manager = context.getSupportFragmentManager())
+            .withTitle(title)
+            .withOnConfirm { date ->
+                onResult(date.time.oceanFormat(pattern = datePattern))
+            }
+            .withMaxDate(maxDate = maxDate)
+            .show()
+    }
 }

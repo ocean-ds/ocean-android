@@ -7,6 +7,7 @@ import br.com.useblu.oceands.components.OceanBottomSheetCompose
 import br.com.useblu.oceands.components.daterangefilter.OceanDateRangeSelectFilterSheet
 import br.com.useblu.oceands.extensions.getSupportFragmentManager
 import br.com.useblu.oceands.utils.OceanIcons
+import java.util.Calendar
 
 @Immutable
 sealed class OceanChip {
@@ -60,13 +61,15 @@ sealed interface OceanFilterChipBottomSheet {
     data class DateRange(
         val title: String,
         val onResult: (from: String, to: String) -> Unit,
-        val currentFrom: String,
-        val currentTo: String
+        val currentBeginDate: String,
+        val currentEndDate: String,
+        val maxDate: Calendar? = null,
     ): OceanFilterChipBottomSheet {
         override fun showBottomSheet(context: Context) {
             OceanDateRangeSelectFilterSheet(
-                currentBeginDate = currentFrom,
-                currentEndDate = currentTo,
+                currentBeginDate = currentBeginDate,
+                currentEndDate = currentEndDate,
+                maxDate = maxDate,
                 context = context
             ).showBottomSheet(onResult = onResult)
         }

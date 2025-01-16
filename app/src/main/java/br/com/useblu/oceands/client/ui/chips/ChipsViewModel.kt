@@ -153,8 +153,8 @@ class ChipsViewModel : ViewModel() {
                 onResult = { from, to ->
                     _toastText.postValue("From: $from, To: $to")
                 },
-                currentFrom = "",
-                currentTo = ""
+                currentBeginDate = "",
+                currentEndDate = ""
             )
         ),
         OceanFilterChip(

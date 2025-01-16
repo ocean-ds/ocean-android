@@ -6,9 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
+import br.com.useblu.oceands.components.OceanBottomSheetCompose
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanButtonModel
+import br.com.useblu.oceands.components.compose.OceanCarouselPreview
+import br.com.useblu.oceands.components.compose.OceanGroupCtaPreview
 import br.com.useblu.oceands.components.compose.OceanText
+import br.com.useblu.oceands.components.compose.content.OceanCardGroupPreview
 import br.com.useblu.oceands.model.Badge
 import br.com.useblu.oceands.model.FilterOptionsItem
 import br.com.useblu.oceands.model.OceanBadgeType
@@ -161,18 +165,18 @@ class ChipsViewModel : ViewModel() {
             label = "Custom",
             id = "custom",
             bottomSheet = OceanFilterChipBottomSheet.Custom(
-                view = {
-                    Column {
-                        OceanText("Custom Text")
-                        OceanButton(
-                            button = OceanButtonModel(
-                                text = "Custom Button",
-                                onClick = { _toastText.postValue("Custom did tap") },
-                                buttonStyle = OceanButtonStyle.PrimaryMedium,
-                            )
-                        )
+                bottomSheetCompose = OceanBottomSheetCompose()
+                    .withActionPositive("Salvar") {
+                        _toastText.postValue("Custom did save")
                     }
-                }
+                    .withActionNegative("Cancelar") {
+                        _toastText.postValue("Custom did cancel")
+                    }
+                    .withComposeContent {
+                        Column {
+                            OceanGroupCtaPreview()
+                        }
+                    }
             )
         )
     )

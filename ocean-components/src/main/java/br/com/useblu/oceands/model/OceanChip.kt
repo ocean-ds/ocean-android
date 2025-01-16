@@ -1,13 +1,7 @@
 package br.com.useblu.oceands.model
 
-import android.content.Context
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import br.com.useblu.oceands.components.OceanBottomSheetCompose
-import br.com.useblu.oceands.components.daterangefilter.OceanDateRangeSelectFilterSheet
-import br.com.useblu.oceands.extensions.getSupportFragmentManager
 import br.com.useblu.oceands.utils.OceanIcons
-import java.util.Calendar
 
 @Immutable
 sealed class OceanChip {
@@ -49,38 +43,4 @@ data class OceanFilterChip(
         state = state,
         bottomSheet = OceanFilterChipBottomSheet.FilterOptions(options = filterOptions)
     )
-}
-
-
-sealed interface OceanFilterChipBottomSheet {
-    data class FilterOptions(val options: OceanChipFilterOptions): OceanFilterChipBottomSheet {
-        override fun showBottomSheet(context: Context) {
-            options.showBottomSheet(context = context)
-        }
-    }
-    data class DateRange(
-        val title: String,
-        val onResult: (from: String, to: String) -> Unit,
-        val currentBeginDate: String,
-        val currentEndDate: String,
-        val maxDate: Calendar? = null,
-    ): OceanFilterChipBottomSheet {
-        override fun showBottomSheet(context: Context) {
-            OceanDateRangeSelectFilterSheet(
-                currentBeginDate = currentBeginDate,
-                currentEndDate = currentEndDate,
-                maxDate = maxDate,
-                context = context
-            ).showBottomSheet(onResult = onResult)
-        }
-    }
-    data class Custom(val view: @Composable () -> Unit): OceanFilterChipBottomSheet {
-        override fun showBottomSheet(context: Context) {
-            OceanBottomSheetCompose()
-                .withComposeContent { view() }
-                .show(context.getSupportFragmentManager(),null)
-        }
-    }
-
-    fun showBottomSheet(context: Context)
 }

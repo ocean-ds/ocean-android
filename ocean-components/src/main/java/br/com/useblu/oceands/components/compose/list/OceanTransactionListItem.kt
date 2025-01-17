@@ -235,7 +235,7 @@ fun OceanTransactionListItem(
                     .weight(1f)
                     .padding(end = OceanSpacing.xs)
             ) {
-                if (highlightedLabel != null) {
+                if (!highlightedLabel.isNullOrBlank()) {
                     Text(
                         text = highlightedLabel,
                         color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.brandPrimaryDeep,
@@ -252,7 +252,7 @@ fun OceanTransactionListItem(
                     color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure
                 )
 
-                if (secondaryLabel != null) {
+                if (!secondaryLabel.isNullOrBlank()) {
                     OceanSpacing.StackXXXS()
                     Text(
                         text = secondaryLabel,
@@ -261,7 +261,7 @@ fun OceanTransactionListItem(
                     )
                 }
 
-                if (dimmedLabel != null) {
+                if (!dimmedLabel.isNullOrBlank()) {
                     OceanSpacing.StackXXS()
                     Text(
                         text = dimmedLabel,
@@ -334,7 +334,7 @@ fun OceanTransactionListItem(
                     )
                 }
 
-                if (tagTitle != null) {
+                if (!tagTitle.isNullOrBlank()) {
                     OceanSpacing.StackXXXS()
                     OceanTag(
                         style = OceanTagStyle.Default(
@@ -345,7 +345,7 @@ fun OceanTransactionListItem(
                     )
                 }
 
-                if (time != null) {
+                if (!time.isNullOrBlank()) {
                     OceanSpacing.StackXXXS()
                     Text(
                         text = time,
@@ -425,7 +425,7 @@ private fun TransactionListItemPreview() {
             )
         )
         OceanTransactionListItem(
-            style = TransactionListItemStyle.WithChildStyle.Child (
+            style = TransactionListItemStyle.WithChildStyle.Child(
                 contentInfo = commonContentInfo,
                 contentValues = commonContentValue,
                 onClick = { println("Clicked") },
@@ -457,7 +457,7 @@ private fun TransactionListItemPreview() {
                 contentValues = commonContentValue,
                 onClick = { println("Clicked") }
             )
-        ){
+        ) {
             OceanChildListItem(
                 isLoading = true,
                 style = ChildListItemStyle.Child(
@@ -471,6 +471,16 @@ private fun TransactionListItemPreview() {
     }
 }
 
+@Preview
+@Composable
+private fun OceanTransactionListItemSkeletonPreview() {
+    Column {
+        repeat(3) {
+            OceanTransactionListItemSkeleton()
+        }
+    }
+}
+
 @Composable
 fun OceanTransactionListItem(
     modifier: Modifier = Modifier,
@@ -480,7 +490,7 @@ fun OceanTransactionListItem(
     readOnly: Boolean = false,
 ) {
     if (isLoading) {
-        TransactionListItemSkeleton()
+        OceanTransactionListItemSkeleton()
         return
     }
 
@@ -631,9 +641,9 @@ private fun OceanTransactionListItem(
     isLoading: Boolean = false,
     children: @Composable ChildScope.() -> Unit
 ) {
-    if(isLoading){
+    if (isLoading) {
         Column {
-            TransactionListItemSkeleton()
+            OceanTransactionListItemSkeleton()
             ChildScope.children()
         }
         return
@@ -698,7 +708,7 @@ private fun OceanTransactionListItem(
 }
 
 @Composable
-private fun TransactionListItemSkeleton() {
+fun OceanTransactionListItemSkeleton() {
     Column {
         Row(
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.md),
@@ -778,11 +788,11 @@ sealed interface TransactionListItemStyle {
         ) : CommonStyle
     }
 
-    sealed interface WithChildStyle: TransactionListItemStyle {
+    sealed interface WithChildStyle : TransactionListItemStyle {
         data class Child(
             override val contentInfo: ContentListStyle,
             override val contentValues: ContentListStyle,
             val onClick: () -> Unit,
-        ): WithChildStyle
+        ) : WithChildStyle
     }
 }

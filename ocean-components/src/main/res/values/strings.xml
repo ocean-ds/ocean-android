@@ -33,4 +33,15 @@
     <string name="button_advance">Avançar</string>
     <string name="text_with_html"><![CDATA[<ul><li><b>Menu1</b></li><li>Menu2</li><li>Menu3</li></ul>]]></string>
 
+    <!--  OceanDateRangeSelectFilterSheet  -->
+    <string name="date_range_filter_title">Período</string>
+    <string name="date_range_begin_date">Data inicial</string>
+    <string name="date_range_end_date">Data final</string>
+    <string name="date_range_button_confirm">Filtrar</string>
+    <string name="date_range_button_clear">Limpar</string>
+
+    <string name="date_range_invalid_date_error">Data inválida</string>
+    <string name="date_range_empty_error">Este campo não pode ficar em branco</string>
+    <string name="date_range_invalid_range_error">A data inicial deve ser menor ou igual à data final</string>
+
 </resources>

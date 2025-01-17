@@ -160,7 +160,7 @@ fun OceanFilterChip(
             )
             .clip(shape = RoundedCornerShape(24.dp))
             .clickable {
-                model.filterOptions.showBottomSheet(context)
+                model.bottomSheet.showBottomSheet(context)
             }
             .padding(start = OceanSpacing.xxsExtra, end = OceanSpacing.xxs),
         verticalAlignment = CenterVertically

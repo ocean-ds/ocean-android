@@ -42,7 +42,7 @@ fun OceanStatusListItemPreview() {
                 caption = "Caption",
                 tagLabel = "Tag",
                 tagType = OceanTagType.Warning,
-                tagIcon = OceanIcons.ACADEMIC_CAP_SOLID,
+                showTagIconDefault = true,
                 badge = "66+",
                 onClick = {
                     println("click container")
@@ -158,6 +158,7 @@ fun OceanStatusListItem(
     caption: String? = null,
     captionColor: Color = Color.Unspecified,
     tagLabel: String? = null,
+    showTagIconDefault: Boolean = false,
     tagIcon: OceanIcons? = null,
     tagPosition: OceanStatusListItemTagPosition? = OceanStatusListItemTagPosition.BOTTOM,
     tagType: OceanTagType? = OceanTagType.Warning,
@@ -216,7 +217,7 @@ fun OceanStatusListItem(
                             label = tagLabel,
                             type = tagType,
                             layout = OceanTagLayout.Medium(
-                                icon = tagIcon ?: OceanIcons.ACADEMIC_CAP_SOLID
+                                icon = getTagIcon(showTagIconDefault, tagType, tagIcon)
                             )
                         )
                     )
@@ -240,7 +241,7 @@ fun OceanStatusListItem(
                         label = tagLabel,
                         type = tagType,
                         layout = OceanTagLayout.Medium(
-                            icon = tagIcon ?: getIconDefault(tagType)
+                            icon = getTagIcon(showTagIconDefault, tagType, tagIcon)
                         )
                     )
                 )
@@ -284,6 +285,13 @@ fun OceanStatusListItem(
         }
     }
 }
+
+@Composable
+private fun getTagIcon(
+    showTagIconDefault: Boolean,
+    tagType: OceanTagType,
+    tagIcon: OceanIcons?
+) = if (showTagIconDefault) getIconDefault(tagType) else tagIcon
 
 enum class OceanStatusListItemTagPosition {
     BOTTOM,

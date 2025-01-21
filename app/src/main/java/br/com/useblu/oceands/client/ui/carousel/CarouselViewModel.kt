@@ -16,27 +16,30 @@ class CarouselViewModel : ViewModel() {
     private val _entries3 = MutableLiveData<List<OceanCarouselItem>>()
     val entries3: LiveData<List<OceanCarouselItem>> = _entries3
 
+    private val _entries4 = MutableLiveData<List<OceanCarouselItem>>()
+    val entries4: LiveData<List<OceanCarouselItem>> = _entries4
+
     var items = listOf(
         OceanCarouselItem(
-            url = "https://cdn.pixabay.com/photo/2015/12/15/09/02/banner-1093898_960_720.jpg",
+            url = "https://portal-cicloentrada.blu.com.br/assets/banners/banner_fornecedores_natal_2024-d8cc0b848ce20406eae96f2514fcd5a53e0d7f7996cd20586da151adabb77be5.png",
             action = {
                 println("OceanCarouselItem 1 selected")
             }
         ),
         OceanCarouselItem(
-            url = "https://cdn.pixabay.com/photo/2016/04/20/07/20/logo-1340526_960_720.png",
+            url = "https://portal-cicloentrada.blu.com.br/assets/banners/banner_fornecedores_natal_2024-d8cc0b848ce20406eae96f2514fcd5a53e0d7f7996cd20586da151adabb77be5.png",
             action = {
                 println("OceanCarouselItem 2 selected")
             }
         ),
         OceanCarouselItem(
-            url = "https://cdn.pixabay.com/photo/2016/04/20/07/20/logo-1340526_960_720.png",
+            url = "https://portal-cicloentrada.blu.com.br/assets/banners/banner_fornecedores_natal_2024-d8cc0b848ce20406eae96f2514fcd5a53e0d7f7996cd20586da151adabb77be5.png",
             action = {
                 println("OceanCarouselItem 3 selected")
             }
         ),
         OceanCarouselItem(
-            url = "https://png.pngtree.com/background/20210710/original/pngtree-low-polygon-geometric-banner-background-picture-image_977922.jpg",
+            url = "https://portal-cicloentrada.blu.com.br/assets/banners/banner_fornecedores_natal_2024-d8cc0b848ce20406eae96f2514fcd5a53e0d7f7996cd20586da151adabb77be5.png",
             action = {
                 println("OceanCarouselItem 4 selected")
             }
@@ -45,13 +48,13 @@ class CarouselViewModel : ViewModel() {
 
     var items2 = listOf(
         OceanCarouselItem(
-            url = "https://as1.ftcdn.net/v2/jpg/02/82/97/30/500_F_282973093_6VkMlmUG3XCXGNXF0RQRHsYvuzV5kBch.jpg",
+            url = "https://portal-cicloentrada.blu.com.br/assets/banners/banner_fornecedores_natal_2024-d8cc0b848ce20406eae96f2514fcd5a53e0d7f7996cd20586da151adabb77be5.png",
             action = {
                 println("OceanCarouselItem 1 selected")
             }
         ),
         OceanCarouselItem(
-            url = "https://as2.ftcdn.net/v2/jpg/02/40/73/83/500_F_240738367_rfTqBgkm2lYpg1Wy6NmYUWsAGyuRuUxc.jpg",
+            url = "https://portal-cicloentrada.blu.com.br/assets/banners/banner_fornecedores_natal_2024-d8cc0b848ce20406eae96f2514fcd5a53e0d7f7996cd20586da151adabb77be5.png",
             action = {
                 println("OceanCarouselItem 2 selected")
             }
@@ -60,15 +63,24 @@ class CarouselViewModel : ViewModel() {
 
     var items3 = listOf(
         OceanCarouselItem(
-            url = "https://as1.ftcdn.net/v2/jpg/00/82/76/32/500_F_82763224_Pf0grqhdk1YJCuri0jkDPFscV7sqvVxA.jpg",
+            url = "https://portal-cicloentrada.blu.com.br/assets/banners/banner_fornecedores_natal_2024-d8cc0b848ce20406eae96f2514fcd5a53e0d7f7996cd20586da151adabb77be5.png",
             action = {
                 println("OceanCarouselItem 1 selected")
             }
         ),
         OceanCarouselItem(
-            url = "https://as1.ftcdn.net/v2/jpg/01/93/33/48/500_F_193334887_JvSbuaPkyQK62yJ3nIlwb6gijcy4wda5.jpg",
+            url = "https://portal-cicloentrada.blu.com.br/assets/banners/banner_fornecedores_natal_2024-d8cc0b848ce20406eae96f2514fcd5a53e0d7f7996cd20586da151adabb77be5.png",
             action = {
                 println("OceanCarouselItem 2 selected")
+            }
+        )
+    )
+
+    var items4 = listOf(
+        OceanCarouselItem(
+            url = "https://portal-cicloentrada.blu.com.br/assets/banners/banner_fornecedores_natal_2024-d8cc0b848ce20406eae96f2514fcd5a53e0d7f7996cd20586da151adabb77be5.png",
+            action = {
+                println("OceanCarouselItem 1 selected")
             }
         )
     )
@@ -77,6 +89,7 @@ class CarouselViewModel : ViewModel() {
         _entries.postValue(items)
         _entries2.postValue(items2)
         _entries3.postValue(items3)
+        _entries4.postValue(items4)
     }
 
 }

@@ -44,7 +44,13 @@ fun OceanInlineTextListItemPreview() {
             size = OceanInlineTextListItemSize.SMALL
         )
         OceanInlineTextListItem(
-            title = OceanInlineTextListItemTitle.WithTag(title = "Title", tagIcon = OceanIcons.INFORMATION_CIRCLE_OUTLINE, tagText = "Tag Title"),
+            title = OceanInlineTextListItemTitle.WithTag(
+                title = "Title",
+                tagStyle = OceanTagStyle.Default(
+                    label = "Tag Title",
+                    layout = OceanTagLayout.Medium(icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE)
+                )
+            ),
             description = OceanInlineTextListItemDescription.Default(text = "Description")
         )
         OceanInlineTextListItem(
@@ -150,28 +156,9 @@ private fun OceanInlineTextListItemTitle(
                     style = size.getTitleStyle()
                 )
                 OceanSpacing.StackXXS()
-                Row(
-                    modifier = Modifier
-                        .background(
-                            color = OceanColors.statusWarningUp,
-                            shape = RoundedCornerShape(percent = 50)
-                        )
-                        .padding(horizontal = OceanSpacing.xxs),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    title.tagIcon?.let {
-                        OceanIcon(
-                            iconType = it,
-                            tint = OceanColors.statusWarningDeep
-                        )
-                    }
-                    OceanSpacing.StackXXXS()
-                    OceanText(
-                        text = title.tagText,
-                        style = size.getTitleStyle(),
-                        color = OceanColors.statusWarningDeep
-                    )
-                }
+                OceanTag(
+                    style = title.tagStyle
+                )
             }
         }
         is OceanInlineTextListItemTitle.Custom -> {
@@ -202,6 +189,7 @@ private fun OceanInlineTextListItemDescription(
                         iconType = it,
                         tint = description.getTintColor()
                     )
+                    OceanSpacing.StackXXXS()
                 }
 
                 OceanText(

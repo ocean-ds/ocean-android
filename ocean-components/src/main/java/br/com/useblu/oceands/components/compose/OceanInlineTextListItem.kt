@@ -68,7 +68,7 @@ fun OceanInlineTextListItemPreview() {
         )
         OceanInlineTextListItem(
             title = OceanInlineTextListItemTitle.Default(title = "Title"),
-            description = OceanInlineTextListItemDescription.Innactive(icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE, text = "Description")
+            description = OceanInlineTextListItemDescription.Inactive(icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE, text = "Description")
         )
         OceanInlineTextListItem(
             title = OceanInlineTextListItemTitle.Default(title = "Title"),

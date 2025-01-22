@@ -16,7 +16,7 @@ sealed interface OceanInlineTextListItemDescription {
         override fun getTintColor(): Color = OceanColors.interfaceDarkDeep
     }
 
-    data class Innactive(
+    data class Inactive(
         override val icon: OceanIcons? = null,
         override val text: String
     ): OceanInlineTextListItemDescriptionGenericType{

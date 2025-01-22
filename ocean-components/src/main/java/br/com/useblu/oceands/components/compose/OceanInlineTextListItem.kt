@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.compose.inlinetextlistitem.OceanInlineTextListItemDescription
 import br.com.useblu.oceands.model.compose.inlinetextlistitem.OceanInlineTextListItemDescriptionGenericType
 import br.com.useblu.oceands.model.compose.inlinetextlistitem.OceanInlineTextListItemSize
@@ -79,6 +82,11 @@ fun OceanInlineTextListItemPreview() {
             title = OceanInlineTextListItemTitle.Default(title = "Title"),
             description = OceanInlineTextListItemDescription.Action(title = "Action", onClick = {}, buttonStyle = OceanButtonStyle.PrimarySmall)
         )
+        OceanInlineTextListItem(
+            title = OceanInlineTextListItemTitle.Default(title = "Title"),
+            description = OceanInlineTextListItemDescription.Action(title = "Action", onClick = {}, buttonStyle = OceanButtonStyle.PrimarySmall),
+            isLoading = true
+        )
     }
 }
 
@@ -87,8 +95,18 @@ fun OceanInlineTextListItem(
     modifier: Modifier = Modifier,
     title: OceanInlineTextListItemTitle,
     description: OceanInlineTextListItemDescription,
-    size: OceanInlineTextListItemSize = OceanInlineTextListItemSize.DEFAULT
+    size: OceanInlineTextListItemSize = OceanInlineTextListItemSize.DEFAULT,
+    isLoading: Boolean = false
 ) {
+
+    if (isLoading) {
+        OceanInlineTextListItemLoading(
+            modifier = modifier,
+            size = size
+        )
+        return
+    }
+
     Column(
         modifier = modifier
     ) {
@@ -221,5 +239,40 @@ private fun OceanInlineTextListItemDescription(
                 )
             )
         }
+    }
+}
+
+@Composable
+private fun OceanInlineTextListItemLoading(
+    modifier: Modifier,
+    size: OceanInlineTextListItemSize
+) {
+    OceanShimmering { brush ->
+        Column(
+            modifier = modifier
+        ) {
+            Row(
+                modifier = Modifier
+                    .padding(OceanSpacing.xs),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Spacer(
+                    modifier = Modifier
+                        .background(brush, RoundedCornerShape(4.dp))
+                        .fillMaxWidth(0.5f)
+                        .height(size.getDescriptionStyle().fontSize.value.dp + OceanSpacing.xxs)
+                        .weight(1f)
+                )
+                OceanSpacing.StackXXS()
+                Spacer(
+                    modifier = Modifier
+                        .background(brush, RoundedCornerShape(4.dp))
+                        .fillMaxWidth(0.5f)
+                        .height(size.getDescriptionStyle().fontSize.value.dp + OceanSpacing.xxs)
+                        .weight(1f)
+                )
+            }
+        }
+
     }
 }

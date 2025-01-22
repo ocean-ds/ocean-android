@@ -26,7 +26,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
 @Composable
-internal fun OceanInlineTextListItemPreview() {
+fun OceanInlineTextListItemPreview() {
     Column(
         modifier = Modifier
             .background(color = OceanColors.interfaceLightPure),

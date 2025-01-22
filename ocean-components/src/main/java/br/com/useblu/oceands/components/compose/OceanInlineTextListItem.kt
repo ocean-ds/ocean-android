@@ -1,14 +1,23 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
+import br.com.useblu.oceands.model.compose.inlinetextlistitem.OceanInlineTextListItemDescription
+import br.com.useblu.oceands.model.compose.inlinetextlistitem.OceanInlineTextListItemDescriptionGenericType
+import br.com.useblu.oceands.model.compose.inlinetextlistitem.OceanInlineTextListItemSize
+import br.com.useblu.oceands.model.compose.inlinetextlistitem.OceanInlineTextListItemTitle
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -17,7 +26,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
 @Composable
-private fun OceanInlineTextListItemPreview() {
+internal fun OceanInlineTextListItemPreview() {
     Column(
         modifier = Modifier
             .background(color = OceanColors.interfaceLightPure),
@@ -26,10 +35,49 @@ private fun OceanInlineTextListItemPreview() {
             title = OceanInlineTextListItemTitle.Default(title ="Title"),
             description = OceanInlineTextListItemDescription.Default(text = "Description")
         )
-        OceanSpacing.StackXXS()
         OceanInlineTextListItem(
-            title = OceanInlineTextListItemTitle.WithTag(title = "Title", tagIcon = OceanIcons.INFORMATION_CIRCLE_OUTLINE, tagText = "Tag"),
+            title = OceanInlineTextListItemTitle.Default(title ="Title"),
+            description = OceanInlineTextListItemDescription.Default(text = "Description"),
+            size = OceanInlineTextListItemSize.SMALL
+        )
+        OceanInlineTextListItem(
+            title = OceanInlineTextListItemTitle.WithTag(title = "Title", tagIcon = OceanIcons.INFORMATION_CIRCLE_OUTLINE, tagText = "Tag Title"),
             description = OceanInlineTextListItemDescription.Default(text = "Description")
+        )
+        OceanInlineTextListItem(
+            title = OceanInlineTextListItemTitle.Custom(title = "Title") {
+                Box(
+                    modifier = Modifier
+                        .size(OceanSpacing.xs, OceanSpacing.xs)
+                        .background(color = OceanColors.interfaceDarkDeep)
+                )
+            },
+            description = OceanInlineTextListItemDescription.Default(text = "Description"),
+            size = OceanInlineTextListItemSize.SMALL
+        )
+        OceanInlineTextListItem(
+            title = OceanInlineTextListItemTitle.Default(title = "Title"),
+            description = OceanInlineTextListItemDescription.Warning(icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE, text = "Description")
+        )
+        OceanInlineTextListItem(
+            title = OceanInlineTextListItemTitle.Default(title = "Title"),
+            description = OceanInlineTextListItemDescription.Positive(icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE, text = "Description")
+        )
+        OceanInlineTextListItem(
+            title = OceanInlineTextListItemTitle.Default(title = "Title"),
+            description = OceanInlineTextListItemDescription.Innactive(icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE, text = "Description")
+        )
+        OceanInlineTextListItem(
+            title = OceanInlineTextListItemTitle.Default(title = "Title"),
+            description = OceanInlineTextListItemDescription.Highlight(icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE, text = "Description")
+        )
+        OceanInlineTextListItem(
+            title = OceanInlineTextListItemTitle.Default(title = "Title"),
+            description = OceanInlineTextListItemDescription.Strikethrough(oldText = "Old", currentText = "Current")
+        )
+        OceanInlineTextListItem(
+            title = OceanInlineTextListItemTitle.Default(title = "Title"),
+            description = OceanInlineTextListItemDescription.Action(title = "Action", onClick = {}, buttonStyle = OceanButtonStyle.PrimarySmall)
         )
     }
 }
@@ -46,7 +94,8 @@ fun OceanInlineTextListItem(
     ) {
         Row(
             modifier = Modifier
-                .padding(OceanSpacing.xs)
+                .padding(OceanSpacing.xs),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             OceanInlineTextListItemTitle(
                 title = title,
@@ -70,26 +119,39 @@ private fun OceanInlineTextListItemTitle(
         is OceanInlineTextListItemTitle.Default -> {
             OceanText(
                 text = title.title,
-                style = OceanTextStyle.paragraph
+                style = OceanTextStyle.description,
+                color = OceanColors.interfaceDarkDown
             )
         }
         is OceanInlineTextListItemTitle.WithTag -> {
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 OceanText(
                     text = title.title,
-                    style = OceanTextStyle.paragraph
+                    style = size.getTitleStyle()
                 )
-
-                Row {
+                OceanSpacing.StackXXS()
+                Row(
+                    modifier = Modifier
+                        .background(
+                            color = OceanColors.statusWarningUp,
+                            shape = RoundedCornerShape(percent = 50)
+                        )
+                        .padding(horizontal = OceanSpacing.xxs),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     title.tagIcon?.let {
                         OceanIcon(
-                            iconType = it
+                            iconType = it,
+                            tint = OceanColors.statusWarningDeep
                         )
                     }
-
+                    OceanSpacing.StackXXXS()
                     OceanText(
                         text = title.tagText,
-                        style = OceanTextStyle.paragraph
+                        style = size.getTitleStyle(),
+                        color = OceanColors.statusWarningDeep
                     )
                 }
             }
@@ -97,7 +159,7 @@ private fun OceanInlineTextListItemTitle(
         is OceanInlineTextListItemTitle.Custom -> {
             OceanText(
                 text = title.title,
-                style = OceanTextStyle.paragraph
+                style = size.getTitleStyle()
             )
 
             OceanSpacing.StackXXS()
@@ -114,16 +176,21 @@ private fun OceanInlineTextListItemDescription(
 ) {
     when (description) {
         is OceanInlineTextListItemDescriptionGenericType -> {
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 description.icon?.let {
                     OceanIcon(
-                        iconType = it
+                        iconType = it,
+                        tint = description.getTintColor()
                     )
                 }
 
                 OceanText(
                     text = description.text,
-                    style = OceanTextStyle.description
+                    style = size.getDescriptionStyle(),
+                    color = description.getTintColor(),
+                    fontWeight = description.fontWeight
                 )
             }
         }
@@ -131,12 +198,17 @@ private fun OceanInlineTextListItemDescription(
         is OceanInlineTextListItemDescription.Strikethrough -> {
             OceanText(
                 text = description.oldText,
-                style = OceanTextStyle.descriptionStrike
+                style = size.getDescriptionStyle(),
+                textDecoration = TextDecoration.LineThrough,
+                color = OceanColors.interfaceDarkDeep,
+                fontWeight = FontWeight.Medium
             )
-
+            OceanSpacing.StackXXXS()
             OceanText(
                 text = description.currentText,
-                style = OceanTextStyle.description
+                style = size.getDescriptionStyle(),
+                color = description.getTintColor(),
+                fontWeight = FontWeight.Medium
             )
         }
 
@@ -150,66 +222,4 @@ private fun OceanInlineTextListItemDescription(
             )
         }
     }
-}
-
-enum class OceanInlineTextListItemSize {
-    DEFAULT,
-    SMALL;
-
-    @Composable
-    fun getSize(): TextUnit {
-        when (this) {
-            DEFAULT -> return OceanTextStyle.paragraph.fontSize
-            SMALL -> return OceanTextStyle.description.fontSize
-        }
-    }
-}
-
-sealed interface OceanInlineTextListItemTitle {
-    data class Default(val title: String): OceanInlineTextListItemTitle
-    data class WithTag(val title: String, val tagIcon: OceanIcons? = null, val tagText: String): OceanInlineTextListItemTitle
-    data class Custom(val title: String, val content: @Composable () -> Unit): OceanInlineTextListItemTitle
-}
-
-sealed interface OceanInlineTextListItemDescription {
-    data class Default(
-        override val icon: OceanIcons? = null,
-        override val text: String
-    ): OceanInlineTextListItemDescriptionGenericType
-
-    data class Innactive(
-        override val icon: OceanIcons? = null,
-        override val text: String
-    ): OceanInlineTextListItemDescriptionGenericType
-
-    data class Positive(
-        override val icon: OceanIcons? = null,
-        override val text: String
-    ): OceanInlineTextListItemDescriptionGenericType
-
-    data class Warning(
-        override val icon: OceanIcons? = null,
-        override val text: String
-    ): OceanInlineTextListItemDescriptionGenericType
-
-    data class Highlight(
-        override val icon: OceanIcons? = null,
-        override val text: String
-    ): OceanInlineTextListItemDescriptionGenericType
-
-    data class Strikethrough(
-        val oldText: String,
-        val currentText: String
-    ): OceanInlineTextListItemDescription
-
-    data class Action(
-        val title: String,
-        val onClick: () -> Unit,
-        val buttonStyle: OceanButtonStyle
-    ): OceanInlineTextListItemDescription
-}
-
-internal interface OceanInlineTextListItemDescriptionGenericType: OceanInlineTextListItemDescription {
-    val icon: OceanIcons?
-    val text: String
 }

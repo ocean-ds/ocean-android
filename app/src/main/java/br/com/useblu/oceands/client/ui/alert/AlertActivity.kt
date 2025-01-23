@@ -6,18 +6,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityAlertBinding
+import br.com.useblu.oceands.components.compose.OceanAlertPreview
 
 class AlertActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAlertBinding
-    private lateinit var viewModel: AlertViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_alert)
         binding.lifecycleOwner = this
-
-        viewModel = ViewModelProvider(this)[AlertViewModel::class.java]
-        binding.viewmodel = viewModel
+        binding.composeView.setContent {
+            OceanAlertPreview()
+        }
     }
 }

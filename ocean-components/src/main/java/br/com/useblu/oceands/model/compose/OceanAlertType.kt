@@ -15,6 +15,13 @@ sealed interface OceanAlertType {
         val description: String
     ) : OceanAlertType
 
+    data class WithAction(
+        val alertType: AlertStyle = AlertStyle.StyleInfo(),
+        val description: String,
+        val actionTitle: String,
+        val action: () -> Unit
+    ): OceanAlertType
+
     class EntitledShort(
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
         val title: String,
@@ -53,7 +60,7 @@ sealed interface AlertStyle {
     val descriptionStyle: @Composable () -> TextStyle
     val descriptionColor: @Composable () -> Color
     val alertBackgroundColor: @Composable () -> Color
-    val oceanIcon: OceanIcons
+    val oceanIcon: OceanIcons?
     val iconTint: @Composable () -> Color
 
     class StyleInfo(
@@ -62,7 +69,7 @@ sealed interface AlertStyle {
         override val descriptionStyle: @Composable () -> TextStyle = { OceanTextStyle.caption },
         override val descriptionColor: @Composable () -> Color = { OceanColors.interfaceDarkDown },
         override val alertBackgroundColor: @Composable () -> Color = { OceanColors.interfaceLightUp },
-        override val oceanIcon: OceanIcons = OceanIcons.INFO_OUTLINE,
+        override val oceanIcon: OceanIcons? = OceanIcons.INFO_OUTLINE,
         override val iconTint: @Composable () -> Color = { OceanColors.brandPrimaryDown }
     ) : AlertStyle
 
@@ -72,7 +79,7 @@ sealed interface AlertStyle {
         override val descriptionStyle: @Composable () -> TextStyle = { OceanTextStyle.caption },
         override val descriptionColor: @Composable () -> Color = { OceanColors.interfaceDarkDown },
         override val alertBackgroundColor: @Composable () -> Color = { OceanColors.statusWarningUp },
-        override val oceanIcon: OceanIcons = OceanIcons.EXCLAMATION_CIRCLE_OUTLINE,
+        override val oceanIcon: OceanIcons? = OceanIcons.EXCLAMATION_CIRCLE_OUTLINE,
         override val iconTint: @Composable () -> Color = { OceanColors.statusWarningDeep }
     ) : AlertStyle
 
@@ -82,7 +89,7 @@ sealed interface AlertStyle {
         override val descriptionStyle: @Composable () -> TextStyle = { OceanTextStyle.caption },
         override val descriptionColor: @Composable () -> Color = { OceanColors.interfaceDarkDown },
         override val alertBackgroundColor: @Composable () -> Color = { OceanColors.statusPositiveUp },
-        override val oceanIcon: OceanIcons = OceanIcons.CHECK_CIRCLE_OUTLINE,
+        override val oceanIcon: OceanIcons? = OceanIcons.CHECK_CIRCLE_OUTLINE,
         override val iconTint: @Composable () -> Color = { OceanColors.statusPositiveDeep }
     ) : AlertStyle
 
@@ -92,7 +99,7 @@ sealed interface AlertStyle {
         override val descriptionStyle: @Composable () -> TextStyle = { OceanTextStyle.caption },
         override val descriptionColor: @Composable () -> Color = { OceanColors.interfaceDarkDown },
         override val alertBackgroundColor: @Composable () -> Color = { OceanColors.statusNegativeUp },
-        override val oceanIcon: OceanIcons = OceanIcons.X_CIRCLE_OUTLINE,
+        override val oceanIcon: OceanIcons? = OceanIcons.X_CIRCLE_OUTLINE,
         override val iconTint: @Composable () -> Color = { OceanColors.statusNegativePure }
     ) : AlertStyle
 }

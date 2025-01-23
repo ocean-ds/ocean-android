@@ -53,6 +53,24 @@ fun OceanAlertPreview() {
 
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
+            type = OceanAlertType.WithAction(
+                description = "Alert With Action",
+                alertType = AlertStyle.StyleWarning(
+                    oceanIcon = null
+                ),
+                actionTitle = "Action",
+                action = {
+                    Toast.makeText(
+                        context,
+                        "Alert Action",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
+        )
+
+        OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Default(
                 description = "Default Alert Info",
                 alertType = AlertStyle.StyleInfo()
@@ -327,6 +345,16 @@ fun OceanAlert(
                 style = type.alertType
             )
         }
+
+        is OceanAlertType.WithAction -> {
+            OceanAlertWithAction(
+                modifier = modifier,
+                description = type.description,
+                style = type.alertType,
+                actionTitle = type.actionTitle,
+                action = type.action
+            )
+        }
     }
 }
 
@@ -345,12 +373,14 @@ fun OceanAlertDefaultStyle(
             )
             .padding(OceanSpacing.xs)
     ) {
-        Icon(
-            modifier = Modifier.padding(end = OceanSpacing.xxs),
-            painter = painterResource(id = style.oceanIcon.icon),
-            tint = style.iconTint(),
-            contentDescription = null,
-        )
+        style.oceanIcon?.let {
+            Icon(
+                modifier = Modifier.padding(end = OceanSpacing.xxs),
+                painter = painterResource(id = it.icon),
+                tint = style.iconTint(),
+                contentDescription = null,
+            )
+        }
 
         val color = style.descriptionColor()
         val textSize = style.descriptionStyle().fontSize
@@ -383,12 +413,14 @@ fun OceanAlertEntitledShort(
             )
             .padding(OceanSpacing.xs)
     ) {
-        Icon(
-            modifier = Modifier.padding(end = OceanSpacing.xxs),
-            painter = painterResource(id = style.oceanIcon.icon),
-            tint = style.iconTint(),
-            contentDescription = null
-        )
+        style.oceanIcon?.let {
+            Icon(
+                modifier = Modifier.padding(end = OceanSpacing.xxs),
+                painter = painterResource(id = it.icon),
+                tint = style.iconTint(),
+                contentDescription = null
+            )
+        }
 
         Column(
             modifier = Modifier.weight(1f)
@@ -506,13 +538,15 @@ fun OceanAlertLabeled(
             )
             .padding(OceanSpacing.xs)
     ) {
-        Column {
-            Icon(
-                modifier = Modifier.padding(end = OceanSpacing.xxs),
-                painter = painterResource(id = style.oceanIcon.icon),
-                tint = style.iconTint(),
-                contentDescription = null,
-            )
+        style.oceanIcon?.let {
+            Column {
+                Icon(
+                    modifier = Modifier.padding(end = OceanSpacing.xxs),
+                    painter = painterResource(id = it.icon),
+                    tint = style.iconTint(),
+                    contentDescription = null,
+                )
+            }
         }
         Column {
             if (title != null) {
@@ -588,17 +622,65 @@ private fun BaseAlertContent(
         modifier = Modifier.padding(bottom = OceanSpacing.xxsExtra),
         verticalAlignment = CenterVertically,
     ) {
-        Icon(
-            modifier = Modifier.padding(end = OceanSpacing.xxs),
-            painter = painterResource(id = style.oceanIcon.icon),
-            tint = style.iconTint(),
-            contentDescription = null,
-        )
+        style.oceanIcon?.let {
+            Icon(
+                modifier = Modifier.padding(end = OceanSpacing.xxs),
+                painter = painterResource(id = it.icon),
+                tint = style.iconTint(),
+                contentDescription = null,
+            )
+        }
         OceanText(
             text = title,
             style = style.titleStyle(),
             color = style.titleColor(),
             maxLines = 2,
+        )
+    }
+}
+
+@Composable
+fun OceanAlertWithAction(
+    modifier: Modifier = Modifier,
+    description: String,
+    style: AlertStyle,
+    actionTitle: String,
+    action: () -> Unit
+) {
+    Row(
+        verticalAlignment = CenterVertically,
+        modifier = modifier
+            .background(
+                color = style.alertBackgroundColor(),
+                shape = RoundedCornerShape(8.dp)
+            )
+            .padding(OceanSpacing.xs)
+    ) {
+        style.oceanIcon?.let {
+            Icon(
+                modifier = Modifier.padding(end = OceanSpacing.xxs),
+                painter = painterResource(id = it.icon),
+                tint = style.iconTint(),
+                contentDescription = null
+            )
+        }
+
+        Column(
+            modifier = Modifier.weight(1f)
+        ) {
+            OceanHtmlText(
+                text = description,
+                color =  style.descriptionColor(),
+                fontSize = style.descriptionStyle().fontSize,
+                fontFamily = R.font.font_family_base_regular,
+                maxLines = 2
+            )
+        }
+
+        OceanButton(
+            text = actionTitle,
+            buttonStyle = alertButtonStyle(style),
+            onClick = action
         )
     }
 }

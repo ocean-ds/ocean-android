@@ -292,7 +292,7 @@ fun OceanShortcut(
                         modifier = layout.getLabelModifier()
                     ) {
                         Text(
-                            modifier = Modifier.align(Alignment. BottomStart),
+                            modifier = Modifier.align(Alignment.BottomStart),
                             text = label,
                             style = OceanTextStyle.heading5,
                             color = titleColor,

@@ -69,7 +69,7 @@ fun OceanShortcutPreview() {
         ),
 
         OceanShortcutModel(
-            label = "Small",
+            label = "pTwo lines Small test eqeqww",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.Small,
             badge = OceanShortcutBadge(count = 120, type = OceanBadgeType.WARNING)
@@ -288,11 +288,16 @@ fun OceanShortcut(
 
                     layout.GetSpacer()
 
-                    Text(
-                        text = label,
-                        style = OceanTextStyle.heading5,
-                        color = titleColor
-                    )
+                    Box(
+                        modifier = layout.getLabelModifier()
+                    ) {
+                        Text(
+                            modifier = Modifier.align(Alignment.BottomStart),
+                            text = label,
+                            style = OceanTextStyle.heading5,
+                            color = titleColor,
+                        )
+                    }
                 }
 
                 if (layout.canShowDescription() && !description.isNullOrBlank()) {
@@ -325,9 +330,9 @@ enum class OceanShortcutLayout {
     internal fun GetSpacer() {
         when (this) {
             TinyVertical,
-            TinyHorizontal -> OceanSpacing.StackXXS()
+            TinyHorizontal,
+            Small -> OceanSpacing.StackXXS()
 
-            Small -> Spacer(modifier = Modifier.size(30.dp))
             MediumVertical -> OceanSpacing.StackXS()
             MediumHorizontal -> OceanSpacing.StackXXS()
         }
@@ -352,6 +357,21 @@ enum class OceanShortcutLayout {
                     content()
                 }
             }
+        }
+    }
+
+    @Composable
+    internal fun getLabelModifier(): Modifier {
+        return when (this) {
+            TinyVertical,
+            MediumVertical,
+            TinyHorizontal,
+            MediumHorizontal -> Modifier
+            Small -> Modifier
+                .height(
+                    height = (OceanTextStyle.heading5.fontSize.value * 2).dp
+                            + OceanSpacing.xxs.value.dp
+                )
         }
     }
 

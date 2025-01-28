@@ -2,7 +2,6 @@ package br.com.useblu.oceands.components.compose
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,7 +15,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.ModalBottomSheetDefaults
+import androidx.compose.material3.ModalBottomSheetProperties
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -56,7 +55,6 @@ private fun OceanBottomSheetPreview() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             BottomSheetPreviewFactory(
                 bottomSheetCta = "Bottom sheet",
                 model = { showState ->
@@ -246,11 +244,10 @@ fun OceanBottomSheet(
         sheetState = sheetState,
         onDismissRequest = { model.onDismiss(true) },
         dragHandle = null,
-        properties = ModalBottomSheetDefaults.properties(shouldDismissOnBackPress = model.isDismissible)
+        properties = ModalBottomSheetProperties(shouldDismissOnBackPress = model.isDismissible)
     ) {
         Row(
             modifier = Modifier
-                .background(OceanColors.interfaceLightPure)
                 .padding(
                     top = OceanSpacing.xxs,
                     bottom = OceanSpacing.xxxs,
@@ -276,7 +273,6 @@ fun OceanBottomSheet(
 
         Column(
             modifier = modifier
-                .background(OceanColors.interfaceLightPure)
                 .padding(OceanSpacing.xs)
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -365,8 +361,6 @@ fun OceanBottomSheet(
                 )
                 OceanSpacing.StackXXS()
             }
-
-            OceanSpacing.StackMD()
         }
     }
 }

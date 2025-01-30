@@ -54,7 +54,7 @@ fun OceanAlertPreview() {
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.WithAction(
-                description = "Alert With Action",
+                description = "Alert With Action and long text to validate spacing and breakline",
                 alertType = AlertStyle.StyleWarning(
                     oceanIcon = null
                 ),
@@ -676,6 +676,8 @@ fun OceanAlertWithAction(
                 maxLines = 2
             )
         }
+
+        OceanSpacing.StackXXS()
 
         OceanButton(
             text = actionTitle,

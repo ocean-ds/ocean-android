@@ -60,6 +60,7 @@ import br.com.useblu.oceands.client.ui.headerapp.HeaderAppActivity
 import br.com.useblu.oceands.client.ui.informativecard.InformativeCardActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
+import br.com.useblu.oceands.client.ui.onboarding.OceanOnboardingPagerActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.orderedlistitem.OrderedListItemActivity
 import br.com.useblu.oceands.client.ui.progressbar.ProgressBarActivity
@@ -225,6 +226,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Header App", onClick = { onClickHeaderApp() })
                         textAction(text = "Informative Card", onClick = { informativeCardClick() })
                         textAction(text = "Input", onClick = { onClickInputs() })
+                        textAction(text = "Onboarding", onClick = { onboardingClick() })
                         textAction(text = "Options Card", onClick = { clickOptionsCard() })
                         textAction(text = "Progress Bar", onClick = { clickProgressBar() })
                         textAction(text = "Radio", onClick = { onClickRadio() })
@@ -507,6 +509,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun chartBarClick() {
         val intent = Intent(this, ChartBarActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun onboardingClick() {
+        val intent = Intent(this, OceanOnboardingPagerActivity::class.java)
         startActivity(intent)
     }
 

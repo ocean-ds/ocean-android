@@ -71,6 +71,7 @@
         <activity android:name=".ui.detailed.DetailedCardActivity" />
         <activity android:name=".ui.chartcard.ChartCardActivity" />
         <activity android:name=".ui.chartbar.ChartBarActivity" />
+        <activity android:name=".ui.onboarding.OceanOnboardingPagerActivity" />
     </application>
 
 </manifest>

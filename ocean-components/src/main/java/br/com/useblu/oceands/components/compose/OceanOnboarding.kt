@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.components.compose
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -41,12 +40,14 @@ fun OceanOnboardingPreview() {
             image = R.drawable.ocean_icon_paper_clip_solid,
             title = "Registre sua primeira chave Pix",
             subtitle = "Não perca tempo compartilhando dados bancários. A chave é uma forma simples de receber dinheiro",
+            caption = "Você pode registrar até 5 chaves por conta",
             link = "Descubra como funciona" to { println("link") }
         ),
         OceanOnboardingPageModel(
             image = R.drawable.ocean_icon_adjustments_outline,
             title = "Title 2",
-            subtitle = "Subtitle 2"
+            subtitle = "Subtitle 2",
+            caption = "Caption 2"
         ),
         OceanOnboardingPageModel(
             image = R.drawable.ocean_icon_archive_outline,
@@ -64,7 +65,6 @@ fun OceanOnboardingPreview() {
     )
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OceanOnboardingPager(
     pages: List<OceanOnboardingPageModel>,
@@ -162,6 +162,16 @@ private fun OceanOnboardingPage(
             style = OceanTextStyle.description,
             textAlign = TextAlign.Center
         )
+
+        page.caption?.let {
+            OceanSpacing.StackSM()
+
+            Text(
+                text = it,
+                style = OceanTextStyle.caption,
+                textAlign = TextAlign.Center
+            )
+        }
 
         page.link?.let {
 

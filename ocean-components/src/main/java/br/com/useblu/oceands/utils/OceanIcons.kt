@@ -1063,6 +1063,10 @@ enum class OceanIcons(
         token = "lightbulbsolid",
         icon = R.drawable.ocean_icon_light_bulb_solid
     ),
+    LIGHTHOUSE_OUTLINE(
+        token = "lighthouseoutline",
+        icon = R.drawable.ocean_icon_lighthouse_outline
+    ),
     LIGHTNING_BOLT_OUTLINE(
         token = "lightningboltoutline",
         icon = R.drawable.ocean_icon_lightning_bolt_outline
@@ -2227,7 +2231,7 @@ enum class OceanIcons(
 
     companion object {
         fun fromToken(token: String): OceanIcons {
-            return entries.firstOrNull { it.token.equals(token, ignoreCase = true) } ?: UNDEFINED
+            return entries.firstOrNull { it.token.equals(token.trim(), ignoreCase = true) } ?: UNDEFINED
         }
     }
 }

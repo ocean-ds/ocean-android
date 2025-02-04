@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
 import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
+import br.com.useblu.oceands.model.compose.OceanHeaderAppAction
 import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
+import br.com.useblu.oceands.utils.OceanIcons
 
 class HeaderAppViewModel: ViewModel() {
 
@@ -45,6 +47,20 @@ class HeaderAppViewModel: ViewModel() {
                 onClickButton = {
                     println("Click botão outras maquininhas")
                 }
+            ),
+            appActions = listOf(
+                OceanHeaderAppAction(
+                    key = "bell_example",
+                    icon = OceanIcons.BELL_OUTLINE,
+                    badgeCount = 2,
+                    action = { println("action key: $it") }
+                ),
+                OceanHeaderAppAction(
+                    key = "chat_example",
+                    icon = OceanIcons.CHAT_ALT_THREE_OUTLINE,
+                    badgeCount = 0,
+                    action = { println("action key: $it") }
+                )
             )
         )
     )

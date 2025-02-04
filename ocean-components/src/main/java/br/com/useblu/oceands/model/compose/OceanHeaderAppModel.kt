@@ -16,5 +16,6 @@ data class OceanHeaderAppModel(
     val isHeaderCollapsed: Boolean = false,
     val hideBalance: Boolean = false,
     val hideBluPlus: Boolean = true,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val appActions: List<OceanHeaderAppAction<Any>> = emptyList()
 )

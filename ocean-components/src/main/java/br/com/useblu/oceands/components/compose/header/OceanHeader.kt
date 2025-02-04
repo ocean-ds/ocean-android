@@ -32,6 +32,7 @@ import br.com.useblu.oceands.extensions.compose.topBarBackground
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
 import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
+import br.com.useblu.oceands.model.compose.OceanHeaderAppAction
 import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -65,7 +66,21 @@ val modelPreview = OceanHeaderAppModel(
         }
     ),
     isLoading = false,
-    isHeaderCollapsed = false
+    isHeaderCollapsed = false,
+    appActions = listOf(
+        OceanHeaderAppAction(
+            key = "bell_example",
+            icon = OceanIcons.BELL_OUTLINE,
+            badgeCount = 2,
+            action = { println(it) }
+        ),
+        OceanHeaderAppAction(
+            key = 1,
+            icon = OceanIcons.CHAT_ALT_THREE_OUTLINE,
+            badgeCount = 0,
+            action = { println(it) }
+        )
+    )
 )
 
 @Composable
@@ -126,9 +141,18 @@ fun MinimalHeader(
             OceanSpacing.StackXXXS()
         }
 
-        MinimalHeaderMenu(
-            model.badgeCount,
-            model.onClickMenu
+        model.appActions.forEach { headerAction ->
+            MinimalHeaderAction(
+                icon = headerAction.icon,
+                badgeCount = headerAction.badgeCount,
+                onClick = { headerAction.action(headerAction.key) }
+            )
+        }
+
+        MinimalHeaderAction(
+            icon = OceanIcons.MENU_OUTLINE,
+            badgeCount = model.badgeCount,
+            onClick = model.onClickMenu
         )
 
         OceanSpacing.StackXXXS()
@@ -136,19 +160,20 @@ fun MinimalHeader(
 }
 
 @Composable
-private fun MinimalHeaderMenu(
+private fun MinimalHeaderAction(
+    icon: OceanIcons,
     badgeCount: Int,
-    onClickMenu: () -> Unit
+    onClick: () -> Unit
 ) {
     Box(
         modifier = Modifier
             .size(48.dp)
             .clickable {
-                onClickMenu()
+                onClick()
             }
     ) {
         OceanIcon(
-            iconType = OceanIcons.MENU_OUTLINE,
+            iconType = icon,
             modifier = Modifier
                 .size(24.dp)
                 .align(Alignment.Center),

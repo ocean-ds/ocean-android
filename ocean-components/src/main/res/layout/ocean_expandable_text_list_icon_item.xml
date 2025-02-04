@@ -14,6 +14,8 @@
 
         <import type="br.com.useblu.oceands.model.OceanParentTextItem" />
 
+        <import type="android.view.View"/>
+
         <variable
             name="item"
             type="br.com.useblu.oceands.model.OceanParentTextItem" />
@@ -69,38 +71,39 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@drawable/icon_generic_primary" />
 
-                <TextView
-                    android:id="@+id/title_text_view"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:fontFamily="@font/font_family_base_regular"
-                    android:text="@{item.title}"
-                    android:textColor="@color/ocean_color_interface_dark_pure"
-                    android:textSize="@dimen/ocean_font_size_xs"
-
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
                     app:layout_constraintStart_toEndOf="@id/image"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed"
-                    tools:text="Title" />
+                    app:layout_constraintBottom_toBottomOf="parent">
 
-                <TextView
-                    android:id="@+id/subtitle_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="21dp"
-                    android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
-                    android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
-                    android:gravity="center_vertical"
-                    android:fontFamily="@font/font_family_base_regular"
-                    android:textColor="@color/ocean_color_brand_primary_down"
-                    android:textSize="@dimen/ocean_font_size_xxs"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/image"
-                    app:layout_constraintTop_toBottomOf="@+id/title_text_view"
-                    app:text="@{item.subTitle}"
-                    tools:text="Description" />
+                    <TextView
+                        android:id="@+id/title_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font_family_base_regular"
+                        android:text="@{item.title}"
+                        android:textColor="@color/ocean_color_interface_dark_pure"
+                        android:textSize="@dimen/ocean_font_size_xs"
+                        android:gravity="center_vertical"
+                        tools:text="Title" />
+
+                    <TextView
+                        android:id="@+id/subtitle_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/font_family_base_regular"
+                        android:textColor="@color/ocean_color_brand_primary_down"
+                        android:textSize="@dimen/ocean_font_size_xxs"
+                        android:visibility="@{item.hasSubtitle() ? View.VISIBLE : View.GONE}"
+                        app:text="@{item.subTitle}"
+                        tools:text="Description" />
+                </LinearLayout>
 
                 <ImageView
                     android:id="@+id/header_indicator"
@@ -112,7 +115,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_chevron_down_solid"
+                    app:srcCompat="@drawable/ocean_icon_chevron_down_outline"
                     app:tint="@color/ocean_color_interface_dark_up"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

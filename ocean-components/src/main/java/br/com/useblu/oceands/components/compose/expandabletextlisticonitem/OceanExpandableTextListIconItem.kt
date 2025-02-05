@@ -13,8 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -49,6 +49,7 @@ fun OceanExpandableTextListIconItemPreview() {
         Column(
             modifier = Modifier
                 .background(OceanColors.interfaceLightPure)
+                .verticalScroll(rememberScrollState())
         ) {
             OceanExpandableTextListIconItem(
                 icon = OceanIcons.PLACEHOLDER_SOLID,
@@ -166,8 +167,8 @@ fun <ChildReferenceKey> OceanExpandableTextListIconItem(
         AnimatedVisibility(
             visible = isCollapsed.not()
         ) {
-            LazyColumn {
-                items(childs.items) { child ->
+            Column {
+                childs.items.forEach { child ->
                     ChildItem(setup = childs, item = child, onClick = onClick)
                 }
             }

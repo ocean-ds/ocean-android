@@ -3,7 +3,6 @@ package br.com.useblu.oceands.components.compose.expandabletextlisticonitem.mode
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
-import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.utils.OceanIcons
 
 sealed interface OceanExpandableTextListIconItemChildType<ChildReferenceKey> {

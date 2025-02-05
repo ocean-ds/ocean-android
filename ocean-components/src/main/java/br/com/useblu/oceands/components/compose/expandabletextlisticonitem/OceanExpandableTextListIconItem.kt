@@ -69,11 +69,11 @@ fun OceanExpandableTextListIconItemPreview() {
                 icon = OceanIcons.PLACEHOLDER_SOLID,
                 title = "Title",
                 description = "Description",
-                collapsed = true,
+                collapsed = false,
                 childs = OceanExpandableTextListIconItemChildType.Default(
                     items = listOf(1, 2, 3).map {
                         OceanExpandableTextListIconItemChild(
-                            icon = OceanIcons.PLACEHOLDER_SOLID,
+                            icon = null,
                             title = "Title $it",
                             description = "Description $it",
                             key = it
@@ -186,13 +186,14 @@ private fun HeaderItem(
 ) {
     Row(
         modifier = modifier
-            .padding(horizontal = OceanSpacing.xxs)
+            .padding(horizontal = OceanSpacing.xs)
             .padding(vertical = OceanSpacing.xs),
         verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
             OceanIcon(
                 modifier = Modifier
+                    .size(32.dp)
                     .padding(end = OceanSpacing.xxs),
                 iconType = it
             )
@@ -224,7 +225,8 @@ private fun HeaderItem(
 
         OceanIcon(
             modifier = Modifier
-                .size(20.dp),
+                .size(24.dp),
+            tint = OceanColors.interfaceDarkUp,
             iconType = if (collapsed) OceanIcons.CHEVRON_DOWN_SOLID else OceanIcons.CHEVRON_UP_SOLID
         )
     }
@@ -261,14 +263,15 @@ private fun <ChildReferenceKey>DefaultChildItem(
 ) {
     Row(
         modifier = Modifier
-            .padding(start = OceanSpacing.sm, end = OceanSpacing.xxs)
+            .padding(start = OceanSpacing.xs)
             .padding(vertical = OceanSpacing.xs),
         verticalAlignment = Alignment.CenterVertically
     ) {
         item.icon?.let {
             OceanIcon(
                 modifier = Modifier
-                    .padding(end = OceanSpacing.xxs),
+                    .size(28.dp)
+                    .padding(start = OceanSpacing.xxxs, end = OceanSpacing.xxs),
                 iconType = it
 
             )
@@ -336,6 +339,8 @@ private fun <ChildReferenceKey>DefaultChildItem(
             is OceanExpandableTextListIconItemChildType.Default.ActionType.Custom -> {
                 setup.actionType.icon?.let {
                     OceanIcon(
+                        modifier = Modifier
+                            .padding(end = OceanSpacing.xs),
                         iconType = it
                     )
                 }

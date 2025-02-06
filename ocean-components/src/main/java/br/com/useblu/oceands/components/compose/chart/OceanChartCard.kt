@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.components.compose.chart
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,9 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,8 +37,7 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 private fun OceanChartCardPreview() {
     Column(
         modifier = Modifier
-            .background(OceanColors.interfaceLightPure)
-            .padding(16.dp),
+            .background(OceanColors.interfaceLightPure),
     ) {
         OceanChartCard(
             modifier = Modifier,
@@ -59,41 +54,38 @@ private fun OceanChartCardPreview() {
 fun OceanChartCard(
     modifier: Modifier = Modifier,
     title: String,
-    subtitle: String,
+    subtitle: String? = null,
     showProgress: Boolean = false,
     model: OceanChartModel,
     actionTitle: String? = null,
     callToAction: (() -> Unit)? = null
 ) {
-    Card(
-        modifier = modifier,
-        border = BorderStroke(
-            width = 1.dp,
-            color = OceanColors.interfaceLightDown
-        ),
-        shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = OceanColors.interfaceLightPure,
-            disabledContainerColor = OceanColors.interfaceLightPure
-        )
+    Column(
+        modifier = modifier
     ) {
         Column(
-            modifier = Modifier.padding(OceanSpacing.sm)
+            modifier = Modifier.padding(horizontal = OceanSpacing.xs)
         ) {
             OceanText(text = title, style = OceanTextStyle.heading4)
 
             OceanSpacing.StackXXXS()
 
-            OceanText(text = subtitle, style = OceanTextStyle.description)
+            if (!subtitle.isNullOrBlank()) {
+                OceanText(text = subtitle, style = OceanTextStyle.description)
+            }
 
             OceanSpacing.StackXS()
 
             OceanDonut(model = model, modifier = Modifier.height(180.dp))
 
+            OceanSpacing.StackXS()
+
             OceanChardLegend(model)
         }
 
         if (actionTitle != null) {
+            OceanSpacing.StackSM()
+
             OceanDivider()
 
             OceanGroupCta(
@@ -115,6 +107,10 @@ fun OceanChardLegend(
         modifier = modifier
     ) {
         model.items.forEachIndexed { index, it ->
+            if (index != 0) {
+                OceanDivider()
+            }
+
             OceanChartLegendItem(
                 model = it,
                 onClick = {
@@ -173,7 +169,7 @@ fun OceanChartLegendItem(
                 if (model.information.isNotBlank()) {
                     OceanTooltip(model.information) {
                         Icon(
-                            modifier = Modifier.size(20.dp),
+                            modifier = Modifier.size(16.dp),
                             painter = painterResource(id = R.drawable.ocean_icon_info_solid),
                             tint = OceanColors.interfaceLightDeep,
                             contentDescription = null
@@ -191,6 +187,6 @@ fun OceanChartLegendItem(
             )
         }
 
-        OceanText(text = model.percent, style = OceanTextStyle.description)
+        OceanText(text = model.valueFormatted, style = OceanTextStyle.description)
     }
 }

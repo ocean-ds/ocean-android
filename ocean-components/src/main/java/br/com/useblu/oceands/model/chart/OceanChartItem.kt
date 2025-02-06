@@ -7,7 +7,6 @@ data class OceanChartItem(
     val subtitle: String = "",
     val value: Float = 0f,
     val valueFormatted: String = "",
-    val percent: String = "",
     val information: String = "",
     val selected: Boolean = true,
     @ColorRes val color: Int

@@ -55,7 +55,6 @@ fun OceanGroupCta(
             .background(color = OceanColors.interfaceLightPure)
             .clickable(enabled = !showProgress, onClick = onClick)
             .height(52.dp)
-            .padding(horizontal = OceanSpacing.xs)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center

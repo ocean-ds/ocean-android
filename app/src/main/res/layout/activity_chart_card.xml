@@ -4,10 +4,6 @@
 
     <data>
 
-        <import type="android.text.InputType" />
-
-        <import type="br.com.useblu.oceands.utils.FormatTypes" />
-
         <variable
             name="viewmodel"
             type="br.com.useblu.oceands.client.ui.chartcard.ChartCardViewModel" />
@@ -26,6 +22,11 @@
             android:orientation="vertical"
             android:paddingVertical="@dimen/ocean_spacing_inline_xs">
 
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/compose_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <include
                 layout="@layout/ocean_chart_card"
                 app:actionTitle="@{@string/action_title}"
@@ -33,11 +34,6 @@
                 app:model="@{viewmodel.oceanDonutLiveData}"
                 app:subtitle="@{@string/subtitle}"
                 app:title="@{@string/title}" />
-
-            <androidx.compose.ui.platform.ComposeView
-                android:id="@+id/compose_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

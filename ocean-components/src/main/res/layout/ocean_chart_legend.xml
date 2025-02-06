@@ -110,7 +110,7 @@
 
             <include
                 layout="@layout/ocean_description"
-                app:text="@{item.percent}" />
+                app:text="@{item.valueFormatted}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

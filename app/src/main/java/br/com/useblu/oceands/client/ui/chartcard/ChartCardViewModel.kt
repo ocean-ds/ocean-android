@@ -16,7 +16,6 @@ class ChartCardViewModel : ViewModel() {
             color = R.color.colorPrimary,
             subtitle = "Subtitle 1",
             information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            percent = "10%"
         ),
         OceanChartItem(
             title = "Item 2",
@@ -25,7 +24,6 @@ class ChartCardViewModel : ViewModel() {
             color = R.color.ocean_color_status_negative_pure,
             subtitle = "Subtitle 2",
             information = "Isto equivale a 75 reais",
-            percent = "20%"
         ),
         OceanChartItem(
             title = "Item 3",
@@ -34,7 +32,6 @@ class ChartCardViewModel : ViewModel() {
             color = R.color.ocean_color_status_warning_deep,
             subtitle = "Subtitle 3",
             information = "Isto equivale a 75 reais",
-            percent = "30%"
         ),
         OceanChartItem(
             title = "Item 4",
@@ -43,7 +40,6 @@ class ChartCardViewModel : ViewModel() {
             color = R.color.colorAccent,
             subtitle = "Subtitle 4",
             information = "Isto equivale a 70 reais",
-            percent = "40%"
         ),
         OceanChartItem(
             title = "Item 5",
@@ -52,7 +48,6 @@ class ChartCardViewModel : ViewModel() {
             color = R.color.ocean_color_brand_primary_pure,
             subtitle = "Subtitle 5",
             information = "60 reaissss",
-            percent = "50%"
         )
     )
 

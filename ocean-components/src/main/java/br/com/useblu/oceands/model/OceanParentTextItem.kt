@@ -7,5 +7,7 @@ data class OceanParentTextItem(
     val title: String?,
     val subTitle: String?,
     val children: List<OceanChildTextItem> = emptyList()
-)
+) {
+    fun hasSubtitle() = !subTitle.isNullOrEmpty()
+}
 

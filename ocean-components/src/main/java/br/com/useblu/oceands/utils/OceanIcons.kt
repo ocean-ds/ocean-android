@@ -367,6 +367,10 @@ enum class OceanIcons(
         token = "chatalt2solid",
         icon = R.drawable.ocean_icon_chat_alt_2_solid
     ),
+    CHAT_ALT_THREE_OUTLINE(
+        token = "chatalt3outline",
+        icon = R.drawable.ocean_icon_chat_alt_3_outline
+    ),
     CHAT_OUTLINE(
         token = "chatoutline",
         icon = R.drawable.ocean_icon_chat_outline

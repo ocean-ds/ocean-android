@@ -36,6 +36,7 @@ import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.expandabletextlisticonitem.model.OceanExpandableTextListIconItemChild
 import br.com.useblu.oceands.components.compose.expandabletextlisticonitem.model.OceanExpandableTextListIconItemChildType
+import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -55,11 +56,13 @@ fun OceanExpandableTextListIconItemPreview() {
                 icon = OceanIcons.PLACEHOLDER_SOLID,
                 title = "Title",
                 collapsed = true,
+                showIconBackground = true,
                 childsItems = listOf(1, 2, 3).map {
                     OceanExpandableTextListIconItemChild(
                         icon = OceanIcons.PLACEHOLDER_SOLID,
                         title = "Title $it",
                         description = "Description $it",
+                        showIconBackground = true,
                         key = it
                     )
                 }
@@ -147,6 +150,7 @@ fun <ChildReferenceKey> OceanExpandableTextListIconItem(
     title: String,
     description: String?,
     collapsed: Boolean = true,
+    showIconBackground: Boolean = false,
     childs: OceanExpandableTextListIconItemChildType<ChildReferenceKey>,
     onClick: (OceanExpandableTextListIconItemChild<ChildReferenceKey>) -> Unit = {}
 ) {
@@ -163,6 +167,7 @@ fun <ChildReferenceKey> OceanExpandableTextListIconItem(
             title = title,
             description = description,
             collapsed = isCollapsed,
+            showIconBackground = showIconBackground
         )
         AnimatedVisibility(
             visible = isCollapsed.not()
@@ -182,6 +187,7 @@ private fun HeaderItem(
     icon: OceanIcons?,
     title: String,
     description: String?,
+    showIconBackground: Boolean,
     collapsed: Boolean
 ) {
     Row(
@@ -191,12 +197,21 @@ private fun HeaderItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         icon?.let {
-            OceanIcon(
+            Box(
                 modifier = Modifier
-                    .size(32.dp)
-                    .padding(end = OceanSpacing.xxs),
-                iconType = it
-            )
+                    .size(40.dp)
+                    .iconContainerBackground(showIconBackground)
+            ) {
+                OceanIcon(
+                    iconType = it,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(24.dp),
+                    tint = OceanColors.brandPrimaryDown
+                )
+            }
+
+            OceanSpacing.StackXS()
         }
 
         Column(
@@ -268,14 +283,22 @@ private fun <ChildReferenceKey>DefaultChildItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         item.icon?.let {
-            OceanIcon(
+            Box(
                 modifier = Modifier
-                    .size(28.dp)
-                    .padding(start = OceanSpacing.xxxs, end = OceanSpacing.xxs),
-                iconType = it
-
-            )
+                    .size(40.dp)
+                    .iconContainerBackground(item.showIconBackground)
+            ) {
+                OceanIcon(
+                    iconType = it,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(20.dp),
+                    tint = OceanColors.brandPrimaryDown
+                )
+            }
         }
+
+        OceanSpacing.StackXS()
 
         Column(
             modifier = Modifier
@@ -308,7 +331,8 @@ private fun <ChildReferenceKey>DefaultChildItem(
                         onClick = { expanded = true }
                     ) {
                         OceanIcon(
-                            iconType = OceanIcons.DOTS_VERTICAL_SOLID
+                            iconType = OceanIcons.DOTS_VERTICAL_SOLID,
+                            tint = OceanColors.interfaceDarkUp,
                         )
                     }
 
@@ -341,7 +365,8 @@ private fun <ChildReferenceKey>DefaultChildItem(
                     OceanIcon(
                         modifier = Modifier
                             .padding(end = OceanSpacing.xs),
-                        iconType = it
+                        iconType = it,
+                        tint = OceanColors.interfaceDarkUp,
                     )
                 }
             }
@@ -358,17 +383,27 @@ private fun <ChildReferenceKey>WithSwipeChildItem(
         content = {
             Row(
                 modifier = Modifier
-                    .padding(start = OceanSpacing.sm, end = OceanSpacing.xxs)
+                    .padding(start = OceanSpacing.xs, end = OceanSpacing.xxs)
                     .padding(vertical = OceanSpacing.xs),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 item.icon?.let {
-                    OceanIcon(
+                    Box(
                         modifier = Modifier
-                            .padding(end = OceanSpacing.xxs),
-                        iconType = it
-                    )
+                            .size(40.dp)
+                            .iconContainerBackground(item.showIconBackground)
+                    ) {
+                        OceanIcon(
+                            iconType = it,
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(20.dp),
+                            tint = OceanColors.brandPrimaryDown
+                        )
+                    }
                 }
+
+                OceanSpacing.StackXS()
 
                 Column(
                     modifier = Modifier
@@ -397,6 +432,7 @@ private fun <ChildReferenceKey>WithSwipeChildItem(
                 Icon(
                     painter = painterResource(id = R.drawable.icon_swipe),
                     contentDescription = null,
+                    tint = OceanColors.interfaceDarkUp
                 )
             }
         },
@@ -413,16 +449,20 @@ fun <ChildReferenceKey> OceanExpandableTextListIconItem(
     title: String,
     description: String? = null,
     collapsed: Boolean = true,
+    showIconBackground: Boolean = false,
     childsItems: List<OceanExpandableTextListIconItemChild<ChildReferenceKey>>,
+    onClick: (OceanExpandableTextListIconItemChild<ChildReferenceKey>) -> Unit = {}
 ) {
     OceanExpandableTextListIconItem(
         icon = icon,
         title = title,
         description = description,
         collapsed = collapsed,
+        showIconBackground = showIconBackground,
         childs = OceanExpandableTextListIconItemChildType.Default(
             items = childsItems
-        )
+        ),
+        onClick = onClick
     )
 }
 

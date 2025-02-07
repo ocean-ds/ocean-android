@@ -4,6 +4,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 
 data class OceanExpandableTextListIconItemChild<ReferenceKey>(
     val icon: OceanIcons?,
+    val showIconBackground: Boolean = false,
     val title: String,
     val description: String? = null,
     val key: ReferenceKey

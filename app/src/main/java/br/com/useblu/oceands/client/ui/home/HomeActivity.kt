@@ -94,6 +94,7 @@ import br.com.useblu.oceands.components.OceanTooltip
 import br.com.useblu.oceands.components.compose.BottomSheetButtonsOrientation
 import br.com.useblu.oceands.components.compose.OceanBottomSheet
 import br.com.useblu.oceands.components.compose.OceanBottomSheetModel
+import br.com.useblu.oceands.components.compose.OceanDatePickerDialog
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanUnorderedListItem
@@ -119,8 +120,23 @@ class HomeActivity : AppCompatActivity() {
             view = LocalView.current
 
             var showSheet by remember { mutableStateOf(false) }
+            var showDatePicker by remember { mutableStateOf(false) }
+
             OceanTheme {
                 Scaffold {
+
+                    if (showDatePicker) {
+                        OceanDatePickerDialog(
+                            title = "Selecione uma data",
+                            onConfirm = {
+                                println(it)
+                            },
+                            onDismiss = {
+                                showSheet = false
+                            }
+                        )
+                    }
+
                     if (showSheet) {
                         OceanBottomSheet(
                             model = OceanBottomSheetModel(
@@ -159,8 +175,12 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Badges", onClick = { onClickBadges() })
                         textAction(text = "Balance", onClick = { onClickBalance() })
                         textAction(text = "Buttons", onClick = { onClickButtons() })
-                        textAction(text = "Bottom Navigation", onClick = { onClickBottomNavigation() })
-                        textAction(text = "BottomSheet with Image", onClick = { onClickBottomSheetImage() })
+                        textAction(
+                            text = "Bottom Navigation",
+                            onClick = { onClickBottomNavigation() })
+                        textAction(
+                            text = "BottomSheet with Image",
+                            onClick = { onClickBottomSheetImage() })
                         textAction(
                             text = "BottomSheet Vertical",
                             onClick = { onClickBottomSheetVertical() })
@@ -182,7 +202,9 @@ class HomeActivity : AppCompatActivity() {
                         textAction(
                             text = "BottomSheet Compose Content",
                             onClick = { onClickBottomSheetWithCompose() })
-                        textAction(text = "BottomSheet 100% Compose", onClick = { showSheet = true })
+                        textAction(
+                            text = "BottomSheet 100% Compose",
+                            onClick = { showSheet = true })
                         textAction(text = "BottomSheetList", onClick = { onOceanBottomListSheet() })
                         textAction(
                             text = "BottomSheetList (body Icon)",
@@ -217,6 +239,9 @@ class HomeActivity : AppCompatActivity() {
                         textAction(
                             text = "DatePicker Fullscreen",
                             onClick = { onOceanDatePickerFullScreen() })
+                        textAction(
+                            text = "DatePicker Fullscreen Compose",
+                            onClick = { showDatePicker = true })
                         textAction(text = "Descriptor List Item", onClick = { descriptorList() })
                         textAction(text = "Detailed Card", onClick = { detailedCardClick() })
                         textAction(text = "Donut", onClick = { donutView() })
@@ -232,18 +257,26 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Radio", onClick = { onClickRadio() })
                         textAction(text = "Shortcuts", onClick = { shortcuts() })
                         textAction(text = "SnackBar", onClick = { onClickSnackBar(view) })
-                        textAction(text = "SnackBar + Action", onClick = { onClickSnackBarAction(view) })
+                        textAction(
+                            text = "SnackBar + Action",
+                            onClick = { onClickSnackBarAction(view) })
                         textAction(text = "Status List Item", onClick = { statusListItem() })
                         textAction(text = "Step", onClick = { stepview() })
                         textAction(text = "Switch", onClick = { onClickSwitch() })
                         textAction(text = "Tab", onClick = { onClickTab() })
                         textAction(text = "Tag", onClick = { onClickTags() })
                         textAction(text = "Text Link", onClick = { onClickTextLink() })
-                        textAction(text = "Text List Expandable", onClick = { listItemsExpandable() })
+                        textAction(
+                            text = "Text List Expandable",
+                            onClick = { listItemsExpandable() })
                         textAction(text = "Text List Icon Item", onClick = { textListIconItem() })
                         textAction(text = "Text List Item", onClick = { textListItem() })
-                        textAction(text = "Text List Inverted Item", onClick = { textListInvertedItem() })
-                        textAction(text = "Text List Inline Item", onClick = { textListInlineItem() })
+                        textAction(
+                            text = "Text List Inverted Item",
+                            onClick = { textListInvertedItem() })
+                        textAction(
+                            text = "Text List Inline Item",
+                            onClick = { textListInlineItem() })
                         textAction(text = "Text List Settings", onClick = { listItemsSettings() })
                         textAction(text = "List Ordered", onClick = { listOrderedClick() })
                         textAction(text = "List Subheader", onClick = { listSubheaderClick() })
@@ -253,7 +286,9 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Transaction List", onClick = { transactionListClick() })
                         textAction(text = "Transaction Footer", onClick = { transactionFooter() })
                         textAction(text = "Typography", onClick = { onClickTypography() })
-                        textAction(text = "Unordered List Item", onClick = { onClickUnorderedListItem() })
+                        textAction(
+                            text = "Unordered List Item",
+                            onClick = { onClickUnorderedListItem() })
                     }
                 }
             }
@@ -828,7 +863,6 @@ class HomeActivity : AppCompatActivity() {
 
         val calendarDefaultSelected = Calendar.getInstance()
         calendarDefaultSelected.time = Date()
-        calendarDefaultSelected.add(Calendar.MONTH, 1)
 
         val disableDay1 = Calendar.getInstance().apply {
             set(Calendar.YEAR, 2022)

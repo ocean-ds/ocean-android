@@ -130,9 +130,10 @@ class HomeActivity : AppCompatActivity() {
                             title = "Selecione uma data",
                             onConfirm = {
                                 println(it)
+                                showDatePicker = false
                             },
                             onDismiss = {
-                                showSheet = false
+                                showDatePicker = false
                             }
                         )
                     }

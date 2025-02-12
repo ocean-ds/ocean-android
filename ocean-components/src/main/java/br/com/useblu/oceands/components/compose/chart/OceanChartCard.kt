@@ -10,12 +10,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,6 +28,7 @@ import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanGroupCta
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTooltip
+import br.com.useblu.oceands.components.compose.shimmeringBrush
 import br.com.useblu.oceands.model.chart.OceanChartItem
 import br.com.useblu.oceands.model.chart.OceanChartModel
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -37,13 +41,35 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 private fun OceanChartCardPreview() {
     Column(
         modifier = Modifier
-            .background(OceanColors.interfaceLightPure),
+            .background(OceanColors.interfaceLightPure)
+            .padding(OceanSpacing.xs),
     ) {
         OceanChartCard(
             modifier = Modifier,
             title = "Title",
             subtitle = "Subtitle",
+            isLoading = false,
             model = donutModel,
+            actionTitle = "Call to Action",
+            callToAction = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun OceanChartCardSkeletonPreview() {
+    Column(
+        modifier = Modifier
+            .background(OceanColors.interfaceLightPure)
+            .padding(OceanSpacing.xs),
+    ) {
+        OceanChartCard(
+            modifier = Modifier,
+            title = "Title",
+            subtitle = "Subtitle",
+            isLoading = true,
+            model = donutModel.copy(items = emptyList()),
             actionTitle = "Call to Action",
             callToAction = {}
         )
@@ -52,6 +78,77 @@ private fun OceanChartCardPreview() {
 
 @Composable
 fun OceanChartCard(
+    modifier: Modifier = Modifier,
+    title: String,
+    subtitle: String? = null,
+    showProgress: Boolean = false,
+    isLoading: Boolean = false,
+    model: OceanChartModel,
+    actionTitle: String? = null,
+    callToAction: (() -> Unit)? = null
+) {
+    if (isLoading) {
+        OceanChartCardSkeleton(modifier = modifier)
+    } else {
+        OceanChartCardContent(
+            modifier = modifier,
+            title = title,
+            subtitle = subtitle,
+            showProgress = showProgress,
+            model = model,
+            actionTitle = actionTitle,
+            callToAction = callToAction
+        )
+    }
+}
+
+@Composable
+private fun OceanChartCardSkeleton(modifier: Modifier = Modifier) {
+    val brush = shimmeringBrush()
+
+    Column(modifier) {
+        Box(
+            modifier = Modifier
+                .height(16.dp)
+                .width(100.dp)
+                .clip(RoundedCornerShape(4.dp))
+                .background(brush)
+        )
+
+        OceanSpacing.StackXXXS()
+        OceanSpacing.StackXS()
+
+        OceanDonut(model = OceanChartModel(), modifier = Modifier.height(180.dp))
+
+        OceanSpacing.StackXS()
+
+        repeat(2) {
+            Box(
+                modifier = Modifier
+                    .height(16.dp)
+                    .width(100.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .background(brush)
+            )
+
+            OceanSpacing.StackXXS()
+
+            Box(
+                modifier = Modifier
+                    .height(16.dp)
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(4.dp))
+                    .background(brush)
+            )
+
+            OceanSpacing.StackXXXS()
+            OceanSpacing.StackXS()
+        }
+    }
+}
+
+@Composable
+private fun OceanChartCardContent(
     modifier: Modifier = Modifier,
     title: String,
     subtitle: String? = null,

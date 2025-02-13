@@ -106,7 +106,9 @@ fun OceanChartCard(
 private fun OceanChartCardSkeleton(modifier: Modifier = Modifier) {
     val brush = shimmeringBrush()
 
-    Column(modifier) {
+    Column(
+        modifier = modifier.padding(horizontal = OceanSpacing.xs)
+    ) {
         Box(
             modifier = Modifier
                 .height(16.dp)

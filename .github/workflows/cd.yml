@@ -50,6 +50,9 @@ jobs:
       - name: Command Update Branch
         run: git pull
 
+      - name: Update Ktlint Baseline
+        run: gradlew ktlintGenerateBaseline
+
       - name: Commit changes
         run: |
           git add . && git commit -am "chore: update Ocean tokens and release v$OCEAN_VERSION [skip ci]" && git push

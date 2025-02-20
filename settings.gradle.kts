@@ -1,6 +1,6 @@
-include (":playground")
-include (":ocean-components")
-include (":app")
+include(":playground")
+include(":ocean-components")
+include(":app")
 include(":baselineprofile")
 
 rootProject.name = "ocean-android"

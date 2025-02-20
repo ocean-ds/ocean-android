@@ -30,8 +30,8 @@ subprojects {
                 "ktlint_standard_function-signature" to "disabled",
                 "ij_kotlin_allow_trailing_comma" to "false",
                 "ij_kotlin_allow_trailing_comma_on_call_site" to "false",
-                "ktlint_function_signature_body_expression_wrapping" to "multiline",
-            ),
+                "ktlint_function_signature_body_expression_wrapping" to "multiline"
+            )
         )
         filter {
             exclude("**/baseline.xml")

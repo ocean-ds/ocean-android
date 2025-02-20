@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<baseline version="1.0">
+    <file name="build.gradle.kts">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="41" column="1" source="standard:no-trailing-spaces" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/accordion/AccordionActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="14" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/accordion/AccordionViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="5" column="40" source="standard:no-empty-class-body" />
+        <error line="6" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="6" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/alert/AlertActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="6" column="1" source="standard:no-unused-imports" />
+        <error line="14" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/badges/BadgesActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="11" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="23" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/badges/BadgesViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="5" column="22" source="standard:colon-spacing" />
+        <error line="5" column="36" source="standard:no-empty-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/balance/BalanceActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="11" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="29" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="29" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="31" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/balance/BalanceViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="8" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="32" column="32" source="standard:multiline-expression-wrapping" />
+        <error line="36" column="18" source="standard:trailing-comma-on-call-site" />
+        <error line="39" column="32" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/bottomnavigation/BottomNavigationActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="11" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/bottomnavigation/BottomNavigationViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="3" column="1" source="standard:import-ordering" />
+        <error line="13" column="32" source="standard:colon-spacing" />
+        <error line="14" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="45" column="25" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/buttons/ButtonsActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="20" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="22" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="32" column="19" source="standard:multiline-expression-wrapping" />
+        <error line="51" column="28" source="standard:multiline-expression-wrapping" />
+        <error line="57" column="31" source="standard:multiline-expression-wrapping" />
+        <error line="81" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="172" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/buttons/ButtonsViewModel.kt">
+        <error line="9" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/caption/CaptionActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/cardgroup/CardGroupActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="3" column="1" source="standard:import-ordering" />
+        <error line="12" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="34" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/cardgroup/CardGroupViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="8" column="25" source="standard:colon-spacing" />
+        <error line="9" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="44" column="31" source="standard:multiline-expression-wrapping" />
+        <error line="71" column="32" source="standard:multiline-expression-wrapping" />
+        <error line="74" column="29" source="standard:trailing-comma-on-call-site" />
+        <error line="78" column="29" source="standard:trailing-comma-on-call-site" />
+        <error line="82" column="27" source="standard:trailing-comma-on-call-site" />
+        <error line="85" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/carditem/CardItemActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="3" column="1" source="standard:import-ordering" />
+        <error line="12" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="32" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/carditem/CardItemViewModel.kt">
+        <error line="7" column="24" source="standard:colon-spacing" />
+        <error line="8" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="9" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="13" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/carousel/CarouselActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="24" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="50" column="13" source="standard:function-naming" />
+        <error line="52" column="22" source="standard:argument-list-wrapping" />
+        <error line="52" column="35" source="standard:argument-list-wrapping" />
+        <error line="52" column="48" source="standard:argument-list-wrapping" />
+        <error line="57" column="13" source="standard:function-naming" />
+        <error line="61" column="41" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/carousel/CarouselViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="9" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="22" column="17" source="standard:multiline-expression-wrapping" />
+        <error line="46" column="10" source="standard:trailing-comma-on-call-site" />
+        <error line="49" column="18" source="standard:multiline-expression-wrapping" />
+        <error line="61" column="10" source="standard:trailing-comma-on-call-site" />
+        <error line="64" column="18" source="standard:multiline-expression-wrapping" />
+        <error line="79" column="18" source="standard:multiline-expression-wrapping" />
+        <error line="94" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/carouselwithcomponents/CarouselViewWithComponentsModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="10" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="47" column="36" source="standard:curly-spacing" />
+        <error line="47" column="80" source="standard:curly-spacing" />
+        <error line="47" column="81" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/carouselwithcomponents/CarouselWithComponentsActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="23" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="46" column="13" source="standard:function-naming" />
+        <error line="48" column="22" source="standard:argument-list-wrapping" />
+        <error line="48" column="35" source="standard:argument-list-wrapping" />
+        <error line="48" column="48" source="standard:argument-list-wrapping" />
+        <error line="53" column="13" source="standard:function-naming" />
+        <error line="57" column="52" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/chartbar/ChartBarActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/chartbar/ChartBarViewModel.kt">
+        <error line="10" column="17" source="standard:multiline-expression-wrapping" />
+        <error line="37" column="17" source="standard:multiline-expression-wrapping" />
+        <error line="49" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/chartcard/ChartCardActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/chartcard/ChartCardViewModel.kt">
+        <error line="11" column="17" source="standard:multiline-expression-wrapping" />
+        <error line="18" column="85" source="standard:trailing-comma-on-call-site" />
+        <error line="26" column="53" source="standard:trailing-comma-on-call-site" />
+        <error line="34" column="53" source="standard:trailing-comma-on-call-site" />
+        <error line="42" column="53" source="standard:trailing-comma-on-call-site" />
+        <error line="50" column="40" source="standard:trailing-comma-on-call-site" />
+        <error line="54" column="17" source="standard:multiline-expression-wrapping" />
+        <error line="70" column="17" source="standard:multiline-expression-wrapping" />
+        <error line="82" column="17" source="standard:multiline-expression-wrapping" />
+        <error line="98" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/checkbox/CheckBoxViewModel.kt">
+        <error line="6" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/chips/ChipsViewModel.kt">
+        <error line="10" column="1" source="standard:no-unused-imports" />
+        <error line="11" column="1" source="standard:no-unused-imports" />
+        <error line="12" column="1" source="standard:no-unused-imports" />
+        <error line="14" column="1" source="standard:no-unused-imports" />
+        <error line="15" column="1" source="standard:no-unused-imports" />
+        <error line="25" column="1" source="standard:no-unused-imports" />
+        <error line="31" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="35" column="27" source="standard:multiline-expression-wrapping" />
+        <error line="39" column="29" source="standard:multiline-expression-wrapping" />
+        <error line="43" column="31" source="standard:multiline-expression-wrapping" />
+        <error line="47" column="35" source="standard:multiline-expression-wrapping" />
+        <error line="51" column="29" source="standard:multiline-expression-wrapping" />
+        <error line="56" column="45" source="standard:multiline-expression-wrapping" />
+        <error line="61" column="47" source="standard:multiline-expression-wrapping" />
+        <error line="69" column="51" source="standard:multiline-expression-wrapping" />
+        <error line="80" column="29" source="standard:multiline-expression-wrapping" />
+        <error line="84" column="49" source="standard:multiline-expression-wrapping" />
+        <error line="96" column="29" source="standard:multiline-expression-wrapping" />
+        <error line="102" column="51" source="standard:multiline-expression-wrapping" />
+        <error line="105" column="43" source="standard:multiline-expression-wrapping" />
+        <error line="110" column="23" source="standard:if-else-wrapping" />
+        <error line="110" column="28" source="standard:if-else-bracing" />
+        <error line="110" column="28" source="standard:multiline-if-else" />
+        <error line="110" column="28" source="standard:if-else-wrapping" />
+        <error line="114" column="51" source="standard:multiline-expression-wrapping" />
+        <error line="155" column="27" source="standard:multiline-expression-wrapping" />
+        <error line="167" column="27" source="standard:multiline-expression-wrapping" />
+        <error line="168" column="38" source="standard:multiline-expression-wrapping" />
+        <error line="184" column="42" source="standard:multiline-expression-wrapping" />
+        <error line="196" column="29" source="standard:multiline-expression-wrapping" />
+        <error line="202" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="207" column="29" source="standard:multiline-expression-wrapping" />
+        <error line="221" column="29" source="standard:multiline-expression-wrapping" />
+        <error line="269" column="43" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/crosscellcard/CardCrossSellActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="11" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="23" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/crosscellcard/CardCrossSellViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="6" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="10" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="11" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/description/DescriptionActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/descriptorlistitem/DescriptorListItemActivity.kt">
+        <error line="1" column="1" source="standard:filename" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/descriptorlistitem/DescriptorListViewModel.kt">
+        <error line="8" column="19" source="standard:multiline-expression-wrapping" />
+        <error line="19" column="46" source="standard:trailing-comma-on-call-site" />
+        <error line="24" column="46" source="standard:trailing-comma-on-call-site" />
+        <error line="29" column="46" source="standard:trailing-comma-on-call-site" />
+        <error line="34" column="45" source="standard:trailing-comma-on-call-site" />
+        <error line="37" column="29" source="standard:trailing-comma-on-call-site" />
+        <error line="42" column="45" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/detailed/DetailedCardActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/detailed/DetailedCardViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="7" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="8" column="17" source="standard:multiline-expression-wrapping" />
+        <error line="32" column="10" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/donut/DonutActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="23" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/donut/DonutViewModel.kt">
+        <error line="11" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="15" column="22" source="standard:multiline-expression-wrapping" />
+        <error line="45" column="10" source="standard:trailing-comma-on-call-site" />
+        <error line="48" column="27" source="standard:multiline-expression-wrapping" />
+        <error line="56" column="22" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/fileuploader/FileUploaderActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="15" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="26" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/fileuploader/FileUploaderViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="10" column="28" source="standard:colon-spacing" />
+        <error line="11" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="16" column="22" source="standard:multiline-expression-wrapping" />
+        <error line="26" column="25" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/footer/FooterBluActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/groupcta/GroupCTAActivity.kt">
+        <error line="12" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="33" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="35" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/groupcta/GroupCTAViewModel.kt">
+        <error line="10" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="35" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/headerapp/HeaderAppActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="27" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="59" column="36" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/headerapp/HeaderAppViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="12" column="25" source="standard:colon-spacing" />
+        <error line="13" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="18" column="35" source="standard:multiline-expression-wrapping" />
+        <error line="25" column="31" source="standard:multiline-expression-wrapping" />
+        <error line="42" column="34" source="standard:multiline-expression-wrapping" />
+        <error line="51" column="26" source="standard:multiline-expression-wrapping" />
+        <error line="70" column="24" source="standard:multiline-expression-wrapping" />
+        <error line="74" column="34" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/headings/HeadingsActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/home/HomeActivity.kt">
+        <error line="111" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="127" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="143" column="37" source="standard:multiline-expression-wrapping" />
+        <error line="150" column="50" source="standard:multiline-expression-wrapping" />
+        <error line="156" column="50" source="standard:multiline-expression-wrapping" />
+        <error line="181" column="67" source="standard:wrapping" />
+        <error line="181" column="68" source="standard:argument-list-wrapping" />
+        <error line="184" column="67" source="standard:wrapping" />
+        <error line="184" column="68" source="standard:argument-list-wrapping" />
+        <error line="187" column="70" source="standard:wrapping" />
+        <error line="187" column="71" source="standard:argument-list-wrapping" />
+        <error line="190" column="83" source="standard:wrapping" />
+        <error line="190" column="84" source="standard:argument-list-wrapping" />
+        <error line="193" column="91" source="standard:wrapping" />
+        <error line="193" column="92" source="standard:argument-list-wrapping" />
+        <error line="196" column="82" source="standard:wrapping" />
+        <error line="196" column="83" source="standard:argument-list-wrapping" />
+        <error line="199" column="72" source="standard:wrapping" />
+        <error line="199" column="73" source="standard:argument-list-wrapping" />
+        <error line="202" column="70" source="standard:wrapping" />
+        <error line="202" column="71" source="standard:argument-list-wrapping" />
+        <error line="205" column="73" source="standard:wrapping" />
+        <error line="205" column="74" source="standard:argument-list-wrapping" />
+        <error line="208" column="58" source="standard:wrapping" />
+        <error line="208" column="59" source="standard:argument-list-wrapping" />
+        <error line="212" column="78" source="standard:wrapping" />
+        <error line="212" column="79" source="standard:argument-list-wrapping" />
+        <error line="215" column="72" source="standard:wrapping" />
+        <error line="215" column="73" source="standard:argument-list-wrapping" />
+        <error line="218" column="83" source="standard:wrapping" />
+        <error line="218" column="84" source="standard:argument-list-wrapping" />
+        <error line="221" column="70" source="standard:wrapping" />
+        <error line="221" column="71" source="standard:argument-list-wrapping" />
+        <error line="224" column="70" source="standard:wrapping" />
+        <error line="224" column="71" source="standard:argument-list-wrapping" />
+        <error line="227" column="81" source="standard:wrapping" />
+        <error line="227" column="82" source="standard:argument-list-wrapping" />
+        <error line="230" column="76" source="standard:wrapping" />
+        <error line="230" column="77" source="standard:argument-list-wrapping" />
+        <error line="242" column="71" source="standard:wrapping" />
+        <error line="242" column="72" source="standard:argument-list-wrapping" />
+        <error line="245" column="63" source="standard:wrapping" />
+        <error line="245" column="64" source="standard:argument-list-wrapping" />
+        <error line="263" column="69" source="standard:wrapping" />
+        <error line="263" column="70" source="standard:argument-list-wrapping" />
+        <error line="272" column="63" source="standard:wrapping" />
+        <error line="272" column="64" source="standard:argument-list-wrapping" />
+        <error line="277" column="64" source="standard:wrapping" />
+        <error line="277" column="65" source="standard:argument-list-wrapping" />
+        <error line="280" column="62" source="standard:wrapping" />
+        <error line="280" column="63" source="standard:argument-list-wrapping" />
+        <error line="292" column="68" source="standard:wrapping" />
+        <error line="292" column="69" source="standard:argument-list-wrapping" />
+        <error line="306" column="28" source="standard:multiline-expression-wrapping" />
+        <error line="318" column="17" source="standard:function-naming" />
+        <error line="712" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="715" column="23" source="standard:multiline-expression-wrapping" />
+        <error line="716" column="21" source="standard:multiline-expression-wrapping" />
+        <error line="723" column="73" source="standard:trailing-comma-on-call-site" />
+        <error line="772" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="774" column="23" source="standard:multiline-expression-wrapping" />
+        <error line="786" column="28" source="standard:trailing-comma-on-call-site" />
+        <error line="814" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="817" column="23" source="standard:multiline-expression-wrapping" />
+        <error line="820" column="82" source="standard:trailing-comma-on-call-site" />
+        <error line="843" column="26" source="standard:trailing-comma-on-call-site" />
+        <error line="868" column="27" source="standard:multiline-expression-wrapping" />
+        <error line="874" column="28" source="standard:multiline-expression-wrapping" />
+        <error line="880" column="28" source="standard:multiline-expression-wrapping" />
+        <error line="899" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="929" column="23" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/informativecard/InformativeCardActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/informativecard/InformativeCardViewModel.kt">
+        <error line="7" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="8" column="20" source="standard:multiline-expression-wrapping" />
+        <error line="14" column="22" source="standard:multiline-expression-wrapping" />
+        <error line="25" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/input/InputActivity.kt">
+        <error line="36" column="1" source="standard:no-trailing-spaces" />
+        <error line="37" column="41" source="standard:no-trailing-spaces" />
+        <error line="57" column="17" source="standard:function-naming" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/input/InputViewModel.kt">
+        <error line="9" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="19" column="17" source="standard:multiline-expression-wrapping" />
+        <error line="39" column="17" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/listsubheader/ListSubheaderActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="3" column="1" source="standard:import-ordering" />
+        <error line="11" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="23" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/listsubheader/ListSubheaderViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="5" column="29" source="standard:colon-spacing" />
+        <error line="5" column="43" source="standard:no-empty-class-body" />
+        <error line="6" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="6" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/onboarding/OceanOnboardingPagerActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="10" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/optionscard/OptionsCardActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/optionscard/OptionsCardViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="11" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="13" column="23" source="standard:multiline-expression-wrapping" />
+        <error line="15" column="20" source="standard:multiline-expression-wrapping" />
+        <error line="23" column="30" source="standard:trailing-comma-on-call-site" />
+        <error line="26" column="20" source="standard:multiline-expression-wrapping" />
+        <error line="36" column="20" source="standard:multiline-expression-wrapping" />
+        <error line="45" column="1" source="standard:indent" />
+        <error line="46" column="49" source="standard:trailing-comma-on-call-site" />
+        <error line="49" column="20" source="standard:multiline-expression-wrapping" />
+        <error line="59" column="58" source="standard:trailing-comma-on-call-site" />
+        <error line="60" column="10" source="standard:trailing-comma-on-call-site" />
+        <error line="65" column="20" source="standard:string-template" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/orderedlistitem/OrderedListItemActivity.kt">
+        <error line="14" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/orderedlistitem/OrderedListViewModel.kt">
+        <error line="6" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="7" column="19" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/paragraph/ParagraphActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/progressbar/ProgressBarActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/progressbar/ProgressBarViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="5" column="42" source="standard:no-empty-class-body" />
+        <error line="6" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="6" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/radio/RadioActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/radio/RadiosViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="6" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/settingslistitem/SettingsListItemViewModel.kt">
+        <error line="6" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="10" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/shortcuts/ShortcutsActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="10" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/shortcuts/ShortcutsViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="12" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="32" column="35" source="standard:multiline-expression-wrapping" />
+        <error line="87" column="42" source="standard:multiline-expression-wrapping" />
+        <error line="94" column="44" source="standard:multiline-expression-wrapping" />
+        <error line="101" column="36" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/statuslistitem/StatusListItemActivity.kt">
+        <error line="15" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="30" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/step/StepViewActivity.kt">
+        <error line="11" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="25" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/step/StepViewViewModel.kt">
+        <error line="7" column="24" source="standard:colon-spacing" />
+        <error line="8" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="29" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/subtitles/SubtitlesActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="12" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/switchs/SwitchsActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/switchs/SwitchsViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="6" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/tab/TabActivity.kt">
+        <error line="12" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="30" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/tab/TabViewModel.kt">
+        <error line="10" column="19" source="standard:colon-spacing" />
+        <error line="11" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/tag/TagActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="11" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="15" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="24" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/tag/TagViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="5" column="19" source="standard:colon-spacing" />
+        <error line="5" column="33" source="standard:no-empty-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/textlink/SwitchsViewModel.kt">
+        <error line="1" column="1" source="standard:filename" />
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="6" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/textlink/TextLinkActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/textlistexpandable/TextListExpandableActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="10" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/textlisticonitem/TextListIconItemActivity.kt">
+        <error line="14" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/textlisticonitem/TextListIconItemViewModel.kt">
+        <error line="6" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/textlistinline/TextListInlineItemActivity.kt">
+        <error line="13" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/textlistinverted/TextListInvertedItemActivity.kt">
+        <error line="14" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/textlistinverted/TextListInvertedItemViewModel.kt">
+        <error line="5" column="51" source="standard:no-empty-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/textlistitem/TextListItemActivity.kt">
+        <error line="15" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="30" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/textlistitem/TextListItemViewModel.kt">
+        <error line="11" column="40" source="standard:curly-spacing" />
+        <error line="11" column="40" source="standard:function-start-of-body-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/toobar/TopbarActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="17" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/toobar/TopbarViewModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="8" column="1" source="standard:no-empty-first-line-in-class-body" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/transactionfooter/TransactionFooterActivity.kt">
+        <error line="29" column="23" source="standard:argument-list-wrapping" />
+        <error line="29" column="28" source="standard:argument-list-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/transactionfooter/TransactionFooterViewModel.kt">
+        <error line="9" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="13" column="19" source="standard:multiline-expression-wrapping" />
+        <error line="24" column="46" source="standard:trailing-comma-on-call-site" />
+        <error line="29" column="46" source="standard:trailing-comma-on-call-site" />
+        <error line="34" column="46" source="standard:trailing-comma-on-call-site" />
+        <error line="39" column="45" source="standard:trailing-comma-on-call-site" />
+        <error line="44" column="45" source="standard:trailing-comma-on-call-site" />
+        <error line="57" column="43" source="standard:trailing-comma-on-call-site" />
+        <error line="63" column="26" source="standard:trailing-comma-on-call-site" />
+        <error line="64" column="10" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/transactionlistitem/TransactionListItemActivity.kt">
+        <error line="13" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="62" column="24" source="standard:multiline-expression-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/transactionlistitem/TransactionListItemAdapter.kt">
+        <error line="14" column="1" source="standard:indent" />
+        <error line="15" column="1" source="standard:indent" />
+        <error line="46" column="5" source="standard:blank-line-before-declaration" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/transactionlistitem/TransactionListItemViewModel.kt">
+        <error line="7" column="35" source="standard:colon-spacing" />
+        <error line="8" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="15" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="15" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/typography/TypographyActivity.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/client/ui/unorderedlistitem/UnorderedListViewModel.kt">
+        <error line="7" column="1" source="standard:no-empty-first-line-in-class-body" />
+        <error line="8" column="19" source="standard:multiline-expression-wrapping" />
+    </file>
+</baseline>

@@ -1,0 +1,13 @@
+# Unix-style newlines with a newline ending every file
+[*]
+indent_style = space
+indent_size = 4
+charset = utf-8
+end_of_line = lf
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{kt,kts}]
+ktlint_code_style = android_studio # or android_studio or ktlint_official (default
+ktlint_standard_multiline-if-else = disabled
+ktlint_function_naming_ignore_when_annotated_with=Composable

@@ -14,7 +14,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +27,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
-
 
 @Preview(device = "spec:width=1120dp,height=550.9dp,dpi=440")
 @Composable
@@ -68,7 +66,7 @@ private fun OceanTextListIconItemPreview() {
             OceanTextListIconItem(
                 title = "Title",
                 description = "Description",
-                caption = "Caption",
+                caption = "Caption"
             )
         }
 
@@ -106,7 +104,7 @@ private fun OceanTextListIconItemPreview() {
             OceanTextListIconItem(
                 title = "Title",
                 leadingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
-                trailingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIcon = OceanIcons.PLACEHOLDER_OUTLINE
             )
 
             OceanSpacing.StackXXS()
@@ -115,7 +113,7 @@ private fun OceanTextListIconItemPreview() {
                 title = "Title",
                 description = "Description",
                 leadingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
-                trailingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIcon = OceanIcons.PLACEHOLDER_OUTLINE
             )
 
             OceanSpacing.StackXXS()
@@ -127,7 +125,7 @@ private fun OceanTextListIconItemPreview() {
                 isWarningCaption = true,
                 badgeText = "Teste",
                 leadingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
-                trailingIcon = OceanIcons.PLACEHOLDER_OUTLINE,
+                trailingIcon = OceanIcons.PLACEHOLDER_OUTLINE
             )
         }
     }
@@ -139,11 +137,11 @@ private fun OceanTextListIconPreview() {
     val models = listOf(
         OceanTextListIconItemModel(
             title = "Transferir",
-            leadingIconToken = OceanIcons.SWITCH_HORIZONTAL_OUTLINE,
+            leadingIconToken = OceanIcons.SWITCH_HORIZONTAL_OUTLINE
         ),
         OceanTextListIconItemModel(
             title = "Transferir",
-            leadingIconToken = OceanIcons.DUPLICATE_OUTLINE,
+            leadingIconToken = OceanIcons.DUPLICATE_OUTLINE
         ),
         OceanTextListIconItemModel(
             title = "Transferir",
@@ -165,7 +163,7 @@ fun OceanTextListIcon(
     LazyColumn(
         modifier = modifier
     ) {
-        itemsIndexed(models) {index, item ->
+        itemsIndexed(models) { index, item ->
             OceanTextListIconItem(item)
 
             if (index < models.size - 1) {
@@ -195,10 +193,10 @@ fun OceanTextListIconItem(
 fun OceanTextListIconItem(
     title: String,
     modifier: Modifier = Modifier,
-    description: String? = null,
-    caption: String? = null,
+    description: String = "",
+    caption: String = "",
     isWarningCaption: Boolean = false,
-    badgeText: String? = null,
+    badgeText: String = "",
     badgeType: OceanBadgeType = OceanBadgeType.HIGHLIGHT,
     leadingIcon: OceanIcons? = null,
     trailingIcon: OceanIcons? = null,
@@ -215,9 +213,7 @@ fun OceanTextListIconItem(
             .padding(OceanSpacing.xs),
         verticalAlignment = Alignment.CenterVertically
     ) {
-
         leadingIcon?.let {
-
             Box(
                 modifier = Modifier
                     .size(40.dp)
@@ -238,38 +234,38 @@ fun OceanTextListIconItem(
         Column(
             modifier = Modifier.weight(1f)
         ) {
-            Text(
+            OceanText(
                 text = title,
                 style = OceanTextStyle.paragraph,
                 color = OceanColors.interfaceDarkPure
             )
 
-            description?.let {
-                Text(
+            if (description.isNotBlank()) {
+                OceanText(
                     minLines = 1,
                     text = description,
                     style = OceanTextStyle.description
                 )
             }
 
-            caption?.let {
+            if (caption.isNotBlank()) {
                 OceanSpacing.StackXXXS()
 
-                Text(
+                OceanText(
                     minLines = 1,
                     text = caption,
                     style = OceanTextStyle.caption,
-                    color = if(!isWarningCaption) OceanColors.interfaceDarkDown
-                            else OceanColors.statusWarningDeep
+                    color = if (!isWarningCaption) OceanColors.interfaceDarkDown
+                    else OceanColors.statusWarningDeep
                 )
             }
         }
 
-        badgeText?.let {
+        if (badgeText.isNotBlank()) {
             OceanSpacing.StackXXS()
 
             OceanBadge(
-                text = it,
+                text = badgeText,
                 type = badgeType,
                 size = OceanBadgeSize.Small
             )
@@ -286,5 +282,3 @@ fun OceanTextListIconItem(
         }
     }
 }
-
-

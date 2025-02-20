@@ -34,9 +34,9 @@ internal class OceanDateRangeSelectFilterSheet(
 ) {
     private var uiState by mutableStateOf(
         OceanDateRangeSelectFilterUIState(
-        beginDate = currentBeginDate,
-        endDate = currentEndDate
-    )
+            beginDate = currentBeginDate,
+            endDate = currentEndDate
+        )
     )
 
     fun showBottomSheet(onResult: (String, String) -> Unit) {
@@ -55,7 +55,7 @@ internal class OceanDateRangeSelectFilterSheet(
                 }
             )
             .withComposeContent { DateRangeContent() }
-            .show(context.getSupportFragmentManager(),null)
+            .show(context.getSupportFragmentManager(), null)
     }
 
     @Composable
@@ -73,7 +73,7 @@ internal class OceanDateRangeSelectFilterSheet(
                 oceanInputType = OceanInputType.Date,
                 trailingIcon = OceanIcons.CALENDAR_OUTLINE,
                 labelColor = OceanColors.interfaceDarkDown,
-                errorText = uiState.errorBeginDate,
+                errorText = uiState.errorBeginDate ?: "",
                 value = uiState.beginDate,
                 label = context.getString(R.string.date_range_begin_date),
                 placeholder = placeholder,
@@ -89,7 +89,7 @@ internal class OceanDateRangeSelectFilterSheet(
                 oceanInputType = OceanInputType.Date,
                 trailingIcon = OceanIcons.CALENDAR_OUTLINE,
                 labelColor = OceanColors.interfaceDarkDown,
-                errorText = uiState.errorEndDate,
+                errorText = uiState.errorEndDate ?: "",
                 value = uiState.endDate,
                 label = context.getString(R.string.date_range_end_date),
                 placeholder = placeholder,

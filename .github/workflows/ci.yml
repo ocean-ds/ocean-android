@@ -22,4 +22,6 @@ jobs:
           cache: 'gradle'
 
       - name: Build the app
-        run: ./gradlew build -x :baselineprofile:pixel7api30Setup -x :baselineprofile:pixel7api30NonMinifiedReleaseAndroidTest -x :baselineprofile:collectNonMinifiedReleaseBaselineProfile # build = assemble + test + lint
+        run: |
+            ./gradlew ktlintCheck --continue
+            ./gradlew build -x :baselineprofile:pixel7api30Setup -x :baselineprofile:pixel7api30NonMinifiedReleaseAndroidTest -x :baselineprofile:collectNonMinifiedReleaseBaselineProfile # build = assemble + test + lint

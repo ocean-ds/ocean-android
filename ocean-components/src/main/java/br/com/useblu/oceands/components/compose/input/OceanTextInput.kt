@@ -36,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -202,7 +203,7 @@ fun OceanTextInput(
     label: String,
     modifier: Modifier = Modifier,
     labelColor: Color = OceanColors.interfaceDarkUp,
-    errorText: String = "",
+    errorText: String? = "",
     helper: String = "",
     placeholder: String = "",
     enabled: Boolean = true,
@@ -278,7 +279,7 @@ fun OceanTextInput(
                         placeholderCompose = getPlaceholder(placeholder, enabled),
                         oceanInputType = oceanInputType,
                         enabled = enabled,
-                        errorText = errorText,
+                        errorText = errorText ?: "",
                         interactionSource = interactionSource,
                         textFieldColors = getTextFieldColors(),
                         leadingIcon = if (leadingIcon != null) {
@@ -305,9 +306,9 @@ fun OceanTextInput(
                 }
             )
 
-            if (errorText.isNotEmpty()) {
+            if (!errorText.isNullOrBlank()) {
                 OceanSpacing.StackXXXS()
-                Text(
+                OceanText(
                     text = errorText,
                     color = OceanColors.statusNegativePure,
                     fontFamily = OceanFontFamily.BaseMedium,

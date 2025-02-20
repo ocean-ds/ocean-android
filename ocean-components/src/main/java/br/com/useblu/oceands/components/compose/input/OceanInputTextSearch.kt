@@ -53,7 +53,7 @@ fun OceanInputTextSearch(
     onTextChanged: (String) -> Unit,
     value: String,
     placeholder: String = "",
-    error: String = ""
+    error: String? = null
 ) {
     OceanTextInput(
         modifier = modifier,

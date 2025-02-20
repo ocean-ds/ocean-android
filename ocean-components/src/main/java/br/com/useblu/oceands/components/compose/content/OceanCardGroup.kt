@@ -28,14 +28,13 @@ import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.content.CardGroupType.DEFAULT
 import br.com.useblu.oceands.components.compose.content.CardGroupType.INVERTED
 import br.com.useblu.oceands.model.OceanBadgeType
-import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
-
 
 @Preview
 @Composable
@@ -103,26 +102,26 @@ fun OceanCardGroupPreview() {
 fun OceanCardGroup(
     title: String,
     modifier: Modifier = Modifier,
-    subtitle: String? = null,
-    caption: String? = null,
-    badgeText: String? = null,
+    subtitle: String = "",
+    caption: String = "",
+    badgeText: String = "",
     badgeType: OceanBadgeType = OceanBadgeType.WARNING,
     actionTitle: String,
     actionClick: () -> Unit,
     @FloatRange(0.0, 1.0) progressBar: Float? = null,
     showProgress: Boolean = false,
-    label: String? = null,
+    label: String = "",
     type: CardGroupType = DEFAULT,
     tag: OceanTagModel? = null
 ) {
     Box(modifier = modifier) {
-        val paddingTop = if (label != null) 9.dp else 0.dp
+        val paddingTop = if (label.isNotBlank()) 9.dp else 0.dp
         Column(
             modifier = Modifier
                 .padding(top = paddingTop)
                 .border(
                     width = 1.dp,
-                    color = if (label.isNullOrBlank()) OceanColors.interfaceLightDown
+                    color = if (label.isBlank()) OceanColors.interfaceLightDown
                     else OceanColors.brandPrimaryUp,
                     shape = RoundedCornerShape(8.dp)
                 )
@@ -151,7 +150,7 @@ fun OceanCardGroup(
                         }
                     }
 
-                    if (caption != null) {
+                    if (caption.isNotBlank()) {
                         OceanSpacing.StackXXS()
 
                         OceanText(
@@ -174,7 +173,7 @@ fun OceanCardGroup(
                     }
                 }
 
-                if (badgeText != null) {
+                if (badgeText.isNotBlank()) {
                     OceanSpacing.StackXS()
 
                     OceanBadge(
@@ -204,7 +203,7 @@ fun OceanCardGroup(
             )
         }
 
-        if (label != null) {
+        if (label.isNotBlank()) {
             Box(
                 modifier = Modifier
                     .padding(start = OceanSpacing.xs)
@@ -216,7 +215,7 @@ fun OceanCardGroup(
                     .padding(horizontal = 6.dp)
                     .align(Alignment.TopStart)
             ) {
-                Text(
+                OceanText(
                     text = label,
                     fontSize = OceanFontSize.xxxs,
                     color = OceanColors.interfaceLightPure,
@@ -275,9 +274,7 @@ private fun ContentInverted(
     }
 }
 
-
 enum class CardGroupType {
     DEFAULT,
     INVERTED
 }
-

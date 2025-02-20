@@ -27,7 +27,6 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
-
 @Preview
 @Composable
 fun OceanStatusListItemPreview() {
@@ -154,15 +153,15 @@ fun OceanStatusListItemPreview() {
 fun OceanStatusListItem(
     title: String,
     modifier: Modifier = Modifier,
-    description: String? = null,
-    caption: String? = null,
+    description: String = "",
+    caption: String = "",
     captionColor: Color = Color.Unspecified,
-    tagLabel: String? = null,
+    tagLabel: String = "",
     showTagIconDefault: Boolean = false,
     tagIcon: OceanIcons? = null,
     tagPosition: OceanStatusListItemTagPosition? = OceanStatusListItemTagPosition.BOTTOM,
     tagType: OceanTagType? = OceanTagType.Warning,
-    badge: String? = null,
+    badge: String = "",
     badgeType: OceanBadgeType? = null,
     isReadOnly: Boolean = false,
     isInactive: Boolean = false,
@@ -190,26 +189,26 @@ fun OceanStatusListItem(
                 color = if (isInactive) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure
             )
 
-            description?.let {
+            if (description.isNotBlank()) {
                 Text(
-                    text = it,
+                    text = description,
                     style = OceanTextStyle.description,
                     modifier = Modifier.padding(end = OceanSpacing.xs),
                     color = if (isInactive) OceanColors.interfaceDarkUp else Color.Unspecified
                 )
             }
 
-            caption?.let {
+            if (caption.isNotBlank()) {
                 OceanSpacing.StackXXXS()
                 Text(
-                    text = it,
+                    text = caption,
                     modifier = Modifier.padding(end = OceanSpacing.xs),
                     style = OceanTextStyle.caption,
                     color = if (isInactive) OceanColors.interfaceDarkUp else captionColor
                 )
             }
 
-            tagLabel?.let {
+            if (tagLabel.isNotBlank()) {
                 if (tagType != null && tagPosition == OceanStatusListItemTagPosition.BOTTOM) {
                     OceanSpacing.StackXXXS()
                     OceanTag(
@@ -225,7 +224,7 @@ fun OceanStatusListItem(
             }
         }
 
-        badge?.let {
+        if (badge.isNotBlank()) {
             OceanBadge(
                 text = badge,
                 type = badgeType ?: OceanBadgeType.WARNING,
@@ -234,7 +233,7 @@ fun OceanStatusListItem(
             OceanSpacing.StackXXXS()
         }
 
-        tagLabel?.let {
+        if (tagLabel.isNotBlank()) {
             if (tagType != null && tagPosition == OceanStatusListItemTagPosition.RIGHT) {
                 OceanTag(
                     style = OceanTagStyle.Default(
@@ -264,7 +263,7 @@ fun OceanStatusListItem(
             if (isIconClickable) {
                 OceanSpacing.StackXS()
                 IconButton(
-                    onClick = { onClickRightIcon?.invoke() },
+                    onClick = { onClickRightIcon.invoke() },
                     modifier = Modifier.size(32.dp)
                 ) {
                     Icon(

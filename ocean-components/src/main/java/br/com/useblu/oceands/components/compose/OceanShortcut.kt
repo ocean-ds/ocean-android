@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
@@ -112,13 +111,13 @@ fun OceanShortcutPreview() {
             label = "Medium Vertical No Descr",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.MediumVertical,
-            description = "",
+            description = ""
         ),
         OceanShortcutModel(
             label = "MdVer No Descr",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
             layout = OceanShortcutLayout.MediumVertical,
-            description = "",
+            description = ""
         )
     )
 
@@ -192,7 +191,7 @@ fun OceanShortcut(
     label: String,
     icon: OceanIcons,
     modifier: Modifier = Modifier,
-    description: String? = null,
+    description: String = "",
     badge: OceanShortcutBadge? = null,
     tag: OceanShortcutTag? = null,
     action: (() -> Unit)? = null,
@@ -267,7 +266,7 @@ fun OceanShortcut(
                         OceanBadge(
                             text = badge.count.toString(),
                             type = badge.type,
-                            size = OceanBadgeSize.Small,
+                            size = OceanBadgeSize.Small
                         )
                     }
                 }
@@ -291,23 +290,23 @@ fun OceanShortcut(
                     Box(
                         modifier = layout.getLabelModifier()
                     ) {
-                        Text(
+                        OceanText(
                             modifier = Modifier.align(Alignment.BottomStart),
                             text = label,
                             style = OceanTextStyle.heading5,
-                            color = titleColor,
+                            color = titleColor
                         )
                     }
                 }
 
-                if (layout.canShowDescription() && !description.isNullOrBlank()) {
+                if (layout.canShowDescription() && description.isNotBlank()) {
                     val descriptionColor = if (disabled) {
                         OceanColors.interfaceDarkUp
                     } else OceanColors.interfaceDarkDown
 
                     OceanSpacing.StackXXS()
 
-                    Text(
+                    OceanText(
                         text = description,
                         style = OceanTextStyle.caption,
                         color = descriptionColor
@@ -367,21 +366,21 @@ enum class OceanShortcutLayout {
             MediumVertical,
             TinyHorizontal,
             MediumHorizontal -> Modifier
-            Small -> Modifier
-                .height(
-                    height = (OceanTextStyle.heading5.fontSize.value * 2).dp
-                            + OceanSpacing.xxs.value.dp
-                )
+            Small ->
+                Modifier
+                    .height(
+                        height = (OceanTextStyle.heading5.fontSize.value * 2).dp +
+                            OceanSpacing.xxs.value.dp
+                    )
         }
     }
 
     fun canShowDescription() = this == MediumHorizontal || this == MediumVertical
 }
 
-@Immutable
 data class OceanShortcutModel(
     val label: String,
-    val description: String? = null,
+    val description: String = "",
     val icon: OceanIcons,
     val badge: OceanShortcutBadge? = null,
     val tag: OceanShortcutTag? = null,

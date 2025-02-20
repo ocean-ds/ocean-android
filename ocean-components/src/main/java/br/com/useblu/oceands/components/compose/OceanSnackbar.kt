@@ -20,7 +20,6 @@ import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 
-
 @Preview
 @Composable
 fun OceanSnackBarPreview() {
@@ -102,20 +101,21 @@ fun OceanSnackBar(
     type: OceanSnackBarType,
     text: String,
     action: (() -> Unit)? = null,
-    actionText: String? = null
+    actionText: String = ""
 ) {
-    val actionComposable: @Composable (() -> Unit)? = if (action != null && actionText != null) {
-        {
-            TextButton(onClick = { action() }) {
-                Text(
-                    text = actionText,
-                    fontFamily = OceanFontFamily.BaseBold,
-                    fontSize = OceanFontSize.xxs,
-                    color = type.getColor()
-                )
+    val actionComposable: @Composable (() -> Unit)? =
+        if (action != null && actionText.isNotBlank()) {
+            {
+                TextButton(onClick = { action() }) {
+                    Text(
+                        text = actionText,
+                        fontFamily = OceanFontFamily.BaseBold,
+                        fontSize = OceanFontSize.xxs,
+                        color = type.getColor()
+                    )
+                }
             }
-        }
-    } else null
+        } else null
 
     Snackbar(
         modifier = Modifier,
@@ -141,7 +141,6 @@ fun OceanSnackBar(
     }
 }
 
-
 sealed interface OceanSnackBarType {
     fun getIcon(): OceanIcons {
         return when (this) {
@@ -161,6 +160,7 @@ sealed interface OceanSnackBarType {
             is Negative -> OceanColors.statusNegativePure
         }
     }
+
     object Information : OceanSnackBarType
     object Positive : OceanSnackBarType
     object Warning : OceanSnackBarType

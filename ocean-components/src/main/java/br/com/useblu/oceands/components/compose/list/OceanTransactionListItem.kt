@@ -18,7 +18,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,6 +41,7 @@ import br.com.useblu.oceands.components.compose.OceanShimmering
 import br.com.useblu.oceands.components.compose.OceanTag
 import br.com.useblu.oceands.components.compose.OceanTagLayout
 import br.com.useblu.oceands.components.compose.OceanTagStyle
+import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.TransactionType
 import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
@@ -54,7 +54,6 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.FormatTypes
 import br.com.useblu.oceands.utils.OceanIcons
-
 
 @Preview
 @Composable
@@ -161,11 +160,11 @@ fun OceanTransactionListItemPreview() {
 fun OceanTransactionListItem(
     primaryLabel: String,
     modifier: Modifier = Modifier,
-    secondaryLabel: String? = null,
-    dimmedLabel: String? = null,
-    highlightedLabel: String? = null,
+    secondaryLabel: String = "",
+    dimmedLabel: String = "",
+    highlightedLabel: String = "",
     primaryValue: Double? = null,
-    primaryValueFormatted: String? = null,
+    primaryValueFormatted: String = "",
     primaryValueFormattedColor: Color? = null,
     primaryValueFormattedIsStrike: Boolean = false,
     secondaryValue: Double? = null,
@@ -173,9 +172,9 @@ fun OceanTransactionListItem(
     valueWithSignal: Boolean = false,
     valueIsCanceled: Boolean = false,
     valueIsStrike: Boolean = false,
-    tagTitle: String? = null,
+    tagTitle: String = "",
     tagType: OceanTagType = OceanTagType.Warning,
-    time: String? = null,
+    time: String = "",
     icon: OceanIcons? = null,
     trailingIcon: OceanIcons? = null,
     showDivider: Boolean = true,
@@ -235,8 +234,8 @@ fun OceanTransactionListItem(
                     .weight(1f)
                     .padding(end = OceanSpacing.xs)
             ) {
-                if (!highlightedLabel.isNullOrBlank()) {
-                    Text(
+                if (highlightedLabel.isNotBlank()) {
+                    OceanText(
                         text = highlightedLabel,
                         color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.brandPrimaryDeep,
                         style = OceanTextStyle.captionBold
@@ -245,25 +244,25 @@ fun OceanTransactionListItem(
                     OceanSpacing.StackXXS()
                 }
 
-                Text(
+                OceanText(
                     text = primaryLabel,
                     fontSize = OceanFontSize.xs,
                     fontFamily = OceanFontFamily.BaseRegular,
                     color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure
                 )
 
-                if (!secondaryLabel.isNullOrBlank()) {
+                if (secondaryLabel.isNotBlank()) {
                     OceanSpacing.StackXXXS()
-                    Text(
+                    OceanText(
                         text = secondaryLabel,
                         style = OceanTextStyle.description,
                         color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown
                     )
                 }
 
-                if (!dimmedLabel.isNullOrBlank()) {
+                if (dimmedLabel.isNotBlank()) {
                     OceanSpacing.StackXXS()
-                    Text(
+                    OceanText(
                         text = dimmedLabel,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -293,7 +292,8 @@ fun OceanTransactionListItem(
                     } else {
                         formattedValue = formattedValue.replace("-", "")
                     }
-                    Text(
+
+                    OceanText(
                         text = formattedValue,
                         color = color,
                         fontFamily = OceanFontFamily.BaseMedium,
@@ -305,7 +305,7 @@ fun OceanTransactionListItem(
                     )
                 }
 
-                if (!primaryValueFormatted.isNullOrBlank()) {
+                if (primaryValueFormatted.isNotBlank()) {
                     val color = when {
                         primaryValueFormattedColor != null -> primaryValueFormattedColor
                         isDisabled -> OceanColors.interfaceDarkUp
@@ -313,7 +313,7 @@ fun OceanTransactionListItem(
                         else -> OceanColors.interfaceDarkPure
                     }
 
-                    Text(
+                    OceanText(
                         text = primaryValueFormatted,
                         color = color,
                         fontFamily = OceanFontFamily.BaseMedium,
@@ -326,7 +326,7 @@ fun OceanTransactionListItem(
                 }
 
                 if (secondaryValue != null) {
-                    Text(
+                    OceanText(
                         text = secondaryValue.oceanFormatWithCurrency(),
                         color = OceanColors.interfaceDarkDown,
                         fontFamily = OceanFontFamily.BaseMedium,
@@ -334,7 +334,7 @@ fun OceanTransactionListItem(
                     )
                 }
 
-                if (!tagTitle.isNullOrBlank()) {
+                if (tagTitle.isNotBlank()) {
                     OceanSpacing.StackXXXS()
                     OceanTag(
                         style = OceanTagStyle.Default(
@@ -345,9 +345,9 @@ fun OceanTransactionListItem(
                     )
                 }
 
-                if (!time.isNullOrBlank()) {
+                if (time.isNotBlank()) {
                     OceanSpacing.StackXXXS()
-                    Text(
+                    OceanText(
                         text = time,
                         style = OceanTextStyle.caption,
                         fontFamily = OceanFontFamily.BaseMedium
@@ -382,7 +382,7 @@ private fun TransactionListItemPreview() {
     val commonContentInfo = ContentListStyle.Default(
         title = "Title",
         description = "Subtitle to long to be displayed on a single line",
-        caption = "Caption",
+        caption = "Caption"
     )
     val commonContentValue = ContentListStyle.Transaction(
         value = "R$ 1.000.000.000,00",
@@ -392,7 +392,7 @@ private fun TransactionListItemPreview() {
             type = OceanTagType.Warning,
             layout = OceanTagLayout.Small()
         ),
-        type = TransactionType.OUTFLOW,
+        type = TransactionType.OUTFLOW
     )
 
     Column(
@@ -428,10 +428,9 @@ private fun TransactionListItemPreview() {
             style = TransactionListItemStyle.WithChildStyle.Child(
                 contentInfo = commonContentInfo,
                 contentValues = commonContentValue,
-                onClick = { println("Clicked") },
+                onClick = { println("Clicked") }
             )
         ) {
-
             OceanChildListItem(
                 style = ChildListItemStyle.Child(
                     icon = OceanIcons.PLACEHOLDER_SOLID,
@@ -487,7 +486,7 @@ fun OceanTransactionListItem(
     style: TransactionListItemStyle.CommonStyle,
     isLoading: Boolean = false,
     enabled: Boolean = true,
-    readOnly: Boolean = false,
+    readOnly: Boolean = false
 ) {
     if (isLoading) {
         OceanTransactionListItemSkeleton()
@@ -514,7 +513,7 @@ fun OceanTransactionListItem(
                 selected = style.selected,
                 contentInfo = style.contentInfo,
                 contentValues = style.contentValues,
-                onSelectBox = style.onSelectBox,
+                onSelectBox = style.onSelectBox
             )
         }
     }
@@ -527,7 +526,7 @@ private fun DefaultTransactionListItem(
     readOnly: Boolean,
     contentInfo: ContentListStyle,
     contentValues: ContentListStyle,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -589,7 +588,7 @@ fun SelectableTransactionListItem(
     enabled: Boolean,
     readOnly: Boolean,
     selected: Boolean,
-    onSelectBox: (Boolean) -> Unit,
+    onSelectBox: (Boolean) -> Unit
 ) {
     var boxSelected by remember { mutableStateOf(selected) }
 
@@ -614,7 +613,7 @@ fun SelectableTransactionListItem(
             },
             modifier = Modifier
                 .padding(end = OceanSpacing.xxsExtra)
-                .align(Alignment.CenterVertically),
+                .align(Alignment.CenterVertically)
         )
         OceanContentList(
             style = contentInfo,
@@ -699,7 +698,7 @@ private fun OceanTransactionListItem(
             ) {
                 Image(
                     painter = painterResource(id = OceanIcons.CHEVRON_RIGHT_OUTLINE.icon),
-                    contentDescription = null,
+                    contentDescription = null
                 )
             }
             OceanSpacing.StackXS()
@@ -784,7 +783,7 @@ sealed interface TransactionListItemStyle {
             override val contentInfo: ContentListStyle,
             override val contentValues: ContentListStyle,
             val selected: Boolean = false,
-            val onSelectBox: (Boolean) -> Unit,
+            val onSelectBox: (Boolean) -> Unit
         ) : CommonStyle
     }
 
@@ -792,7 +791,7 @@ sealed interface TransactionListItemStyle {
         data class Child(
             override val contentInfo: ContentListStyle,
             override val contentValues: ContentListStyle,
-            val onClick: () -> Unit,
+            val onClick: () -> Unit
         ) : WithChildStyle
     }
 }

@@ -20,14 +20,14 @@ sealed interface OceanAlertType {
         val description: String,
         val actionTitle: String,
         val action: () -> Unit
-    ): OceanAlertType
+    ) : OceanAlertType
 
     class EntitledShort(
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
         val title: String,
         val description: String,
         val button: Pair<String, () -> Unit>? = null,
-        val tooltip: String? = null
+        val tooltip: String = ""
     ) : OceanAlertType
 
     class EntitledLong(
@@ -43,7 +43,7 @@ sealed interface OceanAlertType {
         val link: String,
         val linkType: OceanLinkType = OceanLinkType.PRIMARY,
         val linkIcon: OceanLinkIcon = OceanLinkIcon.DEFAULT,
-        val onClick: () -> Unit = {},
+        val onClick: () -> Unit = {}
     ) : OceanAlertType
 
     class Bookmarked(

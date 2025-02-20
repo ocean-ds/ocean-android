@@ -148,7 +148,7 @@ fun OceanExpandableTextListIconItemPreview() {
 fun <ChildReferenceKey> OceanExpandableTextListIconItem(
     icon: OceanIcons?,
     title: String,
-    description: String?,
+    description: String = "",
     collapsed: Boolean = true,
     showIconBackground: Boolean = false,
     childs: OceanExpandableTextListIconItemChildType<ChildReferenceKey>,
@@ -186,7 +186,7 @@ private fun HeaderItem(
     modifier: Modifier = Modifier,
     icon: OceanIcons?,
     title: String,
-    description: String?,
+    description: String,
     showIconBackground: Boolean,
     collapsed: Boolean
 ) {
@@ -224,9 +224,10 @@ private fun HeaderItem(
                 style = OceanTextStyle.paragraph,
                 color = OceanColors.interfaceDarkDeep
             )
-            description?.let {
+
+            if (description.isNotBlank()) {
                 OceanText(
-                    text = it,
+                    text = description,
                     style = OceanTextStyle.description
                 )
             }
@@ -248,7 +249,7 @@ private fun HeaderItem(
 }
 
 @Composable
-private fun <ChildReferenceKey>ChildItem(
+private fun <ChildReferenceKey> ChildItem(
     setup: OceanExpandableTextListIconItemChildType<ChildReferenceKey>,
     item: OceanExpandableTextListIconItemChild<ChildReferenceKey>,
     onClick: (OceanExpandableTextListIconItemChild<ChildReferenceKey>) -> Unit
@@ -272,9 +273,9 @@ private fun <ChildReferenceKey>ChildItem(
 }
 
 @Composable
-private fun <ChildReferenceKey>DefaultChildItem(
+private fun <ChildReferenceKey> DefaultChildItem(
     setup: OceanExpandableTextListIconItemChildType.Default<ChildReferenceKey>,
-    item: OceanExpandableTextListIconItemChild<ChildReferenceKey>,
+    item: OceanExpandableTextListIconItemChild<ChildReferenceKey>
 ) {
     Row(
         modifier = Modifier
@@ -302,11 +303,11 @@ private fun <ChildReferenceKey>DefaultChildItem(
 
         Column(
             modifier = Modifier
-                .height(40.dp),
+                .height(40.dp)
         ) {
             OceanText(
                 text = item.title,
-                style = OceanTextStyle.paragraph,
+                style = OceanTextStyle.paragraph
             )
 
             item.description?.let {
@@ -332,7 +333,7 @@ private fun <ChildReferenceKey>DefaultChildItem(
                     ) {
                         OceanIcon(
                             iconType = OceanIcons.DOTS_VERTICAL_SOLID,
-                            tint = OceanColors.interfaceDarkUp,
+                            tint = OceanColors.interfaceDarkUp
                         )
                     }
 
@@ -340,7 +341,7 @@ private fun <ChildReferenceKey>DefaultChildItem(
                         modifier = Modifier
                             .background(OceanColors.interfaceLightPure),
                         expanded = expanded,
-                        onDismissRequest = { expanded = false}
+                        onDismissRequest = { expanded = false }
                     ) {
                         setup.actionType.options.forEachIndexed { index, option ->
                             DropdownMenuItem(
@@ -354,7 +355,7 @@ private fun <ChildReferenceKey>DefaultChildItem(
                                 onClick = {
                                     expanded = false
                                     setup.actionType.onClick(index)
-                                } ,
+                                }
                             )
                         }
                     }
@@ -366,7 +367,7 @@ private fun <ChildReferenceKey>DefaultChildItem(
                         modifier = Modifier
                             .padding(end = OceanSpacing.xs),
                         iconType = it,
-                        tint = OceanColors.interfaceDarkUp,
+                        tint = OceanColors.interfaceDarkUp
                     )
                 }
             }
@@ -375,7 +376,7 @@ private fun <ChildReferenceKey>DefaultChildItem(
 }
 
 @Composable
-private fun <ChildReferenceKey>WithSwipeChildItem(
+private fun <ChildReferenceKey> WithSwipeChildItem(
     setup: OceanExpandableTextListIconItemChildType.WithSwipe<ChildReferenceKey>,
     item: OceanExpandableTextListIconItemChild<ChildReferenceKey>
 ) {
@@ -447,7 +448,7 @@ private fun <ChildReferenceKey>WithSwipeChildItem(
 fun <ChildReferenceKey> OceanExpandableTextListIconItem(
     icon: OceanIcons?,
     title: String,
-    description: String? = null,
+    description: String = "",
     collapsed: Boolean = true,
     showIconBackground: Boolean = false,
     childsItems: List<OceanExpandableTextListIconItemChild<ChildReferenceKey>>,
@@ -465,6 +466,3 @@ fun <ChildReferenceKey> OceanExpandableTextListIconItem(
         onClick = onClick
     )
 }
-
-
-

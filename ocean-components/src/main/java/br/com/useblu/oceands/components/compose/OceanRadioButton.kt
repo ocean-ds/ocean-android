@@ -21,7 +21,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 
-
 @Preview
 @Composable
 fun OceanRadioButtonPreview() {
@@ -34,11 +33,11 @@ fun OceanRadioButtonPreview() {
                 .padding(start = 16.dp)
         ) {
             AddRadioButton(
-                label = "Label",
+                label = "Label"
             )
             AddRadioButton(
                 label = "Label",
-                enabled = false,
+                enabled = false
             )
         }
         Column(
@@ -47,12 +46,12 @@ fun OceanRadioButtonPreview() {
         ) {
             AddRadioButton(
                 label = "Label",
-                selected = true,
+                selected = true
             )
             AddRadioButton(
                 label = "Label",
                 selected = true,
-                enabled = false,
+                enabled = false
             )
 
             AddRadioButton(
@@ -70,26 +69,27 @@ fun OceanRadioButton(
     modifier: Modifier = Modifier,
     label: String,
     selected: Boolean = false,
-    errorMessage: String? = null,
+    errorMessage: String = "",
     onSelected: () -> Unit = {},
     enabled: Boolean = true
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
-    Column(modifier = modifier
-        .background(OceanColors.interfaceLightPure)
-        .clickable(
-            interactionSource = interactionSource,
-            indication = null,
-            enabled = enabled,
-            onClick = {}
-        )
+    Column(
+        modifier = modifier
+            .background(OceanColors.interfaceLightPure)
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null,
+                enabled = enabled,
+                onClick = {}
+            )
     ) {
         Row {
             OceanSelectableRadio(
                 interactionSource = interactionSource,
                 isSelected = selected,
-                showError = errorMessage != null,
+                showError = errorMessage.isNotBlank(),
                 enabled = enabled,
                 onSelectedBox = onSelected
             )
@@ -99,14 +99,14 @@ fun OceanRadioButton(
                 onSelected = onSelected
             )
         }
-        if (!errorMessage.isNullOrBlank()) {
+        if (errorMessage.isNotBlank()) {
             Text(
                 text = errorMessage,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 fontFamily = OceanFontFamily.BaseRegular,
                 fontSize = OceanFontSize.xxxs,
-                color = OceanColors.statusNegativePure,
+                color = OceanColors.statusNegativePure
             )
         }
     }
@@ -117,7 +117,7 @@ private fun AddRadioButton(
     label: String,
     selected: Boolean = false,
     enabled: Boolean = true,
-    errorMessage: String? = null,
+    errorMessage: String = ""
 ) {
     var wasSelected by remember { mutableStateOf(selected) }
     OceanRadioButton(

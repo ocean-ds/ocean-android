@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -50,10 +51,10 @@ fun OceanListSubHeaderPreview() {
 fun OceanListSubHeader(
     title: String,
     modifier: Modifier = Modifier,
-    subtitle: String? = null,
-    highlighted: String? = null,
+    subtitle: String = "",
+    highlighted: String = "",
     isSmall: Boolean = false,
-    icon: OceanIcons? = null,
+    icon: OceanIcons? = null
 ) {
     val rowHeight = if (isSmall) {
         32.dp
@@ -87,10 +88,10 @@ fun OceanListSubHeader(
 
         Column(
             horizontalAlignment = Alignment.End,
-            modifier = Modifier.padding(start =  OceanSpacing.xxs)
+            modifier = Modifier.padding(start = OceanSpacing.xxs)
         ) {
-            if (subtitle != null) {
-                Text(
+            if (subtitle.isNotBlank()) {
+                OceanText(
                     text = subtitle,
                     fontFamily = OceanFontFamily.BaseRegular,
                     color = OceanColors.interfaceDarkDown,
@@ -98,8 +99,8 @@ fun OceanListSubHeader(
                 )
             }
 
-            if (highlighted != null) {
-                Text(
+            if (highlighted.isNotBlank()) {
+                OceanText(
                     text = highlighted,
                     fontFamily = OceanFontFamily.BaseExtraBold,
                     color = OceanColors.interfaceDarkDown,

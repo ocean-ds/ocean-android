@@ -38,7 +38,7 @@ sealed interface OceanAlertType {
 
     class Labeled(
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
-        val title: String? = null,
+        val title: String = "",
         val description: String,
         val link: String,
         val linkType: OceanLinkType = OceanLinkType.PRIMARY,

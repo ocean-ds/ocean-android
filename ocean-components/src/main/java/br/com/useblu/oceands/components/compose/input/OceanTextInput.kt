@@ -44,7 +44,6 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.stringmask.OceanInputType
 import br.com.useblu.oceands.utils.OceanIcons
 
-
 @Preview
 @Composable
 fun PreviewOceanTextInput() {
@@ -184,7 +183,7 @@ private fun CreateOceanTextInputPreview(
             text = it
             println("text callback: [$it]")
         },
-        oceanInputType = inputType,
+        oceanInputType = inputType
     )
 }
 
@@ -194,7 +193,7 @@ private fun getTextFieldColors() = OutlinedTextFieldDefaults.colors(
     focusedBorderColor = OceanColors.brandPrimaryDown,
     errorBorderColor = OceanColors.statusNegativePure,
     disabledBorderColor = OceanColors.interfaceLightUp,
-    disabledContainerColor = OceanColors.interfaceLightUp,
+    disabledContainerColor = OceanColors.interfaceLightUp
 )
 
 @Composable
@@ -203,8 +202,8 @@ fun OceanTextInput(
     label: String,
     modifier: Modifier = Modifier,
     labelColor: Color = OceanColors.interfaceDarkUp,
-    errorText: String? = null,
-    helper: String? = null,
+    errorText: String = "",
+    helper: String = "",
     placeholder: String = "",
     enabled: Boolean = true,
     onTextChanged: (String) -> Unit,
@@ -306,7 +305,7 @@ fun OceanTextInput(
                 }
             )
 
-            if (!errorText.isNullOrEmpty()) {
+            if (errorText.isNotEmpty()) {
                 OceanSpacing.StackXXXS()
                 Text(
                     text = errorText,
@@ -314,7 +313,7 @@ fun OceanTextInput(
                     fontFamily = OceanFontFamily.BaseMedium,
                     fontSize = OceanFontSize.xxxs
                 )
-            } else if (!helper.isNullOrEmpty()) {
+            } else if (helper.isNotEmpty()) {
                 OceanSpacing.StackXXXS()
                 Text(
                     text = helper,
@@ -349,7 +348,7 @@ private fun OceanTextInputDecorationBox(
     placeholderCompose: @Composable () -> Unit,
     oceanInputType: OceanInputType,
     enabled: Boolean,
-    errorText: String?,
+    errorText: String,
     interactionSource: MutableInteractionSource,
     textFieldColors: TextFieldColors,
     leadingIcon: (@Composable () -> Unit)?,
@@ -359,7 +358,7 @@ private fun OceanTextInputDecorationBox(
     val contentPadding = if (singleLine) {
         PaddingValues(horizontal = OceanSpacing.xs)
     } else {
-        PaddingValues(horizontal =  OceanSpacing.xs, vertical =  OceanSpacing.xs)
+        PaddingValues(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xs)
     }
 
     OutlinedTextFieldDefaults.DecorationBox(
@@ -372,14 +371,14 @@ private fun OceanTextInputDecorationBox(
         prefix = oceanInputType.getPrefixComposable(value),
         singleLine = singleLine,
         enabled = enabled,
-        isError = !errorText.isNullOrEmpty(),
+        isError = errorText.isNotEmpty(),
         interactionSource = interactionSource,
         colors = textFieldColors,
         contentPadding = contentPadding,
         container = {
             OutlinedTextFieldDefaults.ContainerBox(
                 enabled = enabled,
-                isError = !errorText.isNullOrEmpty(),
+                isError = errorText.isNotEmpty(),
                 interactionSource = interactionSource,
                 colors = textFieldColors,
                 shape = RoundedCornerShape(8.dp),

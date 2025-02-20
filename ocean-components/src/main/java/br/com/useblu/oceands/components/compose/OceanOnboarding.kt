@@ -31,7 +31,6 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 import kotlinx.coroutines.launch
 
-
 @Preview
 @Composable
 fun OceanOnboardingPreview() {
@@ -157,24 +156,23 @@ private fun OceanOnboardingPage(
 
         OceanSpacing.StackXXS()
 
-        Text(
+        OceanText(
             text = page.subtitle,
             style = OceanTextStyle.description,
             textAlign = TextAlign.Center
         )
 
-        page.caption?.let {
+        if (page.caption.isNotBlank()) {
             OceanSpacing.StackSM()
 
-            Text(
-                text = it,
+            OceanText(
+                text = page.caption,
                 style = OceanTextStyle.caption,
                 textAlign = TextAlign.Center
             )
         }
 
         page.link?.let {
-
             OceanSpacing.StackXS()
 
             OceanLink(

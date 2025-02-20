@@ -518,7 +518,7 @@ fun OceanAlertEntitledLong(
 @Composable
 fun OceanAlertLabeled(
     modifier: Modifier = Modifier,
-    title: String? = null,
+    title: String = "",
     description: String,
     link: String,
     linkType: OceanLinkType,
@@ -546,7 +546,7 @@ fun OceanAlertLabeled(
             }
         }
         Column {
-            if (title != null) {
+            if (title.isNotBlank()) {
                 OceanText(
                     text = title,
                     style = style.titleStyle(),

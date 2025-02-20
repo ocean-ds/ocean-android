@@ -231,7 +231,7 @@ fun OceanCardGroup(
 @Composable
 private fun ContentDefault(
     title: String,
-    subtitle: String?
+    subtitle: String
 ) {
     Text(
         text = title,
@@ -240,7 +240,7 @@ private fun ContentDefault(
         color = OceanColors.interfaceDarkDeep
     )
 
-    if (subtitle != null) {
+    if (subtitle.isNotBlank()) {
         OceanSpacing.StackXXS()
 
         Text(
@@ -255,7 +255,7 @@ private fun ContentDefault(
 @Composable
 private fun ContentInverted(
     title: String,
-    subtitle: String?
+    subtitle: String
 ) {
     OceanText(
         text = title,
@@ -263,7 +263,7 @@ private fun ContentInverted(
         color = OceanColors.interfaceDarkDown
     )
 
-    if (subtitle != null) {
+    if (subtitle.isNotBlank()) {
         OceanSpacing.StackXXS()
 
         OceanText(

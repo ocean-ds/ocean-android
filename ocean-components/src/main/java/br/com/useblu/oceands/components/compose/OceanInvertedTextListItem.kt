@@ -31,7 +31,7 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Deprecated(
-    "Deprecated! Use OceanInvertedTextListItem with InvertedListItemStyle instead",
+    "Deprecated! Use OceanInvertedTextListItem with InvertedListItemStyle instead"
 )
 @Composable
 fun OceanInvertedTextListItem(
@@ -153,7 +153,7 @@ sealed interface InvertedTextListType {
 
     data class Highlight(
         val description: String,
-        val tagLabel: String? = null,
+        val tagLabel: String = "",
         val tagIcon: OceanIcons? = null,
         val tagType: OceanTagType = OceanTagType.Positive,
         val fontSize: TextUnit = TextUnit.Unspecified
@@ -168,7 +168,7 @@ sealed interface InvertedTextListType {
                     fontSize = fontSize
                 )
 
-                if (tagLabel != null) {
+                if (tagLabel.isNotBlank()) {
                     OceanSpacing.StackXXS()
                     OceanTag(
                         style = OceanTagStyle.Default(
@@ -344,7 +344,7 @@ private fun InvertedTextListPreview() {
             modifier = Modifier.background(color = OceanColors.interfaceLightPure),
             style = InvertedListItemStyle.HighlightLead(
                 title = "Title",
-                description = "Description",
+                description = "Description"
             )
         )
         OceanInvertedTextListItem(
@@ -390,7 +390,6 @@ private fun InvertedTextListPreview() {
         )
     }
 }
-
 
 @Composable
 fun OceanInvertedTextListItem(
@@ -488,7 +487,7 @@ private fun DefaultInvertedTextList(
 @Composable
 private fun StrikethroughInvertedTextList(
     modifier: Modifier = Modifier,
-    content: ContentListStyle.Strikethrough,
+    content: ContentListStyle.Strikethrough
 ) {
     Column(
         modifier = modifier
@@ -496,7 +495,7 @@ private fun StrikethroughInvertedTextList(
             .fillMaxWidth()
     ) {
         OceanContentList(
-            style = content,
+            style = content
         )
     }
 }
@@ -574,7 +573,7 @@ private fun HighlightInvertedTextList(
 
             OceanText(
                 text = style.description,
-                style = OceanTextStyle.heading4,
+                style = OceanTextStyle.heading4
             )
 
             if (style.caption.isNotBlank()) {
@@ -612,7 +611,7 @@ private fun HighlightLeadInvertedTextList(
 
         OceanText(
             text = style.description,
-            style = OceanTextStyle.lead,
+            style = OceanTextStyle.lead
         )
 
         if (style.caption.isNotBlank()) {
@@ -629,21 +628,21 @@ private fun HighlightLeadInvertedTextList(
 sealed interface InvertedListItemStyle {
     data class Default(
         val content: ContentListStyle.Inverted,
-        val tagStyle: OceanTagStyle = OceanTagStyle.None,
+        val tagStyle: OceanTagStyle = OceanTagStyle.None
     ) : InvertedListItemStyle
 
     data class ContentInfo(
         val title: String,
         val description: String,
         val caption: String = "",
-        val descriptionStyle: DescriptionStyle.Default,
+        val descriptionStyle: DescriptionStyle.Default
     ) : InvertedListItemStyle
 
     data class Strikethrough(
         val title: String,
         val strokeText: String,
         val actualText: String,
-        val caption: String = "",
+        val caption: String = ""
     ) : InvertedListItemStyle
 
     data class Highlight(
@@ -656,7 +655,7 @@ sealed interface InvertedListItemStyle {
     data class HighlightLead(
         val title: String,
         val description: String,
-        val caption: String = "",
+        val caption: String = ""
     ) : InvertedListItemStyle
 }
 

@@ -310,9 +310,9 @@ private fun <ChildReferenceKey> DefaultChildItem(
                 style = OceanTextStyle.paragraph
             )
 
-            item.description?.let {
+            if (item.description.isNotBlank()) {
                 OceanText(
-                    text = it,
+                    text = item.description,
                     style = OceanTextStyle.description
                 )
             }
@@ -361,6 +361,7 @@ private fun <ChildReferenceKey> DefaultChildItem(
                     }
                 }
             }
+
             is OceanExpandableTextListIconItemChildType.Default.ActionType.Custom -> {
                 setup.actionType.icon?.let {
                     OceanIcon(
@@ -416,9 +417,9 @@ private fun <ChildReferenceKey> WithSwipeChildItem(
                         style = OceanTextStyle.paragraph
                     )
 
-                    item.description?.let {
+                    if (item.description.isNotBlank()) {
                         OceanText(
-                            text = it,
+                            text = item.description,
                             style = OceanTextStyle.description
                         )
                     }

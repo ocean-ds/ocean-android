@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -36,11 +35,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
 
@@ -180,11 +181,12 @@ private fun OceanDropdown(
                         color = if(errorText.isBlank()) OceanColors.interfaceLightDown
                                 else OceanColors.statusNegativePure
                     ),
-                    shape = RoundedCornerShape(
-                        topStart = 8.dp, topEnd = 8.dp,
-                        bottomStart = if (expanded) 0.dp else 8.dp,
-                        bottomEnd = if (expanded) 0.dp else 8.dp
-                    ),
+                    shape = OceanBorderRadius.SM(
+                        corners = if (expanded)
+                            setOf(OceanBorderRadius.Corners.Top)
+                        else
+                            setOf(OceanBorderRadius.Corners.Top, OceanBorderRadius.Corners.Bottom)
+                    ).shape(),
                 ),
             expanded = expanded,
             onExpandedChange = { expanded = it }
@@ -313,7 +315,7 @@ private fun OceanBottomSheetDropdown(
                         color = if(errorText.isBlank()) OceanColors.interfaceLightDown
                                 else OceanColors.statusNegativePure
                     ),
-                    shape = RoundedCornerShape(8.dp),
+                    shape = OceanBorderRadius.SM.allCorners.shape(),
                 )
                 .height(56.dp)
                 .fillMaxWidth()
@@ -384,9 +386,9 @@ private fun bottomSheetContent(
             if (itemSelected == index) {
                 Row(
                     modifier = Modifier
-                        .background(
+                        .borderBackground(
                             color = OceanColors.interfaceLightUp,
-                            shape = RoundedCornerShape(8.dp)
+                            borderRadius = OceanBorderRadius.SM.allCorners
                         )
                         .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xxs)
                         .height(40.dp)

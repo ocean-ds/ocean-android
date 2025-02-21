@@ -1,12 +1,10 @@
 package br.com.useblu.oceands.components.compose.header
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,11 +13,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.borderBackground
 
 
 @Preview
@@ -46,9 +46,9 @@ fun OceanBalanceOthersCard(
         modifier = modifier
             .fillMaxWidth()
             .height(128.dp)
-            .background(
+            .borderBackground(
                 color = Color(0xFF2244E8),
-                shape = RoundedCornerShape(8.dp)
+                borderRadius = OceanBorderRadius.SM.allCorners
             ),
         verticalArrangement = Arrangement.Center
     ) {

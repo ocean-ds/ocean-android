@@ -2,7 +2,6 @@ package br.com.useblu.oceands.components.compose.header
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +19,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -33,11 +30,13 @@ import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.shimmeringBrush
 import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.FormatTypes.Companion.FORMAT_VALUE_WITH_SYMBOL
 import br.com.useblu.oceands.utils.FormatTypes.Companion.FORMAT_VALUE_WITH_SYMBOL_HIDDEN
 import br.com.useblu.oceands.utils.OceanIcons
@@ -88,9 +87,9 @@ fun OceanBalanceBluCard(
 
     Column(
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = Color(0xFF2244E8),
-                shape = RoundedCornerShape(8.dp)
+                borderRadius = OceanBorderRadius.SM.allCorners
             )
     ) {
         BluCardTopBar(
@@ -223,8 +222,10 @@ fun RowScope.BalanceCardMainValues(
                     .height(30.dp)
                     .padding(vertical = 8.dp)
                     .width(72.dp)
-                    .clip(RoundedCornerShape(4.dp))
-                    .background(shimmeringBrush)
+                    .borderBackground(
+                        brush = shimmeringBrush,
+                        borderRadius = OceanBorderRadius.Tiny.allCorners
+                    )
             )
         } else {
             val text = if (isContentHidden) {
@@ -304,8 +305,10 @@ private fun ExpandableContentTextRow(
                 modifier = Modifier
                     .height(14.dp)
                     .width(72.dp)
-                    .clip(RoundedCornerShape(4.dp))
-                    .background(shimmeringBrush)
+                    .borderBackground(
+                        brush = shimmeringBrush,
+                        borderRadius = OceanBorderRadius.Tiny.allCorners
+                    )
                     .padding(vertical = OceanSpacing.xxs)
             )
         } else {

@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -22,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -193,7 +193,7 @@ fun OceanCardListItem(
             containerColor = backgroundColor,
             disabledContainerColor = backgroundColor
         ),
-        shape = RoundedCornerShape(8.dp),
+        shape = OceanBorderRadius.SM.allCorners.shape(),
         border = BorderStroke(1.dp, borderColor),
         enabled = onClick != null && !disabled,
         onClick = { onClick?.invoke() }

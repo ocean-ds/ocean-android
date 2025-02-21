@@ -12,13 +12,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,9 +29,11 @@ import br.com.useblu.oceands.components.compose.OceanTooltip
 import br.com.useblu.oceands.components.compose.shimmeringBrush
 import br.com.useblu.oceands.model.chart.OceanChartItem
 import br.com.useblu.oceands.model.chart.OceanChartModel
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderBackground
 
 @Preview
 @Composable
@@ -112,8 +112,10 @@ private fun OceanChartCardSkeleton(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .height(16.dp)
                 .width(100.dp)
-                .clip(RoundedCornerShape(4.dp))
-                .background(brush)
+                .borderBackground(
+                    brush = brush,
+                    borderRadius = OceanBorderRadius.Tiny.allCorners
+                )
         )
 
         OceanSpacing.StackXXXS()
@@ -128,8 +130,10 @@ private fun OceanChartCardSkeleton(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .height(16.dp)
                     .width(100.dp)
-                    .clip(RoundedCornerShape(4.dp))
-                    .background(brush)
+                    .borderBackground(
+                        brush = brush,
+                        borderRadius = OceanBorderRadius.Tiny.allCorners
+                    )
             )
 
             OceanSpacing.StackXXS()
@@ -138,8 +142,10 @@ private fun OceanChartCardSkeleton(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .height(16.dp)
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(4.dp))
-                    .background(brush)
+                    .borderBackground(
+                        brush = brush,
+                        borderRadius = OceanBorderRadius.Tiny.allCorners
+                    )
             )
 
             OceanSpacing.StackXXXS()

@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -19,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -58,7 +58,7 @@ fun CardCta(
             containerColor = OceanColors.interfaceLightPure,
             disabledContainerColor = OceanColors.interfaceLightPure
         ),
-        shape = RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp),
+        shape = OceanBorderRadius.SM.bottomCorners.shape(),
         border = BorderStroke(
             width = 1.dp,
             color = OceanColors.interfaceLightDown

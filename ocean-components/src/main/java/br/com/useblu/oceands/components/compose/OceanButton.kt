@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -24,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -178,7 +178,7 @@ fun OceanButton(
         colors = buttonStyle.getColors(),
         modifier = modifier
             .height(buttonStyle.getHeight()),
-        shape = RoundedCornerShape(40.dp),
+        shape = OceanBorderRadius.Circle.allCorners.shape(),
         enabled = !disabled,
         contentPadding = PaddingValues(
             horizontal = buttonStyle.getHorizontalPadding()

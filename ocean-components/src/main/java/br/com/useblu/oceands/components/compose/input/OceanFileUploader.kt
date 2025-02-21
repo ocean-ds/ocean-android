@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -36,9 +35,11 @@ import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.compose.FileStatus
 import br.com.useblu.oceands.model.compose.UploadFileModel
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -129,7 +130,7 @@ fun OceanFileUploader(
                 containerColor = OceanColors.interfaceLightPure,
                 disabledContainerColor = OceanColors.interfaceLightPure
             ),
-            shape = RoundedCornerShape(8.dp),
+            shape = OceanBorderRadius.SM.allCorners.shape(),
             enabled = selectedFiles.size < maxFiles,
             onClick = {
                 fileChooserLauncher.launch(mimeType)
@@ -198,14 +199,14 @@ private fun SelectedFile(
     Column {
         Row(
             modifier = Modifier
-                .background(
+                .borderBackground(
                     color = OceanColors.interfaceLightPure,
-                    shape = RoundedCornerShape(8.dp)
+                    borderRadius = OceanBorderRadius.SM.allCorners
                 )
                 .border(
                     width = 1.dp,
                     color = borderColor,
-                    shape = RoundedCornerShape(8.dp)
+                    shape = OceanBorderRadius.SM.allCorners.shape()
                 )
                 .fillMaxWidth()
                 .height(48.dp),

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,8 +17,10 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
 
@@ -288,9 +289,9 @@ private fun DefaultMediumTag(
 
     Row(
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = backgroundColor,
-                shape = RoundedCornerShape(16.dp)
+                borderRadius = OceanBorderRadius.LG.allCorners
             )
             .height(layout.height)
             .padding(horizontal = OceanSpacing.xxs),
@@ -331,9 +332,9 @@ private fun DefaultSmallTag(
 
     Row(
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = backgroundColor,
-                shape = RoundedCornerShape(16.dp)
+                borderRadius = OceanBorderRadius.LG.allCorners
             )
             .height(layout.height)
             .padding(horizontal = OceanSpacing.xxxs),
@@ -357,9 +358,9 @@ private fun HighlightTag(
 
     Row(
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = backgroundColor,
-                shape = RoundedCornerShape(16.dp)
+                borderRadius = OceanBorderRadius.LG.allCorners
             )
             .height(style.layout.height)
             .padding(horizontal = OceanSpacing.xxxs),

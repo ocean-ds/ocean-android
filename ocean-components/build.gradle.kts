@@ -71,10 +71,10 @@ afterEvaluate {
         repositories {
             maven {
                 name = "ocean-android"
-                url = uri("${Configs.gprBaseUrl}/${Configs.gprRepoOwner}/${Configs.gprRepoId}")
+                url = uri("https://maven.pkg.github.com/ocean-ds/ocean-android")
                 credentials {
-                    username = Configs.gprUser
-                    password = Configs.gprApiKey
+                    username = System.getenv("GPR_USER")
+                    password = System.getenv("GPR_API_KEY")
                 }
             }
         }

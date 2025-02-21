@@ -525,5 +525,5 @@ enum class TransactionType {
     INFLOW,
     OUTFLOW,
     CANCELED,
-    DEFAULT;
+    DEFAULT
 }

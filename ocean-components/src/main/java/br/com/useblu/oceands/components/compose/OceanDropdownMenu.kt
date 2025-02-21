@@ -44,7 +44,6 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
-
 @Immutable
 sealed interface OceanDropdownBehavior {
     data object Dropdown : OceanDropdownBehavior
@@ -60,7 +59,7 @@ fun OceanDropDownMenuPreview() {
         Column(
             modifier = Modifier
                 .background(color = OceanColors.interfaceLightPure)
-                .padding(16.dp),
+                .padding(16.dp)
         ) {
             val context = LocalContext.current
             val items = List(13) { "Item ${it + 1}" }
@@ -70,7 +69,7 @@ fun OceanDropDownMenuPreview() {
                 hint = "Hint",
                 errorText = "",
                 defaultOption = "Default Option",
-                options = items,
+                options = items
             ) { position ->
                 position.let {
                     Toast
@@ -86,7 +85,7 @@ fun OceanDropDownMenuPreview() {
                 hint = "Hint",
                 defaultOption = "Default Option",
                 behavior = OceanDropdownBehavior.BottomSheet("Escolha uma opção"),
-                options = items,
+                options = items
             ) { position ->
                 position.let {
                     Toast
@@ -103,7 +102,7 @@ fun OceanDropDownMenuPreview() {
                 errorText = "Error",
                 defaultOption = "Default Option",
                 behavior = OceanDropdownBehavior.BottomSheet("Escolha uma opção"),
-                options = items,
+                options = items
             ) { position ->
                 position.let {
                     Toast
@@ -165,7 +164,7 @@ private fun OceanDropdown(
     var itemSelected by remember { mutableStateOf(defaultOption) }
 
     Column(
-        modifier.background(color = OceanColors.interfaceLightPure),
+        modifier.background(color = OceanColors.interfaceLightPure)
     ) {
         OceanText(
             text = label,
@@ -178,15 +177,15 @@ private fun OceanDropdown(
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
-                        color = if(errorText.isBlank()) OceanColors.interfaceLightDown
-                                else OceanColors.statusNegativePure
+                        color = if (errorText.isBlank()) OceanColors.interfaceLightDown
+                        else OceanColors.statusNegativePure
                     ),
                     shape = OceanBorderRadius.SM(
                         corners = if (expanded)
                             setOf(OceanBorderRadius.Corners.Top)
                         else
                             setOf(OceanBorderRadius.Corners.Top, OceanBorderRadius.Corners.Bottom)
-                    ).shape(),
+                    ).shape()
                 ),
             expanded = expanded,
             onExpandedChange = { expanded = it }
@@ -252,7 +251,7 @@ private fun OceanDropdown(
                 style = OceanTextStyle.error
             )
         }
-        if(errorText.isBlank() && hint.isNotBlank()){
+        if (errorText.isBlank() && hint.isNotBlank()) {
             OceanText(
                 text = hint,
                 style = OceanTextStyle.hint
@@ -300,22 +299,22 @@ private fun OceanBottomSheetDropdown(
     }
 
     Column(
-        modifier.background(color = OceanColors.interfaceLightPure),
+        modifier.background(color = OceanColors.interfaceLightPure)
     ) {
         OceanText(
             text = label,
             style = OceanTextStyle.description
         )
-        Row (
+        Row(
             modifier = Modifier
                 .padding(vertical = OceanSpacing.xxs)
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
-                        color = if(errorText.isBlank()) OceanColors.interfaceLightDown
-                                else OceanColors.statusNegativePure
+                        color = if (errorText.isBlank()) OceanColors.interfaceLightDown
+                        else OceanColors.statusNegativePure
                     ),
-                    shape = OceanBorderRadius.SM.allCorners.shape(),
+                    shape = OceanBorderRadius.SM.allCorners.shape()
                 )
                 .height(56.dp)
                 .fillMaxWidth()
@@ -324,7 +323,7 @@ private fun OceanBottomSheetDropdown(
 
         ) {
             Row(
-                modifier = Modifier.padding(horizontal = OceanSpacing.xs),
+                modifier = Modifier.padding(horizontal = OceanSpacing.xs)
             ) {
                 OceanText(
                     modifier = Modifier.weight(9f),
@@ -352,7 +351,7 @@ private fun OceanBottomSheetDropdown(
                 style = OceanTextStyle.error
             )
         }
-        if(errorText.isBlank() && hint.isNotBlank()){
+        if (errorText.isBlank() && hint.isNotBlank()) {
             OceanText(
                 text = hint,
                 style = OceanTextStyle.hint

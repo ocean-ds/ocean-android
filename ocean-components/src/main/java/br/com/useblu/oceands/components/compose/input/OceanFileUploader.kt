@@ -184,7 +184,6 @@ fun OceanFileUploader(
     }
 }
 
-
 @Composable
 private fun SelectedFile(
     model: UploadFileModel,
@@ -253,12 +252,13 @@ private fun SelectedFile(
                 modifier = Modifier.weight(1f)
             )
 
-            Box(modifier = Modifier
-                .padding(end = OceanSpacing.xxxs)
-                .size(40.dp)
-                .clickable {
-                    onClickDeleteFile()
-                }
+            Box(
+                modifier = Modifier
+                    .padding(end = OceanSpacing.xxxs)
+                    .size(40.dp)
+                    .clickable {
+                        onClickDeleteFile()
+                    }
             ) {
                 OceanIcon(
                     iconType = OceanIcons.X_SOLID,

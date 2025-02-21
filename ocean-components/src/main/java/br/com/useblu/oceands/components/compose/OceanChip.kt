@@ -38,7 +38,7 @@ private fun OceanChipPreview() {
             icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE,
             state = OceanChipItemState.HOVER_INACTIVE,
             badge = Badge(5, OceanBadgeType.PRIMARY),
-            onClick = {},
+            onClick = {}
         ),
         OceanFilterChip(
             label = "Filtro Teste",
@@ -77,7 +77,6 @@ private fun OceanChipPreview() {
             OceanChip(model = it)
         }
     }
-
 }
 
 @Composable
@@ -108,7 +107,7 @@ fun OceanBasicChip(
             .height(32.dp)
             .borderBackground(
                 color = getBackgroundColor(model),
-                borderRadius = OceanBorderRadius.Circle.allCorners,
+                borderRadius = OceanBorderRadius.Circle.allCorners
             )
             .clickable {
                 model.onClick(true)
@@ -154,7 +153,7 @@ fun OceanFilterChip(
             .height(32.dp)
             .borderBackground(
                 color = getBackgroundColor(model),
-                borderRadius = OceanBorderRadius.Circle.allCorners,
+                borderRadius = OceanBorderRadius.Circle.allCorners
             )
             .clickable {
                 model.bottomSheet.showBottomSheet(context)

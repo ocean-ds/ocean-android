@@ -41,7 +41,6 @@ import br.com.useblu.oceands.utils.FormatTypes.Companion.FORMAT_VALUE_WITH_SYMBO
 import br.com.useblu.oceands.utils.FormatTypes.Companion.FORMAT_VALUE_WITH_SYMBOL_HIDDEN
 import br.com.useblu.oceands.utils.OceanIcons
 
-
 @Preview
 @Composable
 fun OceanBalanceBluCardPreview() {
@@ -150,15 +149,16 @@ private fun BluCardTopBar(
             label = "Expand rotation"
         )
 
-        Box(modifier = Modifier
-            .size(40.dp)
-            .clickable(
-                enabled = isCurrentPage,
-                indication = null,
-                interactionSource = remember { MutableInteractionSource() },
-            ) {
-                onClickExpandContent()
-            }
+        Box(
+            modifier = Modifier
+                .size(40.dp)
+                .clickable(
+                    enabled = isCurrentPage,
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() }
+                ) {
+                    onClickExpandContent()
+                }
         ) {
             OceanIcon(
                 iconType = OceanIcons.CHEVRON_DOWN_OUTLINE,
@@ -337,7 +337,8 @@ private fun BluCardBottomBar(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = model.buttonDescription, modifier = Modifier.weight(1f),
+            text = model.buttonDescription,
+            modifier = Modifier.weight(1f),
             style = OceanTextStyle.description,
             color = OceanColors.interfaceLightDown
         )

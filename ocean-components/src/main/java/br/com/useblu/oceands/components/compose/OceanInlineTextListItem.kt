@@ -33,14 +33,14 @@ import br.com.useblu.oceands.utils.OceanIcons
 fun OceanInlineTextListItemPreview() {
     Column(
         modifier = Modifier
-            .background(color = OceanColors.interfaceLightPure),
+            .background(color = OceanColors.interfaceLightPure)
     ) {
         OceanInlineTextListItem(
-            title = OceanInlineTextListItemTitle.Default(title ="Title"),
+            title = OceanInlineTextListItemTitle.Default(title = "Title"),
             description = OceanInlineTextListItemDescription.Default(text = "Description")
         )
         OceanInlineTextListItem(
-            title = OceanInlineTextListItemTitle.Default(title ="Title"),
+            title = OceanInlineTextListItemTitle.Default(title = "Title"),
             description = OceanInlineTextListItemDescription.Default(text = "Description"),
             size = OceanInlineTextListItemSize.SMALL
         )
@@ -105,7 +105,6 @@ fun OceanInlineTextListItem(
     size: OceanInlineTextListItemSize = OceanInlineTextListItemSize.DEFAULT,
     isLoading: Boolean = false
 ) {
-
     if (isLoading) {
         OceanInlineTextListItemLoading(
             modifier = modifier,
@@ -125,7 +124,7 @@ fun OceanInlineTextListItem(
             OceanInlineTextListItemTitle(
                 title = title,
                 size = size
-                )
+            )
             Spacer(modifier = Modifier.weight(1f))
             OceanInlineTextListItemDescription(
                 description = description,
@@ -268,6 +267,5 @@ private fun OceanInlineTextListItemLoading(
                 )
             }
         }
-
     }
 }

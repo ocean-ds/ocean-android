@@ -2,7 +2,6 @@ package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,7 +31,6 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
-
 @Preview
 @Composable
 private fun OceanCardOptionPreview() {
@@ -42,7 +40,7 @@ private fun OceanCardOptionPreview() {
             title = "PagBlu",
             subTitle = "Economize até 10% usando saldo futuro sem taxa de antecipação",
             disabled = false,
-            recommend = false,
+            recommend = false
         ),
         OceanOptionCardItem(
             data = Any(),
@@ -58,7 +56,7 @@ private fun OceanCardOptionPreview() {
             subTitle = "Subtitle 2",
             recommend = true,
             recommendColor = "colorstatusneutraldeep",
-            recommendDescription = "Recomendado",
+            recommendDescription = "Recomendado"
         ),
         OceanOptionCardItem(
             data = Any(),
@@ -68,7 +66,7 @@ private fun OceanCardOptionPreview() {
             subTitle = "Subtitle 2",
             recommend = true,
             recommendColor = "colorstatuspositivepure",
-            recommendDescription = "Aproveite o cashback",
+            recommendDescription = "Aproveite o cashback"
         )
     )
 
@@ -176,7 +174,6 @@ fun OceanCardOption(
         }
     }
 }
-
 
 @Composable
 fun OceanTagRecommended(

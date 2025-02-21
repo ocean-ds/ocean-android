@@ -35,7 +35,6 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
-
 @Preview
 @Composable
 fun PreviewOceanTopBarInverse() {
@@ -58,7 +57,6 @@ fun PreviewOceanTopBarInverse() {
         )
 
         OceanSpacing.StackSM()
-
 
         OceanTopBarInverse(
             title = "Portabilidade",
@@ -149,7 +147,7 @@ fun OceanTopBarInverse(
     actions: @Composable () -> Unit,
     onClickToolbar: () -> Unit = {},
     visibleShadow: Boolean = false,
-    iconInvisible: Boolean = false,
+    iconInvisible: Boolean = false
 ) {
     TopBar(
         onClickToolbar = onClickToolbar,
@@ -205,7 +203,7 @@ private fun TopBar(
             modifier = Modifier
                 .height(56.dp)
                 .fillMaxSize()
-                .clickable { onClickToolbar() },
+                .clickable { onClickToolbar() }
         ) {
             val topBarIcon = icon ?: OceanIcons.ARROW_LEFT_OUTLINE
             val iconButtonSize = 56.dp

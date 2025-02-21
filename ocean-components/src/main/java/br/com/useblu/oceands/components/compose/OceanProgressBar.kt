@@ -19,7 +19,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
 
-
 @Preview
 @Composable
 private fun OceanProgressBarPrev() {
@@ -48,25 +47,25 @@ fun OceanProgressBar(
     modifier: Modifier = Modifier,
     @FloatRange(from = 0.0, to = 1.0) progress: Float
 ) {
-   BoxWithConstraints(
-       modifier = modifier
-           .borderBackground(
-               color = OceanColors.brandPrimaryUp,
-               borderRadius = OceanBorderRadius.Tiny.allCorners
-           )
-           .fillMaxWidth()
-           .height(OceanSpacing.xxs)
-   ) {
-       val size = this.maxWidth * progress
-       Box(
-           Modifier
-               .borderBackground(
-                   color = OceanColors.brandPrimaryPure,
-                   borderRadius = OceanBorderRadius.Tiny.allCorners
-               )
-               .align(Alignment.CenterStart)
-               .fillMaxHeight()
-               .width(size)
-       )
-   }
+    BoxWithConstraints(
+        modifier = modifier
+            .borderBackground(
+                color = OceanColors.brandPrimaryUp,
+                borderRadius = OceanBorderRadius.Tiny.allCorners
+            )
+            .fillMaxWidth()
+            .height(OceanSpacing.xxs)
+    ) {
+        val size = this.maxWidth * progress
+        Box(
+            Modifier
+                .borderBackground(
+                    color = OceanColors.brandPrimaryPure,
+                    borderRadius = OceanBorderRadius.Tiny.allCorners
+                )
+                .align(Alignment.CenterStart)
+                .fillMaxHeight()
+                .width(size)
+        )
+    }
 }

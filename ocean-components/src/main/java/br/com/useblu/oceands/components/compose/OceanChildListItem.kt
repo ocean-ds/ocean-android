@@ -25,7 +25,6 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
-
 @Preview(
     showBackground = true,
     backgroundColor = 0xFFFFFFFF,
@@ -91,9 +90,9 @@ private fun OceanChildListItemPreview() {
 private fun ChildListItem(
     modifier: Modifier = Modifier,
     style: ChildListItemStyle.Child,
-    isLoading: Boolean = false,
+    isLoading: Boolean = false
 ) {
-    if(isLoading) {
+    if (isLoading) {
         ChildListItemSkeleton()
         return
     }
@@ -176,14 +175,13 @@ private fun ChildListItemSkeleton() {
     }
 }
 
-
 data object ChildScope {
 
     @Composable
     fun OceanChildListItem(
         modifier: Modifier = Modifier,
         style: ChildListItemStyle.Child,
-        isLoading: Boolean = false,
+        isLoading: Boolean = false
     ) {
         ChildListItem(
             modifier = modifier,
@@ -198,6 +196,6 @@ sealed interface ChildListItemStyle {
         val icon: OceanIcons,
         val description: String,
         val value: String,
-        val type: TransactionType,
+        val type: TransactionType
     ) : ChildListItemStyle
 }

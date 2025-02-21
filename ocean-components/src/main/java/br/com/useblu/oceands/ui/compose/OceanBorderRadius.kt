@@ -129,18 +129,18 @@ sealed interface OceanBorderRadius {
     //region Properties
 
     val value: Dp
-    get() {
-        return when(this) {
-            is None -> Dp.Hairline
-            is Tiny -> Dp(4f)
-            is SM -> Dp(8f)
-            is MD -> Dp(12f)
-            is LG -> Dp(16f)
-            is Pill -> Dp(56f)
-            is Circle -> Dp.Infinity
-            is OceanBorderRadiusSetCorners -> Dp.Infinity
+        get() {
+            return when (this) {
+                is None -> Dp.Hairline
+                is Tiny -> Dp(4f)
+                is SM -> Dp(8f)
+                is MD -> Dp(12f)
+                is LG -> Dp(16f)
+                is Pill -> Dp(56f)
+                is Circle -> Dp.Infinity
+                is OceanBorderRadiusSetCorners -> Dp.Infinity
+            }
         }
-    }
 
     val allCorners: OceanBorderRadius
         get() {
@@ -162,7 +162,7 @@ sealed interface OceanBorderRadius {
     //region Public Methods
 
     fun shape(): RoundedCornerShape {
-        val corners = when(this) {
+        val corners = when (this) {
             is None -> emptySet()
             is OceanBorderRadiusSetCorners -> corners
         }
@@ -198,7 +198,7 @@ sealed interface OceanBorderRadius {
     //region Private Methods
 
     private fun getCorners(corners: Set<Corners>): OceanBorderRadius {
-        return when(this) {
+        return when (this) {
             is None -> None
             is Tiny -> Tiny(corners = corners)
             is SM -> SM(corners = corners)
@@ -211,7 +211,7 @@ sealed interface OceanBorderRadius {
     }
 
     private fun getCornerSize(): CornerSize {
-        return when(this) {
+        return when (this) {
             is Circle -> CornerSize(percent = 50)
             is None,
             is Tiny,
@@ -234,7 +234,7 @@ sealed interface OceanBorderRadius {
         TopStart,
         TopEnd,
         BottomStart,
-        BottomEnd;
+        BottomEnd
     }
 
     //endregion
@@ -261,7 +261,7 @@ fun Modifier.borderBackground(brush: Brush, borderRadius: OceanBorderRadius): Mo
 
 //region Group Type Helper
 
-private interface OceanBorderRadiusSetCorners: OceanBorderRadius {
+private interface OceanBorderRadiusSetCorners : OceanBorderRadius {
     val corners: Set<Corners>
 }
 

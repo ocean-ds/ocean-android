@@ -51,7 +51,7 @@ jobs:
         run: git pull
 
       - name: Update Ktlint Baseline
-        run: gradlew ktlintGenerateBaseline
+        run: ./gradlew ktlintGenerateBaseline
 
       - name: Commit changes
         run: |

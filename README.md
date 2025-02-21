@@ -24,7 +24,7 @@
   </a>
   <a href="https://discord.gg/hDWzGPKuG2">
     <img alt="Discord Server" src="https://img.shields.io/discord/875438252172136468.svg?color=7389D8&labelColor=6A7EC2&logo=discord&logoColor=ffffff">
-  </a>  
+  </a>
 </p>
 
 This project provides an UIKit for android that implements the [Ocean](https://zeroheight.com/9c9b2b3aa/p/257272-ocean-ds/t/968532) design system.
@@ -72,3 +72,4 @@ Join our [discord server](https://discord.gg/hDWzGPKuG2) to get the latest updat
 ## License
 
 All packages are licensed under the terms of the [GPL-3.0 License](LICENSE)
+

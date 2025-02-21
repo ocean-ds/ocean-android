@@ -35,14 +35,13 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 
-
 @Preview
 @Composable
 private fun OceanChartCardPreview() {
     Column(
         modifier = Modifier
             .background(OceanColors.interfaceLightPure)
-            .padding(OceanSpacing.xs),
+            .padding(OceanSpacing.xs)
     ) {
         OceanChartCard(
             modifier = Modifier,
@@ -62,7 +61,7 @@ private fun OceanChartCardSkeletonPreview() {
     Column(
         modifier = Modifier
             .background(OceanColors.interfaceLightPure)
-            .padding(OceanSpacing.xs),
+            .padding(OceanSpacing.xs)
     ) {
         OceanChartCard(
             modifier = Modifier,
@@ -80,11 +79,11 @@ private fun OceanChartCardSkeletonPreview() {
 fun OceanChartCard(
     modifier: Modifier = Modifier,
     title: String,
-    subtitle: String? = null,
+    subtitle: String = "",
     showProgress: Boolean = false,
     isLoading: Boolean = false,
     model: OceanChartModel,
-    actionTitle: String? = null,
+    actionTitle: String = "",
     callToAction: (() -> Unit)? = null
 ) {
     if (isLoading) {
@@ -153,10 +152,10 @@ private fun OceanChartCardSkeleton(modifier: Modifier = Modifier) {
 private fun OceanChartCardContent(
     modifier: Modifier = Modifier,
     title: String,
-    subtitle: String? = null,
+    subtitle: String = "",
     showProgress: Boolean = false,
     model: OceanChartModel,
-    actionTitle: String? = null,
+    actionTitle: String = "",
     callToAction: (() -> Unit)? = null
 ) {
     Column(
@@ -169,7 +168,7 @@ private fun OceanChartCardContent(
 
             OceanSpacing.StackXXXS()
 
-            if (!subtitle.isNullOrBlank()) {
+            if (subtitle.isNotBlank()) {
                 OceanText(text = subtitle, style = OceanTextStyle.description)
             }
 
@@ -182,7 +181,7 @@ private fun OceanChartCardContent(
             OceanChardLegend(model)
         }
 
-        if (actionTitle != null) {
+        if (actionTitle.isNotBlank()) {
             OceanSpacing.StackSM()
 
             OceanDivider()
@@ -195,7 +194,6 @@ private fun OceanChartCardContent(
         }
     }
 }
-
 
 @Composable
 fun OceanChardLegend(

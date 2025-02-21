@@ -157,7 +157,7 @@ private fun OceanBottomSheetPreview() {
                             icon = OceanIcons.WHATSAPP_SOLID,
                             onClick = {
                                 println("Botão clicado")
-                            },
+                            }
                         ),
                         code = 2000,
                         onDismiss = {
@@ -176,11 +176,11 @@ data class OceanBottomSheetModel(
     val customContent: @Composable (SheetState) -> Unit = {},
     val isDismissible: Boolean = true,
     val isCritical: Boolean = false,
-    val title: String? = null,
-    val message: String? = null,
-    val subMessage: String? = null,
+    val title: String = "",
+    val message: String = "",
+    val subMessage: String = "",
     val code: Int? = null,
-    val description: String? = null,
+    val description: String = "",
     @DrawableRes val icon: Int? = null,
     val imageUrl: String? = null,
     val maxWidth: Int? = null,
@@ -200,9 +200,9 @@ data class OceanBottomSheetModel(
     companion object
 }
 
-
 enum class BottomSheetButtonsOrientation {
-    Horizontal, Vertical
+    Horizontal,
+    Vertical
 }
 
 @Composable
@@ -233,7 +233,6 @@ fun OceanBottomSheet(
     modifier: Modifier = Modifier,
     model: OceanBottomSheetModel
 ) {
-
     val sheetState = rememberModalBottomSheetState(
         confirmValueChange = { model.isDismissible },
         skipPartiallyExpanded = true
@@ -260,7 +259,7 @@ fun OceanBottomSheet(
             if (model.isDismissible) {
                 IconButton(
                     modifier = Modifier.testTag("close_modal"),
-                    onClick = { model.onDismiss(true) },
+                    onClick = { model.onDismiss(true) }
                 ) {
                     OceanIcon(
                         iconType = OceanIcons.X_OUTLINE,
@@ -304,7 +303,7 @@ fun OceanBottomSheet(
                 )
             }
 
-            if (model.title != null) {
+            if (model.title.isNotBlank()) {
                 val textColor = if (model.isCritical) {
                     OceanColors.statusNegativePure
                 } else {
@@ -319,7 +318,7 @@ fun OceanBottomSheet(
                 )
             }
 
-            if (model.message != null) {
+            if (model.message.isNotBlank()) {
                 OceanSpacing.StackXXS()
                 OceanText(
                     text = model.message,
@@ -328,7 +327,7 @@ fun OceanBottomSheet(
                 )
             }
 
-            if (model.subMessage != null) {
+            if (model.subMessage.isNotBlank()) {
                 OceanSpacing.StackXXS()
                 OceanText(
                     text = model.subMessage,
@@ -350,8 +349,8 @@ fun OceanBottomSheet(
                 }
             )
 
-            if (model.code != null || model.description != null) {
-                val description = model.description ?: "Código: ${model.code}"
+            if (model.code != null || model.description.isNotBlank()) {
+                val description = model.description.ifBlank { null } ?: "Código: ${model.code}"
 
                 OceanSpacing.StackXS()
                 OceanText(

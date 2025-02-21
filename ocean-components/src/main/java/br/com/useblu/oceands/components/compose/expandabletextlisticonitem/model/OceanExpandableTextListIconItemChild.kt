@@ -6,6 +6,6 @@ data class OceanExpandableTextListIconItemChild<ReferenceKey>(
     val icon: OceanIcons?,
     val showIconBackground: Boolean = false,
     val title: String,
-    val description: String? = null,
+    val description: String = "",
     val key: ReferenceKey
 )

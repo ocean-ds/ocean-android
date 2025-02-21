@@ -27,7 +27,6 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
-
 @Preview(device = "spec:width=800dp,height=550.9dp,dpi=440")
 @Composable
 private fun OceanCardListItemPreview() {
@@ -165,13 +164,13 @@ private fun OceanCardListItemPreview() {
 fun OceanCardListItem(
     title: String,
     modifier: Modifier = Modifier,
-    description: String? = null,
-    caption: String? = null,
+    description: String = "",
+    caption: String = "",
     leadingIconToken: OceanIcons? = null,
     trailingIconToken: OceanIcons? = null,
     showIconBackground: Boolean = true,
     disabled: Boolean = false,
-    tagLabel: String? = null,
+    tagLabel: String = "",
     tagType: OceanTagType? = null,
     onClick: (() -> Unit)? = null,
     isSelected: Boolean = false
@@ -237,7 +236,7 @@ fun OceanCardListItem(
                         color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
                     )
 
-                    if (!tagLabel.isNullOrBlank() && tagType != null) {
+                    if (tagLabel.isNotBlank() && tagType != null) {
                         OceanTag(
                             style = OceanTagStyle.Default(
                                 label = tagLabel,
@@ -250,18 +249,18 @@ fun OceanCardListItem(
                     }
                 }
 
-                description?.let {
-                    Text(
+                if (description.isNotBlank()) {
+                    OceanText(
                         text = description,
                         style = OceanTextStyle.description,
                         color = if (disabled) OceanColors.interfaceLightDeep else Color.Unspecified
                     )
                 }
 
-                caption?.let {
+                if (caption.isNotBlank()) {
                     OceanSpacing.StackXXXS()
 
-                    Text(
+                    OceanText(
                         text = caption,
                         style = OceanTextStyle.caption,
                         color = if (disabled) OceanColors.interfaceLightDeep else Color.Unspecified
@@ -281,5 +280,3 @@ fun OceanCardListItem(
         }
     }
 }
-
-

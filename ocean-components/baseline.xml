@@ -1,0 +1,1076 @@
+<?xml version="1.0" encoding="utf-8"?>
+<baseline version="1.0">
+    <file name="build.gradle.kts">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanBottomListSheetAdapter.kt">
+        <error line="19" column="49" source="standard:trailing-comma-on-declaration-site" />
+        <error line="118" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanBottomListSheetWithIconAdapter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanChartLegendAdapter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanChipListAdapter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanDescriptorListAdapter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="11" column="53" source="standard:trailing-comma-on-declaration-site" />
+        <error line="82" column="18" source="standard:enum-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanDetailedAdapter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="10" column="47" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanFilterChipMultipleOptionsAdapter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="11" column="2" source="standard:colon-spacing" />
+        <error line="29" column="114" source="standard:colon-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanFilterChipSingleOptionsAdapter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="13" column="2" source="standard:colon-spacing" />
+        <error line="30" column="110" source="standard:colon-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanOptionsCardAdapter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanOrderedListAdapter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="9" column="36" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanShortcutsListAdapter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanTransactionFooterListAdapter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="10" column="56" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/adapter/OceanUnorderedListAdapter.kt">
+        <error line="12" column="52" source="standard:trailing-comma-on-declaration-site" />
+        <error line="48" column="39" source="standard:argument-list-wrapping" />
+        <error line="52" column="39" source="standard:argument-list-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindAdapterBadge.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindAdapterBalance.kt">
+        <error line="39" column="19" source="standard:wrapping" />
+        <error line="39" column="20" source="standard:argument-list-wrapping" />
+        <error line="43" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindAdapterCardCrossSell.kt">
+        <error line="17" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindAdapterExpandable.kt">
+        <error line="33" column="19" source="standard:wrapping" />
+        <error line="33" column="20" source="standard:argument-list-wrapping" />
+        <error line="46" column="19" source="standard:wrapping" />
+        <error line="46" column="20" source="standard:argument-list-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindAdapterInputToken.kt">
+        <error line="14" column="30" source="standard:trailing-comma-on-call-site" />
+        <error line="39" column="36" source="standard:trailing-comma-on-declaration-site" />
+        <error line="96" column="40" source="standard:trailing-comma-on-declaration-site" />
+        <error line="109" column="40" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindAdapterParentChildItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindAdapterRecyclerView.kt">
+        <error line="23" column="22" source="standard:no-multi-spaces" />
+        <error line="24" column="24" source="standard:no-multi-spaces" />
+        <error line="36" column="32" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindAdapterStepView.kt">
+        <error line="3" column="1" source="standard:import-ordering" />
+        <error line="27" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindAdapterTag.kt">
+        <error line="105" column="1" source="standard:spacing-between-declarations-with-annotations" />
+        <error line="130" column="1" source="standard:spacing-between-declarations-with-annotations" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindAdapterTextListItem.kt">
+        <error line="12" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapterChartCard.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="17" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapterChip.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapterDonut.kt">
+        <error line="56" column="32" source="standard:wrapping" />
+        <error line="58" column="29" source="standard:wrapping" />
+        <error line="58" column="37" source="standard:wrapping" />
+        <error line="99" column="37" source="standard:trailing-comma-on-declaration-site" />
+        <error line="137" column="1" source="standard:indent" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapterImageView.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="12" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapterOptionsCard.kt">
+        <error line="3" column="1" source="standard:import-ordering" />
+        <error line="9" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="31" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapterShortcuts.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="35" column="24" source="standard:parameter-list-wrapping" />
+        <error line="36" column="31" source="standard:parameter-list-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapterSpinner.kt">
+        <error line="3" column="1" source="standard:import-ordering" />
+        <error line="16" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="88" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="108" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="122" column="1" source="standard:indent" />
+        <error line="123" column="1" source="standard:indent" />
+        <error line="123" column="46" source="standard:trailing-comma-on-call-site" />
+        <error line="124" column="1" source="standard:indent" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapterTextView.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapterTopBar.kt">
+        <error line="13" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapterTransactionFooter.kt">
+        <error line="3" column="1" source="standard:import-ordering" />
+        <error line="26" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapterUnorderedListItem.kt">
+        <error line="19" column="44" source="standard:colon-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/bindingadapters/BindingAdapters.kt">
+        <error line="37" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="244" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="247" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="260" column="38" source="standard:keyword-spacing" />
+        <error line="261" column="39" source="standard:keyword-spacing" />
+        <error line="264" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="289" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="324" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="365" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="454" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="507" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/OceanBottomListSheet.kt">
+        <error line="154" column="36" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/OceanBottomSheet.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/OceanBottomSheetCompose.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="77" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="132" column="21" source="standard:enum-wrapping" />
+        <error line="136" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="159" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/OceanDatePickerFullscreen.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="17" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/OceanOptionsBottomListSheet.kt">
+        <error line="35" column="1" source="standard:no-trailing-spaces" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/OceanSearchDialog.kt">
+        <error line="19" column="53" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/OceanSnackBar.kt">
+        <error line="62" column="35" source="standard:comma-spacing" />
+        <error line="62" column="37" source="standard:comma-spacing" />
+        <error line="62" column="39" source="standard:comma-spacing" />
+        <error line="76" column="44" source="standard:wrapping" />
+        <error line="76" column="53" source="standard:wrapping" />
+        <error line="76" column="53" source="standard:argument-list-wrapping" />
+        <error line="78" column="25" source="standard:wrapping" />
+        <error line="81" column="44" source="standard:wrapping" />
+        <error line="81" column="53" source="standard:wrapping" />
+        <error line="81" column="53" source="standard:argument-list-wrapping" />
+        <error line="83" column="25" source="standard:wrapping" />
+        <error line="86" column="44" source="standard:wrapping" />
+        <error line="86" column="53" source="standard:wrapping" />
+        <error line="86" column="53" source="standard:argument-list-wrapping" />
+        <error line="88" column="25" source="standard:wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/OceanStepView.kt">
+        <error line="7" column="1" source="standard:no-wildcard-imports" />
+        <error line="388" column="28" source="standard:wrapping" />
+        <error line="389" column="1" source="standard:indent" />
+        <error line="389" column="17" source="standard:chain-wrapping" />
+        <error line="390" column="1" source="standard:indent" />
+        <error line="390" column="17" source="standard:chain-wrapping" />
+        <error line="391" column="1" source="standard:indent" />
+        <error line="392" column="1" source="standard:indent" />
+        <error line="393" column="1" source="standard:indent" />
+        <error line="393" column="77" source="standard:wrapping" />
+        <error line="400" column="18" source="standard:no-multi-spaces" />
+        <error line="503" column="1" source="standard:indent" />
+        <error line="534" column="1" source="standard:indent" />
+        <error line="535" column="1" source="standard:indent" />
+        <error line="536" column="1" source="standard:indent" />
+        <error line="537" column="1" source="standard:indent" />
+        <error line="540" column="1" source="standard:indent" />
+        <error line="541" column="1" source="standard:indent" />
+        <error line="542" column="1" source="standard:indent" />
+        <error line="543" column="1" source="standard:indent" />
+        <error line="612" column="17" source="standard:chain-wrapping" />
+        <error line="613" column="17" source="standard:chain-wrapping" />
+        <error line="784" column="44" source="standard:argument-list-wrapping" />
+        <error line="790" column="41" source="standard:argument-list-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/OceanToast.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="9" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="11" column="1" source="standard:indent" />
+        <error line="19" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/OceanTooltip.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="8" column="1" source="standard:no-wildcard-imports" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/CardCta.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="67" column="55" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanAccordion.kt">
+        <error line="63" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="80" column="1" source="standard:no-trailing-spaces" />
+        <error line="112" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanAlert.kt">
+        <error line="31" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="83" column="54" source="standard:trailing-comma-on-call-site" />
+        <error line="90" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="97" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="114" column="54" source="standard:trailing-comma-on-call-site" />
+        <error line="131" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="139" column="51" source="standard:trailing-comma-on-call-site" />
+        <error line="147" column="54" source="standard:trailing-comma-on-call-site" />
+        <error line="155" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="163" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="171" column="51" source="standard:trailing-comma-on-call-site" />
+        <error line="179" column="54" source="standard:trailing-comma-on-call-site" />
+        <error line="187" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="195" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="204" column="51" source="standard:trailing-comma-on-call-site" />
+        <error line="213" column="54" source="standard:trailing-comma-on-call-site" />
+        <error line="222" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="231" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="292" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="303" column="39" source="standard:trailing-comma-on-call-site" />
+        <error line="323" column="39" source="standard:trailing-comma-on-call-site" />
+        <error line="365" column="22" source="standard:trailing-comma-on-declaration-site" />
+        <error line="381" column="42" source="standard:trailing-comma-on-call-site" />
+        <error line="492" column="22" source="standard:trailing-comma-on-declaration-site" />
+        <error line="517" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="547" column="46" source="standard:trailing-comma-on-call-site" />
+        <error line="557" column="33" source="standard:trailing-comma-on-call-site" />
+        <error line="611" column="57" source="standard:trailing-comma-on-call-site" />
+        <error line="619" column="18" source="standard:trailing-comma-on-declaration-site" />
+        <error line="623" column="45" source="standard:trailing-comma-on-call-site" />
+        <error line="630" column="42" source="standard:trailing-comma-on-call-site" />
+        <error line="637" column="25" source="standard:trailing-comma-on-call-site" />
+        <error line="673" column="25" source="standard:no-multi-spaces" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanBadge.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="20" column="1" source="standard:no-unused-imports" />
+        <error line="22" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="79" column="25" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanBluPlus.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="41" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="44" column="71" source="standard:argument-list-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanBottomSheet.kt">
+        <error line="160" column="30" source="standard:trailing-comma-on-call-site" />
+        <error line="203" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="205" column="17" source="standard:enum-wrapping" />
+        <error line="236" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="263" column="56" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanButton.kt">
+        <error line="42" column="42" source="standard:trailing-comma-on-call-site" />
+        <error line="47" column="49" source="standard:trailing-comma-on-call-site" />
+        <error line="52" column="50" source="standard:trailing-comma-on-call-site" />
+        <error line="57" column="44" source="standard:trailing-comma-on-call-site" />
+        <error line="62" column="52" source="standard:trailing-comma-on-call-site" />
+        <error line="67" column="43" source="standard:trailing-comma-on-call-site" />
+        <error line="72" column="51" source="standard:trailing-comma-on-call-site" />
+        <error line="138" column="17" source="standard:enum-wrapping" />
+        <error line="192" column="52" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanCardListItem.kt">
+        <error line="30" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="285" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanCardOption.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="34" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="44" column="30" source="standard:trailing-comma-on-call-site" />
+        <error line="60" column="49" source="standard:trailing-comma-on-call-site" />
+        <error line="70" column="58" source="standard:trailing-comma-on-call-site" />
+        <error line="179" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanCarousel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanCarouselWithComponents.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="98" column="27" source="standard:trailing-comma-on-declaration-site" />
+        <error line="149" column="10" source="standard:curly-spacing" />
+        <error line="149" column="12" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanCheckbox.kt">
+        <error line="25" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="38" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="42" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="57" column="34" source="standard:trailing-comma-on-call-site" />
+        <error line="60" column="25" source="standard:no-multi-spaces" />
+        <error line="61" column="1" source="standard:indent" />
+        <error line="64" column="34" source="standard:trailing-comma-on-call-site" />
+        <error line="73" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="78" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="120" column="18" source="standard:trailing-comma-on-call-site" />
+        <error line="129" column="51" source="standard:trailing-comma-on-call-site" />
+        <error line="134" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanChildListItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="27" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="93" column="31" source="standard:trailing-comma-on-declaration-site" />
+        <error line="95" column="7" source="standard:keyword-spacing" />
+        <error line="172" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="179" column="35" source="standard:trailing-comma-on-declaration-site" />
+        <error line="194" column="34" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanChip.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="42" column="25" source="standard:trailing-comma-on-call-site" />
+        <error line="81" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanContentList.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="33" column="69" source="standard:trailing-comma-on-call-site" />
+        <error line="58" column="44" source="standard:trailing-comma-on-call-site" />
+        <error line="121" column="44" source="standard:trailing-comma-on-call-site" />
+        <error line="136" column="69" source="standard:trailing-comma-on-call-site" />
+        <error line="170" column="18" source="standard:trailing-comma-on-call-site" />
+        <error line="182" column="18" source="standard:trailing-comma-on-call-site" />
+        <error line="191" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="199" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="207" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="214" column="46" source="standard:trailing-comma-on-call-site" />
+        <error line="215" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="223" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="519" column="12" source="standard:no-semi" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanDatePickerDialog.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanDivider.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanDropdownMenu.kt">
+        <error line="46" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="62" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="72" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="88" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="105" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="167" column="68" source="standard:trailing-comma-on-call-site" />
+        <error line="180" column="35" source="standard:keyword-spacing" />
+        <error line="181" column="1" source="standard:indent" />
+        <error line="184" column="42" source="standard:argument-list-wrapping" />
+        <error line="187" column="22" source="standard:trailing-comma-on-call-site" />
+        <error line="253" column="11" source="standard:keyword-spacing" />
+        <error line="253" column="53" source="standard:curly-spacing" />
+        <error line="301" column="68" source="standard:trailing-comma-on-call-site" />
+        <error line="307" column="12" source="standard:paren-spacing" />
+        <error line="313" column="35" source="standard:keyword-spacing" />
+        <error line="314" column="1" source="standard:indent" />
+        <error line="316" column="53" source="standard:trailing-comma-on-call-site" />
+        <error line="325" column="74" source="standard:trailing-comma-on-call-site" />
+        <error line="353" column="11" source="standard:keyword-spacing" />
+        <error line="353" column="53" source="standard:curly-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanEyebrow.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="50" column="36" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanFilterBar.kt">
+        <error line="45" column="29" source="standard:trailing-comma-on-call-site" />
+        <error line="55" column="29" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanGroupCta.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="10" column="1" source="standard:no-unused-imports" />
+        <error line="22" column="1" source="standard:no-unused-imports" />
+        <error line="25" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="50" column="34" source="standard:trailing-comma-on-declaration-site" />
+        <error line="52" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanHtmlText.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="38" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanInlineTextListItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="35" column="64" source="standard:trailing-comma-on-call-site" />
+        <error line="38" column="65" source="standard:op-spacing" />
+        <error line="42" column="65" source="standard:op-spacing" />
+        <error line="107" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="127" column="1" source="standard:indent" />
+        <error line="264" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanInvertedTextListItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="34" column="83" source="standard:trailing-comma-on-call-site" />
+        <error line="347" column="44" source="standard:trailing-comma-on-call-site" />
+        <error line="394" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="491" column="44" source="standard:trailing-comma-on-declaration-site" />
+        <error line="499" column="28" source="standard:trailing-comma-on-call-site" />
+        <error line="577" column="48" source="standard:trailing-comma-on-call-site" />
+        <error line="615" column="40" source="standard:trailing-comma-on-call-site" />
+        <error line="632" column="57" source="standard:trailing-comma-on-declaration-site" />
+        <error line="639" column="55" source="standard:trailing-comma-on-declaration-site" />
+        <error line="646" column="33" source="standard:trailing-comma-on-declaration-site" />
+        <error line="659" column="33" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanLink.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="38" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="70" column="33" source="standard:trailing-comma-on-call-site" />
+        <error line="77" column="14" source="standard:enum-wrapping" />
+        <error line="77" column="23" source="standard:enum-wrapping" />
+        <error line="77" column="32" source="standard:enum-wrapping" />
+        <error line="91" column="14" source="standard:enum-wrapping" />
+        <error line="91" column="23" source="standard:enum-wrapping" />
+        <error line="181" column="25" source="standard:trailing-comma-on-call-site" />
+        <error line="190" column="25" source="standard:trailing-comma-on-call-site" />
+        <error line="200" column="29" source="standard:trailing-comma-on-call-site" />
+        <error line="211" column="24" source="standard:trailing-comma-on-declaration-site" />
+        <error line="242" column="24" source="standard:trailing-comma-on-declaration-site" />
+        <error line="249" column="40" source="standard:trailing-comma-on-call-site" />
+        <error line="254" column="26" source="standard:trailing-comma-on-call-site" />
+        <error line="263" column="24" source="standard:trailing-comma-on-declaration-site" />
+        <error line="270" column="41" source="standard:trailing-comma-on-call-site" />
+        <error line="275" column="26" source="standard:trailing-comma-on-call-site" />
+        <error line="284" column="24" source="standard:trailing-comma-on-declaration-site" />
+        <error line="291" column="42" source="standard:trailing-comma-on-call-site" />
+        <error line="296" column="26" source="standard:trailing-comma-on-call-site" />
+        <error line="333" column="36" source="standard:trailing-comma-on-call-site" />
+        <error line="343" column="41" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanOnboarding.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="34" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="177" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanPageIndicator.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanProgressBar.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="23" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="52" column="1" source="standard:indent" />
+        <error line="53" column="1" source="standard:indent" />
+        <error line="54" column="1" source="standard:indent" />
+        <error line="55" column="1" source="standard:indent" />
+        <error line="56" column="1" source="standard:indent" />
+        <error line="57" column="1" source="standard:indent" />
+        <error line="58" column="1" source="standard:indent" />
+        <error line="59" column="1" source="standard:indent" />
+        <error line="60" column="1" source="standard:indent" />
+        <error line="61" column="1" source="standard:indent" />
+        <error line="62" column="1" source="standard:indent" />
+        <error line="63" column="1" source="standard:indent" />
+        <error line="64" column="1" source="standard:indent" />
+        <error line="65" column="1" source="standard:indent" />
+        <error line="66" column="1" source="standard:indent" />
+        <error line="67" column="1" source="standard:indent" />
+        <error line="68" column="1" source="standard:indent" />
+        <error line="69" column="1" source="standard:indent" />
+        <error line="70" column="1" source="standard:indent" />
+        <error line="71" column="1" source="standard:indent" />
+        <error line="72" column="1" source="standard:indent" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanRadioButton.kt">
+        <error line="24" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="37" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="41" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="50" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="55" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="79" column="12" source="standard:wrapping" />
+        <error line="79" column="12" source="standard:argument-list-wrapping" />
+        <error line="109" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="120" column="33" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanScrollableTab.kt">
+        <error line="31" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanSectionHeader.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanSettingsListItem.kt">
+        <error line="26" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="39" column="146" source="standard:trailing-comma-on-call-site" />
+        <error line="44" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="52" column="39" source="standard:trailing-comma-on-call-site" />
+        <error line="58" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="73" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="79" column="92" source="standard:trailing-comma-on-call-site" />
+        <error line="85" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="88" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="93" column="48" source="standard:trailing-comma-on-call-site" />
+        <error line="112" column="49" source="standard:trailing-comma-on-call-site" />
+        <error line="114" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="127" column="49" source="standard:trailing-comma-on-call-site" />
+        <error line="129" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="141" column="49" source="standard:trailing-comma-on-call-site" />
+        <error line="154" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="164" column="14" source="standard:trailing-comma-on-call-site" />
+        <error line="182" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="231" column="44" source="standard:trailing-comma-on-call-site" />
+        <error line="245" column="38" source="standard:trailing-comma-on-call-site" />
+        <error line="268" column="47" source="standard:trailing-comma-on-call-site" />
+        <error line="300" column="69" source="standard:trailing-comma-on-call-site" />
+        <error line="304" column="30" source="standard:trailing-comma-on-call-site" />
+        <error line="324" column="32" source="standard:trailing-comma-on-declaration-site" />
+        <error line="330" column="36" source="standard:trailing-comma-on-declaration-site" />
+        <error line="335" column="60" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanShimmering.kt">
+        <error line="26" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="48" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="70" column="18" source="standard:trailing-comma-on-call-site" />
+        <error line="85" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanShortcut.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="115" column="29" source="standard:trailing-comma-on-call-site" />
+        <error line="121" column="29" source="standard:trailing-comma-on-call-site" />
+        <error line="270" column="56" source="standard:trailing-comma-on-call-site" />
+        <error line="298" column="47" source="standard:trailing-comma-on-call-site" />
+        <error line="370" column="20" source="standard:wrapping" />
+        <error line="373" column="1" source="standard:indent" />
+        <error line="373" column="29" source="standard:chain-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanSimpleBalance.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="55" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="59" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="136" column="47" source="standard:trailing-comma-on-call-site" />
+        <error line="171" column="17" source="standard:wrapping" />
+        <error line="171" column="17" source="standard:argument-list-wrapping" />
+        <error line="177" column="80" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanSnackBarHost.kt">
+        <error line="21" column="20" source="standard:trailing-comma-on-declaration-site" />
+        <error line="23" column="1" source="standard:indent" />
+        <error line="40" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanSnackbar.kt">
+        <error line="23" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="144" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanStatusListItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="30" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanStep.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="24" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="53" column="31" source="standard:range-spacing" />
+        <error line="65" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanSwitch.kt">
+        <error line="23" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="65" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="90" column="112" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanTab.kt">
+        <error line="65" column="38" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanTag.kt">
+        <error line="25" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="43" column="18" source="standard:trailing-comma-on-call-site" />
+        <error line="50" column="48" source="standard:trailing-comma-on-call-site" />
+        <error line="97" column="62" source="standard:trailing-comma-on-call-site" />
+        <error line="107" column="55" source="standard:trailing-comma-on-call-site" />
+        <error line="117" column="60" source="standard:trailing-comma-on-call-site" />
+        <error line="127" column="60" source="standard:trailing-comma-on-call-site" />
+        <error line="137" column="60" source="standard:trailing-comma-on-call-site" />
+        <error line="147" column="60" source="standard:trailing-comma-on-call-site" />
+        <error line="219" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="224" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="244" column="30" source="standard:trailing-comma-on-call-site" />
+        <error line="283" column="18" source="standard:keyword-spacing" />
+        <error line="286" column="18" source="standard:keyword-spacing" />
+        <error line="299" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="306" column="33" source="standard:trailing-comma-on-call-site" />
+        <error line="326" column="18" source="standard:keyword-spacing" />
+        <error line="329" column="18" source="standard:keyword-spacing" />
+        <error line="353" column="35" source="standard:trailing-comma-on-declaration-site" />
+        <error line="379" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="470" column="54" source="standard:trailing-comma-on-declaration-site" />
+        <error line="489" column="39" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanTextListItem.kt">
+        <error line="38" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="47" column="1" source="standard:indent" />
+        <error line="176" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="215" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="255" column="33" source="standard:keyword-spacing" />
+        <error line="256" column="1" source="standard:indent" />
+        <error line="311" column="11" source="standard:keyword-spacing" />
+        <error line="311" column="71" source="standard:curly-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanTooltip.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanTopBarInverse.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="37" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="61" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="150" column="35" source="standard:trailing-comma-on-declaration-site" />
+        <error line="206" column="48" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/OceanTransactionFooter.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="47" column="45" source="standard:trailing-comma-on-call-site" />
+        <error line="52" column="45" source="standard:trailing-comma-on-call-site" />
+        <error line="183" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/chart/ChartPreviewUtils.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="14" column="81" source="standard:trailing-comma-on-call-site" />
+        <error line="22" column="76" source="standard:trailing-comma-on-call-site" />
+        <error line="30" column="65" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/chart/OceanChartBar.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="35" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="66" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="74" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/chart/OceanChartScore.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="34" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="42" column="28" source="standard:trailing-comma-on-call-site" />
+        <error line="44" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/chart/OceanDonut.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="19" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="36" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/content/OceanCardGroup.kt">
+        <error line="3" column="1" source="standard:import-ordering" />
+        <error line="39" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="278" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="284" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/expandabletextlisticonitem/OceanExpandableTextListIconItem.kt">
+        <error line="251" column="32" source="standard:type-parameter-list-spacing" />
+        <error line="275" column="32" source="standard:type-parameter-list-spacing" />
+        <error line="277" column="66" source="standard:trailing-comma-on-declaration-site" />
+        <error line="305" column="31" source="standard:trailing-comma-on-call-site" />
+        <error line="309" column="49" source="standard:trailing-comma-on-call-site" />
+        <error line="335" column="63" source="standard:trailing-comma-on-call-site" />
+        <error line="343" column="62" source="standard:curly-spacing" />
+        <error line="357" column="33" source="standard:curly-spacing" />
+        <error line="357" column="34" source="standard:comma-spacing" />
+        <error line="357" column="35" source="standard:trailing-comma-on-call-site" />
+        <error line="369" column="59" source="standard:trailing-comma-on-call-site" />
+        <error line="378" column="32" source="standard:type-parameter-list-spacing" />
+        <error line="469" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/expandabletextlisticonitem/model/OceanExpandableTextListIconItemChild.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/expandabletextlisticonitem/model/OceanExpandableTextListIconItemChildType.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="20" column="83" source="standard:colon-spacing" />
+        <error line="23" column="60" source="standard:colon-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/header/OceanBalanceBluCard.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="45" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="154" column="13" source="standard:wrapping" />
+        <error line="154" column="13" source="standard:argument-list-wrapping" />
+        <error line="159" column="76" source="standard:trailing-comma-on-call-site" />
+        <error line="337" column="45" source="standard:argument-list-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/header/OceanBalanceBluCardCollapsed.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="27" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="51" column="1" source="standard:spacing-between-declarations-with-annotations" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/header/OceanBalanceOthersCard.kt">
+        <error line="24" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/header/OceanBalanceOthersCardCollapsed.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="23" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="34" column="26" source="standard:trailing-comma-on-call-site" />
+        <error line="37" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="39" column="1" source="standard:spacing-between-declarations-with-annotations" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/header/OceanHeader.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="193" column="48" source="standard:trailing-comma-on-call-site" />
+        <error line="272" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="277" column="53" source="standard:trailing-comma-on-declaration-site" />
+        <error line="281" column="68" source="standard:trailing-comma-on-call-site" />
+        <error line="306" column="18" source="standard:trailing-comma-on-call-site" />
+        <error line="323" column="22" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/header/model/OceanHeaderStyle.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/input/OceanFileUploader.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="186" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="255" column="17" source="standard:wrapping" />
+        <error line="255" column="17" source="standard:argument-list-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/input/OceanInputTextSearch.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/input/OceanSelectableBox.kt">
+        <error line="29" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="38" column="31" source="standard:trailing-comma-on-call-site" />
+        <error line="43" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="48" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="52" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="64" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="69" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="74" column="34" source="standard:trailing-comma-on-call-site" />
+        <error line="111" column="49" source="standard:curly-spacing" />
+        <error line="112" column="17" source="standard:keyword-spacing" />
+        <error line="125" column="23" source="standard:paren-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/input/OceanSelectableRadio.kt">
+        <error line="32" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="79" column="31" source="standard:trailing-comma-on-call-site" />
+        <error line="84" column="32" source="standard:trailing-comma-on-call-site" />
+        <error line="89" column="32" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/input/OceanTextInput.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="47" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="187" column="35" source="standard:trailing-comma-on-call-site" />
+        <error line="197" column="58" source="standard:trailing-comma-on-call-site" />
+        <error line="362" column="36" source="standard:no-multi-spaces" />
+        <error line="362" column="65" source="standard:no-multi-spaces" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/list/OceanCalloutList.kt">
+        <error line="56" column="52" source="standard:paren-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/list/OceanDescriptorList.kt">
+        <error line="33" column="34" source="standard:trailing-comma-on-call-site" />
+        <error line="41" column="33" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/list/OceanListSubHeader.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="56" column="29" source="standard:trailing-comma-on-declaration-site" />
+        <error line="90" column="49" source="standard:no-multi-spaces" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/list/OceanOrderedList.kt">
+        <error line="22" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/list/OceanTransactionListItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="58" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="385" column="28" source="standard:trailing-comma-on-call-site" />
+        <error line="395" column="39" source="standard:trailing-comma-on-call-site" />
+        <error line="431" column="49" source="standard:trailing-comma-on-call-site" />
+        <error line="434" column="1" source="standard:no-empty-first-line-in-method-block" />
+        <error line="490" column="30" source="standard:trailing-comma-on-declaration-site" />
+        <error line="517" column="48" source="standard:trailing-comma-on-call-site" />
+        <error line="530" column="24" source="standard:trailing-comma-on-declaration-site" />
+        <error line="592" column="35" source="standard:trailing-comma-on-declaration-site" />
+        <error line="617" column="51" source="standard:trailing-comma-on-call-site" />
+        <error line="702" column="46" source="standard:trailing-comma-on-call-site" />
+        <error line="787" column="47" source="standard:trailing-comma-on-declaration-site" />
+        <error line="795" column="36" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/list/OceanUnorderedList.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="25" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/compose/skeleton/OceanStatusListItemSkeleton.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/daterangefilter/OceanDateRangeSelectFilterEvent.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/daterangefilter/OceanDateRangeSelectFilterSheet.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="37" column="1" source="standard:indent" />
+        <error line="38" column="1" source="standard:indent" />
+        <error line="39" column="1" source="standard:indent" />
+        <error line="58" column="55" source="standard:comma-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/components/daterangefilter/OceanDateRangeSelectFilterUIState.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/extensions/Extensions.kt">
+        <error line="79" column="49" source="standard:comment-spacing" />
+        <error line="96" column="49" source="standard:comment-spacing" />
+        <error line="117" column="2" source="standard:colon-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/extensions/RecycleViewSwipeExtensions.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="11" column="29" source="standard:trailing-comma-on-declaration-site" />
+        <error line="24" column="42" source="standard:wrapping" />
+        <error line="36" column="21" source="standard:wrapping" />
+        <error line="39" column="42" source="standard:wrapping" />
+        <error line="51" column="21" source="standard:wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/extensions/StringExtensions.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/extensions/compose/Extensions.kt">
+        <error line="53" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="103" column="2" source="standard:function-return-type-spacing" />
+        <error line="103" column="3" source="standard:colon-spacing" />
+        <error line="104" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/Badge.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanAlertType.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="4" column="18" source="standard:enum-wrapping" />
+        <error line="4" column="25" source="standard:enum-wrapping" />
+        <error line="4" column="34" source="standard:enum-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanBadgeType.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanCarouselItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanChildTextItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="10" column="34" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanChip.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="22" column="38" source="standard:trailing-comma-on-declaration-site" />
+        <error line="23" column="2" source="standard:colon-spacing" />
+        <error line="32" column="2" source="standard:colon-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanChipItemState.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="7" column="19" source="standard:enum-wrapping" />
+        <error line="7" column="35" source="standard:enum-wrapping" />
+        <error line="7" column="52" source="standard:enum-wrapping" />
+        <error line="7" column="71" source="standard:enum-wrapping" />
+        <error line="7" column="87" source="standard:enum-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanDescriptorListItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanDetailedItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="9" column="28" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanFilterChipBottomSheet.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="10" column="66" source="standard:colon-spacing" />
+        <error line="21" column="38" source="standard:trailing-comma-on-declaration-site" />
+        <error line="22" column="6" source="standard:colon-spacing" />
+        <error line="33" column="71" source="standard:colon-spacing" />
+        <error line="35" column="73" source="standard:comma-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanInfoListItem.kt">
+        <error line="6" column="33" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanOptionCardItem.kt">
+        <error line="15" column="43" source="standard:trailing-comma-on-declaration-site" />
+        <error line="19" column="14" source="standard:enum-wrapping" />
+        <error line="19" column="24" source="standard:enum-wrapping" />
+        <error line="23" column="16" source="standard:enum-wrapping" />
+        <error line="23" column="28" source="standard:enum-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanParentTextItem.kt">
+        <error line="14" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanSettingsStatus.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanShortcutItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanStatusTextListItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="4" column="15" source="standard:enum-wrapping" />
+        <error line="4" column="25" source="standard:enum-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanTagType.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="7" column="14" source="standard:enum-wrapping" />
+        <error line="7" column="30" source="standard:enum-wrapping" />
+        <error line="7" column="40" source="standard:enum-wrapping" />
+        <error line="7" column="50" source="standard:enum-wrapping" />
+        <error line="7" column="59" source="standard:enum-wrapping" />
+        <error line="7" column="74" source="standard:enum-wrapping" />
+        <error line="7" column="85" source="standard:enum-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanTransactionFooterItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/OceanTransactionListUIModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/OceanAlertType.kt">
+        <error line="23" column="6" source="standard:colon-spacing" />
+        <error line="46" column="37" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/OceanBalanceOthersModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/OceanHeaderAppAction.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/OceanHeaderAppModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/OceanTabItemModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/OceanTagModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/OceanUnorderedListItemModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="6" column="1" source="standard:no-unused-imports" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/UploadFileModel.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/carouselwithcomponents/OceanCarouselComponentItem.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/carouselwithcomponents/OceanCarouselCycle.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/carouselwithcomponents/OceanCarouselIndicator.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="8" column="20" source="standard:keyword-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/inlinetextlistitem/OceanInlineTextListItemDescription.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="14" column="6" source="standard:colon-spacing" />
+        <error line="14" column="53" source="standard:curly-spacing" />
+        <error line="22" column="6" source="standard:colon-spacing" />
+        <error line="22" column="53" source="standard:curly-spacing" />
+        <error line="30" column="6" source="standard:colon-spacing" />
+        <error line="30" column="53" source="standard:curly-spacing" />
+        <error line="38" column="6" source="standard:colon-spacing" />
+        <error line="38" column="53" source="standard:curly-spacing" />
+        <error line="46" column="6" source="standard:colon-spacing" />
+        <error line="55" column="6" source="standard:colon-spacing" />
+        <error line="64" column="6" source="standard:colon-spacing" />
+        <error line="67" column="65" source="standard:colon-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/inlinetextlistitem/OceanInlineTextListItemSize.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/model/compose/inlinetextlistitem/OceanInlineTextListItemTitle.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="5" column="1" source="standard:no-unused-imports" />
+        <error line="8" column="42" source="standard:colon-spacing" />
+        <error line="9" column="71" source="standard:colon-spacing" />
+        <error line="10" column="78" source="standard:colon-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/ui/compose/OceanButtonColors.kt">
+        <error line="10" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="40" column="1" source="standard:no-trailing-spaces" />
+        <error line="70" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/ui/compose/OceanButtonStyle.kt">
+        <error line="104" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/ui/compose/OceanColors.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/ui/compose/OceanFontSize.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="11" column="1" source="standard:indent" />
+        <error line="12" column="1" source="standard:indent" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/ui/compose/OceanSpacing.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/ui/compose/OceanTextStyle.kt">
+        <error line="17" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="74" column="37" source="standard:trailing-comma-on-call-site" />
+        <error line="132" column="37" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/ui/compose/stringmask/CurrencyMaskVisualTransformation.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/ui/compose/stringmask/NumberVisualTransformation.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="8" column="42" source="standard:colon-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/ui/compose/stringmask/OceanInputType.kt">
+        <error line="17" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="282" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/ui/compose/stringmask/PercentageMaskVisualTransformation.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/ui/compose/stringmask/StaticMaskVisualTransformation.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/utils/DisabledDaysDecorator.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="11" column="1" source="standard:no-empty-first-line-in-method-block" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/utils/ExtensionsColors.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="78" column="56" source="standard:no-multi-spaces" />
+        <error line="81" column="56" source="standard:no-multi-spaces" />
+        <error line="84" column="31" source="standard:no-multi-spaces" />
+        <error line="84" column="56" source="standard:op-spacing" />
+        <error line="87" column="28" source="standard:comma-spacing" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/utils/ExtensionsIcons.kt">
+        <error line="10" column="1" source="standard:no-consecutive-blank-lines" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/utils/FormatTypes.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="104" column="1" source="standard:no-blank-line-before-rbrace" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/utils/SwipeBox.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="73" column="43" source="standard:wrapping" />
+        <error line="73" column="44" source="standard:argument-list-wrapping" />
+        <error line="76" column="66" source="standard:trailing-comma-on-call-site" />
+        <error line="86" column="91" source="standard:argument-list-wrapping" />
+        <error line="94" column="1" source="standard:no-blank-line-before-rbrace" />
+        <error line="99" column="8" source="standard:trailing-comma-on-declaration-site" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/utils/SwipeHelper.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/test/java/br/com/useblu/oceands/ui/compose/input/OceanTextInputTest.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/test/java/br/com/useblu/oceands/ui/compose/stringmask/CurrencyMaskVisualTransformationTest.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+</baseline>

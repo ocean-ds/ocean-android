@@ -36,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -43,7 +44,6 @@ import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.stringmask.OceanInputType
 import br.com.useblu.oceands.utils.OceanIcons
-
 
 @Preview
 @Composable
@@ -184,7 +184,7 @@ private fun CreateOceanTextInputPreview(
             text = it
             println("text callback: [$it]")
         },
-        oceanInputType = inputType,
+        oceanInputType = inputType
     )
 }
 
@@ -194,7 +194,7 @@ private fun getTextFieldColors() = OutlinedTextFieldDefaults.colors(
     focusedBorderColor = OceanColors.brandPrimaryDown,
     errorBorderColor = OceanColors.statusNegativePure,
     disabledBorderColor = OceanColors.interfaceLightUp,
-    disabledContainerColor = OceanColors.interfaceLightUp,
+    disabledContainerColor = OceanColors.interfaceLightUp
 )
 
 @Composable
@@ -203,8 +203,8 @@ fun OceanTextInput(
     label: String,
     modifier: Modifier = Modifier,
     labelColor: Color = OceanColors.interfaceDarkUp,
-    errorText: String? = null,
-    helper: String? = null,
+    errorText: String? = "",
+    helper: String = "",
     placeholder: String = "",
     enabled: Boolean = true,
     onTextChanged: (String) -> Unit,
@@ -279,7 +279,7 @@ fun OceanTextInput(
                         placeholderCompose = getPlaceholder(placeholder, enabled),
                         oceanInputType = oceanInputType,
                         enabled = enabled,
-                        errorText = errorText,
+                        errorText = errorText ?: "",
                         interactionSource = interactionSource,
                         textFieldColors = getTextFieldColors(),
                         leadingIcon = if (leadingIcon != null) {
@@ -306,15 +306,15 @@ fun OceanTextInput(
                 }
             )
 
-            if (!errorText.isNullOrEmpty()) {
+            if (!errorText.isNullOrBlank()) {
                 OceanSpacing.StackXXXS()
-                Text(
+                OceanText(
                     text = errorText,
                     color = OceanColors.statusNegativePure,
                     fontFamily = OceanFontFamily.BaseMedium,
                     fontSize = OceanFontSize.xxxs
                 )
-            } else if (!helper.isNullOrEmpty()) {
+            } else if (helper.isNotEmpty()) {
                 OceanSpacing.StackXXXS()
                 Text(
                     text = helper,
@@ -349,7 +349,7 @@ private fun OceanTextInputDecorationBox(
     placeholderCompose: @Composable () -> Unit,
     oceanInputType: OceanInputType,
     enabled: Boolean,
-    errorText: String?,
+    errorText: String,
     interactionSource: MutableInteractionSource,
     textFieldColors: TextFieldColors,
     leadingIcon: (@Composable () -> Unit)?,
@@ -359,7 +359,7 @@ private fun OceanTextInputDecorationBox(
     val contentPadding = if (singleLine) {
         PaddingValues(horizontal = OceanSpacing.xs)
     } else {
-        PaddingValues(horizontal =  OceanSpacing.xs, vertical =  OceanSpacing.xs)
+        PaddingValues(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xs)
     }
 
     OutlinedTextFieldDefaults.DecorationBox(
@@ -372,14 +372,14 @@ private fun OceanTextInputDecorationBox(
         prefix = oceanInputType.getPrefixComposable(value),
         singleLine = singleLine,
         enabled = enabled,
-        isError = !errorText.isNullOrEmpty(),
+        isError = errorText.isNotEmpty(),
         interactionSource = interactionSource,
         colors = textFieldColors,
         contentPadding = contentPadding,
         container = {
             OutlinedTextFieldDefaults.ContainerBox(
                 enabled = enabled,
-                isError = !errorText.isNullOrEmpty(),
+                isError = errorText.isNotEmpty(),
                 interactionSource = interactionSource,
                 colors = textFieldColors,
                 shape = RoundedCornerShape(8.dp),

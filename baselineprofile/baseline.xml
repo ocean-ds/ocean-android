@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<baseline version="1.0">
+    <file name="build.gradle.kts">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="32" column="13" source="standard:wrapping" />
+        <error line="36" column="9" source="standard:wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/baselineprofile/BaselineProfileGenerator.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/baselineprofile/BaselineTestPreview.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+        <error line="34" column="42" source="standard:wrapping" />
+        <error line="34" column="43" source="standard:argument-list-wrapping" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/baselineprofile/StartupBenchmarks.kt">
+        <error line="1" column="1" source="standard:final-newline" />
+    </file>
+    <file name="src/main/java/br/com/useblu/oceands/baselineprofile/Utils.kt">
+        <error line="34" column="5" source="standard:comment-spacing" />
+    </file>
+</baseline>

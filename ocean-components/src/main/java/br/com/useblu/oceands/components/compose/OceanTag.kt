@@ -1,13 +1,11 @@
 package br.com.useblu.oceands.components.compose
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,10 +16,11 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
-
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
@@ -40,14 +39,14 @@ fun OceanTagPreviewV2() {
                         icon = OceanIcons.CHECK_CIRCLE_SOLID
                     ),
                     type = OceanTagType.Positive
-                ),
+                )
             )
 
             OceanTag(
                 style = OceanTagStyle.Default(
                     label = "Label",
                     layout = OceanTagLayout.Medium(),
-                    type = OceanTagType.Warning,
+                    type = OceanTagType.Warning
                 )
             )
 
@@ -94,7 +93,7 @@ fun OceanTagPreviewV2() {
                     label = "Label",
                     type = OceanTagType.Positive,
                     layout = OceanTagLayout.Medium(
-                        icon = OceanIcons.LOCK_CLOSED_OUTLINE,
+                        icon = OceanIcons.LOCK_CLOSED_OUTLINE
                     )
                 )
             )
@@ -104,7 +103,7 @@ fun OceanTagPreviewV2() {
                     label = "Label",
                     type = OceanTagType.Warning,
                     layout = OceanTagLayout.Medium(
-                        icon = OceanIcons.INFO_OUTLINE,
+                        icon = OceanIcons.INFO_OUTLINE
                     )
                 )
             )
@@ -114,7 +113,7 @@ fun OceanTagPreviewV2() {
                     label = "Label",
                     type = OceanTagType.Negative,
                     layout = OceanTagLayout.Medium(
-                        icon = OceanIcons.PLACEHOLDER_SOLID,
+                        icon = OceanIcons.PLACEHOLDER_SOLID
                     )
                 )
             )
@@ -124,7 +123,7 @@ fun OceanTagPreviewV2() {
                     label = "Label",
                     type = OceanTagType.Complementary,
                     layout = OceanTagLayout.Medium(
-                        icon = OceanIcons.PLACEHOLDER_SOLID,
+                        icon = OceanIcons.PLACEHOLDER_SOLID
                     )
                 )
             )
@@ -134,7 +133,7 @@ fun OceanTagPreviewV2() {
                     label = "Label",
                     type = OceanTagType.Neutral,
                     layout = OceanTagLayout.Medium(
-                        icon = OceanIcons.PLACEHOLDER_SOLID,
+                        icon = OceanIcons.PLACEHOLDER_SOLID
                     )
                 )
             )
@@ -144,7 +143,7 @@ fun OceanTagPreviewV2() {
                     label = "Label",
                     type = OceanTagType.NeutralPrimary,
                     layout = OceanTagLayout.Medium(
-                        icon = OceanIcons.PLACEHOLDER_SOLID,
+                        icon = OceanIcons.PLACEHOLDER_SOLID
                     )
                 )
             )
@@ -216,11 +215,9 @@ fun OceanTagPreviewV2() {
                     layout = OceanTagLayout.Small()
                 )
             )
-
         }
     }
 }
-
 
 @Composable
 fun OceanTag(
@@ -241,7 +238,7 @@ fun OceanTag(
         is OceanTagStyle.Highlight -> {
             HighlightTag(
                 modifier = modifier,
-                style = style,
+                style = style
             )
         }
         is OceanTagStyle.None -> Unit
@@ -280,30 +277,29 @@ private fun DefaultMediumTag(
     enabled: Boolean
 ) {
     val textColor = getTextColor(
-        type = if(enabled) style.type else OceanTagType.Neutral
+        type = if (enabled) style.type else OceanTagType.Neutral
     )
     val backgroundColor = getBackgroundColor(
-        type = if(enabled) style.type else OceanTagType.Neutral
+        type = if (enabled) style.type else OceanTagType.Neutral
     )
 
     Row(
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = backgroundColor,
-                shape = RoundedCornerShape(16.dp)
+                borderRadius = OceanBorderRadius.LG.allCorners
             )
             .height(layout.height)
             .padding(horizontal = OceanSpacing.xxs),
         verticalAlignment = Alignment.CenterVertically
     ) {
-
         layout.icon?.let {
             OceanIcon(
                 iconType = layout.icon,
                 tint = textColor,
                 modifier = Modifier
                     .padding(end = OceanSpacing.xxxs)
-                    .size(16.dp),
+                    .size(16.dp)
             )
         }
 
@@ -323,17 +319,17 @@ private fun DefaultSmallTag(
     enabled: Boolean
 ) {
     val textColor = getTextColor(
-        type = if(enabled) style.type else OceanTagType.Neutral
+        type = if (enabled) style.type else OceanTagType.Neutral
     )
     val backgroundColor = getBackgroundColor(
-        type = if(enabled) style.type else OceanTagType.Neutral
+        type = if (enabled) style.type else OceanTagType.Neutral
     )
 
     Row(
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = backgroundColor,
-                shape = RoundedCornerShape(16.dp)
+                borderRadius = OceanBorderRadius.LG.allCorners
             )
             .height(layout.height)
             .padding(horizontal = OceanSpacing.xxxs),
@@ -350,16 +346,16 @@ private fun DefaultSmallTag(
 @Composable
 private fun HighlightTag(
     modifier: Modifier,
-    style: OceanTagStyle.Highlight,
+    style: OceanTagStyle.Highlight
 ) {
     val textColor = getTextColor(type = style.type)
     val backgroundColor = getBackgroundColor(type = style.type)
 
     Row(
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = backgroundColor,
-                shape = RoundedCornerShape(16.dp)
+                borderRadius = OceanBorderRadius.LG.allCorners
             )
             .height(style.layout.height)
             .padding(horizontal = OceanSpacing.xxxs),
@@ -376,7 +372,6 @@ private fun HighlightTag(
 fun getIconDefault(
     type: OceanTagType
 ): OceanIcons? = when (type) {
-
     OceanTagType.Negative -> {
         OceanIcons.X_CIRCLE_SOLID
     }
@@ -467,7 +462,7 @@ sealed interface OceanTagStyle {
     data class Default(
         val label: String,
         val layout: OceanTagLayout,
-        val type: OceanTagType = OceanTagType.Warning,
+        val type: OceanTagType = OceanTagType.Warning
     ) : OceanTagStyle
 
     data class Highlight(
@@ -486,6 +481,6 @@ sealed interface OceanTagLayout {
 
     data class Small(
         val height: Dp = 16.dp,
-        val fontSize: TextUnit = 10.sp,
+        val fontSize: TextUnit = 10.sp
     ) : OceanTagLayout
 }

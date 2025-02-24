@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -28,12 +27,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.extensions.compose.topBarBackground
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
-
 
 @Preview
 @Composable
@@ -57,7 +57,6 @@ fun PreviewOceanTopBarInverse() {
         )
 
         OceanSpacing.StackSM()
-
 
         OceanTopBarInverse(
             title = "Portabilidade",
@@ -100,10 +99,11 @@ fun PreviewOceanTopBarInverse() {
                         )
                     }
                     DropdownMenu(
-                        modifier = Modifier.background(
-                            color = OceanColors.interfaceLightPure,
-                            shape = RoundedCornerShape(size = 8.dp)
-                        ),
+                        modifier = Modifier
+                            .borderBackground(
+                                color = OceanColors.interfaceLightPure,
+                                borderRadius = OceanBorderRadius.SM.allCorners
+                            ),
                         expanded = expanded,
                         onDismissRequest = { }
                     ) {
@@ -147,7 +147,7 @@ fun OceanTopBarInverse(
     actions: @Composable () -> Unit,
     onClickToolbar: () -> Unit = {},
     visibleShadow: Boolean = false,
-    iconInvisible: Boolean = false,
+    iconInvisible: Boolean = false
 ) {
     TopBar(
         onClickToolbar = onClickToolbar,
@@ -203,7 +203,7 @@ private fun TopBar(
             modifier = Modifier
                 .height(56.dp)
                 .fillMaxSize()
-                .clickable { onClickToolbar() },
+                .clickable { onClickToolbar() }
         ) {
             val topBarIcon = icon ?: OceanIcons.ARROW_LEFT_OUTLINE
             val iconButtonSize = 56.dp

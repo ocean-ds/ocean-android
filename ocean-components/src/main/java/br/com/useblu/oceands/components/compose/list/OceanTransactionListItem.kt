@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -47,11 +46,13 @@ import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.extensions.oceanFormatWithCurrency
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.FormatTypes
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -723,14 +724,20 @@ fun OceanTransactionListItemSkeleton() {
                 OceanShimmering { brush ->
                     Spacer(
                         modifier = Modifier
-                            .background(brush, RoundedCornerShape(4.dp))
+                            .borderBackground(
+                                brush = brush,
+                                borderRadius = OceanBorderRadius.Tiny.allCorners
+                            )
                             .width(120.dp)
                             .height(16.dp)
                     )
                     repeat(2) {
                         Spacer(
                             modifier = Modifier
-                                .background(brush, RoundedCornerShape(4.dp))
+                                .borderBackground(
+                                    brush = brush,
+                                    borderRadius = OceanBorderRadius.Tiny.allCorners
+                                )
                                 .fillMaxWidth()
                                 .height(16.dp)
                         )
@@ -748,14 +755,20 @@ fun OceanTransactionListItemSkeleton() {
                         if (it == 1) {
                             Spacer(
                                 modifier = Modifier
-                                    .background(brush, RoundedCornerShape(4.dp))
+                                    .borderBackground(
+                                        brush = brush,
+                                        borderRadius = OceanBorderRadius.Tiny.allCorners
+                                    )
                                     .width(80.dp)
                                     .height(16.dp)
                             )
                         } else {
                             Spacer(
                                 modifier = Modifier
-                                    .background(brush, RoundedCornerShape(4.dp))
+                                    .borderBackground(
+                                        brush = brush,
+                                        borderRadius = OceanBorderRadius.Tiny.allCorners
+                                    )
                                     .fillMaxWidth()
                                     .height(16.dp)
                             )

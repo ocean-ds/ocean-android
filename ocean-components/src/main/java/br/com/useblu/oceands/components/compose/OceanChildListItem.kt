@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,11 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
-
 
 @Preview(
     showBackground = true,
@@ -90,9 +90,9 @@ private fun OceanChildListItemPreview() {
 private fun ChildListItem(
     modifier: Modifier = Modifier,
     style: ChildListItemStyle.Child,
-    isLoading: Boolean = false,
+    isLoading: Boolean = false
 ) {
-    if(isLoading) {
+    if (isLoading) {
         ChildListItemSkeleton()
         return
     }
@@ -152,14 +152,20 @@ private fun ChildListItemSkeleton() {
             ) {
                 Spacer(
                     modifier = Modifier
-                        .background(brush, RoundedCornerShape(4.dp))
+                        .borderBackground(
+                            brush = brush,
+                            borderRadius = OceanBorderRadius.Tiny.allCorners
+                        )
                         .height(16.dp)
                         .width(120.dp)
                         .weight(2f)
                 )
                 Spacer(
                     modifier = Modifier
-                        .background(brush, RoundedCornerShape(4.dp))
+                        .borderBackground(
+                            brush = brush,
+                            borderRadius = OceanBorderRadius.Tiny.allCorners
+                        )
                         .height(16.dp)
                         .width(80.dp)
                         .weight(1f)
@@ -169,14 +175,13 @@ private fun ChildListItemSkeleton() {
     }
 }
 
-
 data object ChildScope {
 
     @Composable
     fun OceanChildListItem(
         modifier: Modifier = Modifier,
         style: ChildListItemStyle.Child,
-        isLoading: Boolean = false,
+        isLoading: Boolean = false
     ) {
         ChildListItem(
             modifier = modifier,
@@ -191,6 +196,6 @@ sealed interface ChildListItemStyle {
         val icon: OceanIcons,
         val description: String,
         val value: String,
-        val type: TransactionType,
+        val type: TransactionType
     ) : ChildListItemStyle
 }

@@ -2,7 +2,6 @@ package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
@@ -25,12 +23,13 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.model.OceanOptionCardItem
 import br.com.useblu.oceands.model.OceanOptionCardSize
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
-
 
 @Preview
 @Composable
@@ -41,7 +40,7 @@ private fun OceanCardOptionPreview() {
             title = "PagBlu",
             subTitle = "Economize até 10% usando saldo futuro sem taxa de antecipação",
             disabled = false,
-            recommend = false,
+            recommend = false
         ),
         OceanOptionCardItem(
             data = Any(),
@@ -57,7 +56,7 @@ private fun OceanCardOptionPreview() {
             subTitle = "Subtitle 2",
             recommend = true,
             recommendColor = "colorstatusneutraldeep",
-            recommendDescription = "Recomendado",
+            recommendDescription = "Recomendado"
         ),
         OceanOptionCardItem(
             data = Any(),
@@ -67,7 +66,7 @@ private fun OceanCardOptionPreview() {
             subTitle = "Subtitle 2",
             recommend = true,
             recommendColor = "colorstatuspositivepure",
-            recommendDescription = "Aproveite o cashback",
+            recommendDescription = "Aproveite o cashback"
         )
     )
 
@@ -100,7 +99,7 @@ fun OceanCardOption(
     }
     Card(
         modifier = modifier.height(96.dp),
-        shape = RoundedCornerShape(8.dp),
+        shape = OceanBorderRadius.SM.allCorners.shape(),
         colors = CardDefaults.cardColors(
             containerColor = cardBackgoundColor
         ),
@@ -176,7 +175,6 @@ fun OceanCardOption(
     }
 }
 
-
 @Composable
 fun OceanTagRecommended(
     modifier: Modifier = Modifier,
@@ -185,9 +183,14 @@ fun OceanTagRecommended(
 ) {
     Box(
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = color,
-                shape = RoundedCornerShape(topEnd = 8.dp, bottomStart = 8.dp)
+                borderRadius = OceanBorderRadius.SM(
+                    corners = setOf(
+                        OceanBorderRadius.Corners.TopEnd,
+                        OceanBorderRadius.Corners.BottomStart
+                    )
+                )
             )
             .padding(OceanSpacing.xxs)
     ) {

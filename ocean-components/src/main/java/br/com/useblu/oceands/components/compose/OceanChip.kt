@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.components.compose
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,12 +7,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,9 +21,11 @@ import br.com.useblu.oceands.model.OceanChip
 import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -39,7 +38,7 @@ private fun OceanChipPreview() {
             icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE,
             state = OceanChipItemState.HOVER_INACTIVE,
             badge = Badge(5, OceanBadgeType.PRIMARY),
-            onClick = {},
+            onClick = {}
         ),
         OceanFilterChip(
             label = "Filtro Teste",
@@ -78,7 +77,6 @@ private fun OceanChipPreview() {
             OceanChip(model = it)
         }
     }
-
 }
 
 @Composable
@@ -107,11 +105,10 @@ fun OceanBasicChip(
     Row(
         modifier = Modifier
             .height(32.dp)
-            .background(
+            .borderBackground(
                 color = getBackgroundColor(model),
-                shape = RoundedCornerShape(24.dp)
+                borderRadius = OceanBorderRadius.Circle.allCorners
             )
-            .clip(shape = RoundedCornerShape(24.dp))
             .clickable {
                 model.onClick(true)
             }
@@ -154,11 +151,10 @@ fun OceanFilterChip(
     Row(
         modifier = Modifier
             .height(32.dp)
-            .background(
+            .borderBackground(
                 color = getBackgroundColor(model),
-                shape = RoundedCornerShape(24.dp)
+                borderRadius = OceanBorderRadius.Circle.allCorners
             )
-            .clip(shape = RoundedCornerShape(24.dp))
             .clickable {
                 model.bottomSheet.showBottomSheet(context)
             }

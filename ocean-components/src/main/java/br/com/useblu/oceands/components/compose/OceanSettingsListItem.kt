@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,12 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
-
 
 @Preview(
     showBackground = true,
@@ -36,12 +36,12 @@ private fun SettingsListItemPreview() {
             style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Default(
                     title = "Taxa Promocional",
-                    description = "<span style=\"color: #AAADC0;\"><strike>11,06%</strike></span> <span style=\"color: #2DA94F;\">7,11%</span>\n",
+                    description = "<span style=\"color: #AAADC0;\"><strike>11,06%</strike></span> <span style=\"color: #2DA94F;\">7,11%</span>\n"
                 ),
                 buttonText = "Entenda o cálculo",
                 buttonStyle = OceanButtonStyle.TertiarySmall,
                 onClick = { println("Button Clicked") }
-            ),
+            )
         )
 
         OceanSettingsListItem(
@@ -49,13 +49,13 @@ private fun SettingsListItemPreview() {
                 contentStyle = ContentListStyle.Strikethrough(
                     title = "Taxa Promocional - Strikethrough",
                     description = "11.06%",
-                    newValue = "7.33%",
+                    newValue = "7.33%"
                 ),
                 textError = "Error",
                 buttonText = "Entenda o cálculo",
                 buttonStyle = OceanButtonStyle.TertiarySmall,
                 onClick = { println("Button Clicked") }
-            ),
+            )
         )
 
         OceanSettingsListItem(
@@ -70,27 +70,26 @@ private fun SettingsListItemPreview() {
                 buttonText = "Click me",
                 buttonStyle = OceanButtonStyle.PrimarySmall,
                 onClick = { println("Button Clicked") }
-            ),
+            )
         )
         OceanSettingsListItem(
             style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Inverted(
                     title = "Title",
-                    description = "Description very large to be able to see the line break",
+                    description = "Description very large to be able to see the line break"
                 ),
                 textError = "Error",
                 buttonText = "Click me",
                 buttonStyle = OceanButtonStyle.TertiarySmall,
                 onClick = { println("Button Clicked") }
-            ),
+            )
         )
-
 
         OceanSettingsListItem(
             style = SettingsListItemStyle.Button(
                 contentStyle = ContentListStyle.Inverted(
                     title = "Title",
-                    description = "Description",
+                    description = "Description"
                 ),
                 buttonText = "Click me",
                 buttonStyle = OceanButtonStyle.TertiarySmall,
@@ -109,9 +108,9 @@ private fun SettingsListItemPreview() {
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
                     layout = OceanTagLayout.Medium(),
-                    type = OceanTagType.Positive,
+                    type = OceanTagType.Positive
                 )
-            ),
+            )
         )
         OceanSettingsListItem(
             style = SettingsListItemStyle.Tag(
@@ -124,9 +123,9 @@ private fun SettingsListItemPreview() {
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
                     layout = OceanTagLayout.Medium(),
-                    type = OceanTagType.Negative,
+                    type = OceanTagType.Negative
                 )
-            ),
+            )
         )
         OceanSettingsListItem(
             style = SettingsListItemStyle.Tag(
@@ -138,7 +137,7 @@ private fun SettingsListItemPreview() {
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
                     layout = OceanTagLayout.Medium(),
-                    type = OceanTagType.Negative,
+                    type = OceanTagType.Negative
                 )
             ),
             enabled = false
@@ -151,7 +150,7 @@ private fun SettingsListItemPreview() {
                     caption = "Caption"
                 ),
                 icon = OceanIcons.LOCK_CLOSED_SOLID
-            ),
+            )
         )
         OceanSettingsListItem(
             style = SettingsListItemStyle.Blocked(
@@ -161,7 +160,7 @@ private fun SettingsListItemPreview() {
                     caption = "Caption"
                 ),
                 icon = OceanIcons.LOCK_OPEN_SOLID
-            ),
+            )
         )
         OceanSettingsListItem(
             style = SettingsListItemStyle.Button(
@@ -178,7 +177,6 @@ private fun SettingsListItemPreview() {
         )
     }
 }
-
 
 @Composable
 fun OceanSettingsListItem(
@@ -228,7 +226,7 @@ fun OceanSettingsListItem(
                     text = style.buttonText,
                     buttonStyle = style.buttonStyle,
                     disabled = !enabled,
-                    onClick = style.onClick,
+                    onClick = style.onClick
                 )
             }
 
@@ -242,7 +240,7 @@ fun OceanSettingsListItem(
                 OceanTag(
                     modifier = Modifier.align(Alignment.CenterVertically),
                     style = style.tagStyle,
-                    enabled = enabled,
+                    enabled = enabled
                 )
             }
         }
@@ -265,12 +263,15 @@ private fun SettingsListItemSkeleton() {
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.weight(1f)
             ) {
                 repeat(2) {
                     Spacer(
                         modifier = Modifier
-                            .background(brush, RoundedCornerShape(4.dp))
+                            .borderBackground(
+                                brush = brush,
+                                borderRadius = OceanBorderRadius.Tiny.allCorners
+                            )
                             .width(((it + 1) * 100).dp)
                             .height(16.dp)
                     )
@@ -279,7 +280,10 @@ private fun SettingsListItemSkeleton() {
 
             Spacer(
                 modifier = Modifier
-                    .background(brush, RoundedCornerShape(16.dp))
+                    .borderBackground(
+                        brush = brush,
+                        borderRadius = OceanBorderRadius.Tiny.allCorners
+                    )
                     .width(100.dp)
                     .height(24.dp)
                     .align(Alignment.CenterVertically)
@@ -297,11 +301,11 @@ private fun SettingsListTextContent(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
     ) {
         OceanContentList(
             style = style,
-            enabled = enabled,
+            enabled = enabled
         )
 
         if (textError.isNotEmpty()) {
@@ -321,17 +325,17 @@ sealed interface SettingsListItemStyle {
         val textError: String = "",
         val buttonText: String,
         val buttonStyle: OceanButtonStyle,
-        val onClick: () -> Unit,
+        val onClick: () -> Unit
     ) : SettingsListItemStyle
 
     data class Tag(
         val contentStyle: ContentListStyle,
         val textError: String = "",
-        val tagStyle: OceanTagStyle,
+        val tagStyle: OceanTagStyle
     ) : SettingsListItemStyle
 
     data class Blocked(
         val contentStyle: ContentListStyle,
-        val icon: OceanIcons = OceanIcons.LOCK_CLOSED_SOLID,
+        val icon: OceanIcons = OceanIcons.LOCK_CLOSED_SOLID
     ) : SettingsListItemStyle
 }

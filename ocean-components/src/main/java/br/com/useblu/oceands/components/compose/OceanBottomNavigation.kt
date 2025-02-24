@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,9 +35,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.model.compose.OceanBottomNavigationModel
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
 private val selectedIndex = mutableStateOf(2)
@@ -151,9 +152,9 @@ fun OceanBottomNavigation(
                 .offset(x = xOffset.value)
                 .width(backgroundWidth)
                 .fillMaxHeight()
-                .background(
+                .borderBackground(
                     color = Color(0xA35872F5),
-                    shape = RoundedCornerShape(8.dp)
+                    borderRadius = OceanBorderRadius.SM.allCorners
                 )
         )
 

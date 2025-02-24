@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -24,9 +23,11 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.model.compose.AlertStyle
 import br.com.useblu.oceands.model.compose.OceanAlertType
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.borderBackground
 
 @Preview
 @Composable
@@ -365,9 +366,9 @@ fun OceanAlertDefaultStyle(
     Row(
         verticalAlignment = CenterVertically,
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = style.alertBackgroundColor(),
-                shape = RoundedCornerShape(8.dp)
+                borderRadius = OceanBorderRadius.SM.allCorners
             )
             .padding(OceanSpacing.xs)
     ) {
@@ -405,9 +406,9 @@ fun OceanAlertEntitledShort(
     Row(
         verticalAlignment = CenterVertically,
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = style.alertBackgroundColor(),
-                shape = RoundedCornerShape(8.dp)
+                borderRadius = OceanBorderRadius.SM.allCorners
             )
             .padding(OceanSpacing.xs)
     ) {
@@ -491,9 +492,9 @@ fun OceanAlertEntitledLong(
 ) {
     Column(
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = style.alertBackgroundColor(),
-                shape = RoundedCornerShape(8.dp)
+                borderRadius = OceanBorderRadius.SM.allCorners
             )
             .padding(OceanSpacing.xs)
     ) {
@@ -529,9 +530,9 @@ fun OceanAlertLabeled(
     Row(
         verticalAlignment = CenterVertically,
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = style.alertBackgroundColor(),
-                shape = RoundedCornerShape(8.dp)
+                borderRadius = OceanBorderRadius.SM.allCorners
             )
             .padding(OceanSpacing.xs)
     ) {
@@ -587,9 +588,9 @@ fun OceanAlertBookmarked(
 ) {
     Column(
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = style.alertBackgroundColor(),
-                shape = RoundedCornerShape(8.dp)
+                borderRadius = OceanBorderRadius.SM.allCorners
             )
             .padding(OceanSpacing.xs)
     ) {
@@ -647,9 +648,9 @@ fun OceanAlertWithAction(
     Row(
         verticalAlignment = CenterVertically,
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = style.alertBackgroundColor(),
-                shape = RoundedCornerShape(8.dp)
+                borderRadius = OceanBorderRadius.SM.allCorners
             )
             .padding(OceanSpacing.xs)
     ) {

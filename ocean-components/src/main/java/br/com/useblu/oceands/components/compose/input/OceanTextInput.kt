@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -37,11 +36,13 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.ui.compose.stringmask.OceanInputType
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -249,9 +250,9 @@ fun OceanTextInput(
                 modifier = Modifier
                     .height(height)
                     .fillMaxWidth()
-                    .background(
+                    .borderBackground(
                         color = OceanColors.interfaceLightPure,
-                        shape = RoundedCornerShape(8.dp)
+                        borderRadius = OceanBorderRadius.SM.allCorners
                     ),
                 onValueChange = { changedField ->
                     val modifiedValue = changedField.text
@@ -382,7 +383,7 @@ private fun OceanTextInputDecorationBox(
                 isError = errorText.isNotEmpty(),
                 interactionSource = interactionSource,
                 colors = textFieldColors,
-                shape = RoundedCornerShape(8.dp),
+                shape = OceanBorderRadius.SM.allCorners.shape(),
                 focusedBorderThickness = 2.dp,
                 unfocusedBorderThickness = 1.dp
             )

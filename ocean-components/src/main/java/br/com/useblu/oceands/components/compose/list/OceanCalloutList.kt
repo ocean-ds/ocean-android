@@ -1,17 +1,17 @@
 package br.com.useblu.oceands.components.compose.list
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.compose.OceanUnorderedListItemModel
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -46,9 +46,9 @@ fun OceanCalloutList(
 ) {
     Column(
         modifier = modifier
-            .background(
+            .borderBackground(
                 color = OceanColors.interfaceLightUp,
-                shape = RoundedCornerShape(8.dp)
+                borderRadius = OceanBorderRadius.SM.allCorners
             )
             .padding(
                 vertical = 12.dp

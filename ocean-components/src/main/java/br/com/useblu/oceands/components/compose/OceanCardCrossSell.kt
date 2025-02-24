@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -22,6 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -81,7 +81,7 @@ fun OceanCardCrossSell(
             width = 1.dp,
             color = OceanColors.interfaceLightDown
         ),
-        shape = RoundedCornerShape(8.dp),
+        shape = OceanBorderRadius.SM.allCorners.shape(),
         colors = CardDefaults.cardColors(
             containerColor = backgroundColor.copy(alpha = backgroundAlpha / 255f),
             disabledContainerColor = backgroundColor.copy(alpha = backgroundAlpha / 255f)

@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,11 +29,13 @@ import br.com.useblu.oceands.components.compose.content.CardGroupType.INVERTED
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.compose.OceanTagModel
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderBackground
 
 @Preview
 @Composable
@@ -123,16 +124,16 @@ fun OceanCardGroup(
                     width = 1.dp,
                     color = if (label.isBlank()) OceanColors.interfaceLightDown
                     else OceanColors.brandPrimaryUp,
-                    shape = RoundedCornerShape(8.dp)
+                    shape = OceanBorderRadius.SM.allCorners.shape()
                 )
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(
+                    .borderBackground(
                         color = OceanColors.interfaceLightPure,
-                        shape = RoundedCornerShape(topEnd = 8.dp, topStart = 8.dp)
+                        borderRadius = OceanBorderRadius.SM.topCorners
                     )
                     .padding(horizontal = OceanSpacing.xs)
                     .padding(top = OceanSpacing.xs)
@@ -208,9 +209,9 @@ fun OceanCardGroup(
                 modifier = Modifier
                     .padding(start = OceanSpacing.xs)
                     .height(18.dp)
-                    .background(
+                    .borderBackground(
                         color = OceanColors.brandPrimaryDown,
-                        shape = RoundedCornerShape(40.dp)
+                        borderRadius = OceanBorderRadius.Circle.allCorners
                     )
                     .padding(horizontal = 6.dp)
                     .align(Alignment.TopStart)

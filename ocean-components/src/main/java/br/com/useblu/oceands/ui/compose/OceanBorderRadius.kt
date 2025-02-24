@@ -56,6 +56,15 @@ sealed interface OceanBorderRadius {
     }
     /**
      * 8dp Corner Border Radius
+     * @param corners Set of Corners to apply the border radius
+     * Corners.All -> Apply the border radius to all corners
+     * Corners.Top -> Apply the border radius to the top corners (start and end)
+     * Corners.Bottom -> Apply the border radius to the bottom corners (start and end)
+     * Corners.TopStart -> Apply the border radius to the top start corner (left)
+     * Corners.TopEnd -> Apply the border radius to the top end corner (right)
+     * Corners.BottomStart -> Apply the border radius to the bottom start corner (left)
+     * Corners.BottomEnd -> Apply the border radius to the bottom end corner (right)
+     * @see Corners
      */
     data class SM(override val corners: Set<Corners> = emptySet()) : OceanBorderRadiusSetCorners {
         companion object {
@@ -86,6 +95,15 @@ sealed interface OceanBorderRadius {
     }
     /**
      * 12dp Corner Border Radius
+     * @param corners Set of Corners to apply the border radius
+     * Corners.All -> Apply the border radius to all corners
+     * Corners.Top -> Apply the border radius to the top corners (start and end)
+     * Corners.Bottom -> Apply the border radius to the bottom corners (start and end)
+     * Corners.TopStart -> Apply the border radius to the top start corner (left)
+     * Corners.TopEnd -> Apply the border radius to the top end corner (right)
+     * Corners.BottomStart -> Apply the border radius to the bottom start corner (left)
+     * Corners.BottomEnd -> Apply the border radius to the bottom end corner (right)
+     * @see Corners
      */
     data class MD(override val corners: Set<Corners> = emptySet()) : OceanBorderRadiusSetCorners {
         companion object {
@@ -116,6 +134,15 @@ sealed interface OceanBorderRadius {
     }
     /**
      * 16dp Corner Border Radius
+     * @param corners Set of Corners to apply the border radius
+     * Corners.All -> Apply the border radius to all corners
+     * Corners.Top -> Apply the border radius to the top corners (start and end)
+     * Corners.Bottom -> Apply the border radius to the bottom corners (start and end)
+     * Corners.TopStart -> Apply the border radius to the top start corner (left)
+     * Corners.TopEnd -> Apply the border radius to the top end corner (right)
+     * Corners.BottomStart -> Apply the border radius to the bottom start corner (left)
+     * Corners.BottomEnd -> Apply the border radius to the bottom end corner (right)
+     * @see Corners
      */
     data class LG(override val corners: Set<Corners> = emptySet()) : OceanBorderRadiusSetCorners {
         companion object {
@@ -146,6 +173,15 @@ sealed interface OceanBorderRadius {
     }
     /**
      * 56dp Corner Border Radius
+     * @param corners Set of Corners to apply the border radius
+     * Corners.All -> Apply the border radius to all corners
+     * Corners.Top -> Apply the border radius to the top corners (start and end)
+     * Corners.Bottom -> Apply the border radius to the bottom corners (start and end)
+     * Corners.TopStart -> Apply the border radius to the top start corner (left)
+     * Corners.TopEnd -> Apply the border radius to the top end corner (right)
+     * Corners.BottomStart -> Apply the border radius to the bottom start corner (left)
+     * Corners.BottomEnd -> Apply the border radius to the bottom end corner (right)
+     * @see Corners
      */
     data class Pill(override val corners: Set<Corners> = emptySet()) : OceanBorderRadiusSetCorners {
         companion object {
@@ -176,6 +212,15 @@ sealed interface OceanBorderRadius {
     }
     /**
      * 50% Corner Border Radius (circular)
+     * @param corners Set of Corners to apply the border radius
+     * Corners.All -> Apply the border radius to all corners
+     * Corners.Top -> Apply the border radius to the top corners (start and end)
+     * Corners.Bottom -> Apply the border radius to the bottom corners (start and end)
+     * Corners.TopStart -> Apply the border radius to the top start corner (left)
+     * Corners.TopEnd -> Apply the border radius to the top end corner (right)
+     * Corners.BottomStart -> Apply the border radius to the bottom start corner (left)
+     * Corners.BottomEnd -> Apply the border radius to the bottom end corner (right)
+     * @see Corners
      */
     data class Circle(override val corners: Set<Corners> = emptySet()) : OceanBorderRadiusSetCorners {
         companion object {

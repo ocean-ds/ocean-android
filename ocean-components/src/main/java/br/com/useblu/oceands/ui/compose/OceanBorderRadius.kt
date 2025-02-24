@@ -15,6 +15,7 @@ sealed interface OceanBorderRadius {
      * No Corner Border Radius
      */
     data object None : OceanBorderRadius
+
     /**
      * 4dp Corner Border Radius
      * @param corners Set of Corners to apply the border radius
@@ -30,7 +31,7 @@ sealed interface OceanBorderRadius {
     data class Tiny(override val corners: Set<Corners> = emptySet()) : OceanBorderRadiusSetCorners {
         companion object {
             /**
-            * 4dp Corner Border Radius for all corners
+             * 4dp Corner Border Radius for all corners
              */
             val allCorners: OceanBorderRadius
                 get() {
@@ -54,6 +55,7 @@ sealed interface OceanBorderRadius {
                 }
         }
     }
+
     /**
      * 8dp Corner Border Radius
      * @param corners Set of Corners to apply the border radius
@@ -93,6 +95,7 @@ sealed interface OceanBorderRadius {
                 }
         }
     }
+
     /**
      * 12dp Corner Border Radius
      * @param corners Set of Corners to apply the border radius
@@ -132,6 +135,7 @@ sealed interface OceanBorderRadius {
                 }
         }
     }
+
     /**
      * 16dp Corner Border Radius
      * @param corners Set of Corners to apply the border radius
@@ -171,6 +175,7 @@ sealed interface OceanBorderRadius {
                 }
         }
     }
+
     /**
      * 56dp Corner Border Radius
      * @param corners Set of Corners to apply the border radius
@@ -210,6 +215,7 @@ sealed interface OceanBorderRadius {
                 }
         }
     }
+
     /**
      * 50% Corner Border Radius (circular)
      * @param corners Set of Corners to apply the border radius

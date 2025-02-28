@@ -13,7 +13,7 @@ uiautomator = "2.3.0"
 lifecycleViewModel = "2.8.7"
 constraintLayout = "2.2.1"
 androidCoreKtx = "1.15.0"
-skydovesBalloonVersion = "1.6.11"
+skydovesBalloonVersion = "1.6.12"
 
 [libraries]
 androidx-benchmark-macro-junit4 = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }

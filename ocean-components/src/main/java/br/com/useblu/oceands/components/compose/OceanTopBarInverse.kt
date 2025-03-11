@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.extensions.compose.topBarBackground
+import br.com.useblu.oceands.model.compose.OceanTopBarIcon
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -171,14 +172,44 @@ fun OceanTopBarInverse(
     visibleShadow: Boolean = false,
     iconInvisible: Boolean = false
 ) {
+    val rightItems = if (menuIcon != null) {
+        listOf(
+            OceanTopBarIcon(
+                icon = menuIcon,
+                onClick = onClickMenuIcon
+            )
+        )
+    } else {
+        emptyList()
+    }
     TopBar(
         onClickToolbar = onClickToolbar,
         icon = icon,
         iconInvisible = iconInvisible,
         onClickIcon = onClickIcon,
         title = title,
-        menuIcon = menuIcon,
-        onClickMenuIcon = onClickMenuIcon,
+        rightItems = rightItems,
+        visibleShadow = visibleShadow
+    )
+}
+
+@Composable
+fun OceanTopBarInverse(
+    title: String,
+    icon: OceanIcons? = null,
+    onClickIcon: () -> Unit,
+    onClickToolbar: () -> Unit = {},
+    rightItems: List<OceanTopBarIcon>,
+    visibleShadow: Boolean = false,
+    iconInvisible: Boolean = false
+) {
+    TopBar(
+        onClickToolbar = onClickToolbar,
+        icon = icon,
+        iconInvisible = iconInvisible,
+        onClickIcon = onClickIcon,
+        title = title,
+        rightItems = rightItems,
         visibleShadow = visibleShadow
     )
 }
@@ -190,8 +221,7 @@ private fun TopBar(
     iconInvisible: Boolean,
     onClickIcon: () -> Unit,
     title: String,
-    menuIcon: OceanIcons? = null,
-    onClickMenuIcon: (() -> Unit)? = null,
+    rightItems: List<OceanTopBarIcon> = emptyList(),
     actions: (@Composable () -> Unit)? = null,
     visibleShadow: Boolean
 ) {
@@ -222,7 +252,7 @@ private fun TopBar(
                 }
             }
 
-            val paddingEnd = if (menuIcon == null && actions == null) OceanSpacing.xs else 0.dp
+            val paddingEnd = if (rightItems.isEmpty() && actions == null) OceanSpacing.xs else 0.dp
             val paddingStart = if (iconInvisible) OceanSpacing.xs else 0.dp
 
             OceanText(
@@ -236,16 +266,15 @@ private fun TopBar(
                     .weight(1f)
             )
 
-            if (menuIcon != null && onClickMenuIcon != null) {
+            rightItems.forEach {
                 IconButton(
-                    onClick = onClickMenuIcon,
-                    modifier = Modifier.size(iconButtonSize)
+                    modifier = Modifier.size(iconButtonSize),
+                    onClick = it.onClick
                 ) {
-                    Icon(
-                        painter = painterResource(id = menuIcon.icon),
-                        contentDescription = null,
-                        tint = OceanColors.brandPrimaryPure,
-                        modifier = Modifier.size(24.dp)
+                    OceanIcon(
+                        modifier = Modifier.size(24.dp),
+                        iconType = it.icon,
+                        tint = OceanColors.brandPrimaryPure
                     )
                 }
             }

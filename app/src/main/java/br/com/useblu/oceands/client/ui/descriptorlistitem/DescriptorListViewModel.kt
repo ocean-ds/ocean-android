@@ -16,30 +16,30 @@ class DescriptorListViewModel : ViewModel() {
             title = "Cobrança",
             value = "R$ 42,00",
             newValue = "Zero",
-            color = "colorStatusPositiveDeep",
+            color = "colorStatusPositiveDeep"
         ),
         OceanDescriptorListItem(
             title = "Taxa",
             value = "R$ 10,00",
-            color = "colorStatusPositiveDeep",
+            color = "colorStatusPositiveDeep"
         ),
         OceanDescriptorListItem(
             title = "Taxa de Antecipação",
             value = "Zero",
-            color = "colorStatusPositiveDeep",
+            color = "colorStatusPositiveDeep"
         ),
         OceanDescriptorListItem(
             title = "Desconto",
             value = "R$ 40,00",
-            color = "colorInterfaceDarkPure",
+            color = "colorInterfaceDarkPure"
         ),
         OceanDescriptorListItem(
-            isDivider = true,
+            isDivider = true
         ),
         OceanDescriptorListItem(
             title = "Taxa de Antecipação",
             value = "Calculada no momento do pagamento",
-            color = "colorStatusNeutralDeep",
+            color = "colorStatusNeutralDeep"
         ),
         OceanDescriptorListItem(
             title = "Taxa de Antecipação",

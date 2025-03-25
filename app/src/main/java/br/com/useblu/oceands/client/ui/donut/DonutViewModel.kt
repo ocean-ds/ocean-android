@@ -42,7 +42,7 @@ class DonutViewModel : ViewModel() {
             valueFormatted = "R$ 60,00",
             value = 60.0f,
             color = R.color.ocean_color_brand_primary_pure
-        ),
+        )
     )
 
     val emptyDonutModel = OceanChartModel(

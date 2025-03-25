@@ -9,7 +9,6 @@ import br.com.useblu.oceands.components.OceanTooltip
 fun showTooltip(imageView: ImageView, text: String?) {
     text?.let {
         imageView.setOnClickListener {
-
             val tooltip = OceanTooltip(
                 context = imageView.context,
                 lifecycle = imageView.context as AppCompatActivity

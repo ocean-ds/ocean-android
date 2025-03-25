@@ -21,7 +21,6 @@ import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
 
-
 @Preview
 @Composable
 private fun OceanBalanceOthersCardPreview() {

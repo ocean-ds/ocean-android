@@ -60,7 +60,6 @@ fun OceanAccordion(
     Column(
         modifier = Modifier.background(OceanColors.interfaceLightPure)
     ) {
-
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
@@ -77,7 +76,7 @@ fun OceanAccordion(
                 fontSize = OceanFontSize.xxs,
                 modifier = Modifier.weight(1f)
             )
-            
+
             OceanSpacing.StackXS()
 
             Icon(
@@ -108,4 +107,3 @@ fun OceanAccordion(
         )
     }
 }
-

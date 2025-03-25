@@ -44,7 +44,7 @@ class CarouselViewWithComponentsModel : ViewModel() {
                     subtitle = "Subtitle $index",
                     caption = "Caption $index",
                     actionTitle = "Item $index Action",
-                    actionClick = {println("OceanCarouselItem $index selected")},
+                    actionClick = { println("OceanCarouselItem $index selected") }
                 )
             },
             action = {

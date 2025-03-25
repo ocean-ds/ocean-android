@@ -12,13 +12,17 @@ data class OceanOptionCardItem(
     val disabled: Boolean = false,
     val recommend: Boolean = false,
     val recommendColor: String? = null,
-    val recommendDescription: String? = "",
+    val recommendDescription: String? = ""
 )
 
 enum class OptionsCardState {
-    ENABLED, DISABLED, RECOMMEND
+    ENABLED,
+    DISABLED,
+    RECOMMEND
 }
 
 enum class OceanOptionCardSize(val size: Int = 0) {
-    SMALL(64), MEDIUM(96), LARGE(180)
+    SMALL(64),
+    MEDIUM(96),
+    LARGE(180)
 }

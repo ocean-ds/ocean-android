@@ -14,5 +14,4 @@ fun setChartCardAdapter(
         val oceanShortcutsListAdapter = OceanChartLegendAdapter(it)
         recyclerView.adapter = oceanShortcutsListAdapter
     }
-
 }

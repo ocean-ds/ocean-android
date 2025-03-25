@@ -30,7 +30,7 @@ private fun OceanDescriptorListPreview() {
             .padding(16.dp),
         items = listOf(
             OceanDescriptorListItem(
-                title = "Pagador",
+                title = "Pagador"
             ),
             OceanDescriptorListItem(
                 title = "Title",
@@ -38,7 +38,7 @@ private fun OceanDescriptorListPreview() {
                 color = "colorstatuspositivedeep"
             ),
             OceanDescriptorListItem(
-                isDivider = true,
+                isDivider = true
             ),
             OceanDescriptorListItem(
                 title = "Title",

@@ -30,7 +30,7 @@ import br.com.useblu.oceands.ui.compose.borderBackground
 @Composable
 private fun OceanContentListPreview() {
     Column(
-        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
     ) {
         OceanSpacing.StackXXS()
         OceanContentList(
@@ -55,7 +55,7 @@ private fun OceanContentListPreview() {
         OceanContentList(
             style = ContentListStyle.Default(
                 title = "Title",
-                description = "Description",
+                description = "Description"
             )
         )
 
@@ -118,7 +118,7 @@ private fun OceanContentListPreview() {
         OceanContentList(
             style = ContentListStyle.Inverted(
                 title = "Title",
-                description = "Description",
+                description = "Description"
             ),
             isLoading = true
         )
@@ -133,7 +133,7 @@ private fun OceanContentListPreview() {
 @Composable
 private fun OceanContentListTransactionPreview() {
     Column(
-        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
     ) {
         OceanSpacing.StackXXS()
         OceanContentList(
@@ -167,7 +167,7 @@ private fun OceanContentListTransactionPreview() {
                 tagStyle = OceanTagStyle.Default(
                     label = "Label",
                     layout = OceanTagLayout.Small()
-                ),
+                )
             )
         )
 
@@ -179,7 +179,7 @@ private fun OceanContentListTransactionPreview() {
                     label = "Label",
                     layout = OceanTagLayout.Medium(),
                     type = OceanTagType.Positive
-                ),
+                )
             )
         )
 
@@ -188,7 +188,7 @@ private fun OceanContentListTransactionPreview() {
             style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 caption = "Caption"
-            ),
+            )
         )
 
         OceanSpacing.StackXXS()
@@ -196,7 +196,7 @@ private fun OceanContentListTransactionPreview() {
             style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 type = TransactionType.DEFAULT
-            ),
+            )
         )
 
         OceanSpacing.StackXXS()
@@ -204,15 +204,15 @@ private fun OceanContentListTransactionPreview() {
             style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 type = TransactionType.OUTFLOW
-            ),
+            )
         )
 
         OceanSpacing.StackXXS()
         OceanContentList(
             style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
-                type = TransactionType.INFLOW,
-            ),
+                type = TransactionType.INFLOW
+            )
         )
 
         OceanSpacing.StackXXS()
@@ -220,7 +220,7 @@ private fun OceanContentListTransactionPreview() {
             style = ContentListStyle.Transaction(
                 value = "R$ 1.000,00",
                 type = TransactionType.CANCELED
-            ),
+            )
         )
     }
 }

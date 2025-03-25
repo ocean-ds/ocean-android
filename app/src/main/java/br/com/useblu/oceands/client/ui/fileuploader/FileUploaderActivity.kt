@@ -23,7 +23,6 @@ class FileUploaderActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[FileUploaderViewModel::class.java]
         setContentView(binding.root)
 
-
         binding.composeView.setContent {
             Column(
                 modifier = Modifier.padding(16.dp)

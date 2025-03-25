@@ -22,7 +22,6 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
-
 @Preview(showBackground = true)
 @Composable
 fun OceanUnorderedListItemPreview() {

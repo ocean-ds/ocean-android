@@ -36,11 +36,11 @@ fun setCustomBehavior(expansionLayout: ExpansionLayout, setCustomBehavior: Boole
                 ContextCompat.getColor(
                     headerIndicator.context,
                     R.color.ocean_color_brand_primary_pure
-                ), android.graphics.PorterDuff.Mode.SRC_IN
+                ),
+                android.graphics.PorterDuff.Mode.SRC_IN
             )
 
             shadow.animateFadeOut()
-
         } else {
             icon.animateFadeIn()
             textviewHeaderLabel.animateFadeIn()

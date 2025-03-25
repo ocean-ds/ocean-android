@@ -20,7 +20,6 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 @Preview(showBackground = true)
 @Composable
 fun OceanSwitchPreview() {
-
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -62,7 +61,6 @@ fun OceanSwitchPreview() {
             }
         )
     }
-
 }
 
 @Composable
@@ -87,7 +85,7 @@ fun OceanSwitch(
             checkedTrackColor = if (enabled) OceanColors.complementaryPure else OceanColors.interfaceLightDown,
             uncheckedThumbColor = if (enabled) OceanColors.interfaceDarkUp else OceanColors.interfaceLightDown,
             uncheckedTrackColor = OceanColors.interfaceLightPure,
-            uncheckedBorderColor = if (enabled) OceanColors.interfaceDarkUp else OceanColors.interfaceLightDown,
+            uncheckedBorderColor = if (enabled) OceanColors.interfaceDarkUp else OceanColors.interfaceLightDown
         )
     )
 }

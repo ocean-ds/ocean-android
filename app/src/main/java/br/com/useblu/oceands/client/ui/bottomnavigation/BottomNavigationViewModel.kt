@@ -6,11 +6,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.model.compose.OceanBottomNavigationModel
+import br.com.useblu.oceands.utils.OceanIcons
 import kotlin.random.Random
 
-class BottomNavigationViewModel: ViewModel() {
+class BottomNavigationViewModel : ViewModel() {
 
     private val _menuItems = MutableLiveData<List<OceanBottomNavigationModel>>(emptyList())
     val menuItems: LiveData<List<OceanBottomNavigationModel>> = _menuItems

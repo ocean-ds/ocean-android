@@ -7,7 +7,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import br.com.useblu.oceands.R
 
-
 @Immutable
 object OceanButtonColors {
     val primaryDefault @Composable get() = ButtonDefaults.buttonColors(
@@ -37,7 +36,7 @@ object OceanButtonColors {
         disabledContainerColor = colorResource(id = R.color.ocean_color_interface_light_down),
         disabledContentColor = colorResource(id = R.color.ocean_color_interface_dark_up)
     )
-    
+
     val secondaryDefault @Composable get() = ButtonDefaults.buttonColors(
         containerColor = colorResource(id = R.color.ocean_color_interface_light_up),
         contentColor = colorResource(id = R.color.ocean_color_brand_primary_pure),
@@ -66,5 +65,3 @@ object OceanButtonColors {
         disabledContentColor = colorResource(id = R.color.ocean_color_interface_dark_up)
     )
 }
-
-

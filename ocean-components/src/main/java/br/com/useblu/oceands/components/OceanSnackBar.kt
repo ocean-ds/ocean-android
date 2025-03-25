@@ -59,7 +59,7 @@ class OceanSnackBar(
                     resources.getDimension(R.dimen.ocean_spacing_inline_xs).toInt()
                 this.setTextColor(getColor(context, R.color.ocean_color_interface_light_pure))
                 this.typeface = ResourcesCompat.getFont(context, R.font.font_family_base_regular)
-                this.setPadding(0,0,0,0)
+                this.setPadding(0, 0, 0, 0)
             }
 
             actionText?.let {
@@ -73,19 +73,28 @@ class OceanSnackBar(
                         setActionTextColor(getColor(context, R.color.ocean_color_brand_primary_pure))
                     }
                     is OceanSnackBarType.Error -> {
-                        setActionTextColor(getColor(context,
-                            R.color.ocean_color_status_negative_pure
-                        ))
+                        setActionTextColor(
+                            getColor(
+                                context,
+                                R.color.ocean_color_status_negative_pure
+                            )
+                        )
                     }
                     is OceanSnackBarType.Success -> {
-                        setActionTextColor(getColor(context,
-                            R.color.ocean_color_status_positive_pure
-                        ))
+                        setActionTextColor(
+                            getColor(
+                                context,
+                                R.color.ocean_color_status_positive_pure
+                            )
+                        )
                     }
                     is OceanSnackBarType.Warning -> {
-                        setActionTextColor(getColor(context,
-                            R.color.ocean_color_status_warning_pure
-                        ))
+                        setActionTextColor(
+                            getColor(
+                                context,
+                                R.color.ocean_color_status_warning_pure
+                            )
+                        )
                     }
                 }
             }

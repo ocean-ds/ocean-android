@@ -62,7 +62,7 @@ private fun OceanTabScrollablePreview() {
         OceanTabItemModel("Tab 2", 2, OceanBadgeType.WARNING),
         OceanTabItemModel("Tab 3", 3),
         OceanTabItemModel("Tab 4", 4),
-        OceanTabItemModel("Tab 5", 5),
+        OceanTabItemModel("Tab 5", 5)
     )
 
     var selectedTabIndex by remember { mutableStateOf(0) }

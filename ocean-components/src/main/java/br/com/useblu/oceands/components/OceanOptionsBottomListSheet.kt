@@ -32,7 +32,7 @@ internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog
             null,
             false
         )
-        
+
         binding.title = title
 
         binding.showFooterButton = withFooterButton

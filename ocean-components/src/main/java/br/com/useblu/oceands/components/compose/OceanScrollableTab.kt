@@ -28,7 +28,6 @@ import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.utils.OceanIcons
 import kotlinx.coroutines.launch
 
-
 private val sections = mutableListOf<@Composable () -> Unit>(
     {
         Column {

@@ -20,7 +20,6 @@ import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 
-
 @Preview
 @Composable
 fun OceanBalanceOthersCardCollapsedPreview() {
@@ -31,11 +30,11 @@ fun OceanBalanceOthersCardCollapsedPreview() {
     )
     OceanTheme {
         OceanBalanceOthersCardCollapsed(
-            model = model,
+            model = model
         )
     }
-
 }
+
 @Composable
 fun OceanBalanceOthersCardCollapsed(
     modifier: Modifier = Modifier,

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class TransactionListItemViewModel: ViewModel() {
+class TransactionListItemViewModel : ViewModel() {
 
     val selectionMode: MutableLiveData<Boolean> = MutableLiveData()
 
@@ -12,7 +12,6 @@ class TransactionListItemViewModel: ViewModel() {
     val clickedItem: LiveData<Int> = _clickedItem
 
     fun loadData() {
-
     }
 
     fun click(index: Int) {

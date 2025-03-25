@@ -12,7 +12,6 @@ class TagActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTagBinding
     private lateinit var viewModel: TagViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_tag)
@@ -21,5 +20,4 @@ class TagActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[TagViewModel::class.java]
         binding.viewmodel = viewModel
     }
-
 }

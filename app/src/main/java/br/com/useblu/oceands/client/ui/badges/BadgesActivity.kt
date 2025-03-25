@@ -20,5 +20,4 @@ class BadgesActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[BadgesViewModel::class.java]
         binding.viewmodel = viewModel
     }
-
 }

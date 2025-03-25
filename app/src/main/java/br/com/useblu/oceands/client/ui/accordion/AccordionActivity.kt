@@ -11,7 +11,6 @@ class AccordionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAccordionBinding
     private lateinit var viewModel: AccordionViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_accordion)

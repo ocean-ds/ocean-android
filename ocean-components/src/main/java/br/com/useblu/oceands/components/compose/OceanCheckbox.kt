@@ -22,7 +22,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 
-
 @Preview
 @Composable
 fun OceanCheckboxPreview() {
@@ -35,11 +34,11 @@ fun OceanCheckboxPreview() {
                 .padding(start = 16.dp)
         ) {
             AddCheckBox(
-                label = "Label",
+                label = "Label"
             )
             AddCheckBox(
                 label = "Label",
-                enabled = false,
+                enabled = false
             )
             AddCheckBox(
                 label = "Label",
@@ -54,14 +53,14 @@ fun OceanCheckboxPreview() {
                 ),
                 selected = true,
                 enabled = false,
-                unsettled = false,
+                unsettled = false
             )
             AddCheckBox(
-                label =  "Search on <a href=\"https://www.google.com\">Google</a> " +
-                        "or <a href=\"https://www.duckduckgo.com\">DuckDuckGo</a>",
+                label = "Search on <a href=\"https://www.google.com\">Google</a> " +
+                    "or <a href=\"https://www.duckduckgo.com\">DuckDuckGo</a>",
                 selected = true,
                 enabled = true,
-                unsettled = false,
+                unsettled = false
             )
         }
         Column(
@@ -70,12 +69,12 @@ fun OceanCheckboxPreview() {
         ) {
             AddCheckBox(
                 label = "Label",
-                selected = true,
+                selected = true
             )
             AddCheckBox(
                 label = "Label",
                 selected = true,
-                enabled = false,
+                enabled = false
             )
             AddCheckBox(
                 label = "Label",
@@ -117,7 +116,7 @@ fun OceanCheckbox(
                 isBold = isBold,
                 onSelected = {
                     onSelected(!selected)
-                },
+                }
             )
         }
         Text(
@@ -126,12 +125,10 @@ fun OceanCheckbox(
             overflow = TextOverflow.Ellipsis,
             fontFamily = OceanFontFamily.BaseRegular,
             fontSize = OceanFontSize.xxxs,
-            color = OceanColors.statusNegativePure,
+            color = OceanColors.statusNegativePure
         )
     }
 }
-
-
 
 @Composable
 private fun AddCheckBox(

@@ -190,7 +190,7 @@ private fun MinimalHeaderAction(
                 OceanBadge(
                     text = badgeCount.toString(),
                     type = OceanBadgeType.WARNING,
-                    size = OceanBadgeSize.Small,
+                    size = OceanBadgeSize.Small
                 )
             }
         }
@@ -269,16 +269,15 @@ fun OceanHeaderDefaultPreview() {
     )
 }
 
-
 @Composable
 fun OceanHeader(
     modifier: Modifier = Modifier,
     headerModel: OceanHeaderAppModel,
-    style: OceanHeaderStyle = OceanHeaderStyle.Small,
+    style: OceanHeaderStyle = OceanHeaderStyle.Small
 ) {
     Column(
         modifier = modifier
-            .topBarBackground(color = OceanColors.brandPrimaryPure),
+            .topBarBackground(color = OceanColors.brandPrimaryPure)
     ) {
         MinimalHeader(model = headerModel)
 
@@ -303,7 +302,7 @@ private fun SmallHeader(
                 isLoading = model.isLoading,
                 onClickToggleHideContent = {
                     isContentHidden = !isContentHidden
-                },
+                }
             )
         }
 
@@ -320,7 +319,7 @@ private fun SmallHeader(
                     isContentHidden = isContentHidden,
                     onClickToggleHideContent = {
                         isContentHidden = !isContentHidden
-                    },
+                    }
                 )
             }
         }

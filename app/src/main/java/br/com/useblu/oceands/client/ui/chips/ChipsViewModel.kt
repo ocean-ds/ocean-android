@@ -7,12 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.useblu.oceands.client.ui.chips.model.ChipModel
 import br.com.useblu.oceands.components.OceanBottomSheetCompose
-import br.com.useblu.oceands.components.compose.OceanButton
-import br.com.useblu.oceands.components.compose.OceanButtonModel
-import br.com.useblu.oceands.components.compose.OceanCarouselPreview
 import br.com.useblu.oceands.components.compose.OceanGroupCtaPreview
-import br.com.useblu.oceands.components.compose.OceanText
-import br.com.useblu.oceands.components.compose.content.OceanCardGroupPreview
 import br.com.useblu.oceands.model.Badge
 import br.com.useblu.oceands.model.FilterOptionsItem
 import br.com.useblu.oceands.model.OceanBadgeType
@@ -22,7 +17,6 @@ import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
 import br.com.useblu.oceands.model.OceanFilterChipBottomSheet
-import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.utils.OceanIcons
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -199,7 +193,7 @@ class ChipsViewModel : ViewModel() {
                 onSelectItem = {
                     _toastText.postValue("Item selecionado: $it")
                 }
-            ),
+            )
         ),
         OceanFilterChip(
             label = "Filtro 2",

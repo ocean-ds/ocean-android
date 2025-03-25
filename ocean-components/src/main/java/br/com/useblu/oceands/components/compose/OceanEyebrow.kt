@@ -47,7 +47,7 @@ fun OceanEyebrow(
             fontSize = OceanFontSize.xxs,
             fontFamily = OceanFontFamily.BaseMedium,
             color = textColor,
-            letterSpacing = 2.16.sp,
+            letterSpacing = 2.16.sp
         ),
         modifier = modifier
     )

@@ -8,7 +8,7 @@ import br.com.useblu.oceands.databinding.OceanDividerDescriptorListBinding
 import br.com.useblu.oceands.model.OceanDescriptorListItem
 
 class OceanDescriptorListAdapter(
-    private val items: List<OceanDescriptorListItem>,
+    private val items: List<OceanDescriptorListItem>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -79,6 +79,7 @@ class OceanDescriptorListAdapter(
     }
 
     enum class ItemViewType {
-        DIVIDER, ROW_ITEM
+        DIVIDER,
+        ROW_ITEM
     }
 }

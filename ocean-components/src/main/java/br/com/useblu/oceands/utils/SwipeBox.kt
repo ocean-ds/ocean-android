@@ -70,10 +70,11 @@ fun SwipeBox(
                     IntOffset(
                         state
                             .requireOffset()
-                            .roundToInt(), 0
+                            .roundToInt(),
+                        0
                     )
                 }
-                .anchoredDraggable(state, Orientation.Horizontal),
+                .anchoredDraggable(state, Orientation.Horizontal)
         ) {
             content()
         }
@@ -83,7 +84,8 @@ fun SwipeBox(
                 .align(Alignment.CenterEnd)
                 .offset {
                     IntOffset(
-                        (state.requireOffset() + draggedContentSize.toPx()).roundToInt(), 0
+                        (state.requireOffset() + draggedContentSize.toPx()).roundToInt(),
+                        0
                     )
                 }
                 .anchoredDraggable(state, Orientation.Horizontal)
@@ -91,10 +93,9 @@ fun SwipeBox(
             draggedLeftContent()
         }
     }
-
 }
 
 private enum class DragAnchors {
     Start,
-    End,
+    End
 }

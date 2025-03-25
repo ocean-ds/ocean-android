@@ -22,5 +22,4 @@ class StepViewActivity : AppCompatActivity() {
 
         viewModel.loadData()
     }
-
 }

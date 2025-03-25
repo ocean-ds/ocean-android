@@ -6,9 +6,8 @@ import android.widget.Toast
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanToastBinding
 
-
 class OceanToast(
-        private val activity: Activity
+    private val activity: Activity
 ) {
 
     private lateinit var binding: OceanToastBinding
@@ -16,7 +15,6 @@ class OceanToast(
     private var type: OceanToastType? = null
 
     fun show(): OceanToast {
-
         binding = OceanToastBinding.inflate(activity.layoutInflater)
 
         this.message?.let {

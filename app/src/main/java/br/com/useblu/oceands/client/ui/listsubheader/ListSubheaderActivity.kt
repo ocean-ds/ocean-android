@@ -1,7 +1,7 @@
 package br.com.useblu.oceands.client.ui.listsubheader
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import br.com.useblu.oceands.client.R
@@ -20,5 +20,4 @@ class ListSubheaderActivity : AppCompatActivity() {
         viewModelList = ViewModelProvider(this)[ListSubheaderViewModel::class.java]
         binding.viewmodel = viewModelList
     }
-
 }

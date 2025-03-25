@@ -11,7 +11,6 @@ class TextListInvertedItemActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTextListInvertedItemBinding
     private lateinit var viewModel: TextListInvertedItemViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_text_list_inverted_item)

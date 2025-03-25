@@ -44,12 +44,12 @@ private fun OceanTransactionFooterPreview() {
         OceanTransactionFooterItem(
             label = "Label2",
             value = "R$ 40,00",
-            color = "colorInterfaceDarkDown",
+            color = "colorInterfaceDarkDown"
         ),
         OceanTransactionFooterItem(
             label = "Label3",
             value = "Calculada no dia",
-            color = "colorStatusNeutralDeep",
+            color = "colorStatusNeutralDeep"
         ),
         OceanTransactionFooterItem(
             label = "Label4",
@@ -180,7 +180,6 @@ private fun TransactionFooterItem(
                         tint = OceanColors.interfaceLightDeep
                     )
                 }
-
             }
         }
 

@@ -14,7 +14,6 @@ fun setBackground(
     finalColor: String?,
     opacityColor: Int?
 ) {
-
     val init = ContextCompat.getColor(
         view.context,
         initialColor?.toOceanColor() ?: R.color.ocean_color_interface_light_pure

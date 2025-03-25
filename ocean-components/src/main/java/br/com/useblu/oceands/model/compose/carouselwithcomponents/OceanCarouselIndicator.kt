@@ -5,7 +5,7 @@ enum class OceanCarouselIndicator {
     NONE;
 
     fun canShowPages(count: Int): Boolean {
-        return when(this) {
+        return when (this) {
             PAGE -> count > 1
             NONE -> false
         }

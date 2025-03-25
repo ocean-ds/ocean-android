@@ -26,7 +26,5 @@ class BalanceActivity : AppCompatActivity() {
     }
 
     private fun initObservers() {
-
     }
-
 }

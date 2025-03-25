@@ -95,7 +95,7 @@ fun OceanCarouselWithComponents(
 @Composable
 private fun CarouselCycle(
     cycle: OceanCarouselCycle,
-    pagerState: PagerState,
+    pagerState: PagerState
 ) {
     LaunchedEffect(key1 = cycle) {
         when (cycle) {
@@ -146,7 +146,7 @@ fun OceanCarouselWithComponentsPreview() {
                     contentScale = ContentScale.FillBounds
                 )
             }
-        ){},
+        ) {}
     )
 
     OceanCarouselWithComponents(

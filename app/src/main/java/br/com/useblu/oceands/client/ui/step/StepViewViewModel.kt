@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class StepViewViewModel: ViewModel() {
+class StepViewViewModel : ViewModel() {
 
     val currentStep = MutableLiveData<Int>()
     private val _totalSteps = MutableLiveData<Int>()
@@ -26,5 +26,4 @@ class StepViewViewModel: ViewModel() {
             currentStep.postValue(currentStep.value!! - 1)
         }
     }
-
 }

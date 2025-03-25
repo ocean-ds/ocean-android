@@ -101,7 +101,6 @@ private val secondaryDefaultColors = object : IButtonColors {
 
     @Composable
     override fun getLoadingColor() = OceanColors.brandPrimaryPure
-
 }
 private val secondaryCriticalColors = object : IButtonColors {
     @Composable

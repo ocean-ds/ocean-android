@@ -30,7 +30,5 @@ class GroupCTAActivity : AppCompatActivity() {
         viewModel.shouldShowMessage.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
-
     }
-
 }

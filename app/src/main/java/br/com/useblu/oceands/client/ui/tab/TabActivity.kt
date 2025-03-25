@@ -27,5 +27,4 @@ class TabActivity : AppCompatActivity() {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
     }
-
 }

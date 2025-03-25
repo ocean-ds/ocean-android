@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 
-
 class OceanDatePickerFullscreen(
     private val manager: FragmentManager
 ) : DialogFragment() {

@@ -7,5 +7,5 @@ data class OceanChildTextItem(
     val title: String?,
     val subTitle: String?,
     var isEdit: Boolean = false,
-    var isRemove: Boolean = false,
+    var isRemove: Boolean = false
 )

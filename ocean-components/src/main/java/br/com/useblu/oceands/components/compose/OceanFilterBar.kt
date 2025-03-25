@@ -42,7 +42,7 @@ fun OceanFilterBarPreview() {
                     type = OceanBadgeType.PRIMARY_INVERTED
                 ),
                 state = OceanChipItemState.DEFAULT_ACTIVE,
-                onClick = {},
+                onClick = {}
             ),
             OceanBasicChip(
                 id = "1",
@@ -52,7 +52,7 @@ fun OceanFilterBarPreview() {
                     type = OceanBadgeType.PRIMARY
                 ),
                 state = OceanChipItemState.HOVER_INACTIVE,
-                onClick = {},
+                onClick = {}
             ),
             OceanFilterChip(
                 id = "2",

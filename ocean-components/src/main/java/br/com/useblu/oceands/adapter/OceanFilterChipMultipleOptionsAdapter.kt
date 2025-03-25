@@ -8,7 +8,7 @@ import br.com.useblu.oceands.model.FilterOptionsItem
 
 internal class OceanFilterChipMultipleOptionsAdapter(
     private val items: List<FilterOptionsItem>
-): RecyclerView.Adapter<OceanFilterChipMultipleOptionsAdapter.ChipOptionMultipleChoiceViewHolder>() {
+) : RecyclerView.Adapter<OceanFilterChipMultipleOptionsAdapter.ChipOptionMultipleChoiceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChipOptionMultipleChoiceViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -26,7 +26,7 @@ internal class OceanFilterChipMultipleOptionsAdapter(
         return items.size
     }
 
-    inner class ChipOptionMultipleChoiceViewHolder(private val binding: OceanChipOptionMultipleChoiceItemBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ChipOptionMultipleChoiceViewHolder(private val binding: OceanChipOptionMultipleChoiceItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindView(item: FilterOptionsItem) {
             binding.item = item
 

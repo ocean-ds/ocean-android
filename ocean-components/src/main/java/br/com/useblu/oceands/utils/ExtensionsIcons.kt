@@ -6,4 +6,3 @@ fun String.toOceanIcon(): Int {
             this.lowercase()
         ).icon
 }
-

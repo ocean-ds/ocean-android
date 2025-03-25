@@ -8,8 +8,8 @@ import br.com.useblu.oceands.R
 @Immutable
 object OceanFontSize {
     /**
-    * 12 sp
-    */
+     * 12 sp
+     */
     val xxxs @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xxxs).sp
 
     /**

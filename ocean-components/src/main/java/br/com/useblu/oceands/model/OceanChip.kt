@@ -19,8 +19,8 @@ data class OceanBasicChip(
     val icon: OceanIcons? = null,
     override var state: OceanChipItemState = OceanChipItemState.HOVER_INACTIVE,
     val onClick: (selected: Boolean) -> Unit,
-    val hasFilterAll: Boolean = false,
-): OceanChip()
+    val hasFilterAll: Boolean = false
+) : OceanChip()
 
 @Immutable
 data class OceanFilterChip(
@@ -29,7 +29,7 @@ data class OceanFilterChip(
     override val badge: Badge? = null,
     override var state: OceanChipItemState = OceanChipItemState.HOVER_INACTIVE,
     val bottomSheet: OceanFilterChipBottomSheet
-): OceanChip() {
+) : OceanChip() {
     constructor(
         id: String,
         label: String,

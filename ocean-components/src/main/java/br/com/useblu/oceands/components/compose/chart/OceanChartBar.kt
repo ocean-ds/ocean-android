@@ -32,7 +32,6 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
-
 private val barModel = OceanChartBarModel(
     color = R.color.ocean_color_brand_primary_down,
     highlightColor = R.color.ocean_color_brand_primary_pure,
@@ -63,7 +62,6 @@ private fun OceanChartBarPreview() {
                 .fillMaxWidth()
         )
     }
-
 }
 
 @Composable
@@ -71,7 +69,6 @@ fun OceanChartBar(
     model: OceanChartBarModel,
     modifier: Modifier = Modifier
 ) {
-
     var windowWidth by remember { mutableIntStateOf(0) }
 
     AndroidView(

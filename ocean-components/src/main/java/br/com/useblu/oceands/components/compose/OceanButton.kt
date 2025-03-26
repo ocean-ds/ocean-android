@@ -39,37 +39,37 @@ fun PreviewButton() {
         listOf(
             OceanButtonStyle.PrimarySmall,
             OceanButtonStyle.PrimaryMedium,
-            OceanButtonStyle.PrimaryLarge,
+            OceanButtonStyle.PrimaryLarge
         ),
         listOf(
             OceanButtonStyle.PrimaryInverseSmall,
             OceanButtonStyle.PrimaryInverseMedium,
-            OceanButtonStyle.PrimaryInverseLarge,
+            OceanButtonStyle.PrimaryInverseLarge
         ),
         listOf(
             OceanButtonStyle.PrimaryCriticalSmall,
             OceanButtonStyle.PrimaryCriticalMedium,
-            OceanButtonStyle.PrimaryCriticalLarge,
+            OceanButtonStyle.PrimaryCriticalLarge
         ),
         listOf(
             OceanButtonStyle.SecondarySmall,
             OceanButtonStyle.SecondaryMedium,
-            OceanButtonStyle.SecondaryLarge,
+            OceanButtonStyle.SecondaryLarge
         ),
         listOf(
             OceanButtonStyle.SecondaryCriticalSmall,
             OceanButtonStyle.SecondaryCriticalMedium,
-            OceanButtonStyle.SecondaryCriticalLarge,
+            OceanButtonStyle.SecondaryCriticalLarge
         ),
         listOf(
             OceanButtonStyle.TertiarySmall,
             OceanButtonStyle.TertiaryMedium,
-            OceanButtonStyle.TertiaryLarge,
+            OceanButtonStyle.TertiaryLarge
         ),
         listOf(
             OceanButtonStyle.TertiaryCriticalSmall,
             OceanButtonStyle.TertiaryCriticalMedium,
-            OceanButtonStyle.TertiaryCriticalLarge,
+            OceanButtonStyle.TertiaryCriticalLarge
         )
     )
 
@@ -135,7 +135,8 @@ fun PreviewButton() {
 }
 
 enum class Orientation {
-    Horizontal, Vertical
+    Horizontal,
+    Vertical
 }
 
 data class OceanButtonModel(
@@ -189,7 +190,7 @@ fun OceanButton(
                 Icon(
                     painter = painterResource(id = icon.icon),
                     contentDescription = null,
-                    modifier = Modifier.size(22.dp),
+                    modifier = Modifier.size(22.dp)
                 )
             }
 

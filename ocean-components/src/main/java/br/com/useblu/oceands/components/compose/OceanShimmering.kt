@@ -23,7 +23,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import kotlinx.coroutines.delay
 
-
 @Preview
 @Composable
 fun PreviewSkeleton() {
@@ -45,7 +44,6 @@ fun PreviewSkeleton() {
                 OceanSpacing.StackXXS()
             }
         }
-
     }
 }
 
@@ -67,7 +65,7 @@ fun shimmeringBrush(): Brush {
                 animation = tween(
                     durationMillis = 800,
                     easing = FastOutLinearInEasing
-                ),
+                )
             ),
             label = ""
         )
@@ -81,8 +79,6 @@ fun shimmeringBrush(): Brush {
         )
     )
 }
-
-
 
 @Composable
 fun OceanShimmering(

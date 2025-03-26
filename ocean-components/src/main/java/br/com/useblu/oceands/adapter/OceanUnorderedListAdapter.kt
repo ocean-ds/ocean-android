@@ -9,7 +9,7 @@ import br.com.useblu.oceands.databinding.OceanUnorderedListItemBinding
 import br.com.useblu.oceands.model.OceanUnorderedListItem
 
 class OceanUnorderedListAdapter(
-    private val items: List<OceanUnorderedListItem>,
+    private val items: List<OceanUnorderedListItem>
 ) : RecyclerView.Adapter<OceanUnorderedListAdapter.OceanUnorderedListItemViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -45,11 +45,13 @@ class OceanUnorderedListAdapter(
         }
 
         private fun getColor(colorId: Int?) = ContextCompat.getColor(
-            itemBinding.root.context, colorId ?: R.color.ocean_color_brand_primary_down
+            itemBinding.root.context,
+            colorId ?: R.color.ocean_color_brand_primary_down
         )
 
         private fun getBackgroundColor(colorId: Int?) = ContextCompat.getColor(
-            itemBinding.root.context, colorId ?: R.color.ocean_color_interface_light_up
+            itemBinding.root.context,
+            colorId ?: R.color.ocean_color_interface_light_up
         )
     }
 }

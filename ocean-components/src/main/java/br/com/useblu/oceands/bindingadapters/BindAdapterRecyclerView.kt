@@ -20,8 +20,8 @@ fun setLabels(
 ) {
     labels?.let {
         recyclerView.adapter = OceanTabAdapter(
-            labels =  labels,
-            counters =  counters,
+            labels = labels,
+            counters = counters,
             defaultSelected = defaultSelected
         ) { positionSelected ->
             selected.invoke(positionSelected)
@@ -33,7 +33,7 @@ private class OceanTabAdapter(
     val labels: List<String>,
     val counters: List<Int>?,
     val defaultSelected: Int?,
-    val onSelect: (Int) -> Unit,
+    val onSelect: (Int) -> Unit
 ) : RecyclerView.Adapter<OceanTabAdapter.ItemViewHolder>() {
 
     private var selected = defaultSelected ?: 0

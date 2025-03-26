@@ -7,7 +7,7 @@ import br.com.useblu.oceands.databinding.OceanDetailedCardItemBinding
 import br.com.useblu.oceands.model.OceanDetailedItem
 
 class OceanDetailedAdapter(
-    private val items: List<OceanDetailedItem>,
+    private val items: List<OceanDetailedItem>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(

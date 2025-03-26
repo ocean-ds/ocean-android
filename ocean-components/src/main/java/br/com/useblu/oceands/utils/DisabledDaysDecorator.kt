@@ -8,7 +8,6 @@ import java.util.*
 class DisabledDaysDecorator(private val disabledDays: Array<Calendar>) : DayViewDecorator {
 
     override fun shouldDecorate(day: CalendarDay): Boolean {
-
         return disabledDays.any {
             val disabledDay = it.get(Calendar.DAY_OF_MONTH)
             val disabledMonth = it.get(Calendar.MONTH) + 1

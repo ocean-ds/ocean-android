@@ -9,7 +9,6 @@ import br.com.useblu.oceands.client.databinding.ActivitySubtitlesBinding
 class SubtitlesActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySubtitlesBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_subtitles)

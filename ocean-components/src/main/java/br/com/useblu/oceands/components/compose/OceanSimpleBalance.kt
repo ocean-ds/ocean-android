@@ -52,10 +52,8 @@ private fun OceanSimpleBalancePreview() {
                 isVisibleShadow = true
             )
         }
-
     }
 }
-
 
 @Composable
 fun OceanSimpleBalance(
@@ -133,7 +131,7 @@ fun OceanSimpleBalance(
                     tint = OceanColors.interfaceDarkUp,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .size(OceanSpacing.sm),
+                        .size(OceanSpacing.sm)
                 )
             }
 
@@ -168,16 +166,17 @@ fun OceanSimpleBalance(
                 }
             }
 
-            Box(modifier = Modifier
-                .padding(OceanSpacing.xxxs)
-                .size(OceanSpacing.xl)
-                .clickable(
-                    enabled = true,
-                    indication = null,
-                    interactionSource = remember { MutableInteractionSource() },
-                ) {
-                    isContentExpanded = !isContentExpanded
-                }
+            Box(
+                modifier = Modifier
+                    .padding(OceanSpacing.xxxs)
+                    .size(OceanSpacing.xl)
+                    .clickable(
+                        enabled = true,
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() }
+                    ) {
+                        isContentExpanded = !isContentExpanded
+                    }
             ) {
                 OceanIcon(
                     iconType = OceanIcons.CHEVRON_DOWN_OUTLINE,

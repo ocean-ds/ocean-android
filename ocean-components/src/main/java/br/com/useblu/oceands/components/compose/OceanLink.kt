@@ -35,7 +35,6 @@ fun OceanLink(
     isDisabled: Boolean = false,
     onClick: () -> Unit
 ) {
-
     Row(
         modifier = modifier
             .clickable { onClick() },
@@ -67,14 +66,17 @@ fun OceanLink(
                 tint = textColor,
                 modifier = Modifier
                     .padding(start = OceanSpacing.xxxs)
-                    .size(16.dp),
+                    .size(16.dp)
             )
         }
     }
 }
 
 enum class OceanLinkType {
-    PRIMARY, INVERSE, NEUTRAL, WARNING;
+    PRIMARY,
+    INVERSE,
+    NEUTRAL,
+    WARNING;
 
     @Composable
     fun getTextColor(): Color {
@@ -88,7 +90,9 @@ enum class OceanLinkType {
 }
 
 enum class OceanLinkIcon {
-    DEFAULT, CHEVRON, EXTERNAL;
+    DEFAULT,
+    CHEVRON,
+    EXTERNAL;
 
     fun getIcon(): OceanIcons? {
         return when (this) {
@@ -178,7 +182,7 @@ private fun ShowLink(
                 icon = icon
             ),
             enabled = enabled,
-            onClick = {},
+            onClick = {}
         )
 
         LinkType.Small -> OceanLink(
@@ -187,7 +191,7 @@ private fun ShowLink(
                 icon = icon
             ),
             enabled = enabled,
-            onClick = {},
+            onClick = {}
         )
 
         LinkType.Tiny -> {
@@ -197,7 +201,7 @@ private fun ShowLink(
                     icon = icon
                 ),
                 enabled = enabled,
-                onClick = {},
+                onClick = {}
             )
         }
     }
@@ -208,7 +212,7 @@ fun OceanLink(
     modifier: Modifier = Modifier,
     style: LinkStyle,
     enabled: Boolean = true,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     when (style.type) {
         LinkType.Medium -> MediumLink(
@@ -239,19 +243,19 @@ private fun MediumLink(
     modifier: Modifier,
     style: LinkStyle,
     enabled: Boolean = true,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     LinkText(
         modifier = modifier,
         text = style.text,
         style = TextStyle(
             color = if (enabled) style.color else OceanColors.interfaceDarkUp,
-            fontSize = OceanFontSize.xs,
+            fontSize = OceanFontSize.xs
         ),
         enabled = enabled,
         icon = style.icon,
         iconSize = 16.dp,
-        onClick = onClick,
+        onClick = onClick
     )
 }
 
@@ -260,19 +264,19 @@ private fun SmallLink(
     modifier: Modifier,
     style: LinkStyle,
     enabled: Boolean = true,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     LinkText(
         modifier = modifier,
         text = style.text,
         style = TextStyle(
             color = if (enabled) style.color else OceanColors.interfaceDarkUp,
-            fontSize = OceanFontSize.xxs,
+            fontSize = OceanFontSize.xxs
         ),
         enabled = enabled,
         icon = style.icon,
         iconSize = 16.dp,
-        onClick = onClick,
+        onClick = onClick
     )
 }
 
@@ -281,19 +285,19 @@ private fun TinyLink(
     modifier: Modifier,
     style: LinkStyle,
     enabled: Boolean = true,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     LinkText(
         modifier = modifier,
         text = style.text,
         style = TextStyle(
             color = if (enabled) style.color else OceanColors.interfaceDarkUp,
-            fontSize = OceanFontSize.xxxs,
+            fontSize = OceanFontSize.xxxs
         ),
         enabled = enabled,
         icon = style.icon,
         iconSize = 14.dp,
-        onClick = onClick,
+        onClick = onClick
     )
 }
 
@@ -330,7 +334,7 @@ private fun LinkText(
                 tint = color,
                 modifier = Modifier
                     .padding(start = OceanSpacing.xxxs)
-                    .size(iconSize),
+                    .size(iconSize)
             )
         }
     }
@@ -340,6 +344,6 @@ data class LinkStyle(
     val text: String,
     val color: Color = Color.Unspecified,
     val icon: OceanIcons = OceanIcons.UNDEFINED,
-    val type: LinkType = LinkType.Medium,
+    val type: LinkType = LinkType.Medium
 )
 enum class LinkType { Medium, Small, Tiny }

@@ -9,7 +9,7 @@ import br.com.useblu.oceands.model.compose.OceanHeaderAppAction
 import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
 import br.com.useblu.oceands.utils.OceanIcons
 
-class HeaderAppViewModel: ViewModel() {
+class HeaderAppViewModel : ViewModel() {
 
     private var isHeaderCollapsed = false
     private var isLoading = false

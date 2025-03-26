@@ -14,7 +14,6 @@ import br.com.useblu.oceands.client.databinding.ActivityTopbarBinding
 import br.com.useblu.oceands.components.compose.OceanTopBarInverse
 import br.com.useblu.oceands.extensions.setTitleColor
 
-
 class TopbarActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
     private lateinit var binding: ActivityTopbarBinding
     private lateinit var viewModel: TopbarViewModel

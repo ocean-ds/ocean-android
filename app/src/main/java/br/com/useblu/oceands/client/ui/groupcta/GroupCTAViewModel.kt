@@ -32,5 +32,4 @@ class GroupCTAViewModel : ViewModel() {
             _showProgress.postValue(false)
         }, 3000)
     }
-
 }

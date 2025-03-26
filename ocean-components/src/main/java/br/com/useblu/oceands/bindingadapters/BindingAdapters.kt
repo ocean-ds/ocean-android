@@ -34,7 +34,6 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-
 @BindingAdapter("ocean_visible_or_invisible")
 fun setVisibleOrInvisible(view: View, status: Boolean) {
     view.visibility = if (status) View.VISIBLE else View.INVISIBLE
@@ -241,10 +240,8 @@ fun loadIcon(
     maxWidth: Int? = null,
     maxHeight: Int? = null
 ) {
-
     tokenOrUrl?.let {
         if (it.contains("http")) {
-
             val requestOptions = RequestOptions()
                 .placeholder(R.drawable.image_placeholder)
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
@@ -257,11 +254,10 @@ fun loadIcon(
                 .into(
                     customTarget(
                         view = view,
-                        maxWidth = if(maxWidth != null && maxWidth != 0) maxWidth else 120,
-                        maxHeight = if(maxHeight != null && maxHeight != 0) maxHeight else 120
+                        maxWidth = if (maxWidth != null && maxWidth != 0) maxWidth else 120,
+                        maxHeight = if (maxHeight != null && maxHeight != 0) maxHeight else 120
                     )
                 )
-
         } else {
             applyImage(it, view)
         }
@@ -285,7 +281,6 @@ private fun customTarget(
         view.setImageDrawable(placeholder)
     }
 }
-
 
 private fun applyImage(tokenIcon: String, imageView: ImageView) {
     val token = tokenIcon.takeIf { it.isNotBlank() } ?: return
@@ -320,7 +315,6 @@ private fun adjustImageViewDimensions(
         imageView.layoutParams = layoutParams
     }
 }
-
 
 @BindingAdapter("is_active", "active_icon", "inactive_icon")
 fun ImageView.loadBottomNavIcon(isActive: Boolean, activeToken: String?, inactiveToken: String?) {
@@ -362,7 +356,6 @@ fun setOceanBackground(layout: LinearLayout, type: OceanAlertType?) {
 
         OceanAlertType.Error -> {
             layout.setBackgroundResource(R.drawable.ocean_alert_error_background)
-
         }
 
         OceanAlertType.Success -> {
@@ -451,7 +444,6 @@ fun setOceanAlertTextColor(textView: TextView, type: OceanAlertType?) {
                     (R.color.ocean_color_status_negative_pure)
                 )
             )
-
         }
 
         OceanAlertType.Success -> {
@@ -503,4 +495,3 @@ fun setBackground(view: View, background: Drawable?) {
         view.setBackgroundResource(0)
     }
 }
-

@@ -20,7 +20,7 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
             title = "PagBlu",
             subTitle = "Economize até 10% usando saldo futuro sem taxa de antecipação",
             disabled = false,
-            recommend = false,
+            recommend = false
         ),
         OceanOptionCardItem(
             data = SampleData(
@@ -43,7 +43,7 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
             recommend = true,
             recommendColor =
             getApplication<Application>().resources.getString(R.color.ocean_color_status_warning_deep),
-            recommendDescription = "Recomendado",
+            recommendDescription = "Recomendado"
         ),
         OceanOptionCardItem(
             data = SampleData(
@@ -56,13 +56,13 @@ class OptionsCardViewModel(application: Application) : AndroidViewModel(applicat
             subTitle = "Subtitle 2",
             recommend = true,
             recommendColor = getApplication<Application>().resources.getString(R.color.ocean_color_status_positive_pure),
-            recommendDescription = "Aproveite o cashback",
-        ),
+            recommendDescription = "Aproveite o cashback"
+        )
     )
 
     fun itemSelectClick(optionSelected: OceanOptionCardItem) {
         val data = optionSelected.data as SampleData
-        println("Item Clicked >> ${data}")
+        println("Item Clicked >> $data")
     }
 }
 

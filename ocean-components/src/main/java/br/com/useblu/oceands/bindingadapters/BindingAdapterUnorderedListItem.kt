@@ -16,7 +16,7 @@ fun setUnorderedListAdapter(
         val oceanOrderedListAdapter = OceanUnorderedListAdapter(items = list)
 
         recyclerView.adapter = oceanOrderedListAdapter
-        recyclerView.layoutManager = object: LinearLayoutManager(
+        recyclerView.layoutManager = object : LinearLayoutManager(
             recyclerView.context,
             VERTICAL,
             false

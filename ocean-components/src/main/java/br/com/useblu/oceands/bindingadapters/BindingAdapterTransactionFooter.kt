@@ -3,8 +3,8 @@ package br.com.useblu.oceands.bindingadapters
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import br.com.useblu.oceands.model.OceanTransactionFooterItem
 import br.com.useblu.oceands.adapter.OceanTransactionFooterListAdapter
+import br.com.useblu.oceands.model.OceanTransactionFooterItem
 
 @BindingAdapter("entries")
 fun setTransactionFooterAdapter(
@@ -23,6 +23,5 @@ fun setTransactionFooterAdapter(
             LinearLayoutManager.VERTICAL,
             false
         )
-
     }
 }

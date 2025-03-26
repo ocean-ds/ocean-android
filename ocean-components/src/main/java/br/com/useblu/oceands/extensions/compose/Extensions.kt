@@ -50,7 +50,6 @@ fun Modifier.iconContainerBackground(
     }
 }
 
-
 fun String.htmlToAnnotatedString(): AnnotatedString {
     val spanned = HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)
     return spanned.toAnnotatedString()
@@ -100,8 +99,7 @@ fun Modifier.border(
     bottom: Dp = 0.dp,
     start: Dp = 0.dp,
     end: Dp = 0.dp
-) : Modifier {
-
+): Modifier {
     return drawWithContent {
         drawContent()
 

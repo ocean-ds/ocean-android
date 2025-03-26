@@ -30,7 +30,8 @@ fun setColorTitle(expansionLayout: ExpansionLayout, setCustomBehavior: Boolean) 
                 ContextCompat.getColor(
                     headerIndicator.context,
                     R.color.ocean_color_brand_primary_pure
-                ), android.graphics.PorterDuff.Mode.SRC_IN
+                ),
+                android.graphics.PorterDuff.Mode.SRC_IN
             )
         } else {
             textViewHeaderTitle.setTextColor(
@@ -43,7 +44,8 @@ fun setColorTitle(expansionLayout: ExpansionLayout, setCustomBehavior: Boolean) 
                 ContextCompat.getColor(
                     headerIndicator.context,
                     R.color.ocean_color_interface_dark_deep
-                ), android.graphics.PorterDuff.Mode.SRC_IN
+                ),
+                android.graphics.PorterDuff.Mode.SRC_IN
             )
         }
     }

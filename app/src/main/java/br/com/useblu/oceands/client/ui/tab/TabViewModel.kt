@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class TabViewModel: ViewModel() {
+class TabViewModel : ViewModel() {
 
     val counters = MutableLiveData<List<Int>>()
     val labels1 = MutableLiveData<List<String>>()

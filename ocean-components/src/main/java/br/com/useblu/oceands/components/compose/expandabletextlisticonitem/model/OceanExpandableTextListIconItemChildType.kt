@@ -17,10 +17,10 @@ sealed interface OceanExpandableTextListIconItemChildType<ChildReferenceKey> {
         }
 
         sealed interface ActionType {
-            data class Edit(val options: List<Option>, val onClick: (Int) -> Unit): ActionType {
+            data class Edit(val options: List<Option>, val onClick: (Int) -> Unit) : ActionType {
                 data class Option(val title: String, val color: Color? = null)
             }
-            data class Custom(val icon: OceanIcons? = null): ActionType
+            data class Custom(val icon: OceanIcons? = null) : ActionType
         }
     }
 

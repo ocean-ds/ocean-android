@@ -35,7 +35,6 @@ fun OceanHtmlText(
     fontSize: TextUnit = OceanFontSize.xxxs,
     maxLines: Int = Int.MAX_VALUE
 ) {
-
     AndroidView(
         modifier = modifier,
         factory = {

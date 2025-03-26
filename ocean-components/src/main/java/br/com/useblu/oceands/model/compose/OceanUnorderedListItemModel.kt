@@ -3,7 +3,6 @@ package br.com.useblu.oceands.model.compose
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Immutable

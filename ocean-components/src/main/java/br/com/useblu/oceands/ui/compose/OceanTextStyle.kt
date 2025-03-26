@@ -14,7 +14,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-
 @Preview
 @Composable
 private fun TextStylePreview() {
@@ -71,7 +70,7 @@ object OceanTextStyle {
     val description @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular,
-        fontSize = OceanFontSize.xxs,
+        fontSize = OceanFontSize.xxs
     )
 
     val descriptionStrike @Composable get() = TextStyle(
@@ -129,7 +128,7 @@ object OceanTextStyle {
     )
 
     val heading5 @Composable get() = heading4.copy(
-        fontSize = OceanFontSize.xxs,
+        fontSize = OceanFontSize.xxs
     )
 
     val subtitle1 @Composable get() = subtitle.copy(

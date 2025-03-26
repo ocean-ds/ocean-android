@@ -75,16 +75,16 @@ fun String.toOceanColor() = when (this.lowercase()) {
     "colorstatusnegativeup" -> {
         R.color.ocean_color_status_negative_up
     }
-    "colorstatusneutraldeep", "colorstatuswarningdeep"  -> {
+    "colorstatusneutraldeep", "colorstatuswarningdeep" -> {
         R.color.ocean_color_status_warning_deep
     }
-    "colorstatusneutraldown", "colorstatuswarningdown"  -> {
+    "colorstatusneutraldown", "colorstatuswarningdown" -> {
         R.color.ocean_color_status_warning_down
     }
-    "colorstatusneutralpure",  "colorstatuswarningpure"-> {
+    "colorstatusneutralpure", "colorstatuswarningpure" -> {
         R.color.ocean_color_status_warning_pure
     }
-    "colorstatusneutralup","colorstatuswarningup" -> {
+    "colorstatusneutralup", "colorstatuswarningup" -> {
         R.color.ocean_color_status_warning_up
     }
     "colorstatuspositivedeep" -> {

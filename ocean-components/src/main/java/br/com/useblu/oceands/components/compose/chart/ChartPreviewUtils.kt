@@ -11,7 +11,7 @@ private val items = listOf(
         value = 25.0f,
         color = R.color.ocean_color_interface_dark_down,
         subtitle = "First Subtitle",
-        information = "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        information = "lorem ipsum dolor sit amet, consectetur adipiscing elit."
     ),
     OceanChartItem(
         title = "Item 2",
@@ -19,7 +19,7 @@ private val items = listOf(
         value = 60.0f,
         color = R.color.ocean_color_status_negative_pure,
         subtitle = "Second Subtitle",
-        information = "lorem ipsum dolor sit amet, consectetur adipiscing.",
+        information = "lorem ipsum dolor sit amet, consectetur adipiscing."
     ),
     OceanChartItem(
         title = "Item 3",
@@ -27,7 +27,7 @@ private val items = listOf(
         value = 75.0f,
         color = R.color.ocean_color_status_warning_deep,
         subtitle = "Third Subtitle",
-        information = "lorem ipsum dolor sit amet, consectetur.",
+        information = "lorem ipsum dolor sit amet, consectetur."
     )
 )
 

@@ -6,5 +6,5 @@ data class OceanDetailedItem(
     val info: String,
     val value: String,
     val percent: Int,
-    val description: String,
+    val description: String
 )

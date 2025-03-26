@@ -7,7 +7,7 @@ import br.com.useblu.oceands.extensions.getSupportFragmentManager
 import java.util.Calendar
 
 sealed interface OceanFilterChipBottomSheet {
-    data class FilterOptions(val options: OceanChipFilterOptions): OceanFilterChipBottomSheet {
+    data class FilterOptions(val options: OceanChipFilterOptions) : OceanFilterChipBottomSheet {
         override fun showBottomSheet(context: Context) {
             options.showBottomSheet(context = context)
         }
@@ -18,8 +18,8 @@ sealed interface OceanFilterChipBottomSheet {
         val onResult: (from: String, to: String) -> Unit,
         val currentBeginDate: String,
         val currentEndDate: String,
-        val maxDate: Calendar? = null,
-    ): OceanFilterChipBottomSheet {
+        val maxDate: Calendar? = null
+    ) : OceanFilterChipBottomSheet {
         override fun showBottomSheet(context: Context) {
             OceanDateRangeSelectFilterSheet(
                 currentBeginDate = currentBeginDate,
@@ -30,9 +30,9 @@ sealed interface OceanFilterChipBottomSheet {
         }
     }
 
-    data class Custom(val bottomSheetCompose: OceanBottomSheetCompose): OceanFilterChipBottomSheet {
+    data class Custom(val bottomSheetCompose: OceanBottomSheetCompose) : OceanFilterChipBottomSheet {
         override fun showBottomSheet(context: Context) {
-            bottomSheetCompose.show(context.getSupportFragmentManager(),null)
+            bottomSheetCompose.show(context.getSupportFragmentManager(), null)
         }
     }
 

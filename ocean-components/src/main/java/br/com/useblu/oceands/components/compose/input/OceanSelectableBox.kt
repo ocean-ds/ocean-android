@@ -26,7 +26,6 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 
-
 @Preview
 @Composable
 fun SelectableBoxPreview() {
@@ -35,21 +34,20 @@ fun SelectableBoxPreview() {
             OceanSelectableBox(
                 selected = false,
                 showError = false,
-                enabled = true,
+                enabled = true
             )
             OceanSelectableBox(
                 selected = false,
                 showError = false,
-                enabled = false,
+                enabled = false
             )
             OceanSelectableBox(
                 selected = false,
                 showError = true,
-                enabled = false,
+                enabled = false
             )
         }
         Column {
-
             OceanSelectableBox(
                 selected = true,
                 showError = false,
@@ -61,17 +59,17 @@ fun SelectableBoxPreview() {
             OceanSelectableBox(
                 selected = true,
                 showError = false,
-                enabled = false,
+                enabled = false
             )
             OceanSelectableBox(
                 selected = false,
                 showError = true,
-                enabled = false,
+                enabled = false
             )
             OceanSelectableBox(
                 selected = true,
                 unsettled = true,
-                showError = false,
+                showError = false
             )
         }
     }
@@ -108,8 +106,8 @@ internal fun OceanSelectableBox(
     }
 
     LaunchedEffect(key1 = interactionSource) {
-        interactionSource.interactions.collect {interaction ->
-            when(interaction) {
+        interactionSource.interactions.collect { interaction ->
+            when (interaction) {
                 is PressInteraction.Press -> {
                     onClickSelectableBox()
                 }
@@ -122,7 +120,7 @@ internal fun OceanSelectableBox(
             .size(20.dp)
             .padding(1.dp)
             .background(OceanColors.interfaceLightPure)
-            .clickable (
+            .clickable(
                 interactionSource = interactionSource,
                 indication = null,
                 enabled = enabled,

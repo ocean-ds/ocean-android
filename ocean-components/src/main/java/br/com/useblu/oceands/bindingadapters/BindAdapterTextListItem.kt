@@ -9,7 +9,6 @@ import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.model.OceanStatusTextListItem
 
-
 @BindingAdapter("statusTextListItem")
 fun setStatusTextListItem(textView: TextView, status: OceanStatusTextListItem?) {
     val context = textView.context

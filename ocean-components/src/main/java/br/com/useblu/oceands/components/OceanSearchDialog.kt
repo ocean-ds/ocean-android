@@ -16,7 +16,7 @@ import br.com.useblu.oceands.databinding.OceanDialogBinding
 class OceanSearchDialog(
     private val title: String?,
     private val hint: String?,
-    private val adapter: OceanBottomListSheetAdapter,
+    private val adapter: OceanBottomListSheetAdapter
 ) : DialogFragment() {
 
     private var _binding: OceanDialogBinding? = null

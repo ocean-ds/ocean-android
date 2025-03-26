@@ -43,7 +43,7 @@ class CarouselViewModel : ViewModel() {
             action = {
                 println("OceanCarouselItem 4 selected")
             }
-        ),
+        )
     )
 
     var items2 = listOf(
@@ -58,7 +58,7 @@ class CarouselViewModel : ViewModel() {
             action = {
                 println("OceanCarouselItem 2 selected")
             }
-        ),
+        )
     )
 
     var items3 = listOf(
@@ -91,5 +91,4 @@ class CarouselViewModel : ViewModel() {
         _entries3.postValue(items3)
         _entries4.postValue(items4)
     }
-
 }

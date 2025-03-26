@@ -12,7 +12,6 @@ class StatusListItemActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStatusListItemBinding
     private lateinit var viewModel: StatusListItemViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_status_list_item)
@@ -27,6 +26,5 @@ class StatusListItemActivity : AppCompatActivity() {
         viewModel.touchItem.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
-
     }
 }

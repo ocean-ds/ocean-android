@@ -11,7 +11,7 @@ import com.google.android.material.textfield.TextInputEditText
 
 @BindingAdapter(
     "ocean_input_token_focus",
-    "ocean_input_token_error",
+    "ocean_input_token_error"
 )
 fun setOceanInputTokenFocus(
     inputText: TextInputEditText,
@@ -36,7 +36,7 @@ fun setOceanInputTokenFocus(
 )
 fun setOceanInputTokenValue(
     inputText: TextInputEditText,
-    value: MutableLiveData<String>?,
+    value: MutableLiveData<String>?
 ) {
     val components = bindingComponents(inputText)
     val lastComponent = components.last()
@@ -93,7 +93,7 @@ fun bindingComponents(inputText: TextInputEditText): List<TextInputEditText> {
 
 private fun nextFocus(
     currentPosition: Int,
-    components: List<TextInputEditText>,
+    components: List<TextInputEditText>
 ) {
     if ((components.size - 1) == currentPosition) return
     if (components.last().text.toString().isNotBlank()) {
@@ -106,7 +106,7 @@ private fun nextFocus(
 private fun backSpaceFocus(
     error: MutableLiveData<String>?,
     currentPosition: Int,
-    components: List<TextInputEditText>,
+    components: List<TextInputEditText>
 ) {
     if (currentPosition == 0) return
     error?.postValue("")

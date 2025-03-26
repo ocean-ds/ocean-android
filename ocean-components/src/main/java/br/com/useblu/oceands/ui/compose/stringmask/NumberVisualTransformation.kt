@@ -5,7 +5,7 @@ import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.VisualTransformation
 import kotlin.math.absoluteValue
 
-abstract class NumberVisualTransformation: VisualTransformation {
+abstract class NumberVisualTransformation : VisualTransformation {
 
     @VisibleForTesting
     fun offsetTranslator(originalText: String, transformedText: String) = object : OffsetMapping {

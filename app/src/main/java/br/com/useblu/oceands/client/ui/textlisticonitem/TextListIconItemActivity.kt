@@ -11,7 +11,6 @@ class TextListIconItemActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTextListIconItemBinding
     private lateinit var viewModel: TextListIconItemViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_text_list_icon_item)

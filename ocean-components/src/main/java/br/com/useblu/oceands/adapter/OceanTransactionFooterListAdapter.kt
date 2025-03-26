@@ -7,7 +7,7 @@ import br.com.useblu.oceands.databinding.OceanTransactionFooterItemBinding
 import br.com.useblu.oceands.model.OceanTransactionFooterItem
 
 class OceanTransactionFooterListAdapter(
-    private val items: List<OceanTransactionFooterItem>,
+    private val items: List<OceanTransactionFooterItem>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(

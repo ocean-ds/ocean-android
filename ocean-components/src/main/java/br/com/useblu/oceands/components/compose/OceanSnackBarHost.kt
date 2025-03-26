@@ -18,9 +18,9 @@ import kotlinx.coroutines.launch
 fun OceanSnackBarHost(
     showSnackBar: Boolean,
     type: OceanSnackBarType,
-    message: String,
+    message: String
 
-    ) {
+) {
     val snackState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
@@ -37,7 +37,6 @@ fun OceanSnackBarHost(
             .fillMaxSize()
             .padding(20.dp)
     ) {
-
         SnackbarHost(
             modifier = Modifier.align(Alignment.BottomStart),
             hostState = snackState

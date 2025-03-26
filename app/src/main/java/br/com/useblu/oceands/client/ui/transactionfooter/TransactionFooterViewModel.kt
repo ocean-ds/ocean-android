@@ -21,27 +21,27 @@ class TransactionFooterViewModel : ViewModel() {
             label = "Label1",
             value = "R$ 40,00",
             newValue = "Zero",
-            color = "colorStatusPositiveDeep",
+            color = "colorStatusPositiveDeep"
         ),
         OceanTransactionFooterItem(
             label = "Label2",
             value = "R$ 10,00",
-            color = "colorStatusPositiveDeep",
+            color = "colorStatusPositiveDeep"
         ),
         OceanTransactionFooterItem(
             label = "Label3",
             value = "Zero",
-            color = "colorStatusPositiveDeep",
+            color = "colorStatusPositiveDeep"
         ),
         OceanTransactionFooterItem(
             label = "Label4",
             value = "R$ 40,00",
-            color = "colorInterfaceDarkDown",
+            color = "colorInterfaceDarkDown"
         ),
         OceanTransactionFooterItem(
             label = "Label5",
             value = "Calculada no dia",
-            color = "colorStatusNeutralDeep",
+            color = "colorStatusNeutralDeep"
         ),
         OceanTransactionFooterItem(
             label = "Label6",
@@ -54,14 +54,14 @@ class TransactionFooterViewModel : ViewModel() {
             label = "Label7",
             value = "Não Disponível",
             tooltip = "tooltip",
-            color = "colorInterfaceDarkUp",
+            color = "colorInterfaceDarkUp"
         ),
         OceanTransactionFooterItem(
             label = "Label8",
             value = "R$ 40,00",
             color = "colorInterfaceDarkPure",
-            isBold = true,
-        ),
+            isBold = true
+        )
     )
 
     fun click() {

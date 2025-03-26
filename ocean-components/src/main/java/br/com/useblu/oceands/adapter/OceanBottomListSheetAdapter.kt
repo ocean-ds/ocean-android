@@ -16,7 +16,7 @@ class OceanBottomListSheetAdapter(
     private val limit: Int? = null,
     private val title: String? = null,
     private val hint: String? = null,
-    private val manager: FragmentManager? = null,
+    private val manager: FragmentManager? = null
 ) : RecyclerView.Adapter<OceanBottomListSheetAdapter.OceanBottomListSheetViewHolder>() {
 
     private lateinit var oceanSearchDialog: OceanSearchDialog
@@ -114,7 +114,6 @@ class OceanBottomListSheetAdapter(
             }
         }
     }
-
 
     companion object {
         const val SEE_ALL = "Ver todos"

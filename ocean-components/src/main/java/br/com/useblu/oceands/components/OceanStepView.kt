@@ -385,19 +385,21 @@ class OceanStepView @JvmOverloads constructor(
     private fun measureHeight(heightMeasureSpec: Int): Int {
         val specSize = MeasureSpec.getSize(heightMeasureSpec)
         val specMode = MeasureSpec.getMode(heightMeasureSpec)
-        var desiredSize = (paddingTop
-                + paddingBottom
-                + max(
-            selectedCircleRadius,
-            doneCircleRadius
-        ) * 2 + if (displayMode == DISPLAY_MODE_WITH_TEXT) textPadding else 0)
+        var desiredSize = (
+            paddingTop +
+                paddingBottom +
+                max(
+                    selectedCircleRadius,
+                    doneCircleRadius
+                ) * 2 + if (displayMode == DISPLAY_MODE_WITH_TEXT) textPadding else 0
+            )
         if (steps.isNotEmpty()) {
             desiredSize += measureStepsHeight()
         }
         return when (specMode) {
             MeasureSpec.UNSPECIFIED -> desiredSize
             MeasureSpec.AT_MOST -> min(desiredSize, specSize)
-            else  -> specSize
+            else -> specSize
         }
     }
 
@@ -500,7 +502,7 @@ class OceanStepView @JvmOverloads constructor(
             val result: Int = if (displayMode == DISPLAY_MODE_WITH_TEXT) {
                 if (isRtl) {
                     measuredWidth - paddingRight -
-                            max(getMaxLineWidth(textLayouts[0]) / 2, selectedCircleRadius)
+                        max(getMaxLineWidth(textLayouts[0]) / 2, selectedCircleRadius)
                 } else {
                     paddingLeft + max(
                         getMaxLineWidth(textLayouts[0]) / 2,
@@ -531,16 +533,16 @@ class OceanStepView @JvmOverloads constructor(
             val result: Int = if (displayMode == DISPLAY_MODE_WITH_TEXT) {
                 if (isRtl) {
                     paddingLeft +
-                            max(
-                                getMaxLineWidth(last(textLayouts)) / 2,
-                                selectedCircleRadius
-                            )
+                        max(
+                            getMaxLineWidth(last(textLayouts)) / 2,
+                            selectedCircleRadius
+                        )
                 } else {
                     measuredWidth - paddingRight -
-                            max(
-                                getMaxLineWidth(last(textLayouts)) / 2,
-                                selectedCircleRadius
-                            )
+                        max(
+                            getMaxLineWidth(last(textLayouts)) / 2,
+                            selectedCircleRadius
+                        )
                 }
             } else {
                 if (isRtl) {
@@ -608,9 +610,9 @@ class OceanStepView @JvmOverloads constructor(
         if (isSelected && !isDone) {
             paint.color = selectedCircleColor
             val radius: Int
-            if (state == ANIMATE_STEP_TRANSITION
-                && (animationType == ANIMATION_CIRCLE || animationType == ANIMATION_ALL)
-                && nextAnimatedStep < currentStep
+            if (state == ANIMATE_STEP_TRANSITION &&
+                (animationType == ANIMATION_CIRCLE || animationType == ANIMATION_ALL) &&
+                nextAnimatedStep < currentStep
             ) {
                 radius = if (!nextStepCircleEnabled || nextStepCircleColor == 0) {
                     (selectedCircleRadius - selectedCircleRadius * animatedFraction).toInt()
@@ -781,13 +783,15 @@ class OceanStepView @JvmOverloads constructor(
             bounds.left + 0.5f * width,
             bounds.bottom - 3.25f * width,
             bounds.left + 3.25f * width,
-            bounds.bottom - 0.75f * width, paint
+            bounds.bottom - 0.75f * width,
+            paint
         )
         canvas.drawLine(
             bounds.left + 2.75f * width,
             bounds.bottom - 0.75f * width,
             bounds.right - 0.375f * width,
-            bounds.top + 0.75f * width, paint
+            bounds.top + 0.75f * width,
+            paint
         )
     }
 

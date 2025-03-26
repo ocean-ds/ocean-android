@@ -7,6 +7,4 @@ class CardCrossSellViewModel : ViewModel() {
     fun click() {
         println("Click action")
     }
-
-
 }

@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.compose.OceanColors
 
-
 @Preview
 @Composable
 fun SelectableRadioPreview() {
@@ -76,17 +75,17 @@ fun SelectableRadioPreview() {
             OceanSelectableRadio(
                 isSelected = true,
                 showError = false,
-                enabled = true,
+                enabled = true
             )
             OceanSelectableRadio(
                 isSelected = true,
                 showError = false,
-                enabled = false,
+                enabled = false
             )
             OceanSelectableRadio(
                 isSelected = false,
                 showError = true,
-                enabled = false,
+                enabled = false
             )
         }
     }

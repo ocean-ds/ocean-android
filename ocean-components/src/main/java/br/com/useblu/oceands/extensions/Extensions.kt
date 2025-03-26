@@ -76,7 +76,7 @@ fun String.parseAsHtml(): Spanned {
 fun View.animateFadeIn() {
     this.clearAnimation()
     AlphaAnimation(0.0f, 1.0f).run {
-        interpolator = DecelerateInterpolator() //add this
+        interpolator = DecelerateInterpolator() // add this
         duration = 150
         setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
@@ -93,7 +93,7 @@ fun View.animateFadeIn() {
 fun View.animateFadeOut() {
     this.clearAnimation()
     AlphaAnimation(1.0f, 0.0f).run {
-        interpolator = DecelerateInterpolator() //add this
+        interpolator = DecelerateInterpolator() // add this
         duration = 150
         setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {}
@@ -114,7 +114,7 @@ class ShowAnim(
     private val view: View,
     private val targetHeight: Int,
     private val durationMs: Int = 2000
-): Animation() {
+) : Animation() {
 
     init {
         duration = this.durationMs.toLong()

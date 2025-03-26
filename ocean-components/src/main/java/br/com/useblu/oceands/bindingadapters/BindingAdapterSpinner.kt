@@ -9,10 +9,9 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import br.com.useblu.oceands.components.OceanBottomListSheet
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.components.OceanBottomListSheet
 import br.com.useblu.oceands.extensions.getSupportFragmentManager
-
 
 @BindingAdapter("setAdapterSpinner")
 fun setAdapterSpinner(spinner: Spinner, list: List<String>?) {
@@ -85,7 +84,6 @@ fun setAdapterSpinner(spinner: Spinner, list: List<String>?) {
     }
 }
 
-
 @SuppressLint("ClickableViewAccessibility")
 @BindingAdapter("setAdapterBottomSheet", "limit", "title", "hint", "valueSelected")
 fun setAdapterBottomSheet(
@@ -105,7 +103,6 @@ fun setAdapterBottomSheet(
         spinner.adapter = adapter
         spinner.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
-
                 val selectedItemPosition = if (spinner.selectedItemPosition == 0) {
                     -1
                 } else {
@@ -119,9 +116,9 @@ fun setAdapterBottomSheet(
                 limit?.let {
                     if (it > 0) {
                         bottomSheet.withSearch(
-                                manager = spinner.context.getSupportFragmentManager(),
-                                limit = limit,
-                            )
+                            manager = spinner.context.getSupportFragmentManager(),
+                            limit = limit
+                        )
                     }
                 }
 

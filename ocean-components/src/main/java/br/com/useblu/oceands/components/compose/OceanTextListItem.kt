@@ -35,7 +35,6 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderRadius
 import br.com.useblu.oceands.utils.OceanIcons
 
-
 @Preview(heightDp = 1024)
 @Composable
 private fun OceanTextListItemPreview() {
@@ -44,7 +43,7 @@ private fun OceanTextListItemPreview() {
             state = rememberScrollState(),
             enabled = true
         )
-        .background(color = OceanColors.interfaceLightPure)
+            .background(color = OceanColors.interfaceLightPure)
     ) {
         OceanTextListItem(
             modifier = Modifier,
@@ -173,7 +172,6 @@ private fun OceanTextListItemPreview() {
     }
 }
 
-
 @Composable
 fun OceanTextListItem(
     modifier: Modifier = Modifier,
@@ -212,7 +210,6 @@ fun OceanTextListItem(
                     }
                 )
         ) {
-
             when (textListStyle) {
                 OceanTextListStyle.WITH_CHECKBOX -> {
                     Column(
@@ -252,8 +249,8 @@ fun OceanTextListItem(
             Column(
                 modifier = Modifier
                     .padding(
-                        end = if(onClick != null && showClickableChevron) OceanSpacing.xxsExtra
-                              else OceanSpacing.xxs
+                        end = if (onClick != null && showClickableChevron) OceanSpacing.xxsExtra
+                        else OceanSpacing.xxs
                     )
                     .weight(2f)
             ) {
@@ -308,7 +305,7 @@ fun OceanTextListItem(
             }
         }
 
-        if(textListStyle != OceanTextListStyle.DEFAULT && showDivider){
+        if (textListStyle != OceanTextListStyle.DEFAULT && showDivider) {
             HorizontalDivider(
                 thickness = 1.dp,
                 color = OceanColors.interfaceLightDown

@@ -31,7 +31,6 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 
-
 @Preview
 @Composable
 private fun OceanChartScorePreview() {
@@ -39,9 +38,8 @@ private fun OceanChartScorePreview() {
         modifier = Modifier
             .background(OceanColors.interfaceLightPure)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
     ) {
-
         OceanChartScore(
             title = "Title",
             description = "Description",

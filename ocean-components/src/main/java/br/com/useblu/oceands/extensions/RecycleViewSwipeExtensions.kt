@@ -8,7 +8,7 @@ import br.com.useblu.oceands.utils.SwipeHelper
 fun RecyclerView.addSwipeLeft(
     items: List<OceanChildTextItem>,
     edit: ((Int) -> Unit)?,
-    remove: ((Int) -> Unit)?,
+    remove: ((Int) -> Unit)?
 ) {
     var swipeHelper: SwipeHelper? = null
     swipeHelper = object : SwipeHelper(
@@ -21,34 +21,38 @@ fun RecyclerView.addSwipeLeft(
             val position = viewHolder?.bindingAdapterPosition
             position?.let {
                 if (items[position].isRemove) {
-                    underlayButtons?.add(UnderlayButton(
-                        context,
-                        R.string.all_text_exclude,
-                        R.drawable.ic_trash_outline,
-                        R.color.ocean_color_status_negative_pure,
-                        R.color.ocean_color_interface_light_pure,
-                        object : UnderlayButtonClickListener {
-                            override fun onClick(pos: Int) {
-                                swipeHelper?.hideOptions(pos)
-                                remove?.invoke(pos)
+                    underlayButtons?.add(
+                        UnderlayButton(
+                            context,
+                            R.string.all_text_exclude,
+                            R.drawable.ic_trash_outline,
+                            R.color.ocean_color_status_negative_pure,
+                            R.color.ocean_color_interface_light_pure,
+                            object : UnderlayButtonClickListener {
+                                override fun onClick(pos: Int) {
+                                    swipeHelper?.hideOptions(pos)
+                                    remove?.invoke(pos)
+                                }
                             }
-                        }
-                    ))
+                        )
+                    )
                 }
                 if (items[position].isEdit) {
-                    underlayButtons?.add(UnderlayButton(
-                        context,
-                        R.string.transfer_button_item_edit,
-                        R.drawable.ic_pencil_outline,
-                        R.color.ocean_color_interface_dark_up,
-                        R.color.ocean_color_interface_light_pure,
-                        object : UnderlayButtonClickListener {
-                            override fun onClick(pos: Int) {
-                                swipeHelper?.hideOptions(pos)
-                                edit?.invoke(pos)
+                    underlayButtons?.add(
+                        UnderlayButton(
+                            context,
+                            R.string.transfer_button_item_edit,
+                            R.drawable.ic_pencil_outline,
+                            R.color.ocean_color_interface_dark_up,
+                            R.color.ocean_color_interface_light_pure,
+                            object : UnderlayButtonClickListener {
+                                override fun onClick(pos: Int) {
+                                    swipeHelper?.hideOptions(pos)
+                                    edit?.invoke(pos)
+                                }
                             }
-                        }
-                    ))
+                        )
+                    )
                 }
             }
         }

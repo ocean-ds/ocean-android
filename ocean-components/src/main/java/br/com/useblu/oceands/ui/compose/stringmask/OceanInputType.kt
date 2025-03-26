@@ -14,7 +14,6 @@ import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-
 sealed interface OceanInputType {
     fun getMaxLength(): Int? = null
 
@@ -278,4 +277,3 @@ sealed interface OceanInputType {
         }
     }
 }
-

@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.model.compose.FileStatus
 import br.com.useblu.oceands.model.compose.UploadFileModel
 
-class FileUploaderViewModel: ViewModel() {
+class FileUploaderViewModel : ViewModel() {
 
     var selectedFiles by mutableStateOf(emptyList<UploadFileModel>())
         private set

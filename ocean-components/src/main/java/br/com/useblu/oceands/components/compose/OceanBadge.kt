@@ -17,8 +17,6 @@ import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
-import br.com.useblu.oceands.ui.compose.OceanSpacing
-
 
 @Preview(showBackground = true)
 @Composable
@@ -76,7 +74,7 @@ fun OceanBadgePreview() {
 fun OceanBadge(
     text: String,
     type: OceanBadgeType,
-    size: OceanBadgeSize,
+    size: OceanBadgeSize
 ) {
     val backgroundColor = when (type) {
         OceanBadgeType.HIGHLIGHT -> OceanColors.highlightPure

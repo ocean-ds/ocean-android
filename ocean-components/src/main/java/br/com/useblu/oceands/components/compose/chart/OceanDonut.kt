@@ -16,7 +16,6 @@ import br.com.useblu.oceands.model.chart.OceanChartModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import com.github.mikephil.charting.charts.PieChart
 
-
 @Preview
 @Composable
 private fun OceanDonutPreview() {
@@ -32,7 +31,6 @@ private fun OceanDonutPreview() {
         )
     }
 }
-
 
 @Composable
 fun OceanDonut(

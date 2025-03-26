@@ -29,6 +29,6 @@ class DetailedCardViewModel : ViewModel() {
             value = "R$ 2000,00",
             percent = 50,
             description = "Descrição do valor"
-        ),
+        )
     )
 }

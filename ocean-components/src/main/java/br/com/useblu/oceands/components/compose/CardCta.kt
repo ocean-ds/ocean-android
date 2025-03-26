@@ -64,7 +64,7 @@ fun CardCta(
             color = OceanColors.interfaceLightDown
         ),
         onClick = { actionClick?.invoke() },
-        enabled = !showProgress && actionClick != null,
+        enabled = !showProgress && actionClick != null
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

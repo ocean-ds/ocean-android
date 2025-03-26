@@ -11,7 +11,7 @@ sealed interface OceanInlineTextListItemDescription {
     data class Default(
         override val icon: OceanIcons? = null,
         override val text: String
-    ): OceanInlineTextListItemDescriptionGenericType{
+    ) : OceanInlineTextListItemDescriptionGenericType {
         @Composable
         override fun getTintColor(): Color = OceanColors.interfaceDarkDeep
     }
@@ -19,7 +19,7 @@ sealed interface OceanInlineTextListItemDescription {
     data class Inactive(
         override val icon: OceanIcons? = null,
         override val text: String
-    ): OceanInlineTextListItemDescriptionGenericType{
+    ) : OceanInlineTextListItemDescriptionGenericType {
         @Composable
         override fun getTintColor(): Color = OceanColors.interfaceDarkUp
     }
@@ -27,7 +27,7 @@ sealed interface OceanInlineTextListItemDescription {
     data class Positive(
         override val icon: OceanIcons? = null,
         override val text: String
-    ): OceanInlineTextListItemDescriptionGenericType{
+    ) : OceanInlineTextListItemDescriptionGenericType {
         @Composable
         override fun getTintColor(): Color = OceanColors.statusPositiveDeep
     }
@@ -35,7 +35,7 @@ sealed interface OceanInlineTextListItemDescription {
     data class Warning(
         override val icon: OceanIcons? = null,
         override val text: String
-    ): OceanInlineTextListItemDescriptionGenericType{
+    ) : OceanInlineTextListItemDescriptionGenericType {
         @Composable
         override fun getTintColor(): Color = OceanColors.statusWarningDeep
     }
@@ -43,7 +43,7 @@ sealed interface OceanInlineTextListItemDescription {
     data class Highlight(
         override val icon: OceanIcons? = null,
         override val text: String
-    ): OceanInlineTextListItemDescriptionGenericType {
+    ) : OceanInlineTextListItemDescriptionGenericType {
         @Composable
         override fun getTintColor(): Color = OceanColors.interfaceDarkDeep
         override val fontWeight: FontWeight = FontWeight.Bold
@@ -52,7 +52,7 @@ sealed interface OceanInlineTextListItemDescription {
     data class Strikethrough(
         val oldText: String,
         val currentText: String
-    ): OceanInlineTextListItemDescription {
+    ) : OceanInlineTextListItemDescription {
         @Composable
         fun getTintColor(): Color = OceanColors.statusPositiveDeep
     }
@@ -61,10 +61,10 @@ sealed interface OceanInlineTextListItemDescription {
         val title: String,
         val onClick: () -> Unit,
         val buttonStyle: OceanButtonStyle
-    ): OceanInlineTextListItemDescription
+    ) : OceanInlineTextListItemDescription
 }
 
-internal interface OceanInlineTextListItemDescriptionGenericType: OceanInlineTextListItemDescription {
+internal interface OceanInlineTextListItemDescriptionGenericType : OceanInlineTextListItemDescription {
     val icon: OceanIcons?
     val text: String
     val fontWeight: FontWeight? get() = null

@@ -17,7 +17,6 @@ import br.com.useblu.oceands.utils.OceanIcons
 import com.savvyapps.togglebuttonlayout.Toggle
 import com.savvyapps.togglebuttonlayout.ToggleButtonLayout
 
-
 class ButtonsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityButtonsBinding
@@ -78,7 +77,6 @@ class ButtonsActivity : AppCompatActivity() {
                         "Small" -> OceanButtonStyle.SecondarySmall
                         else -> OceanButtonStyle.SecondaryMedium
                     }
-
                 }
                 "Secondary Critical" -> {
                     when (buttonSize) {
@@ -169,5 +167,4 @@ class ButtonsActivity : AppCompatActivity() {
                 viewModel.setButtonSize(toggle.title.toString())
             }
     }
-
 }

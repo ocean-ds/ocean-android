@@ -21,7 +21,6 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 
-
 @Preview
 @Composable
 fun PreviewOceanStep() {
@@ -50,7 +49,7 @@ fun OceanStep(
             }
         }
 
-        for (i in currentStep .. stepCount) {
+        for (i in currentStep..stepCount) {
             StepCircle(
                 currentStep = i == currentStep,
                 showLeftLine = i != 1,
@@ -62,7 +61,6 @@ fun OceanStep(
             }
         }
     }
-
 }
 
 @Composable

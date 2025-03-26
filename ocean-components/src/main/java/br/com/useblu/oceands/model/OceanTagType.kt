@@ -4,5 +4,12 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 enum class OceanTagType {
-    Neutral, NeutralPrimary, Negative, Positive, Warning, Complementary, Important, Highlight
+    Neutral,
+    NeutralPrimary,
+    Negative,
+    Positive,
+    Warning,
+    Complementary,
+    Important,
+    Highlight
 }

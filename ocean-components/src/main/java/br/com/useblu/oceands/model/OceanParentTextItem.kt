@@ -10,4 +10,3 @@ data class OceanParentTextItem(
 ) {
     fun hasSubtitle() = !subTitle.isNullOrEmpty()
 }
-

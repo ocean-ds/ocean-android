@@ -33,7 +33,7 @@ class BalanceViewModel : ViewModel() {
         "Saldo na Blu",
         "Label 2",
         "Label 3",
-        "Label 4",
+        "Label 4"
     )
 
     private fun valueItems() = listOf(

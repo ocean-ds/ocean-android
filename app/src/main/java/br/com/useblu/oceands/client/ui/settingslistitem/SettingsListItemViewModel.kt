@@ -7,5 +7,4 @@ class SettingsListItemViewModel : ViewModel() {
     fun click() {
         println("Click item")
     }
-
 }

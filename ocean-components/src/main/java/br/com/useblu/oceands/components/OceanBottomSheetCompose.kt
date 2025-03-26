@@ -74,7 +74,6 @@ class OceanBottomSheetCompose : BottomSheetDialogFragment() {
                     isCritical = isCritical
                 )
             }
-
         }
 
         binding.cancelabled = isDismiss
@@ -129,10 +128,10 @@ class OceanBottomSheetCompose : BottomSheetDialogFragment() {
     }
 
     enum class Orientation {
-        Horizontal, Vertical
+        Horizontal,
+        Vertical
     }
 }
-
 
 @Preview
 @Composable
@@ -156,7 +155,6 @@ private fun BottomButtons(
     isCritical: Boolean = false,
     orientation: OceanBottomSheetCompose.Orientation = OceanBottomSheetCompose.Orientation.Horizontal
 ) {
-
     val buttons: @Composable (Modifier) -> Unit = {
         val primaryStyle = if (isCritical) {
             OceanButtonStyle.PrimaryCriticalMedium

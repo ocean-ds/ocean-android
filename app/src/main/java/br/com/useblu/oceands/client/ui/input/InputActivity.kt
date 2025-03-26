@@ -33,8 +33,8 @@ class InputActivity : AppCompatActivity() {
         binding.viewmodel = viewModel
 
         initObservers()
-        
-        binding.composeView.setContent { 
+
+        binding.composeView.setContent {
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {

@@ -2,8 +2,8 @@ package br.com.useblu.oceands.bindingadapters
 
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import br.com.useblu.oceands.components.OceanStepView
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.components.OceanStepView
 import br.com.useblu.oceands.extensions.dp
 
 @BindingAdapter("currentStep", "totalAmountSteps")
@@ -23,7 +23,6 @@ fun setupStepView(oceanStepView: OceanStepView, currentStep: Int?, totalAmountSt
                 .doneCircleRadius(10.dp)
                 .commit()
         }
-
 
         if (currentStep < oceanStepView.stepCount && currentStep >= 0) {
             oceanStepView.go(currentStep, true)

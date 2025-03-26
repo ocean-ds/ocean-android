@@ -101,7 +101,6 @@ class FormatTypes {
         private fun format(formatador: Formatador, text: String): String {
             return if (formatador.podeSerFormatado(text)) formatador.formata(text) else text
         }
-
     }
 }
 

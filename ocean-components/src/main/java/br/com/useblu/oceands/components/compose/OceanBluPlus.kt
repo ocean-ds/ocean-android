@@ -38,10 +38,11 @@ fun OceanBluPlus(
             }
             .height(40.dp)
             .padding(start = OceanSpacing.xxs, end = OceanSpacing.xxxs),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            painter = painterResource(id = R.drawable.icon_blu_plus), contentDescription = null,
+            painter = painterResource(id = R.drawable.icon_blu_plus),
+            contentDescription = null,
             modifier = Modifier.size(20.dp)
         )
 

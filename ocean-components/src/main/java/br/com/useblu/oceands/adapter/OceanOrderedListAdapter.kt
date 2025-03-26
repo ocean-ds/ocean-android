@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.OceanOrderedListItemBinding
 
 class OceanOrderedListAdapter(
-    private val items: List<String>,
+    private val items: List<String>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(

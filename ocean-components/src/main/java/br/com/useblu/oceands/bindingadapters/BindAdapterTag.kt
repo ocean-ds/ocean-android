@@ -102,6 +102,7 @@ fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType?) {
     textView.setTextColor(ContextCompat.getColor(textView.context, textColor))
     layout.setBackgroundResource(background)
 }
+
 @BindingAdapter("ocean_tag_text_color")
 fun setOceanTagTextColor(textView: TextView, type: OceanTagType?) {
     val textColor: Int
@@ -127,6 +128,7 @@ fun setOceanTagTextColor(textView: TextView, type: OceanTagType?) {
     }
     textView.setTextColor(ContextCompat.getColor(textView.context, textColor))
 }
+
 @BindingAdapter("ocean_tag_background_type")
 fun setOceanTagBackgroundType(layout: LinearLayout, type: OceanTagType?) {
     val background: Int

@@ -21,4 +21,3 @@ class InformativeCardViewModel : ViewModel() {
         println("Click")
     }
 }
-

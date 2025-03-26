@@ -45,4 +45,3 @@ class ChartBarViewModel : ViewModel() {
         println("Click")
     }
 }
-

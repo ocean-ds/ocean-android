@@ -19,7 +19,6 @@ import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 
-
 @Preview(showBackground = true)
 @Composable
 private fun OceanOrderedListItemPreview() {

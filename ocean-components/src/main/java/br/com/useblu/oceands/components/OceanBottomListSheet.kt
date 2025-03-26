@@ -151,7 +151,7 @@ class OceanBottomListSheet(context: Context) : BottomSheetDialog(context) {
     fun withSimpleList(
         items: List<String>,
         selectedPosition: Int = -1,
-        onItemSelect: (Int) -> Unit,
+        onItemSelect: (Int) -> Unit
     ): OceanBottomListSheet {
         adapter = OceanBottomListSheetAdapter(
             oceanBottomSheet = this,

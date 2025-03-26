@@ -26,7 +26,9 @@ class TransactionFooterActivity : AppCompatActivity() {
     private fun initObservables() {
         viewModel.message.observe(this) { msg ->
             Toast.makeText(
-                this, msg, Toast.LENGTH_SHORT
+                this,
+                msg,
+                Toast.LENGTH_SHORT
             ).show()
         }
     }

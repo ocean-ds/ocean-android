@@ -53,9 +53,12 @@ fun PieChart.setupChart(model: OceanChartModel) {
             selected = if (model.items.all { it.selected }) {
                 null
             } else {
-                highlightValue(model.items.indexOfFirst {
-                    it.selected
-                }.toFloat(), 0, false)
+                highlightValue(
+                    model.items.indexOfFirst {
+                        it.selected
+                    }.toFloat(),
+                    0, false
+                )
                 model.items.firstOrNull { it.selected }
             }
         )
@@ -96,7 +99,7 @@ fun PieChart.setupChart(model: OceanChartModel) {
 
 private fun PieChart.buildPieDataSet(
     model: OceanChartModel,
-    selected: OceanChartItem? = null,
+    selected: OceanChartItem? = null
 ): PieDataSet {
     val pieEntries = model.items.map {
         PieEntry(it.value)
@@ -134,7 +137,7 @@ fun Chart<*>.getColor(
     return Color.argb(alpha, originalColor.red, originalColor.green, originalColor.blue)
 }
 
- fun PieChart.getCenterTextStyled(
+fun PieChart.getCenterTextStyled(
     title: String,
     label: String
 ): SpannableString {

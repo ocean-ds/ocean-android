@@ -10,5 +10,4 @@ fun setNavigationOnClick(toolbar: Toolbar, click: (() -> Unit?)? = null) {
             it()
         }
     }
-
 }

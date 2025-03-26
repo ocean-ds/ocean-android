@@ -53,7 +53,7 @@ fun OceanCalloutList(
             .padding(
                 vertical = 12.dp
             ),
-        verticalArrangement = Arrangement.spacedBy( OceanSpacing.xxs)
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
     ) {
         models.forEach { item ->
             OceanUnorderedListItem(item)

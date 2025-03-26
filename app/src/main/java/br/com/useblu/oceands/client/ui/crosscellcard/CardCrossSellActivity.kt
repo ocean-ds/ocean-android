@@ -20,5 +20,4 @@ class CardCrossSellActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[CardCrossSellViewModel::class.java]
         binding.viewmodel = viewModel
     }
-
 }

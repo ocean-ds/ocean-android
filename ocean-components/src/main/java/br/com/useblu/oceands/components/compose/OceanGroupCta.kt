@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
@@ -19,9 +18,7 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
-import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
-
 
 @Preview
 @Composable
@@ -47,9 +44,8 @@ fun OceanGroupCta(
     title: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    showProgress: Boolean = false,
+    showProgress: Boolean = false
 ) {
-
     Row(
         modifier = modifier
             .background(color = OceanColors.interfaceLightPure)

@@ -12,7 +12,6 @@ class TextListItemActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTextListItemBinding
     private lateinit var viewModel: TextListItemViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_text_list_item)
@@ -27,6 +26,5 @@ class TextListItemActivity : AppCompatActivity() {
         viewModel.touchItem.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
-
     }
 }

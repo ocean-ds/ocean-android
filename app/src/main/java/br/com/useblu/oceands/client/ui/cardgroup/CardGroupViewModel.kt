@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.model.OceanTransactionListUIModel
 
-class CardGroupViewModel: ViewModel() {
+class CardGroupViewModel : ViewModel() {
 
     private val _items = MutableLiveData<List<OceanTransactionListUIModel>>()
     val items: LiveData<List<OceanTransactionListUIModel>> get() = _items
@@ -71,16 +71,15 @@ class CardGroupViewModel: ViewModel() {
     private fun mockItems2() = listOf(
         OceanTransactionListUIModel(
             primaryLabel = "Label 1",
-            value = "130.00",
+            value = "130.00"
         ),
         OceanTransactionListUIModel(
             primaryLabel = "Label 1",
-            value = "100.00",
+            value = "100.00"
         ),
         OceanTransactionListUIModel(
             primaryLabel = "Label 1",
-            value = "5.00",
+            value = "5.00"
         )
     )
-
 }

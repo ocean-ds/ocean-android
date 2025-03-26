@@ -20,7 +20,6 @@ class DonutActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[DonutViewModel::class.java]
         binding.viewmodel = viewModel
 
-
         viewModel.selectedItem.observe(this) {
             Toast.makeText(this, "Item selecionado: ${it?.title} ${it?.value}", Toast.LENGTH_SHORT).show()
         }

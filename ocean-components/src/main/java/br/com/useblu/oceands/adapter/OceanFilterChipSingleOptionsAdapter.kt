@@ -10,7 +10,7 @@ import br.com.useblu.oceands.model.OceanChipFilterOptions
 internal class OceanFilterChipSingleOptionsAdapter(
     private val options: OceanChipFilterOptions,
     private val onClickItem: (Int) -> Unit
-): RecyclerView.Adapter<OceanFilterChipSingleOptionsAdapter.ChipOptionSingleChoiceViewHolder>() {
+) : RecyclerView.Adapter<OceanFilterChipSingleOptionsAdapter.ChipOptionSingleChoiceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChipOptionSingleChoiceViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -27,7 +27,7 @@ internal class OceanFilterChipSingleOptionsAdapter(
         return options.optionsItems.size
     }
 
-    inner class ChipOptionSingleChoiceViewHolder(private val binding: OceanChipOptionSingleChoiceItemBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ChipOptionSingleChoiceViewHolder(private val binding: OceanChipOptionSingleChoiceItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindView(item: FilterOptionsItem, position: Int) {
             binding.item = item
 

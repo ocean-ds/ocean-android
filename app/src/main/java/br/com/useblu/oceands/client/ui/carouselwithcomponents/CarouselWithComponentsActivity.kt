@@ -45,7 +45,10 @@ class CarouselWithComponentsActivity : AppCompatActivity() {
 @Composable
 private fun CarouselWithComponentsActivityContentPreview() {
     CarouselWithComponentsActivityContent(
-        emptyList(), emptyList(), emptyList(), emptyList()
+        emptyList(),
+        emptyList(),
+        emptyList(),
+        emptyList()
     )
 }
 
@@ -54,7 +57,7 @@ private fun CarouselWithComponentsActivityContent(
     firstEntries: List<OceanCarouselComponentItem>,
     secondEntries: List<OceanCarouselComponentItem>,
     thirdEntries: List<OceanCarouselComponentItem>,
-    fourthEntries: List<OceanCarouselComponentItem>,
+    fourthEntries: List<OceanCarouselComponentItem>
 ) {
     OceanTheme {
         Column(

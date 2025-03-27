@@ -278,36 +278,20 @@ fun OceanCardListItemPreview() {
             )
 
             OceanCardListItem(
-                title = "Title",
-                description = "Description",
-                style = OceanCardListItemStyle.Highlighted(
-                    caption = "Receba no mesmo dia em que seu cliente pagar, com um menor custo de antecipação.",
-                    backgroundColor = OceanColors.statusPositiveUp,
-                    icon = OceanIcons.SPARKLES_ALT_SOLID,
-                    iconColor = OceanColors.statusPositiveDeep,
-                    animation = OceanCardListItemStyle.Highlighted.Animation(
-                        targetBorderColor = OceanColors.statusPositiveDeep,
-                        shadowColor = OceanColors.statusPositiveDeep
-                    )
-                ),
-                onClick = {}
-            )
-
-            OceanCardListItem(
-                title = "Title",
-                description = "Description",
+                title = "Title Highlighted",
+                description = "Description unselected",
                 type = OceanCardListItemType.Selectable(
                     selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
                     didUpdate = { }
                 ),
                 style = OceanCardListItemStyle.Highlighted(
-                    caption = "Receba no mesmo dia em que seu cliente pagar, com um menor custo de antecipação.",
-                    backgroundColor = OceanColors.statusPositiveUp,
+                    caption = "Short Caption",
+                    backgroundColor = OceanColors.statusNegativeUp,
                     icon = OceanIcons.SPARKLES_ALT_SOLID,
-                    iconColor = OceanColors.statusPositiveDeep,
+                    iconColor = OceanColors.statusNegativeDeep,
                     animation = OceanCardListItemStyle.Highlighted.Animation(
-                        targetBorderColor = OceanColors.statusPositiveDeep,
-                        shadowColor = OceanColors.statusPositiveDeep
+                        targetBorderColor = OceanColors.statusNegativeDeep,
+                        shadowColor = OceanColors.statusNegativeDeep
                     )
                 ),
                 tagStyle = OceanTagStyle.Default(
@@ -319,8 +303,8 @@ fun OceanCardListItemPreview() {
             )
 
             OceanCardListItem(
-                title = "Title",
-                description = "Description",
+                title = "Title Highlighted Selected",
+                description = "Description selected",
                 type = OceanCardListItemType.Selectable(
                     selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
                     didUpdate = { }
@@ -336,7 +320,7 @@ fun OceanCardListItemPreview() {
                     )
                 ),
                 tagStyle = OceanTagStyle.Default(
-                    label = "Tag label",
+                    label = "Mais vendido",
                     layout = OceanTagLayout.Medium(),
                     type = OceanTagType.Positive
                 ),

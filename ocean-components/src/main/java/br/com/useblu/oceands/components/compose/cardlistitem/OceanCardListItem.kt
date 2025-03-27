@@ -1,9 +1,7 @@
 package br.com.useblu.oceands.components.compose.cardlistitem
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,8 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,15 +22,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTag
+import br.com.useblu.oceands.components.compose.OceanTagLayout
 import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
-import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
-import br.com.useblu.oceands.components.compose.input.OceanSelectableRadio
-import br.com.useblu.oceands.extensions.compose.iconContainerBackground
-import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.components.compose.cardlistitem.style.DefaultCardListItem
+import br.com.useblu.oceands.components.compose.cardlistitem.style.HighlightedCardListItem
+import br.com.useblu.oceands.components.compose.cardlistitem.type.LeadingDefaultTypeCardListItem
+import br.com.useblu.oceands.components.compose.cardlistitem.type.LeadingSelectableCardListItem
+import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -62,6 +60,21 @@ fun OceanCardListItem(
                 caption = caption,
                 tagStyle = tagStyle,
                 type = type,
+                disabled = disabled,
+                isSelected = isSelected,
+                onClick = onClick
+            )
+        }
+
+        is OceanCardListItemStyle.Highlighted -> {
+            HighlightedCardListItem(
+                modifier = modifier,
+                title = title,
+                description = description,
+                caption = caption,
+                tagStyle = tagStyle,
+                type = type,
+                style = style,
                 disabled = disabled,
                 isSelected = isSelected,
                 onClick = onClick
@@ -98,7 +111,7 @@ internal fun DeprecatedTransitionCardListItem(
 }
 
 @Composable
-private fun ContentCardListItem(
+internal fun ContentCardListItem(
     title: String,
     description: String,
     caption: String,
@@ -147,7 +160,9 @@ private fun CenterContent(
     Column(
         modifier = modifier
     ) {
-        Row {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(space = OceanSpacing.xxxs)
+        ) {
             Text(
                 text = title,
                 style = OceanTextStyle.paragraph,
@@ -190,55 +205,20 @@ private fun LeadingContentCardListItem(
 ) {
     when (type) {
         is OceanCardListItemType.Default -> {
-            if (type.leadingIconToken != null) {
-                val iconSize = if (type.showIconBackground) 24.dp else 20.dp
-                val iconBackgroundColor = style.getIconBackgroundColor(isSelected = isSelected)
-                Box(
-                    modifier = Modifier
-                        .size(40.dp)
-                        .iconContainerBackground(type.showIconBackground, iconBackgroundColor)
-                ) {
-                    OceanIcon(
-                        iconType = type.leadingIconToken,
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .size(iconSize),
-                        tint = when {
-                            disabled -> OceanColors.interfaceLightDeep
-                            isSelected -> OceanColors.interfaceLightPure
-                            else -> OceanColors.brandPrimaryDown
-                        }
-                    )
-                }
-
-                OceanSpacing.StackXS()
-            }
+            LeadingDefaultTypeCardListItem(
+                type = type,
+                style = style,
+                isSelected = isSelected,
+                disabled = disabled
+            )
         }
 
         is OceanCardListItemType.Selectable -> {
-            Column(
-                modifier = Modifier
-                    .padding(end = OceanSpacing.xs),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                when (type.selectionType) {
-                    OceanCardListItemType.Selectable.SelectionType.Checkbox -> {
-                        OceanSelectableBox(
-                            selected = isSelected,
-                            enabled = !disabled,
-                            onSelectedBox = type.didUpdate
-                        )
-                    }
-                    OceanCardListItemType.Selectable.SelectionType.Radiobutton -> {
-                        OceanSelectableRadio(
-                            isSelected = isSelected,
-                            enabled = !disabled,
-                            onSelectedBox = { type.didUpdate(!isSelected) }
-                        )
-                    }
-                }
-            }
+            LeadingSelectableCardListItem(
+                type = type,
+                isSelected = isSelected,
+                disabled = disabled
+            )
         }
     }
 }
@@ -263,54 +243,7 @@ private fun TrailingContentCardListItem(
             }
         }
 
-        is OceanCardListItemType.Selectable -> {
-            Unit
-        }
-    }
-}
-
-@Composable
-private fun DefaultCardListItem(
-    modifier: Modifier = Modifier,
-    title: String,
-    description: String = "",
-    caption: String = "",
-    tagStyle: OceanTagStyle? = null,
-    type: OceanCardListItemType = OceanCardListItemType.Default(),
-    disabled: Boolean = false,
-    isSelected: Boolean = false,
-    onClick: (() -> Unit)? = null
-) {
-    val backgroundColor = OceanCardListItemStyle.Default.getBackgroundColor(
-        isSelected = isSelected,
-        type = type
-    )
-    val borderColor = OceanCardListItemStyle.Default.getBorderColor(
-        isSelected = isSelected,
-        type = type
-    )
-
-    Card(
-        modifier = modifier,
-        colors = CardDefaults.cardColors(
-            containerColor = backgroundColor,
-            disabledContainerColor = backgroundColor
-        ),
-        shape = OceanBorderRadius.SM.allCorners.shape(),
-        border = BorderStroke(1.dp, borderColor),
-        enabled = onClick != null && !disabled,
-        onClick = { onClick?.invoke() }
-    ) {
-        ContentCardListItem(
-            title = title,
-            description = description,
-            caption = caption,
-            tagStyle = tagStyle,
-            type = type,
-            style = OceanCardListItemStyle.Default,
-            isSelected = isSelected,
-            disabled = disabled
-        )
+        is OceanCardListItemType.Selectable -> Unit
     }
 }
 
@@ -341,6 +274,47 @@ fun OceanCardListItemPreview() {
                 title = "Title",
                 description = "Description",
                 caption = "Caption",
+                onClick = {}
+            )
+
+            OceanCardListItem(
+                title = "Title",
+                description = "Description",
+                style = OceanCardListItemStyle.Highlighted(
+                    caption = "Receba no mesmo dia em que seu cliente pagar, com um menor custo de antecipação.",
+                    backgroundColor = OceanColors.statusPositiveUp,
+                    icon = OceanIcons.SPARKLES_ALT_SOLID,
+                    iconColor = OceanColors.statusPositiveDeep,
+                    animation = OceanCardListItemStyle.Highlighted.Animation(
+                        targetBorderColor = OceanColors.statusPositiveDeep,
+                        shadowColor = OceanColors.statusPositiveDeep
+                    )
+                ),
+                onClick = {}
+            )
+
+            OceanCardListItem(
+                title = "Title",
+                description = "Description",
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
+                    didUpdate = { }
+                ),
+                style = OceanCardListItemStyle.Highlighted(
+                    caption = "Receba no mesmo dia em que seu cliente pagar, com um menor custo de antecipação.",
+                    backgroundColor = OceanColors.statusPositiveUp,
+                    icon = OceanIcons.SPARKLES_ALT_SOLID,
+                    iconColor = OceanColors.statusPositiveDeep,
+                    animation = OceanCardListItemStyle.Highlighted.Animation(
+                        targetBorderColor = OceanColors.statusPositiveDeep,
+                        shadowColor = OceanColors.statusPositiveDeep
+                    )
+                ),
+                tagStyle = OceanTagStyle.Default(
+                    label = "Tag label",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Positive
+                ),
                 onClick = {}
             )
 

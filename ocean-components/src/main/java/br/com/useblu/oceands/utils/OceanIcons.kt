@@ -1631,6 +1631,10 @@ enum class OceanIcons(
         token = "sparklessolid",
         icon = R.drawable.ocean_icon_sparkles_solid
     ),
+    SPARKLES_ALT_SOLID(
+        token = "sparklesaltsolid",
+        icon = R.drawable.ocean_icon_sparkles_alt_solid
+    ),
     SPEAKERPHONE_OUTLINE(
         token = "speakerphoneoutline",
         icon = R.drawable.ocean_icon_speakerphone_outline

@@ -319,6 +319,32 @@ fun OceanCardListItemPreview() {
             )
 
             OceanCardListItem(
+                title = "Title",
+                description = "Description",
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
+                    didUpdate = { }
+                ),
+                style = OceanCardListItemStyle.Highlighted(
+                    caption = "Receba no mesmo dia em que seu cliente pagar, com um menor custo de antecipação.",
+                    backgroundColor = OceanColors.statusPositiveUp,
+                    icon = OceanIcons.SPARKLES_ALT_SOLID,
+                    iconColor = OceanColors.statusPositiveDeep,
+                    animation = OceanCardListItemStyle.Highlighted.Animation(
+                        targetBorderColor = OceanColors.statusPositiveDeep,
+                        shadowColor = OceanColors.statusPositiveDeep
+                    )
+                ),
+                tagStyle = OceanTagStyle.Default(
+                    label = "Tag label",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Positive
+                ),
+                isSelected = true,
+                onClick = {}
+            )
+
+            OceanCardListItem(
                 title = "Title 2",
                 description = "2",
                 type = OceanCardListItemType.Default(

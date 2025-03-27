@@ -17,8 +17,7 @@ sealed interface OceanCardListItemStyle {
     ) : OceanCardListItemStyle {
         data class Animation(
             val targetBorderColor: Color,
-            val shadowColor: Color,
-            val duration: Int = 1000
+            val shadowColor: Color
         )
     }
 

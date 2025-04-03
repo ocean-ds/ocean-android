@@ -29,6 +29,7 @@
         <activity android:name=".ui.description.DescriptionActivity" />
         <activity android:name=".ui.paragraph.ParagraphActivity" />
         <activity android:name=".ui.subtitles.SubtitlesActivity" />
+        <activity android:name=".ui.blubalance.BluBalanceActivity" />
         <activity
             android:name=".ui.home.HomeActivity"
             android:exported="true">

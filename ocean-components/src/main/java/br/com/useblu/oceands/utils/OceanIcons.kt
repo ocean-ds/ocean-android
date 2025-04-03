@@ -851,6 +851,10 @@ enum class OceanIcons(
         token = "eyeoffoutline",
         icon = R.drawable.ocean_icon_eye_off_outline
     ),
+    EYE_OFF_ALT_OUTLINE(
+        token = "eyeoffaltoutline",
+        icon = R.drawable.ocean_icon_eye_off_alt_outline
+    ),
     EYE_OFF_SOLID(
         token = "eyeoffsolid",
         icon = R.drawable.ocean_icon_eye_off_solid

@@ -3,8 +3,10 @@ package br.com.useblu.oceands.client.ui.headerapp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
-import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
+import br.com.useblu.oceands.components.compose.blubalance.model.OceanBalanceItemAction
+import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemInteraction
+import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemModel
+import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemType
 import br.com.useblu.oceands.model.compose.OceanHeaderAppAction
 import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
 import br.com.useblu.oceands.utils.OceanIcons
@@ -22,31 +24,30 @@ class HeaderAppViewModel : ViewModel() {
             clientName = "Fcr Colchões",
             formattedCnpj = "32.677.554/0001-14",
             bluPlusValue = 100,
-            balanceBluModel = OceanBalanceBluModel(
-                firstLabel = "Saldo total na Blu",
-                firstValue = "R$ 0,00",
-                secondLabel = "Saldo atual",
-                secondValue = "R$ 0.000.000,00",
-                thirdLabel = "Agenda",
-                thirdValue = "R$ 0.000.000,00",
-                buttonDescription = "Confira o que entrou e saiu da sua conta",
-                buttonCta = "Extrato",
-                onClickButton = {
-                    println("Click botão saldo Blu")
-                },
-                onClickExpandScroll = {
-                    isHeaderCollapsed = false
-                    reloadData()
-                }
-            ),
-            balanceOthersModel = OceanBalanceOthersModel(
-                title = "Saldo em Outras maquininhas",
-                description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
-                buttonCta = "Trazer saldo para a Blu",
-                buttonCtaCollapsed = "Trazer saldo",
-                onClickButton = {
-                    println("Click botão outras maquininhas")
-                }
+            items = listOf(
+                OceanBluBalanceItemModel(
+                    type = OceanBluBalanceItemType.Main(
+                        title = "Primeiro Label",
+                        value = "R$ -35,63"
+                    ),
+                    interaction = OceanBluBalanceItemInteraction.Expandable(
+                        items = listOf(
+                            "Segundo Label" to "R$ 10,00",
+                            "Terceiro Label" to "R$ 50,00"
+                        )
+                    )
+                ),
+                OceanBluBalanceItemModel(
+                    type = OceanBluBalanceItemType.Text(
+                        text = "Confira tudo o que entrou e saiu da sua Conta Digital Blu"
+                    ),
+                    interaction = OceanBluBalanceItemInteraction.Action(
+                        type = OceanBalanceItemAction.Button(
+                            title = "Extrato"
+                        ),
+                        action = { println("Click botão extrato") }
+                    )
+                )
             ),
             appActions = listOf(
                 OceanHeaderAppAction(
@@ -61,7 +62,11 @@ class HeaderAppViewModel : ViewModel() {
                     badgeCount = 0,
                     action = { println("action key: $it") }
                 )
-            )
+            ),
+            toggleHeaderCollapse = {
+                isHeaderCollapsed = !isHeaderCollapsed
+                reloadData()
+            }
         )
     )
     val headerAppModel: LiveData<OceanHeaderAppModel> = _headerAppModel
@@ -70,16 +75,7 @@ class HeaderAppViewModel : ViewModel() {
         val newValue = _headerAppModel.value!!.copy(
             hideBalance = isHidingBalance,
             isLoading = isLoading,
-            isHeaderCollapsed = isHeaderCollapsed,
-            balanceOthersModel = OceanBalanceOthersModel(
-                title = "Saldo em Outras maquininhas",
-                description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
-                buttonCta = "Trazer saldo para a Blu",
-                buttonCtaCollapsed = "Trazer saldo",
-                onClickButton = {
-                    println("Click botão outras maquininhas")
-                }
-            )
+            isHeaderCollapsed = isHeaderCollapsed
         )
 
         _headerAppModel.postValue(newValue)

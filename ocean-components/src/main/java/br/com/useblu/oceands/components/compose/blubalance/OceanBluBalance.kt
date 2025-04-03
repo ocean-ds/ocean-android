@@ -1,14 +1,19 @@
 package br.com.useblu.oceands.components.compose.blubalance
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -17,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,6 +37,7 @@ import br.com.useblu.oceands.components.compose.blubalance.model.OceanBalanceIte
 import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemInteraction
 import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemModel
 import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemType
+import br.com.useblu.oceands.components.compose.shimmeringBrush
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -38,14 +45,15 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
-import br.com.useblu.oceands.ui.compose.borderRadius
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Composable
 fun OceanBluBalance(
     modifier: Modifier = Modifier,
     items: List<OceanBluBalanceItemModel>,
-    hideContent: Boolean = false
+    hideContent: Boolean = false,
+    isLoading: Boolean = false,
+    onClickDelegate: (() -> Unit)? = null
 ) {
     Column(
         modifier = modifier
@@ -53,7 +61,9 @@ fun OceanBluBalance(
         items.forEachIndexed { index, item ->
             ItemContent(
                 item = item,
-                hideContent = hideContent
+                hideContent = hideContent,
+                isLoading = isLoading,
+                onClickDelegate = onClickDelegate
             )
             if (index < items.lastIndex) {
                 BluBalanceDivider()
@@ -66,14 +76,20 @@ fun OceanBluBalance(
 private fun ItemContent(
     modifier: Modifier = Modifier,
     item: OceanBluBalanceItemModel,
-    hideContent: Boolean
+    hideContent: Boolean,
+    isLoading: Boolean,
+    onClickDelegate: (() -> Unit)?
 ) {
     var showExpandedInfo by remember { mutableStateOf(item.interaction.showExpandedInfo) }
 
     Column(
-        modifier
-            .clickable {
-                when (item.interaction) {
+        modifier = modifier
+            .clickable(
+                enabled = item.interaction.canClickFullItem || onClickDelegate != null
+            ) {
+                onClickDelegate?.let {
+                    it()
+                } ?: when (item.interaction) {
                     is OceanBluBalanceItemInteraction.Expandable -> {
                         showExpandedInfo = showExpandedInfo.not()
                     }
@@ -92,7 +108,8 @@ private fun ItemContent(
             when (item.type) {
                 is OceanBluBalanceItemType.Main -> ItemMainContent(
                     data = item.type,
-                    hideContent = hideContent
+                    hideContent = hideContent,
+                    isLoading = isLoading
                 )
                 is OceanBluBalanceItemType.Text -> ItemTextContent(
                     modifier = Modifier.weight(1f),
@@ -111,11 +128,15 @@ private fun ItemContent(
             }
         }
 
-        if (showExpandedInfo) {
+        AnimatedVisibility(
+            visible = showExpandedInfo
+        ) {
             when (item.interaction) {
                 is OceanBluBalanceItemInteraction.Expandable ->
                     ItemExpandableContent(
-                        data = item.interaction
+                        data = item.interaction,
+                        hideContent = hideContent,
+                        isLoading = isLoading
                     )
                 is OceanBluBalanceItemInteraction.Action -> Unit
             }
@@ -126,7 +147,8 @@ private fun ItemContent(
 @Composable
 private fun ItemMainContent(
     data: OceanBluBalanceItemType.Main,
-    hideContent: Boolean
+    hideContent: Boolean,
+    isLoading: Boolean
 ) {
     Column {
         OceanText(
@@ -135,11 +157,24 @@ private fun ItemMainContent(
             color = OceanColors.brandPrimaryUp
         )
 
-        OceanText(
-            text = if (hideContent) data.hiddenValue else data.value,
-            style = OceanTextStyle.heading4,
-            color = OceanColors.interfaceLightPure
-        )
+        if (isLoading) {
+            val brush = shimmeringBrush()
+            Box(
+                modifier = Modifier
+                    .height(20.dp)
+                    .width(72.dp)
+                    .borderBackground(
+                        brush = brush,
+                        borderRadius = OceanBorderRadius.Tiny.allCorners
+                    )
+            )
+        } else {
+            OceanText(
+                text = if (hideContent) data.hiddenValue else data.value,
+                style = OceanTextStyle.heading4,
+                color = OceanColors.interfaceLightPure
+            )
+        }
     }
 }
 
@@ -161,12 +196,14 @@ private fun ItemTextContent(
 private fun ItemExpandableInteraction(
     showExpandedInfo: Boolean
 ) {
+    val animatedRotation = animateFloatAsState(
+        targetValue = if (showExpandedInfo) 180f else 0f,
+        label = "OceanBluBalanceItemInteraction"
+    )
     OceanIcon(
-        iconType = if (showExpandedInfo) {
-            OceanIcons.CHEVRON_UP_SOLID
-        } else {
-            OceanIcons.CHEVRON_DOWN_SOLID
-        },
+        modifier = Modifier
+            .rotate(degrees = animatedRotation.value),
+        iconType = OceanIcons.CHEVRON_DOWN_SOLID,
         tint = OceanColors.interfaceLightPure
     )
 }
@@ -246,7 +283,9 @@ private fun ItemActionBadgesInteraction(
 
 @Composable
 private fun ItemExpandableContent(
-    data: OceanBluBalanceItemInteraction.Expandable
+    data: OceanBluBalanceItemInteraction.Expandable,
+    hideContent: Boolean,
+    isLoading: Boolean
 ) {
     Column {
         data.items.fastForEachIndexed { index, pair ->
@@ -263,11 +302,25 @@ private fun ItemExpandableContent(
                         .weight(1f)
                 )
 
-                OceanText(
-                    text = pair.second,
-                    style = OceanTextStyle.heading5,
-                    color = OceanColors.interfaceLightPure
-                )
+                if (isLoading) {
+                    val brush = shimmeringBrush()
+                    Box(
+                        modifier = Modifier
+                            .height(18.dp)
+                            .width(72.dp)
+                            .borderBackground(
+                                brush = brush,
+                                borderRadius = OceanBorderRadius.Tiny.allCorners
+                            )
+                            .padding(vertical = OceanSpacing.xxs)
+                    )
+                } else {
+                    OceanText(
+                        text = if (hideContent) data.hiddenValue else pair.second,
+                        style = OceanTextStyle.heading5,
+                        color = OceanColors.interfaceLightPure
+                    )
+                }
             }
             if (index < data.items.lastIndex) {
                 BluBalanceDivider()
@@ -297,19 +350,18 @@ fun OceanBluBalancePreview() {
                 OceanBluBalanceItemModel(
                     type = OceanBluBalanceItemType.Main(
                         title = "Saldo total na Blu",
-                        value = "R$ 1.000.000,00"
+                        value = "R$ 1.500.000,00"
                     ),
                     interaction = OceanBluBalanceItemInteraction.Expandable(
                         items = listOf(
                             "Saldo atual" to "R$ 1.000,00",
-                            "Agenda" to "R$ 1.000,00"
+                            "Agenda" to "R$ 10.000,00"
                         )
                     )
                 ),
                 OceanBluBalanceItemModel(
                     type = OceanBluBalanceItemType.Text(
-                        "Facilite a conciliação\n" +
-                            "de cobranças PagBlu"
+                        "Facilite a conciliação de cobranças PagBlu"
                     ),
                     interaction = OceanBluBalanceItemInteraction.Action(
                         type = OceanBalanceItemAction.Button(
@@ -340,8 +392,8 @@ fun OceanBluBalanceExpandedPreview() {
                     interaction = OceanBluBalanceItemInteraction.Expandable(
                         showExpandedInfo = true,
                         items = listOf(
-                            "Saldo atual" to "R$ 1.000,00",
-                            "Agenda" to "R$ 1.000,00"
+                            "Saldo atual" to "R$ 5.000,00",
+                            "Agenda" to "R$ 95.000,00"
                         )
                     )
                 ),
@@ -363,7 +415,8 @@ fun OceanBluBalanceExpandedPreview() {
                         action = { }
                     )
                 )
-            )
+            ),
+            isLoading = false
         )
     }
 }

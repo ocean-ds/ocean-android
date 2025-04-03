@@ -12,13 +12,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,43 +27,52 @@ import br.com.useblu.oceands.components.compose.OceanBadgeSize
 import br.com.useblu.oceands.components.compose.OceanBluPlus
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTheme
+import br.com.useblu.oceands.components.compose.blubalance.OceanBluBalance
+import br.com.useblu.oceands.components.compose.blubalance.model.OceanBalanceItemAction
+import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemInteraction
+import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemModel
+import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemType
 import br.com.useblu.oceands.components.compose.header.model.OceanHeaderStyle
 import br.com.useblu.oceands.extensions.compose.topBarBackground
 import br.com.useblu.oceands.model.OceanBadgeType
-import br.com.useblu.oceands.model.compose.OceanBalanceBluModel
-import br.com.useblu.oceands.model.compose.OceanBalanceOthersModel
 import br.com.useblu.oceands.model.compose.OceanHeaderAppAction
 import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
 val modelPreview = OceanHeaderAppModel(
     clientName = "Fabricante 3 - Fluxo dia atual teste 2",
     formattedCnpj = "32.677.554/0001-14",
-    balanceBluModel = OceanBalanceBluModel(
-        firstLabel = "First Label",
-        firstValue = "-35,63",
-        secondLabel = "Second Label",
-        secondValue = "10,00",
-        thirdLabel = "Third Label",
-        thirdValue = "50,00",
-        buttonCta = "Extrato",
-        buttonDescription = "Confira tudo o que entrou e saiu da sua Conta Digital Blu",
-        onClickButton = {
-            println("Click blu")
-        }
-    ),
-    balanceOthersModel = OceanBalanceOthersModel(
-        title = "Saldo em Outras maquininhas",
-        description = "Receba na Blu as vendas feitas nas suas outras maquininhas",
-        buttonCta = "Extrato",
-        buttonCtaCollapsed = "Extrato",
-        onClickButton = {
-            println("Click others")
-        }
+    items = listOf(
+        OceanBluBalanceItemModel(
+            type = OceanBluBalanceItemType.Main(
+                title = "First Label",
+                value = "-35,63"
+            ),
+            interaction = OceanBluBalanceItemInteraction.Expandable(
+                items = listOf(
+                    "Second Label" to "10,00",
+                    "Third Label" to "50,00"
+                )
+            )
+        ),
+
+        OceanBluBalanceItemModel(
+            type = OceanBluBalanceItemType.Text(
+                text = "Confira tudo o que entrou e saiu da sua Conta Digital Blu"
+            ),
+            interaction = OceanBluBalanceItemInteraction.Action(
+                type = OceanBalanceItemAction.Button(
+                    title = "Extrato"
+                ),
+                action = { }
+            )
+        )
     ),
     isLoading = false,
     isHeaderCollapsed = false,
@@ -86,7 +95,9 @@ val modelPreview = OceanHeaderAppModel(
 @Composable
 fun MinimalHeader(
     model: OceanHeaderAppModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isContentHidden: Boolean,
+    toggleContentHidden: () -> Unit
 ) {
     Row(
         modifier = modifier
@@ -141,7 +152,21 @@ fun MinimalHeader(
             OceanSpacing.StackXXXS()
         }
 
-        model.appActions.forEach { headerAction ->
+        (
+            listOf(
+                OceanHeaderAppAction<Any>(
+                    key = "visibility_toggle",
+                    icon = if (isContentHidden) {
+                        OceanIcons.EYE_OFF_ALT_OUTLINE
+                    } else {
+                        OceanIcons.EYE_OUTLINE
+                    },
+                    action = {
+                        toggleContentHidden()
+                    }
+                )
+            ) + model.appActions
+            ).forEach { headerAction ->
             MinimalHeaderAction(
                 icon = headerAction.icon,
                 badgeCount = headerAction.badgeCount,
@@ -200,12 +225,8 @@ private fun MinimalHeaderAction(
 @Composable
 @Preview
 fun OceanHeaderMinimalPreview() {
-    val modelPreview = remember {
-        mutableStateOf(modelPreview)
-    }
-
     OceanHeader(
-        headerModel = modelPreview.value,
+        headerModel = modelPreview,
         style = OceanHeaderStyle.Minimal
     )
 }
@@ -213,58 +234,19 @@ fun OceanHeaderMinimalPreview() {
 @Composable
 @Preview
 fun OceanHeaderSmallPreview() {
-    var modelPreview by remember {
-        mutableStateOf(
-            modelPreview.copy(isHeaderCollapsed = true)
-        )
-    }
-
-    LaunchedEffect(key1 = true) {
-        modelPreview = modelPreview.copy(
-            balanceBluModel = modelPreview.balanceBluModel.copy(
-                onClickExpandScroll = {
-                    modelPreview = modelPreview.copy(
-                        isHeaderCollapsed = false
-                    )
-                }
-            )
-        )
-    }
-
     OceanTheme {
-        Column {
-            OceanHeader(
-                headerModel = modelPreview,
-                style = OceanHeaderStyle.Small
-            )
-
-            OceanSpacing.StackXS()
-
-            Button(
-                onClick = {
-                    modelPreview =
-                        modelPreview.copy(
-                            isHeaderCollapsed = !modelPreview.isHeaderCollapsed
-                        )
-                }
-            ) {
-                Text(text = "Toggle collapsed")
-            }
-        }
+        OceanHeader(
+            headerModel = modelPreview.copy(isHeaderCollapsed = true),
+            style = OceanHeaderStyle.Small
+        )
     }
 }
 
 @Composable
 @Preview
-fun OceanHeaderDefaultPreview() {
-    val modelPreview = remember {
-        mutableStateOf(
-            modelPreview.copy(isHeaderCollapsed = false)
-        )
-    }
-
+private fun OceanHeaderDefaultPreview() {
     OceanHeader(
-        headerModel = modelPreview.value,
+        headerModel = modelPreview.copy(isHeaderCollapsed = false),
         style = OceanHeaderStyle.Small
     )
 }
@@ -275,53 +257,62 @@ fun OceanHeader(
     headerModel: OceanHeaderAppModel,
     style: OceanHeaderStyle = OceanHeaderStyle.Small
 ) {
+    var isContentHidden by remember { mutableStateOf(false) }
+
     Column(
         modifier = modifier
             .topBarBackground(color = OceanColors.brandPrimaryPure)
     ) {
-        MinimalHeader(model = headerModel)
+        MinimalHeader(
+            model = headerModel,
+            isContentHidden = isContentHidden,
+            toggleContentHidden = {
+                isContentHidden = !isContentHidden
+            }
+        )
 
         if (style is OceanHeaderStyle.Small) {
-            SmallHeader(model = headerModel)
+            SmallHeader(
+                model = headerModel,
+                isContentHidden = isContentHidden
+            )
         }
     }
 }
 
 @Composable
 private fun SmallHeader(
-    model: OceanHeaderAppModel
+    model: OceanHeaderAppModel,
+    isContentHidden: Boolean
 ) {
-    var isContentHidden by remember { mutableStateOf(false) }
-
     when {
         model.hideBalance -> return
         model.isHeaderCollapsed -> {
-            OceanBalanceBluCardCollapsed(
-                model = model.balanceBluModel,
-                isContentHidden = isContentHidden,
+            OceanBluBalance(
+                modifier = Modifier
+                    .background(color = Color(0xFF2244E8)),
+                items = model.items.take(1),
+                hideContent = isContentHidden,
                 isLoading = model.isLoading,
-                onClickToggleHideContent = {
-                    isContentHidden = !isContentHidden
+                onClickDelegate = {
+                    model.toggleHeaderCollapse()
                 }
             )
         }
 
         else -> {
-            Column(
+            OceanBluBalance(
                 modifier = Modifier
                     .padding(horizontal = OceanSpacing.xs)
                     .padding(top = OceanSpacing.xxxs, bottom = OceanSpacing.xs)
-            ) {
-                OceanBalanceBluCard(
-                    model = model.balanceBluModel,
-                    isLoading = model.isLoading,
-                    isCurrentPage = true,
-                    isContentHidden = isContentHidden,
-                    onClickToggleHideContent = {
-                        isContentHidden = !isContentHidden
-                    }
-                )
-            }
+                    .borderBackground(
+                        color = Color(0xFF2244E8),
+                        borderRadius = OceanBorderRadius.SM.allCorners
+                    ),
+                items = model.items,
+                hideContent = isContentHidden,
+                isLoading = model.isLoading
+            )
         }
     }
 }

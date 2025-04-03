@@ -74,7 +74,8 @@ fun OceanBadgePreview() {
 fun OceanBadge(
     text: String,
     type: OceanBadgeType,
-    size: OceanBadgeSize
+    size: OceanBadgeSize,
+    prefix: String = ""
 ) {
     val backgroundColor = when (type) {
         OceanBadgeType.HIGHLIGHT -> OceanColors.highlightPure
@@ -84,13 +85,15 @@ fun OceanBadge(
         OceanBadgeType.DISABLED -> OceanColors.interfaceDarkUp
     }
 
-    val formattedText = text.toIntOrNull()?.let {
-        if (it > 99) {
-            "99+"
-        } else {
-            it.toString()
-        }
-    } ?: text
+    val formattedText = prefix + (
+        text.toIntOrNull()?.let {
+            if (it > 99) {
+                "99+"
+            } else {
+                it.toString()
+            }
+        } ?: text
+        )
 
     Box(
         modifier = Modifier

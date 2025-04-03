@@ -851,6 +851,10 @@ enum class OceanIcons(
         token = "eyeoffoutline",
         icon = R.drawable.ocean_icon_eye_off_outline
     ),
+    EYE_OFF_ALT_OUTLINE(
+        token = "eyeoffaltoutline",
+        icon = R.drawable.ocean_icon_eye_off_alt_outline
+    ),
     EYE_OFF_SOLID(
         token = "eyeoffsolid",
         icon = R.drawable.ocean_icon_eye_off_solid
@@ -2235,6 +2239,54 @@ enum class OceanIcons(
     UNDEFINED(
         token = "",
         icon = R.drawable.ocean_icon_placeholder_solid
+    ),
+    ACQUIRER_PAGBANK(
+        token = "acquirer_pagbank",
+        icon = R.drawable.acquirer_pagbank
+    ),
+    ACQUIRER_REDE(
+        token = "acquirer_rede",
+        icon = R.drawable.acquirer_rede
+    ),
+    ACQUIRER_SAFRA(
+        token = "acquirer_safra",
+        icon = R.drawable.acquirer_safra
+    ),
+    ACQUIRER_SICOOB(
+        token = "acquirer_sicoob",
+        icon = R.drawable.acquirer_sicoob
+    ),
+    ACQUIRER_STONE(
+        token = "acquirer_stone",
+        icon = R.drawable.acquirer_stone
+    ),
+    ACQUIRER_SUMUP(
+        token = "acquirer_sumup",
+        icon = R.drawable.acquirer_sumup
+    ),
+    ACQUIRER_PAGARME(
+        token = "acquirer_pagarme",
+        icon = R.drawable.acquirer_pagarme
+    ),
+    ACQUIRER_MERCADOPAGO(
+        token = "acquirer_mercadopago",
+        icon = R.drawable.acquirer_mercadopago
+    ),
+    ACQUIRER_INFINITEPAY(
+        token = "acquirer_infinitepay",
+        icon = R.drawable.acquirer_infinitepay
+    ),
+    ACQUIRER_GETNET(
+        token = "acquirer_getnet",
+        icon = R.drawable.acquirer_getnet
+    ),
+    ACQUIRER_CIELO(
+        token = "acquirer_cielo",
+        icon = R.drawable.acquirer_cielo
+    ),
+    ACQUIRER_ASAAS(
+        token = "acquirer_asaas",
+        icon = R.drawable.acquirer_asaas
     );
 
     companion object {

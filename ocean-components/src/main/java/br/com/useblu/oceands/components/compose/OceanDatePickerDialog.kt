@@ -20,6 +20,7 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.DisabledDaysDecorator
 import br.com.useblu.oceands.utils.OceanIcons
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -32,6 +33,9 @@ import java.util.Date
 private fun OceanDatePickerDialogPreview() {
     OceanDatePickerDialog(
         title = "Selecione uma data",
+        infoTitle = "Título",
+        infoMessage = "Mensagem",
+        maxDate = Date(),
         onConfirm = {},
         onDismiss = {}
     )
@@ -41,6 +45,8 @@ private fun OceanDatePickerDialogPreview() {
 fun OceanDatePickerDialog(
     modifier: Modifier = Modifier,
     title: String,
+    infoTitle: String = "",
+    infoMessage: String = "",
     minDate: Date? = null,
     maxDate: Date? = null,
     defaultDate: Date = Date(),
@@ -62,6 +68,26 @@ fun OceanDatePickerDialog(
                 .background(color = OceanColors.interfaceLightPure)
         ) {
             OceanTopBarInverse(title = title, onClickIcon = onDismiss, icon = OceanIcons.X_OUTLINE)
+
+            if (infoTitle.isNotBlank()) {
+                OceanText(
+                    modifier = Modifier
+                        .padding(horizontal = OceanSpacing.xs)
+                        .padding(bottom = OceanSpacing.xxs),
+                    text = infoTitle,
+                    style = OceanTextStyle.heading4
+                )
+            }
+
+            if (infoMessage.isNotBlank()) {
+                OceanText(
+                    modifier = Modifier
+                        .padding(horizontal = OceanSpacing.xs)
+                        .padding(bottom = OceanSpacing.xs),
+                    text = infoMessage,
+                    style = OceanTextStyle.description
+                )
+            }
 
             AndroidView(
                 modifier = Modifier
@@ -115,7 +141,6 @@ fun OceanDatePickerDialog(
                                 )
                             )
                         }
-
                         calendarState.commit()
                     }
                 }

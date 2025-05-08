@@ -128,6 +128,8 @@ class HomeActivity : AppCompatActivity() {
                     if (showDatePicker) {
                         OceanDatePickerDialog(
                             title = "Selecione uma data",
+                            infoTitle = "Título",
+                            infoMessage = "Mensagem",
                             onConfirm = {
                                 println(it)
                                 showDatePicker = false

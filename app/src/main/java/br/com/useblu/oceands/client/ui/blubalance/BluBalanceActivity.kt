@@ -29,7 +29,6 @@ import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
-import br.com.useblu.oceands.utils.OceanIcons
 
 class BluBalanceActivity : AppCompatActivity() {
 
@@ -78,12 +77,12 @@ private fun BluBalancePreview() {
         ),
         interaction = OceanBluBalanceItemInteraction.Action(
             type = OceanBalanceItemAction.Badges(
-                icons = listOf(
-                    OceanIcons.ACQUIRER_REDE,
-                    OceanIcons.ACQUIRER_GETNET,
-                    OceanIcons.ACQUIRER_CIELO,
-                    OceanIcons.ACQUIRER_PAGBANK,
-                    OceanIcons.ACQUIRER_SICOOB
+                acquirers = listOf(
+                    "teste",
+                    "rede",
+                    "getnet",
+                    "cielo",
+                    "sicoob"
                 )
             ),
             action = { }

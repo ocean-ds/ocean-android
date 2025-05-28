@@ -12,7 +12,7 @@ sealed interface OceanBalanceItemAction {
     }
 
     data class Badges(
-        val icons: List<OceanIcons>,
+        val acquirers: List<String>,
         val traillingIcon: OceanIcons = OceanIcons.CHEVRON_RIGHT_SOLID
     ) : OceanBalanceItemAction {
         override val canClickFullItem: Boolean = true

@@ -1,27 +1,27 @@
 package br.com.useblu.oceands.ui.compose
 
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import br.com.useblu.oceands.R
+import br.com.useblu.oceands.OceanDS
 
 object OceanFontFamily {
-    val BaseBold = FontFamily(Font(R.font.font_family_base_bold))
+    private val token get() = OceanDS.fontFamilyToken
 
-    val BaseExtraBold = FontFamily(Font(R.font.font_family_base_extrabold))
+    val BaseBold = token.baseBold
 
-    val BaseLight = FontFamily(Font(R.font.font_family_base_light))
+    val BaseExtraBold = token.baseExtraBold
 
-    val BaseMedium = FontFamily(Font(R.font.font_family_base_medium))
+    val BaseLight = token.baseLight
 
-    val BaseRegular = FontFamily(Font(R.font.font_family_base_regular))
+    val BaseMedium = token.baseMedium
 
-    val HighlightBold = FontFamily(Font(R.font.font_family_highlight_bold))
+    val BaseRegular = token.baseRegular
 
-    val HighlightExtraBold = FontFamily(Font(R.font.font_family_highlight_extrabold))
+    val HighlightBold = token.highlightBold
 
-    val HighlightLight = FontFamily(Font(R.font.font_family_highlight_light))
+    val HighlightExtraBold = token.highlightExtraBold
 
-    val HighlightMedium = FontFamily(Font(R.font.font_family_highlight_medium))
+    val HighlightLight = token.highlightLight
 
-    val HighlightRegular = FontFamily(Font(R.font.font_family_highlight_regular))
+    val HighlightMedium = token.highlightMedium
+
+    val HighlightRegular = token.highlightRegular
 }

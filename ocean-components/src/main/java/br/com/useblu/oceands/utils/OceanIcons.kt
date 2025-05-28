@@ -2244,12 +2244,20 @@ enum class OceanIcons(
         token = "acquirer_pagbank",
         icon = R.drawable.acquirer_pagbank
     ),
+    ACQUIRER_PAGSEGURO(
+        token = "acquirer_pagseguro",
+        icon = R.drawable.acquirer_pagbank
+    ),
     ACQUIRER_REDE(
         token = "acquirer_rede",
         icon = R.drawable.acquirer_rede
     ),
     ACQUIRER_SAFRA(
         token = "acquirer_safra",
+        icon = R.drawable.acquirer_safra
+    ),
+    ACQUIRER_BANCOSAFRA(
+        token = "acquirer_bancosafra",
         icon = R.drawable.acquirer_safra
     ),
     ACQUIRER_SICOOB(
@@ -2268,12 +2276,24 @@ enum class OceanIcons(
         token = "acquirer_pagarme",
         icon = R.drawable.acquirer_pagarme
     ),
+    ACQUIRER_PAGAR_ME(
+        token = "acquirer_pagar-me",
+        icon = R.drawable.acquirer_pagarme
+    ),
     ACQUIRER_MERCADOPAGO(
         token = "acquirer_mercadopago",
         icon = R.drawable.acquirer_mercadopago
     ),
+    ACQUIRER_MERCADO_PAGO(
+        token = "acquirer_mercado-pago",
+        icon = R.drawable.acquirer_mercadopago
+    ),
     ACQUIRER_INFINITEPAY(
         token = "acquirer_infinitepay",
+        icon = R.drawable.acquirer_infinitepay
+    ),
+    ACQUIRER_INFINITE_PAY(
+        token = "acquirer_infinite-pay",
         icon = R.drawable.acquirer_infinitepay
     ),
     ACQUIRER_GETNET(

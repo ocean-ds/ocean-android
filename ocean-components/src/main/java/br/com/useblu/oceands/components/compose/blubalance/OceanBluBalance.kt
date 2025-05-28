@@ -242,7 +242,7 @@ private fun ItemActionBadgesInteraction(
     badgesData: OceanBalanceItemAction.Badges
 ) {
     val size = 24f
-    val take = if (badgesData.icons.size > 3) 2 else badgesData.icons.size
+    val take = if (badgesData.acquirers.size > 3) 2 else badgesData.acquirers.size
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
@@ -251,22 +251,46 @@ private fun ItemActionBadgesInteraction(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(((-size) / 3f).dp)
         ) {
-            badgesData.icons.take(take).forEach { icon ->
-                OceanIcon(
-                    modifier = Modifier
-                        .border(
-                            width = 1.dp,
-                            color = OceanColors.interfaceLightDown,
-                            shape = OceanBorderRadius.Circle.allCorners.shape()
+            badgesData.acquirers.take(take).forEach { acquirer ->
+                val icon = OceanIcons.fromToken("acquirer_$acquirer")
+                if (icon != OceanIcons.UNDEFINED) {
+                    OceanIcon(
+                        modifier = Modifier
+                            .border(
+                                width = 1.dp,
+                                color = OceanColors.interfaceLightDown,
+                                shape = OceanBorderRadius.Circle.allCorners.shape()
+                            )
+                            .size(size.dp),
+                        iconType = icon
+                    )
+                } else {
+                    Box(
+                        modifier = Modifier
+                            .background(
+                                color = OceanColors.interfaceLightPure,
+                                shape = OceanBorderRadius.Circle.allCorners.shape()
+                            )
+                            .border(
+                                width = 1.dp,
+                                color = OceanColors.interfaceLightDown,
+                                shape = OceanBorderRadius.Circle.allCorners.shape()
+                            )
+                            .size(size.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        OceanText(
+                            text = acquirer.take(1).uppercase(),
+                            color = OceanColors.brandPrimaryDown,
+                            style = OceanTextStyle.eyebrow
                         )
-                        .size(size.dp),
-                    iconType = icon
-                )
+                    }
+                }
             }
 
-            if (take < badgesData.icons.size) {
+            if (take < badgesData.acquirers.size) {
                 OceanBadge(
-                    text = "${badgesData.icons.size - take}",
+                    text = "${badgesData.acquirers.size - take}",
                     prefix = "+",
                     type = OceanBadgeType.PRIMARY_INVERTED,
                     size = OceanBadgeSize.Small
@@ -404,12 +428,12 @@ fun OceanBluBalanceExpandedPreview() {
                     ),
                     interaction = OceanBluBalanceItemInteraction.Action(
                         type = OceanBalanceItemAction.Badges(
-                            icons = listOf(
-                                OceanIcons.ACQUIRER_REDE,
-                                OceanIcons.ACQUIRER_GETNET,
-                                OceanIcons.ACQUIRER_CIELO,
-                                OceanIcons.ACQUIRER_PAGBANK,
-                                OceanIcons.ACQUIRER_SICOOB
+                            acquirers = listOf(
+                                "test",
+                                "rede",
+                                "getnet",
+                                "cielo",
+                                "sicoob"
                             )
                         ),
                         action = { }

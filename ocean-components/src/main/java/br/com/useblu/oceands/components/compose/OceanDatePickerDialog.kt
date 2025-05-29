@@ -11,7 +11,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
@@ -22,7 +21,6 @@ import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
-import br.com.useblu.oceands.ui.compose.sp
 import br.com.useblu.oceands.utils.DisabledDaysDecorator
 import br.com.useblu.oceands.utils.OceanIcons
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -72,8 +70,6 @@ fun OceanDatePickerDialog(
             OceanTopBarInverse(title = title, onClickIcon = onDismiss, icon = OceanIcons.X_OUTLINE)
 
             if (infoTitle.isNotBlank()) {
-                println(dimensionResource(R.dimen.ocean_font_size_xs).sp)
-                println(OceanTextStyle.heading4.fontSize)
                 OceanText(
                     modifier = Modifier
                         .padding(horizontal = OceanSpacing.xs)

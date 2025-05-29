@@ -1,9 +1,10 @@
 package br.com.useblu.oceands.ui.compose
 
 import br.com.useblu.oceands.OceanDS
+import br.com.useblu.oceands.tokens.oceandefaults.OceanFontFamilyToken
 
 object OceanFontFamily {
-    private val token get() = OceanDS.fontFamilyToken
+    private val token get() = OceanDS.fontFamilyToken ?: OceanFontFamilyToken
 
     val BaseBold = token.baseBold
 

@@ -3,10 +3,11 @@ package br.com.useblu.oceands.ui.compose
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import br.com.useblu.oceands.OceanDS
+import br.com.useblu.oceands.tokens.oceandefaults.OceanFontToken
 
 @Immutable
 object OceanFontSize {
-    private val token get() = OceanDS.fontToken
+    private val token get() = OceanDS.fontToken ?: OceanFontToken
 
     /**
      * 12 sp (base)

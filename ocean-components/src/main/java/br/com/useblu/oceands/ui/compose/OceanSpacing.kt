@@ -6,10 +6,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
 import br.com.useblu.oceands.OceanDS
+import br.com.useblu.oceands.tokens.oceandefaults.OceanSpacingToken
 
 @Immutable
 object OceanSpacing {
-    private val token get() = OceanDS.spacingToken
+    private val token get() = OceanDS.spacingToken ?: OceanSpacingToken
 
     /**
      * 4dp (base)

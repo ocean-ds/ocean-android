@@ -2,63 +2,65 @@ package br.com.useblu.oceands.ui.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.res.dimensionResource
-import br.com.useblu.oceands.R
+import br.com.useblu.oceands.OceanDS
+import br.com.useblu.oceands.tokens.OceanFontSizeTokens
 
 @Immutable
 object OceanFontSize {
-    /**
-     * 12 sp
-     */
-    val xxxs @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xxxs).sp
+    private val tokens get() = OceanDS.fontSizeTokens ?: object : OceanFontSizeTokens {}
 
     /**
-     * 14 sp
+     * 12 sp (base)
      */
-    val xxs @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xxs).sp
+    val xxxs @Composable get() = tokens.xxxs
 
     /**
-     * 16 sp
+     * 14 sp (base)
      */
-    val xs @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xs).sp
+    val xxs @Composable get() = tokens.xxs
 
     /**
-     * 20 sp
+     * 16 sp (base)
      */
-    val sm @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_sm).sp
+    val xs @Composable get() = tokens.xs
 
     /**
-     * 24 sp
+     * 20 sp (base)
      */
-    val md @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_md).sp
+    val sm @Composable get() = tokens.sm
 
     /**
-     * 32 sp
+     * 24 sp (base)
      */
-    val lg @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_lg).sp
+    val md @Composable get() = tokens.md
 
     /**
-     * 40 sp
+     * 32 sp (base)
      */
-    val xl @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xl).sp
+    val lg @Composable get() = tokens.lg
 
     /**
-     * 48 sp
+     * 40 sp (base)
      */
-    val xxl @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xxl).sp
+    val xl @Composable get() = tokens.xl
 
     /**
-     * 64 sp
+     * 48 sp (base)
      */
-    val xxxl @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_xxxl).sp
+    val xxl @Composable get() = tokens.xxl
 
     /**
-     * 80 sp
+     * 64 sp (base)
      */
-    val display @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_display).sp
+    val xxxl @Composable get() = tokens.xxxl
 
     /**
-     * 96 sp
+     * 80 sp (base)
      */
-    val giant @Composable get() = dimensionResource(id = R.dimen.ocean_font_size_giant).sp
+    val display @Composable get() = tokens.display
+
+    /**
+     * 96 sp (base)
+     */
+    val giant @Composable get() = tokens.giant
 }

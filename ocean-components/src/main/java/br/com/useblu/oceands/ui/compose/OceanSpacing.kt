@@ -5,63 +5,65 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
-import br.com.useblu.oceands.R
+import br.com.useblu.oceands.OceanDS
+import br.com.useblu.oceands.tokens.OceanSpacingTokens
 
 @Immutable
 object OceanSpacing {
-    /**
-     * 4dp
-     */
-    val xxxs @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxxs)
+    private val tokens get() = OceanDS.spacingTokens ?: object : OceanSpacingTokens {}
 
     /**
-     * 8dp
+     * 4dp (base)
      */
-    val xxs @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxs)
+    val xxxs @Composable get() = tokens.xxxs
 
     /**
-     * 12dp
+     * 8dp (base)
      */
-    val xxsExtra @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxs_extra)
+    val xxs @Composable get() = tokens.xxs
 
     /**
-     * 16dp
+     * 12dp (base)
      */
-    val xs @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xs)
+    val xxsExtra @Composable get() = tokens.xxsExtra
 
     /**
-     * 24dp
+     * 16dp (base)
      */
-    val sm @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_sm)
+    val xs @Composable get() = tokens.xs
 
     /**
-     * 32dp
+     * 24dp (base)
      */
-    val md @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_md)
+    val sm @Composable get() = tokens.sm
 
     /**
-     * 40dp
+     * 32dp (base)
      */
-    val lg @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_lg)
+    val md @Composable get() = tokens.md
 
     /**
-     * 48dp
+     * 40dp (base)
      */
-    val xl @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xl)
+    val lg @Composable get() = tokens.lg
 
     /**
-     * 64dp
+     * 48dp (base)
      */
-    val xxl @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxl)
+    val xl @Composable get() = tokens.xl
 
     /**
-     * 80dp
+     * 64dp (base)
      */
-    val xxxl @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxxl)
+    val xxl @Composable get() = tokens.xxl
 
     /**
-     * 4dp
+     * 80dp (base)
+     */
+    val xxxl @Composable get() = tokens.xxxl
+
+    /**
+     * 4dp (base)
      */
     @Composable
     fun StackXXXS() {

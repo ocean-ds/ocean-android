@@ -2276,24 +2276,12 @@ enum class OceanIcons(
         token = "acquirer_pagarme",
         icon = R.drawable.acquirer_pagarme
     ),
-    ACQUIRER_PAGAR_ME(
-        token = "acquirer_pagar-me",
-        icon = R.drawable.acquirer_pagarme
-    ),
     ACQUIRER_MERCADOPAGO(
         token = "acquirer_mercadopago",
         icon = R.drawable.acquirer_mercadopago
     ),
-    ACQUIRER_MERCADO_PAGO(
-        token = "acquirer_mercado-pago",
-        icon = R.drawable.acquirer_mercadopago
-    ),
     ACQUIRER_INFINITEPAY(
         token = "acquirer_infinitepay",
-        icon = R.drawable.acquirer_infinitepay
-    ),
-    ACQUIRER_INFINITE_PAY(
-        token = "acquirer_infinite-pay",
         icon = R.drawable.acquirer_infinitepay
     ),
     ACQUIRER_GETNET(
@@ -2311,7 +2299,8 @@ enum class OceanIcons(
 
     companion object {
         fun fromToken(token: String): OceanIcons {
-            return entries.firstOrNull { it.token.equals(token.trim(), ignoreCase = true) } ?: UNDEFINED
+            val newToken = token.trim().replace("-", "")
+            return entries.firstOrNull { it.token.equals(newToken, ignoreCase = true) } ?: UNDEFINED
         }
     }
 }

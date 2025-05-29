@@ -5,7 +5,7 @@ import androidx.compose.ui.text.font.FontFamily
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.tokens.FontFamilyToken
 
-internal class OceanFontFamilyToken : FontFamilyToken {
+internal object OceanFontFamilyToken : FontFamilyToken {
     override val baseBold: FontFamily = FontFamily(Font(R.font.font_family_base_bold))
     override val baseExtraBold: FontFamily = FontFamily(Font(R.font.font_family_base_extrabold))
     override val baseLight: FontFamily = FontFamily(Font(R.font.font_family_base_light))

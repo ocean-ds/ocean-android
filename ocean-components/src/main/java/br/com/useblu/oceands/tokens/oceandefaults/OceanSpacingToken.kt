@@ -1,40 +1,30 @@
 package br.com.useblu.oceands.tokens.oceandefaults
 
-import android.content.Context
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.tokens.SpacingToken
 
-internal class OceanSpacingToken(
-    private val context: Context
-) : SpacingToken {
-
-    private val resources
-        get() = context.resources
-
+internal object OceanSpacingToken : SpacingToken {
     override val xxxs: Dp
-        get() = resources.getDimension(R.dimen.ocean_spacing_stack_xxxs).toDp()
+        @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxxs)
     override val xxs: Dp
-        get() = resources.getDimension(R.dimen.ocean_spacing_stack_xxs).toDp()
+        @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxs)
     override val xxsExtra: Dp
-        get() = resources.getDimension(R.dimen.ocean_spacing_stack_xxs_extra).toDp()
+        @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxs_extra)
     override val xs: Dp
-        get() = resources.getDimension(R.dimen.ocean_spacing_stack_xs).toDp()
+        @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xs)
     override val sm: Dp
-        get() = resources.getDimension(R.dimen.ocean_spacing_stack_sm).toDp()
+        @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_sm)
     override val md: Dp
-        get() = resources.getDimension(R.dimen.ocean_spacing_stack_md).toDp()
+        @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_md)
     override val lg: Dp
-        get() = resources.getDimension(R.dimen.ocean_spacing_stack_lg).toDp()
+        @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_lg)
     override val xl: Dp
-        get() = resources.getDimension(R.dimen.ocean_spacing_stack_xl).toDp()
+        @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xl)
     override val xxl: Dp
-        get() = resources.getDimension(R.dimen.ocean_spacing_stack_xxl).toDp()
+        @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxl)
     override val xxxl: Dp
-        get() = resources.getDimension(R.dimen.ocean_spacing_stack_xxxl).toDp()
-
-    fun Float.toDp(): Dp {
-        return (this / resources.displayMetrics.density).dp
-    }
+        @Composable get() = dimensionResource(id = R.dimen.ocean_spacing_stack_xxxl)
 }

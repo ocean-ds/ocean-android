@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.ui.compose
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import br.com.useblu.oceands.OceanDS
 
@@ -10,55 +11,55 @@ object OceanFontSize {
     /**
      * 12 sp (base)
      */
-    val xxxs get() = token.xxxs
+    val xxxs @Composable get() = token.xxxs
 
     /**
      * 14 sp (base)
      */
-    val xxs get() = token.xxs
+    val xxs @Composable get() = token.xxs
 
     /**
      * 16 sp (base)
      */
-    val xs get() = token.xs
+    val xs @Composable get() = token.xs
 
     /**
      * 20 sp (base)
      */
-    val sm get() = token.sm
+    val sm @Composable get() = token.sm
 
     /**
      * 24 sp (base)
      */
-    val md get() = token.md
+    val md @Composable get() = token.md
 
     /**
      * 32 sp (base)
      */
-    val lg get() = token.lg
+    val lg @Composable get() = token.lg
 
     /**
      * 40 sp (base)
      */
-    val xl get() = token.xl
+    val xl @Composable get() = token.xl
 
     /**
      * 48 sp (base)
      */
-    val xxl get() = token.xxl
+    val xxl @Composable get() = token.xxl
 
     /**
      * 64 sp (base)
      */
-    val xxxl get() = token.xxxl
+    val xxxl @Composable get() = token.xxxl
 
     /**
      * 80 sp (base)
      */
-    val display get() = token.display
+    val display @Composable get() = token.display
 
     /**
      * 96 sp (base)
      */
-    val giant get() = token.giant
+    val giant @Composable get() = token.giant
 }

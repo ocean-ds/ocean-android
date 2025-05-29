@@ -1,6 +1,5 @@
 package br.com.useblu.oceands
 
-import android.content.Context
 import br.com.useblu.oceands.tokens.FontFamilyToken
 import br.com.useblu.oceands.tokens.FontToken
 import br.com.useblu.oceands.tokens.SpacingToken
@@ -10,19 +9,21 @@ import br.com.useblu.oceands.tokens.oceandefaults.OceanSpacingToken
 
 class OceanDS {
     companion object {
-        internal lateinit var fontToken: FontToken
-        internal lateinit var fontFamilyToken: FontFamilyToken
-        internal lateinit var spacingToken: SpacingToken
+        private var _fontToken: FontToken? = null
+        private var _fontFamilyToken: FontFamilyToken? = null
+        private var _spacingToken: SpacingToken? = null
+        internal val fontToken: FontToken get() = _fontToken ?: OceanFontToken
+        internal val fontFamilyToken: FontFamilyToken get() = _fontFamilyToken ?: OceanFontFamilyToken
+        internal val spacingToken: SpacingToken get() = _spacingToken ?: OceanSpacingToken
 
         fun initialize(
-            context: Context,
             fontToken: FontToken? = null,
             fontFamilyToken: FontFamilyToken? = null,
             spacingToken: SpacingToken? = null
         ) {
-            this.fontToken = fontToken ?: OceanFontToken(context = context)
-            this.fontFamilyToken = fontFamilyToken ?: OceanFontFamilyToken()
-            this.spacingToken = spacingToken ?: OceanSpacingToken(context = context)
+            _fontToken = fontToken
+            _fontFamilyToken = fontFamilyToken
+            _spacingToken = spacingToken
         }
     }
 }

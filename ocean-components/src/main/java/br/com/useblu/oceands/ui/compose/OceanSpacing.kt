@@ -14,52 +14,52 @@ object OceanSpacing {
     /**
      * 4dp (base)
      */
-    val xxxs get() = token.xxxs
+    val xxxs @Composable get() = token.xxxs
 
     /**
      * 8dp (base)
      */
-    val xxs get() = token.xxs
+    val xxs @Composable get() = token.xxs
 
     /**
      * 12dp (base)
      */
-    val xxsExtra get() = token.xxsExtra
+    val xxsExtra @Composable get() = token.xxsExtra
 
     /**
      * 16dp (base)
      */
-    val xs get() = token.xs
+    val xs @Composable get() = token.xs
 
     /**
      * 24dp (base)
      */
-    val sm get() = token.sm
+    val sm @Composable get() = token.sm
 
     /**
      * 32dp (base)
      */
-    val md get() = token.md
+    val md @Composable get() = token.md
 
     /**
      * 40dp (base)
      */
-    val lg get() = token.lg
+    val lg @Composable get() = token.lg
 
     /**
      * 48dp (base)
      */
-    val xl get() = token.xl
+    val xl @Composable get() = token.xl
 
     /**
      * 64dp (base)
      */
-    val xxl get() = token.xxl
+    val xxl @Composable get() = token.xxl
 
     /**
      * 80dp (base)
      */
-    val xxxl get() = token.xxxl
+    val xxxl @Composable get() = token.xxxl
 
     /**
      * 4dp (base)

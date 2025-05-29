@@ -7,7 +7,7 @@ import br.com.useblu.oceands.tokens.OceanFontSizeTokens
 
 @Immutable
 object OceanFontSize {
-    private val tokens get() = OceanDS.fontTokens ?: object : OceanFontSizeTokens {}
+    private val tokens get() = OceanDS.fontSizeTokens ?: object : OceanFontSizeTokens {}
 
     /**
      * 12 sp (base)

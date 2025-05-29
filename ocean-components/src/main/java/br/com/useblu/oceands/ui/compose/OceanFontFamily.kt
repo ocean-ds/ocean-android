@@ -1,28 +1,28 @@
 package br.com.useblu.oceands.ui.compose
 
 import br.com.useblu.oceands.OceanDS
-import br.com.useblu.oceands.tokens.oceandefaults.OceanFontFamilyToken
+import br.com.useblu.oceands.tokens.OceanFontFamilyTokens
 
 object OceanFontFamily {
-    private val token get() = OceanDS.fontFamilyToken ?: OceanFontFamilyToken
+    private val tokens get() = OceanDS.fontFamilyTokens ?: object : OceanFontFamilyTokens {}
 
-    val BaseBold = token.baseBold
+    val BaseBold = tokens.baseBold
 
-    val BaseExtraBold = token.baseExtraBold
+    val BaseExtraBold = tokens.baseExtraBold
 
-    val BaseLight = token.baseLight
+    val BaseLight = tokens.baseLight
 
-    val BaseMedium = token.baseMedium
+    val BaseMedium = tokens.baseMedium
 
-    val BaseRegular = token.baseRegular
+    val BaseRegular = tokens.baseRegular
 
-    val HighlightBold = token.highlightBold
+    val HighlightBold = tokens.highlightBold
 
-    val HighlightExtraBold = token.highlightExtraBold
+    val HighlightExtraBold = tokens.highlightExtraBold
 
-    val HighlightLight = token.highlightLight
+    val HighlightLight = tokens.highlightLight
 
-    val HighlightMedium = token.highlightMedium
+    val HighlightMedium = tokens.highlightMedium
 
-    val HighlightRegular = token.highlightRegular
+    val HighlightRegular = tokens.highlightRegular
 }

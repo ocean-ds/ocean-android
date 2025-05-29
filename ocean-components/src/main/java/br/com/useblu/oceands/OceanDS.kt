@@ -1,27 +1,27 @@
 package br.com.useblu.oceands
 
-import br.com.useblu.oceands.tokens.ColorToken
-import br.com.useblu.oceands.tokens.FontFamilyToken
-import br.com.useblu.oceands.tokens.FontToken
-import br.com.useblu.oceands.tokens.SpacingToken
+import br.com.useblu.oceands.tokens.OceanColorTokens
+import br.com.useblu.oceands.tokens.OceanFontFamilyTokens
+import br.com.useblu.oceands.tokens.OceanFontSizeTokens
+import br.com.useblu.oceands.tokens.OceanSpacingTokens
 
 class OceanDS {
     companion object {
-        internal var fontToken: FontToken? = null
-        internal var fontFamilyToken: FontFamilyToken? = null
-        internal var spacingToken: SpacingToken? = null
-        internal var colorToken: ColorToken? = null
+        internal var fontTokens: OceanFontSizeTokens? = null
+        internal var fontFamilyTokens: OceanFontFamilyTokens? = null
+        internal var spacingTokens: OceanSpacingTokens? = null
+        internal var colorTokens: OceanColorTokens? = null
 
         fun initialize(
-            fontToken: FontToken? = null,
-            fontFamilyToken: FontFamilyToken? = null,
-            spacingToken: SpacingToken? = null,
-            colorToken: ColorToken? = null
+            fontTokens: OceanFontSizeTokens? = null,
+            fontFamilyTokens: OceanFontFamilyTokens? = null,
+            spacingTokens: OceanSpacingTokens? = null,
+            colorTokens: OceanColorTokens? = null
         ) {
-            this.fontToken = fontToken
-            this.fontFamilyToken = fontFamilyToken
-            this.spacingToken = spacingToken
-            this.colorToken = colorToken
+            this.fontTokens = fontTokens
+            this.fontFamilyTokens = fontFamilyTokens
+            this.spacingTokens = spacingTokens
+            this.colorTokens = colorTokens
         }
     }
 }

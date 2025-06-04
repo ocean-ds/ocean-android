@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.databinding.OceanTransactionFooterItemBinding
-import br.com.useblu.oceands.model.OceanTransactionFooterItem
+import br.com.useblu.oceands.model.OceanInlineTextList
 
 class OceanTransactionFooterListAdapter(
-    private val items: List<OceanTransactionFooterItem>
+    private val items: List<OceanInlineTextList>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(

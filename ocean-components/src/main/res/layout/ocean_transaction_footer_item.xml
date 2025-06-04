@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="br.com.useblu.oceands.model.OceanTransactionFooterItem" />
+        <import type="br.com.useblu.oceands.model.OceanInlineTextList" />
 
         <variable
             name="item"
-            type="br.com.useblu.oceands.model.OceanTransactionFooterItem" />
+            type="br.com.useblu.oceands.model.OceanInlineTextList" />
 
     </data>
 

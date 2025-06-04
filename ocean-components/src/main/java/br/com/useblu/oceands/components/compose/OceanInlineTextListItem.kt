@@ -42,55 +42,57 @@ fun OceanInlineTextListItemPreview() {
         modifier = Modifier
             .background(color = OceanColors.interfaceLightPure)
     ) {
+        Column(
+
+            modifier = Modifier
+                .padding(OceanSpacing.xs)
+        ) {
+            OceanInlineTextListItem(
+                item = OceanInlineTextList(
+                    label = "Label",
+                    value = "Value",
+                    newValue = "New Value",
+                    color = "colorStatusPositiveDeep",
+                    icon = "tagsolid"
+                )
+            )
+            OceanInlineTextListItem(
+                item = OceanInlineTextList(
+                    label = "Label with tooltip",
+                    tooltip = "Tooltip text",
+                    value = "Value",
+                    color = "colorStatusPositiveDeep"
+                )
+            )
+            OceanInlineTextListItem(
+                item = OceanInlineTextList(
+                    label = "Label",
+                    value = "Value",
+                    newValue = "New Value",
+                    color = "colorInterfaceDarkDown"
+                )
+            )
+            OceanInlineTextListItem(
+                item = OceanInlineTextList(
+                    label = "Label bold",
+                    value = "Value bold",
+                    color = "colorInterfaceDarkPure",
+                    isBold = true,
+                    icon = OceanIcons.BRIEFCASE_OUTLINE.token
+                )
+            )
+            OceanInlineTextListItem(
+                item = OceanInlineTextList(
+                    label = "Label",
+                    value = "Value",
+                    color = "colorStatusNeutralDeep",
+                    icon = "information-circle-outline"
+                )
+            )
+        }
         OceanInlineTextListItem(
             title = OceanInlineTextListItemTitle.Default(title = "Title"),
             description = OceanInlineTextListItemDescription.Default(text = "Description")
-        )
-        OceanInlineTextListItem(
-            title = OceanInlineTextListItemTitle.Default(title = "Title"),
-            description = OceanInlineTextListItemDescription.Default(text = "Description")
-        )
-        OceanInlineTextListItem(
-            item = OceanInlineTextList(
-                label = "Label",
-                value = "Value",
-                newValue = "New Value",
-                color = "colorStatusPositiveDeep",
-                icon = "tagsolid"
-            )
-        )
-        OceanInlineTextListItem(
-            item = OceanInlineTextList(
-                label = "Label with tooltip",
-                tooltip = "Tooltip text",
-                value = "Value",
-                color = "colorStatusPositiveDeep"
-            )
-        )
-        OceanInlineTextListItem(
-            item = OceanInlineTextList(
-                label = "Label",
-                value = "Value",
-                newValue = "New Value",
-                color = "colorInterfaceDarkDown"
-            )
-        )
-        OceanInlineTextListItem(
-            item = OceanInlineTextList(
-                label = "Label bold",
-                value = "Value bold",
-                color = "colorInterfaceDarkPure",
-                isBold = true,
-                icon = OceanIcons.BRIEFCASE_OUTLINE.token
-            )
-        )
-        OceanInlineTextListItem(
-            item = OceanInlineTextList(
-                label = "Label",
-                value = "Value",
-                color = "colorStatusNeutralDeep",
-                icon = "information-circle-outline"
-            )
         )
         OceanInlineTextListItem(
             title = OceanInlineTextListItemTitle.WithTag(
@@ -203,8 +205,7 @@ fun OceanInlineTextListItem(
         modifier = modifier
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth()
-                .padding(OceanSpacing.xs),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

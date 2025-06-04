@@ -4,12 +4,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.useblu.oceands.adapter.OceanTransactionFooterListAdapter
-import br.com.useblu.oceands.model.OceanTransactionFooterItem
+import br.com.useblu.oceands.model.OceanInlineTextList
 
 @BindingAdapter("entries")
 fun setTransactionFooterAdapter(
     recyclerView: RecyclerView,
-    entries: List<OceanTransactionFooterItem>?
+    entries: List<OceanInlineTextList>?
 ) {
     entries?.let { list ->
         val oceanTransactionFooterListAdapter =

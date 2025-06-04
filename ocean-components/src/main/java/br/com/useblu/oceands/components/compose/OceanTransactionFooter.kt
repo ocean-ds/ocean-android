@@ -6,64 +6,60 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.useblu.oceands.R
-import br.com.useblu.oceands.model.OceanTransactionFooterItem
+import br.com.useblu.oceands.model.OceanInlineTextList
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
-import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
-import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
 @Composable
 private fun OceanTransactionFooterPreview() {
     val entries = listOf(
-        OceanTransactionFooterItem(
+        OceanInlineTextList(
             label = "Label1",
             value = "R$ 40,00",
             newValue = "Zero",
             color = "colorStatusPositiveDeep",
             icon = "tagsolid"
         ),
-        OceanTransactionFooterItem(
+        OceanInlineTextList(
             label = "Label1 - teste",
             value = "R$ 40,00",
             newValue = "",
             color = "colorStatusPositiveDeep"
         ),
-        OceanTransactionFooterItem(
+        OceanInlineTextList(
             label = "Label2",
             value = "R$ 40,00",
             color = "colorInterfaceDarkDown"
+
         ),
-        OceanTransactionFooterItem(
+        OceanInlineTextList(
             label = "Label3",
             value = "Calculada no dia",
             color = "colorStatusNeutralDeep"
+
         ),
-        OceanTransactionFooterItem(
+        OceanInlineTextList(
             label = "Label4",
             value = "R$ 10,00",
             tooltip = "tooltip",
             color = "colorStatusPositiveDeep",
             icon = "tagsolid"
+
         ),
-        OceanTransactionFooterItem(
+        OceanInlineTextList(
             label = "Label5",
             value = "R$ 40,00",
             color = "colorInterfaceDarkPure",
             isBold = true,
             icon = OceanIcons.BRIEFCASE_OUTLINE.token
+
         )
     )
 
@@ -88,7 +84,7 @@ private fun OceanTransactionFooterPreview() {
 @Composable
 fun OceanTransactionFooter(
     modifier: Modifier = Modifier,
-    entries: List<OceanTransactionFooterItem>,
+    entries: List<OceanInlineTextList>,
     firstButton: OceanButtonModel,
     secondButton: OceanButtonModel? = null,
     buttonsOrientation: Orientation = Orientation.Vertical
@@ -103,7 +99,7 @@ fun OceanTransactionFooter(
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
         ) {
             entries.forEach { item ->
-                TransactionFooterItem(
+                OceanInlineTextListItem(
                     item = item
                 )
             }
@@ -147,86 +143,6 @@ fun OceanTransactionFooter(
                 ) {
                     buttons(Modifier.fillMaxWidth())
                 }
-            }
-        }
-    }
-}
-
-@Composable
-private fun TransactionFooterItem(
-    item: OceanTransactionFooterItem
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            OceanText(
-                text = item.label ?: "",
-                style = OceanTextStyle.paragraph
-            )
-
-            if (!item.tooltip.isNullOrBlank()) {
-                OceanTooltip(item.tooltip) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ocean_icon_info_solid),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .padding(start = OceanSpacing.xxxs)
-                            .size(OceanSpacing.xs),
-                        tint = OceanColors.interfaceLightDeep
-                    )
-                }
-            }
-        }
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            if (!item.icon.isNullOrBlank()) {
-                OceanIcon(
-                    iconType = OceanIcons.fromToken(item.icon),
-                    modifier = Modifier.size(OceanSpacing.xs),
-                    tint = item.color?.let { OceanColors.fromString(color = item.color) }
-                        ?: Color.Unspecified
-                )
-            }
-
-            val textColor = if (item.newValue.isNullOrBlank() || item.value.isNullOrBlank()) {
-                OceanColors.fromString(color = item.color ?: "")
-            } else OceanColors.interfaceDarkDown
-
-            val valueStyle = if (item.isBold == true) {
-                OceanTextStyle.paragraph.copy(
-                    fontFamily = OceanFontFamily.BaseBold
-                )
-            } else OceanTextStyle.paragraph
-
-            val valueDecoration = if (item.isStrike == true) {
-                TextDecoration.LineThrough
-            } else null
-
-            OceanText(
-                text = item.value ?: "",
-                style = valueStyle,
-                color = textColor,
-                modifier = Modifier.padding(start = OceanSpacing.xxxs),
-                textDecoration = valueDecoration
-            )
-
-            if (!item.newValue.isNullOrBlank()) {
-                val color = item.color?.let {
-                    OceanColors.fromString(color = it)
-                }
-                OceanText(
-                    text = item.newValue,
-                    color = color ?: Color.Unspecified,
-                    style = OceanTextStyle.paragraph,
-                    modifier = Modifier.padding(start = OceanSpacing.xxxs)
-                )
             }
         }
     }

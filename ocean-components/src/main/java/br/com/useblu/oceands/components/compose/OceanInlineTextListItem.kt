@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,13 +10,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.R
+import br.com.useblu.oceands.model.OceanInlineTextList
 import br.com.useblu.oceands.model.compose.inlinetextlistitem.OceanInlineTextListItemDescription
 import br.com.useblu.oceands.model.compose.inlinetextlistitem.OceanInlineTextListItemDescriptionGenericType
 import br.com.useblu.oceands.model.compose.inlinetextlistitem.OceanInlineTextListItemSize
@@ -23,6 +29,7 @@ import br.com.useblu.oceands.model.compose.inlinetextlistitem.OceanInlineTextLis
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
@@ -41,8 +48,49 @@ fun OceanInlineTextListItemPreview() {
         )
         OceanInlineTextListItem(
             title = OceanInlineTextListItemTitle.Default(title = "Title"),
-            description = OceanInlineTextListItemDescription.Default(text = "Description"),
-            size = OceanInlineTextListItemSize.SMALL
+            description = OceanInlineTextListItemDescription.Default(text = "Description")
+        )
+        OceanInlineTextListItem(
+            item = OceanInlineTextList(
+                label = "Label",
+                value = "Value",
+                newValue = "New Value",
+                color = "colorStatusPositiveDeep",
+                icon = "tagsolid"
+            )
+        )
+        OceanInlineTextListItem(
+            item = OceanInlineTextList(
+                label = "Label with tooltip",
+                tooltip = "Tooltip text",
+                value = "Value",
+                color = "colorStatusPositiveDeep"
+            )
+        )
+        OceanInlineTextListItem(
+            item = OceanInlineTextList(
+                label = "Label",
+                value = "Value",
+                newValue = "New Value",
+                color = "colorInterfaceDarkDown"
+            )
+        )
+        OceanInlineTextListItem(
+            item = OceanInlineTextList(
+                label = "Label bold",
+                value = "Value bold",
+                color = "colorInterfaceDarkPure",
+                isBold = true,
+                icon = OceanIcons.BRIEFCASE_OUTLINE.token
+            )
+        )
+        OceanInlineTextListItem(
+            item = OceanInlineTextList(
+                label = "Label",
+                value = "Value",
+                color = "colorStatusNeutralDeep",
+                icon = "information-circle-outline"
+            )
         )
         OceanInlineTextListItem(
             title = OceanInlineTextListItemTitle.WithTag(
@@ -90,8 +138,10 @@ fun OceanInlineTextListItemPreview() {
             description = OceanInlineTextListItemDescription.Action(title = "Action", onClick = {}, buttonStyle = OceanButtonStyle.PrimarySmall)
         )
         OceanInlineTextListItem(
-            title = OceanInlineTextListItemTitle.Default(title = "Title"),
-            description = OceanInlineTextListItemDescription.Action(title = "Action", onClick = {}, buttonStyle = OceanButtonStyle.PrimarySmall),
+            item = OceanInlineTextList(
+                label = "Loading",
+                value = "..."
+            ),
             isLoading = true
         )
     }
@@ -130,6 +180,102 @@ fun OceanInlineTextListItem(
                 description = description,
                 size = size
             )
+        }
+    }
+}
+
+@Composable
+fun OceanInlineTextListItem(
+    modifier: Modifier = Modifier,
+    item: OceanInlineTextList,
+    size: OceanInlineTextListItemSize = OceanInlineTextListItemSize.DEFAULT,
+    isLoading: Boolean = false
+) {
+    if (isLoading) {
+        OceanInlineTextListItemLoading(
+            modifier = modifier,
+            size = size
+        )
+        return
+    }
+
+    Column(
+        modifier = modifier
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth()
+                .padding(OceanSpacing.xs),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OceanText(
+                    text = item.label ?: "",
+                    style = OceanTextStyle.paragraph
+                )
+
+                if (!item.tooltip.isNullOrBlank()) {
+                    OceanTooltip(item.tooltip) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ocean_icon_info_solid),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .padding(start = OceanSpacing.xxxs)
+                                .size(OceanSpacing.xs),
+                            tint = OceanColors.interfaceLightDeep
+                        )
+                    }
+                }
+            }
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (!item.icon.isNullOrBlank()) {
+                    OceanIcon(
+                        iconType = OceanIcons.fromToken(item.icon),
+                        modifier = Modifier.size(OceanSpacing.xs),
+                        tint = item.color?.let { OceanColors.fromString(color = item.color) }
+                            ?: Color.Unspecified
+                    )
+                }
+
+                val textColor = if (item.newValue.isNullOrBlank() || item.value.isNullOrBlank()) {
+                    OceanColors.fromString(color = item.color ?: "")
+                } else OceanColors.interfaceDarkDown
+
+                val valueStyle = if (item.isBold == true) {
+                    OceanTextStyle.paragraph.copy(
+                        fontFamily = OceanFontFamily.BaseBold
+                    )
+                } else OceanTextStyle.paragraph
+
+                val valueDecoration = if (item.isStrike == true) {
+                    TextDecoration.LineThrough
+                } else null
+
+                OceanText(
+                    text = item.value ?: "",
+                    style = valueStyle,
+                    color = textColor,
+                    modifier = Modifier.padding(start = OceanSpacing.xxxs),
+                    textDecoration = valueDecoration
+                )
+
+                if (!item.newValue.isNullOrBlank()) {
+                    val color = item.color?.let {
+                        OceanColors.fromString(color = it)
+                    }
+                    OceanText(
+                        text = item.newValue,
+                        color = color ?: Color.Unspecified,
+                        style = OceanTextStyle.paragraph,
+                        modifier = Modifier.padding(start = OceanSpacing.xxxs)
+                    )
+                }
+            }
         }
     }
 }

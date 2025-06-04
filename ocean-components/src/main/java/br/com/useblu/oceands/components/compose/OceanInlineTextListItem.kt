@@ -43,7 +43,6 @@ fun OceanInlineTextListItemPreview() {
             .background(color = OceanColors.interfaceLightPure)
     ) {
         Column(
-
             modifier = Modifier
                 .padding(OceanSpacing.xs)
         ) {

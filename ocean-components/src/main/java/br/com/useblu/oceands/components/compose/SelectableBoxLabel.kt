@@ -15,6 +15,7 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 @Composable
 fun SelectableBoxLabel(
+    modifier: Modifier = Modifier.padding(horizontal = OceanSpacing.xxs),
     label: String,
     enabled: Boolean,
     isBold: Boolean = false,
@@ -25,7 +26,7 @@ fun SelectableBoxLabel(
 
     ClickableText(
         text = annotatedString,
-        modifier = Modifier.padding(horizontal = OceanSpacing.xxs),
+        modifier = modifier,
         maxLines = 2,
         overflow = TextOverflow.Ellipsis,
         style = TextStyle(

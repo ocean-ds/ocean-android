@@ -47,6 +47,15 @@ fun Double.oceanFormatWithCurrency(): String {
     return FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(final.toString())
 }
 
+fun Long.oceanFormatWithCurrency(): String {
+    val currency = BigDecimal(this).divide(
+        BigDecimal(100),
+        2,
+        RoundingMode.HALF_EVEN
+    )
+    return FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(currency.toString())
+}
+
 fun String.clearSpacing() = replace("\\s+".toRegex(), "").trim()
 
 val Int.dp: Int

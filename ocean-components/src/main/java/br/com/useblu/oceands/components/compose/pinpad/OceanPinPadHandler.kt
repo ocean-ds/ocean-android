@@ -5,12 +5,15 @@ import androidx.compose.ui.graphics.Color
 import br.com.useblu.oceands.model.compose.OceanViewStatus
 import br.com.useblu.oceands.ui.compose.OceanColors
 
-interface OceanPinPadHandler {
+interface OceanPinPadHandler<Result> {
     val uiState: OceanPinPadUIState
 
     fun newDigit(digit: String)
     fun deleteLast()
     fun clear()
+
+    @Composable
+    fun getResult(): Result
 
     @Composable
     fun getInputColor(status: OceanViewStatus): Color {

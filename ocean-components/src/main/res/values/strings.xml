@@ -44,4 +44,10 @@
     <string name="date_range_empty_error">Este campo não pode ficar em branco</string>
     <string name="date_range_invalid_range_error">A data inicial deve ser menor ou igual à data final</string>
 
+
+    <!--  PinPad Currency Default  -->
+    <string name="pinpad_currency_message_larger">Digite um valor maior do que %s.</string>
+    <string name="pinpad_currency_message_less">Digite um valor menor do que %s.</string>
+    <string name="pinpad_currency_empty_error">Digite um valor para continuar</string>
+
 </resources>

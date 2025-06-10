@@ -42,15 +42,16 @@ import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.utils.vibrator.rememberVibrator
 
 @Composable
-fun OceanPinPad(
-    handler: OceanPinPadHandler,
+fun <Result> OceanPinPad(
+    modifier: Modifier = Modifier,
+    handler: OceanPinPadHandler<Result>,
     isLoading: Boolean = false,
     isEnabled: Boolean = true
 ) {
     val vibrator = rememberVibrator()
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .background(OceanColors.interfaceLightPure)
             .fillMaxSize()
     ) {
@@ -83,9 +84,9 @@ fun OceanPinPad(
 }
 
 @Composable
-private fun InputInfo(
+private fun <Result> InputInfo(
     modifier: Modifier = Modifier,
-    handler: OceanPinPadHandler,
+    handler: OceanPinPadHandler<Result>,
     isEnabled: Boolean
 ) {
     val uiState = handler.uiState
@@ -337,16 +338,20 @@ private fun autoResizeText(
 @Composable
 private fun OceanPinPadPreview() {
     OceanPinPad(
-        handler = object : OceanPinPadHandler {
+        handler = object : OceanPinPadHandler<Unit> {
             override val uiState = OceanPinPadUIState(
-                inputValue = "R$ 111.100.234,56",
-                placeholder = "R$ 0,00",
+                inputValue = "1.100.234,56",
+                placeholder = "0,00",
 //                error = "Error message",
                 hint = "Hint message"
             )
+
             override fun newDigit(digit: String) { /* no-op */ }
             override fun deleteLast() { /* no-op */ }
             override fun clear() { /* no-op */ }
+
+            @Composable
+            override fun getResult() { /* no-op */ }
         },
         isLoading = false
     )

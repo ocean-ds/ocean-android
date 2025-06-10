@@ -11,6 +11,7 @@ interface OceanPinPadHandler<Result> {
     fun newDigit(digit: String)
     fun deleteLast()
     fun clear()
+    fun updateErrorMessage(message: String) { /* no-op */ }
 
     @Composable
     fun getResult(): Result
@@ -18,8 +19,7 @@ interface OceanPinPadHandler<Result> {
     @Composable
     fun getInputColor(status: OceanViewStatus): Color {
         return when (status) {
-            OceanViewStatus.Enabled -> OceanColors.interfaceLightDeep
-            OceanViewStatus.Disabled -> OceanColors.interfaceLightDeep
+            OceanViewStatus.Enabled, OceanViewStatus.Disabled -> OceanColors.interfaceLightDeep
             OceanViewStatus.Activated -> OceanColors.interfaceDarkDeep
         }
     }

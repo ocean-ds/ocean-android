@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.AnnotatedString
@@ -152,6 +153,17 @@ fun Modifier.border(
 fun Color.isDarkColor(): Boolean {
     val darkness = 1 - (this.red * 0.299 + this.green * 0.587 + this.blue * 0.114)
     return darkness >= 0.5
+}
+
+fun Color.toHexString(): String {
+    val argb = this.toArgb()
+    return String.format("#%08X", argb).let { hex ->
+        if (hex.startsWith("#FF")) {
+            "#${hex.substring(3)}"
+        } else {
+            hex
+        }
+    }
 }
 
 @Composable

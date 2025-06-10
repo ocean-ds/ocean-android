@@ -2295,6 +2295,10 @@ enum class OceanIcons(
     ACQUIRER_ASAAS(
         token = "acquirer_asaas",
         icon = R.drawable.acquirer_asaas
+    ),
+    ACQUIRER_BLU(
+        token = "acquirer_blu",
+        icon = R.drawable.acquirer_blu
     );
 
     companion object {

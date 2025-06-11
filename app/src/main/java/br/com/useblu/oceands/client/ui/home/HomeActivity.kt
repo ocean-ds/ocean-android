@@ -276,6 +276,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Input", onClick = { onClickInputs() })
                         textAction(text = "Onboarding", onClick = { onboardingClick() })
                         textAction(text = "Options Card", onClick = { clickOptionsCard() })
+                        textAction(text = "PinPad", onClick = { onClickPinPad() })
                         textAction(text = "Progress Bar", onClick = { clickProgressBar() })
                         textAction(text = "Radio", onClick = { onClickRadio() })
                         textAction(text = "Shortcuts", onClick = { shortcuts() })
@@ -582,6 +583,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onboardingClick() {
         val intent = Intent(this, OceanOnboardingPagerActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun onClickPinPad() {
+        val intent = Intent(this, br.com.useblu.oceands.client.ui.pinpad.PinPadActivity::class.java)
         startActivity(intent)
     }
 

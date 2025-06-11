@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import br.com.useblu.oceands.model.OceanInlineTextList
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -87,6 +88,7 @@ fun OceanTransactionFooter(
     entries: List<OceanInlineTextList>,
     firstButton: OceanButtonModel,
     secondButton: OceanButtonModel? = null,
+    entriesSpacing: Dp = OceanSpacing.xxs,
     buttonsOrientation: Orientation = Orientation.Vertical
 ) {
     Column(
@@ -96,7 +98,7 @@ fun OceanTransactionFooter(
         verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
+            verticalArrangement = Arrangement.spacedBy(entriesSpacing)
         ) {
             entries.forEach { item ->
                 OceanInlineTextListItem(

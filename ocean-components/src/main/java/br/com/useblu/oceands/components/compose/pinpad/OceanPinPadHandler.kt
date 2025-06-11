@@ -14,6 +14,8 @@ interface OceanPinPadHandler<Result> {
     fun updateErrorMessage(message: String) { /* no-op */ }
 
     @Composable
+    fun getErrorMessage(): String = " "
+
     fun getResult(): Result
 
     @Composable

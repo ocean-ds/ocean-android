@@ -98,14 +98,10 @@ private fun <Result> InputInfo(
     )
     var readyToDraw by remember { mutableStateOf(false) }
     var textStyle by remember { mutableStateOf(oceanTextStyle) }
-    val status = if (isEnabled) {
-        if (uiState.inputValue.isNotBlank()) {
-            OceanViewStatus.Activated
-        } else {
-            OceanViewStatus.Enabled
-        }
-    } else {
-        OceanViewStatus.Disabled
+    val status = when {
+        isEnabled.not() -> OceanViewStatus.Disabled
+        uiState.inputValue.isNotBlank() -> OceanViewStatus.Activated
+        else -> OceanViewStatus.Enabled
     }
 
     Column(

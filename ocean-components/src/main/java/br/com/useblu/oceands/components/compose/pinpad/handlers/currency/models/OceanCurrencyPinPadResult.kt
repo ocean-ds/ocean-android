@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components.compose.pinpad.currency.models
+package br.com.useblu.oceands.components.compose.pinpad.handlers.currency.models
 
 sealed interface OceanCurrencyPinPadResult {
     data class Success(val value: Double) : OceanCurrencyPinPadResult

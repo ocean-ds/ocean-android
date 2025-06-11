@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanShimmering
 import br.com.useblu.oceands.components.compose.OceanText
+import br.com.useblu.oceands.extensions.compose.disabledOverlay
 import br.com.useblu.oceands.model.compose.OceanViewStatus
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -54,6 +55,7 @@ fun <Result> OceanPinPad(
         modifier = modifier
             .background(OceanColors.interfaceLightPure)
             .fillMaxSize()
+            .disabledOverlay(isDisabled = isEnabled.not())
     ) {
         if (isLoading) {
             InputInfoSkeleton(modifier = Modifier.weight(1F))
@@ -124,7 +126,7 @@ private fun <Result> InputInfo(
             overflow = TextOverflow.Visible,
             softWrap = false,
             style = textStyle,
-            onTextLayout = autoResizeText(oceanTextStyle) { style, isReadyToDraw ->
+            onTextLayout = autoResizeText(textStyle) { style, isReadyToDraw ->
                 textStyle = style
                 readyToDraw = isReadyToDraw
             },

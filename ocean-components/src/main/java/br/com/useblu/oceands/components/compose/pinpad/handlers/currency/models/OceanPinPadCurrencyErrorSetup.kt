@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components.compose.pinpad.currency.models
+package br.com.useblu.oceands.components.compose.pinpad.handlers.currency.models
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource

@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components.compose.pinpad.password.models
+package br.com.useblu.oceands.components.compose.pinpad.handlers.password
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadUIState
+import br.com.useblu.oceands.components.compose.pinpad.handlers.password.models.OceanPasswordPinPadType
 import br.com.useblu.oceands.extensions.createColoredHtmlTag
 import br.com.useblu.oceands.model.compose.OceanViewStatus
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -71,7 +72,7 @@ class OceanPasswordPinPadHandler(
             is OceanPasswordPinPadType.FixedSize -> "•".repeat(maxOf(type.size - currentValue.length, 0)) + maskedCurrentValue
             is OceanPasswordPinPadType.Limited, OceanPasswordPinPadType.Unlimited -> maskedCurrentValue
         }
-        uiState.copy(inputValue = maskedValue)
+        uiState = uiState.copy(inputValue = maskedValue)
     }
 
     private fun getPlaceholder(): String {
@@ -81,10 +82,4 @@ class OceanPasswordPinPadHandler(
             OceanPasswordPinPadType.Unlimited -> "••••"
         }
     }
-}
-
-sealed interface OceanPasswordPinPadType {
-    data class FixedSize(val size: Int) : OceanPasswordPinPadType
-    data class Limited(val maxSize: Int) : OceanPasswordPinPadType
-    data object Unlimited : OceanPasswordPinPadType
 }

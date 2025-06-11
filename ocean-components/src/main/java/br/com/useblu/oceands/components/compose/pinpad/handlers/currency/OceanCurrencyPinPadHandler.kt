@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components.compose.pinpad.currency.models
+package br.com.useblu.oceands.components.compose.pinpad.handlers.currency
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -6,6 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadUIState
+import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.models.OceanCurrencyPinPadError
+import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.models.OceanCurrencyPinPadResult
+import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.models.OceanPinPadCurrencyErrorSetup
 import br.com.useblu.oceands.extensions.oceanFormatWithCurrency
 import java.math.RoundingMode
 

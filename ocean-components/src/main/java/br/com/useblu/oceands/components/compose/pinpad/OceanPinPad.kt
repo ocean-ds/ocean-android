@@ -109,7 +109,7 @@ private fun <Result> InputInfo(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val color = if (uiState.error.isNotEmpty()) {
+        val color = if (handler.getErrorMessage().isNotBlank()) {
             OceanColors.statusNegativePure
         } else {
             OceanColors.interfaceLightDeep
@@ -132,7 +132,7 @@ private fun <Result> InputInfo(
         )
         OceanText(
             modifier = Modifier.fillMaxWidth(),
-            text = uiState.error.ifBlank { uiState.hint },
+            text = handler.getErrorMessage().ifBlank { uiState.hint },
             color = color,
             fontFamily = OceanFontFamily.BaseMedium,
             fontSize = OceanFontSize.xxxs,
@@ -340,16 +340,16 @@ private fun OceanPinPadPreview() {
             override val uiState = OceanPinPadUIState(
                 inputValue = "1.100.234,56",
                 placeholder = "0,00",
-//                error = "Error message",
                 hint = "Hint message"
             )
 
             override fun newDigit(digit: String) { /* no-op */ }
             override fun deleteLast() { /* no-op */ }
             override fun clear() { /* no-op */ }
+            override fun getResult() { /* no-op */ }
 
             @Composable
-            override fun getResult() { /* no-op */ }
+            override fun getErrorMessage(): String = ""
         },
         isLoading = false
     )

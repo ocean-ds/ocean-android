@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -16,8 +17,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.useblu.oceands.components.compose.OceanButton
+import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPad
+import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.OceanCurrencyPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.handlers.password.OceanPasswordPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.handlers.password.models.OceanPasswordPinPadType
@@ -36,6 +39,10 @@ class PinPadActivity : AppCompatActivity() {
 @Composable
 private fun PinPadExample() {
     var selectedType: PinPadKnownType by remember { mutableStateOf(PinPadKnownType.Currency) }
+    var handler: OceanPinPadHandler<*>? by remember { mutableStateOf(null) }
+    var isEnabled: Boolean by remember { mutableStateOf(true) }
+    var isLoading: Boolean by remember { mutableStateOf(false) }
+
     OceanTheme {
         Scaffold(
             content = { paddingValues ->
@@ -45,16 +52,27 @@ private fun PinPadExample() {
                 ) {
                     when (selectedType) {
                         PinPadKnownType.Currency -> {
+                            val currencyHandler = OceanCurrencyPinPadHandler(
+                                minValue = 1.0,
+                                maxValue = 100000.0
+                            )
+                            handler = currencyHandler
                             OceanPinPad(
-                                handler = OceanCurrencyPinPadHandler()
+                                handler = currencyHandler,
+                                isEnabled = isEnabled,
+                                isLoading = isLoading
                             )
                         }
                         PinPadKnownType.Password -> {
+                            val passwordHandler = OceanPasswordPinPadHandler(
+                                type = OceanPasswordPinPadType.FixedSize(6),
+                                inputColor = OceanColors.interfaceDarkDeep
+                            )
+                            handler = passwordHandler
                             OceanPinPad(
-                                handler = OceanPasswordPinPadHandler(
-                                    type = OceanPasswordPinPadType.FixedSize(6),
-                                    inputColor = OceanColors.interfaceDarkDeep
-                                )
+                                handler = passwordHandler,
+                                isEnabled = isEnabled,
+                                isLoading = isLoading
                             )
                         }
                     }
@@ -62,6 +80,41 @@ private fun PinPadExample() {
             },
             bottomBar = {
                 Column {
+                    OceanButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(OceanSpacing.xs),
+                        text = "Continuar",
+                        buttonStyle = OceanButtonStyle.PrimaryMedium,
+                        onClick = {
+                            handler?.getResult()
+                        }
+                    )
+
+                    OceanDivider()
+
+                    Row(
+                        modifier = Modifier
+                            .padding(OceanSpacing.xs),
+                        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
+                    ) {
+                        OceanButton(
+                            modifier = Modifier
+                                .weight(1f),
+                            text = "Toggle Enabled",
+                            buttonStyle = OceanButtonStyle.PrimarySmall,
+                            onClick = { isEnabled = isEnabled.not() }
+                        )
+
+                        OceanButton(
+                            modifier = Modifier
+                                .weight(1f),
+                            text = "Toggle Loading",
+                            buttonStyle = OceanButtonStyle.PrimarySmall,
+                            onClick = { isLoading = isLoading.not() }
+                        )
+                    }
+
                     Row(
                         modifier = Modifier
                             .padding(OceanSpacing.xs),

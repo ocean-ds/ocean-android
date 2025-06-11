@@ -22,6 +22,7 @@ class OceanPasswordPinPadHandler(
         )
     )
     private var currentValue: String = ""
+    private var currentError: String = ""
 
     override fun newDigit(digit: String) {
         if (canIncrement().not()) return
@@ -39,7 +40,6 @@ class OceanPasswordPinPadHandler(
         updateFormattedValue()
     }
 
-    @Composable
     override fun getResult(): String {
         return currentValue
     }
@@ -49,9 +49,16 @@ class OceanPasswordPinPadHandler(
         return OceanColors.interfaceLightDeep
     }
 
+    @Composable
+    override fun getErrorMessage(): String {
+        return currentError
+    }
+
     override fun updateErrorMessage(message: String) {
+        currentError = message
         uiState = uiState.copy(
-            error = message
+            toggleError = uiState.toggleError.not(),
+            hint = message
         )
     }
 

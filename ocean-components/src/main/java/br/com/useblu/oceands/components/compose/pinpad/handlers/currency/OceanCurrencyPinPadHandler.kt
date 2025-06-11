@@ -30,6 +30,8 @@ class OceanCurrencyPinPadHandler(
     )
         private set
 
+    private var currentError: OceanCurrencyPinPadError? = null
+
     override fun newDigit(digit: String) {
         val newLastDigit = digit.toLong()
         currentValue = Math.addExact(
@@ -46,24 +48,37 @@ class OceanCurrencyPinPadHandler(
 
     override fun clear() {
         currentValue = 0L
-        uiState = uiState.copy(inputValue = "")
+        currentError = null
+        uiState = uiState.copy(
+            inputValue = ""
+        )
+    }
+
+    override fun getResult(): OceanCurrencyPinPadResult {
+        val errorType = when {
+            currentValue == 0L ->
+                OceanCurrencyPinPadResult.Error(type = OceanCurrencyPinPadError.Empty)
+            currentMinValue != null && currentValue < currentMinValue ->
+                OceanCurrencyPinPadResult.Error(type = OceanCurrencyPinPadError.Min)
+            currentMaxValue != null && currentValue > currentMaxValue ->
+                OceanCurrencyPinPadResult.Error(type = OceanCurrencyPinPadError.Max)
+            else -> null
+        }
+        currentError = errorType?.type
+        uiState = uiState.copy(
+            toggleError = uiState.toggleError.not()
+        )
+        return errorType ?: OceanCurrencyPinPadResult.Success(value = inputToValue(input = currentValue))
     }
 
     @Composable
-    override fun getResult(): OceanCurrencyPinPadResult {
-        val (error, errorType) = when {
-            currentValue == 0L ->
-                errorSetup.emptyError to OceanCurrencyPinPadResult.Error(type = OceanCurrencyPinPadError.Empty)
-            currentMinValue != null && currentValue < currentMinValue ->
-                errorSetup.getMinErrorMessage(minValue = currentMinValue) to OceanCurrencyPinPadResult.Error(type = OceanCurrencyPinPadError.Min)
-            currentMaxValue != null && currentValue > currentMaxValue ->
-                errorSetup.getMaxErrorMessage(maxValue = currentMaxValue) to OceanCurrencyPinPadResult.Error(type = OceanCurrencyPinPadError.Max)
-            else -> "" to null
+    override fun getErrorMessage(): String {
+        return when (currentError) {
+            OceanCurrencyPinPadError.Empty -> errorSetup.emptyError
+            OceanCurrencyPinPadError.Min -> errorSetup.getMinErrorMessage(minValue = currentMinValue ?: 0L)
+            OceanCurrencyPinPadError.Max -> errorSetup.getMaxErrorMessage(maxValue = currentMaxValue ?: 0L)
+            null -> ""
         }
-        uiState.copy(
-            error = error
-        )
-        return errorType ?: OceanCurrencyPinPadResult.Success(value = inputToValue(input = currentValue))
     }
 
     private fun getHint(): String {

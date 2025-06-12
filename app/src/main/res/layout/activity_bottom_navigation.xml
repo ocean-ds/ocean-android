@@ -47,6 +47,28 @@
             app:layout_constraintTop_toBottomOf="@id/load_items"
             android:layout_marginTop="20dp" />
 
+        <Button
+            android:id="@+id/set_default_color_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Default Color Style"
+            android:onClick="@{() -> viewmodel.setDefaultColorStyle()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_items"
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:id="@+id/set_inverse_color_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Inverse Color Style"
+            android:onClick="@{() -> viewmodel.setInverseColorStyle()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/set_default_color_style"
+            android:layout_marginTop="20dp" />
+
         <androidx.compose.ui.platform.ComposeView
             android:id="@+id/nav_bottom"
             android:layout_width="match_parent"

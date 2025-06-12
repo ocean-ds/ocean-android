@@ -28,15 +28,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.model.compose.OceanBottomNavigationModel
+import br.com.useblu.oceands.model.compose.bottomnavigation.OceanBottomNavigationColorStyle
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
-import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
@@ -119,7 +118,8 @@ private fun OceanBottomNavigationPreview() {
 @Composable
 fun OceanBottomNavigation(
     selectedIndex: Int,
-    models: List<OceanBottomNavigationModel>
+    models: List<OceanBottomNavigationModel>,
+    colorStyle: OceanBottomNavigationColorStyle = OceanBottomNavigationColorStyle.Default
 ) {
     val density = LocalDensity.current
 
@@ -135,7 +135,7 @@ fun OceanBottomNavigation(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = OceanColors.brandPrimaryPure)
+            .background(color = colorStyle.background)
             .windowInsetsPadding(
                 WindowInsets.systemBars.only(
                     WindowInsetsSides.Bottom
@@ -153,7 +153,7 @@ fun OceanBottomNavigation(
                 .width(backgroundWidth)
                 .fillMaxHeight()
                 .borderBackground(
-                    color = Color(0xA35872F5),
+                    color = colorStyle.selectionColor,
                     borderRadius = OceanBorderRadius.SM.allCorners
                 )
         )
@@ -171,6 +171,7 @@ fun OceanBottomNavigation(
                 OceanBottomNavigationMenuItem(
                     model = model,
                     isSelected = index == selectedIndex,
+                    colorStyle = colorStyle,
                     modifier = Modifier
                         .weight(1f)
                         .clickable(
@@ -188,9 +189,10 @@ fun OceanBottomNavigation(
 private fun OceanBottomNavigationMenuItem(
     model: OceanBottomNavigationModel,
     modifier: Modifier = Modifier,
-    isSelected: Boolean
+    isSelected: Boolean,
+    colorStyle: OceanBottomNavigationColorStyle
 ) {
-    val color = if (isSelected) OceanColors.interfaceLightPure else OceanColors.brandPrimaryUp
+    val color = if (isSelected) colorStyle.itemSelected else colorStyle.item
     Column(
         modifier = modifier.fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,

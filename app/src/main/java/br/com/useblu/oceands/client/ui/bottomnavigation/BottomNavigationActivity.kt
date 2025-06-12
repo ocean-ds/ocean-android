@@ -26,7 +26,8 @@ class BottomNavigationActivity : AppCompatActivity() {
             val models = viewModel.menuItems.observeAsState(initial = emptyList())
             OceanBottomNavigation(
                 selectedIndex = viewModel.selectedIndex,
-                models = models.value
+                models = models.value,
+                colorStyle = viewModel.colorStyle
             )
         }
 

@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.model.compose.OceanBottomNavigationModel
+import br.com.useblu.oceands.model.compose.bottomnavigation.OceanBottomNavigationColorStyle
 import br.com.useblu.oceands.utils.OceanIcons
 import kotlin.random.Random
 
@@ -16,6 +17,9 @@ class BottomNavigationViewModel : ViewModel() {
     val menuItems: LiveData<List<OceanBottomNavigationModel>> = _menuItems
 
     var selectedIndex by mutableStateOf(0)
+        private set
+
+    var colorStyle: OceanBottomNavigationColorStyle by mutableStateOf(OceanBottomNavigationColorStyle.Default)
         private set
 
     fun clearItems() {
@@ -78,5 +82,13 @@ class BottomNavigationViewModel : ViewModel() {
         )
 
         _menuItems.postValue(menuItems)
+    }
+
+    fun setDefaultColorStyle() {
+        colorStyle = OceanBottomNavigationColorStyle.Default
+    }
+
+    fun setInverseColorStyle() {
+        colorStyle = OceanBottomNavigationColorStyle.Inverse
     }
 }

@@ -2299,6 +2299,22 @@ enum class OceanIcons(
     ACQUIRER_BLU(
         token = "acquirer_blu",
         icon = R.drawable.acquirer_blu
+    ),
+    BRAND_AMEX(
+        token = "brand_amex",
+        icon = R.drawable.brand_amex
+    ),
+    BRAND_MASTERCARD(
+        token = "brand_mastercard",
+        icon = R.drawable.brand_mastercard
+    ),
+    BRAND_ELO(
+        token = "brand_elo",
+        icon = R.drawable.brand_visa
+    ),
+    BRAND_VISA(
+        token = "brand_visa",
+        icon = R.drawable.brand_visa
     );
 
     companion object {

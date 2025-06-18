@@ -78,7 +78,6 @@ internal fun HighlightedCardListItem(
                 spotColor = style.animation.shadowColor
             ),
         type = type,
-        style = style,
         disabled = disabled,
         isSelected = isSelected,
         onClick = onClick,

@@ -2304,13 +2304,33 @@ enum class OceanIcons(
         token = "brand_amex",
         icon = R.drawable.brand_amex
     ),
+    BRAND_BANESCARD(
+        token = "brand_banescard",
+        icon = R.drawable.brand_banescard
+    ),
+    BRAND_CABAL(
+        token = "brand_cabal",
+        icon = R.drawable.brand_cabal
+    ),
+    BRAND_DINERS(
+        token = "brand_diners",
+        icon = R.drawable.brand_diners
+    ),
+    BRAND_ELO(
+        token = "brand_elo",
+        icon = R.drawable.brand_elo
+    ),
+    BRAND_MAESTROCARD(
+        token = "brand_maestrocard",
+        icon = R.drawable.brand_maestrocard
+    ),
     BRAND_MASTERCARD(
         token = "brand_mastercard",
         icon = R.drawable.brand_mastercard
     ),
-    BRAND_ELO(
-        token = "brand_elo",
-        icon = R.drawable.brand_visa
+    BRAND_PIX(
+        token = "brand_pix",
+        icon = R.drawable.brand_pix
     ),
     BRAND_VISA(
         token = "brand_visa",

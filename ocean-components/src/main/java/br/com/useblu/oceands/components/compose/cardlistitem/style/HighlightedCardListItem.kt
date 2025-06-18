@@ -26,6 +26,7 @@ import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.cardlistitem.ContentCardListItem
+import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -39,6 +40,7 @@ internal fun HighlightedCardListItem(
     title: String,
     description: String = "",
     caption: String = "",
+    contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     tagStyle: OceanTagStyle? = null,
     type: OceanCardListItemType,
     style: OceanCardListItemStyle.Highlighted,
@@ -76,6 +78,7 @@ internal fun HighlightedCardListItem(
                 spotColor = style.animation.shadowColor
             ),
         type = type,
+        style = style,
         disabled = disabled,
         isSelected = isSelected,
         onClick = onClick,
@@ -86,6 +89,7 @@ internal fun HighlightedCardListItem(
                 title = title,
                 description = description,
                 caption = caption,
+                contentStyle = contentStyle,
                 tagStyle = tagStyle,
                 type = type,
                 style = style,

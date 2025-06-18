@@ -26,6 +26,9 @@ import br.com.useblu.oceands.components.compose.OceanTagLayout
 import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
+import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle
+import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle.Default.getDescriptionStyle
+import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle.Default.getTitleStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
 import br.com.useblu.oceands.components.compose.cardlistitem.style.DefaultCardListItem
@@ -44,6 +47,7 @@ fun OceanCardListItem(
     title: String,
     description: String = "",
     caption: String = "",
+    contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     tagStyle: OceanTagStyle? = null,
     type: OceanCardListItemType = OceanCardListItemType.Default(),
     style: OceanCardListItemStyle = OceanCardListItemStyle.Default,
@@ -52,12 +56,13 @@ fun OceanCardListItem(
     onClick: (() -> Unit)? = null
 ) {
     when (style) {
-        OceanCardListItemStyle.Default -> {
+        is OceanCardListItemStyle.Default -> {
             DefaultCardListItem(
                 modifier = modifier,
                 title = title,
                 description = description,
                 caption = caption,
+                contentStyle = contentStyle,
                 tagStyle = tagStyle,
                 type = type,
                 disabled = disabled,
@@ -113,9 +118,10 @@ internal fun DeprecatedTransitionCardListItem(
 @Composable
 internal fun ContentCardListItem(
     title: String,
-    description: String,
+    description: String = "",
     caption: String,
     tagStyle: OceanTagStyle?,
+    contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     type: OceanCardListItemType,
     style: OceanCardListItemStyle,
     isSelected: Boolean,
@@ -137,6 +143,7 @@ internal fun ContentCardListItem(
             title = title,
             description = description,
             caption = caption,
+            contentStyle = contentStyle,
             tagStyle = tagStyle,
             disabled = disabled
         )
@@ -152,8 +159,9 @@ internal fun ContentCardListItem(
 private fun CenterContent(
     modifier: Modifier,
     title: String,
-    description: String,
+    description: String = "",
     caption: String,
+    contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     tagStyle: OceanTagStyle?,
     disabled: Boolean
 ) {
@@ -165,7 +173,7 @@ private fun CenterContent(
         ) {
             Text(
                 text = title,
-                style = OceanTextStyle.paragraph,
+                style = contentStyle.getTitleStyle(),
                 color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
             )
 
@@ -179,7 +187,7 @@ private fun CenterContent(
         if (description.isNotBlank()) {
             OceanText(
                 text = description,
-                style = OceanTextStyle.description,
+                style = contentStyle.getDescriptionStyle(),
                 color = if (disabled) OceanColors.interfaceLightDeep else Color.Unspecified
             )
         }

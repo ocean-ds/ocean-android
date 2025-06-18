@@ -27,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.components.compose.input.OceanSelectableRadio
+import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.OceanTextListStyle
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -39,10 +40,11 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Composable
 private fun OceanTextListItemPreview() {
     Column(
-        Modifier.verticalScroll(
-            state = rememberScrollState(),
-            enabled = true
-        )
+        Modifier
+            .verticalScroll(
+                state = rememberScrollState(),
+                enabled = true
+            )
             .background(color = OceanColors.interfaceLightPure)
     ) {
         OceanTextListItem(
@@ -54,6 +56,23 @@ private fun OceanTextListItemPreview() {
             enabled = true,
             onClick = {},
             showClickableChevron = false
+        )
+        OceanTextListItem(
+            modifier = Modifier,
+            title = "Title",
+            description = "Description",
+            caption = "Caption",
+            showClickableChevron = true,
+            selected = false,
+            showError = false,
+            textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
+            tagStyle = OceanTagStyle.Default(
+                label = "Label",
+                layout = OceanTagLayout.Medium(),
+                type = OceanTagType.Positive
+            ),
+            enabled = true,
+            onClick = {}
         )
         OceanTextListItem(
             modifier = Modifier,
@@ -90,7 +109,7 @@ private fun OceanTextListItemPreview() {
             title = "Title",
             description = "Description",
             selected = false,
-            textListStyle = OceanTextListStyle.WITH_CHECKBOX,
+            textListStyle = OceanTextListStyle.Checkbox,
             showError = false,
             enabled = true,
             onSelectedBox = {
@@ -102,7 +121,7 @@ private fun OceanTextListItemPreview() {
             title = "Title",
             description = "Description",
             selected = false,
-            textListStyle = OceanTextListStyle.WITH_CHECKBOX,
+            textListStyle = OceanTextListStyle.Checkbox,
             showError = true,
             enabled = true
         )
@@ -111,7 +130,7 @@ private fun OceanTextListItemPreview() {
             title = "Title",
             description = "Description",
             selected = true,
-            textListStyle = OceanTextListStyle.WITH_CHECKBOX,
+            textListStyle = OceanTextListStyle.Checkbox,
             showError = false,
             enabled = true,
             onSelectedBox = {
@@ -123,7 +142,7 @@ private fun OceanTextListItemPreview() {
             title = "Title",
             description = "Description",
             selected = true,
-            textListStyle = OceanTextListStyle.WITH_CHECKBOX,
+            textListStyle = OceanTextListStyle.Checkbox,
             showError = false,
             enabled = false
         )
@@ -132,7 +151,7 @@ private fun OceanTextListItemPreview() {
             title = "Title",
             description = "Description",
             selected = false,
-            textListStyle = OceanTextListStyle.WITH_RADIO_BUTTON,
+            textListStyle = OceanTextListStyle.RadioButton,
             showError = false,
             enabled = true,
             onSelectedBox = {
@@ -144,7 +163,7 @@ private fun OceanTextListItemPreview() {
             title = "Title",
             description = "Description",
             selected = false,
-            textListStyle = OceanTextListStyle.WITH_RADIO_BUTTON,
+            textListStyle = OceanTextListStyle.RadioButton,
             showError = true,
             enabled = true
         )
@@ -153,7 +172,7 @@ private fun OceanTextListItemPreview() {
             title = "Title",
             description = "Description",
             selected = true,
-            textListStyle = OceanTextListStyle.WITH_RADIO_BUTTON,
+            textListStyle = OceanTextListStyle.RadioButton,
             showError = false,
             enabled = true,
             onSelectedBox = {
@@ -164,7 +183,7 @@ private fun OceanTextListItemPreview() {
             title = "Title",
             description = "Description",
             selected = true,
-            textListStyle = OceanTextListStyle.WITH_RADIO_BUTTON,
+            textListStyle = OceanTextListStyle.RadioButton,
             showError = false,
             enabled = false
         )
@@ -182,7 +201,8 @@ fun OceanTextListItem(
     textInfoColor: Color? = null,
     selected: Boolean = false,
     showDivider: Boolean = true,
-    textListStyle: OceanTextListStyle = OceanTextListStyle.DEFAULT,
+    tagStyle: OceanTagStyle = OceanTagStyle.None,
+    textListStyle: OceanTextListStyle = OceanTextListStyle.Default,
     showError: Boolean = false,
     enabled: Boolean = true,
     onSelectedBox: ((Boolean) -> Unit)? = null,
@@ -211,7 +231,7 @@ fun OceanTextListItem(
                 )
         ) {
             when (textListStyle) {
-                OceanTextListStyle.WITH_CHECKBOX -> {
+                OceanTextListStyle.Checkbox -> {
                     Column(
                         modifier = Modifier
                             .align(Alignment.CenterVertically)
@@ -226,7 +246,8 @@ fun OceanTextListItem(
                         )
                     }
                 }
-                OceanTextListStyle.WITH_RADIO_BUTTON -> {
+
+                OceanTextListStyle.RadioButton -> {
                     Column(
                         modifier = Modifier
                             .align(Alignment.CenterVertically)
@@ -243,7 +264,19 @@ fun OceanTextListItem(
                         )
                     }
                 }
-                OceanTextListStyle.DEFAULT -> Unit
+
+                OceanTextListStyle.Default -> Unit
+                is OceanTextListStyle.Icon -> {
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(end = OceanSpacing.xs)
+                    ) {
+                        OceanIcon(
+                            iconType = textListStyle.icon ?: OceanIcons.INFO_OUTLINE
+                        )
+                    }
+                }
             }
 
             Column(
@@ -291,6 +324,13 @@ fun OceanTextListItem(
                     )
                 }
             }
+            if (tagStyle != OceanTagStyle.None) {
+                OceanTag(
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically),
+                    style = tagStyle
+                )
+            }
             if (onClick != null && showClickableChevron) {
                 Column(
                     Modifier
@@ -305,7 +345,7 @@ fun OceanTextListItem(
             }
         }
 
-        if (textListStyle != OceanTextListStyle.DEFAULT && showDivider) {
+        if (textListStyle != OceanTextListStyle.Default && showDivider) {
             HorizontalDivider(
                 thickness = 1.dp,
                 color = OceanColors.interfaceLightDown

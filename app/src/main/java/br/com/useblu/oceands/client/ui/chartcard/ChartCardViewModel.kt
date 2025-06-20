@@ -1,9 +1,9 @@
 package br.com.useblu.oceands.client.ui.chartcard
 
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.model.chart.OceanChartItem
 import br.com.useblu.oceands.model.chart.OceanChartModel
 
@@ -13,7 +13,7 @@ class ChartCardViewModel : ViewModel() {
             title = "Item 1",
             valueFormatted = "R$ 25",
             value = 25.0f,
-            color = R.color.colorPrimary,
+            color = Color(0xFF0025E0),
             subtitle = "Subtitle 1",
             information = "lorem ipsum dolor sit amet, consectetur adipiscing elit."
         ),
@@ -21,7 +21,7 @@ class ChartCardViewModel : ViewModel() {
             title = "Item 2",
             valueFormatted = "R$ 75",
             value = 75.0f,
-            color = R.color.ocean_color_status_negative_pure,
+            color = Color(0xFFE02020),
             subtitle = "Subtitle 2",
             information = "Isto equivale a 75 reais"
         ),
@@ -29,7 +29,7 @@ class ChartCardViewModel : ViewModel() {
             title = "Item 3",
             valueFormatted = "R$ 75",
             value = 75.0f,
-            color = R.color.ocean_color_status_warning_deep,
+            color = Color(0xFFFF8800),
             subtitle = "Subtitle 3",
             information = "Isto equivale a 75 reais"
         ),
@@ -37,7 +37,7 @@ class ChartCardViewModel : ViewModel() {
             title = "Item 4",
             valueFormatted = "70",
             value = 70.0f,
-            color = R.color.colorAccent,
+            color = Color(0xFF757575),
             subtitle = "Subtitle 4",
             information = "Isto equivale a 70 reais"
         ),
@@ -45,7 +45,7 @@ class ChartCardViewModel : ViewModel() {
             title = "Item 5",
             valueFormatted = "60",
             value = 60.0f,
-            color = R.color.ocean_color_brand_primary_pure,
+            color = Color(0xFF4CAF50),
             subtitle = "Subtitle 5",
             information = "60 reaissss"
         )

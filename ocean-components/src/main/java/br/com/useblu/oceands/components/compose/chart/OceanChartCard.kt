@@ -103,7 +103,7 @@ fun OceanChartCard(
     showProgress: Boolean = false,
     isLoading: Boolean = false,
     model: OceanChartModel,
-    type: OceanChartType = OceanChartType.CHART_TOP,
+    type: OceanChartType = OceanChartType.LEGEND_TOP,
     actionTitle: String = "",
     callToAction: (() -> Unit)? = null
 ) {
@@ -126,7 +126,7 @@ fun OceanChartCard(
 @Composable
 private fun OceanChartCardSkeleton(
     modifier: Modifier = Modifier,
-    type: OceanChartType = OceanChartType.CHART_TOP
+    type: OceanChartType = OceanChartType.LEGEND_TOP
 ) {
     val brush = shimmeringBrush()
 
@@ -199,7 +199,7 @@ private fun OceanChartCardContent(
     subtitle: String = "",
     showProgress: Boolean = false,
     model: OceanChartModel,
-    type: OceanChartType = OceanChartType.CHART_TOP,
+    type: OceanChartType = OceanChartType.LEGEND_TOP,
     actionTitle: String = "",
     callToAction: (() -> Unit)? = null
 ) {

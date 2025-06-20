@@ -110,7 +110,7 @@ private fun PieChart.buildPieDataSet(
 
     pieDataSet.colors = model.items.map {
         if (selected == null) {
-            ContextCompat.getColor(context, it.color)
+            it.colorArgb
         } else {
             val alpha = if (selected == it) {
                 255
@@ -118,7 +118,7 @@ private fun PieChart.buildPieDataSet(
                 41
             }
 
-            getColor(resId = it.color, alpha = alpha)
+            getColorWithAlpha(color = it.colorArgb, alpha = alpha)
         }
     }.ifEmpty {
         listOf(
@@ -127,6 +127,13 @@ private fun PieChart.buildPieDataSet(
     }
 
     return pieDataSet
+}
+
+fun getColorWithAlpha(
+    color: Int,
+    alpha: Int
+): Int {
+    return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color))
 }
 
 fun Chart<*>.getColor(

@@ -42,7 +42,7 @@
                 android:layout_width="8dp"
                 android:layout_height="8dp"
                 android:src="@drawable/circle_transparent"
-                app:ocean_tint="@{item.color}" />
+                app:ocean_color="@{(long)item.colorArgb}" />
 
             <Space
                 android:layout_width="@dimen/ocean_spacing_stack_xxs"

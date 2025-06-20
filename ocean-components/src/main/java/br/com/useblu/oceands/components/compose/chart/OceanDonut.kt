@@ -26,7 +26,7 @@ private fun OceanDonutPreview() {
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         OceanDonut(
-            model = donutModel,
+            model = previewDonutModel(),
             modifier = Modifier.size(180.dp)
         )
     }

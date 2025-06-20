@@ -17,6 +17,7 @@ import androidx.annotation.DimenRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import br.com.useblu.oceands.R
@@ -337,6 +338,14 @@ fun ImageView.loadBottomNavIcon(isActive: Boolean, activeToken: String?, inactiv
 fun setTintColor(view: ImageView, colorResourceId: Int?) {
     colorResourceId?.let {
         view.setColorFilter(ContextCompat.getColor(view.context, it))
+    }
+}
+
+@BindingAdapter("ocean_color")
+fun setOceanColor(view: ImageView, colorLong: Long?) {
+    colorLong?.let {
+        val colorInt = it.toInt()
+        DrawableCompat.setTint(view.drawable, colorInt)
     }
 }
 

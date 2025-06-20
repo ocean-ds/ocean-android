@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.model.chart
 
-import androidx.annotation.ColorRes
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 
 data class OceanChartItem(
     val title: String = "",
@@ -9,5 +10,8 @@ data class OceanChartItem(
     val valueFormatted: String = "",
     val information: String = "",
     val selected: Boolean = true,
-    @ColorRes val color: Int
-)
+    val color: Color
+) {
+    val colorArgb: Int
+        get() = color.toArgb()
+}

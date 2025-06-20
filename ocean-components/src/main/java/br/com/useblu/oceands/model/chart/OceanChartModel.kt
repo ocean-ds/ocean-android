@@ -5,5 +5,6 @@ data class OceanChartModel(
     val label: String = "",
     val items: List<OceanChartItem> = emptyList(),
     val onItemSelected: (index: Int) -> Unit = {},
-    val onNothingSelected: () -> Unit = {}
+    val onNothingSelected: () -> Unit = {},
+    val showDivider: Boolean = true
 )

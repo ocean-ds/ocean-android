@@ -17,7 +17,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,7 +47,28 @@ private fun OceanChartCardPreview() {
             title = "Title",
             subtitle = "Subtitle",
             isLoading = false,
-            model = donutModel,
+            model = previewDonutModel(),
+            actionTitle = "Call to Action",
+            callToAction = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun OceanChartCardLegendTopPreview() {
+    Column(
+        modifier = Modifier
+            .background(OceanColors.interfaceLightPure)
+            .padding(OceanSpacing.xs)
+    ) {
+        OceanChartCard(
+            modifier = Modifier,
+            title = "Title",
+            subtitle = "Subtitle",
+            isLoading = false,
+            model = previewDonutModel(),
+            type = OceanChartType.LEGEND_TOP,
             actionTitle = "Call to Action",
             callToAction = {}
         )
@@ -68,7 +88,7 @@ private fun OceanChartCardSkeletonPreview() {
             title = "Title",
             subtitle = "Subtitle",
             isLoading = true,
-            model = donutModel.copy(items = emptyList()),
+            model = previewDonutModel().copy(items = emptyList()),
             actionTitle = "Call to Action",
             callToAction = {}
         )
@@ -78,16 +98,17 @@ private fun OceanChartCardSkeletonPreview() {
 @Composable
 fun OceanChartCard(
     modifier: Modifier = Modifier,
-    title: String,
+    title: String = "",
     subtitle: String = "",
     showProgress: Boolean = false,
     isLoading: Boolean = false,
     model: OceanChartModel,
+    type: OceanChartType = OceanChartType.CHART_TOP,
     actionTitle: String = "",
     callToAction: (() -> Unit)? = null
 ) {
     if (isLoading) {
-        OceanChartCardSkeleton(modifier = modifier)
+        OceanChartCardSkeleton(modifier = modifier, type = type)
     } else {
         OceanChartCardContent(
             modifier = modifier,
@@ -95,6 +116,7 @@ fun OceanChartCard(
             subtitle = subtitle,
             showProgress = showProgress,
             model = model,
+            type = type,
             actionTitle = actionTitle,
             callToAction = callToAction
         )
@@ -102,7 +124,10 @@ fun OceanChartCard(
 }
 
 @Composable
-private fun OceanChartCardSkeleton(modifier: Modifier = Modifier) {
+private fun OceanChartCardSkeleton(
+    modifier: Modifier = Modifier,
+    type: OceanChartType = OceanChartType.CHART_TOP
+) {
     val brush = shimmeringBrush()
 
     Column(
@@ -121,36 +146,49 @@ private fun OceanChartCardSkeleton(modifier: Modifier = Modifier) {
         OceanSpacing.StackXXXS()
         OceanSpacing.StackXS()
 
-        OceanDonut(model = OceanChartModel(), modifier = Modifier.height(180.dp))
+        when (type) {
+            OceanChartType.CHART_TOP -> {
+                OceanDonut(model = OceanChartModel(), modifier = Modifier.height(180.dp))
+                OceanSpacing.StackXS()
+                LegendSkeleton(brush)
+            }
 
-        OceanSpacing.StackXS()
-
-        repeat(2) {
-            Box(
-                modifier = Modifier
-                    .height(16.dp)
-                    .width(100.dp)
-                    .borderBackground(
-                        brush = brush,
-                        borderRadius = OceanBorderRadius.Tiny.allCorners
-                    )
-            )
-
-            OceanSpacing.StackXXS()
-
-            Box(
-                modifier = Modifier
-                    .height(16.dp)
-                    .fillMaxWidth()
-                    .borderBackground(
-                        brush = brush,
-                        borderRadius = OceanBorderRadius.Tiny.allCorners
-                    )
-            )
-
-            OceanSpacing.StackXXXS()
-            OceanSpacing.StackXS()
+            OceanChartType.LEGEND_TOP -> {
+                LegendSkeleton(brush)
+                OceanSpacing.StackXS()
+                OceanDonut(model = OceanChartModel(), modifier = Modifier.height(180.dp))
+            }
         }
+    }
+}
+
+@Composable
+private fun LegendSkeleton(brush: androidx.compose.ui.graphics.Brush) {
+    repeat(2) {
+        Box(
+            modifier = Modifier
+                .height(16.dp)
+                .width(100.dp)
+                .borderBackground(
+                    brush = brush,
+                    borderRadius = OceanBorderRadius.Tiny.allCorners
+                )
+        )
+
+        OceanSpacing.StackXXS()
+
+        Box(
+            modifier = Modifier
+                .height(16.dp)
+                .fillMaxWidth()
+                .borderBackground(
+                    brush = brush,
+                    borderRadius = OceanBorderRadius.Tiny.allCorners
+                )
+        )
+
+        OceanSpacing.StackXXXS()
+        OceanSpacing.StackXS()
     }
 }
 
@@ -161,30 +199,48 @@ private fun OceanChartCardContent(
     subtitle: String = "",
     showProgress: Boolean = false,
     model: OceanChartModel,
+    type: OceanChartType = OceanChartType.CHART_TOP,
     actionTitle: String = "",
     callToAction: (() -> Unit)? = null
 ) {
     Column(
         modifier = modifier
     ) {
-        Column(
+        OceanText(
+            text = title,
+            style = OceanTextStyle.heading4,
             modifier = Modifier.padding(horizontal = OceanSpacing.xs)
+        )
+
+        OceanSpacing.StackXXXS()
+
+        if (subtitle.isNotBlank()) {
+            OceanText(
+                text = subtitle,
+                style = OceanTextStyle.description,
+                modifier = Modifier.padding(horizontal = OceanSpacing.xs)
+            )
+        }
+
+        OceanSpacing.StackXS()
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .padding(horizontal = OceanSpacing.xs)
         ) {
-            OceanText(text = title, style = OceanTextStyle.heading4)
+            when (type) {
+                OceanChartType.CHART_TOP -> {
+                    OceanDonut(model = model, modifier = Modifier.height(180.dp))
+                    OceanSpacing.StackXS()
+                    OceanChartLegend(model)
+                }
 
-            OceanSpacing.StackXXXS()
-
-            if (subtitle.isNotBlank()) {
-                OceanText(text = subtitle, style = OceanTextStyle.description)
+                OceanChartType.LEGEND_TOP -> {
+                    OceanChartLegend(model)
+                    OceanSpacing.StackXS()
+                    OceanDonut(model = model, modifier = Modifier.height(180.dp))
+                }
             }
-
-            OceanSpacing.StackXS()
-
-            OceanDonut(model = model, modifier = Modifier.height(180.dp))
-
-            OceanSpacing.StackXS()
-
-            OceanChardLegend(model)
         }
 
         if (actionTitle.isNotBlank()) {
@@ -202,7 +258,7 @@ private fun OceanChartCardContent(
 }
 
 @Composable
-fun OceanChardLegend(
+fun OceanChartLegend(
     model: OceanChartModel,
     modifier: Modifier = Modifier
 ) {
@@ -210,10 +266,6 @@ fun OceanChardLegend(
         modifier = modifier
     ) {
         model.items.forEachIndexed { index, it ->
-            if (index != 0) {
-                OceanDivider()
-            }
-
             OceanChartLegendItem(
                 model = it,
                 onClick = {
@@ -228,6 +280,8 @@ fun OceanChardLegend(
                     }
                 }
             )
+            if (model.showDivider)
+                OceanDivider()
         }
     }
 }
@@ -258,7 +312,7 @@ fun OceanChartLegendItem(
                     modifier = Modifier
                         .size(8.dp)
                         .background(
-                            color = colorResource(id = model.color),
+                            color = model.color,
                             shape = CircleShape
                         )
                 )

@@ -1,9 +1,9 @@
 package br.com.useblu.oceands.client.ui.donut
 
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.model.chart.OceanChartItem
 import br.com.useblu.oceands.model.chart.OceanChartModel
 
@@ -17,31 +17,31 @@ class DonutViewModel : ViewModel() {
             title = "Item 1",
             value = 25.0f,
             valueFormatted = "R$ 25,00",
-            color = R.color.colorPrimary
+            color = Color(0xFF0025E0)
         ),
         OceanChartItem(
             title = "Item 2",
             valueFormatted = "R$ 75,00",
             value = 75.0f,
-            color = R.color.colorPrimaryDark
+            color = Color(0xFF4CAF50)
         ),
         OceanChartItem(
             title = "Item 3",
             valueFormatted = "R$ 75,00",
             value = 75.0f,
-            color = R.color.cardview_shadow_start_color
+            color = Color(0xFF9C27B0)
         ),
         OceanChartItem(
             title = "Item 4",
             valueFormatted = "R$ 70,00",
             value = 70.0f,
-            color = R.color.colorAccent
+            color = Color(0xFFFFC107)
         ),
         OceanChartItem(
             title = "Item 5",
             valueFormatted = "R$ 60,00",
             value = 60.0f,
-            color = R.color.ocean_color_brand_primary_pure
+            color = Color(0xFF00BCD4)
         )
     )
 

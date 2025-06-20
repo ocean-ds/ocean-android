@@ -68,7 +68,7 @@ private fun OceanChartCardLegendTopPreview() {
             subtitle = "Subtitle",
             isLoading = false,
             model = previewDonutModel(),
-            type = OceanChartType.LEGEND_TOP,
+            legendPosition = OceanChartLegendPosition.Top,
             actionTitle = "Call to Action",
             callToAction = {}
         )
@@ -103,12 +103,12 @@ fun OceanChartCard(
     showProgress: Boolean = false,
     isLoading: Boolean = false,
     model: OceanChartModel,
-    type: OceanChartType = OceanChartType.LEGEND_TOP,
+    legendPosition: OceanChartLegendPosition = OceanChartLegendPosition.Top,
     actionTitle: String = "",
     callToAction: (() -> Unit)? = null
 ) {
     if (isLoading) {
-        OceanChartCardSkeleton(modifier = modifier, type = type)
+        OceanChartCardSkeleton(modifier = modifier, legendPosition = legendPosition)
     } else {
         OceanChartCardContent(
             modifier = modifier,
@@ -116,7 +116,7 @@ fun OceanChartCard(
             subtitle = subtitle,
             showProgress = showProgress,
             model = model,
-            type = type,
+            legendPosition = legendPosition,
             actionTitle = actionTitle,
             callToAction = callToAction
         )
@@ -126,7 +126,7 @@ fun OceanChartCard(
 @Composable
 private fun OceanChartCardSkeleton(
     modifier: Modifier = Modifier,
-    type: OceanChartType = OceanChartType.LEGEND_TOP
+    legendPosition: OceanChartLegendPosition = OceanChartLegendPosition.Top
 ) {
     val brush = shimmeringBrush()
 
@@ -146,14 +146,14 @@ private fun OceanChartCardSkeleton(
         OceanSpacing.StackXXXS()
         OceanSpacing.StackXS()
 
-        when (type) {
-            OceanChartType.CHART_TOP -> {
+        when (legendPosition) {
+            OceanChartLegendPosition.Top -> {
                 OceanDonut(model = OceanChartModel(), modifier = Modifier.height(180.dp))
                 OceanSpacing.StackXS()
                 LegendSkeleton(brush)
             }
 
-            OceanChartType.LEGEND_TOP -> {
+            OceanChartLegendPosition.Bottom -> {
                 LegendSkeleton(brush)
                 OceanSpacing.StackXS()
                 OceanDonut(model = OceanChartModel(), modifier = Modifier.height(180.dp))
@@ -199,7 +199,7 @@ private fun OceanChartCardContent(
     subtitle: String = "",
     showProgress: Boolean = false,
     model: OceanChartModel,
-    type: OceanChartType = OceanChartType.LEGEND_TOP,
+    legendPosition: OceanChartLegendPosition = OceanChartLegendPosition.Top,
     actionTitle: String = "",
     callToAction: (() -> Unit)? = null
 ) {
@@ -228,17 +228,17 @@ private fun OceanChartCardContent(
             modifier = Modifier
                 .padding(horizontal = OceanSpacing.xs)
         ) {
-            when (type) {
-                OceanChartType.CHART_TOP -> {
-                    OceanDonut(model = model, modifier = Modifier.height(180.dp))
-                    OceanSpacing.StackXS()
+            when (legendPosition) {
+                OceanChartLegendPosition.Top -> {
                     OceanChartLegend(model)
+                    OceanSpacing.StackXS()
+                    OceanDonut(model = model, modifier = Modifier.height(180.dp))
                 }
 
-                OceanChartType.LEGEND_TOP -> {
-                    OceanChartLegend(model)
-                    OceanSpacing.StackXS()
+                OceanChartLegendPosition.Bottom -> {
                     OceanDonut(model = model, modifier = Modifier.height(180.dp))
+                    OceanSpacing.StackXS()
+                    OceanChartLegend(model)
                 }
             }
         }

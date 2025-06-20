@@ -206,23 +206,23 @@ private fun OceanChartCardContent(
     Column(
         modifier = modifier
     ) {
-        OceanText(
-            text = title,
-            style = OceanTextStyle.heading4,
-            modifier = Modifier.padding(horizontal = OceanSpacing.xs)
-        )
+        if (title.isNotBlank()) {
+            OceanText(
+                text = title,
+                style = OceanTextStyle.heading4,
+                modifier = Modifier.padding(horizontal = OceanSpacing.xs)
+            )
 
-        OceanSpacing.StackXXXS()
-
+            OceanSpacing.StackXXXS()
+        }
         if (subtitle.isNotBlank()) {
             OceanText(
                 text = subtitle,
                 style = OceanTextStyle.description,
                 modifier = Modifier.padding(horizontal = OceanSpacing.xs)
             )
+            OceanSpacing.StackXS()
         }
-
-        OceanSpacing.StackXS()
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -316,7 +316,6 @@ fun OceanChartLegendItem(
                             shape = CircleShape
                         )
                 )
-
                 OceanSpacing.StackXXS()
 
                 OceanText(text = model.title, style = OceanTextStyle.description)
@@ -335,13 +334,14 @@ fun OceanChartLegendItem(
                 }
             }
 
-            OceanSpacing.StackXXXS()
-
-            OceanText(
-                modifier = Modifier.padding(start = 16.dp),
-                text = model.subtitle,
-                style = OceanTextStyle.caption
-            )
+            if (model.subtitle.isNotBlank()) {
+                OceanSpacing.StackXXXS()
+                OceanText(
+                    modifier = Modifier.padding(start = 16.dp),
+                    text = model.subtitle,
+                    style = OceanTextStyle.caption
+                )
+            }
         }
 
         OceanText(text = model.valueFormatted, style = OceanTextStyle.description)

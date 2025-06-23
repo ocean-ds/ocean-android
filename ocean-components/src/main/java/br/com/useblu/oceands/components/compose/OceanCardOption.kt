@@ -84,10 +84,50 @@ private fun OceanCardOptionPreview() {
     }
 }
 
+@Preview
+@Composable
+private fun OceanCardOption02Preview() {
+    OceanCardOption(
+        item = OceanOptionCardItem(
+            data = Any(),
+            icon = "academiccapsolid",
+            title = "PagBlu",
+            subTitle = "Economize até 10% usando saldo futuro sem taxa de antecipação",
+            disabled = false,
+            recommend = false,
+            heightSize = OceanOptionCardSize.LARGE
+        ),
+        colorTitle = OceanColors.interfaceDarkDeep,
+        showBackgroundIcon = false,
+        onClick = {}
+    )
+}
+
+@Preview
+@Composable
+private fun OceanCardOption03Preview() {
+    OceanCardOption(
+        item = OceanOptionCardItem(
+            data = Any(),
+            icon = "academiccapsolid",
+            title = "PagBlu",
+            subTitle = "Economize até 10% usando saldo futuro sem taxa de antecipação",
+            disabled = false,
+            recommend = false
+        ),
+        colorTitle = OceanColors.interfaceDarkDeep,
+        showBackgroundIcon = false,
+        modifier = Modifier.height(200.dp),
+        onClick = {}
+    )
+}
+
 @Composable
 fun OceanCardOption(
     modifier: Modifier = Modifier,
     item: OceanOptionCardItem,
+    showBackgroundIcon: Boolean = true,
+    colorTitle: Color? = null,
     isSelected: Boolean = false,
     onClick: () -> Unit
 ) {
@@ -130,7 +170,7 @@ fun OceanCardOption(
                     Box(
                         modifier = Modifier
                             .padding(start = contentPadding)
-                            .iconContainerBackground(true, backgroundColor)
+                            .iconContainerBackground(showBackgroundIcon, backgroundColor)
                             .size(40.dp),
                         contentAlignment = Alignment.Center
                     ) {
@@ -147,7 +187,7 @@ fun OceanCardOption(
                     OceanText(
                         text = item.title ?: "",
                         style = OceanTextStyle.heading4,
-                        color = if (item.disabled) OceanColors.interfaceDarkDown else OceanColors.brandPrimaryDown
+                        color = colorTitle ?: if (item.disabled) OceanColors.interfaceDarkDown else OceanColors.brandPrimaryDown
                     )
 
                     if (item.heightSize != OceanOptionCardSize.SMALL) {

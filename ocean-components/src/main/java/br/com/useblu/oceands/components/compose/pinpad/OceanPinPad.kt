@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextLayoutResult
@@ -37,17 +35,15 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
-import br.com.useblu.oceands.utils.vibrator.rememberVibrator
 
 @Composable
 fun <Result> OceanPinPad(
     modifier: Modifier = Modifier,
     handler: OceanPinPadHandler<Result>,
     isLoading: Boolean = false,
-    isEnabled: Boolean = true
+    isEnabled: Boolean = true,
+    haptics: OceanPinPadhapticsDelegate? = null
 ) {
-    val vibrator = rememberVibrator()
-
     Column(
         modifier = modifier
             .background(OceanColors.interfaceLightPure)
@@ -68,15 +64,15 @@ fun <Result> OceanPinPad(
         InputPad(
             onClick = { digit ->
                 handler.newDigit(digit = digit)
-                vibrator.vibrate()
+                haptics?.didTapKey(key = digit)
             },
             onDelete = {
                 handler.deleteLast()
-                vibrator.vibrate()
+                haptics?.didTapDelete()
             },
             onClear = {
                 handler.clear()
-                vibrator.vibrate()
+                haptics?.didTapClear()
             }
         )
     }

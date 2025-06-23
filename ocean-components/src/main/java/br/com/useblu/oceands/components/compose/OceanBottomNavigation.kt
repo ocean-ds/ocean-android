@@ -8,10 +8,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -24,8 +23,10 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onSizeChanged
@@ -33,8 +34,10 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.extensions.compose.height
 import br.com.useblu.oceands.model.compose.OceanBottomNavigationModel
 import br.com.useblu.oceands.model.compose.bottomnavigation.OceanBottomNavigationColorStyle
+import br.com.useblu.oceands.model.compose.bottomnavigation.OceanBottomNavigationSpacingStyle
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -119,16 +122,18 @@ private fun OceanBottomNavigationPreview() {
 fun OceanBottomNavigation(
     selectedIndex: Int,
     models: List<OceanBottomNavigationModel>,
-    colorStyle: OceanBottomNavigationColorStyle = OceanBottomNavigationColorStyle.Default
+    colorStyle: OceanBottomNavigationColorStyle = OceanBottomNavigationColorStyle.Default,
+    spacingStyle: OceanBottomNavigationSpacingStyle = OceanBottomNavigationSpacingStyle.Default
 ) {
     val density = LocalDensity.current
 
-    val rowWidth = remember {
+    var rowWidth by remember {
         mutableStateOf(0.dp)
     }
+    var rowHeight by remember { mutableStateOf(0.dp) }
 
-    val xOffset = animateDpAsState(
-        targetValue = rowWidth.value / (models.size).coerceAtLeast(1) * selectedIndex,
+    val xOffset by animateDpAsState(
+        targetValue = rowWidth / (models.size).coerceAtLeast(1) * selectedIndex,
         label = "Background offset"
     )
 
@@ -142,16 +147,17 @@ fun OceanBottomNavigation(
                 )
             )
             .padding(OceanSpacing.xxxs)
-            .height(64.dp)
+            .height(spacingStyle.height),
+        contentAlignment = Alignment.CenterStart
     ) {
-        val backgroundWidth = if (models.isNotEmpty()) rowWidth.value / models.size
+        val backgroundWidth = if (models.isNotEmpty()) rowWidth / models.size
         else 0.dp
 
         Box(
-            modifier = Modifier
-                .offset(x = xOffset.value)
+            modifier = spacingStyle.contentBoxModifier
+                .offset(x = xOffset)
                 .width(backgroundWidth)
-                .fillMaxHeight()
+                .height(rowHeight)
                 .borderBackground(
                     color = colorStyle.selectionColor,
                     borderRadius = OceanBorderRadius.SM.allCorners
@@ -160,9 +166,11 @@ fun OceanBottomNavigation(
 
         Row(
             modifier = Modifier
-                .fillMaxSize()
                 .onSizeChanged {
-                    rowWidth.value = density.run { it.width.toDp() }
+                    density.run {
+                        rowHeight = it.height.toDp()
+                        rowWidth = it.width.toDp()
+                    }
                 },
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
@@ -172,6 +180,7 @@ fun OceanBottomNavigation(
                     model = model,
                     isSelected = index == selectedIndex,
                     colorStyle = colorStyle,
+                    spacingStyle = spacingStyle,
                     modifier = Modifier
                         .weight(1f)
                         .clickable(
@@ -190,27 +199,33 @@ private fun OceanBottomNavigationMenuItem(
     model: OceanBottomNavigationModel,
     modifier: Modifier = Modifier,
     isSelected: Boolean,
-    colorStyle: OceanBottomNavigationColorStyle
+    colorStyle: OceanBottomNavigationColorStyle,
+    spacingStyle: OceanBottomNavigationSpacingStyle
 ) {
     val color = if (isSelected) colorStyle.itemSelected else colorStyle.item
     Column(
-        modifier = modifier.fillMaxHeight(),
+        modifier = modifier
+            .padding(horizontal = OceanSpacing.xxsExtra)
+            .padding(vertical = OceanSpacing.xxxs),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         OceanIcon(
             iconType = if (isSelected) model.activeIcon else model.inactiveIcon,
-            modifier = Modifier.size(22.dp),
+            modifier = Modifier.size(spacingStyle.iconSize),
             tint = color
         )
 
-        OceanSpacing.StackXXS()
+        OceanSpacing
+        Spacer(
+            modifier = Modifier.size(spacingStyle.itemArrangementSpacing)
+        )
 
         Text(
             text = model.label,
             color = color,
             fontFamily = OceanFontFamily.HighlightExtraBold,
-            fontSize = 10.sp
+            fontSize = 12.sp
         )
     }
 }

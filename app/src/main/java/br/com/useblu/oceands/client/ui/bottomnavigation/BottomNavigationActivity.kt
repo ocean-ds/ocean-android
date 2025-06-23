@@ -27,7 +27,8 @@ class BottomNavigationActivity : AppCompatActivity() {
             OceanBottomNavigation(
                 selectedIndex = viewModel.selectedIndex,
                 models = models.value,
-                colorStyle = viewModel.colorStyle
+                colorStyle = viewModel.colorStyle,
+                spacingStyle = viewModel.spacingStyle
             )
         }
 

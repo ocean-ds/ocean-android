@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.useblu.oceands.model.compose.OceanBottomNavigationModel
 import br.com.useblu.oceands.model.compose.bottomnavigation.OceanBottomNavigationColorStyle
+import br.com.useblu.oceands.model.compose.bottomnavigation.OceanBottomNavigationSpacingStyle
 import br.com.useblu.oceands.utils.OceanIcons
 import kotlin.random.Random
 
@@ -20,6 +21,9 @@ class BottomNavigationViewModel : ViewModel() {
         private set
 
     var colorStyle: OceanBottomNavigationColorStyle by mutableStateOf(OceanBottomNavigationColorStyle.Default)
+        private set
+
+    var spacingStyle: OceanBottomNavigationSpacingStyle by mutableStateOf(OceanBottomNavigationSpacingStyle.Default)
         private set
 
     fun clearItems() {
@@ -90,5 +94,13 @@ class BottomNavigationViewModel : ViewModel() {
 
     fun setInverseColorStyle() {
         colorStyle = OceanBottomNavigationColorStyle.Inverse
+    }
+
+    fun setDefaultSpacingStyle() {
+        spacingStyle = OceanBottomNavigationSpacingStyle.Default
+    }
+
+    fun setCompactSpacingStyle() {
+        spacingStyle = OceanBottomNavigationSpacingStyle.Compact
     }
 }

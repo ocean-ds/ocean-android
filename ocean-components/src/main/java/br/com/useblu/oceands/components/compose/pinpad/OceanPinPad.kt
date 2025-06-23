@@ -14,22 +14,19 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanShimmering
 import br.com.useblu.oceands.components.compose.OceanText
+import br.com.useblu.oceands.components.compose.OceanTextResizable
 import br.com.useblu.oceands.extensions.compose.disabledOverlay
 import br.com.useblu.oceands.model.compose.OceanViewStatus
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
@@ -93,11 +90,9 @@ private fun <Result> InputInfo(
 ) {
     val uiState = handler.uiState
     val oceanTextStyle = OceanTextStyle.display2.copy(
-        fontFamily = OceanFontFamily.BaseRegular,
+        fontFamily = OceanFontFamily.BaseMedium,
         fontSize = OceanFontSize.xxl
     )
-    var readyToDraw by remember { mutableStateOf(false) }
-    var textStyle by remember { mutableStateOf(oceanTextStyle) }
     val status = when {
         isEnabled.not() -> OceanViewStatus.Disabled
         uiState.inputValue.isNotBlank() -> OceanViewStatus.Activated
@@ -105,7 +100,8 @@ private fun <Result> InputInfo(
     }
 
     Column(
-        modifier = modifier,
+        modifier = modifier
+            .padding(horizontal = OceanSpacing.xs),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -114,21 +110,14 @@ private fun <Result> InputInfo(
         } else {
             OceanColors.interfaceLightDeep
         }
-        OceanText(
-            color = handler.getInputColor(status = status),
+        OceanTextResizable(
+            modifier = Modifier.fillMaxWidth(),
             text = uiState.inputValue.ifBlank { uiState.placeholder },
+            color = handler.getInputColor(status = status),
             textAlign = TextAlign.Center,
             maxLines = 1,
-            overflow = TextOverflow.Visible,
             softWrap = false,
-            style = textStyle,
-            onTextLayout = autoResizeText(textStyle) { style, isReadyToDraw ->
-                textStyle = style
-                readyToDraw = isReadyToDraw
-            },
-            modifier = Modifier
-                .drawWithContent { if (readyToDraw) drawContent() }
-                .fillMaxWidth()
+            style = oceanTextStyle
         )
         OceanText(
             modifier = Modifier.fillMaxWidth(),
@@ -338,7 +327,7 @@ private fun OceanPinPadPreview() {
     OceanPinPad(
         handler = object : OceanPinPadHandler<Unit> {
             override val uiState = OceanPinPadUIState(
-                inputValue = "R$ 100.234,56",
+                inputValue = "R$ 1.100.234,56",
                 placeholder = "R$ 0,00",
                 hint = "Hint message"
             )

@@ -187,7 +187,7 @@ fun OceanCardOption(
                     OceanText(
                         text = item.title ?: "",
                         style = OceanTextStyle.heading4,
-                        color = if (item.disabled) OceanColors.interfaceDarkDown else OceanColors.brandPrimaryDown
+                        color = if (item.disabled) OceanColors.interfaceDarkDown else colorTitle
                     )
 
                     if (item.heightSize != OceanOptionCardSize.SMALL) {

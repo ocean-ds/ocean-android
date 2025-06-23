@@ -92,7 +92,7 @@ private fun <Result> InputInfo(
     isEnabled: Boolean
 ) {
     val uiState = handler.uiState
-    val oceanTextStyle = OceanTextStyle.heading1.copy(
+    val oceanTextStyle = OceanTextStyle.display2.copy(
         fontFamily = OceanFontFamily.BaseRegular,
         fontSize = OceanFontSize.xxl
     )
@@ -150,7 +150,7 @@ private fun InputPad(
     Column(
         modifier = Modifier.padding(bottom = OceanSpacing.xxs),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xl)
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.sm)
     ) {
         repeat(3) { row ->
             Row(
@@ -278,7 +278,7 @@ private fun InputPadSkeleton() {
     OceanShimmering { brush ->
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xl)
+            verticalArrangement = Arrangement.spacedBy(OceanSpacing.sm)
         ) {
             repeat(4) {
                 Row(
@@ -332,14 +332,14 @@ private fun autoResizeText(
     }
 }
 
-@Preview
+@Preview(widthDp = 360, heightDp = 800)
 @Composable
 private fun OceanPinPadPreview() {
     OceanPinPad(
         handler = object : OceanPinPadHandler<Unit> {
             override val uiState = OceanPinPadUIState(
-                inputValue = "1.100.234,56",
-                placeholder = "0,00",
+                inputValue = "R$ 100.234,56",
+                placeholder = "R$ 0,00",
                 hint = "Hint message"
             )
 

@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
@@ -83,9 +84,10 @@ fun OceanTextResizable(
 ) {
     var currentFontSize by remember { mutableStateOf(style.fontSize) }
     var lastTextLenght by remember { mutableIntStateOf(text.length) }
+    var canDraw by remember { mutableStateOf(true) }
 
     OceanText(
-        modifier = modifier,
+        modifier = modifier.drawWithContent { if (canDraw) drawContent() },
         text = text,
         style = style.copy(fontSize = currentFontSize),
         color = color,
@@ -104,20 +106,26 @@ fun OceanTextResizable(
                 currentFontSize > style.fontSize -> {
                     currentFontSize = style.fontSize
                     lastTextLenght = text.length
+                    canDraw = true
                 }
 
                 currentFontSize < minFontSize -> {
                     currentFontSize = minFontSize
                     lastTextLenght = text.length
+                    canDraw = true
                 }
 
                 textLayoutResult.didOverflowWidth -> {
                     currentFontSize = (currentFontSize.value * 0.9f).sp
+                    canDraw = false
                 }
 
                 else -> {
                     if (text.length < lastTextLenght) {
-                        currentFontSize = (currentFontSize.value * 1.5f).sp
+                        currentFontSize = (currentFontSize.value * 1.15f).sp
+                        canDraw = false
+                    } else {
+                        canDraw = true
                     }
                     lastTextLenght = text.length
                 }

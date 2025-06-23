@@ -3,8 +3,8 @@ package br.com.useblu.oceands.components.compose
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -82,11 +82,7 @@ fun OceanTextResizable(
     minFontSize: TextUnit = OceanFontSize.xxxs
 ) {
     var currentFontSize by remember { mutableStateOf(style.fontSize) }
-    var shouldTryIncrease by remember { mutableStateOf(false) }
-
-    LaunchedEffect(text) {
-        shouldTryIncrease = false
-    }
+    var lastTextLenght by remember { mutableIntStateOf(text.length) }
 
     OceanText(
         modifier = modifier,
@@ -107,22 +103,23 @@ fun OceanTextResizable(
             when {
                 currentFontSize > style.fontSize -> {
                     currentFontSize = style.fontSize
+                    lastTextLenght = text.length
                 }
 
                 currentFontSize < minFontSize -> {
                     currentFontSize = minFontSize
+                    lastTextLenght = text.length
                 }
 
                 textLayoutResult.didOverflowWidth -> {
                     currentFontSize = (currentFontSize.value * 0.9f).sp
                 }
 
-                !shouldTryIncrease -> {
-                    // Primeira passada sem overflow - tenta aumentar
-                    shouldTryIncrease = true
-                    if (currentFontSize < style.fontSize) {
-                        currentFontSize = (currentFontSize.value * 1.05).sp
+                else -> {
+                    if (text.length < lastTextLenght) {
+                        currentFontSize = (currentFontSize.value * 1.5f).sp
                     }
+                    lastTextLenght = text.length
                 }
             }
         }

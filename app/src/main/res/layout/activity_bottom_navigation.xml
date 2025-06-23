@@ -69,6 +69,28 @@
             app:layout_constraintTop_toBottomOf="@id/set_default_color_style"
             android:layout_marginTop="20dp" />
 
+        <Button
+            android:id="@+id/set_default_spacing_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Default Spacing Style"
+            android:onClick="@{() -> viewmodel.setDefaultSpacingStyle()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/set_inverse_color_style"
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:id="@+id/set_compact_spacing_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Compact Spacing Style"
+            android:onClick="@{() -> viewmodel.setCompactSpacingStyle()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/set_default_spacing_style"
+            android:layout_marginTop="20dp" />
+
         <androidx.compose.ui.platform.ComposeView
             android:id="@+id/nav_bottom"
             android:layout_width="match_parent"

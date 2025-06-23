@@ -127,7 +127,7 @@ fun OceanCardOption(
     modifier: Modifier = Modifier,
     item: OceanOptionCardItem,
     showBackgroundIcon: Boolean = true,
-    colorTitle: Color? = null,
+    colorTitle: Color = OceanColors.brandPrimaryDown,
     isSelected: Boolean = false,
     onClick: () -> Unit
 ) {
@@ -187,7 +187,7 @@ fun OceanCardOption(
                     OceanText(
                         text = item.title ?: "",
                         style = OceanTextStyle.heading4,
-                        color = colorTitle ?: if (item.disabled) OceanColors.interfaceDarkDown else OceanColors.brandPrimaryDown
+                        color = if (item.disabled) OceanColors.interfaceDarkDown else OceanColors.brandPrimaryDown
                     )
 
                     if (item.heightSize != OceanOptionCardSize.SMALL) {

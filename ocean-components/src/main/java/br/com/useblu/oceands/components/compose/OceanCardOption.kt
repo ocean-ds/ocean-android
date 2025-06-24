@@ -17,7 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
@@ -122,12 +124,37 @@ private fun OceanCardOption03Preview() {
     )
 }
 
+@Preview
+@Composable
+private fun OceanCardOption04Preview() {
+    OceanCardOption(
+        item = OceanOptionCardItem(
+            data = Any(),
+            icon = "academiccapsolid",
+            title = "PagBlu",
+            subTitle = "Economize até 10% usando saldo futuro sem taxa de antecipação",
+            disabled = false,
+            recommend = false
+        ),
+        colorTitle = OceanColors.interfaceDarkDeep,
+        styleTitle = OceanTextStyle.heading1,
+        styleSubTitle = OceanTextStyle.heading2,
+        sizeIcon = OceanSpacing.xl,
+        showBackgroundIcon = false,
+        modifier = Modifier.height(200.dp),
+        onClick = {}
+    )
+}
+
 @Composable
 fun OceanCardOption(
     modifier: Modifier = Modifier,
     item: OceanOptionCardItem,
     showBackgroundIcon: Boolean = true,
     colorTitle: Color = OceanColors.brandPrimaryDown,
+    styleTitle: TextStyle = OceanTextStyle.heading4,
+    styleSubTitle: TextStyle = OceanTextStyle.description,
+    sizeIcon: Dp = OceanSpacing.md,
     isSelected: Boolean = false,
     onClick: () -> Unit
 ) {
@@ -174,7 +201,11 @@ fun OceanCardOption(
                             .size(40.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        OceanIcon(iconType = OceanIcons.fromToken(item.icon), tint = iconColor)
+                        OceanIcon(
+                            modifier = modifier.size(sizeIcon),
+                            iconType = OceanIcons.fromToken(item.icon),
+                            tint = iconColor
+                        )
                     }
                 }
 
@@ -186,7 +217,7 @@ fun OceanCardOption(
                 ) {
                     OceanText(
                         text = item.title ?: "",
-                        style = OceanTextStyle.heading4,
+                        style = styleTitle,
                         color = if (item.disabled) OceanColors.interfaceDarkDown else colorTitle
                     )
 
@@ -194,7 +225,7 @@ fun OceanCardOption(
                         OceanText(
                             text = item.subTitle ?: "",
                             color = OceanColors.interfaceDarkDown,
-                            style = OceanTextStyle.description
+                            style = styleSubTitle
                         )
                     }
                 }

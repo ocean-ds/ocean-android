@@ -1,25 +1,28 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import br.com.useblu.oceands.R
+import br.com.useblu.oceands.extensions.compose.height
 import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.model.OceanOptionCardItem
 import br.com.useblu.oceands.model.OceanOptionCardSize
@@ -33,12 +36,13 @@ import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
 @Composable
-private fun OceanCardOptionPreview() {
+fun OceanCardOptionPreview() {
     val fakeOptions = listOf(
         OceanOptionCardItem(
             data = Any(),
-            title = "PagBlu",
-            subTitle = "Economize até 10% usando saldo futuro sem taxa de antecipação",
+            icon = OceanIcons.RETAILER_OUTLINE.token,
+            title = "Seu Negócio",
+            subTitle = "Taxas e tarifas",
             disabled = false,
             recommend = false
         ),
@@ -97,7 +101,6 @@ private fun OceanCardOption02Preview() {
             recommend = false,
             heightSize = OceanOptionCardSize.LARGE
         ),
-        colorTitle = OceanColors.interfaceDarkDeep,
         showBackgroundIcon = false,
         onClick = {}
     )
@@ -115,9 +118,25 @@ private fun OceanCardOption03Preview() {
             disabled = false,
             recommend = false
         ),
-        colorTitle = OceanColors.interfaceDarkDeep,
+        showBackgroundIcon = true,
+        onClick = {}
+    )
+}
+
+@Preview
+@Composable
+private fun OceanCardOption04Preview() {
+    OceanCardOption(
+        item = OceanOptionCardItem(
+            data = Any(),
+            icon = "academiccapsolid",
+            title = "PagBlu",
+            subTitle = "Economize até 10% usando saldo futuro sem taxa de antecipação",
+            disabled = false,
+            recommend = false
+        ),
+        sizeIcon = OceanSpacing.xl,
         showBackgroundIcon = false,
-        modifier = Modifier.height(200.dp),
         onClick = {}
     )
 }
@@ -126,81 +145,117 @@ private fun OceanCardOption03Preview() {
 fun OceanCardOption(
     modifier: Modifier = Modifier,
     item: OceanOptionCardItem,
-    showBackgroundIcon: Boolean = true,
-    colorTitle: Color = OceanColors.brandPrimaryDown,
+    showBackgroundIcon: Boolean = false,
+    sizeIcon: Dp = OceanSpacing.sm,
     isSelected: Boolean = false,
     onClick: () -> Unit
 ) {
     val borderColor = if (isSelected) OceanColors.brandPrimaryUp else OceanColors.interfaceLightDown
-    val cardBackgoundColor = when {
+    val cardBackgroundColor = when {
         item.disabled -> OceanColors.interfaceLightPure
         isSelected -> OceanColors.interfaceLightUp
         else -> OceanColors.interfaceLightPure
     }
+
+    val density = LocalDensity.current
+    var cardHeight by remember { mutableStateOf(0.dp) }
+
     Card(
-        modifier = modifier.height(96.dp),
+        modifier = modifier
+            .onSizeChanged {
+                density.run {
+                    cardHeight = it.height.toDp()
+                }
+            },
         shape = OceanBorderRadius.SM.allCorners.shape(),
         colors = CardDefaults.cardColors(
-            containerColor = cardBackgoundColor
+            containerColor = cardBackgroundColor
         ),
         border = BorderStroke(1.dp, borderColor),
         onClick = onClick
     ) {
-        Box(modifier = Modifier) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxHeight()
-            ) {
-                val contentPadding = if (item.heightSize == OceanOptionCardSize.SMALL) {
-                    OceanSpacing.xs
-                } else OceanSpacing.sm
-
-                if (item.icon != null) {
-                    val backgroundColor = when {
-                        isSelected -> OceanColors.brandPrimaryDown
-                        else -> OceanColors.interfaceLightUp
-                    }
-
-                    val iconColor = when {
-                        item.disabled -> OceanColors.interfaceDarkUp
-                        isSelected -> OceanColors.interfaceLightUp
-                        else -> OceanColors.brandPrimaryDown
-                    }
-
-                    Box(
-                        modifier = Modifier
-                            .padding(start = contentPadding)
-                            .iconContainerBackground(showBackgroundIcon, backgroundColor)
-                            .size(40.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        OceanIcon(iconType = OceanIcons.fromToken(item.icon), tint = iconColor)
-                    }
-                }
-
-                Column(
+        Box(
+            modifier = Modifier
+        ) {
+            Row {
+                Row(
                     modifier = Modifier
-                        .padding(start = contentPadding, end = OceanSpacing.xxs)
-                        .weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
+                        .weight(1f)
+                        .padding(vertical = OceanSpacing.md),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    OceanText(
-                        text = item.title ?: "",
-                        style = OceanTextStyle.heading4,
-                        color = if (item.disabled) OceanColors.interfaceDarkDown else colorTitle
-                    )
+                    val contentPadding = if (item.heightSize == OceanOptionCardSize.SMALL) {
+                        OceanSpacing.xs
+                    } else OceanSpacing.sm
 
-                    if (item.heightSize != OceanOptionCardSize.SMALL) {
+                    if (item.icon != null) {
+                        val backgroundColor = when {
+                            isSelected -> OceanColors.brandPrimaryDown
+                            else -> OceanColors.interfaceLightUp
+                        }
+
+                        val iconColor = when {
+                            item.disabled -> OceanColors.interfaceDarkUp
+                            isSelected -> OceanColors.interfaceLightUp
+                            else -> OceanColors.brandPrimaryDown
+                        }
+
+                        Box(
+                            modifier = Modifier
+                                .padding(start = contentPadding)
+                                .iconContainerBackground(showBackgroundIcon, backgroundColor),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            OceanIcon(
+                                modifier = Modifier
+                                    .padding(if (showBackgroundIcon) OceanSpacing.xxsExtra else 0.dp)
+                                    .size(sizeIcon),
+                                iconType = OceanIcons.fromToken(item.icon),
+                                tint = iconColor
+                            )
+                        }
+                    }
+
+                    Column(
+                        modifier = Modifier
+                            .padding(start = OceanSpacing.xxsExtra, end = OceanSpacing.xxs)
+                            .weight(1f),
+                        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
+                    ) {
                         OceanText(
-                            text = item.subTitle ?: "",
-                            color = OceanColors.interfaceDarkDown,
-                            style = OceanTextStyle.description
+                            text = item.title ?: "",
+                            style = OceanTextStyle.heading4,
+                            color = if (item.disabled) OceanColors.interfaceDarkDown else OceanColors.interfaceDarkDeep
                         )
+
+                        if (item.heightSize != OceanOptionCardSize.SMALL) {
+                            OceanText(
+                                text = item.subTitle ?: "",
+                                color = OceanColors.interfaceDarkDown,
+                                style = OceanTextStyle.description
+                            )
+                        }
                     }
                 }
 
                 if (item.disabled) {
-                    Image(painter = painterResource(id = R.drawable.image_blocked), contentDescription = null)
+                    Box(
+                        modifier = Modifier
+                            .height(cardHeight)
+                            .borderBackground(
+                                color = OceanColors.interfaceLightDown,
+                                borderRadius = OceanBorderRadius
+                                    .SM(corners = setOf(OceanBorderRadius.Corners.TopEnd, OceanBorderRadius.Corners.BottomEnd))
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        OceanIcon(
+                            modifier = Modifier
+                                .padding(horizontal = OceanSpacing.xxs),
+                            iconType = OceanIcons.LOCK_CLOSED_SOLID,
+                            tint = OceanColors.interfaceDarkUp
+                        )
+                    }
                 }
             }
 

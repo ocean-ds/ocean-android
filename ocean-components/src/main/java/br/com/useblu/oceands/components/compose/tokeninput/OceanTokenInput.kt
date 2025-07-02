@@ -51,12 +51,21 @@ fun OceanTokenInput(
     autocomplete: String = "",
     tokenCount: Int = 4,
     enabled: Boolean = true,
+    firstFocus: Boolean = true,
     mask: OceanTokenMask = OceanTokenDefaultMask,
     validator: OceanTokenInputValidator = OceanTokenDefaultValidator,
-    onValueChange: (String) -> Unit = {}
+    onValueChange: (String) -> Unit = {},
+    onComplete: (String) -> Unit = {}
 ) {
     val focusRequester = remember { FocusRequester() }
     var isFocused by remember { mutableStateOf(false) }
+    val processInput: (String) -> Unit = { newValue ->
+        val processed = validator.processInput(newValue.take(tokenCount))
+        onValueChange(processed)
+        if (processed.length == tokenCount) {
+            onComplete(processed)
+        }
+    }
 
     Column(modifier = modifier) {
         if (label.isNotEmpty()) {
@@ -98,8 +107,7 @@ fun OceanTokenInput(
             BasicTextField(
                 value = value,
                 onValueChange = { newValue ->
-                    val processed = validator.processInput(newValue.take(tokenCount))
-                    onValueChange(processed)
+                    processInput(newValue)
                 },
                 modifier = Modifier
                     .alpha(0f)
@@ -130,9 +138,10 @@ fun OceanTokenInput(
 
     LaunchedEffect(autocomplete) {
         if (autocomplete.isNotEmpty()) {
-            val processed = validator.processInput(autocomplete.take(tokenCount))
-            onValueChange(processed)
-            focusRequester.requestFocus()
+            processInput(autocomplete)
+            if (firstFocus) {
+                focusRequester.requestFocus()
+            }
         }
     }
 }

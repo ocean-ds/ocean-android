@@ -170,7 +170,7 @@ private fun TokenBox(
 
     Box(
         modifier = Modifier
-            .size(48.dp)
+            .size(OceanSpacing.xl)
             .borderBackground(
                 color = backgroundColor,
                 borderRadius = OceanBorderRadius.SM.allCorners

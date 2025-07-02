@@ -75,6 +75,7 @@
         <activity android:name=".ui.chartbar.ChartBarActivity" />
         <activity android:name=".ui.onboarding.OceanOnboardingPagerActivity" />
         <activity android:name=".ui.pinpad.PinPadActivity" />
+        <activity android:name=".ui.tokeninput.TokenInputActivity" />
     </application>
 
 </manifest>

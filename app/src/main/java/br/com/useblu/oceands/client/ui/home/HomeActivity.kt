@@ -79,6 +79,7 @@ import br.com.useblu.oceands.client.ui.textlisticonitem.TextListIconItemActivity
 import br.com.useblu.oceands.client.ui.textlistinline.TextListInlineItemActivity
 import br.com.useblu.oceands.client.ui.textlistinverted.TextListInvertedItemActivity
 import br.com.useblu.oceands.client.ui.textlistitem.TextListItemActivity
+import br.com.useblu.oceands.client.ui.tokeninput.TokenInputActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivity
 import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
@@ -178,76 +179,25 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Badges", onClick = { onClickBadges() })
                         textAction(text = "Balance", onClick = { onClickBalance() })
                         textAction(text = "Blu Balance", onClick = { onClickBluBalance() })
-                        textAction(text = "Buttons", onClick = { onClickButtons() })
-                        textAction(
-                            text = "Bottom Navigation",
-                            onClick = { onClickBottomNavigation() }
-                        )
-                        textAction(
-                            text = "BottomSheet with Image",
-                            onClick = { onClickBottomSheetImage() }
-                        )
-                        textAction(
-                            text = "BottomSheet Vertical",
-                            onClick = { onClickBottomSheetVertical() }
-                        )
-                        textAction(
-                            text = "BottomSheet Vertical with Code",
-                            onClick = { onClickBottomSheetImageVerticalWithCode() }
-                        )
-                        textAction(
-                            text = "BottomSheet Vertical with BuildVersion",
-                            onClick = { onClickBottomSheetImageVerticalWithBuildVersion() }
-                        )
-                        textAction(
-                            text = "BottomSheet Vertical Without Image",
-                            onClick = { onClickBottomSheetVerticalWithoutImage() }
-                        )
-                        textAction(
-                            text = "BottomSheet Horizontal",
-                            onClick = { onClickBottomSheetHorizontal() }
-                        )
-                        textAction(
-                            text = "BottomSheet Critical",
-                            onClick = { onClickBottomSheetCritical() }
-                        )
-                        textAction(
-                            text = "BottomSheet Compose Content",
-                            onClick = { onClickBottomSheetWithCompose() }
-                        )
-                        textAction(
-                            text = "BottomSheet 100% Compose",
-                            onClick = { showSheet = true }
-                        )
+                        textAction(text = "Bottom Navigation", onClick = { onClickBottomNavigation() })
+                        textAction(text = "BottomSheet 100% Compose", onClick = { showSheet = true })
+                        textAction(text = "BottomSheet Compose Content", onClick = { onClickBottomSheetWithCompose() })
+                        textAction(text = "BottomSheet Critical", onClick = { onClickBottomSheetCritical() })
+                        textAction(text = "BottomSheet Horizontal", onClick = { onClickBottomSheetHorizontal() })
+                        textAction(text = "BottomSheet Vertical", onClick = { onClickBottomSheetVertical() })
+                        textAction(text = "BottomSheet Vertical with BuildVersion", onClick = { onClickBottomSheetImageVerticalWithBuildVersion() })
+                        textAction(text = "BottomSheet Vertical with Code", onClick = { onClickBottomSheetImageVerticalWithCode() })
+                        textAction(text = "BottomSheet Vertical Without Image", onClick = { onClickBottomSheetVerticalWithoutImage() })
+                        textAction(text = "BottomSheet with Image", onClick = { onClickBottomSheetImage() })
                         textAction(text = "BottomSheetList", onClick = { onOceanBottomListSheet() })
-                        textAction(
-                            text = "BottomSheetList (body Icon)",
-                            onClick = { onOceanBottomListSheetWithBodyIcon() }
-                        )
-                        textAction(
-                            text = "BottomSheetList (button)",
-                            onClick = { onOceanBottomListSheetButton() }
-                        )
-                        textAction(
-                            text = "BottomSheetList (button with caption)",
-                            onClick = { onOceanBottomListSheetButtonWithCaption() }
-                        )
-                        textAction(
-                            text = "BottomSheetList (icon)",
-                            onClick = { onOceanBottomListSheetIcon() }
-                        )
-                        textAction(
-                            text = "BottomSheetList (icon + subtitle)",
-                            onClick = { onOceanBottomListSheetIcon() }
-                        )
-                        textAction(
-                            text = "BottomSheetList (Generic List)",
-                            onClick = { onOceanBottomListSheetWithGenericList() }
-                        )
-                        textAction(
-                            text = "BottomSheetList (search)",
-                            onClick = { onOceanBottomListSheetWithSearch() }
-                        )
+                        textAction(text = "BottomSheetList (body Icon)", onClick = { onOceanBottomListSheetWithBodyIcon() })
+                        textAction(text = "BottomSheetList (button)", onClick = { onOceanBottomListSheetButton() })
+                        textAction(text = "BottomSheetList (button with caption)", onClick = { onOceanBottomListSheetButtonWithCaption() })
+                        textAction(text = "BottomSheetList (Generic List)", onClick = { onOceanBottomListSheetWithGenericList() })
+                        textAction(text = "BottomSheetList (icon)", onClick = { onOceanBottomListSheetIcon() })
+                        textAction(text = "BottomSheetList (icon + subtitle)", onClick = { onOceanBottomListSheetIcon() })
+                        textAction(text = "BottomSheetList (search)", onClick = { onOceanBottomListSheetWithSearch() })
+                        textAction(text = "Buttons", onClick = { onClickButtons() })
                         textAction(text = "Card Cross Sell", onClick = { cardCrossCellClick() })
                         textAction(text = "Card Group", onClick = { cardContentClick() })
                         textAction(text = "Card Item", onClick = { onClickCardItem() })
@@ -257,14 +207,8 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Chart Card", onClick = { chartCardClick() })
                         textAction(text = "Checkbox", onClick = { checkbox() })
                         textAction(text = "Chips", onClick = { onClickChips() })
-                        textAction(
-                            text = "DatePicker Fullscreen",
-                            onClick = { onOceanDatePickerFullScreen() }
-                        )
-                        textAction(
-                            text = "DatePicker Fullscreen Compose",
-                            onClick = { showDatePicker = true }
-                        )
+                        textAction(text = "DatePicker Fullscreen", onClick = { onOceanDatePickerFullScreen() })
+                        textAction(text = "DatePicker Fullscreen Compose", onClick = { showDatePicker = true })
                         textAction(text = "Descriptor List Item", onClick = { descriptorList() })
                         textAction(text = "Detailed Card", onClick = { detailedCardClick() })
                         textAction(text = "Donut", onClick = { donutView() })
@@ -274,6 +218,8 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Header App", onClick = { onClickHeaderApp() })
                         textAction(text = "Informative Card", onClick = { informativeCardClick() })
                         textAction(text = "Input", onClick = { onClickInputs() })
+                        textAction(text = "List Ordered", onClick = { listOrderedClick() })
+                        textAction(text = "List Subheader", onClick = { listSubheaderClick() })
                         textAction(text = "Onboarding", onClick = { onboardingClick() })
                         textAction(text = "Options Card", onClick = { clickOptionsCard() })
                         textAction(text = "PinPad", onClick = { onClickPinPad() })
@@ -281,43 +227,27 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Radio", onClick = { onClickRadio() })
                         textAction(text = "Shortcuts", onClick = { shortcuts() })
                         textAction(text = "SnackBar", onClick = { onClickSnackBar(view) })
-                        textAction(
-                            text = "SnackBar + Action",
-                            onClick = { onClickSnackBarAction(view) }
-                        )
+                        textAction(text = "SnackBar + Action", onClick = { onClickSnackBarAction(view) })
                         textAction(text = "Status List Item", onClick = { statusListItem() })
                         textAction(text = "Step", onClick = { stepview() })
                         textAction(text = "Switch", onClick = { onClickSwitch() })
                         textAction(text = "Tab", onClick = { onClickTab() })
                         textAction(text = "Tag", onClick = { onClickTags() })
                         textAction(text = "Text Link", onClick = { onClickTextLink() })
-                        textAction(
-                            text = "Text List Expandable",
-                            onClick = { listItemsExpandable() }
-                        )
+                        textAction(text = "Text List Expandable", onClick = { listItemsExpandable() })
                         textAction(text = "Text List Icon Item", onClick = { textListIconItem() })
+                        textAction(text = "Text List Inline Item", onClick = { textListInlineItem() })
+                        textAction(text = "Text List Inverted Item", onClick = { textListInvertedItem() })
                         textAction(text = "Text List Item", onClick = { textListItem() })
-                        textAction(
-                            text = "Text List Inverted Item",
-                            onClick = { textListInvertedItem() }
-                        )
-                        textAction(
-                            text = "Text List Inline Item",
-                            onClick = { textListInlineItem() }
-                        )
                         textAction(text = "Text List Settings", onClick = { listItemsSettings() })
-                        textAction(text = "List Ordered", onClick = { listOrderedClick() })
-                        textAction(text = "List Subheader", onClick = { listSubheaderClick() })
                         textAction(text = "Toast", onClick = { onClickToast() })
+                        textAction(text = "Token Input", onClick = { onClickTokenInput() })
                         textAction(text = "Tooltip", onClick = { onClickTooltip(view) })
                         textAction(text = "TopBar", onClick = { topBarClick() })
-                        textAction(text = "Transaction List", onClick = { transactionListClick() })
                         textAction(text = "Transaction Footer", onClick = { transactionFooter() })
+                        textAction(text = "Transaction List", onClick = { transactionListClick() })
                         textAction(text = "Typography", onClick = { onClickTypography() })
-                        textAction(
-                            text = "Unordered List Item",
-                            onClick = { onClickUnorderedListItem() }
-                        )
+                        textAction(text = "Unordered List Item", onClick = { onClickUnorderedListItem() })
                     }
                 }
             }
@@ -978,6 +908,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onClickCardItem() {
         val intent = Intent(this, CardItemActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun onClickTokenInput() {
+        val intent = Intent(this, TokenInputActivity::class.java)
         startActivity(intent)
     }
 }

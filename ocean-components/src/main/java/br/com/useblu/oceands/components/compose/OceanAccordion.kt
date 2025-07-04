@@ -30,7 +30,6 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 @Composable
 fun PreviewOceanAccordion() {
     Column {
-        // Exemplo 1: Texto em negrito
         OceanAccordion(
             title = "Formatação Negrito",
             description = "Este texto contém palavras em <b>negrito</b> para destacar informações importantes.",
@@ -39,127 +38,9 @@ fun PreviewOceanAccordion() {
 
         OceanSpacing.StackXS()
 
-        // Exemplo 2: Texto em itálico
         OceanAccordion(
             title = "Formatação Itálico",
             description = "Aqui temos texto em <i>itálico</i> para dar ênfase suave ao conteúdo.",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 3: Texto sublinhado
-        OceanAccordion(
-            title = "Formatação Sublinhado",
-            description = "Texto com <u>sublinhado</u> para destacar termos específicos.",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 4: Texto riscado
-        OceanAccordion(
-            title = "Formatação Riscado",
-            description = "Preço antigo: <s>R\$ 99,90</s> - Novo preço: R\$ 79,90",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 5: Combinando formatações
-        OceanAccordion(
-            title = "Formatações Combinadas",
-            description = "Texto com <b>negrito</b>, <i>itálico</i> e <u>sublinhado</u> no mesmo parágrafo.",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 6: Texto com cores (se suportado)
-        OceanAccordion(
-            title = "Formatação com Cores",
-            description = "Texto normal e <font color='#FF0000'>texto vermelho</font> para alertas.",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 7: Links (se suportado)
-        OceanAccordion(
-            title = "Links",
-            description = "Visite nosso site: <a href='https://exemplo.com'>www.exemplo.com</a>",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 8: Texto com quebras de linha
-        OceanAccordion(
-            title = "Quebras de Linha",
-            description = "Primeira linha<br/>Segunda linha<br/>Terceira linha",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 9: Formatação complexa
-        OceanAccordion(
-            title = "Formatação Complexa",
-            description = "<b>Importante:</b> Este produto está em <i>promoção</i>.<br/><u>Preço original</u>: <s>R\$ 199,90</s><br/><b>Preço atual</b>: R\$ 149,90",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 10: Texto com formatação aninhada
-        OceanAccordion(
-            title = "Formatação Aninhada",
-            description = "Texto <b>negrito com <i>itálico dentro</i></b> e <u>sublinhado com <b>negrito</b></u>.",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 11: Lista simples (usando quebras de linha)
-        OceanAccordion(
-            title = "Lista de Recursos",
-            description = "<b>Recursos inclusos:</b><br/>• Interface intuitiva<br/>• <i>Suporte 24/7</i><br/>• <u>Atualizações gratuitas</u>",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 12: Formatação para FAQ
-        OceanAccordion(
-            title = "Como cancelar minha assinatura?",
-            description = "<b>Passo 1:</b> Acesse suas configurações<br/><b>Passo 2:</b> Clique em <i>Gerenciar Assinatura</i><br/><b>Passo 3:</b> Selecione <u>Cancelar</u>",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 13: Formatação para termos
-        OceanAccordion(
-            title = "Termos de Uso",
-            description = "Ao utilizar este serviço, você concorda com nossos <b>termos e condições</b>. Para mais informações, consulte nossa <a href='#'>política de privacidade</a>.",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 14: Formatação para alertas
-        OceanAccordion(
-            title = "Aviso Importante",
-            description = "<b>ATENÇÃO:</b> <font color='#FF6B6B'>Este recurso será descontinuado</font> em <u>30 dias</u>. <i>Migre seus dados antes do prazo final.</i>",
-            expanded = true
-        )
-
-        OceanSpacing.StackXS()
-
-        // Exemplo 15: Formatação para instruções
-        OceanAccordion(
-            title = "Como configurar?",
-            description = "<b>Configuração rápida:</b><br/><i>1. Abra o aplicativo</i><br/><i>2. Vá para <u>Configurações</u></i><br/><i>3. Ative a opção <b>Sincronização</b></i>",
             expanded = true
         )
 

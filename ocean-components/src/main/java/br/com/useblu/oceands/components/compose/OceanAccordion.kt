@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,17 +31,17 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 fun PreviewOceanAccordion() {
     Column {
         OceanAccordion(
-            title = "Teste",
-            description = "Uiuiui ui uiasduhsaudha",
+            title = "Formatação Negrito",
+            description = "Este texto contém palavras em <b>negrito</b> para destacar informações importantes.",
             expanded = true
         )
 
         OceanSpacing.StackXS()
 
         OceanAccordion(
-            title = "Teste",
-            description = "Uiuiui ui uiasduhsaudha",
-            expanded = false
+            title = "Formatação Itálico",
+            description = "Aqui temos texto em <i>itálico</i> para dar ênfase suave ao conteúdo.",
+            expanded = true
         )
 
         OceanSpacing.StackSM()
@@ -70,7 +69,7 @@ fun OceanAccordion(
                 .padding(top = if (expandedContent) OceanSpacing.xxsExtra else OceanSpacing.xs)
                 .padding(bottom = if (expandedContent) OceanSpacing.xxs else OceanSpacing.xs)
         ) {
-            Text(
+            OceanText(
                 text = title,
                 color = if (expandedContent) OceanColors.brandPrimaryDown else OceanColors.interfaceDarkDown,
                 fontSize = OceanFontSize.xxs,
@@ -91,7 +90,7 @@ fun OceanAccordion(
 
         AnimatedVisibility(visible = expandedContent) {
             Column {
-                Text(
+                OceanText(
                     text = description,
                     color = OceanColors.interfaceDarkDown,
                     fontSize = OceanFontSize.xxs,

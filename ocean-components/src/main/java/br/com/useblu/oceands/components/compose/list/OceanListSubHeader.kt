@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.components.compose.list
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,10 +15,12 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -62,7 +63,10 @@ fun OceanListSubHeader(
 
     Row(
         modifier = modifier
-            .background(color = OceanColors.interfaceLightUp)
+            .borderBackground(
+                color = OceanColors.interfaceLightUp,
+                borderRadius = OceanBorderRadius.SM.topCorners
+            )
             .fillMaxWidth()
             .padding(horizontal = OceanSpacing.xs)
             .height(rowHeight),

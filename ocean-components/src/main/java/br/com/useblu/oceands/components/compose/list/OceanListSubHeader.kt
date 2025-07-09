@@ -11,11 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
@@ -54,14 +56,18 @@ fun OceanListSubHeader(
     subtitle: String = "",
     highlighted: String = "",
     isSmall: Boolean = false,
-    icon: OceanIcons? = null
+    icon: OceanIcons? = null,
+    borderRadius: OceanBorderRadius? = null
 ) {
     val rowHeight = if (isSmall) {
         32.dp
     } else 40.dp
 
     Row(
-        modifier = modifier
+        modifier = modifier.let {
+            val border = borderRadius ?: return@let it
+            it.clip(shape = border.shape())
+        }
             .background(color = OceanColors.interfaceLightUp)
             .fillMaxWidth()
             .padding(horizontal = OceanSpacing.xs)

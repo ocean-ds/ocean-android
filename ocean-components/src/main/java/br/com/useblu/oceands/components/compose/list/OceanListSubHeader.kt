@@ -57,7 +57,7 @@ fun OceanListSubHeader(
     highlighted: String = "",
     isSmall: Boolean = false,
     icon: OceanIcons? = null,
-    borderRadius: OceanBorderRadius? = OceanBorderRadius.SM.topCorners
+    borderRadius: OceanBorderRadius? = null
 ) {
     val rowHeight = if (isSmall) {
         32.dp

@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.extensions.compose.topBarBackground
+import br.com.useblu.oceands.extensions.dp
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -201,7 +202,7 @@ private fun TopBar(
     ) {
         Row(
             modifier = Modifier
-                .height(56.dp)
+                .heightIn(min = 56.dp, max = 92.dp)
                 .fillMaxSize()
                 .clickable { onClickToolbar() }
         ) {
@@ -230,6 +231,7 @@ private fun TopBar(
                 fontSize = OceanFontSize.sm,
                 fontFamily = OceanFontFamily.HighlightExtraBold,
                 color = OceanColors.brandPrimaryPure,
+                maxLines = 1,
                 modifier = Modifier
                     .padding(vertical = OceanSpacing.xs)
                     .padding(start = paddingStart, end = paddingEnd)

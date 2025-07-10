@@ -37,7 +37,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    
+
     namespace = "br.com.useblu.oceands.playground"
 }
 
@@ -50,7 +50,6 @@ dependencies {
     implementation(libs.skydoves.balloon)
     implementation(libs.skydoves.balloon.compose)
     implementation(libs.androidMaterial)
-    implementation(libs.canarinho)
     implementation(libs.glide)
     implementation(libs.circleIndicator)
     implementation(libs.expansionPanel)

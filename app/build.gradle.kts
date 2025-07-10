@@ -38,8 +38,14 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    
+
     namespace = "br.com.useblu.oceands.client"
+}
+
+configurations.all {
+    resolutionStrategy {
+        force(libs.canarinho)
+    }
 }
 
 dependencies {

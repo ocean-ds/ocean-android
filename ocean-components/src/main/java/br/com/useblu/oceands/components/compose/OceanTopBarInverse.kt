@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.DropdownMenu
@@ -201,7 +202,7 @@ private fun TopBar(
     ) {
         Row(
             modifier = Modifier
-                .height(56.dp)
+                .heightIn(min = 56.dp, max = 92.dp)
                 .fillMaxSize()
                 .clickable { onClickToolbar() }
         ) {
@@ -230,6 +231,7 @@ private fun TopBar(
                 fontSize = OceanFontSize.sm,
                 fontFamily = OceanFontFamily.HighlightExtraBold,
                 color = OceanColors.brandPrimaryPure,
+                maxLines = 1,
                 modifier = Modifier
                     .padding(vertical = OceanSpacing.xs)
                     .padding(start = paddingStart, end = paddingEnd)

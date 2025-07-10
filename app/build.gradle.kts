@@ -42,12 +42,6 @@ android {
     namespace = "br.com.useblu.oceands.client"
 }
 
-configurations.all {
-    resolutionStrategy {
-        force(libs.canarinho)
-    }
-}
-
 dependencies {
     implementation(project(":ocean-components"))
     implementation(libs.lifecycleViewModel)

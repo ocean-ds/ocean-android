@@ -1,7 +1,7 @@
 package br.com.useblu.oceands.utils
 
-import br.com.concrete.canarinho.formatador.Formatador
 import br.com.useblu.oceands.extensions.formatterDateBR
+import br.com.useblu.oceands.utils.canarinho.formatador.Formatador
 
 class FormatTypes {
 

@@ -10,8 +10,9 @@ data class OceanChartItem(
     val valueFormatted: String = "",
     val information: String = "",
     val selected: Boolean = true,
-    val color: Color
+    val colorResId: Int? = null,
+    val color: Color? = null
 ) {
     val colorArgb: Int
-        get() = color.toArgb()
+        get() = colorResId ?: color?.toArgb() ?: Color.Unspecified.toArgb()
 }

@@ -194,7 +194,8 @@ data class OceanBottomSheetModel(
         val text: String,
         val icon: OceanIcons? = null,
         val onClick: () -> Unit,
-        val isDisabled: Boolean = false
+        val isDisabled: Boolean = false,
+        val dismissOnButtonClick: Boolean = true
     )
 
     companion object
@@ -390,7 +391,9 @@ private fun BottomButtons(
                 icon = positiveButton.icon,
                 onClick = {
                     positiveButton.onClick.invoke()
-                    onDismiss.invoke()
+                    if (positiveButton.dismissOnButtonClick) {
+                        onDismiss.invoke()
+                    }
                 },
                 modifier = it,
                 disabled = positiveButton.isDisabled
@@ -406,7 +409,9 @@ private fun BottomButtons(
                 buttonStyle = OceanButtonStyle.SecondaryMedium,
                 onClick = {
                     negativeButton.onClick.invoke()
-                    onDismiss.invoke()
+                    if (negativeButton.dismissOnButtonClick) {
+                        onDismiss.invoke()
+                    }
                 },
                 modifier = it,
                 disabled = negativeButton.isDisabled

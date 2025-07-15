@@ -188,14 +188,14 @@ data class OceanBottomSheetModel(
     val actionPositive: Button? = null,
     val actionNegative: Button? = null,
     val buttonsOrientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
-    val dismissOnButtonClick: Boolean = true,
     val onDismiss: (dismissedByUser: Boolean) -> Unit
 ) {
     data class Button(
         val text: String,
         val icon: OceanIcons? = null,
         val onClick: () -> Unit,
-        val isDisabled: Boolean = false
+        val isDisabled: Boolean = false,
+        val dismissOnButtonClick: Boolean = true
     )
 
     companion object
@@ -345,7 +345,6 @@ fun OceanBottomSheet(
                 negativeButton = model.actionNegative,
                 isCritical = model.isCritical,
                 orientation = model.buttonsOrientation,
-                dismissOnButtonClick = model.dismissOnButtonClick,
                 onDismiss = {
                     model.onDismiss(false)
                 }
@@ -372,7 +371,6 @@ private fun BottomButtons(
     negativeButton: OceanBottomSheetModel.Button? = null,
     isCritical: Boolean = false,
     orientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
-    dismissOnButtonClick: Boolean = true,
     onDismiss: () -> Unit
 ) {
     if (positiveButton == null && negativeButton == null) {
@@ -393,7 +391,7 @@ private fun BottomButtons(
                 icon = positiveButton.icon,
                 onClick = {
                     positiveButton.onClick.invoke()
-                    if (dismissOnButtonClick) {
+                    if (positiveButton.dismissOnButtonClick) {
                         onDismiss.invoke()
                     }
                 },
@@ -411,7 +409,7 @@ private fun BottomButtons(
                 buttonStyle = OceanButtonStyle.SecondaryMedium,
                 onClick = {
                     negativeButton.onClick.invoke()
-                    if (dismissOnButtonClick) {
+                    if (negativeButton.dismissOnButtonClick) {
                         onDismiss.invoke()
                     }
                 },

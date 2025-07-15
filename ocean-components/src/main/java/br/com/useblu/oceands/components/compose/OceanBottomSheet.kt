@@ -188,6 +188,7 @@ data class OceanBottomSheetModel(
     val actionPositive: Button? = null,
     val actionNegative: Button? = null,
     val buttonsOrientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
+    val dismissOnButtonClick: Boolean = true,
     val onDismiss: (dismissedByUser: Boolean) -> Unit
 ) {
     data class Button(
@@ -344,6 +345,7 @@ fun OceanBottomSheet(
                 negativeButton = model.actionNegative,
                 isCritical = model.isCritical,
                 orientation = model.buttonsOrientation,
+                dismissOnButtonClick = model.dismissOnButtonClick,
                 onDismiss = {
                     model.onDismiss(false)
                 }
@@ -370,6 +372,7 @@ private fun BottomButtons(
     negativeButton: OceanBottomSheetModel.Button? = null,
     isCritical: Boolean = false,
     orientation: BottomSheetButtonsOrientation = BottomSheetButtonsOrientation.Horizontal,
+    dismissOnButtonClick: Boolean = true,
     onDismiss: () -> Unit
 ) {
     if (positiveButton == null && negativeButton == null) {
@@ -390,7 +393,9 @@ private fun BottomButtons(
                 icon = positiveButton.icon,
                 onClick = {
                     positiveButton.onClick.invoke()
-                    onDismiss.invoke()
+                    if (dismissOnButtonClick) {
+                        onDismiss.invoke()
+                    }
                 },
                 modifier = it,
                 disabled = positiveButton.isDisabled
@@ -406,7 +411,9 @@ private fun BottomButtons(
                 buttonStyle = OceanButtonStyle.SecondaryMedium,
                 onClick = {
                     negativeButton.onClick.invoke()
-                    onDismiss.invoke()
+                    if (dismissOnButtonClick) {
+                        onDismiss.invoke()
+                    }
                 },
                 modifier = it,
                 disabled = negativeButton.isDisabled

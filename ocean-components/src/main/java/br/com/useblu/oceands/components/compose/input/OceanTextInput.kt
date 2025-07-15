@@ -65,7 +65,7 @@ fun PreviewOceanTextInput() {
 
         OceanTextInput(
             value = text1,
-            label = "Lab asdfasdfa asdf ael",
+            label = "Label",
             isTextArea = true,
             maxLength = 20,
             onTextChanged = { text1 = it }

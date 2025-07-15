@@ -65,8 +65,9 @@ fun PreviewOceanTextInput() {
 
         OceanTextInput(
             value = text1,
-            label = "Label",
+            label = "Lab asdfasdfa asdf ael",
             isTextArea = true,
+            maxLength = 20,
             onTextChanged = { text1 = it }
         )
 
@@ -213,7 +214,8 @@ fun OceanTextInput(
     leadingIcon: OceanIcons? = null,
     trailingIcon: OceanIcons? = null,
     onClickTrailingIcon: (() -> Unit)? = null,
-    isTextArea: Boolean = false
+    isTextArea: Boolean = false,
+    maxLength: Int? = null
 ) {
     val localTextStyle = TextStyle(
         fontSize = OceanFontSize.xs,
@@ -258,13 +260,19 @@ fun OceanTextInput(
                     val modifiedValue = changedField.text
                     val outputValue = oceanInputType.transformForOutput(modifiedValue)
 
-                    textFieldSelection = if (value != outputValue && oceanInputType.alwaysGoToEndOfInput()) {
-                        TextRange(outputValue.length)
+                    val finalValue = if (maxLength != null && outputValue.length > maxLength) {
+                        outputValue.take(maxLength)
+                    } else {
+                        outputValue
+                    }
+
+                    textFieldSelection = if (value != finalValue && oceanInputType.alwaysGoToEndOfInput()) {
+                        TextRange(finalValue.length)
                     } else {
                         changedField.selection
                     }
 
-                    onTextChanged(outputValue)
+                    onTextChanged(finalValue)
                 },
                 enabled = enabled,
                 singleLine = singleLine,

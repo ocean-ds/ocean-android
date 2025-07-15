@@ -35,6 +35,10 @@ enum class OceanIcons(
         token = "adjustmentsoutline",
         icon = R.drawable.ocean_icon_adjustments_outline
     ),
+    ADJUSTMENTS_OUTLINE_HORIZONTAL(
+        token = "adjustmentsoutlinehorizontal",
+        icon = R.drawable.ocean_icon_adjustments_outline_horizontal
+    ),
     ADJUSTMENTS_SOLID(
         token = "adjustmentssolid",
         icon = R.drawable.ocean_icon_adjustments_solid

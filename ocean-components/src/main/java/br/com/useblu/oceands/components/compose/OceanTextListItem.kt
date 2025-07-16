@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -28,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.components.compose.input.OceanSelectableRadio
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.model.OceanTextListContentStyle
 import br.com.useblu.oceands.model.OceanTextListStyle
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -36,9 +36,9 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderRadius
 import br.com.useblu.oceands.utils.OceanIcons
 
-@Preview(heightDp = 1024)
+@Preview(heightDp = 1200)
 @Composable
-private fun OceanTextListItemPreview() {
+fun OceanTextListItemPreview() {
     Column(
         Modifier
             .verticalScroll(
@@ -50,7 +50,7 @@ private fun OceanTextListItemPreview() {
         OceanTextListItem(
             modifier = Modifier,
             title = "Title",
-            description = "Description",
+            description = "<span style=\"color:#2DA94F\">Em análise</ span>",
             selected = false,
             showError = false,
             enabled = true,
@@ -106,10 +106,11 @@ private fun OceanTextListItemPreview() {
         )
         OceanTextListItem(
             modifier = Modifier,
-            title = "Title",
-            description = "Description",
+            title = "Title Inverted",
+            description = "Description Inverted",
             selected = false,
             textListStyle = OceanTextListStyle.Checkbox,
+            contentStyle = OceanTextListContentStyle.Inverted,
             showError = false,
             enabled = true,
             onSelectedBox = {
@@ -203,6 +204,7 @@ fun OceanTextListItem(
     showDivider: Boolean = true,
     tagStyle: OceanTagStyle = OceanTagStyle.None,
     textListStyle: OceanTextListStyle = OceanTextListStyle.Default,
+    contentStyle: OceanTextListContentStyle = OceanTextListContentStyle.Default,
     showError: Boolean = false,
     enabled: Boolean = true,
     onSelectedBox: ((Boolean) -> Unit)? = null,
@@ -287,29 +289,21 @@ fun OceanTextListItem(
                     )
                     .weight(2f)
             ) {
-                val titleColor =
-                    if (enabled) OceanColors.interfaceDarkPure
-                    else OceanColors.interfaceDarkUp
-
-                Text(
+                OceanText(
                     text = title,
-                    style = OceanTextStyle.paragraph,
-                    color = titleColor
+                    style = contentStyle.titleTextStyle(),
+                    color = contentStyle.titleColor(enabled)
                 )
 
-                val descriptionColor =
-                    if (enabled) OceanColors.interfaceDarkDown
-                    else OceanColors.interfaceLightDeep
-
-                Text(
+                OceanText(
                     modifier = Modifier.padding(bottom = OceanSpacing.xxxs),
                     text = description,
-                    style = OceanTextStyle.description,
-                    color = descriptionColor
+                    style = contentStyle.descriptionTextStyle(),
+                    color = contentStyle.descriptionColor(enabled)
                 )
 
                 if (caption.isNotBlank() && textInfo.isBlank()) {
-                    Text(
+                    OceanText(
                         text = caption,
                         style = OceanTextStyle.caption,
                         color = OceanColors.interfaceDarkUp
@@ -317,7 +311,7 @@ fun OceanTextListItem(
                 }
 
                 if (textInfo.isNotBlank()) {
-                    Text(
+                    OceanText(
                         text = textInfo,
                         style = OceanTextStyle.description,
                         color = textInfoColor ?: OceanColors.interfaceDarkDeep

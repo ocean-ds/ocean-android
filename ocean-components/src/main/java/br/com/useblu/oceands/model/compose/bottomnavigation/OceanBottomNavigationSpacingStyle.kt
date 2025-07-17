@@ -1,10 +1,15 @@
 package br.com.useblu.oceands.model.compose.bottomnavigation
 
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 sealed interface OceanBottomNavigationSpacingStyle {
     data object Default : OceanBottomNavigationSpacingStyle
@@ -41,4 +46,22 @@ sealed interface OceanBottomNavigationSpacingStyle {
                 is Compact -> 20.dp
             }
         }
+
+    @Composable
+    fun getModifier(modifier: Modifier): Modifier {
+        return when (this) {
+            is Default -> modifier.wrapContentHeight()
+            is Compact ->
+                modifier
+                    .padding(horizontal = OceanSpacing.xxsExtra)
+                    .padding(vertical = OceanSpacing.xxxs)
+        }
+    }
+
+    val fontSize: TextUnit
+        get() =
+            when (this) {
+                is Default -> 10.sp
+                is Compact -> 12.sp
+            }
 }

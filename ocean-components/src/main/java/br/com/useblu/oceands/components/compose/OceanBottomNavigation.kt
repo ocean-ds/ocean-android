@@ -33,7 +33,6 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.extensions.compose.height
 import br.com.useblu.oceands.model.compose.OceanBottomNavigationModel
 import br.com.useblu.oceands.model.compose.bottomnavigation.OceanBottomNavigationColorStyle
@@ -62,6 +61,22 @@ private val initialModelList = mutableStateOf(
             inactiveIcon = OceanIcons.PAGBLU_OUTLINE,
             onClickListener = {
                 selectedIndex.value = 1
+            }
+        ),
+        OceanBottomNavigationModel(
+            label = "Cobrar",
+            activeIcon = OceanIcons.CHARGE_SOLID,
+            inactiveIcon = OceanIcons.CHARGE_OUTLINE,
+            onClickListener = {
+                selectedIndex.value = 2
+            }
+        ),
+        OceanBottomNavigationModel(
+            label = "Cobrar",
+            activeIcon = OceanIcons.CHARGE_SOLID,
+            inactiveIcon = OceanIcons.CHARGE_OUTLINE,
+            onClickListener = {
+                selectedIndex.value = 2
             }
         ),
         OceanBottomNavigationModel(
@@ -108,10 +123,18 @@ private fun OceanBottomNavigationPreview() {
 
     Scaffold(
         bottomBar = {
-            OceanBottomNavigation(
-                selectedIndex = selectedIndex.value,
-                models = initialModelList.value
-            )
+            Column {
+                OceanBottomNavigation(
+                    selectedIndex = selectedIndex.value,
+                    models = initialModelList.value,
+                    spacingStyle = OceanBottomNavigationSpacingStyle.Compact,
+                    colorStyle = OceanBottomNavigationColorStyle.Inverse
+                )
+                OceanBottomNavigation(
+                    selectedIndex = selectedIndex.value,
+                    models = initialModelList.value
+                )
+            }
         }
     ) {
         it
@@ -204,9 +227,7 @@ private fun OceanBottomNavigationMenuItem(
 ) {
     val color = if (isSelected) colorStyle.itemSelected else colorStyle.item
     Column(
-        modifier = modifier
-            .padding(horizontal = OceanSpacing.xxsExtra)
-            .padding(vertical = OceanSpacing.xxxs),
+        modifier = spacingStyle.getModifier(modifier),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -225,7 +246,7 @@ private fun OceanBottomNavigationMenuItem(
             text = model.label,
             color = color,
             fontFamily = OceanFontFamily.HighlightExtraBold,
-            fontSize = 12.sp
+            fontSize = spacingStyle.fontSize
         )
     }
 }

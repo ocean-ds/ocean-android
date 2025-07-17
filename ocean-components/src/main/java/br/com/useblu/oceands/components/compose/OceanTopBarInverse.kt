@@ -21,6 +21,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -205,7 +206,8 @@ private fun TopBar(
                 .heightIn(min = 56.dp, max = 92.dp)
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .clickable { onClickToolbar() }
+                .clickable { onClickToolbar() },
+            verticalAlignment = Alignment.CenterVertically
         ) {
             val topBarIcon = icon ?: OceanIcons.ARROW_LEFT_OUTLINE
             val iconButtonSize = 56.dp

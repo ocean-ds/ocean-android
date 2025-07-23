@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -18,8 +19,9 @@ import kotlinx.coroutines.launch
 fun OceanSnackBarHost(
     showSnackBar: Boolean,
     type: OceanSnackBarType,
-    message: String
-
+    message: String,
+    onAction: () -> Unit = {},
+    onDismiss: () -> Unit = {}
 ) {
     val snackState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
@@ -27,7 +29,11 @@ fun OceanSnackBarHost(
     LaunchedEffect(key1 = showSnackBar) {
         if (showSnackBar) {
             coroutineScope.launch {
-                snackState.showSnackbar(message)
+                val result = snackState.showSnackbar(message)
+                when (result) {
+                    SnackbarResult.ActionPerformed -> onAction()
+                    SnackbarResult.Dismissed -> onDismiss()
+                }
             }
         }
     }

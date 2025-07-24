@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -277,10 +278,10 @@ private fun InvertedTextListPreview() {
                     description = "Description",
                     unchanged = true
                 ),
-                tagStyle = OceanTagStyle.Default(
-                    label = "Label",
-                    layout = OceanTagLayout.Medium(),
-                    type = OceanTagType.Warning
+                action = OceanButtonModel(
+                    text = "Button",
+                    onClick = { },
+                    buttonStyle = OceanButtonStyle.SecondarySmall
                 )
             )
         )
@@ -411,7 +412,8 @@ fun OceanInvertedTextListItem(
             DefaultInvertedTextList(
                 modifier = modifier,
                 content = style.content,
-                tagStyle = style.tagStyle
+                tagStyle = style.tagStyle,
+                buttonModel = style.action
             )
         }
 
@@ -468,7 +470,8 @@ fun OceanInvertedTextListItem(
 private fun DefaultInvertedTextList(
     modifier: Modifier = Modifier,
     content: ContentListStyle.Inverted,
-    tagStyle: OceanTagStyle
+    tagStyle: OceanTagStyle,
+    buttonModel: OceanButtonModel?
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -481,6 +484,10 @@ private fun DefaultInvertedTextList(
             style = content,
             modifier = Modifier.weight(1f)
         )
+
+        buttonModel?.let {
+            OceanButton(button = buttonModel)
+        }
 
         OceanTag(
             style = tagStyle
@@ -632,7 +639,8 @@ private fun HighlightLeadInvertedTextList(
 sealed interface InvertedListItemStyle {
     data class Default(
         val content: ContentListStyle.Inverted,
-        val tagStyle: OceanTagStyle = OceanTagStyle.None
+        val tagStyle: OceanTagStyle = OceanTagStyle.None,
+        val action: OceanButtonModel? = null
     ) : InvertedListItemStyle
 
     data class ContentInfo(

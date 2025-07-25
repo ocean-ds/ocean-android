@@ -16,11 +16,14 @@ class OceanCurrencyPinPadHandler(
     initialValue: Double? = null,
     minValue: Double? = null,
     maxValue: Double? = null,
+    testValue: Double? = null,
     private val errorSetup: OceanPinPadCurrencyErrorSetup = OceanPinPadCurrencyErrorSetup.Default
 ) : OceanPinPadHandler<OceanCurrencyPinPadResult> {
     private var currentValue: Long = initialValue?.let { valueToInput(it) } ?: 0L
     private val currentMinValue: Long? = minValue?.let { valueToInput(it) }
     private val currentMaxValue: Long? = maxValue?.let { valueToInput(it) }
+    private val currentTestValue: Long? = testValue?.let { valueToInput(it) }
+
     override var uiState: OceanPinPadUIState by mutableStateOf(
         OceanPinPadUIState(
             inputValue = initialValue?.let { formatValue(it) } ?: "",
@@ -55,6 +58,8 @@ class OceanCurrencyPinPadHandler(
     }
 
     override fun getResult(): OceanCurrencyPinPadResult {
+        if (currentTestValue != null && currentValue == currentTestValue) return getSuccess()
+
         val errorType = when {
             currentValue == 0L ->
                 OceanCurrencyPinPadResult.Error(type = OceanCurrencyPinPadError.Empty)
@@ -68,7 +73,8 @@ class OceanCurrencyPinPadHandler(
         uiState = uiState.copy(
             toggleError = uiState.toggleError.not()
         )
-        return errorType ?: OceanCurrencyPinPadResult.Success(value = inputToValue(input = currentValue))
+
+        return errorType ?: getSuccess()
     }
 
     @Composable
@@ -116,5 +122,9 @@ class OceanCurrencyPinPadHandler(
 
     private fun valueToInput(value: Double): Long {
         return value.toBigDecimal().multiply(100.toBigDecimal()).toLong()
+    }
+
+    private fun getSuccess(): OceanCurrencyPinPadResult {
+        return OceanCurrencyPinPadResult.Success(value = inputToValue(input = currentValue))
     }
 }

@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanTheme
@@ -31,13 +32,13 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 class PinPadActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { PinPadExample() }
+        setContent { PinPadExample(toast = OceanToast(this)) }
     }
 }
 
 @Preview
 @Composable
-private fun PinPadExample() {
+private fun PinPadExample(toast: OceanToast) {
     var selectedType: PinPadKnownType by remember { mutableStateOf(PinPadKnownType.Currency) }
     var handler: OceanPinPadHandler<*>? by remember { mutableStateOf(null) }
     var isEnabled: Boolean by remember { mutableStateOf(true) }
@@ -54,7 +55,8 @@ private fun PinPadExample() {
                         PinPadKnownType.Currency -> {
                             val currencyHandler = OceanCurrencyPinPadHandler(
                                 minValue = 1.0,
-                                maxValue = 100000.0
+                                maxValue = 100000.0,
+                                testValue = 0.03
                             )
                             handler = currencyHandler
                             OceanPinPad(
@@ -87,7 +89,8 @@ private fun PinPadExample() {
                         text = "Continuar",
                         buttonStyle = OceanButtonStyle.PrimaryMedium,
                         onClick = {
-                            handler?.getResult()
+                            toast.withMessage("result: ${handler?.getResult()}")
+                                .show()
                         }
                     )
 

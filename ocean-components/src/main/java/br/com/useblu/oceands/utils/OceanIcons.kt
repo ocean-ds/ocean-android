@@ -2339,6 +2339,10 @@ enum class OceanIcons(
     BRAND_VISA(
         token = "brand_visa",
         icon = R.drawable.brand_visa
+    ),
+    SALE_REVERSAL_OUTLINE(
+        token = "sale_reversal_outline",
+        icon = R.drawable.sale_reversal_outline
     );
 
     companion object {

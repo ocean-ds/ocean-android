@@ -44,8 +44,7 @@ fun Date.oceanFormat(pattern: String): String {
 
 fun Double.oceanFormatWithCurrency(): String {
     val final = BigDecimal(this).setScale(2, RoundingMode.HALF_EVEN)
-    val formatted = FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(final.toString())
-    return formatted.replaceFirst(" ", "\u00A0")
+    return FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(final.toString())
 }
 
 fun Long.oceanFormatWithCurrency(): String {

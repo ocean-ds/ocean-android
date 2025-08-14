@@ -160,6 +160,7 @@ fun OceanTransactionListItemPreview() {
 @Composable
 fun OceanTransactionListItem(
     primaryLabel: String,
+    primaryLabelMaxLines: Int = Int.MAX_VALUE,
     modifier: Modifier = Modifier,
     secondaryLabel: String = "",
     dimmedLabel: String = "",
@@ -249,7 +250,9 @@ fun OceanTransactionListItem(
                     text = primaryLabel,
                     fontSize = OceanFontSize.xs,
                     fontFamily = OceanFontFamily.BaseRegular,
-                    color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure
+                    color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure,
+                    maxLines = primaryLabelMaxLines,
+                    overflow = TextOverflow.Ellipsis
                 )
 
                 if (secondaryLabel.isNotBlank()) {

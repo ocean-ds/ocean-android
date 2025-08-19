@@ -29,7 +29,7 @@ lifecycleExtensions = { module = "androidx.lifecycle:lifecycle-extensions", vers
 recyclerView = { module = "androidx.recyclerview:recyclerview", version = "1.4.0" }
 lifecycleViewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewModel" }
 androidKtx = { module = "androidx.core:core-ktx", version.ref = "androidCoreKtx" }
-androidAppCompat = { module = "androidx.appcompat:appcompat", version = "1.7.0" }
+androidAppCompat = { module = "androidx.appcompat:appcompat", version = "1.7.1" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 skydoves-balloon = { module = "com.github.skydoves:balloon", version.ref = "skydovesBalloonVersion" }
 skydoves-balloon-compose = { module = "com.github.skydoves:balloon-compose", version.ref = "skydovesBalloonVersion" }

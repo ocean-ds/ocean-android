@@ -42,10 +42,11 @@ import br.com.useblu.oceands.utils.OceanIcons
 fun PreviewOceanTopBarInverse() {
     Column {
         OceanTopBarInverse(
-            title = "Compartlihar comprovante",
+            title = "Compartilhar comprovante",
             onClickIcon = {},
             onClickToolbar = {},
-            visibleShadow = true
+            visibleShadow = true,
+            backgroundColor = OceanColors.interfaceLightUp
         )
 
         OceanSpacing.StackSM()
@@ -149,7 +150,9 @@ fun OceanTopBarInverse(
     actions: @Composable () -> Unit,
     onClickToolbar: () -> Unit = {},
     visibleShadow: Boolean = false,
-    iconInvisible: Boolean = false
+    iconInvisible: Boolean = false,
+    backgroundColor: Color = OceanColors.interfaceLightPure
+
 ) {
     TopBar(
         onClickToolbar = onClickToolbar,
@@ -158,7 +161,8 @@ fun OceanTopBarInverse(
         onClickIcon = onClickIcon,
         title = title,
         visibleShadow = visibleShadow,
-        actions = actions
+        actions = actions,
+        backgroundColor = backgroundColor
     )
 }
 
@@ -171,7 +175,8 @@ fun OceanTopBarInverse(
     onClickMenuIcon: () -> Unit = {},
     onClickToolbar: () -> Unit = {},
     visibleShadow: Boolean = false,
-    iconInvisible: Boolean = false
+    iconInvisible: Boolean = false,
+    backgroundColor: Color = OceanColors.interfaceLightPure
 ) {
     TopBar(
         onClickToolbar = onClickToolbar,
@@ -181,7 +186,8 @@ fun OceanTopBarInverse(
         title = title,
         menuIcon = menuIcon,
         onClickMenuIcon = onClickMenuIcon,
-        visibleShadow = visibleShadow
+        visibleShadow = visibleShadow,
+        backgroundColor = backgroundColor
     )
 }
 
@@ -195,11 +201,12 @@ private fun TopBar(
     menuIcon: OceanIcons? = null,
     onClickMenuIcon: (() -> Unit)? = null,
     actions: (@Composable () -> Unit)? = null,
-    visibleShadow: Boolean
+    visibleShadow: Boolean,
+    backgroundColor: Color
 ) {
     Column(
         modifier = Modifier
-            .topBarBackground(OceanColors.interfaceLightPure)
+            .topBarBackground(backgroundColor)
     ) {
         Row(
             modifier = Modifier

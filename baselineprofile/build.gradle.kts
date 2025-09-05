@@ -20,8 +20,8 @@ android {
     }
 
     defaultConfig {
-        minSdk = 28
-        targetSdk = 35
+        minSdk = Configs.minSdkVersion
+        targetSdk = Configs.targetSdkVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,11 +29,13 @@ android {
     targetProjectPath = ":app"
 
     testOptions.managedDevices.devices {
-        add(ManagedVirtualDevice("pixel7Api30").apply {
-            device = "Pixel 7"
-            apiLevel = 30
-            systemImageSource = "aosp"
-        })
+        add(
+            ManagedVirtualDevice("pixel7Api30").apply {
+                device = "Pixel 7"
+                apiLevel = 30
+                systemImageSource = "aosp"
+            }
+        )
     }
 }
 

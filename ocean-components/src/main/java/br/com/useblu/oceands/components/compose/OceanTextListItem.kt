@@ -171,6 +171,17 @@ fun OceanTextListItemPreview() {
         OceanTextListItem(
             modifier = Modifier,
             title = "Title",
+            selected = true,
+            textListStyle = OceanTextListStyle.RadioButton,
+            showError = false,
+            enabled = true,
+            onSelectedBox = {
+                println("isSelected: $it")
+            }
+        )
+        OceanTextListItem(
+            modifier = Modifier,
+            title = "Title",
             description = "Description",
             selected = true,
             textListStyle = OceanTextListStyle.RadioButton,
@@ -196,7 +207,7 @@ fun OceanTextListItemPreview() {
 fun OceanTextListItem(
     modifier: Modifier = Modifier,
     title: String,
-    description: String,
+    description: String = "",
     caption: String = "",
     textInfo: String = "",
     textInfoColor: Color? = null,
@@ -295,12 +306,14 @@ fun OceanTextListItem(
                     color = contentStyle.titleColor(enabled)
                 )
 
-                OceanText(
-                    modifier = Modifier.padding(bottom = OceanSpacing.xxxs),
-                    text = description,
-                    style = contentStyle.descriptionTextStyle(),
-                    color = contentStyle.descriptionColor(enabled)
-                )
+                if (description.isNotBlank()) {
+                    OceanText(
+                        modifier = Modifier.padding(bottom = OceanSpacing.xxxs),
+                        text = description,
+                        style = contentStyle.descriptionTextStyle(),
+                        color = contentStyle.descriptionColor(enabled)
+                    )
+                }
 
                 if (caption.isNotBlank() && textInfo.isBlank()) {
                     OceanText(

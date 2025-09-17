@@ -44,6 +44,7 @@ import br.com.useblu.oceands.client.ui.bottomnavigation.BottomNavigationActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
 import br.com.useblu.oceands.client.ui.carditem.CardItemActivity
+import br.com.useblu.oceands.client.ui.cardreadonly.CardReadOnlyActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
 import br.com.useblu.oceands.client.ui.carouselwithcomponents.CarouselWithComponentsActivity
 import br.com.useblu.oceands.client.ui.chartbar.ChartBarActivity
@@ -201,6 +202,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Card Cross Sell", onClick = { cardCrossCellClick() })
                         textAction(text = "Card Group", onClick = { cardContentClick() })
                         textAction(text = "Card Item", onClick = { onClickCardItem() })
+                        textAction(text = "Card Read Only", onClick = { cardReadOnlyItem() })
                         textAction(text = "Carousel", onClick = { carousel() })
                         textAction(text = "Carousel With Components", onClick = { carouselWithComponents() })
                         textAction(text = "Chart Bar", onClick = ::chartBarClick)
@@ -418,6 +420,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun statusListItem() {
         val intent = Intent(this, StatusListItemActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun cardReadOnlyItem() {
+        val intent = Intent(this, CardReadOnlyActivity::class.java)
         startActivity(intent)
     }
 

@@ -118,6 +118,31 @@ private fun OceanContentListPreview() {
         OceanContentList(
             style = ContentListStyle.Inverted(
                 title = "Title",
+                description = "Description Unchanged",
+                descriptionStyle = OceanTextStyle.lead,
+                caption = "Caption"
+            ),
+            isLoading = false,
+            enabled = true
+        )
+
+        OceanSpacing.StackXXS()
+        OceanContentList(
+            style = ContentListStyle.Inverted(
+                title = "Title",
+                description = "Description Unchanged",
+                caption = "Caption",
+                captionStyle = OceanTextStyle.captionBold.copy(color = OceanColors.brandPrimaryPure),
+                unchanged = true
+            ),
+            isLoading = false,
+            enabled = true
+        )
+
+        OceanSpacing.StackXXS()
+        OceanContentList(
+            style = ContentListStyle.Inverted(
+                title = "Title",
                 description = "Description"
             ),
             isLoading = true
@@ -332,7 +357,10 @@ private fun DefaultContentList(
             OceanSpacing.StackXXS()
             OceanText(
                 text = style.caption,
-                style = configTextStyle(OceanTextStyle.captionBold, enabled)
+                style = configTextStyle(
+                    style.captionStyle ?: OceanTextStyle.captionBold,
+                    enabled
+                )
             )
         }
     }
@@ -368,7 +396,10 @@ private fun InvertedContentList(
             OceanSpacing.StackXXS()
             OceanText(
                 text = style.caption,
-                style = configTextStyle(OceanTextStyle.captionBold, enabled)
+                style = configTextStyle(
+                    style.captionStyle ?: OceanTextStyle.captionBold,
+                    enabled
+                )
             )
         }
     }
@@ -415,7 +446,10 @@ private fun StrikethroughContentList(
             OceanSpacing.StackXXS()
             OceanText(
                 text = style.caption,
-                style = configTextStyle(OceanTextStyle.captionBold, enabled)
+                style = configTextStyle(
+                    style.captionStyle ?: OceanTextStyle.captionBold,
+                    enabled
+                )
             )
         }
     }
@@ -458,7 +492,7 @@ private fun TransactionContentList(
             OceanText(
                 text = style.caption,
                 style = configTextStyle(
-                    OceanTextStyle.captionBold,
+                    style.captionStyle ?: OceanTextStyle.captionBold,
                     enabled
                 )
             )
@@ -492,7 +526,8 @@ sealed interface ContentListStyle {
         val titleStyle: TextStyle? = null,
         val description: String = "",
         val descriptionStyle: TextStyle? = null,
-        val caption: String = ""
+        val caption: String = "",
+        val captionStyle: TextStyle? = null
     ) : ContentListStyle
 
     data class Inverted(
@@ -501,6 +536,7 @@ sealed interface ContentListStyle {
         val description: String,
         val descriptionStyle: TextStyle? = null,
         val caption: String = "",
+        val captionStyle: TextStyle? = null,
         val unchanged: Boolean = false
     ) : ContentListStyle
 
@@ -510,6 +546,7 @@ sealed interface ContentListStyle {
         val description: String,
         val descriptionStyle: TextStyle? = null,
         val caption: String = "",
+        val captionStyle: TextStyle? = null,
         val newValue: String = ""
     ) : ContentListStyle
 
@@ -517,6 +554,7 @@ sealed interface ContentListStyle {
         val value: String,
         val tagStyle: OceanTagStyle? = null,
         val caption: String = "",
+        val captionStyle: TextStyle? = null,
         val type: TransactionType = TransactionType.DEFAULT
     ) : ContentListStyle
 }

@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
+import br.com.useblu.oceands.extensions.whenNotBlank
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -69,15 +70,20 @@ fun OceanCardListExpandable(
                     modifier = Modifier
                         .weight(1f)
                 ) {
-                    OceanText(
-                        text = title,
-                        style = OceanTextStyle.paragraph,
-                        color = OceanColors.interfaceDarkDeep
-                    )
-                    OceanText(
-                        text = description,
-                        style = OceanTextStyle.description
-                    )
+                    title.whenNotBlank {
+                        OceanText(
+                            text = it,
+                            style = OceanTextStyle.paragraph,
+                            color = OceanColors.interfaceDarkDeep
+                        )
+                    }
+
+                    description.whenNotBlank {
+                        OceanText(
+                            text = description,
+                            style = OceanTextStyle.description
+                        )
+                    }
                 }
 
                 OceanIcon(

@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.extensions
 
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import br.com.useblu.oceands.extensions.compose.toHexString
 import java.text.SimpleDateFormat
@@ -26,4 +27,13 @@ fun String.createColoredHtmlTag(
 ): String {
     val hexColor = color.toHexString()
     return "<$tag style=\"color: $hexColor\">$this</$tag>"
+}
+
+@Composable
+fun String.ifNotBlank(block: @Composable (String) -> String): String = if (this.isNotBlank()) block(this) else this
+
+@Composable
+fun String.whenNotBlank(composable: @Composable (String) -> Unit) {
+    if (this.isBlank()) return
+    composable(this)
 }

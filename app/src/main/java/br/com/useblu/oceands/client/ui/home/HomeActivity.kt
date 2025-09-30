@@ -44,6 +44,7 @@ import br.com.useblu.oceands.client.ui.bottomnavigation.BottomNavigationActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
 import br.com.useblu.oceands.client.ui.carditem.CardItemActivity
+import br.com.useblu.oceands.client.ui.cardlistexpandable.OceanCardListExpandableActivity
 import br.com.useblu.oceands.client.ui.cardreadonly.CardReadOnlyActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
 import br.com.useblu.oceands.client.ui.carouselwithcomponents.CarouselWithComponentsActivity
@@ -200,6 +201,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "BottomSheetList (search)", onClick = { onOceanBottomListSheetWithSearch() })
                         textAction(text = "Buttons", onClick = { onClickButtons() })
                         textAction(text = "Card Cross Sell", onClick = { cardCrossCellClick() })
+                        textAction(text = "Card Expandable", onClick = { onClickOceanCardListExpandable() })
                         textAction(text = "Card Group", onClick = { cardContentClick() })
                         textAction(text = "Card Item", onClick = { onClickCardItem() })
                         textAction(text = "Card Read Only", onClick = { cardReadOnlyItem() })
@@ -525,6 +527,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onClickPinPad() {
         val intent = Intent(this, br.com.useblu.oceands.client.ui.pinpad.PinPadActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun onClickOceanCardListExpandable() {
+        val intent = Intent(this, OceanCardListExpandableActivity::class.java)
         startActivity(intent)
     }
 

@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -243,6 +244,22 @@ fun OceanTag(
         }
         is OceanTagStyle.None -> Unit
     }
+}
+
+@Composable
+fun OceanTag(
+    modifier: Modifier = Modifier,
+    model: OceanTagModel,
+    layout: OceanTagLayout
+) {
+    OceanTag(
+        modifier = modifier,
+        style = OceanTagStyle.Default(
+            label = model.text,
+            layout = layout,
+            type = model.type
+        )
+    )
 }
 
 @Composable

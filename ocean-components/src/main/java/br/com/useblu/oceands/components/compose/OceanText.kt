@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.extensions.compose.htmlToAnnotatedString
+import br.com.useblu.oceands.extensions.whenNotBlank
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 
 @Composable
@@ -132,4 +133,47 @@ fun OceanTextResizable(
             }
         }
     )
+}
+
+@Composable
+fun OceanTextNotBlank(
+    text: String,
+    modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    fontSize: TextUnit = TextUnit.Unspecified,
+    fontStyle: FontStyle? = null,
+    fontWeight: FontWeight? = null,
+    fontFamily: FontFamily? = null,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    textAlign: TextAlign? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    minLines: Int = 1,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    style: TextStyle = LocalTextStyle.current
+) {
+    text.whenNotBlank {
+        OceanText(
+            text = text,
+            modifier = modifier,
+            color = color,
+            fontSize = fontSize,
+            fontStyle = fontStyle,
+            fontWeight = fontWeight,
+            fontFamily = fontFamily,
+            letterSpacing = letterSpacing,
+            textDecoration = textDecoration,
+            textAlign = textAlign,
+            lineHeight = lineHeight,
+            overflow = overflow,
+            softWrap = softWrap,
+            maxLines = maxLines,
+            minLines = minLines,
+            onTextLayout = onTextLayout,
+            style = style
+        )
+    }
 }

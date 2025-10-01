@@ -76,6 +76,7 @@ import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.tab.TabActivity
 import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
+import br.com.useblu.oceands.client.ui.textlistaction.OceanTextListActionActivity
 import br.com.useblu.oceands.client.ui.textlistexpandable.TextListExpandableActivity
 import br.com.useblu.oceands.client.ui.textlisticonitem.TextListIconItemActivity
 import br.com.useblu.oceands.client.ui.textlistinline.TextListInlineItemActivity
@@ -238,6 +239,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Tab", onClick = { onClickTab() })
                         textAction(text = "Tag", onClick = { onClickTags() })
                         textAction(text = "Text Link", onClick = { onClickTextLink() })
+                        textAction(text = "Text List Action", onClick = { onClickTextListAction() })
                         textAction(text = "Text List Expandable", onClick = { listItemsExpandable() })
                         textAction(text = "Text List Icon Item", onClick = { textListIconItem() })
                         textAction(text = "Text List Inline Item", onClick = { textListInlineItem() })
@@ -532,6 +534,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onClickOceanCardListExpandable() {
         val intent = Intent(this, OceanCardListExpandableActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun onClickTextListAction() {
+        val intent = Intent(this, OceanTextListActionActivity::class.java)
         startActivity(intent)
     }
 

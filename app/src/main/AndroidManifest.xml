@@ -78,6 +78,7 @@
         <activity android:name=".ui.tokeninput.TokenInputActivity" />
         <activity android:name=".ui.cardreadonly.CardReadOnlyActivity" />
         <activity android:name=".ui.cardlistexpandable.OceanCardListExpandableActivity" />
+        <activity android:name=".ui.textlistaction.OceanTextListActionActivity" />
     </application>
 
 </manifest>

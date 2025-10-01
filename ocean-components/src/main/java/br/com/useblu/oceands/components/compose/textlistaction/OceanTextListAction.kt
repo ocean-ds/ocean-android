@@ -1,14 +1,18 @@
-package br.com.useblu.oceands.client.ui.textlistaction
+package br.com.useblu.oceands.components.compose.textlistaction
 
+import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
@@ -25,16 +29,22 @@ fun OceanTextListAction(
     modifier: Modifier = Modifier,
     title: String,
     description: String = "",
-    kind: OceanTextListActionKind = OceanTextListActionKind.Chevron,
+    kind: OceanTextListActionKind,
     enabled: Boolean = true,
-    divider: Boolean = true
+    divider: Boolean = true,
+    isLoading: Boolean = false
 ) {
-    Column {
+    Column(
+        modifier = modifier
+            .clickable(enabled = kind.isContainerAction()) {
+                (kind as? OceanTextListActionKindContainerAction)?.action?.invoke()
+            }
+            .background(OceanColors.interfaceLightPure)
+            .disabledOverlay(isDisabled = !enabled)
+    ) {
         Row(
-            modifier = modifier
-                .background(OceanColors.interfaceLightPure)
-                .padding(OceanSpacing.xs)
-                .disabledOverlay(isDisabled = !enabled),
+            modifier = Modifier
+                .padding(OceanSpacing.xs),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
         ) {
@@ -81,18 +91,28 @@ private fun ActionRepresentation(
 
 @Preview
 @Composable
-private fun OceanTextListActionPreview() = OceanTheme {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(OceanColors.interfaceLightPure)
-    ) {
-        OceanTextListAction(
-            title = "Title",
-            description = "Description"
-        )
-        OceanTextListAction(
-            title = "Title"
-        )
+fun OceanTextListActionPreview() = OceanTheme {
+    val context = LocalContext.current
+    Scaffold {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(it)
+                .background(OceanColors.interfaceLightPure)
+        ) {
+            OceanTextListAction(
+                title = "Title",
+                description = "Description",
+                kind = OceanTextListActionKind.Chevron {
+                    Toast.makeText(context, "Clicked 1", Toast.LENGTH_SHORT).show()
+                }
+            )
+            OceanTextListAction(
+                title = "Title",
+                kind = OceanTextListActionKind.Chevron {
+                    Toast.makeText(context, "Clicked 2", Toast.LENGTH_SHORT).show()
+                }
+            )
+        }
     }
 }

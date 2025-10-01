@@ -204,7 +204,7 @@ fun OceanTextListActionPreview() = OceanTheme {
                     type = OceanTagType.Positive
                 ),
                 kind = OceanTextListActionKind.Chevron {
-                    Toast.makeText(context, "Clicked 2", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Clicked 3", Toast.LENGTH_SHORT).show()
                 }
             )
             OceanTextListActionLoading()

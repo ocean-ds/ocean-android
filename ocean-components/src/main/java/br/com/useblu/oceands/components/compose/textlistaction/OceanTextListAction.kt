@@ -21,9 +21,13 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanShimmering
+import br.com.useblu.oceands.components.compose.OceanTag
+import br.com.useblu.oceands.components.compose.OceanTagLayout
 import br.com.useblu.oceands.components.compose.OceanTextNotBlank
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.extensions.compose.disabledOverlay
+import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -36,6 +40,7 @@ fun OceanTextListAction(
     modifier: Modifier = Modifier,
     title: String,
     description: String = "",
+    tag: OceanTagModel? = null,
     kind: OceanTextListActionKind,
     enabled: Boolean = true,
     divider: Boolean = true,
@@ -62,6 +67,13 @@ fun OceanTextListAction(
                 isLoading = isLoading
             )
 
+            tag?.let {
+                OceanTag(
+                    model = it,
+                    layout = OceanTagLayout.Medium()
+                )
+            }
+
             if (!isLoading) {
                 ActionRepresentation(kind = kind)
             }
@@ -73,6 +85,23 @@ fun OceanTextListAction(
             )
         }
     }
+}
+
+@Composable
+fun OceanTextListActionLoading(
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    divider: Boolean = true
+) {
+    OceanTextListAction(
+        modifier = modifier,
+        title = "",
+        description = "",
+        kind = OceanTextListActionKind.Chevron {},
+        enabled = enabled,
+        divider = divider,
+        isLoading = true
+    )
 }
 
 @Composable
@@ -167,14 +196,18 @@ fun OceanTextListActionPreview() = OceanTheme {
                     Toast.makeText(context, "Clicked 2", Toast.LENGTH_SHORT).show()
                 }
             )
-
             OceanTextListAction(
                 title = "Title",
+                description = "WithTag",
+                tag = OceanTagModel(
+                    text = "Tag",
+                    type = OceanTagType.Positive
+                ),
                 kind = OceanTextListActionKind.Chevron {
-                    Toast.makeText(context, "Clicked 3", Toast.LENGTH_SHORT).show()
-                },
-                isLoading = true
+                    Toast.makeText(context, "Clicked 2", Toast.LENGTH_SHORT).show()
+                }
             )
+            OceanTextListActionLoading()
         }
     }
 }

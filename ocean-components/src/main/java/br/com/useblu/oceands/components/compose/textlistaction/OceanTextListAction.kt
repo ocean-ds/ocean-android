@@ -6,22 +6,29 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanShimmering
 import br.com.useblu.oceands.components.compose.OceanTextNotBlank
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.extensions.compose.disabledOverlay
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderRadius
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Composable
@@ -36,7 +43,7 @@ fun OceanTextListAction(
 ) {
     Column(
         modifier = modifier
-            .clickable(enabled = kind.isContainerAction()) {
+            .clickable(enabled = kind.isContainerAction() && !isLoading) {
                 (kind as? OceanTextListActionKindContainerAction)?.action?.invoke()
             }
             .background(OceanColors.interfaceLightPure)
@@ -48,28 +55,75 @@ fun OceanTextListAction(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
         ) {
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                OceanTextNotBlank(
-                    text = title,
-                    style = OceanTextStyle.paragraph,
-                    color = OceanColors.interfaceDarkDeep
-                )
+            Content(
+                modifier = Modifier.weight(1f),
+                title = title,
+                description = description,
+                isLoading = isLoading
+            )
 
-                OceanTextNotBlank(
-                    text = description,
-                    style = OceanTextStyle.description,
-                    color = OceanColors.interfaceDarkDown
-                )
+            if (!isLoading) {
+                ActionRepresentation(kind = kind)
             }
-
-            ActionRepresentation(kind = kind)
         }
         if (divider) {
             OceanDivider(
                 modifier = Modifier
                     .padding(horizontal = OceanSpacing.xs)
+            )
+        }
+    }
+}
+
+@Composable
+private fun Content(
+    modifier: Modifier,
+    title: String,
+    description: String,
+    isLoading: Boolean
+) {
+    Column(
+        modifier = modifier
+    ) {
+        if (isLoading) {
+            LoadingContent()
+            return
+        }
+        OceanTextNotBlank(
+            text = title,
+            style = OceanTextStyle.paragraph,
+            color = OceanColors.interfaceDarkDeep
+        )
+
+        OceanTextNotBlank(
+            text = description,
+            style = OceanTextStyle.description,
+            color = OceanColors.interfaceDarkDown
+        )
+    }
+}
+
+@Composable
+private fun LoadingContent() {
+    OceanShimmering { brush ->
+        Row(
+            modifier = Modifier.padding(bottom = OceanSpacing.xxs)
+        ) {
+            Spacer(
+                modifier = Modifier
+                    .width(96.dp)
+                    .height(16.dp)
+                    .borderRadius(borderRadius = OceanBorderRadius.Tiny.allCorners)
+                    .background(brush)
+            )
+        }
+        Row {
+            Spacer(
+                modifier = Modifier
+                    .height(16.dp)
+                    .fillMaxSize()
+                    .borderRadius(borderRadius = OceanBorderRadius.Tiny.allCorners)
+                    .background(brush)
             )
         }
     }
@@ -112,6 +166,14 @@ fun OceanTextListActionPreview() = OceanTheme {
                 kind = OceanTextListActionKind.Chevron {
                     Toast.makeText(context, "Clicked 2", Toast.LENGTH_SHORT).show()
                 }
+            )
+
+            OceanTextListAction(
+                title = "Title",
+                kind = OceanTextListActionKind.Chevron {
+                    Toast.makeText(context, "Clicked 3", Toast.LENGTH_SHORT).show()
+                },
+                isLoading = true
             )
         }
     }

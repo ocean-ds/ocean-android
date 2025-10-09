@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
+import br.com.useblu.oceands.extensions.compose.oceanInputKeyHandler
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -241,38 +242,53 @@ fun OceanTextInput(
             val isFocused by interactionSource.collectIsFocusedAsState()
 
             var textFieldSelection by remember {
-                mutableStateOf(TextRange.Zero)
+                mutableStateOf(
+                    TextRange(
+                        oceanInputType.transformForInput(
+                            value
+                        ).length
+                    )
+                )
             }
 
             val height = if (isTextArea) 150.dp else 48.dp
             val singleLine = !isTextArea
 
             BasicTextField(
-                value = TextFieldValue(oceanInputType.transformForInput(value), textFieldSelection),
+                value = TextFieldValue(
+                    oceanInputType.transformForInput(value),
+                    textFieldSelection
+                ),
                 modifier = Modifier
                     .height(height)
                     .fillMaxWidth()
                     .borderBackground(
                         color = OceanColors.interfaceLightPure,
                         borderRadius = OceanBorderRadius.SM.allCorners
+                    )
+                    .oceanInputKeyHandler(
+                        enabled = enabled,
+                        oceanInputType = oceanInputType,
+                        value = value,
+                        textFieldSelection = textFieldSelection,
+                        maxLength = maxLength,
+                        singleLine = singleLine,
+                        setSelection = { textFieldSelection = it },
+                        onTextChanged = onTextChanged
                     ),
+                readOnly = oceanInputType.usePhysicalKeyboardOnly(),
                 onValueChange = { changedField ->
+                    textFieldSelection = changedField.selection
                     val modifiedValue = changedField.text
                     val outputValue = oceanInputType.transformForOutput(modifiedValue)
-
                     val finalValue = if (maxLength != null && outputValue.length > maxLength) {
                         outputValue.take(maxLength)
                     } else {
                         outputValue
                     }
-
-                    textFieldSelection = if (value != finalValue && oceanInputType.alwaysGoToEndOfInput()) {
-                        TextRange(finalValue.length)
-                    } else {
-                        changedField.selection
+                    if (value != finalValue) {
+                        onTextChanged(finalValue)
                     }
-
-                    onTextChanged(finalValue)
                 },
                 enabled = enabled,
                 singleLine = singleLine,

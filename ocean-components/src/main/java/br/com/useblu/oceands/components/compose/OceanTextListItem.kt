@@ -216,6 +216,7 @@ fun OceanTextListItem(
     tagStyle: OceanTagStyle = OceanTagStyle.None,
     textListStyle: OceanTextListStyle = OceanTextListStyle.Default,
     contentStyle: OceanTextListContentStyle = OceanTextListContentStyle.Default,
+    backgroundColor: Color = OceanColors.interfaceLightPure,
     showError: Boolean = false,
     enabled: Boolean = true,
     onSelectedBox: ((Boolean) -> Unit)? = null,
@@ -229,7 +230,7 @@ fun OceanTextListItem(
 
         Row(
             modifier = Modifier
-                .background(OceanColors.interfaceLightPure)
+                .background(backgroundColor)
                 .padding(start = OceanSpacing.xs)
                 .padding(end = OceanSpacing.xxs)
                 .padding(vertical = OceanSpacing.xxsExtra)

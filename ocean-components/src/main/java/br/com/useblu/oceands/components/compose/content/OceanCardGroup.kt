@@ -1,18 +1,22 @@
 package br.com.useblu.oceands.components.compose.content
 
 import androidx.annotation.FloatRange
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.CardCta
@@ -23,11 +27,14 @@ import br.com.useblu.oceands.components.compose.OceanTag
 import br.com.useblu.oceands.components.compose.OceanTagLayout
 import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.OceanText
+import br.com.useblu.oceands.components.compose.OceanTextListItem
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.content.CardGroupType.DEFAULT
 import br.com.useblu.oceands.components.compose.content.CardGroupType.INVERTED
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.model.OceanTextListContentStyle
+import br.com.useblu.oceands.model.OceanTextListStyle
 import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -36,6 +43,7 @@ import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
+import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
 @Composable
@@ -44,6 +52,54 @@ fun OceanCardGroupPreview() {
         Column(
             modifier = Modifier.background(color = OceanColors.interfaceLightPure)
         ) {
+            OceanCardGroup(
+                modifier = Modifier.padding(16.dp),
+                title = "Crédito",
+                tag = OceanTagModel(
+                    type = OceanTagType.Highlight,
+                    text = "Boletos disponiveis"
+                ),
+                backgroundColor = OceanColors.interfaceLightUp,
+                actionTitle = "Ir para boletos",
+                actionClick = { },
+                badgeText = "9",
+                badgeType = OceanBadgeType.WARNING,
+                highlightText = "Pague seu boleto da Ortobom Colchões hoje usando seu limite de crédito.",
+                highlightTextColor = OceanColors.interfaceLightPure,
+                highlightBackgroundColor = OceanColors.brandPrimaryPure
+            ) {
+                OceanTextListItem(
+                    title = "Limite para pagar boletos",
+                    description = "R$ 9.000,00",
+                    caption = "Pague em até 12 vezes",
+                    contentStyle = OceanTextListContentStyle.Inverted,
+                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
+                    backgroundColor = OceanColors.interfaceLightUp,
+                    showDivider = false
+                )
+            }
+
+            OceanCardGroup(
+                modifier = Modifier.padding(16.dp),
+                title = "Crédito",
+                actionTitle = "Ir para parcelas atrasadas",
+                actionClick = { },
+                badgeText = "9",
+                badgeType = OceanBadgeType.WARNING,
+                highlightText = "Pague as parcelas atrasadas e tenha crédito disponível novamente",
+                highlightTextColor = OceanColors.interfaceDarkDeep,
+                highlightBackgroundColor = OceanColors.statusWarningDown
+            ) {
+                OceanTextListItem(
+                    title = "Seu parcelamento está atrasado",
+                    description = "R$ 4.328,04",
+                    caption = "Fique em dia e tenha mais crédito",
+                    contentStyle = OceanTextListContentStyle.Inverted,
+                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
+                    showDivider = false
+                )
+            }
+
             OceanCardGroup(
                 title = "Header",
                 subtitle = "Subtitle",
@@ -100,6 +156,100 @@ fun OceanCardGroupPreview() {
 }
 
 @Composable
+fun OceanCardGroup(
+    modifier: Modifier = Modifier,
+    title: String,
+    description: String = "",
+    tag: OceanTagModel? = null,
+    backgroundColor: Color = OceanColors.interfaceLightPure,
+    actionTitle: String = "",
+    actionClick: () -> Unit = { },
+    showProgress: Boolean = false,
+    badgeText: String = "",
+    badgeType: OceanBadgeType = OceanBadgeType.WARNING,
+    highlightText: String = "",
+    highlightTextColor: Color = OceanColors.interfaceLightUp,
+    highlightBackgroundColor: Color = OceanColors.brandPrimaryPure,
+    content: @Composable () -> Unit
+) {
+    Card(
+        modifier = modifier,
+        colors = CardDefaults.cardColors(
+            containerColor = backgroundColor,
+            disabledContainerColor = backgroundColor
+        ),
+        shape = OceanBorderRadius.SM.allCorners.shape(),
+        border = BorderStroke(1.dp, OceanColors.interfaceLightDown),
+        onClick = { /* No-op */ }
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = OceanSpacing.xs)
+                .padding(horizontal = OceanSpacing.xs)
+                .padding(bottom = OceanSpacing.xxxs)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ContentDefault(
+                    title = title,
+                    subtitle = description
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                tag?.let { tag ->
+                    OceanTag(
+                        modifier = Modifier
+                            .padding(top = OceanSpacing.xxs),
+                        style = OceanTagStyle.Default(
+                            label = tag.text,
+                            layout = OceanTagLayout.Medium(),
+                            type = tag.type
+                        )
+                    )
+                }
+            }
+        }
+
+        content()
+
+        CardCta(
+            showProgress = showProgress,
+            actionTitle = actionTitle,
+            badgeText = badgeText,
+            badgeType = badgeType,
+            backgroundColor = if (highlightText.isNotEmpty()) highlightBackgroundColor else backgroundColor,
+            actionClick = actionClick
+        )
+
+        if (highlightText.isNotEmpty()) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = highlightBackgroundColor,
+                        shape = OceanBorderRadius.SM.bottomCorners.shape()
+                    )
+                    .padding(
+                        horizontal = OceanSpacing.xs,
+                        vertical = OceanSpacing.xxsExtra
+                    )
+            ) {
+                OceanText(
+                    text = highlightText,
+                    style = OceanTextStyle.captionBold,
+                    color = highlightTextColor
+                )
+            }
+        }
+    }
+}
+
+@Composable
+@Deprecated("Use the version with content lambda instead")
 fun OceanCardGroup(
     title: String,
     modifier: Modifier = Modifier,
@@ -234,7 +384,7 @@ private fun ContentDefault(
     title: String,
     subtitle: String
 ) {
-    Text(
+    OceanText(
         text = title,
         fontFamily = OceanFontFamily.BaseExtraBold,
         fontSize = OceanFontSize.xs,
@@ -244,7 +394,7 @@ private fun ContentDefault(
     if (subtitle.isNotBlank()) {
         OceanSpacing.StackXXS()
 
-        Text(
+        OceanText(
             text = subtitle,
             fontFamily = OceanFontFamily.BaseRegular,
             fontSize = OceanFontSize.xxs,

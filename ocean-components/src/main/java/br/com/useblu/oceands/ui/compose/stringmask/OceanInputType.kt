@@ -9,6 +9,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.OceanDS
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import java.math.BigDecimal
@@ -31,6 +32,10 @@ sealed interface OceanInputType {
     fun sanitizeWithDigits(text: String): String {
         val digitsText = text.filter { it.isDigit() }
         return getMaxLength()?.let { digitsText.take(it) } ?: digitsText
+    }
+
+    fun usePhysicalKeyboardOnly(): Boolean {
+        return OceanDS.disabledKeyboards.contains(getKeyboardType())
     }
 
     data object DEFAULT : OceanInputType

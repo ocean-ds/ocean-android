@@ -42,6 +42,7 @@ class InputActivity : AppCompatActivity() {
 
                 OceanTextInputHelper(label = "Input Default", inputType = OceanInputType.DEFAULT)
                 OceanTextInputHelper(label = "Input Email", inputType = OceanInputType.Email)
+                OceanTextInputHelper(label = "Input Currency", inputType = OceanInputType.Currency())
                 OceanTextInputHelper(label = "Input Data", inputType = OceanInputType.Date)
                 OceanTextInputHelper(label = "Input Billet", inputType = OceanInputType.BankBillet)
                 OceanTextInputHelper(label = "Input CNPJ", inputType = OceanInputType.CNPJ)

@@ -278,7 +278,6 @@ fun OceanTextInput(
                     ),
                 readOnly = oceanInputType.usePhysicalKeyboardOnly(),
                 onValueChange = { changedField ->
-                    textFieldSelection = changedField.selection
                     val modifiedValue = changedField.text
                     val outputValue = oceanInputType.transformForOutput(modifiedValue)
                     val finalValue = if (maxLength != null && outputValue.length > maxLength) {
@@ -286,6 +285,13 @@ fun OceanTextInput(
                     } else {
                         outputValue
                     }
+
+                    textFieldSelection = if (value != finalValue && oceanInputType.alwaysGoToEndOfInput()) {
+                        TextRange(finalValue.length)
+                    } else {
+                        changedField.selection
+                    }
+
                     if (value != finalValue) {
                         onTextChanged(finalValue)
                     }

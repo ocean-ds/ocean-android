@@ -15,6 +15,8 @@ class OceanDS {
 
         internal var disabledKeyboards: Set<KeyboardType> = emptySet()
 
+        fun usesPhysicalNumericKeyboard(): Boolean = disabledKeyboards.contains(KeyboardType.Number)
+
         fun initialize(
             fontSizeTokens: OceanFontSizeTokens? = null,
             fontFamilyTokens: OceanFontFamilyTokens? = null,

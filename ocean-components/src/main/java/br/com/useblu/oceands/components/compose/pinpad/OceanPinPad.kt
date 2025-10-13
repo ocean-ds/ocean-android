@@ -2,6 +2,7 @@ package br.com.useblu.oceands.components.compose.pinpad
 
 import android.util.Range
 import androidx.compose.foundation.background
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,14 +14,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.OceanDS
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanShimmering
 import br.com.useblu.oceands.components.compose.OceanText
@@ -44,15 +51,36 @@ fun <Result> OceanPinPad(
     isEnabled: Boolean = true,
     haptics: OceanPinPadhapticsDelegate? = null
 ) {
+    val focusRequester = remember { FocusRequester() }
+    val usesPhysicalKeyboard = OceanDS.usesPhysicalNumericKeyboard()
+
     Column(
         modifier = modifier
             .background(OceanColors.interfaceLightPure)
             .fillMaxSize()
+            .let {
+                if (usesPhysicalKeyboard) {
+                    it
+                        .focusable()
+                        .focusRequester(focusRequester)
+                        .onKeyEvent { keyEvent ->
+                            PinPadInputKeyHandler.onInputKey(
+                                keyEvent = keyEvent,
+                                enabled = isEnabled,
+                                handler = handler
+                            )
+                        }
+                } else {
+                    it
+                }
+            }
             .disabledOverlay(isDisabled = isEnabled.not())
     ) {
         if (isLoading) {
             InputInfoSkeleton(modifier = Modifier.weight(1F))
-            InputPadSkeleton()
+            if (usesPhysicalKeyboard.not()) {
+                InputPadSkeleton()
+            }
             return@Column
         }
         InputInfo(
@@ -61,6 +89,7 @@ fun <Result> OceanPinPad(
             isEnabled = isEnabled
         )
 
+        if (usesPhysicalKeyboard) return@Column
         InputPad(
             onClick = { digit ->
                 handler.newDigit(digit = digit)
@@ -75,6 +104,11 @@ fun <Result> OceanPinPad(
                 haptics?.didTapClear()
             }
         )
+    }
+
+    LaunchedEffect(Unit) {
+        if (usesPhysicalKeyboard.not()) return@LaunchedEffect
+        focusRequester.requestFocus()
     }
 }
 

@@ -2343,6 +2343,14 @@ enum class OceanIcons(
     SALE_REVERSAL_OUTLINE(
         token = "sale_reversal_outline",
         icon = R.drawable.sale_reversal_outline
+    ),
+    LINK_ALT_OUTLINE(
+        token = "link_alt_outline",
+        icon = R.drawable.icon_link_alt_outline
+    ),
+    ARROW_U_TURN_LEFT_OUTLINE(
+        token = "arrow_u_turn_left_outline",
+        icon = R.drawable.icon_arrow_u_turn_left_outline
     );
 
     companion object {

@@ -37,10 +37,13 @@ class OceanCurrencyPinPadHandler(
 
     override fun newDigit(digit: String) {
         val newLastDigit = digit.toLong()
-        currentValue = Math.addExact(
-            Math.multiplyExact(currentValue, 10L),
-            newLastDigit
-        )
+        try {
+            val newValue = Math.addExact(
+                Math.multiplyExact(currentValue, 10L),
+                newLastDigit
+            )
+            currentValue = newValue
+        } catch (e: Exception) { /* no-op */ }
         updateFormattedValue()
     }
 

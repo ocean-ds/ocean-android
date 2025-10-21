@@ -1,19 +1,11 @@
 package br.com.useblu.oceands.components.compose.balance.cardbalance
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -24,9 +16,8 @@ import br.com.useblu.oceands.components.compose.OceanButtonModel
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.balance.BadgeStyle
 import br.com.useblu.oceands.components.compose.balance.BadgesContent
+import br.com.useblu.oceands.components.compose.balance.BalanceItemContent
 import br.com.useblu.oceands.components.compose.balance.ItemExpandableContent
-import br.com.useblu.oceands.components.compose.balance.ItemMainContent
-import br.com.useblu.oceands.components.compose.balance.ItemTextContent
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemActionType
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemInteraction
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
@@ -55,102 +46,41 @@ fun OceanCardBalance(
         )
     ) {
         items.forEachIndexed { index, item ->
-            ItemContent(
+            BalanceItemContent(
                 item = item,
                 hideContent = hideContent,
                 isLoading = isLoading,
-                onClickDelegate = onClickDelegate
-            )
-            if (index < items.lastIndex) {
-                CardBalanceDivider()
-            }
-        }
-    }
-}
-
-@Composable
-private fun ItemContent(
-    modifier: Modifier = Modifier,
-    item: OceanBalanceItemModel,
-    hideContent: Boolean,
-    isLoading: Boolean,
-    onClickDelegate: (() -> Unit)?
-) {
-    var showExpandedInfo by remember { mutableStateOf(item.interaction.showExpandedInfo) }
-
-    Column(
-        modifier = modifier
-            .clickable(
-                enabled = item.interaction.canClickFullItem || onClickDelegate != null
-            ) {
-                onClickDelegate?.let {
-                    it()
-                } ?: when (item.interaction) {
-                    is OceanBalanceItemInteraction.Expandable -> {
-                        showExpandedInfo = showExpandedInfo.not()
+                onClickDelegate = onClickDelegate,
+                titleColor = OceanColors.interfaceDarkDown,
+                valueColor = OceanColors.interfaceDarkDeep,
+                textColor = OceanColors.interfaceDarkDown,
+                interactionContent = { interaction, showExpandedInfo ->
+                    when (interaction) {
+                        is OceanBalanceItemInteraction.Expandable ->
+                            ItemExpandableInteraction(
+                                showExpandedInfo = showExpandedInfo,
+                                badges = interaction.badges
+                            )
+                        is OceanBalanceItemInteraction.Action ->
+                            when (val actionType = interaction.type) {
+                                is OceanBalanceItemActionType.Button ->
+                                    OceanButton(button = actionType.button)
+                                else -> Unit
+                            }
                     }
-
-                    else -> item.interaction.action()
-                }
-            }
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = OceanSpacing.xs)
-                .padding(vertical = OceanSpacing.xxsExtra),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            when (item.type) {
-                is OceanBalanceItemType.Main -> ItemMainContent(
-                    data = item.type,
-                    hideContent = hideContent,
-                    isLoading = isLoading,
-                    titleColor = OceanColors.interfaceDarkDown,
-                    valueColor = OceanColors.interfaceDarkDeep
-                )
-
-                is OceanBalanceItemType.Text -> ItemTextContent(
-                    modifier = Modifier.weight(1f),
-                    data = item.type,
-                    hideContent = hideContent,
-                    textColor = OceanColors.interfaceDarkDown
-                )
-            }
-
-            OceanSpacing.StackXXS()
-
-            when (item.interaction) {
-                is OceanBalanceItemInteraction.Expandable ->
-                    ItemExpandableInteraction(
-                        showExpandedInfo = showExpandedInfo,
-                        badges = item.interaction.badges
-                    )
-
-                is OceanBalanceItemInteraction.Action ->
-                    when (val actionType = item.interaction.type) {
-                        is OceanBalanceItemActionType.Button ->
-                            OceanButton(button = actionType.button)
-                        else -> Unit
-                    }
-            }
-        }
-
-        AnimatedVisibility(
-            visible = showExpandedInfo
-        ) {
-            when (item.interaction) {
-                is OceanBalanceItemInteraction.Expandable ->
+                },
+                expandableContent = { expandable ->
                     ItemExpandableContent(
-                        data = item.interaction,
+                        data = expandable,
                         hideContent = hideContent,
                         isLoading = isLoading,
                         textColor = OceanColors.interfaceLightPure,
                         divider = { CardBalanceDivider() }
                     )
-
-                is OceanBalanceItemInteraction.Action -> Unit
+                }
+            )
+            if (index < items.lastIndex) {
+                CardBalanceDivider()
             }
         }
     }

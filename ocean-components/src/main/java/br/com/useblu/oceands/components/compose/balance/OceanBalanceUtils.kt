@@ -1,16 +1,23 @@
 package br.com.useblu.oceands.components.compose.balance
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,6 +31,7 @@ import br.com.useblu.oceands.components.compose.OceanBadgeSize
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemInteraction
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemType
 import br.com.useblu.oceands.components.compose.shimmeringBrush
 import br.com.useblu.oceands.model.OceanBadgeType
@@ -129,6 +137,75 @@ internal fun ItemExpandableContent(
             }
             if (index < data.items.lastIndex) {
                 divider()
+            }
+        }
+    }
+}
+
+@Composable
+internal fun BalanceItemContent(
+    modifier: Modifier = Modifier,
+    item: OceanBalanceItemModel,
+    hideContent: Boolean,
+    isLoading: Boolean,
+    onClickDelegate: (() -> Unit)?,
+    titleColor: Color,
+    valueColor: Color,
+    textColor: Color,
+    interactionContent: @Composable (OceanBalanceItemInteraction, Boolean) -> Unit,
+    expandableContent: @Composable (OceanBalanceItemInteraction.Expandable) -> Unit
+) {
+    var showExpandedInfo by remember { mutableStateOf(item.interaction.showExpandedInfo) }
+
+    Column(
+        modifier = modifier
+            .clickable(
+                enabled = item.interaction.canClickFullItem || onClickDelegate != null
+            ) {
+                onClickDelegate?.let {
+                    it()
+                } ?: when (item.interaction) {
+                    is OceanBalanceItemInteraction.Expandable -> {
+                        showExpandedInfo = showExpandedInfo.not()
+                    }
+                    else -> item.interaction.action()
+                }
+            }
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = OceanSpacing.xs)
+                .padding(vertical = OceanSpacing.xxsExtra),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            when (item.type) {
+                is OceanBalanceItemType.Main -> ItemMainContent(
+                    data = item.type,
+                    hideContent = hideContent,
+                    isLoading = isLoading,
+                    titleColor = titleColor,
+                    valueColor = valueColor
+                )
+                is OceanBalanceItemType.Text -> ItemTextContent(
+                    modifier = Modifier.weight(1f),
+                    data = item.type,
+                    hideContent = hideContent,
+                    textColor = textColor
+                )
+            }
+
+            OceanSpacing.StackXXS()
+
+            interactionContent(item.interaction, showExpandedInfo)
+        }
+
+        AnimatedVisibility(visible = showExpandedInfo) {
+            when (item.interaction) {
+                is OceanBalanceItemInteraction.Expandable ->
+                    expandableContent(item.interaction)
+                is OceanBalanceItemInteraction.Action -> Unit
             }
         }
     }

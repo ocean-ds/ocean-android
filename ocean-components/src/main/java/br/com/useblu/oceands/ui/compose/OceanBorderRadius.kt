@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.ui.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Modifier
@@ -8,6 +9,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius.Corners
 
 sealed interface OceanBorderRadius {
@@ -357,6 +359,24 @@ fun Modifier.borderBackground(color: Color, borderRadius: OceanBorderRadius): Mo
 fun Modifier.borderBackground(brush: Brush, borderRadius: OceanBorderRadius): Modifier {
     return this
         .background(brush = brush, shape = borderRadius.shape())
+}
+
+fun Modifier.borderWithBackground(
+    borderWidth: Dp = 1.dp,
+    borderColor: Color,
+    backgroundColor: Color,
+    borderRadius: OceanBorderRadius
+): Modifier {
+    return this
+        .border(
+            width = borderWidth,
+            color = borderColor,
+            shape = borderRadius.shape()
+        )
+        .borderBackground(
+            color = backgroundColor,
+            borderRadius = borderRadius
+        )
 }
 
 //endregion

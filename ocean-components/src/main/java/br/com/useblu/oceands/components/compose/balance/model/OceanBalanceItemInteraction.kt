@@ -1,6 +1,6 @@
-package br.com.useblu.oceands.components.compose.blubalance.model
+package br.com.useblu.oceands.components.compose.balance.model
 
-sealed interface OceanBluBalanceItemInteraction {
+sealed interface OceanBalanceItemInteraction {
     val showExpandedInfo: Boolean
         get() = false
     val action: () -> Unit
@@ -8,17 +8,18 @@ sealed interface OceanBluBalanceItemInteraction {
 
     data class Expandable(
         val items: List<Pair<String, String>>,
+        val badges: List<String> = emptyList(),
         override val showExpandedInfo: Boolean = false
-    ) : OceanBluBalanceItemInteraction {
+    ) : OceanBalanceItemInteraction {
         override val action: () -> Unit = { Unit }
         val hiddenValue: String = "R$ ••••••"
         override val canClickFullItem: Boolean = true
     }
 
     data class Action(
-        val type: OceanBalanceItemAction,
-        override val action: () -> Unit
-    ) : OceanBluBalanceItemInteraction {
+        val type: OceanBalanceItemActionType,
+        override val action: () -> Unit = {}
+    ) : OceanBalanceItemInteraction {
         override val canClickFullItem: Boolean = type.canClickFullItem
     }
 }

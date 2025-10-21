@@ -1,17 +1,17 @@
-package br.com.useblu.oceands.components.compose.blubalance.model
+package br.com.useblu.oceands.components.compose.balance.model
 
-sealed interface OceanBluBalanceItemType {
+sealed interface OceanBalanceItemType {
     val hiddenValue: String
 
     data class Main(
         val title: String,
         val value: String,
         override val hiddenValue: String = "R$ ••••••"
-    ) : OceanBluBalanceItemType
+    ) : OceanBalanceItemType
 
     data class Text(
         val text: String
-    ) : OceanBluBalanceItemType {
+    ) : OceanBalanceItemType {
         override val hiddenValue: String
             get() = text
 

@@ -2,7 +2,6 @@ package br.com.useblu.oceands.components.compose.balance.cardbalance
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -36,7 +35,7 @@ import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
-import br.com.useblu.oceands.ui.compose.borderBackground
+import br.com.useblu.oceands.ui.compose.borderWithBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Composable
@@ -48,16 +47,12 @@ fun OceanCardBalance(
     onClickDelegate: (() -> Unit)? = null
 ) {
     Column(
-        modifier = modifier
-            .border(
-                width = 1.dp,
-                color = OceanColors.interfaceLightDown,
-                shape = OceanBorderRadius.MD.allCorners.shape()
-            )
-            .borderBackground(
-                color = OceanColors.interfaceLightPure,
-                borderRadius = OceanBorderRadius.MD.allCorners
-            )
+        modifier = modifier.borderWithBackground(
+            borderWidth = 1.dp,
+            borderColor = OceanColors.interfaceLightDown,
+            backgroundColor = OceanColors.interfaceLightPure,
+            borderRadius = OceanBorderRadius.MD.allCorners
+        )
     ) {
         items.forEachIndexed { index, item ->
             ItemContent(

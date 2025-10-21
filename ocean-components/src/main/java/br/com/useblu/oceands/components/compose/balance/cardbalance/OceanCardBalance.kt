@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components.compose.cardbalance
+package br.com.useblu.oceands.components.compose.balance.cardbalance
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
@@ -33,9 +33,10 @@ import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanButtonModel
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
-import br.com.useblu.oceands.components.compose.cardbalance.model.OceanCardBalanceItemInteraction
-import br.com.useblu.oceands.components.compose.cardbalance.model.OceanCardBalanceItemModel
-import br.com.useblu.oceands.components.compose.cardbalance.model.OceanCardBalanceItemType
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemActionType
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemInteraction
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemType
 import br.com.useblu.oceands.components.compose.shimmeringBrush
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
@@ -49,7 +50,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Composable
 fun OceanCardBalance(
     modifier: Modifier = Modifier,
-    items: List<OceanCardBalanceItemModel>,
+    items: List<OceanBalanceItemModel>,
     hideContent: Boolean = false,
     isLoading: Boolean = false,
     onClickDelegate: (() -> Unit)? = null
@@ -83,7 +84,7 @@ fun OceanCardBalance(
 @Composable
 private fun ItemContent(
     modifier: Modifier = Modifier,
-    item: OceanCardBalanceItemModel,
+    item: OceanBalanceItemModel,
     hideContent: Boolean,
     isLoading: Boolean,
     onClickDelegate: (() -> Unit)?
@@ -98,7 +99,7 @@ private fun ItemContent(
                 onClickDelegate?.let {
                     it()
                 } ?: when (item.interaction) {
-                    is OceanCardBalanceItemInteraction.Expandable -> {
+                    is OceanBalanceItemInteraction.Expandable -> {
                         showExpandedInfo = showExpandedInfo.not()
                     }
 
@@ -115,13 +116,13 @@ private fun ItemContent(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             when (item.type) {
-                is OceanCardBalanceItemType.Main -> ItemMainContent(
+                is OceanBalanceItemType.Main -> ItemMainContent(
                     data = item.type,
                     hideContent = hideContent,
                     isLoading = isLoading
                 )
 
-                is OceanCardBalanceItemType.Text -> ItemTextContent(
+                is OceanBalanceItemType.Text -> ItemTextContent(
                     modifier = Modifier.weight(1f),
                     data = item.type,
                     hideContent = hideContent
@@ -131,16 +132,18 @@ private fun ItemContent(
             OceanSpacing.StackXXS()
 
             when (item.interaction) {
-                is OceanCardBalanceItemInteraction.Expandable ->
+                is OceanBalanceItemInteraction.Expandable ->
                     ItemExpandableInteraction(
                         showExpandedInfo = showExpandedInfo,
                         badges = item.interaction.badges
                     )
 
-                is OceanCardBalanceItemInteraction.Action ->
-                    OceanButton(
-                        button = item.interaction.button
-                    )
+                is OceanBalanceItemInteraction.Action ->
+                    when (val actionType = item.interaction.type) {
+                        is OceanBalanceItemActionType.Button ->
+                            OceanButton(button = actionType.button)
+                        else -> Unit
+                    }
             }
         }
 
@@ -148,14 +151,14 @@ private fun ItemContent(
             visible = showExpandedInfo
         ) {
             when (item.interaction) {
-                is OceanCardBalanceItemInteraction.Expandable ->
+                is OceanBalanceItemInteraction.Expandable ->
                     ItemExpandableContent(
                         data = item.interaction,
                         hideContent = hideContent,
                         isLoading = isLoading
                     )
 
-                is OceanCardBalanceItemInteraction.Action -> Unit
+                is OceanBalanceItemInteraction.Action -> Unit
             }
         }
     }
@@ -163,7 +166,7 @@ private fun ItemContent(
 
 @Composable
 private fun ItemExpandableContent(
-    data: OceanCardBalanceItemInteraction.Expandable,
+    data: OceanBalanceItemInteraction.Expandable,
     hideContent: Boolean,
     isLoading: Boolean
 ) {
@@ -212,7 +215,7 @@ private fun ItemExpandableContent(
 @Composable
 private fun ItemTextContent(
     modifier: Modifier = Modifier,
-    data: OceanCardBalanceItemType.Text,
+    data: OceanBalanceItemType.Text,
     hideContent: Boolean
 ) {
     OceanText(
@@ -280,7 +283,7 @@ private fun BadgesInteraction(
 
 @Composable
 private fun ItemMainContent(
-    data: OceanCardBalanceItemType.Main,
+    data: OceanBalanceItemType.Main,
     hideContent: Boolean,
     isLoading: Boolean
 ) {
@@ -349,12 +352,12 @@ private fun CardBalanceDivider() {
 private fun OceanCardBalancePreview() {
     OceanCardBalance(
         items = listOf(
-            OceanCardBalanceItemModel(
-                type = OceanCardBalanceItemType.Main(
+            OceanBalanceItemModel(
+                type = OceanBalanceItemType.Main(
                     title = "Saldo total na Blu",
                     value = "R$ 1.500.000,00"
                 ),
-                interaction = OceanCardBalanceItemInteraction.Expandable(
+                interaction = OceanBalanceItemInteraction.Expandable(
                     items = listOf(
                         "Saldo atual" to "R$ 1.000,00",
                         "Agenda" to "R$ 10.000,00"
@@ -366,17 +369,19 @@ private fun OceanCardBalancePreview() {
                     )
                 )
             ),
-            OceanCardBalanceItemModel(
-                type = OceanCardBalanceItemType.Text(
+            OceanBalanceItemModel(
+                type = OceanBalanceItemType.Text(
                     "Facilite a conciliação de cobranças PagBlu"
                 ),
-                interaction = OceanCardBalanceItemInteraction.Action(
-                    button = OceanButtonModel(
-                        text = "Extrato",
-                        onClick = { },
-                        buttonStyle = OceanButtonStyle.SecondarySmall
+                interaction = OceanBalanceItemInteraction.Action(
+                    type = OceanBalanceItemActionType.Button(
+                        button = OceanButtonModel(
+                            text = "Extrato",
+                            onClick = { },
+                            buttonStyle = OceanButtonStyle.SecondarySmall
+                        )
                     ),
-                    canClickFullItem = false
+                    action = { }
                 )
             )
         )

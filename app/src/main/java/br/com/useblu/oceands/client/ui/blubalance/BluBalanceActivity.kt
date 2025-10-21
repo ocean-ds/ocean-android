@@ -19,11 +19,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanButtonModel
 import br.com.useblu.oceands.components.compose.OceanTheme
-import br.com.useblu.oceands.components.compose.blubalance.OceanBluBalance
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBalanceItemAction
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemInteraction
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemModel
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemType
+import br.com.useblu.oceands.components.compose.balance.blubalance.OceanBluBalance
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemActionType
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemInteraction
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemType
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -45,12 +45,12 @@ class BluBalanceActivity : AppCompatActivity() {
 @Composable
 private fun BluBalancePreview() {
     val bgColor = Color(0xFF2244E8)
-    val mainExpandable = OceanBluBalanceItemModel(
-        type = OceanBluBalanceItemType.Main(
+    val mainExpandable = OceanBalanceItemModel(
+        type = OceanBalanceItemType.Main(
             title = "Saldo total na Blu",
             value = "R$ 1.500.000,00"
         ),
-        interaction = OceanBluBalanceItemInteraction.Expandable(
+        interaction = OceanBalanceItemInteraction.Expandable(
             items = listOf(
                 "Saldo atual" to "R$ 1.000,00",
                 "Agenda" to "R$ 10.000,00"
@@ -58,25 +58,26 @@ private fun BluBalancePreview() {
         )
     )
 
-    val knowMoreItem = OceanBluBalanceItemModel(
-        type = OceanBluBalanceItemType.Text(
+    val knowMoreItem = OceanBalanceItemModel(
+        type = OceanBalanceItemType.Text(
             "Facilite a conciliação de cobranças PagBlu"
         ),
-        interaction = OceanBluBalanceItemInteraction.Action(
-            type = OceanBalanceItemAction.Button(
-                title = "Saiba mais"
+        interaction = OceanBalanceItemInteraction.Action(
+            type = OceanBalanceItemActionType.ButtonSimple(
+                title = "Saiba mais",
+                onClick = { }
             ),
             action = { }
         )
     )
 
-    val acquirersItem = OceanBluBalanceItemModel(
-        type = OceanBluBalanceItemType.Main(
+    val acquirersItem = OceanBalanceItemModel(
+        type = OceanBalanceItemType.Main(
             title = "Saldo nas maquininhas",
             value = "R$ 1.000.000,00"
         ),
-        interaction = OceanBluBalanceItemInteraction.Action(
-            type = OceanBalanceItemAction.Badges(
+        interaction = OceanBalanceItemInteraction.Action(
+            type = OceanBalanceItemActionType.Badges(
                 acquirers = listOf(
                     "teste",
                     "rede",

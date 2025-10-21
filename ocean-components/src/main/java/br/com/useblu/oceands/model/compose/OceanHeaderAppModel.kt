@@ -1,7 +1,7 @@
 package br.com.useblu.oceands.model.compose
 
 import androidx.compose.runtime.Immutable
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemModel
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
 
 @Immutable
 data class OceanHeaderAppModel(
@@ -12,7 +12,7 @@ data class OceanHeaderAppModel(
     val onClickBluPlus: () -> Unit = {},
     val onClickMenu: () -> Unit = {},
     val badgeCount: Int = 0,
-    val items: List<OceanBluBalanceItemModel> = emptyList(),
+    val items: List<OceanBalanceItemModel> = emptyList(),
     val isHeaderCollapsed: Boolean = false,
     val toggleHeaderCollapse: () -> Unit = {},
     val hideBalance: Boolean = false,

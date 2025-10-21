@@ -3,10 +3,10 @@ package br.com.useblu.oceands.client.ui.headerapp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBalanceItemAction
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemInteraction
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemModel
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemType
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemActionType
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemInteraction
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemType
 import br.com.useblu.oceands.model.compose.OceanHeaderAppAction
 import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
 import br.com.useblu.oceands.utils.OceanIcons
@@ -25,25 +25,26 @@ class HeaderAppViewModel : ViewModel() {
             formattedCnpj = "32.677.554/0001-14",
             bluPlusValue = 100,
             items = listOf(
-                OceanBluBalanceItemModel(
-                    type = OceanBluBalanceItemType.Main(
+                OceanBalanceItemModel(
+                    type = OceanBalanceItemType.Main(
                         title = "Primeiro Label",
                         value = "R$ -35,63"
                     ),
-                    interaction = OceanBluBalanceItemInteraction.Expandable(
+                    interaction = OceanBalanceItemInteraction.Expandable(
                         items = listOf(
                             "Segundo Label" to "R$ 10,00",
                             "Terceiro Label" to "R$ 50,00"
                         )
                     )
                 ),
-                OceanBluBalanceItemModel(
-                    type = OceanBluBalanceItemType.Text(
+                OceanBalanceItemModel(
+                    type = OceanBalanceItemType.Text(
                         text = "Confira tudo o que entrou e saiu da sua Conta Digital Blu"
                     ),
-                    interaction = OceanBluBalanceItemInteraction.Action(
-                        type = OceanBalanceItemAction.Button(
-                            title = "Extrato"
+                    interaction = OceanBalanceItemInteraction.Action(
+                        type = OceanBalanceItemActionType.ButtonSimple(
+                            title = "Extrato",
+                            onClick = { println("Click botão extrato") }
                         ),
                         action = { println("Click botão extrato") }
                     )

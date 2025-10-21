@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -27,11 +26,11 @@ import br.com.useblu.oceands.components.compose.OceanBadgeSize
 import br.com.useblu.oceands.components.compose.OceanBluPlus
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTheme
-import br.com.useblu.oceands.components.compose.blubalance.OceanBluBalance
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBalanceItemAction
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemInteraction
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemModel
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemType
+import br.com.useblu.oceands.components.compose.balance.blubalance.OceanBluBalance
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemActionType
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemInteraction
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemType
 import br.com.useblu.oceands.components.compose.header.model.OceanHeaderStyle
 import br.com.useblu.oceands.extensions.compose.topBarBackground
 import br.com.useblu.oceands.model.OceanBadgeType
@@ -49,12 +48,12 @@ val modelPreview = OceanHeaderAppModel(
     clientName = "Fabricante 3 - Fluxo dia atual teste 2",
     formattedCnpj = "32.677.554/0001-14",
     items = listOf(
-        OceanBluBalanceItemModel(
-            type = OceanBluBalanceItemType.Main(
+        OceanBalanceItemModel(
+            type = OceanBalanceItemType.Main(
                 title = "First Label",
                 value = "-35,63"
             ),
-            interaction = OceanBluBalanceItemInteraction.Expandable(
+            interaction = OceanBalanceItemInteraction.Expandable(
                 items = listOf(
                     "Second Label" to "10,00",
                     "Third Label" to "50,00"
@@ -62,13 +61,14 @@ val modelPreview = OceanHeaderAppModel(
             )
         ),
 
-        OceanBluBalanceItemModel(
-            type = OceanBluBalanceItemType.Text(
+        OceanBalanceItemModel(
+            type = OceanBalanceItemType.Text(
                 text = "Confira tudo o que entrou e saiu da sua Conta Digital Blu"
             ),
-            interaction = OceanBluBalanceItemInteraction.Action(
-                type = OceanBalanceItemAction.Button(
-                    title = "Extrato"
+            interaction = OceanBalanceItemInteraction.Action(
+                type = OceanBalanceItemActionType.ButtonSimple(
+                    title = "Extrato",
+                    onClick = { }
                 ),
                 action = { }
             )

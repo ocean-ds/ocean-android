@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.components.compose.blubalance
+package br.com.useblu.oceands.components.compose.balance.blubalance
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
@@ -33,10 +33,10 @@ import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanButtonModel
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBalanceItemAction
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemInteraction
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemModel
-import br.com.useblu.oceands.components.compose.blubalance.model.OceanBluBalanceItemType
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemActionType
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemInteraction
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemType
 import br.com.useblu.oceands.components.compose.shimmeringBrush
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
@@ -50,7 +50,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Composable
 fun OceanBluBalance(
     modifier: Modifier = Modifier,
-    items: List<OceanBluBalanceItemModel>,
+    items: List<OceanBalanceItemModel>,
     hideContent: Boolean = false,
     isLoading: Boolean = false,
     onClickDelegate: (() -> Unit)? = null
@@ -75,7 +75,7 @@ fun OceanBluBalance(
 @Composable
 private fun ItemContent(
     modifier: Modifier = Modifier,
-    item: OceanBluBalanceItemModel,
+    item: OceanBalanceItemModel,
     hideContent: Boolean,
     isLoading: Boolean,
     onClickDelegate: (() -> Unit)?
@@ -90,7 +90,7 @@ private fun ItemContent(
                 onClickDelegate?.let {
                     it()
                 } ?: when (item.interaction) {
-                    is OceanBluBalanceItemInteraction.Expandable -> {
+                    is OceanBalanceItemInteraction.Expandable -> {
                         showExpandedInfo = showExpandedInfo.not()
                     }
                     else -> item.interaction.action()
@@ -106,12 +106,12 @@ private fun ItemContent(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             when (item.type) {
-                is OceanBluBalanceItemType.Main -> ItemMainContent(
+                is OceanBalanceItemType.Main -> ItemMainContent(
                     data = item.type,
                     hideContent = hideContent,
                     isLoading = isLoading
                 )
-                is OceanBluBalanceItemType.Text -> ItemTextContent(
+                is OceanBalanceItemType.Text -> ItemTextContent(
                     modifier = Modifier.weight(1f),
                     data = item.type,
                     hideContent = hideContent
@@ -121,9 +121,9 @@ private fun ItemContent(
             OceanSpacing.StackXXS()
 
             when (item.interaction) {
-                is OceanBluBalanceItemInteraction.Expandable ->
+                is OceanBalanceItemInteraction.Expandable ->
                     ItemExpandableInteraction(showExpandedInfo = showExpandedInfo)
-                is OceanBluBalanceItemInteraction.Action ->
+                is OceanBalanceItemInteraction.Action ->
                     ItemActionInteraction(data = item.interaction)
             }
         }
@@ -132,13 +132,13 @@ private fun ItemContent(
             visible = showExpandedInfo
         ) {
             when (item.interaction) {
-                is OceanBluBalanceItemInteraction.Expandable ->
+                is OceanBalanceItemInteraction.Expandable ->
                     ItemExpandableContent(
                         data = item.interaction,
                         hideContent = hideContent,
                         isLoading = isLoading
                     )
-                is OceanBluBalanceItemInteraction.Action -> Unit
+                is OceanBalanceItemInteraction.Action -> Unit
             }
         }
     }
@@ -146,7 +146,7 @@ private fun ItemContent(
 
 @Composable
 private fun ItemMainContent(
-    data: OceanBluBalanceItemType.Main,
+    data: OceanBalanceItemType.Main,
     hideContent: Boolean,
     isLoading: Boolean
 ) {
@@ -181,7 +181,7 @@ private fun ItemMainContent(
 @Composable
 private fun ItemTextContent(
     modifier: Modifier = Modifier,
-    data: OceanBluBalanceItemType.Text,
+    data: OceanBalanceItemType.Text,
     hideContent: Boolean
 ) {
     OceanText(
@@ -210,36 +210,28 @@ private fun ItemExpandableInteraction(
 
 @Composable
 private fun ItemActionInteraction(
-    data: OceanBluBalanceItemInteraction.Action
+    data: OceanBalanceItemInteraction.Action
 ) {
-    when (data.type) {
-        is OceanBalanceItemAction.Button -> ItemActionButtonInteraction(
-            data = data,
-            buttonData = data.type
+    when (val actionType = data.type) {
+        is OceanBalanceItemActionType.Button -> OceanButton(
+            button = actionType.button
         )
-        is OceanBalanceItemAction.Badges -> ItemActionBadgesInteraction(
-            badgesData = data.type
+        is OceanBalanceItemActionType.ButtonSimple -> OceanButton(
+            button = OceanButtonModel(
+                text = actionType.title,
+                onClick = actionType.onClick,
+                buttonStyle = OceanButtonStyle.SecondarySmall
+            )
+        )
+        is OceanBalanceItemActionType.Badges -> ItemActionBadgesInteraction(
+            badgesData = actionType
         )
     }
 }
 
 @Composable
-private fun ItemActionButtonInteraction(
-    data: OceanBluBalanceItemInteraction.Action,
-    buttonData: OceanBalanceItemAction.Button
-) {
-    OceanButton(
-        button = OceanButtonModel(
-            text = buttonData.title,
-            onClick = data.action,
-            buttonStyle = OceanButtonStyle.SecondarySmall
-        )
-    )
-}
-
-@Composable
 private fun ItemActionBadgesInteraction(
-    badgesData: OceanBalanceItemAction.Badges
+    badgesData: OceanBalanceItemActionType.Badges
 ) {
     val size = 24f
     val take = if (badgesData.acquirers.size > 3) 2 else badgesData.acquirers.size
@@ -299,7 +291,7 @@ private fun ItemActionBadgesInteraction(
         }
 
         OceanIcon(
-            iconType = OceanIcons.CHEVRON_RIGHT_SOLID,
+            iconType = badgesData.traillingIcon,
             tint = OceanColors.interfaceLightPure
         )
     }
@@ -307,7 +299,7 @@ private fun ItemActionBadgesInteraction(
 
 @Composable
 private fun ItemExpandableContent(
-    data: OceanBluBalanceItemInteraction.Expandable,
+    data: OceanBalanceItemInteraction.Expandable,
     hideContent: Boolean,
     isLoading: Boolean
 ) {
@@ -371,25 +363,26 @@ fun OceanBluBalancePreview() {
                     borderRadius = OceanBorderRadius.MD.allCorners
                 ),
             items = listOf(
-                OceanBluBalanceItemModel(
-                    type = OceanBluBalanceItemType.Main(
+                OceanBalanceItemModel(
+                    type = OceanBalanceItemType.Main(
                         title = "Saldo total na Blu",
                         value = "R$ 1.500.000,00"
                     ),
-                    interaction = OceanBluBalanceItemInteraction.Expandable(
+                    interaction = OceanBalanceItemInteraction.Expandable(
                         items = listOf(
                             "Saldo atual" to "R$ 1.000,00",
                             "Agenda" to "R$ 10.000,00"
                         )
                     )
                 ),
-                OceanBluBalanceItemModel(
-                    type = OceanBluBalanceItemType.Text(
+                OceanBalanceItemModel(
+                    type = OceanBalanceItemType.Text(
                         "Facilite a conciliação de cobranças PagBlu"
                     ),
-                    interaction = OceanBluBalanceItemInteraction.Action(
-                        type = OceanBalanceItemAction.Button(
-                            title = "Saiba mais"
+                    interaction = OceanBalanceItemInteraction.Action(
+                        type = OceanBalanceItemActionType.ButtonSimple(
+                            title = "Saiba mais",
+                            onClick = { }
                         ),
                         action = { }
                     )
@@ -408,12 +401,12 @@ fun OceanBluBalanceExpandedPreview() {
     ) {
         OceanBluBalance(
             items = listOf(
-                OceanBluBalanceItemModel(
-                    type = OceanBluBalanceItemType.Main(
+                OceanBalanceItemModel(
+                    type = OceanBalanceItemType.Main(
                         title = "Saldo total na Blu",
                         value = "R$ 1.000.000,00"
                     ),
-                    interaction = OceanBluBalanceItemInteraction.Expandable(
+                    interaction = OceanBalanceItemInteraction.Expandable(
                         showExpandedInfo = true,
                         items = listOf(
                             "Saldo atual" to "R$ 5.000,00",
@@ -421,13 +414,13 @@ fun OceanBluBalanceExpandedPreview() {
                         )
                     )
                 ),
-                OceanBluBalanceItemModel(
-                    type = OceanBluBalanceItemType.Main(
+                OceanBalanceItemModel(
+                    type = OceanBalanceItemType.Main(
                         title = "Saldo nas maquininhas",
                         value = "R$ 1.000.000,00"
                     ),
-                    interaction = OceanBluBalanceItemInteraction.Action(
-                        type = OceanBalanceItemAction.Badges(
+                    interaction = OceanBalanceItemInteraction.Action(
+                        type = OceanBalanceItemActionType.Badges(
                             acquirers = listOf(
                                 "test",
                                 "rede",

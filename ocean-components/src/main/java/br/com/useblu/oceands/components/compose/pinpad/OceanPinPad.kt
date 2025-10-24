@@ -14,7 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -61,8 +61,8 @@ fun <Result> OceanPinPad(
             .let {
                 if (usesPhysicalKeyboard) {
                     it
-                        .focusable()
                         .focusRequester(focusRequester)
+                        .focusable()
                         .onKeyEvent { keyEvent ->
                             PinPadInputKeyHandler.onInputKey(
                                 keyEvent = keyEvent,
@@ -106,9 +106,10 @@ fun <Result> OceanPinPad(
         )
     }
 
-    LaunchedEffect(Unit) {
-        if (usesPhysicalKeyboard.not()) return@LaunchedEffect
-        focusRequester.requestFocus()
+    if (usesPhysicalKeyboard && !isLoading) {
+        SideEffect {
+            focusRequester.requestFocus()
+        }
     }
 }
 

@@ -74,7 +74,7 @@ fun OceanCardBalance(
                         data = expandable,
                         hideContent = hideContent,
                         isLoading = isLoading,
-                        textColor = OceanColors.interfaceLightPure,
+                        textColor = OceanColors.interfaceDarkDown,
                         divider = { CardBalanceDivider() }
                     )
                 }

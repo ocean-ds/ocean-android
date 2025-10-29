@@ -7,4 +7,5 @@ sealed class OceanTextListStyle {
     data object RadioButton : OceanTextListStyle()
     data object Checkbox : OceanTextListStyle()
     data class Icon(val icon: OceanIcons? = null) : OceanTextListStyle()
+    data class Image(val imageUrl: String) : OceanTextListStyle()
 }

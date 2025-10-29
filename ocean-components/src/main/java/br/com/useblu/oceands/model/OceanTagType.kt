@@ -1,6 +1,5 @@
 package br.com.useblu.oceands.model
 
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 
 @Immutable
@@ -15,7 +14,6 @@ enum class OceanTagType {
     Highlight
 }
 
-@Composable
 fun fromString(tagType: String): OceanTagType {
     return when (tagType) {
         "Neutral" -> OceanTagType.Neutral

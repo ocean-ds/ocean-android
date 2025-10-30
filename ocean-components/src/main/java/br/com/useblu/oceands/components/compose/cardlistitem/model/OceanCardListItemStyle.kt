@@ -13,7 +13,7 @@ sealed interface OceanCardListItemStyle {
         val backgroundColor: Color,
         val icon: OceanIcons,
         val iconColor: Color,
-        val animation: Animation
+        val animation: Animation? = null
     ) : OceanCardListItemStyle {
         data class Animation(
             val targetBorderColor: Color,

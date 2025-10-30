@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.components.compose.cardlistitem
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanIcon
@@ -53,7 +55,8 @@ fun OceanCardListItem(
     style: OceanCardListItemStyle = OceanCardListItemStyle.Default,
     disabled: Boolean = false,
     isSelected: Boolean = false,
-    onClick: (() -> Unit)? = null
+    onClick: (() -> Unit)? = null,
+    onDisabledClick: (() -> Unit)? = null
 ) {
     when (style) {
         is OceanCardListItemStyle.Default -> {
@@ -67,7 +70,8 @@ fun OceanCardListItem(
                 type = type,
                 disabled = disabled,
                 isSelected = isSelected,
-                onClick = onClick
+                onClick = onClick,
+                onDisabledClick = onDisabledClick
             )
         }
 
@@ -82,7 +86,8 @@ fun OceanCardListItem(
                 style = style,
                 disabled = disabled,
                 isSelected = isSelected,
-                onClick = onClick
+                onClick = onClick,
+                onDisabledClick = onDisabledClick
             )
         }
     }
@@ -258,6 +263,7 @@ private fun TrailingContentCardListItem(
 @Preview
 @Composable
 fun OceanCardListItemPreview() {
+    val context = LocalContext.current
     OceanTheme {
         Column(
             modifier = Modifier
@@ -282,7 +288,11 @@ fun OceanCardListItemPreview() {
                 title = "Title",
                 description = "Description",
                 caption = "Caption",
-                onClick = {}
+                onClick = {},
+                disabled = true,
+                onDisabledClick = {
+                    Toast.makeText(context, "Item disabled", Toast.LENGTH_SHORT).show()
+                }
             )
 
             OceanCardListItem(
@@ -308,6 +318,52 @@ fun OceanCardListItemPreview() {
                     type = OceanTagType.Positive
                 ),
                 onClick = {}
+            )
+
+            OceanCardListItem(
+                title = "Title Highlighted",
+                description = "Without Animation",
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
+                    didUpdate = { }
+                ),
+                style = OceanCardListItemStyle.Highlighted(
+                    caption = "Short Caption",
+                    backgroundColor = OceanColors.statusNegativeUp,
+                    icon = OceanIcons.SPARKLES_OUTLINE,
+                    iconColor = OceanColors.statusNegativeDeep
+                ),
+                tagStyle = OceanTagStyle.Default(
+                    label = "Tag label",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Positive
+                ),
+                onClick = {}
+            )
+
+            OceanCardListItem(
+                title = "Title Highlighted",
+                description = "Without Animation",
+                disabled = true,
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
+                    didUpdate = { }
+                ),
+                style = OceanCardListItemStyle.Highlighted(
+                    caption = "Short Caption",
+                    backgroundColor = OceanColors.statusNegativeUp,
+                    icon = OceanIcons.SPARKLES_OUTLINE,
+                    iconColor = OceanColors.statusNegativeDeep
+                ),
+                tagStyle = OceanTagStyle.Default(
+                    label = "Tag label",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Positive
+                ),
+                onClick = {},
+                onDisabledClick = {
+                    Toast.makeText(context, "Item disabled", Toast.LENGTH_SHORT).show()
+                }
             )
 
             OceanCardListItem(

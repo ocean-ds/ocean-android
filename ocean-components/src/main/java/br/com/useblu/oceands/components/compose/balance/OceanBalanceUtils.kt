@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
+import androidx.compose.ui.zIndex
 import br.com.useblu.oceands.components.compose.OceanBadge
 import br.com.useblu.oceands.components.compose.OceanBadgeSize
 import br.com.useblu.oceands.components.compose.OceanIcon
@@ -168,6 +169,7 @@ internal fun BalanceItemContent(
                     is OceanBalanceItemInteraction.Expandable -> {
                         showExpandedInfo = showExpandedInfo.not()
                     }
+
                     else -> item.interaction.action()
                 }
             }
@@ -189,6 +191,7 @@ internal fun BalanceItemContent(
                         titleColor = titleColor,
                         valueColor = valueColor
                     )
+
                     is OceanBalanceItemType.Text -> ItemTextContent(
                         data = item.type,
                         hideContent = hideContent,
@@ -206,6 +209,7 @@ internal fun BalanceItemContent(
             when (item.interaction) {
                 is OceanBalanceItemInteraction.Expandable ->
                     expandableContent(item.interaction)
+
                 is OceanBalanceItemInteraction.Action -> Unit
             }
         }
@@ -229,19 +233,25 @@ internal fun BadgesContent(
     badges: List<String>,
     style: BadgeStyle
 ) {
-    val take = if (badges.size > 3) 2 else badges.size
+    val take = if (badges.size > 3) 3 else badges.size
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(((-style.size.value) / 3f).dp)
+            horizontalArrangement = Arrangement.spacedBy(((-style.size.value) / 3f).dp),
+            modifier = Modifier
         ) {
-            badges.take(take).forEach { acquirer ->
+            badges.take(take).reversed().forEachIndexed { index, acquirer ->
+                val zIndex = (take - index).toFloat()
+
                 val icon = OceanIcons.fromToken("acquirer_$acquirer")
                 if (icon != OceanIcons.UNDEFINED) {
-                    val iconModifier = Modifier.size(style.size)
+                    val iconModifier = Modifier
+                        .size(style.size)
+                        .zIndex(zIndex)
+
                     val finalModifier = if (style.useClip) {
                         iconModifier.clip(shape = style.shape)
                     } else {
@@ -266,6 +276,7 @@ internal fun BadgesContent(
                             shape = style.shape
                         )
                         .size(style.size)
+                        .zIndex(zIndex)
 
                     val finalBoxModifier = if (style.useClip) {
                         boxModifier.clip(shape = style.shape)
@@ -296,10 +307,12 @@ internal fun BadgesContent(
 
             if (take < badges.size) {
                 OceanBadge(
+                    modifier = Modifier
+                        .padding(start = OceanSpacing.xxxs),
                     text = "${badges.size - take}",
                     prefix = "+",
-                    type = OceanBadgeType.PRIMARY_INVERTED,
-                    size = OceanBadgeSize.Small
+                    type = OceanBadgeType.DISABLED,
+                    size = OceanBadgeSize.Medium
                 )
             }
         }

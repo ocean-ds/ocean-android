@@ -152,7 +152,9 @@ private fun OceanCardBalancePreview() {
                     badges = listOf(
                         "rede",
                         "getnet",
-                        "cielo"
+                        "blu",
+                        "asdf",
+                        "asdf"
                     )
                 )
             ),

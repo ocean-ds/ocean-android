@@ -157,8 +157,9 @@ private fun OceanCardBalancePreview() {
                 )
             ),
             OceanBalanceItemModel(
-                type = OceanBalanceItemType.Text(
-                    "Facilite a conciliação de cobranças PagBlu"
+                type = OceanBalanceItemType.Main(
+                    "Facilite a conciliação de cobranças PagBlu texto grande",
+                    "R$ 250.000,00"
                 ),
                 interaction = OceanBalanceItemInteraction.Action(
                     type = OceanBalanceItemActionType.Button(

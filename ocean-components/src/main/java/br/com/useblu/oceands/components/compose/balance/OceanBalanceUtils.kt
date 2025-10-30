@@ -109,7 +109,7 @@ internal fun ItemExpandableContent(
             ) {
                 OceanText(
                     text = pair.first,
-                    style = OceanTextStyle.heading5,
+                    style = OceanTextStyle.captionBold,
                     color = textColor,
                     modifier = Modifier
                         .weight(1f)
@@ -180,20 +180,21 @@ internal fun BalanceItemContent(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            when (item.type) {
-                is OceanBalanceItemType.Main -> ItemMainContent(
-                    data = item.type,
-                    hideContent = hideContent,
-                    isLoading = isLoading,
-                    titleColor = titleColor,
-                    valueColor = valueColor
-                )
-                is OceanBalanceItemType.Text -> ItemTextContent(
-                    modifier = Modifier.weight(1f),
-                    data = item.type,
-                    hideContent = hideContent,
-                    textColor = textColor
-                )
+            Box(modifier = Modifier.weight(1f)) {
+                when (item.type) {
+                    is OceanBalanceItemType.Main -> ItemMainContent(
+                        data = item.type,
+                        hideContent = hideContent,
+                        isLoading = isLoading,
+                        titleColor = titleColor,
+                        valueColor = valueColor
+                    )
+                    is OceanBalanceItemType.Text -> ItemTextContent(
+                        data = item.type,
+                        hideContent = hideContent,
+                        textColor = textColor
+                    )
+                }
             }
 
             OceanSpacing.StackXXS()

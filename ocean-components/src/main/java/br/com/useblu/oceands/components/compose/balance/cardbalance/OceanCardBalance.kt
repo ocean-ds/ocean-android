@@ -153,8 +153,7 @@ private fun OceanCardBalancePreview() {
                         "rede",
                         "getnet",
                         "blu",
-                        "asdf",
-                        "asdf"
+                        "mastercard"
                     )
                 )
             ),

@@ -19,14 +19,16 @@ internal fun DefaultCardListItem(
     type: OceanCardListItemType = OceanCardListItemType.Default(),
     disabled: Boolean = false,
     isSelected: Boolean = false,
-    onClick: (() -> Unit)? = null
+    onClick: (() -> Unit)?,
+    onDisabledClick: (() -> Unit)?
 ) {
     BaseCardListItem(
         modifier = modifier,
         type = type,
         disabled = disabled,
         isSelected = isSelected,
-        onClick = onClick
+        onClick = onClick,
+        onDisabledClick = onDisabledClick
     ) {
         ContentCardListItem(
             title = title,

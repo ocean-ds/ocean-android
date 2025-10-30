@@ -46,7 +46,8 @@ internal fun HighlightedCardListItem(
     style: OceanCardListItemStyle.Highlighted,
     disabled: Boolean = false,
     isSelected: Boolean = false,
-    onClick: (() -> Unit)? = null
+    onClick: (() -> Unit)?,
+    onDisabledClick: (() -> Unit)?
 ) {
     var currentState by remember { mutableStateOf(if (isSelected) AnimateState.Stop else AnimateState.Start) }
     val transition = updateTransition(currentState)
@@ -65,23 +66,27 @@ internal fun HighlightedCardListItem(
     ) { state ->
         when (state) {
             AnimateState.Start -> baseBorderColor
-            AnimateState.Mid -> style.animation.targetBorderColor
+            AnimateState.Mid -> style.animation?.targetBorderColor ?: baseBorderColor
             AnimateState.Stop -> baseBorderColor
         }
     }
 
     BaseCardListItem(
         modifier = modifier
-            .shadow(
-                elevation = OceanSpacing.xs * (shadowElevation),
-                ambientColor = style.animation.shadowColor,
-                spotColor = style.animation.shadowColor
-            ),
+            .let {
+                val shadowColor = style.animation?.shadowColor ?: return@let it
+                it.shadow(
+                    elevation = OceanSpacing.xs * (shadowElevation),
+                    ambientColor = shadowColor,
+                    spotColor = shadowColor
+                )
+            },
         type = type,
         disabled = disabled,
         isSelected = isSelected,
         onClick = onClick,
-        targetBorderColor = borderColor
+        targetBorderColor = borderColor,
+        onDisabledClick = onDisabledClick
     ) {
         Column {
             ContentCardListItem(

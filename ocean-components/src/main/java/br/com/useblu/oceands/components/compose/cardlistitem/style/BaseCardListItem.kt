@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
+import br.com.useblu.oceands.extensions.compose.disabledOverlay
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 
 @Composable
@@ -18,6 +19,7 @@ internal fun BaseCardListItem(
     disabled: Boolean,
     isSelected: Boolean,
     onClick: (() -> Unit)?,
+    onDisabledClick: (() -> Unit)?,
     targetBorderColor: Color? = null,
     content: @Composable () -> Unit
 ) {
@@ -30,16 +32,29 @@ internal fun BaseCardListItem(
         type = type
     )
 
+    val borderRadius = OceanBorderRadius.SM.allCorners
+
     Card(
-        modifier = modifier,
+        modifier = modifier
+            .disabledOverlay(
+                isDisabled = disabled,
+                disabledAlpha = 0.05f,
+                borderRadius = borderRadius
+            ),
         colors = CardDefaults.cardColors(
             containerColor = backgroundColor,
             disabledContainerColor = backgroundColor
         ),
-        shape = OceanBorderRadius.SM.allCorners.shape(),
+        shape = borderRadius.shape(),
         border = BorderStroke(1.dp, borderColor),
-        enabled = onClick != null && !disabled,
-        onClick = { onClick?.invoke() }
+        enabled = (disabled && onDisabledClick == null).not(),
+        onClick = {
+            if (disabled) {
+                onDisabledClick?.invoke()
+            } else {
+                onClick?.invoke()
+            }
+        }
     ) {
         content()
     }

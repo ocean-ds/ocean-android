@@ -2345,11 +2345,11 @@ enum class OceanIcons(
         icon = R.drawable.sale_reversal_outline
     ),
     LINK_ALT_OUTLINE(
-        token = "link_alt_outline",
+        token = "linkaltoutline",
         icon = R.drawable.icon_link_alt_outline
     ),
     ARROW_U_TURN_LEFT_OUTLINE(
-        token = "arrow_u_turn_left_outline",
+        token = "arrowuturnleftoutline",
         icon = R.drawable.icon_arrow_u_turn_left_outline
     );
 

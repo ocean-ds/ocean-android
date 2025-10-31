@@ -8,7 +8,7 @@ enum class OceanBadgeType {
     DISABLED;
 
     companion object {
-        fun fromString(value: String): OceanBadgeType? {
+        fun OceanBadgeType.fromString(value: String): OceanBadgeType? {
             return when (value.lowercase()) {
                 "highlight" -> HIGHLIGHT
                 "primary" -> PRIMARY

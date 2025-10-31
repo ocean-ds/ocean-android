@@ -4,7 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -75,6 +77,7 @@ fun OceanBadge(
     text: String,
     type: OceanBadgeType,
     size: OceanBadgeSize,
+    modifier: Modifier = Modifier,
     prefix: String = ""
 ) {
     val backgroundColor = when (type) {
@@ -95,25 +98,43 @@ fun OceanBadge(
         } ?: text
         )
 
+    val count = formattedText.length
+
     Box(
-        modifier = Modifier
+        modifier = modifier
             .background(
                 color = backgroundColor,
                 shape = CircleShape
+            )
+            .then(
+                if (size != OceanBadgeSize.Dot) {
+                    Modifier.defaultMinSize(
+                        minWidth = size.getMinSize(),
+                        minHeight = size.getMinSize()
+                    )
+                } else {
+                    Modifier.size(size.getMinSize())
+                }
             ),
         contentAlignment = Alignment.Center
     ) {
         if (size != OceanBadgeSize.Dot) {
-            val padding = if (formattedText.length == 1) {
-                7.dp
-            } else {
-                4.dp
+            val horizontalPadding = when (size) {
+                OceanBadgeSize.Small -> when (count) {
+                    2 -> 4.dp
+                    3 -> 4.dp
+                    else -> 5.dp
+                }
+                OceanBadgeSize.Medium -> when (count) {
+                    2 -> 6.dp
+                    3 -> 4.dp
+                    else -> 8.dp
+                }
+                else -> 4.dp
             }
 
             Text(
-                modifier = Modifier.padding(
-                    horizontal = padding
-                ),
+                modifier = Modifier.padding(horizontal = horizontalPadding),
                 text = formattedText,
                 textAlign = TextAlign.Center,
                 fontSize = size.getTextSize(),
@@ -133,6 +154,7 @@ sealed interface OceanBadgeSize {
     fun getMinSize() = 8.dp
 
     data object Dot : OceanBadgeSize
+
     data object Small : OceanBadgeSize {
         override fun getMinSize() = 16.dp
     }

@@ -200,7 +200,7 @@ fun OceanCardGroup(
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                tag?.let { tag ->
+                if (tag != null && tag.text.isNotEmpty()) {
                     OceanTag(
                         modifier = Modifier
                             .padding(top = OceanSpacing.xxs),

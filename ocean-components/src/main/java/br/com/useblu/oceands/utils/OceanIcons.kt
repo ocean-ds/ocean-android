@@ -2353,39 +2353,39 @@ enum class OceanIcons(
         icon = R.drawable.icon_arrow_u_turn_left_outline
     ),
     NUMBER_ONE_OUTLINE(
-        token = "number_one_outline",
+        token = "numberoneoutline",
         icon = R.drawable.icon_number_one_outline
     ),
     NUMBER_TWO_OUTLINE(
-        token = "number_two_outline",
+        token = "numbertwooutline",
         icon = R.drawable.icon_number_two_outline
     ),
     NUMBER_THREE_OUTLINE(
-        token = "number_three_outline",
+        token = "numberthreeoutline",
         icon = R.drawable.icon_number_three_outline
     ),
     NUMBER_FOUR_OUTLINE(
-        token = "number_four_outline",
+        token = "numberfouroutline",
         icon = R.drawable.icon_number_four_outline
     ),
     NUMBER_FIVE_OUTLINE(
-        token = "number_five_outline",
+        token = "numberfiveoutline",
         icon = R.drawable.icon_number_five_outline
     ),
     NUMBER_SIX_OUTLINE(
-        token = "number_six_outline",
+        token = "numbersixoutline",
         icon = R.drawable.icon_number_six_outline
     ),
     NUMBER_SEVEN_OUTLINE(
-        token = "number_seven_outline",
+        token = "numbersevenoutline",
         icon = R.drawable.icon_number_seven_outline
     ),
     NUMBER_EIGHT_OUTLINE(
-        token = "number_eight_outline",
+        token = "numbereightoutline",
         icon = R.drawable.icon_number_eight_outline
     ),
     NUMBER_NINE_OUTLINE(
-        token = "number_nine_outline",
+        token = "numbernineoutline",
         icon = R.drawable.icon_number_nine_outline
     );
 

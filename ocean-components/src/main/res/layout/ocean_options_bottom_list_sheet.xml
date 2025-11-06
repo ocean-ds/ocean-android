@@ -7,15 +7,17 @@
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
     <data>
-
         <variable
             name="title"
             type="String" />
 
         <variable
+            name="titleColor"
+            type="Integer" />
+
+        <variable
             name="showFooterButton"
             type="Boolean" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,7 +43,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textTitle"
             style="@style/Ocean.Heading.5"
-            android:textColor="@color/ocean_color_interface_dark_deep"
+            android:textColor="@{titleColor != null ? titleColor : @color/ocean_color_interface_dark_deep}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"

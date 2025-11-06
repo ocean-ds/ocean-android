@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.model
 
 import android.content.Context
+import br.com.useblu.oceands.R
 import br.com.useblu.oceands.adapter.OceanFilterChipMultipleOptionsAdapter
 import br.com.useblu.oceands.adapter.OceanFilterChipSingleOptionsAdapter
 import br.com.useblu.oceands.components.OceanOptionsBottomListSheet
@@ -21,11 +22,14 @@ sealed class OceanChipFilterOptions {
         val internalItems = optionsItems.map { it.copy() }
 
         val bottomSheet = OceanOptionsBottomListSheet(context)
-            .withTitle(title)
+            .withTitle(title, R.color.ocean_color_interface_dark_up)
 
         when (this) {
             is MultipleChoice -> {
-                val adapter = OceanFilterChipMultipleOptionsAdapter(internalItems)
+                val adapter = OceanFilterChipMultipleOptionsAdapter(
+                    items = internalItems,
+                    shouldShowDivider = shouldShowDivider
+                )
                 bottomSheet.withCustomList(adapter)
 
                 bottomSheet.withFooterButton(
@@ -63,6 +67,7 @@ sealed class OceanChipFilterOptions {
     data class MultipleChoice(
         override val title: String,
         override val optionsItems: List<FilterOptionsItem>,
+        val shouldShowDivider: Boolean = false,
         val onPrimaryButtonClick: (selectedIndexes: List<Int>) -> Unit,
         val onSecondaryButtonClick: (selectedIndexes: List<Int>) -> Unit,
         val showSelectAllButton: Boolean = false,

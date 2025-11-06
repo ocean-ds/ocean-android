@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="4dp"
+                android:layout_marginEnd="8dp"
                 app:isSmall="@{true}"
                 app:text="@{item.badgeCounter != null ? Integer.toString(item.badgeCounter) : @string/empty}"
                 app:type="@{OceanBadgeType.WARNING}"

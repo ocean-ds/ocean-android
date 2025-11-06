@@ -9,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanOptionsBottomListSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog(context) {
 
     private var title: String? = null
+    private var titleColor: Int? = null
     private var isDismiss: Boolean = true
     private var adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>? = null
     private var primaryButtonText: String? = null
@@ -34,6 +36,7 @@ internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog
         )
 
         binding.title = title
+        binding.titleColor = titleColor
 
         binding.showFooterButton = withFooterButton
 
@@ -67,13 +70,12 @@ internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog
         behavior.peekHeight = context.resources.displayMetrics.heightPixels
     }
 
-    fun withTitle(title: String): OceanOptionsBottomListSheet {
+    fun withTitle(
+        title: String,
+        titleColor: Int = context.getColor(R.color.ocean_color_interface_dark_deep)
+    ): OceanOptionsBottomListSheet {
         this.title = title
-        return this
-    }
-
-    fun withTitle(title: Int): OceanOptionsBottomListSheet {
-        this.title = context.getString(title)
+        this.titleColor = titleColor
         return this
     }
 

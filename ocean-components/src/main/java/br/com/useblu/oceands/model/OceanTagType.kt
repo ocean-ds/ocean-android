@@ -15,15 +15,15 @@ enum class OceanTagType {
 }
 
 fun fromString(tagType: String): OceanTagType {
-    return when (tagType) {
-        "Neutral" -> OceanTagType.Neutral
-        "NeutralPrimary" -> OceanTagType.NeutralPrimary
-        "Negative" -> OceanTagType.Negative
-        "Positive" -> OceanTagType.Positive
-        "Warning" -> OceanTagType.Warning
-        "Complementary" -> OceanTagType.Complementary
-        "Important" -> OceanTagType.Important
-        "Highlight" -> OceanTagType.Highlight
+    return when (tagType.lowercase()) {
+        "neutral" -> OceanTagType.Neutral
+        "neutralprimary" -> OceanTagType.NeutralPrimary
+        "negative" -> OceanTagType.Negative
+        "positive" -> OceanTagType.Positive
+        "warning" -> OceanTagType.Warning
+        "complementary" -> OceanTagType.Complementary
+        "important" -> OceanTagType.Important
+        "highlight" -> OceanTagType.Highlight
         else -> OceanTagType.Neutral
     }
 }

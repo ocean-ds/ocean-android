@@ -1,47 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="br.com.useblu.oceands.model.OceanBadgeType" />
+
         <variable
             name="item"
             type="br.com.useblu.oceands.model.FilterOptionsItem" />
     </data>
 
     <LinearLayout
-        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="16dp"
-        android:layout_marginHorizontal="16dp">
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:checked="@{item.selected}"
-            android:layout_marginEnd="8dp"
-            android:button="@drawable/ocean_checkbox"
-            android:clickable="true"
-            android:focusable="true"
-            tools:checked="true"/>
-
-        <TextView
-            android:id="@+id/text_view"
+        <LinearLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:fontFamily="@font/font_family_base_regular"
-            android:textColor="@color/ocean_color_interface_dark_down"
-            android:textSize="@dimen/ocean_font_size_xxs"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:text="@{item.title}"
-            tools:text="Em monitoramento"/>
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_family_base_regular"
+                android:textColor="@color/ocean_color_interface_dark_down"
+                android:textSize="@dimen/ocean_font_size_xxs"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@{item.title}"
+                tools:text="Em monitoramento"/>
+
+            <include
+                android:id="@+id/badge"
+                layout="@layout/ocean_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="4dp"
+                app:isSmall="@{true}"
+                app:text="@{item.badgeCounter != null ? Integer.toString(item.badgeCounter) : @string/empty}"
+                app:type="@{OceanBadgeType.WARNING}"
+                app:visible="@{item.badgeCounter != null}" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:checked="@{item.isSelected}"
+                android:button="@drawable/ocean_checkbox"
+                android:clickable="true"
+                android:focusable="true"
+                tools:checked="true"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/ocean_color_interface_light_down"/>
     </LinearLayout>
 </layout>

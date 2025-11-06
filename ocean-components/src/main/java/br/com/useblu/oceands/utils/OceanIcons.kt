@@ -2351,6 +2351,42 @@ enum class OceanIcons(
     ARROW_U_TURN_LEFT_OUTLINE(
         token = "arrowuturnleftoutline",
         icon = R.drawable.icon_arrow_u_turn_left_outline
+    ),
+    NUMBER_ONE_OUTLINE(
+        token = "number_one_outline",
+        icon = R.drawable.icon_number_one_outline
+    ),
+    NUMBER_TWO_OUTLINE(
+        token = "number_two_outline",
+        icon = R.drawable.icon_number_two_outline
+    ),
+    NUMBER_THREE_OUTLINE(
+        token = "number_three_outline",
+        icon = R.drawable.icon_number_three_outline
+    ),
+    NUMBER_FOUR_OUTLINE(
+        token = "number_four_outline",
+        icon = R.drawable.icon_number_four_outline
+    ),
+    NUMBER_FIVE_OUTLINE(
+        token = "number_five_outline",
+        icon = R.drawable.icon_number_five_outline
+    ),
+    NUMBER_SIX_OUTLINE(
+        token = "number_six_outline",
+        icon = R.drawable.icon_number_six_outline
+    ),
+    NUMBER_SEVEN_OUTLINE(
+        token = "number_seven_outline",
+        icon = R.drawable.icon_number_seven_outline
+    ),
+    NUMBER_EIGHT_OUTLINE(
+        token = "number_eight_outline",
+        icon = R.drawable.icon_number_eight_outline
+    ),
+    NUMBER_NINE_OUTLINE(
+        token = "number_nine_outline",
+        icon = R.drawable.icon_number_nine_outline
     );
 
     companion object {

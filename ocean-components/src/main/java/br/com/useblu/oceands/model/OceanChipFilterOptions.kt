@@ -74,5 +74,6 @@ sealed class OceanChipFilterOptions {
 data class FilterOptionsItem(
     val title: String,
     var isSelected: Boolean = false,
-    val label: String? = null
+    val label: String? = null,
+    val badgeCounter: Int? = null
 )

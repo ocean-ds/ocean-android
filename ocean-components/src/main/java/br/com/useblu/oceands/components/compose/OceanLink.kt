@@ -331,33 +331,50 @@ private fun LinkText(
             .clickable(enabled = enabled, onClick = onClick),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (icon != OceanIcons.UNDEFINED && invertedIcon) {
-            OceanIcon(
+        if (invertedIcon) {
+            LinkIcon(
                 iconType = icon,
                 tint = color,
-                modifier = Modifier
-                    .padding(end = OceanSpacing.xxxs)
-                    .size(iconSize)
+                iconSize = iconSize
+            )
+            OceanText(
+                text = text,
+                color = color,
+                fontSize = style.fontSize,
+                textDecoration = TextDecoration.Underline,
+                fontFamily = OceanFontFamily.BaseMedium
+            )
+        } else {
+            OceanText(
+                text = text,
+                color = color,
+                fontSize = style.fontSize,
+                textDecoration = TextDecoration.Underline,
+                fontFamily = OceanFontFamily.BaseMedium
+            )
+            LinkIcon(
+                iconType = icon,
+                tint = color,
+                iconSize = iconSize
             )
         }
+    }
+}
 
-        OceanText(
-            text = text,
-            color = color,
-            fontSize = style.fontSize,
-            textDecoration = TextDecoration.Underline,
-            fontFamily = OceanFontFamily.BaseMedium
+@Composable
+private fun LinkIcon(
+    iconType: OceanIcons,
+    tint: Color = Color.Unspecified,
+    iconSize: Dp
+) {
+    if (iconType != OceanIcons.UNDEFINED) {
+        OceanIcon(
+            iconType = iconType,
+            tint = tint,
+            modifier = Modifier
+                .padding(start = OceanSpacing.xxxs)
+                .size(iconSize)
         )
-
-        if (icon != OceanIcons.UNDEFINED && !invertedIcon) {
-            OceanIcon(
-                iconType = icon,
-                tint = color,
-                modifier = Modifier
-                    .padding(start = OceanSpacing.xxxs)
-                    .size(iconSize)
-            )
-        }
     }
 }
 

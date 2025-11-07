@@ -2387,6 +2387,10 @@ enum class OceanIcons(
     NUMBER_NINE_OUTLINE(
         token = "numbernineoutline",
         icon = R.drawable.icon_number_nine_outline
+    ),
+    RESTART_OUTLINE(
+        token = "restartoutline",
+        icon = R.drawable.icon_restart_outline
     );
 
     companion object {

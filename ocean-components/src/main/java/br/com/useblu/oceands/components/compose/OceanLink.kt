@@ -156,9 +156,9 @@ fun OceanLinkPreview() {
                                     fontSize = OceanFontSize.sm
                                 )
                                 colors.forEachIndexed { index, color ->
-                                    ShowLink(style, color, icon, true)
+                                    ShowLink(style, color, icon, true, invertedIcon = false)
                                 }
-                                ShowLink(style, Color.Unspecified, icon, false)
+                                ShowLink(style, Color.Unspecified, icon, false, invertedIcon = true)
                             }
                         }
                     }
@@ -173,13 +173,15 @@ private fun ShowLink(
     style: LinkStyle,
     color: Color,
     icon: OceanIcons,
-    enabled: Boolean
+    enabled: Boolean,
+    invertedIcon: Boolean
 ) {
     when (style.type) {
         LinkType.Medium -> OceanLink(
             style = style.copy(
                 color = color,
-                icon = icon
+                icon = icon,
+                invertedIcon = invertedIcon
             ),
             enabled = enabled,
             onClick = {}
@@ -188,7 +190,8 @@ private fun ShowLink(
         LinkType.Small -> OceanLink(
             style = style.copy(
                 color = color,
-                icon = icon
+                icon = icon,
+                invertedIcon = invertedIcon
             ),
             enabled = enabled,
             onClick = {}
@@ -198,7 +201,8 @@ private fun ShowLink(
             OceanLink(
                 style = style.copy(
                     color = color,
-                    icon = icon
+                    icon = icon,
+                    invertedIcon = invertedIcon
                 ),
                 enabled = enabled,
                 onClick = {}
@@ -250,11 +254,13 @@ private fun MediumLink(
         text = style.text,
         style = TextStyle(
             color = if (enabled) style.color else OceanColors.interfaceDarkUp,
-            fontSize = OceanFontSize.xs
+            fontSize = OceanFontSize.xs,
+            fontFamily = OceanFontFamily.BaseMedium
         ),
         enabled = enabled,
         icon = style.icon,
         iconSize = 16.dp,
+        invertedIcon = style.invertedIcon,
         onClick = onClick
     )
 }
@@ -271,11 +277,13 @@ private fun SmallLink(
         text = style.text,
         style = TextStyle(
             color = if (enabled) style.color else OceanColors.interfaceDarkUp,
-            fontSize = OceanFontSize.xxs
+            fontSize = OceanFontSize.xxs,
+            fontFamily = OceanFontFamily.BaseMedium
         ),
         enabled = enabled,
         icon = style.icon,
         iconSize = 16.dp,
+        invertedIcon = style.invertedIcon,
         onClick = onClick
     )
 }
@@ -292,11 +300,13 @@ private fun TinyLink(
         text = style.text,
         style = TextStyle(
             color = if (enabled) style.color else OceanColors.interfaceDarkUp,
-            fontSize = OceanFontSize.xxxs
+            fontSize = OceanFontSize.xxxs,
+            fontFamily = OceanFontFamily.BaseMedium
         ),
         enabled = enabled,
         icon = style.icon,
         iconSize = 14.dp,
+        invertedIcon = style.invertedIcon,
         onClick = onClick
     )
 }
@@ -309,6 +319,7 @@ private fun LinkText(
     icon: OceanIcons,
     iconSize: Dp,
     enabled: Boolean = true,
+    invertedIcon: Boolean,
     onClick: () -> Unit
 ) {
     val color =
@@ -320,23 +331,51 @@ private fun LinkText(
             .clickable(enabled = enabled, onClick = onClick),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        OceanText(
-            text = text,
-            color = color,
-            fontSize = style.fontSize,
-            textDecoration = TextDecoration.Underline,
-            fontFamily = OceanFontFamily.BaseMedium
-        )
-
-        if (icon != OceanIcons.UNDEFINED) {
-            OceanIcon(
+        if (invertedIcon) {
+            LinkIcon(
                 iconType = icon,
                 tint = color,
-                modifier = Modifier
-                    .padding(start = OceanSpacing.xxxs)
-                    .size(iconSize)
+                iconSize = iconSize
+            )
+            OceanSpacing.StackXXXS()
+            OceanText(
+                text = text,
+                color = color,
+                fontSize = style.fontSize,
+                textDecoration = TextDecoration.Underline,
+                fontFamily = OceanFontFamily.BaseMedium
+            )
+        } else {
+            OceanText(
+                text = text,
+                color = color,
+                fontSize = style.fontSize,
+                textDecoration = TextDecoration.Underline,
+                fontFamily = OceanFontFamily.BaseMedium
+            )
+            OceanSpacing.StackXXXS()
+            LinkIcon(
+                iconType = icon,
+                tint = color,
+                iconSize = iconSize
             )
         }
+    }
+}
+
+@Composable
+private fun LinkIcon(
+    iconType: OceanIcons,
+    tint: Color = Color.Unspecified,
+    iconSize: Dp
+) {
+    if (iconType != OceanIcons.UNDEFINED) {
+        OceanIcon(
+            iconType = iconType,
+            tint = tint,
+            modifier = Modifier
+                .size(iconSize)
+        )
     }
 }
 
@@ -344,6 +383,7 @@ data class LinkStyle(
     val text: String,
     val color: Color = Color.Unspecified,
     val icon: OceanIcons = OceanIcons.UNDEFINED,
-    val type: LinkType = LinkType.Medium
+    val type: LinkType = LinkType.Medium,
+    val invertedIcon: Boolean = false
 )
 enum class LinkType { Medium, Small, Tiny }

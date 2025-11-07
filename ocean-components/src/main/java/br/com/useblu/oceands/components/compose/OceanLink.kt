@@ -337,6 +337,7 @@ private fun LinkText(
                 tint = color,
                 iconSize = iconSize
             )
+            OceanSpacing.StackXXXS()
             OceanText(
                 text = text,
                 color = color,
@@ -352,6 +353,7 @@ private fun LinkText(
                 textDecoration = TextDecoration.Underline,
                 fontFamily = OceanFontFamily.BaseMedium
             )
+            OceanSpacing.StackXXXS()
             LinkIcon(
                 iconType = icon,
                 tint = color,
@@ -372,7 +374,6 @@ private fun LinkIcon(
             iconType = iconType,
             tint = tint,
             modifier = Modifier
-                .padding(start = OceanSpacing.xxxs)
                 .size(iconSize)
         )
     }

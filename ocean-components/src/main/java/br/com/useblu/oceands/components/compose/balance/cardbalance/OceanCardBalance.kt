@@ -59,7 +59,8 @@ fun OceanCardBalance(
                         is OceanBalanceItemInteraction.Expandable ->
                             ItemExpandableInteraction(
                                 showExpandedInfo = showExpandedInfo,
-                                badges = interaction.badges
+                                badges = interaction.badges,
+                                wrapSize = interaction.wrapSize
                             )
                         is OceanBalanceItemInteraction.Action ->
                             when (val actionType = interaction.type) {
@@ -88,9 +89,11 @@ fun OceanCardBalance(
 
 @Composable
 private fun BadgesInteraction(
-    badges: List<String>
+    badges: List<String>,
+    wrapSize: Int
 ) {
     BadgesContent(
+        wrapSize = 1,
         badges = badges,
         style = BadgeStyle(
             size = 32.dp,
@@ -105,7 +108,8 @@ private fun BadgesInteraction(
 @Composable
 private fun ItemExpandableInteraction(
     showExpandedInfo: Boolean,
-    badges: List<String>
+    badges: List<String>,
+    wrapSize: Int
 ) {
     val animatedRotation = animateFloatAsState(
         targetValue = if (showExpandedInfo) 180f else 0f,
@@ -114,7 +118,10 @@ private fun ItemExpandableInteraction(
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
-        BadgesInteraction(badges = badges)
+        BadgesInteraction(
+            badges = badges,
+            wrapSize = wrapSize
+        )
 
         OceanSpacing.StackXXS()
 
@@ -138,6 +145,7 @@ private fun CardBalanceDivider() {
 @Composable
 private fun OceanCardBalancePreview() {
     OceanCardBalance(
+        hideContent = false,
         items = listOf(
             OceanBalanceItemModel(
                 type = OceanBalanceItemType.Main(
@@ -150,11 +158,17 @@ private fun OceanCardBalancePreview() {
                         "Agenda" to "R$ 10.000,00"
                     ),
                     badges = listOf(
+                        "blu",
                         "rede",
                         "getnet",
-                        "blu",
                         "mastercard"
-                    )
+                    ),
+                    lockedTitle = "Conforme você for usando mais a Blu, as seguintes  agendas ficarão disponíveis para você:",
+                    lockedItems = listOf(
+                        "Agenda Rede" to "R$ 50.000,00",
+                        "Agenda Getnet" to "R$ 50.000,00"
+                    ),
+                    showExpandedInfo = true
                 )
             ),
             OceanBalanceItemModel(

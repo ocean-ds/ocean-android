@@ -1,5 +1,7 @@
 package br.com.useblu.oceands.components.compose.balance.model
 
+import androidx.compose.runtime.Composable
+
 sealed interface OceanBalanceItemInteraction {
     val showExpandedInfo: Boolean
         get() = false
@@ -9,6 +11,10 @@ sealed interface OceanBalanceItemInteraction {
     data class Expandable(
         val items: List<Pair<String, String>>,
         val badges: List<String> = emptyList(),
+        val wrapSize: Int = 1,
+        val lockedTitle: String = "",
+        val lockedItems: List<Pair<String, String>> = emptyList(),
+        val content: (@Composable () -> Unit)? = null,
         override val showExpandedInfo: Boolean = false
     ) : OceanBalanceItemInteraction {
         override val action: () -> Unit = { Unit }

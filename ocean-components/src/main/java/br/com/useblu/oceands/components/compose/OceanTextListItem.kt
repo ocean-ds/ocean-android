@@ -236,9 +236,7 @@ fun OceanTextListItem(
         Row(
             modifier = Modifier
                 .background(backgroundColor)
-                .padding(start = OceanSpacing.xs)
-                .padding(end = OceanSpacing.xxs)
-                .padding(vertical = OceanSpacing.xxsExtra)
+                .padding(all = OceanSpacing.xs)
                 .fillMaxWidth()
                 .clickable(
                     interactionSource = interactionSource,

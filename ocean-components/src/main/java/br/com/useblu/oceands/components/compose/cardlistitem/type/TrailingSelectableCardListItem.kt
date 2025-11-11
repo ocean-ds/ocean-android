@@ -2,24 +2,22 @@ package br.com.useblu.oceands.components.compose.cardlistitem.type
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
 import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.components.compose.input.OceanSelectableRadio
-import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 @Composable
-internal fun LeadingSelectableCardListItem(
+internal fun TrailingSelectableCardListItem(
     type: OceanCardListItemType.Selectable,
     isSelected: Boolean,
     disabled: Boolean
 ) {
     Column(
-        modifier = Modifier
-            .padding(end = OceanSpacing.xs),
+        modifier = Modifier.wrapContentSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

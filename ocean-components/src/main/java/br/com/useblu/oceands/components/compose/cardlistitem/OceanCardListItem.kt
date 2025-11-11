@@ -36,7 +36,7 @@ import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardList
 import br.com.useblu.oceands.components.compose.cardlistitem.style.DefaultCardListItem
 import br.com.useblu.oceands.components.compose.cardlistitem.style.HighlightedCardListItem
 import br.com.useblu.oceands.components.compose.cardlistitem.type.LeadingDefaultTypeCardListItem
-import br.com.useblu.oceands.components.compose.cardlistitem.type.LeadingSelectableCardListItem
+import br.com.useblu.oceands.components.compose.cardlistitem.type.TrailingSelectableCardListItem
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -155,6 +155,7 @@ internal fun ContentCardListItem(
 
         TrailingContentCardListItem(
             type = type,
+            isSelected = isSelected,
             disabled = disabled
         )
     }
@@ -226,19 +227,14 @@ private fun LeadingContentCardListItem(
             )
         }
 
-        is OceanCardListItemType.Selectable -> {
-            LeadingSelectableCardListItem(
-                type = type,
-                isSelected = isSelected,
-                disabled = disabled
-            )
-        }
+        is OceanCardListItemType.Selectable -> Unit
     }
 }
 
 @Composable
 private fun TrailingContentCardListItem(
     type: OceanCardListItemType,
+    isSelected: Boolean,
     disabled: Boolean
 ) {
     when (type) {
@@ -256,7 +252,13 @@ private fun TrailingContentCardListItem(
             }
         }
 
-        is OceanCardListItemType.Selectable -> Unit
+        is OceanCardListItemType.Selectable -> {
+            TrailingSelectableCardListItem(
+                type = type,
+                isSelected = isSelected,
+                disabled = disabled
+            )
+        }
     }
 }
 

@@ -216,7 +216,7 @@ fun OceanTextListIconItem(
         leadingIcon?.let {
             Box(
                 modifier = Modifier
-                    .size(40.dp)
+                    .size(if (showIconBackground) 40.dp else 24.dp)
                     .iconContainerBackground(showIconBackground)
             ) {
                 OceanIcon(

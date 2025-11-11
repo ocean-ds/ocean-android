@@ -253,6 +253,8 @@ private fun TrailingContentCardListItem(
         }
 
         is OceanCardListItemType.Selectable -> {
+            OceanSpacing.StackXS()
+
             TrailingSelectableCardListItem(
                 type = type,
                 isSelected = isSelected,

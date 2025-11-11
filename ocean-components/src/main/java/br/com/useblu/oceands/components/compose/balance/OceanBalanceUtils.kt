@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -29,14 +30,17 @@ import androidx.compose.ui.util.fastForEachIndexed
 import androidx.compose.ui.zIndex
 import br.com.useblu.oceands.components.compose.OceanBadge
 import br.com.useblu.oceands.components.compose.OceanBadgeSize
+import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
+import br.com.useblu.oceands.components.compose.OceanTextNotBlank
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemInteraction
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemType
 import br.com.useblu.oceands.components.compose.shimmeringBrush
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
@@ -103,11 +107,7 @@ internal fun ItemExpandableContent(
 ) {
     Column {
         data.items.fastForEachIndexed { index, pair ->
-            Row(
-                modifier = Modifier
-                    .padding(vertical = OceanSpacing.xxsExtra)
-                    .padding(horizontal = OceanSpacing.xs)
-            ) {
+            ExpandableItemContainer {
                 OceanText(
                     text = pair.first,
                     style = OceanTextStyle.captionBold,
@@ -117,17 +117,7 @@ internal fun ItemExpandableContent(
                 )
 
                 if (isLoading) {
-                    val brush = shimmeringBrush()
-                    Box(
-                        modifier = Modifier
-                            .height(18.dp)
-                            .width(72.dp)
-                            .borderBackground(
-                                brush = brush,
-                                borderRadius = OceanBorderRadius.Tiny.allCorners
-                            )
-                            .padding(vertical = OceanSpacing.xxs)
-                    )
+                    BrushExpandableItem()
                 } else {
                     OceanText(
                         text = if (hideContent) data.hiddenValue else pair.second,
@@ -136,9 +126,19 @@ internal fun ItemExpandableContent(
                     )
                 }
             }
-            if (index < data.items.lastIndex) {
+            if (index < data.items.lastIndex || data.lockedItems.isNotEmpty()) {
                 divider()
             }
+        }
+
+        if (data.lockedItems.isNotEmpty()) {
+            LockedBalanceItems(
+                title = data.lockedTitle,
+                items = data.lockedItems,
+                hiddenValue = data.hiddenValue,
+                hideContent = hideContent,
+                isLoading = isLoading
+            )
         }
     }
 }
@@ -214,6 +214,110 @@ internal fun BalanceItemContent(
             }
         }
     }
+}
+
+@Composable
+private fun LockedBalanceItems(
+    title: String,
+    items: List<Pair<String, String>>,
+    hiddenValue: String,
+    hideContent: Boolean,
+    isLoading: Boolean
+) = Column(
+    modifier = Modifier
+        .fillMaxWidth()
+        .background(OceanColors.interfaceLightUp)
+) {
+    OceanTextNotBlank(
+        modifier = Modifier
+            .padding(top = OceanSpacing.xxsExtra)
+            .padding(horizontal = OceanSpacing.xs),
+        text = title,
+        style = OceanTextStyle.caption
+    )
+    items.forEachIndexed { index, pair ->
+        LockItem(
+            pair = pair,
+            hiddenValue = hiddenValue,
+            hideContent = hideContent,
+            isLoading = isLoading,
+            textColor = OceanColors.interfaceDarkDown,
+            index = index,
+            lastIndex = items.lastIndex
+        )
+    }
+}
+
+@Composable
+private fun LockItem(
+    pair: Pair<String, String>,
+    hiddenValue: String,
+    hideContent: Boolean,
+    isLoading: Boolean,
+    textColor: Color,
+    index: Int,
+    lastIndex: Int
+) {
+    ExpandableItemContainer {
+        Row(
+            modifier = Modifier
+                .weight(1f),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
+        ) {
+            OceanIcon(
+                iconType = OceanIcons.LOCK_CLOSED_SOLID,
+                tint = OceanColors.interfaceDarkUp
+            )
+            OceanText(
+                text = pair.first,
+                style = OceanTextStyle.captionBold,
+                color = textColor
+            )
+        }
+
+        if (isLoading) {
+            BrushExpandableItem()
+            return@ExpandableItemContainer
+        }
+
+        OceanText(
+            text = if (hideContent) hiddenValue else pair.second,
+            style = OceanTextStyle.captionBold,
+            color = textColor
+        )
+    }
+    if (index < lastIndex) {
+        OceanDivider(
+            modifier = Modifier
+                .padding(horizontal = OceanSpacing.xs)
+        )
+    }
+}
+
+@Composable
+private fun ExpandableItemContainer(
+    content: @Composable RowScope.() -> Unit
+) = Row(
+    modifier = Modifier
+        .padding(vertical = OceanSpacing.xxsExtra)
+        .padding(horizontal = OceanSpacing.xs),
+    content = content
+)
+
+@Composable
+private fun BrushExpandableItem() {
+    val brush = shimmeringBrush()
+    Box(
+        modifier = Modifier
+            .height(18.dp)
+            .width(72.dp)
+            .borderBackground(
+                brush = brush,
+                borderRadius = OceanBorderRadius.Tiny.allCorners
+            )
+            .padding(vertical = OceanSpacing.xxs)
+    )
 }
 
 data class BadgeStyle(

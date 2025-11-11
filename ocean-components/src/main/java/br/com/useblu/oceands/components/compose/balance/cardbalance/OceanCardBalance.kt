@@ -138,6 +138,7 @@ private fun CardBalanceDivider() {
 @Composable
 private fun OceanCardBalancePreview() {
     OceanCardBalance(
+        hideContent = false,
         items = listOf(
             OceanBalanceItemModel(
                 type = OceanBalanceItemType.Main(
@@ -154,7 +155,13 @@ private fun OceanCardBalancePreview() {
                         "getnet",
                         "blu",
                         "mastercard"
-                    )
+                    ),
+                    lockedTitle = "Conforme você for usando mais a Blu, as seguintes  agendas ficarão disponíveis para você:",
+                    lockedItems = listOf(
+                        "Agenda Rede" to "R$ 50.000,00",
+                        "Agenda Getnet" to "R$ 50.000,00"
+                    ),
+                    showExpandedInfo = true
                 )
             ),
             OceanBalanceItemModel(

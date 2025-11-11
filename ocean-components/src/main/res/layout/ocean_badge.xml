@@ -83,7 +83,7 @@
                 android:id="@+id/badgeSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
+                android:layout_marginHorizontal="4dp"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/font_family_base_extrabold"
                 android:textColor="@{type != OceanBadgeType.PRIMARY_INVERTED ? @color/ocean_color_interface_light_pure : @color/ocean_color_brand_primary_pure}"

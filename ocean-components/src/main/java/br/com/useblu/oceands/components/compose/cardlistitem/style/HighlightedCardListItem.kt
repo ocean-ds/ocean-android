@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.zIndex
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.OceanText
@@ -29,9 +31,11 @@ import br.com.useblu.oceands.components.compose.cardlistitem.ContentCardListItem
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderRadius
 import kotlinx.coroutines.delay
 
 @Composable
@@ -71,38 +75,43 @@ internal fun HighlightedCardListItem(
         }
     }
 
-    BaseCardListItem(
-        modifier = modifier
-            .let {
-                val shadowColor = style.animation?.shadowColor ?: return@let it
-                it.shadow(
-                    elevation = OceanSpacing.xs * (shadowElevation),
-                    ambientColor = shadowColor,
-                    spotColor = shadowColor
+    Column {
+        BaseCardListItem(
+            modifier = modifier
+                .zIndex(1f)
+                .let {
+                    val shadowColor = style.animation?.shadowColor ?: return@let it
+                    it.shadow(
+                        elevation = OceanSpacing.xs * (shadowElevation),
+                        ambientColor = shadowColor,
+                        spotColor = shadowColor
+                    )
+                },
+            type = type,
+            disabled = disabled,
+            isSelected = isSelected,
+            onClick = onClick,
+            targetBorderColor = borderColor,
+            onDisabledClick = onDisabledClick
+        ) {
+            Column {
+                ContentCardListItem(
+                    title = title,
+                    description = description,
+                    caption = caption,
+                    contentStyle = contentStyle,
+                    tagStyle = tagStyle,
+                    type = type,
+                    style = style,
+                    isSelected = isSelected,
+                    disabled = disabled
                 )
-            },
-        type = type,
-        disabled = disabled,
-        isSelected = isSelected,
-        onClick = onClick,
-        targetBorderColor = borderColor,
-        onDisabledClick = onDisabledClick
-    ) {
-        Column {
-            ContentCardListItem(
-                title = title,
-                description = description,
-                caption = caption,
-                contentStyle = contentStyle,
-                tagStyle = tagStyle,
-                type = type,
-                style = style,
-                isSelected = isSelected,
-                disabled = disabled
-            )
-
-            HighlightedCardListItem(style = style)
+            }
         }
+
+        HighlightedCardListItem(
+            style = style
+        )
     }
 
     LaunchedEffect(currentState) {
@@ -125,8 +134,11 @@ private fun HighlightedCardListItem(
 ) {
     Row(
         modifier = Modifier
+            .zIndex(0f)
+            .offset(y = -OceanSpacing.xxs)
+            .borderRadius(OceanBorderRadius.SM.allCorners)
             .background(color = style.backgroundColor)
-            .padding(top = OceanSpacing.xxs)
+            .padding(top = OceanSpacing.xs)
             .padding(horizontal = OceanSpacing.xs)
             .padding(bottom = OceanSpacing.xs)
             .fillMaxWidth(),

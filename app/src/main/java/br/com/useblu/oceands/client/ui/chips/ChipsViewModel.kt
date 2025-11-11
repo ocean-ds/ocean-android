@@ -53,8 +53,8 @@ class ChipsViewModel : ViewModel() {
     )
 
     private var multipleChoiceFilterOptions = listOf(
-        FilterOptionsItem("Teste 1"),
-        FilterOptionsItem("Teste 2"),
+        FilterOptionsItem("Teste 1", badgeCounter = 2),
+        FilterOptionsItem("Teste 2", badgeCounter = 20),
         FilterOptionsItem("Teste 3")
     )
 

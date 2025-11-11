@@ -11,6 +11,7 @@ sealed interface OceanBalanceItemInteraction {
     data class Expandable(
         val items: List<Pair<String, String>>,
         val badges: List<String> = emptyList(),
+        val wrapSize: Int = 1,
         val lockedTitle: String = "",
         val lockedItems: List<Pair<String, String>> = emptyList(),
         val content: (@Composable () -> Unit)? = null,

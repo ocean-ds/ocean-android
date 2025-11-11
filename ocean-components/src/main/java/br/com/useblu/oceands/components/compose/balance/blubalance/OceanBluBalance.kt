@@ -133,7 +133,8 @@ private fun ItemActionBadgesInteraction(
                 fallbackBorderWidth = 1.dp,
                 fallbackBorderColor = OceanColors.interfaceLightDown,
                 fallbackTextColor = OceanColors.brandPrimaryDown
-            )
+            ),
+            wrapSize = 3
         )
 
         OceanIcon(

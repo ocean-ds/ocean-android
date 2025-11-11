@@ -335,9 +335,10 @@ data class BadgeStyle(
 @Composable
 internal fun BadgesContent(
     badges: List<String>,
-    style: BadgeStyle
+    style: BadgeStyle,
+    wrapSize: Int
 ) {
-    val take = if (badges.size > 3) 3 else badges.size
+    val take = if (badges.size > wrapSize) wrapSize else badges.size
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
@@ -347,7 +348,7 @@ internal fun BadgesContent(
             horizontalArrangement = Arrangement.spacedBy(((-style.size.value) / 3f).dp),
             modifier = Modifier
         ) {
-            badges.take(take).reversed().forEachIndexed { index, acquirer ->
+            badges.take(take).forEachIndexed { index, acquirer ->
                 val zIndex = (take - index).toFloat()
 
                 val icon = OceanIcons.fromToken("acquirer_$acquirer")

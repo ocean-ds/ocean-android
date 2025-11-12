@@ -93,7 +93,7 @@ private fun BadgesInteraction(
     wrapSize: Int
 ) {
     BadgesContent(
-        wrapSize = 1,
+        wrapSize = wrapSize,
         badges = badges,
         style = BadgeStyle(
             size = 32.dp,
@@ -163,6 +163,7 @@ private fun OceanCardBalancePreview() {
                         "getnet",
                         "mastercard"
                     ),
+                    wrapSize = 3,
                     lockedTitle = "Conforme você for usando mais a Blu, as seguintes  agendas ficarão disponíveis para você:",
                     lockedItems = listOf(
                         "Agenda Rede" to "R$ 50.000,00",

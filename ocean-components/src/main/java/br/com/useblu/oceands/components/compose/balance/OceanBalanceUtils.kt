@@ -151,6 +151,9 @@ internal fun ItemExpandableContent(
         }
 
         if (data.banner?.position == OceanBalanceBannerPosition.BOTTOM) {
+            if (data.lockedItems.isNotEmpty()) {
+                divider()
+            }
             data.banner.content()
         }
     }

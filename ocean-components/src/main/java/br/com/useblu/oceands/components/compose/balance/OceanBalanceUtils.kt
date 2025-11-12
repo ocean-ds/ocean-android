@@ -34,6 +34,8 @@ import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTextNotBlank
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceBanner
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceBannerPosition
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemInteraction
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemType
@@ -105,33 +107,38 @@ internal fun ItemExpandableContent(
     textColor: Color,
     divider: @Composable () -> Unit
 ) {
-    Column {
-        data.items.fastForEachIndexed { index, pair ->
-            ExpandableItemContainer {
-                OceanText(
-                    text = pair.first,
-                    style = OceanTextStyle.captionBold,
-                    color = textColor,
-                    modifier = Modifier
-                        .weight(1f)
-                )
+    val hasAcquirers = data.acquirersBalanceItems != null
 
-                if (isLoading) {
-                    BrushExpandableItem()
-                } else {
-                    OceanText(
-                        text = if (hideContent) data.hiddenValue else pair.second,
-                        style = OceanTextStyle.heading5,
-                        color = textColor
-                    )
-                }
-            }
-            if (index < data.items.lastIndex || data.lockedItems.isNotEmpty()) {
-                divider()
-            }
+    Column {
+        BalanceItemsList(
+            items = data.bluBalanceItems,
+            hiddenValue = data.hiddenValue,
+            hideContent = hideContent,
+            isLoading = isLoading,
+            textColor = textColor,
+            banner = data.banner,
+            bannerPosition = OceanBalanceBannerPosition.TOP,
+            isActuallyLastList = !hasAcquirers,
+            divider = divider
+        )
+
+        data.acquirersBalanceItems?.let { items ->
+            BalanceItemsList(
+                items = items,
+                hiddenValue = data.hiddenValue,
+                hideContent = hideContent,
+                isLoading = isLoading,
+                textColor = textColor,
+                banner = data.banner,
+                bannerPosition = OceanBalanceBannerPosition.BOTTOM,
+                isActuallyLastList = true,
+                divider = divider
+            )
         }
 
-        if (data.lockedItems.isNotEmpty()) {
+        if (data.lockedItems.isNotEmpty() &&
+            data.banner?.position != OceanBalanceBannerPosition.BOTTOM
+        ) {
             LockedBalanceItems(
                 title = data.lockedTitle,
                 items = data.lockedItems,
@@ -139,6 +146,54 @@ internal fun ItemExpandableContent(
                 hideContent = hideContent,
                 isLoading = isLoading
             )
+        }
+    }
+}
+
+@Composable
+private fun BalanceItemsList(
+    items: List<Pair<String, String>>,
+    hiddenValue: String,
+    hideContent: Boolean,
+    isLoading: Boolean,
+    textColor: Color,
+    banner: OceanBalanceBanner?,
+    bannerPosition: OceanBalanceBannerPosition,
+    isActuallyLastList: Boolean,
+    divider: @Composable () -> Unit
+) {
+    items.fastForEachIndexed { index, pair ->
+        ExpandableItemContainer {
+            OceanText(
+                text = pair.first,
+                style = OceanTextStyle.captionBold,
+                color = textColor,
+                modifier = Modifier.weight(1f)
+            )
+
+            if (isLoading) {
+                BrushExpandableItem()
+            } else {
+                OceanText(
+                    text = if (hideContent) hiddenValue else pair.second,
+                    style = OceanTextStyle.heading5,
+                    color = textColor
+                )
+            }
+        }
+
+        val isLastItem = index == items.lastIndex
+        val shouldShowBanner = banner?.position == bannerPosition && isLastItem
+
+        when {
+            shouldShowBanner -> {
+                banner?.content?.invoke()
+                if (bannerPosition == OceanBalanceBannerPosition.TOP) {
+                    divider()
+                }
+            }
+            !isLastItem -> divider()
+            !isActuallyLastList -> divider()
         }
     }
 }

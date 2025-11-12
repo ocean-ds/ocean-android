@@ -54,7 +54,7 @@ val modelPreview = OceanHeaderAppModel(
                 value = "-35,63"
             ),
             interaction = OceanBalanceItemInteraction.Expandable(
-                items = listOf(
+                bluBalanceItems = listOf(
                     "Second Label" to "10,00",
                     "Third Label" to "50,00"
                 )

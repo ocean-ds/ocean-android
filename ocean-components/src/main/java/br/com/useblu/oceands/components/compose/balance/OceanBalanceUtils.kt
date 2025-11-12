@@ -139,10 +139,6 @@ internal fun ItemExpandableContent(
             )
         }
 
-        if (data.banner?.position == OceanBalanceBannerPosition.BOTTOM) {
-            data.banner.content()
-        }
-
         if (data.lockedItems.isNotEmpty()) {
             divider()
             LockedBalanceItems(
@@ -152,6 +148,10 @@ internal fun ItemExpandableContent(
                 hideContent = hideContent,
                 isLoading = isLoading
             )
+        }
+
+        if (data.banner?.position == OceanBalanceBannerPosition.BOTTOM) {
+            data.banner.content()
         }
     }
 }

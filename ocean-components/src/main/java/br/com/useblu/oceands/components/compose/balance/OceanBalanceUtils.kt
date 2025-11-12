@@ -34,6 +34,7 @@ import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTextNotBlank
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceBannerPosition
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemInteraction
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemType
@@ -106,32 +107,40 @@ internal fun ItemExpandableContent(
     divider: @Composable () -> Unit
 ) {
     Column {
-        data.items.fastForEachIndexed { index, pair ->
-            ExpandableItemContainer {
-                OceanText(
-                    text = pair.first,
-                    style = OceanTextStyle.captionBold,
-                    color = textColor,
-                    modifier = Modifier
-                        .weight(1f)
-                )
+        if (data.bluBalanceItems.isNotEmpty()) {
+            BalanceItemsList(
+                items = data.bluBalanceItems,
+                hiddenValue = data.hiddenValue,
+                hideContent = hideContent,
+                isLoading = isLoading,
+                textColor = textColor,
+                divider = divider
+            )
+        }
 
-                if (isLoading) {
-                    BrushExpandableItem()
-                } else {
-                    OceanText(
-                        text = if (hideContent) data.hiddenValue else pair.second,
-                        style = OceanTextStyle.heading5,
-                        color = textColor
-                    )
-                }
-            }
-            if (index < data.items.lastIndex || data.lockedItems.isNotEmpty()) {
+        if (data.banner?.position == OceanBalanceBannerPosition.TOP) {
+            data.banner.content()
+            divider()
+        }
+
+        data.acquirersBalanceItems?.let { items ->
+            if (data.bluBalanceItems.isNotEmpty() &&
+                data.banner?.position != OceanBalanceBannerPosition.TOP
+            ) {
                 divider()
             }
+            BalanceItemsList(
+                items = items,
+                hiddenValue = data.hiddenValue,
+                hideContent = hideContent,
+                isLoading = isLoading,
+                textColor = textColor,
+                divider = divider
+            )
         }
 
         if (data.lockedItems.isNotEmpty()) {
+            divider()
             LockedBalanceItems(
                 title = data.lockedTitle,
                 items = data.lockedItems,
@@ -139,6 +148,48 @@ internal fun ItemExpandableContent(
                 hideContent = hideContent,
                 isLoading = isLoading
             )
+        }
+
+        if (data.banner?.position == OceanBalanceBannerPosition.BOTTOM) {
+            if (data.lockedItems.isNotEmpty()) {
+                divider()
+            }
+            data.banner.content()
+        }
+    }
+}
+
+@Composable
+private fun BalanceItemsList(
+    items: List<Pair<String, String>>,
+    hiddenValue: String,
+    hideContent: Boolean,
+    isLoading: Boolean,
+    textColor: Color,
+    divider: @Composable () -> Unit
+) {
+    items.fastForEachIndexed { index, pair ->
+        ExpandableItemContainer {
+            OceanText(
+                text = pair.first,
+                style = OceanTextStyle.captionBold,
+                color = textColor,
+                modifier = Modifier.weight(1f)
+            )
+
+            if (isLoading) {
+                BrushExpandableItem()
+            } else {
+                OceanText(
+                    text = if (hideContent) hiddenValue else pair.second,
+                    style = OceanTextStyle.heading5,
+                    color = textColor
+                )
+            }
+        }
+
+        if (index < items.lastIndex) {
+            divider()
         }
     }
 }

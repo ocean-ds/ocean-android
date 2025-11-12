@@ -168,9 +168,9 @@ fun OceanBluBalancePreview() {
                         value = "R$ 1.500.000,00"
                     ),
                     interaction = OceanBalanceItemInteraction.Expandable(
-                        items = listOf(
-                            "Saldo atual" to "R$ 1.000,00",
-                            "Agenda" to "R$ 10.000,00"
+                        bluBalanceItems = listOf(
+                            "Saldo atual Blu" to "R$ 1.000,00",
+                            "Agenda Blu" to "R$ 10.000,00"
                         )
                     )
                 ),
@@ -207,7 +207,7 @@ fun OceanBluBalanceExpandedPreview() {
                     ),
                     interaction = OceanBalanceItemInteraction.Expandable(
                         showExpandedInfo = true,
-                        items = listOf(
+                        bluBalanceItems = listOf(
                             "Saldo atual" to "R$ 5.000,00",
                             "Agenda" to "R$ 95.000,00"
                         )

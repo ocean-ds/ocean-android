@@ -31,7 +31,7 @@ class HeaderAppViewModel : ViewModel() {
                         value = "R$ -35,63"
                     ),
                     interaction = OceanBalanceItemInteraction.Expandable(
-                        items = listOf(
+                        bluBalanceItems = listOf(
                             "Segundo Label" to "R$ 10,00",
                             "Terceiro Label" to "R$ 50,00"
                         )

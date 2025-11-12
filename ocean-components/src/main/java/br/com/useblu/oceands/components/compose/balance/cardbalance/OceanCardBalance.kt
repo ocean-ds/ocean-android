@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -62,10 +61,12 @@ fun OceanCardBalance(
                                 badges = interaction.badges,
                                 wrapSize = interaction.wrapSize
                             )
+
                         is OceanBalanceItemInteraction.Action ->
                             when (val actionType = interaction.type) {
                                 is OceanBalanceItemActionType.Button ->
                                     OceanButton(button = actionType.button)
+
                                 else -> Unit
                             }
                     }
@@ -96,7 +97,7 @@ private fun BadgesInteraction(
         wrapSize = wrapSize,
         badges = badges,
         style = BadgeStyle(
-            size = 32.dp,
+            size = OceanSpacing.md,
             shape = OceanBorderRadius.Circle.allCorners.shape(),
             fallbackBackgroundColor = OceanColors.brandPrimaryPure,
             fallbackTextColor = OceanColors.interfaceLightPure,
@@ -153,21 +154,25 @@ private fun OceanCardBalancePreview() {
                     value = "R$ 1.500.000,00"
                 ),
                 interaction = OceanBalanceItemInteraction.Expandable(
-                    items = listOf(
-                        "Saldo atual" to "R$ 1.000,00",
-                        "Agenda" to "R$ 10.000,00"
+                    bluBalanceItems = listOf(
+                        "Saldo atual Blu" to "R$ 1.000,00",
+                        "Agenda Blu" to "R$ 10.000,00"
+                    ),
+                    acquirersBalanceItems = listOf(
+                        "Agenda GetNet" to "R$ 10.000,00",
+                        "Agenda GetNet" to "R$ 10.000,00"
+                    ),
+                    wrapSize = 3,
+                    lockedTitle = "Conforme você for usando mais a Blu, as seguintes  agendas ficarão disponíveis para você:",
+                    lockedItems = listOf(
+                        "Agenda Rede" to "R$ 5.000,00",
+                        "Agenda Getnet" to "R$ 50.000,00"
                     ),
                     badges = listOf(
                         "blu",
                         "rede",
                         "getnet",
                         "mastercard"
-                    ),
-                    wrapSize = 3,
-                    lockedTitle = "Conforme você for usando mais a Blu, as seguintes  agendas ficarão disponíveis para você:",
-                    lockedItems = listOf(
-                        "Agenda Rede" to "R$ 50.000,00",
-                        "Agenda Getnet" to "R$ 50.000,00"
                     ),
                     showExpandedInfo = true
                 )

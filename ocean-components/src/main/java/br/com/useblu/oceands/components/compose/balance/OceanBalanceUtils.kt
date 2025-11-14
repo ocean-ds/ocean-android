@@ -219,6 +219,15 @@ internal fun BalanceItemContent(
 ) {
     var showExpandedInfo by remember { mutableStateOf(item.interaction.showExpandedInfo) }
 
+    val expandableComposable: @Composable () -> Unit = {
+        when (item.interaction) {
+            is OceanBalanceItemInteraction.Expandable ->
+                expandableContent(item.interaction)
+
+            is OceanBalanceItemInteraction.Action -> Unit
+        }
+    }
+
     Column(
         modifier = modifier
             .clickable(
@@ -273,7 +282,7 @@ internal fun BalanceItemContent(
         ) {
             when (item.interaction) {
                 is OceanBalanceItemInteraction.Expandable ->
-                    expandableContent(item.interaction)
+                    expandableComposable()
 
                 is OceanBalanceItemInteraction.Action -> Unit
             }

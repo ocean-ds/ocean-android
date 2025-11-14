@@ -108,14 +108,6 @@ internal fun ItemExpandableContent(
     textColor: Color,
     divider: @Composable () -> Unit
 ) {
-    val bannerContent: (@Composable () -> Unit)? = remember(data.banner) {
-        data.banner?.let {
-            @Composable {
-                it.content()
-            }
-        }
-    }
-
     Column {
         if (data.bluBalanceItems.isNotEmpty()) {
             BalanceItemsList(
@@ -129,7 +121,7 @@ internal fun ItemExpandableContent(
         }
 
         if (data.banner?.position == OceanBalanceBannerPosition.TOP) {
-            bannerContent?.invoke()
+            data.banner.content.invoke()
             divider()
         }
 
@@ -164,7 +156,7 @@ internal fun ItemExpandableContent(
             if (data.lockedItems.isNotEmpty()) {
                 divider()
             }
-            bannerContent?.invoke()
+            data.banner.content.invoke()
         }
     }
 }

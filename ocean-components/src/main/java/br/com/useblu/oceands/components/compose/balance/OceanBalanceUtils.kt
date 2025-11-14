@@ -108,14 +108,6 @@ internal fun ItemExpandableContent(
     textColor: Color,
     divider: @Composable () -> Unit
 ) {
-    val bannerContent: (@Composable () -> Unit)? = remember(data.banner) {
-        data.banner?.let {
-            @Composable {
-                it.content()
-            }
-        }
-    }
-
     Column {
         if (data.bluBalanceItems.isNotEmpty()) {
             BalanceItemsList(
@@ -129,7 +121,7 @@ internal fun ItemExpandableContent(
         }
 
         if (data.banner?.position == OceanBalanceBannerPosition.TOP) {
-            bannerContent?.invoke()
+            data.banner.content.invoke()
             divider()
         }
 
@@ -164,7 +156,7 @@ internal fun ItemExpandableContent(
             if (data.lockedItems.isNotEmpty()) {
                 divider()
             }
-            bannerContent?.invoke()
+            data.banner.content.invoke()
         }
     }
 }
@@ -218,6 +210,15 @@ internal fun BalanceItemContent(
     expandableContent: @Composable (OceanBalanceItemInteraction.Expandable) -> Unit
 ) {
     var showExpandedInfo by remember { mutableStateOf(item.interaction.showExpandedInfo) }
+
+    val expandableComposable: @Composable () -> Unit = {
+        when (item.interaction) {
+            is OceanBalanceItemInteraction.Expandable ->
+                expandableContent(item.interaction)
+
+            is OceanBalanceItemInteraction.Action -> Unit
+        }
+    }
 
     Column(
         modifier = modifier
@@ -273,7 +274,7 @@ internal fun BalanceItemContent(
         ) {
             when (item.interaction) {
                 is OceanBalanceItemInteraction.Expandable ->
-                    expandableContent(item.interaction)
+                    expandableComposable()
 
                 is OceanBalanceItemInteraction.Action -> Unit
             }

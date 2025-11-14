@@ -122,15 +122,11 @@ internal fun ItemExpandableContent(
 
         if (data.banner?.position == OceanBalanceBannerPosition.TOP) {
             data.banner.content.invoke()
-            divider()
         }
 
         data.acquirersBalanceItems?.let { items ->
-            if (data.bluBalanceItems.isNotEmpty() &&
-                data.banner?.position != OceanBalanceBannerPosition.TOP
-            ) {
-                divider()
-            }
+            divider()
+
             BalanceItemsList(
                 items = items,
                 hiddenValue = data.hiddenValue,
@@ -143,6 +139,7 @@ internal fun ItemExpandableContent(
 
         if (data.lockedItems.isNotEmpty()) {
             divider()
+
             LockedBalanceItems(
                 title = data.lockedTitle,
                 items = data.lockedItems,
@@ -153,9 +150,6 @@ internal fun ItemExpandableContent(
         }
 
         if (data.banner?.position == OceanBalanceBannerPosition.BOTTOM) {
-            if (data.lockedItems.isNotEmpty()) {
-                divider()
-            }
             data.banner.content.invoke()
         }
     }

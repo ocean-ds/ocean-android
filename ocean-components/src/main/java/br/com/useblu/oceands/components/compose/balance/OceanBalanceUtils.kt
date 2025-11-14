@@ -108,8 +108,12 @@ internal fun ItemExpandableContent(
     textColor: Color,
     divider: @Composable () -> Unit
 ) {
-    val bannerContent = remember(data.banner) {
-        data.banner?.content
+    val bannerContent: (@Composable () -> Unit)? = remember(data.banner) {
+        data.banner?.let {
+            @Composable {
+                it.content()
+            }
+        }
     }
 
     Column {

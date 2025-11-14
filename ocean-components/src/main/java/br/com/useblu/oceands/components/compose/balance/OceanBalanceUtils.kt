@@ -1,6 +1,8 @@
 package br.com.useblu.oceands.components.compose.balance
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -106,6 +108,14 @@ internal fun ItemExpandableContent(
     textColor: Color,
     divider: @Composable () -> Unit
 ) {
+    val bannerContent: (@Composable () -> Unit)? = remember(data.banner) {
+        data.banner?.let {
+            @Composable {
+                it.content()
+            }
+        }
+    }
+
     Column {
         if (data.bluBalanceItems.isNotEmpty()) {
             BalanceItemsList(
@@ -119,7 +129,7 @@ internal fun ItemExpandableContent(
         }
 
         if (data.banner?.position == OceanBalanceBannerPosition.TOP) {
-            data.banner.content()
+            bannerContent?.invoke()
             divider()
         }
 
@@ -154,7 +164,7 @@ internal fun ItemExpandableContent(
             if (data.lockedItems.isNotEmpty()) {
                 divider()
             }
-            data.banner.content()
+            bannerContent?.invoke()
         }
     }
 }
@@ -256,7 +266,11 @@ internal fun BalanceItemContent(
             interactionContent(item.interaction, showExpandedInfo)
         }
 
-        AnimatedVisibility(visible = showExpandedInfo) {
+        AnimatedVisibility(
+            visible = showExpandedInfo,
+            enter = expandVertically(),
+            exit = shrinkVertically()
+        ) {
             when (item.interaction) {
                 is OceanBalanceItemInteraction.Expandable ->
                     expandableContent(item.interaction)

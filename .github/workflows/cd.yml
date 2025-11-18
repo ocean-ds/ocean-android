@@ -48,7 +48,9 @@ jobs:
         run: rm -f "ocean-components/version.properties-e"
 
       - name: Command Update Branch
-        run: git pull
+        run: |
+          git restore .
+          git pull
 
       - name: Update Ktlint Baseline
         run: ./gradlew ktlintGenerateBaseline

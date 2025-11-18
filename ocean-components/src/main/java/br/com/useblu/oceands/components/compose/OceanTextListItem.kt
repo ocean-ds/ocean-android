@@ -248,40 +248,8 @@ fun OceanTextListItem(
                 )
         ) {
             when (textListStyle) {
-                OceanTextListStyle.Checkbox -> {
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.CenterVertically)
-                            .padding(end = OceanSpacing.xs)
-                    ) {
-                        OceanSelectableBox(
-                            interactionSource = interactionSource,
-                            enabled = enabled,
-                            selected = selected,
-                            showError = showError,
-                            onSelectedBox = onSelectedBox
-                        )
-                    }
-                }
-
-                OceanTextListStyle.RadioButton -> {
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.CenterVertically)
-                            .padding(end = OceanSpacing.xs)
-                    ) {
-                        OceanSelectableRadio(
-                            interactionSource = interactionSource,
-                            enabled = enabled,
-                            isSelected = selected,
-                            showError = showError,
-                            onSelectedBox = {
-                                onSelectedBox?.invoke(true)
-                            }
-                        )
-                    }
-                }
-
+                OceanTextListStyle.Checkbox -> Unit
+                OceanTextListStyle.RadioButton -> Unit
                 OceanTextListStyle.Default -> Unit
                 is OceanTextListStyle.Icon -> {
                     Column(
@@ -360,6 +328,43 @@ fun OceanTextListItem(
                         .align(Alignment.CenterVertically),
                     style = tagStyle
                 )
+            }
+            when (textListStyle) {
+                OceanTextListStyle.Checkbox -> {
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(start = OceanSpacing.xs)
+                    ) {
+                        OceanSelectableBox(
+                            interactionSource = interactionSource,
+                            enabled = enabled,
+                            selected = selected,
+                            showError = showError,
+                            onSelectedBox = onSelectedBox
+                        )
+                    }
+                }
+
+                OceanTextListStyle.RadioButton -> {
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(start = OceanSpacing.xs)
+                    ) {
+                        OceanSelectableRadio(
+                            interactionSource = interactionSource,
+                            enabled = enabled,
+                            isSelected = selected,
+                            showError = showError,
+                            onSelectedBox = {
+                                onSelectedBox?.invoke(true)
+                            }
+                        )
+                    }
+                }
+
+                else -> Unit
             }
             if (onClick != null && showClickableChevron) {
                 Column(

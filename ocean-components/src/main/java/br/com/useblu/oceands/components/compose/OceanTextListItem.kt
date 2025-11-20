@@ -239,7 +239,7 @@ fun OceanTextListItem(
                 .padding(all = OceanSpacing.xs)
                 .fillMaxWidth()
                 .clickable(
-                    interactionSource = interactionSource,
+                    interactionSource = null,
                     indication = null,
                     enabled = enabled,
                     onClick = {

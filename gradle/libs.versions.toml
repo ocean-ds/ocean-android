@@ -27,7 +27,7 @@ calendarViewVersion = "2.0.1"
 mpChartVersion = "v3.1.0"
 skeletonBonesVersion = "v1.4.5"
 baselineProfileInstallerVersion = "1.4.1"
-composeActivityVersion = "1.10.1"
+composeActivityVersion = "1.12.0"
 
 [libraries]
 androidx-benchmark-macro-junit4 = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }

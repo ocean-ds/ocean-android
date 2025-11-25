@@ -42,6 +42,7 @@ import br.com.useblu.oceands.client.ui.balance.BalanceActivity
 import br.com.useblu.oceands.client.ui.blubalance.BluBalanceActivity
 import br.com.useblu.oceands.client.ui.bottomnavigation.BottomNavigationActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
+import br.com.useblu.oceands.client.ui.cardbalance.CardBalanceActivity
 import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
 import br.com.useblu.oceands.client.ui.carditem.CardItemActivity
 import br.com.useblu.oceands.client.ui.cardlistexpandable.OceanCardListExpandableActivity
@@ -201,6 +202,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "BottomSheetList (icon + subtitle)", onClick = { onOceanBottomListSheetIcon() })
                         textAction(text = "BottomSheetList (search)", onClick = { onOceanBottomListSheetWithSearch() })
                         textAction(text = "Buttons", onClick = { onClickButtons() })
+                        textAction(text = "Card Balance", onClick = { cardBalanceClick() })
                         textAction(text = "Card Cross Sell", onClick = { cardCrossCellClick() })
                         textAction(text = "Card Expandable", onClick = { onClickOceanCardListExpandable() })
                         textAction(text = "Card Group", onClick = { cardContentClick() })
@@ -389,6 +391,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun cardContentClick() {
         val intent = Intent(this, CardGroupActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun cardBalanceClick() {
+        val intent = Intent(this, CardBalanceActivity::class.java)
         startActivity(intent)
     }
 

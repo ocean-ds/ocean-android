@@ -1,22 +1,36 @@
 package br.com.useblu.oceands.components.compose.balance.cardbalance
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanButtonModel
 import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanLink
+import br.com.useblu.oceands.components.compose.OceanLinkIcon
+import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.balance.BadgeStyle
 import br.com.useblu.oceands.components.compose.balance.BadgesContent
 import br.com.useblu.oceands.components.compose.balance.BalanceItemContent
 import br.com.useblu.oceands.components.compose.balance.ItemExpandableContent
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceBanner
+import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceBannerPosition
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemActionType
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemInteraction
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
@@ -25,6 +39,7 @@ import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderWithBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -144,7 +159,7 @@ private fun CardBalanceDivider() {
 
 @Preview
 @Composable
-private fun OceanCardBalancePreview() {
+fun OceanCardBalancePreview() {
     OceanCardBalance(
         hideContent = false,
         items = listOf(
@@ -158,23 +173,11 @@ private fun OceanCardBalancePreview() {
                         "Saldo atual Blu" to "R$ 1.000,00",
                         "Agenda Blu" to "R$ 10.000,00"
                     ),
-                    acquirersBalanceItems = listOf(
-                        "Agenda GetNet" to "R$ 10.000,00",
-                        "Agenda GetNet" to "R$ 10.000,00"
-                    ),
                     wrapSize = 3,
-                    lockedTitle = "Conforme você for usando mais a Blu, as seguintes  agendas ficarão disponíveis para você:",
-                    lockedItems = listOf(
-                        "Agenda Rede" to "R$ 5.000,00",
-                        "Agenda Getnet" to "R$ 50.000,00"
-                    ),
                     badges = listOf(
-                        "blu",
-                        "rede",
-                        "getnet",
-                        "mastercard"
+                        "blu"
                     ),
-                    showExpandedInfo = true
+                    showExpandedInfo = false
                 )
             ),
             OceanBalanceItemModel(
@@ -195,4 +198,192 @@ private fun OceanCardBalancePreview() {
             )
         )
     )
+}
+
+@Preview
+@Composable
+fun OceanCardBalancePreviewAnticipation() {
+    OceanCardBalance(
+        hideContent = false,
+        items = listOf(
+            OceanBalanceItemModel(
+                type = OceanBalanceItemType.Main(
+                    title = "Saldo total na Blu",
+                    value = "R$ 1.500.000,00"
+                ),
+                interaction = OceanBalanceItemInteraction.Expandable(
+                    bluBalanceItems = listOf(
+                        "Saldo atual Blu" to "R$ 1.000,00",
+                        "Agenda Blu" to "R$ 10.000,00"
+                    ),
+                    acquirersBalanceItems = listOf(
+                        "Agenda GetNet" to "R$ 10.000,00",
+                        "Agenda GetNet" to "R$ 10.000,00"
+                    ),
+                    wrapSize = 3,
+                    badges = listOf(
+                        "blu",
+                        "rede",
+                        "getnet",
+                        "mastercard"
+                    ),
+                    showExpandedInfo = false,
+                    banner = OceanBalanceBanner(OceanBalanceBannerPosition.TOP) {
+                        SamplePreOceanBanner(
+                            description = "Oferta: taxa de 7,69% (era 11,06%) para antecipar a agenda Blu — e ter dinheiro hoje.",
+                            backgroundColor = OceanColors.statusWarningUp,
+                            link = "Simular antecipação",
+                            linkIcon = OceanLinkIcon.CHEVRON,
+                            isRoundedCorner = false
+                        )
+                    }
+                )
+            ),
+            OceanBalanceItemModel(
+                type = OceanBalanceItemType.Main(
+                    "Facilite a conciliação de cobranças PagBlu texto grande",
+                    "R$ 250.000,00"
+                ),
+                interaction = OceanBalanceItemInteraction.Action(
+                    type = OceanBalanceItemActionType.Button(
+                        button = OceanButtonModel(
+                            text = "Extrato",
+                            onClick = { },
+                            buttonStyle = OceanButtonStyle.SecondarySmall
+                        )
+                    ),
+                    action = { }
+                )
+            )
+        )
+    )
+}
+
+@Preview
+@Composable
+fun OceanCardBalancePreviewLocked() {
+    OceanCardBalance(
+        hideContent = false,
+        items = listOf(
+            OceanBalanceItemModel(
+                type = OceanBalanceItemType.Main(
+                    title = "Saldo total na Blu",
+                    value = "R$ 1.500.000,00"
+                ),
+                interaction = OceanBalanceItemInteraction.Expandable(
+                    bluBalanceItems = listOf(
+                        "Saldo atual Blu" to "R$ 1.000,00",
+                        "Agenda Blu" to "R$ 10.000,00"
+                    ),
+                    wrapSize = 1,
+                    lockedTitle = "Conforme você for usando mais a Blu, as seguintes  agendas ficarão disponíveis para você:",
+                    lockedItems = listOf(
+                        "Agenda Rede" to "R$ 5.000,00",
+                        "Agenda Getnet" to "R$ 50.000,00"
+                    ),
+                    badges = listOf(
+                        "blu",
+                        "rede",
+                        "getnet",
+                        "mastercard"
+                    ),
+                    showExpandedInfo = false
+                )
+            ),
+            OceanBalanceItemModel(
+                type = OceanBalanceItemType.Main(
+                    "Facilite a conciliação de cobranças PagBlu texto grande",
+                    "R$ 250.000,00"
+                ),
+                interaction = OceanBalanceItemInteraction.Action(
+                    type = OceanBalanceItemActionType.Button(
+                        button = OceanButtonModel(
+                            text = "Extrato",
+                            onClick = { },
+                            buttonStyle = OceanButtonStyle.SecondarySmall
+                        )
+                    ),
+                    action = { }
+                )
+            )
+        )
+    )
+}
+
+@Composable
+private fun SamplePreOceanBanner(
+    modifier: Modifier = Modifier,
+    title: String? = null,
+    titleStyle: TextStyle = OceanTextStyle.heading4,
+    description: String,
+    backgroundColor: Color,
+    link: String? = null,
+    linkIcon: OceanLinkIcon = OceanLinkIcon.DEFAULT,
+    isRoundedCorner: Boolean = true
+) {
+    Row(
+        modifier = modifier
+            .background(
+                color = backgroundColor,
+                shape = if (isRoundedCorner) {
+                    OceanBorderRadius.SM.allCorners.shape()
+                    RoundedCornerShape(8.dp)
+                } else {
+                    RectangleShape
+                }
+            ),
+        horizontalArrangement = Arrangement.spacedBy(
+            space = OceanSpacing.xxsExtra,
+            alignment = Alignment.Start
+        ),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(vertical = OceanSpacing.xs)
+                .padding(horizontal = OceanSpacing.xs)
+                .weight(2f),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.Start
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column {
+                    OceanText(
+                        text = "00h 24m 00s",
+                        color = OceanColors.statusWarningDeep,
+                        fontWeight = FontWeight.Bold,
+                        modifier = modifier,
+                        fontSize = TextUnit.Unspecified
+                    )
+                }
+            }
+
+            if (!title.isNullOrBlank()) {
+                OceanText(
+                    text = title,
+                    style = titleStyle
+                )
+
+                OceanSpacing.StackXXXS()
+            }
+
+            OceanText(
+                text = description,
+                style = OceanTextStyle.caption
+            )
+
+            if (!link.isNullOrBlank()) {
+                OceanSpacing.StackXXS()
+
+                OceanLink(
+                    text = link,
+                    onClick = { },
+                    isSmall = true,
+                    linkIcon = linkIcon
+                )
+            }
+        }
+    }
 }

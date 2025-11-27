@@ -35,7 +35,7 @@ jobs:
           git config --global user.email "devs@useblu.com.br"
 
       - name: Command Update Branch
-        run: git pull
+        run: git pull feature/add-publish-firebase
 
       - name: Update Tokens
         run: cd scripts && ./update_tokens.sh

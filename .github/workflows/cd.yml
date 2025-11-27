@@ -1,9 +1,10 @@
 name: CD
 
 on:
-  push:
-    branches:
-      - master
+  pull_request
+  # push:
+  #   branches:
+  #     - master
 
 concurrency:
   group: ${{ github.ref }}
@@ -69,3 +70,17 @@ jobs:
         with:
           generateReleaseNotes: true
           tag: v${{ env.OCEAN_VERSION }}
+
+      - name: Increment version
+        run: |
+          bundle exec fastlane prepare_new_version
+          git add . && git commit -am "chore: update version [skip ci]" && git push
+
+      - name: Publish version
+        run: |
+          gem install bundle && bundle update
+          echo $FIREBASE_CREDENTIALS | base64 -di | tee google-services.json >/dev/null
+          bundle exec fastlane publish_on_firebase
+        env:
+          FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
+          FASTLANE_FIREBASE_ANDROID_APP_ID: ${{ secrets.FASTLANE_FIREBASE_ANDROID_APP_ID }}

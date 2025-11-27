@@ -71,6 +71,9 @@ jobs:
       #     generateReleaseNotes: true
       #     tag: v${{ env.OCEAN_VERSION }}
 
+      - name: Install bundler
+        run: gem install bundle && bundle update
+
       - name: Increment version
         run: |
           bundle exec fastlane prepare_new_version
@@ -78,7 +81,6 @@ jobs:
 
       - name: Publish version
         run: |
-          gem install bundle && bundle update
           echo $FIREBASE_CREDENTIALS | base64 -di | tee google-services.json >/dev/null
           bundle exec fastlane publish_on_firebase
         env:

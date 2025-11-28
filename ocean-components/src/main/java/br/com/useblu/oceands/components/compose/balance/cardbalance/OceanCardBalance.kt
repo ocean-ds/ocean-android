@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +20,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanButtonModel
+import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanLink
 import br.com.useblu.oceands.components.compose.OceanLinkIcon
@@ -92,12 +92,12 @@ fun OceanCardBalance(
                         hideContent = hideContent,
                         isLoading = isLoading,
                         textColor = OceanColors.interfaceDarkDown,
-                        divider = { CardBalanceDivider() }
+                        divider = { OceanDivider() }
                     )
                 }
             )
             if (index < items.lastIndex) {
-                CardBalanceDivider()
+                OceanDivider()
             }
         }
     }
@@ -150,13 +150,6 @@ private fun ItemExpandableInteraction(
     }
 }
 
-@Composable
-private fun CardBalanceDivider() {
-    HorizontalDivider(
-        color = OceanColors.interfaceDarkDown.copy(alpha = 0.4f)
-    )
-}
-
 @Preview
 @Composable
 fun OceanCardBalancePreview() {
@@ -177,7 +170,7 @@ fun OceanCardBalancePreview() {
                     badges = listOf(
                         "blu"
                     ),
-                    showExpandedInfo = false
+                    showExpandedInfo = true
                 )
             ),
             OceanBalanceItemModel(
@@ -227,7 +220,7 @@ fun OceanCardBalancePreviewAnticipation() {
                         "getnet",
                         "mastercard"
                     ),
-                    showExpandedInfo = false,
+                    showExpandedInfo = true,
                     banner = OceanBalanceBanner(OceanBalanceBannerPosition.TOP) {
                         SamplePreOceanBanner(
                             description = "Oferta: taxa de 7,69% (era 11,06%) para antecipar a agenda Blu — e ter dinheiro hoje.",
@@ -287,7 +280,7 @@ fun OceanCardBalancePreviewLocked() {
                         "getnet",
                         "mastercard"
                     ),
-                    showExpandedInfo = false
+                    showExpandedInfo = true
                 )
             ),
             OceanBalanceItemModel(

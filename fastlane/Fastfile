@@ -10,6 +10,9 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
 default_platform(:android)
 
 platform :android do

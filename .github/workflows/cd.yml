@@ -1,10 +1,9 @@
 name: CD
 
 on:
-  pull_request
-  # push:
-  #   branches:
-  #     - master
+  push:
+    branches:
+      - master
 
 concurrency:
   group: ${{ github.ref }}
@@ -40,47 +39,47 @@ jobs:
           git config --global user.name "Blu Release Bot"
           git config --global user.email "devs@useblu.com.br"
 
-      # - name: Command Update Branch
-      #   run: git pull
+      - name: Command Update Branch
+        run: git pull
 
-      # - name: Update Tokens
-      #   run: cd scripts && ./update_tokens.sh
+      - name: Update Tokens
+        run: cd scripts && ./update_tokens.sh
 
-      # - name: Set latest Ocean version
-      #   run: |
-      #     LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/ocean-tokens version`
-      #     echo "OCEAN_VERSION=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+      - name: Set latest Ocean version
+        run: |
+          LATEST_VERSION_TOKENS_LIB_NPM=`npm show @useblu/ocean-tokens version`
+          echo "OCEAN_VERSION=$LATEST_VERSION_TOKENS_LIB_NPM-$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
 
-      # - name: Increment version
-      #   run: sed -i-e "/VERSION_NAME=/ s/=.*/=$OCEAN_VERSION/g" "ocean-components/version.properties"
+      - name: Increment version
+        run: sed -i-e "/VERSION_NAME=/ s/=.*/=$OCEAN_VERSION/g" "ocean-components/version.properties"
 
-      # - name: Deleting version temp file
-      #   run: rm -f "ocean-components/version.properties-e"
+      - name: Deleting version temp file
+        run: rm -f "ocean-components/version.properties-e"
 
-      # - name: Update Ktlint Baseline
-      #   run: ./gradlew ktlintGenerateBaseline
+      - name: Update Ktlint Baseline
+        run: ./gradlew ktlintGenerateBaseline
 
-      # - name: Commit changes
-      #   run: |
-      #     git add . && git commit -am "chore: update Ocean tokens and release v$OCEAN_VERSION [skip ci]" && git push
-      #     git tag -a "v$OCEAN_VERSION" -m "Release version v$OCEAN_VERSION" && git push --tags
+      - name: Commit changes
+        run: |
+          git add . && git commit -am "chore: update Ocean tokens and release v$OCEAN_VERSION [skip ci]" && git push
+          git tag -a "v$OCEAN_VERSION" -m "Release version v$OCEAN_VERSION" && git push --tags
 
-      # - name: Publish new version lib
-      #   run: ./gradlew ocean-components:publish
-      #   env:
-      #     GPR_USER: ocean-ops
-      #     GPR_API_KEY: ${{ secrets.GPR_API_KEY }}
+      - name: Publish new version lib
+        run: ./gradlew ocean-components:publish
+        env:
+          GPR_USER: ocean-ops
+          GPR_API_KEY: ${{ secrets.GPR_API_KEY }}
 
-      # - name: Create Release Notes
-      #   uses: ncipollo/release-action@v1.14.0
-      #   with:
-      #     generateReleaseNotes: true
-      #     tag: v${{ env.OCEAN_VERSION }}
+      - name: Create Release Notes
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          generateReleaseNotes: true
+          tag: v${{ env.OCEAN_VERSION }}
 
       - name: Increment version
         run: |
           bundle exec fastlane prepare_new_version
-#          git add app/build.gradle.kts && git commit -am "chore: update version [skip ci]" && git push
+          git add app/build.gradle.kts && git commit -am "chore: update version [skip ci]" && git push
 
       - name: Publish version
         run: |

@@ -25,7 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.components.compose.input.OceanSelectableRadio
@@ -40,6 +42,266 @@ import br.com.useblu.oceands.ui.compose.borderRadius
 import br.com.useblu.oceands.utils.OceanIcons
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
+
+@Composable
+fun OceanTextListItem(
+    modifier: Modifier = Modifier,
+    title: String,
+    description: String = "",
+    caption: String = "",
+    captionStyle: TextStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkUp),
+    textInfo: String = "",
+    textInfoColor: Color? = null,
+    selected: Boolean = false,
+    dividerStyle: OceanTextListItemDividerStyle,
+    tagStyle: OceanTagStyle = OceanTagStyle.None,
+    textListStyle: OceanTextListStyle = OceanTextListStyle.Default,
+    contentStyle: OceanTextListContentStyle = OceanTextListContentStyle.Default,
+    backgroundColor: Color = OceanColors.interfaceLightPure,
+    showError: Boolean = false,
+    enabled: Boolean = true,
+    onSelectedBox: ((Boolean) -> Unit)? = null,
+    showClickableChevron: Boolean = true,
+    onClick: (() -> Unit)? = null
+) {
+    Column(
+        modifier = modifier
+    ) {
+        val interactionSource = remember { MutableInteractionSource() }
+
+        Row(
+            modifier = Modifier
+                .background(backgroundColor)
+                .padding(all = OceanSpacing.xs)
+                .fillMaxWidth()
+                .clickable(
+                    interactionSource = null,
+                    indication = null,
+                    enabled = enabled,
+                    onClick = {
+                        onClick?.invoke()
+                    }
+                )
+        ) {
+            when (textListStyle) {
+                OceanTextListStyle.Checkbox -> Unit
+                OceanTextListStyle.RadioButton -> Unit
+                OceanTextListStyle.Default -> Unit
+                is OceanTextListStyle.Icon -> {
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(end = OceanSpacing.xs)
+                    ) {
+                        OceanIcon(
+                            iconType = textListStyle.icon ?: OceanIcons.INFO_OUTLINE
+                        )
+                    }
+                }
+
+                is OceanTextListStyle.Image -> {
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(end = OceanSpacing.xs)
+                    ) {
+                        GlideImage(
+                            imageModel = { textListStyle.imageUrl },
+                            modifier = Modifier
+                                .heightIn(min = 40.dp, max = 60.dp)
+                                .widthIn(min = 40.dp, max = 60.dp),
+                            imageOptions = ImageOptions(
+                                contentScale = ContentScale.Crop,
+                                alignment = Alignment.Center
+                            )
+                        )
+                    }
+                }
+            }
+
+            Column(
+                modifier = Modifier
+                    .padding(
+                        end = if (onClick != null && showClickableChevron) OceanSpacing.xxsExtra
+                        else OceanSpacing.xxs
+                    )
+                    .weight(2f)
+            ) {
+                OceanText(
+                    text = title,
+                    style = contentStyle.titleTextStyle(),
+                    color = contentStyle.titleColor(enabled)
+                )
+
+                if (description.isNotBlank()) {
+                    OceanText(
+                        modifier = Modifier.padding(bottom = OceanSpacing.xxxs),
+                        text = description,
+                        style = contentStyle.descriptionTextStyle(),
+                        color = contentStyle.descriptionColor(enabled)
+                    )
+                }
+
+                if (caption.isNotBlank() && textInfo.isBlank()) {
+                    OceanText(
+                        text = caption,
+                        style = captionStyle
+                    )
+                }
+
+                if (textInfo.isNotBlank()) {
+                    OceanText(
+                        text = textInfo,
+                        style = OceanTextStyle.description,
+                        color = textInfoColor ?: OceanColors.interfaceDarkDeep
+                    )
+                }
+            }
+            if (tagStyle != OceanTagStyle.None) {
+                OceanTag(
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically),
+                    style = tagStyle
+                )
+            }
+            when (textListStyle) {
+                OceanTextListStyle.Checkbox -> {
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(start = OceanSpacing.xs)
+                    ) {
+                        OceanSelectableBox(
+                            interactionSource = interactionSource,
+                            enabled = enabled,
+                            selected = selected,
+                            showError = showError,
+                            onSelectedBox = onSelectedBox
+                        )
+                    }
+                }
+
+                OceanTextListStyle.RadioButton -> {
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(start = OceanSpacing.xs)
+                    ) {
+                        OceanSelectableRadio(
+                            interactionSource = interactionSource,
+                            enabled = enabled,
+                            isSelected = selected,
+                            showError = showError,
+                            onSelectedBox = {
+                                onSelectedBox?.invoke(true)
+                            }
+                        )
+                    }
+                }
+
+                else -> Unit
+            }
+            if (onClick != null && showClickableChevron) {
+                Column(
+                    Modifier
+                        .align(Alignment.CenterVertically)
+                ) {
+                    Image(
+                        modifier = Modifier.size(20.dp),
+                        painter = painterResource(id = OceanIcons.CHEVRON_RIGHT_OUTLINE.icon),
+                        contentDescription = ""
+                    )
+                }
+            }
+        }
+
+        if (textListStyle != OceanTextListStyle.Default) {
+            HorizontalDivider(
+                modifier = Modifier.padding(start = dividerStyle.startPadding(), end = dividerStyle.endPadding()),
+                thickness = dividerStyle.getTickness(),
+                color = OceanColors.interfaceLightDown
+            )
+        }
+    }
+}
+
+@Composable
+fun OceanTextListItemSkeleton(items: Int) {
+    OceanShimmering { brush ->
+        repeat(items) {
+            Column(
+                modifier = Modifier
+                    .background(OceanColors.interfaceLightPure)
+                    .padding(OceanSpacing.xs)
+                    .fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier.padding(bottom = OceanSpacing.xxs)
+                ) {
+                    Spacer(
+                        modifier = Modifier
+                            .width(96.dp)
+                            .height(16.dp)
+                            .borderRadius(borderRadius = OceanBorderRadius.Tiny.allCorners)
+                            .background(brush)
+                    )
+                }
+                Row {
+                    Spacer(
+                        modifier = Modifier
+                            .height(16.dp)
+                            .fillMaxSize()
+                            .borderRadius(borderRadius = OceanBorderRadius.Tiny.allCorners)
+                            .background(brush)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun OceanTextListItem(
+    modifier: Modifier = Modifier,
+    title: String,
+    description: String = "",
+    caption: String = "",
+    captionStyle: TextStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkUp),
+    textInfo: String = "",
+    textInfoColor: Color? = null,
+    selected: Boolean = false,
+    showDivider: Boolean = true,
+    tagStyle: OceanTagStyle = OceanTagStyle.None,
+    textListStyle: OceanTextListStyle = OceanTextListStyle.Default,
+    contentStyle: OceanTextListContentStyle = OceanTextListContentStyle.Default,
+    backgroundColor: Color = OceanColors.interfaceLightPure,
+    showError: Boolean = false,
+    enabled: Boolean = true,
+    onSelectedBox: ((Boolean) -> Unit)? = null,
+    showClickableChevron: Boolean = true,
+    onClick: (() -> Unit)? = null
+) {
+    OceanTextListItem(
+        modifier = modifier,
+        title = title,
+        description = description,
+        caption = caption,
+        captionStyle = captionStyle,
+        textInfo = textInfo,
+        textInfoColor = textInfoColor,
+        selected = selected,
+        dividerStyle = if (showDivider) OceanTextListItemDividerStyle.FullWidth else OceanTextListItemDividerStyle.None,
+        tagStyle = tagStyle,
+        textListStyle = textListStyle,
+        contentStyle = contentStyle,
+        backgroundColor = backgroundColor,
+        showError = showError,
+        enabled = enabled,
+        onSelectedBox = onSelectedBox,
+        showClickableChevron = showClickableChevron,
+        onClick = onClick
+    )
+}
 
 @Preview(heightDp = 1200)
 @Composable
@@ -175,23 +437,27 @@ fun OceanTextListItemPreview() {
         )
         OceanTextListItem(
             modifier = Modifier,
-            title = "Title",
+            title = "Title divider on content inset",
+            caption = "Caption with bold and colorInterfaceDarkDown",
+            captionStyle = OceanTextStyle.captionBold.copy(color = OceanColors.interfaceDarkDown),
             selected = true,
             textListStyle = OceanTextListStyle.RadioButton,
             showError = false,
             enabled = true,
+            dividerStyle = OceanTextListItemDividerStyle.ContentInset,
             onSelectedBox = {
                 println("isSelected: $it")
             }
         )
         OceanTextListItem(
             modifier = Modifier,
-            title = "Title",
+            title = "Title Sem divider",
             description = "Description",
             selected = true,
             textListStyle = OceanTextListStyle.RadioButton,
             showError = false,
             enabled = true,
+            showDivider = false,
             onSelectedBox = {
                 println("isSelected: $it")
             }
@@ -208,218 +474,36 @@ fun OceanTextListItemPreview() {
     }
 }
 
-@Composable
-fun OceanTextListItem(
-    modifier: Modifier = Modifier,
-    title: String,
-    description: String = "",
-    caption: String = "",
-    textInfo: String = "",
-    textInfoColor: Color? = null,
-    selected: Boolean = false,
-    showDivider: Boolean = true,
-    tagStyle: OceanTagStyle = OceanTagStyle.None,
-    textListStyle: OceanTextListStyle = OceanTextListStyle.Default,
-    contentStyle: OceanTextListContentStyle = OceanTextListContentStyle.Default,
-    backgroundColor: Color = OceanColors.interfaceLightPure,
-    showError: Boolean = false,
-    enabled: Boolean = true,
-    onSelectedBox: ((Boolean) -> Unit)? = null,
-    showClickableChevron: Boolean = true,
-    onClick: (() -> Unit)? = null
-) {
-    Column(
-        modifier = modifier
-    ) {
-        val interactionSource = remember { MutableInteractionSource() }
+sealed class OceanTextListItemDividerStyle {
+    object FullWidth : OceanTextListItemDividerStyle()
+    object ContentInset : OceanTextListItemDividerStyle()
+    object None : OceanTextListItemDividerStyle()
+    data class Custom(val startPadding: Dp, val endPadding: Dp) : OceanTextListItemDividerStyle()
 
-        Row(
-            modifier = Modifier
-                .background(backgroundColor)
-                .padding(all = OceanSpacing.xs)
-                .fillMaxWidth()
-                .clickable(
-                    interactionSource = null,
-                    indication = null,
-                    enabled = enabled,
-                    onClick = {
-                        onClick?.invoke()
-                    }
-                )
-        ) {
-            when (textListStyle) {
-                OceanTextListStyle.Checkbox -> Unit
-                OceanTextListStyle.RadioButton -> Unit
-                OceanTextListStyle.Default -> Unit
-                is OceanTextListStyle.Icon -> {
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.CenterVertically)
-                            .padding(end = OceanSpacing.xs)
-                    ) {
-                        OceanIcon(
-                            iconType = textListStyle.icon ?: OceanIcons.INFO_OUTLINE
-                        )
-                    }
-                }
-
-                is OceanTextListStyle.Image -> {
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.CenterVertically)
-                            .padding(end = OceanSpacing.xs)
-                    ) {
-                        GlideImage(
-                            imageModel = { textListStyle.imageUrl },
-                            modifier = Modifier
-                                .heightIn(min = 40.dp, max = 60.dp)
-                                .widthIn(min = 40.dp, max = 60.dp),
-                            imageOptions = ImageOptions(
-                                contentScale = ContentScale.Crop,
-                                alignment = Alignment.Center
-                            )
-                        )
-                    }
-                }
-            }
-
-            Column(
-                modifier = Modifier
-                    .padding(
-                        end = if (onClick != null && showClickableChevron) OceanSpacing.xxsExtra
-                        else OceanSpacing.xxs
-                    )
-                    .weight(2f)
-            ) {
-                OceanText(
-                    text = title,
-                    style = contentStyle.titleTextStyle(),
-                    color = contentStyle.titleColor(enabled)
-                )
-
-                if (description.isNotBlank()) {
-                    OceanText(
-                        modifier = Modifier.padding(bottom = OceanSpacing.xxxs),
-                        text = description,
-                        style = contentStyle.descriptionTextStyle(),
-                        color = contentStyle.descriptionColor(enabled)
-                    )
-                }
-
-                if (caption.isNotBlank() && textInfo.isBlank()) {
-                    OceanText(
-                        text = caption,
-                        style = OceanTextStyle.caption,
-                        color = OceanColors.interfaceDarkUp
-                    )
-                }
-
-                if (textInfo.isNotBlank()) {
-                    OceanText(
-                        text = textInfo,
-                        style = OceanTextStyle.description,
-                        color = textInfoColor ?: OceanColors.interfaceDarkDeep
-                    )
-                }
-            }
-            if (tagStyle != OceanTagStyle.None) {
-                OceanTag(
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically),
-                    style = tagStyle
-                )
-            }
-            when (textListStyle) {
-                OceanTextListStyle.Checkbox -> {
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.CenterVertically)
-                            .padding(start = OceanSpacing.xs)
-                    ) {
-                        OceanSelectableBox(
-                            interactionSource = interactionSource,
-                            enabled = enabled,
-                            selected = selected,
-                            showError = showError,
-                            onSelectedBox = onSelectedBox
-                        )
-                    }
-                }
-
-                OceanTextListStyle.RadioButton -> {
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.CenterVertically)
-                            .padding(start = OceanSpacing.xs)
-                    ) {
-                        OceanSelectableRadio(
-                            interactionSource = interactionSource,
-                            enabled = enabled,
-                            isSelected = selected,
-                            showError = showError,
-                            onSelectedBox = {
-                                onSelectedBox?.invoke(true)
-                            }
-                        )
-                    }
-                }
-
-                else -> Unit
-            }
-            if (onClick != null && showClickableChevron) {
-                Column(
-                    Modifier
-                        .align(Alignment.CenterVertically)
-                ) {
-                    Image(
-                        modifier = Modifier.size(20.dp),
-                        painter = painterResource(id = OceanIcons.CHEVRON_RIGHT_OUTLINE.icon),
-                        contentDescription = ""
-                    )
-                }
-            }
-        }
-
-        if (textListStyle != OceanTextListStyle.Default && showDivider) {
-            HorizontalDivider(
-                thickness = 1.dp,
-                color = OceanColors.interfaceLightDown
-            )
+    @Composable
+    fun startPadding(): Dp {
+        return when (this) {
+            FullWidth -> 0.dp
+            ContentInset -> OceanSpacing.xs
+            is Custom -> this.startPadding
+            None -> 0.dp
         }
     }
-}
 
-@Composable
-fun OceanTextListItemSkeleton(items: Int) {
-    OceanShimmering { brush ->
-        repeat(items) {
-            Column(
-                modifier = Modifier
-                    .background(OceanColors.interfaceLightPure)
-                    .padding(OceanSpacing.xs)
-                    .fillMaxWidth()
-            ) {
-                Row(
-                    modifier = Modifier.padding(bottom = OceanSpacing.xxs)
-                ) {
-                    Spacer(
-                        modifier = Modifier
-                            .width(96.dp)
-                            .height(16.dp)
-                            .borderRadius(borderRadius = OceanBorderRadius.Tiny.allCorners)
-                            .background(brush)
-                    )
-                }
-                Row {
-                    Spacer(
-                        modifier = Modifier
-                            .height(16.dp)
-                            .fillMaxSize()
-                            .borderRadius(borderRadius = OceanBorderRadius.Tiny.allCorners)
-                            .background(brush)
-                    )
-                }
-            }
+    @Composable
+    fun endPadding(): Dp {
+        return when (this) {
+            FullWidth -> 0.dp
+            ContentInset -> OceanSpacing.xs
+            is Custom -> this.endPadding
+            None -> 0.dp
+        }
+    }
+
+    fun getTickness(): Dp {
+        return when (this) {
+            None -> 0.dp
+            else -> 1.dp
         }
     }
 }

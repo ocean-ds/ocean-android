@@ -29,6 +29,12 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
+      - name: Set up Ruby
+          uses: ruby/setup-ruby@v1
+          with:
+            ruby-version: '3.2'
+            bundler-cache: true
+
       - name: Set git identity
         run: |
           git config --global user.name "Blu Release Bot"

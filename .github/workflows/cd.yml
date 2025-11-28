@@ -28,6 +28,12 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.2'
+          bundler-cache: true
+
       - name: Set git identity
         run: |
           git config --global user.name "Blu Release Bot"
@@ -69,3 +75,16 @@ jobs:
         with:
           generateReleaseNotes: true
           tag: v${{ env.OCEAN_VERSION }}
+
+      - name: Increment version
+        run: |
+          bundle exec fastlane prepare_new_version
+          git add app/build.gradle.kts && git commit -am "chore: update version [skip ci]" && git push
+
+      - name: Publish version
+        run: |
+          echo $FIREBASE_CREDENTIALS | base64 -di | tee google-services.json >/dev/null
+          bundle exec fastlane publish_on_firebase
+        env:
+          FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
+          FASTLANE_FIREBASE_ANDROID_APP_ID: ${{ secrets.FASTLANE_FIREBASE_ANDROID_APP_ID }}

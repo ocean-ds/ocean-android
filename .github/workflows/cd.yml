@@ -71,9 +71,6 @@ jobs:
       #     generateReleaseNotes: true
       #     tag: v${{ env.OCEAN_VERSION }}
 
-      - name: Install bundler
-        run: gem install bundle && bundle update
-
       - name: Increment version
         run: |
           bundle exec fastlane prepare_new_version

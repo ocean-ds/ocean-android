@@ -80,7 +80,7 @@ jobs:
       - name: Increment version
         run: |
           bundle exec fastlane prepare_new_version
-          git add . && git commit -am "chore: update version [skip ci]" && git push
+#          git add app/build.gradle.kts && git commit -am "chore: update version [skip ci]" && git push
 
       - name: Publish version
         run: |

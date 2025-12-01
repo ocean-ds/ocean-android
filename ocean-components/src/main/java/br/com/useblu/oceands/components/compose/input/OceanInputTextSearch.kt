@@ -16,6 +16,30 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.stringmask.OceanInputType
 import br.com.useblu.oceands.utils.OceanIcons
 
+@Composable
+fun OceanInputTextSearch(
+    modifier: Modifier = Modifier,
+    oceanInputType: OceanInputType = OceanInputType.DEFAULT,
+    label: String = "",
+    onTextChanged: (String) -> Unit,
+    value: String,
+    placeholder: String = "",
+    error: String? = null
+) {
+    OceanTextInput(
+        modifier = modifier,
+        onTextChanged = onTextChanged,
+        value = value,
+        oceanInputType = oceanInputType,
+        leadingIcon = OceanIcons.SEARCH_SOLID,
+        trailingIcon = if (value.isNotEmpty()) OceanIcons.X_SOLID else null,
+        onClickTrailingIcon = { onTextChanged("") },
+        placeholder = placeholder,
+        errorText = error,
+        label = label
+    )
+}
+
 @Preview
 @Composable
 private fun OceanInputTextSearchPreview() {
@@ -33,7 +57,7 @@ private fun OceanInputTextSearchPreview() {
 
         OceanSpacing.StackXS()
 
-        var text2: String by remember { mutableStateOf("12356") }
+        var text2: String by remember { mutableStateOf("") }
 
         OceanInputTextSearch(
             value = text2,
@@ -43,26 +67,4 @@ private fun OceanInputTextSearchPreview() {
 
         OceanSpacing.StackXXS()
     }
-}
-
-@Composable
-fun OceanInputTextSearch(
-    modifier: Modifier = Modifier,
-    oceanInputType: OceanInputType = OceanInputType.DEFAULT,
-    label: String = "",
-    onTextChanged: (String) -> Unit,
-    value: String,
-    placeholder: String = "",
-    error: String? = null
-) {
-    OceanTextInput(
-        modifier = modifier,
-        onTextChanged = onTextChanged,
-        value = value,
-        oceanInputType = oceanInputType,
-        leadingIcon = OceanIcons.SEARCH_SOLID,
-        placeholder = placeholder,
-        errorText = error,
-        label = label
-    )
 }

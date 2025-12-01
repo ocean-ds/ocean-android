@@ -36,7 +36,7 @@ import br.com.useblu.oceands.extensions.compose.topBarBackground
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.compose.OceanHeaderAppAction
 import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
-import br.com.useblu.oceands.model.compose.OceanHeaderVariant
+import br.com.useblu.oceands.model.compose.OceanHeaderType
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -97,22 +97,24 @@ val modelPreview = OceanHeaderAppModel(
 fun MinimalHeader(
     model: OceanHeaderAppModel,
     modifier: Modifier = Modifier,
+    type: OceanHeaderType,
+    showBalanceToggle: Boolean,
     isContentHidden: Boolean,
     toggleContentHidden: () -> Unit
 ) {
-    val backgroundColor = when (model.variant) {
-        OceanHeaderVariant.PRIMARY -> OceanColors.brandPrimaryPure
-        OceanHeaderVariant.SECONDARY -> OceanColors.interfaceLightPure
+    val backgroundColor = when (type) {
+        OceanHeaderType.PRIMARY -> OceanColors.brandPrimaryPure
+        OceanHeaderType.SECONDARY -> OceanColors.interfaceLightPure
     }
 
-    val textColor = when (model.variant) {
-        OceanHeaderVariant.PRIMARY -> OceanColors.interfaceLightPure
-        OceanHeaderVariant.SECONDARY -> OceanColors.brandPrimaryPure
+    val textColor = when (type) {
+        OceanHeaderType.PRIMARY -> OceanColors.interfaceLightPure
+        OceanHeaderType.SECONDARY -> OceanColors.brandPrimaryPure
     }
 
-    val cnpjColor = when (model.variant) {
-        OceanHeaderVariant.PRIMARY -> OceanColors.brandPrimaryUp
-        OceanHeaderVariant.SECONDARY -> OceanColors.interfaceDarkUp
+    val cnpjColor = when (type) {
+        OceanHeaderType.PRIMARY -> OceanColors.brandPrimaryUp
+        OceanHeaderType.SECONDARY -> OceanColors.interfaceDarkUp
     }
 
     Row(
@@ -168,7 +170,7 @@ fun MinimalHeader(
             OceanSpacing.StackXXXS()
         }
 
-        val actions = if (model.showBalanceToggle) {
+        val actions = if (showBalanceToggle) {
             listOf(
                 OceanHeaderAppAction<Any>(
                     key = "visibility_toggle",
@@ -279,10 +281,9 @@ private fun OceanHeaderDefaultPreview() {
 fun OceanHeaderSecondaryPreview() {
     OceanTheme {
         OceanHeader(
-            headerModel = modelPreview.copy(
-                variant = OceanHeaderVariant.SECONDARY
-            ),
-            style = OceanHeaderStyle.Small
+            headerModel = modelPreview,
+            style = OceanHeaderStyle.Small,
+            type = OceanHeaderType.SECONDARY
         )
     }
 }
@@ -292,11 +293,10 @@ fun OceanHeaderSecondaryPreview() {
 fun OceanHeaderSecondaryWithoutBalanceTogglePreview() {
     OceanTheme {
         OceanHeader(
-            headerModel = modelPreview.copy(
-                variant = OceanHeaderVariant.SECONDARY,
-                showBalanceToggle = false
-            ),
-            style = OceanHeaderStyle.Small
+            headerModel = modelPreview,
+            style = OceanHeaderStyle.Small,
+            type = OceanHeaderType.SECONDARY,
+            showBalanceToggle = false
         )
     }
 }
@@ -305,13 +305,15 @@ fun OceanHeaderSecondaryWithoutBalanceTogglePreview() {
 fun OceanHeader(
     modifier: Modifier = Modifier,
     headerModel: OceanHeaderAppModel,
-    style: OceanHeaderStyle = OceanHeaderStyle.Small
+    style: OceanHeaderStyle = OceanHeaderStyle.Small,
+    type: OceanHeaderType = OceanHeaderType.PRIMARY,
+    showBalanceToggle: Boolean = true
 ) {
     var isContentHidden by remember { mutableStateOf(false) }
 
-    val backgroundColor = when (headerModel.variant) {
-        OceanHeaderVariant.PRIMARY -> OceanColors.brandPrimaryPure
-        OceanHeaderVariant.SECONDARY -> OceanColors.interfaceLightPure
+    val backgroundColor = when (type) {
+        OceanHeaderType.PRIMARY -> OceanColors.brandPrimaryPure
+        OceanHeaderType.SECONDARY -> OceanColors.interfaceLightPure
     }
 
     Column(
@@ -320,6 +322,8 @@ fun OceanHeader(
     ) {
         MinimalHeader(
             model = headerModel,
+            type = type,
+            showBalanceToggle = showBalanceToggle,
             isContentHidden = isContentHidden,
             toggleContentHidden = {
                 isContentHidden = !isContentHidden

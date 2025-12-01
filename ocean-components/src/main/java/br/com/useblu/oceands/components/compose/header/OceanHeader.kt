@@ -36,6 +36,7 @@ import br.com.useblu.oceands.extensions.compose.topBarBackground
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.compose.OceanHeaderAppAction
 import br.com.useblu.oceands.model.compose.OceanHeaderAppModel
+import br.com.useblu.oceands.model.compose.OceanHeaderVariant
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -99,9 +100,24 @@ fun MinimalHeader(
     isContentHidden: Boolean,
     toggleContentHidden: () -> Unit
 ) {
+    val backgroundColor = when (model.variant) {
+        OceanHeaderVariant.PRIMARY -> OceanColors.brandPrimaryPure
+        OceanHeaderVariant.SECONDARY -> OceanColors.interfaceLightPure
+    }
+
+    val textColor = when (model.variant) {
+        OceanHeaderVariant.PRIMARY -> OceanColors.interfaceLightPure
+        OceanHeaderVariant.SECONDARY -> OceanColors.brandPrimaryPure
+    }
+
+    val cnpjColor = when (model.variant) {
+        OceanHeaderVariant.PRIMARY -> OceanColors.brandPrimaryUp
+        OceanHeaderVariant.SECONDARY -> OceanColors.interfaceDarkUp
+    }
+
     Row(
         modifier = modifier
-            .background(OceanColors.brandPrimaryPure)
+            .background(backgroundColor)
             .height(OceanSpacing.xxl),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -117,7 +133,7 @@ fun MinimalHeader(
                 Text(
                     text = model.clientName,
                     fontFamily = OceanFontFamily.HighlightExtraBold,
-                    color = OceanColors.interfaceLightPure,
+                    color = textColor,
                     fontSize = OceanFontSize.xs,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -129,7 +145,7 @@ fun MinimalHeader(
                 OceanIcon(
                     iconType = OceanIcons.CHEVRON_DOWN_SOLID,
                     modifier = Modifier.size(16.dp),
-                    tint = OceanColors.interfaceLightPure
+                    tint = textColor
                 )
             }
 
@@ -138,7 +154,7 @@ fun MinimalHeader(
             Text(
                 text = model.formattedCnpj,
                 fontFamily = OceanFontFamily.BaseRegular,
-                color = OceanColors.brandPrimaryUp,
+                color = cnpjColor,
                 fontSize = OceanFontSize.xxxs
             )
         }
@@ -152,7 +168,7 @@ fun MinimalHeader(
             OceanSpacing.StackXXXS()
         }
 
-        (
+        val actions = if (model.showBalanceToggle) {
             listOf(
                 OceanHeaderAppAction<Any>(
                     key = "visibility_toggle",
@@ -166,10 +182,15 @@ fun MinimalHeader(
                     }
                 )
             ) + model.appActions
-            ).forEach { headerAction ->
+        } else {
+            model.appActions
+        }
+
+        actions.forEach { headerAction ->
             MinimalHeaderAction(
                 icon = headerAction.icon,
                 badgeCount = headerAction.badgeCount,
+                iconTint = textColor,
                 onClick = { headerAction.action(headerAction.key) }
             )
         }
@@ -177,6 +198,7 @@ fun MinimalHeader(
         MinimalHeaderAction(
             icon = OceanIcons.MENU_OUTLINE,
             badgeCount = model.badgeCount,
+            iconTint = textColor,
             onClick = model.onClickMenu
         )
 
@@ -188,6 +210,7 @@ fun MinimalHeader(
 private fun MinimalHeaderAction(
     icon: OceanIcons,
     badgeCount: Int,
+    iconTint: Color,
     onClick: () -> Unit
 ) {
     Box(
@@ -202,7 +225,7 @@ private fun MinimalHeaderAction(
             modifier = Modifier
                 .size(24.dp)
                 .align(Alignment.Center),
-            tint = OceanColors.interfaceLightPure
+            tint = iconTint
         )
 
         val shouldShowBadge = badgeCount > 0
@@ -252,6 +275,33 @@ private fun OceanHeaderDefaultPreview() {
 }
 
 @Composable
+@Preview
+fun OceanHeaderSecondaryPreview() {
+    OceanTheme {
+        OceanHeader(
+            headerModel = modelPreview.copy(
+                variant = OceanHeaderVariant.SECONDARY
+            ),
+            style = OceanHeaderStyle.Small
+        )
+    }
+}
+
+@Composable
+@Preview
+fun OceanHeaderSecondaryWithoutBalanceTogglePreview() {
+    OceanTheme {
+        OceanHeader(
+            headerModel = modelPreview.copy(
+                variant = OceanHeaderVariant.SECONDARY,
+                showBalanceToggle = false
+            ),
+            style = OceanHeaderStyle.Small
+        )
+    }
+}
+
+@Composable
 fun OceanHeader(
     modifier: Modifier = Modifier,
     headerModel: OceanHeaderAppModel,
@@ -259,9 +309,14 @@ fun OceanHeader(
 ) {
     var isContentHidden by remember { mutableStateOf(false) }
 
+    val backgroundColor = when (headerModel.variant) {
+        OceanHeaderVariant.PRIMARY -> OceanColors.brandPrimaryPure
+        OceanHeaderVariant.SECONDARY -> OceanColors.interfaceLightPure
+    }
+
     Column(
         modifier = modifier
-            .topBarBackground(color = OceanColors.brandPrimaryPure)
+            .topBarBackground(color = backgroundColor)
     ) {
         MinimalHeader(
             model = headerModel,

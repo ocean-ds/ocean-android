@@ -46,6 +46,7 @@ import com.skydoves.landscapist.glide.GlideImage
 @Composable
 fun OceanTextListItem(
     modifier: Modifier = Modifier,
+    contentHorizontalPadding: Dp = OceanSpacing.xs,
     title: String,
     description: String = "",
     caption: String = "",
@@ -72,7 +73,8 @@ fun OceanTextListItem(
         Row(
             modifier = Modifier
                 .background(backgroundColor)
-                .padding(all = OceanSpacing.xs)
+                .padding(vertical = OceanSpacing.xs)
+                .padding(horizontal = contentHorizontalPadding)
                 .fillMaxWidth()
                 .clickable(
                     interactionSource = null,
@@ -217,7 +219,10 @@ fun OceanTextListItem(
 
         if (textListStyle != OceanTextListStyle.Default) {
             HorizontalDivider(
-                modifier = Modifier.padding(start = dividerStyle.startPadding(), end = dividerStyle.endPadding()),
+                modifier = Modifier.padding(
+                    start = dividerStyle.startPadding(contentHorizontalPadding),
+                    end = dividerStyle.endPadding(contentHorizontalPadding)
+                ),
                 thickness = dividerStyle.getTickness(),
                 color = OceanColors.interfaceLightDown
             )
@@ -263,6 +268,7 @@ fun OceanTextListItemSkeleton(items: Int) {
 @Composable
 fun OceanTextListItem(
     modifier: Modifier = Modifier,
+    contentHorizontalPadding: Dp = OceanSpacing.xs,
     title: String,
     description: String = "",
     caption: String = "",
@@ -283,6 +289,7 @@ fun OceanTextListItem(
 ) {
     OceanTextListItem(
         modifier = modifier,
+        contentHorizontalPadding = contentHorizontalPadding,
         title = title,
         description = description,
         caption = caption,
@@ -428,6 +435,7 @@ fun OceanTextListItemPreview() {
         )
         OceanTextListItem(
             modifier = Modifier,
+            contentHorizontalPadding = 0.dp,
             title = "Title",
             description = "Description",
             selected = false,
@@ -481,20 +489,20 @@ sealed class OceanTextListItemDividerStyle {
     data class Custom(val startPadding: Dp, val endPadding: Dp) : OceanTextListItemDividerStyle()
 
     @Composable
-    fun startPadding(): Dp {
+    fun startPadding(contentPadding: Dp): Dp {
         return when (this) {
             FullWidth -> 0.dp
-            ContentInset -> OceanSpacing.xs
+            ContentInset -> contentPadding
             is Custom -> this.startPadding
             None -> 0.dp
         }
     }
 
     @Composable
-    fun endPadding(): Dp {
+    fun endPadding(contentPadding: Dp): Dp {
         return when (this) {
             FullWidth -> 0.dp
-            ContentInset -> OceanSpacing.xs
+            ContentInset -> contentPadding
             is Custom -> this.endPadding
             None -> 0.dp
         }

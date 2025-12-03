@@ -135,7 +135,7 @@ fun OceanShortcutList(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
     ) {
         for (i in models.indices step columns) {
             Row(

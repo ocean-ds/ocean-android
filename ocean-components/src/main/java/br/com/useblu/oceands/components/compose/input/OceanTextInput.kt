@@ -317,7 +317,7 @@ fun OceanTextInput(
                             {
                                 OceanIcon(
                                     iconType = leadingIcon,
-                                    tint = if (isFocused) OceanColors.brandPrimaryPure else OceanColors.interfaceDarkUp
+                                    tint = if (isFocused) OceanColors.brandPrimaryPure else OceanColors.interfaceLightDeep
                                 )
                             }
                         } else null,

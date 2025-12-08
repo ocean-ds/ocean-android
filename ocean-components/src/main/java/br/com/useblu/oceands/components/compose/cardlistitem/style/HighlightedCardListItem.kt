@@ -52,6 +52,7 @@ internal fun HighlightedCardListItem(
     style: OceanCardListItemStyle.Highlighted,
     disabled: Boolean = false,
     isSelected: Boolean = false,
+    showChevron: Boolean = false,
     onClick: (() -> Unit)?,
     onDisabledClick: (() -> Unit)?
 ) {
@@ -107,7 +108,8 @@ internal fun HighlightedCardListItem(
                     type = type,
                     style = style,
                     isSelected = isSelected,
-                    disabled = disabled
+                    disabled = disabled,
+                    showChevron = showChevron
                 )
             }
         }

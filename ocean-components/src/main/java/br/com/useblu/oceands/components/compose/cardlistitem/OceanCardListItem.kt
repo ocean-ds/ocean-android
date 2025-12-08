@@ -61,6 +61,7 @@ fun OceanCardListItem(
     style: OceanCardListItemStyle = OceanCardListItemStyle.Default,
     disabled: Boolean = false,
     isSelected: Boolean = false,
+    showChevron: Boolean = false,
     onClick: (() -> Unit)? = null,
     onDisabledClick: (() -> Unit)? = null
 ) {
@@ -77,6 +78,7 @@ fun OceanCardListItem(
                 type = type,
                 disabled = disabled,
                 isSelected = isSelected,
+                showChevron = showChevron,
                 onClick = onClick,
                 onDisabledClick = onDisabledClick
             )
@@ -94,6 +96,7 @@ fun OceanCardListItem(
                 style = style,
                 disabled = disabled,
                 isSelected = isSelected,
+                showChevron = showChevron,
                 onClick = onClick,
                 onDisabledClick = onDisabledClick
             )
@@ -139,7 +142,8 @@ internal fun ContentCardListItem(
     type: OceanCardListItemType,
     style: OceanCardListItemStyle,
     isSelected: Boolean,
-    disabled: Boolean
+    disabled: Boolean,
+    showChevron: Boolean = false
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -166,7 +170,8 @@ internal fun ContentCardListItem(
         TrailingContentCardListItem(
             type = type,
             isSelected = isSelected,
-            disabled = disabled
+            disabled = disabled,
+            showChevron = showChevron
         )
     }
 }
@@ -190,17 +195,12 @@ private fun CenterContent(
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(space = OceanSpacing.xxxs)
                 ) {
-                    Text(
-                        text = title,
-                        style = contentStyle.getTitleStyle(),
-                        color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
+                    TitleWithTag(
+                        title = title,
+                        contentStyle = contentStyle,
+                        tagStyle = tagStyle,
+                        disabled = disabled
                     )
-
-                    if (tagStyle != null) {
-                        OceanTag(
-                            style = tagStyle
-                        )
-                    }
                 }
             }
             OceanCardListItemTagAlignment.END -> {
@@ -209,17 +209,12 @@ private fun CenterContent(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = title,
-                        style = contentStyle.getTitleStyle(),
-                        color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
+                    TitleWithTag(
+                        title = title,
+                        contentStyle = contentStyle,
+                        tagStyle = tagStyle,
+                        disabled = disabled
                     )
-
-                    if (tagStyle != null) {
-                        OceanTag(
-                            style = tagStyle
-                        )
-                    }
                 }
             }
         }
@@ -241,6 +236,26 @@ private fun CenterContent(
                 color = if (disabled) OceanColors.interfaceLightDeep else Color.Unspecified
             )
         }
+    }
+}
+
+@Composable
+private fun TitleWithTag(
+    title: String,
+    contentStyle: OceanCardListItemContentStyle,
+    tagStyle: OceanTagStyle?,
+    disabled: Boolean
+) {
+    Text(
+        text = title,
+        style = contentStyle.getTitleStyle(),
+        color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
+    )
+
+    if (tagStyle != null) {
+        OceanTag(
+            style = tagStyle
+        )
     }
 }
 
@@ -269,7 +284,8 @@ private fun LeadingContentCardListItem(
 private fun TrailingContentCardListItem(
     type: OceanCardListItemType,
     isSelected: Boolean,
-    disabled: Boolean
+    disabled: Boolean,
+    showChevron: Boolean = false
 ) {
     when (type) {
         is OceanCardListItemType.Default -> {
@@ -279,6 +295,16 @@ private fun TrailingContentCardListItem(
 
                     OceanIcon(
                         iconType = it,
+                        modifier = Modifier.size(20.dp),
+                        tint = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkUp
+                    )
+                }
+
+                if (showChevron && type.trailingIconToken == null) {
+                    OceanSpacing.StackXS()
+
+                    OceanIcon(
+                        iconType = OceanIcons.CHEVRON_RIGHT_OUTLINE,
                         modifier = Modifier.size(20.dp),
                         tint = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkUp
                     )
@@ -336,6 +362,13 @@ fun OceanCardListItemPreview() {
                     type = OceanTagType.Positive
                 ),
                 tagAlignment = OceanCardListItemTagAlignment.END,
+                onClick = {}
+            )
+
+            OceanCardListItem(
+                title = "Title with Chevron",
+                description = "Description with chevron icon",
+                showChevron = true,
                 onClick = {}
             )
 

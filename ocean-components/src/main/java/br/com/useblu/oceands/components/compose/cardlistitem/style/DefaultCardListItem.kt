@@ -21,6 +21,7 @@ internal fun DefaultCardListItem(
     type: OceanCardListItemType = OceanCardListItemType.Default(),
     disabled: Boolean = false,
     isSelected: Boolean = false,
+    showChevron: Boolean = false,
     onClick: (() -> Unit)?,
     onDisabledClick: (() -> Unit)?
 ) {
@@ -42,7 +43,8 @@ internal fun DefaultCardListItem(
             type = type,
             style = OceanCardListItemStyle.Default,
             isSelected = isSelected,
-            disabled = disabled
+            disabled = disabled,
+            showChevron = showChevron
         )
     }
 }

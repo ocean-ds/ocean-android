@@ -25,6 +25,8 @@ internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog
     private var secondaryButtonAction: (() -> Unit)? = null
     private var withFooterButton: Boolean = false
 
+    private var shouldShowDivider: Boolean = true
+
     private lateinit var binding: OceanOptionsBottomListSheetBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +66,9 @@ internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog
         setCanceledOnTouchOutside(isDismiss)
         setContentView(binding.root)
 
+        if (shouldShowDivider.not())
+            binding.dividerButtons.root.visibility = View.GONE
+
         val view = binding.root.parent as View
         view.background = ColorDrawable(Color.TRANSPARENT)
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
@@ -83,7 +88,8 @@ internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog
         primaryText: String,
         secondaryText: String,
         primaryAction: () -> Unit,
-        secondaryAction: (() -> Unit)? = null
+        secondaryAction: (() -> Unit)? = null,
+        shouldShowDivider: Boolean
     ): OceanOptionsBottomListSheet {
         this.withFooterButton = true
         this.primaryButtonText = primaryText
@@ -96,6 +102,7 @@ internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog
             secondaryAction?.invoke()
             dismiss()
         }
+        this.shouldShowDivider = shouldShowDivider
         return this
     }
 

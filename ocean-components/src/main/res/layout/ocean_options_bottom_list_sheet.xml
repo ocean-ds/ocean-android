@@ -75,7 +75,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:ocean_visible_or_gone="@{showFooterButton}">
 
-            <include layout="@layout/ocean_divider"/>
+            <include
+                android:id="@+id/divider_buttons"
+                layout="@layout/ocean_divider"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

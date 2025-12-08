@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.ContentCardListItem
+import br.com.useblu.oceands.components.compose.cardlistitem.OceanCardListItemTagAlignment
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
@@ -16,6 +17,7 @@ internal fun DefaultCardListItem(
     caption: String = "",
     contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     tagStyle: OceanTagStyle? = null,
+    tagAlignment: OceanCardListItemTagAlignment = OceanCardListItemTagAlignment.START,
     type: OceanCardListItemType = OceanCardListItemType.Default(),
     disabled: Boolean = false,
     isSelected: Boolean = false,
@@ -36,6 +38,7 @@ internal fun DefaultCardListItem(
             caption = caption,
             contentStyle = contentStyle,
             tagStyle = tagStyle,
+            tagAlignment = tagAlignment,
             type = type,
             style = OceanCardListItemStyle.Default,
             isSelected = isSelected,

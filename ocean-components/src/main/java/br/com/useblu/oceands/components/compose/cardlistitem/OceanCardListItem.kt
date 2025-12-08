@@ -43,6 +43,11 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
+enum class OceanCardListItemTagAlignment {
+    START,
+    END
+}
+
 @Composable
 fun OceanCardListItem(
     modifier: Modifier = Modifier,
@@ -51,6 +56,7 @@ fun OceanCardListItem(
     caption: String = "",
     contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     tagStyle: OceanTagStyle? = null,
+    tagAlignment: OceanCardListItemTagAlignment = OceanCardListItemTagAlignment.START,
     type: OceanCardListItemType = OceanCardListItemType.Default(),
     style: OceanCardListItemStyle = OceanCardListItemStyle.Default,
     disabled: Boolean = false,
@@ -67,6 +73,7 @@ fun OceanCardListItem(
                 caption = caption,
                 contentStyle = contentStyle,
                 tagStyle = tagStyle,
+                tagAlignment = tagAlignment,
                 type = type,
                 disabled = disabled,
                 isSelected = isSelected,
@@ -82,6 +89,7 @@ fun OceanCardListItem(
                 description = description,
                 caption = caption,
                 tagStyle = tagStyle,
+                tagAlignment = tagAlignment,
                 type = type,
                 style = style,
                 disabled = disabled,
@@ -126,6 +134,7 @@ internal fun ContentCardListItem(
     description: String = "",
     caption: String,
     tagStyle: OceanTagStyle?,
+    tagAlignment: OceanCardListItemTagAlignment = OceanCardListItemTagAlignment.START,
     contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     type: OceanCardListItemType,
     style: OceanCardListItemStyle,
@@ -150,6 +159,7 @@ internal fun ContentCardListItem(
             caption = caption,
             contentStyle = contentStyle,
             tagStyle = tagStyle,
+            tagAlignment = tagAlignment,
             disabled = disabled
         )
 
@@ -169,24 +179,48 @@ private fun CenterContent(
     caption: String,
     contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     tagStyle: OceanTagStyle?,
+    tagAlignment: OceanCardListItemTagAlignment = OceanCardListItemTagAlignment.START,
     disabled: Boolean
 ) {
     Column(
         modifier = modifier
     ) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(space = OceanSpacing.xxxs)
-        ) {
-            Text(
-                text = title,
-                style = contentStyle.getTitleStyle(),
-                color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
-            )
+        when (tagAlignment) {
+            OceanCardListItemTagAlignment.START -> {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(space = OceanSpacing.xxxs)
+                ) {
+                    Text(
+                        text = title,
+                        style = contentStyle.getTitleStyle(),
+                        color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
+                    )
 
-            if (tagStyle != null) {
-                OceanTag(
-                    style = tagStyle
-                )
+                    if (tagStyle != null) {
+                        OceanTag(
+                            style = tagStyle
+                        )
+                    }
+                }
+            }
+            OceanCardListItemTagAlignment.END -> {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = title,
+                        style = contentStyle.getTitleStyle(),
+                        color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
+                    )
+
+                    if (tagStyle != null) {
+                        OceanTag(
+                            style = tagStyle
+                        )
+                    }
+                }
             }
         }
 
@@ -283,8 +317,25 @@ fun OceanCardListItemPreview() {
             )
 
             OceanCardListItem(
-                title = "Title",
+                title = "Title with Tag at Start (default)",
                 description = "Description",
+                tagStyle = OceanTagStyle.Default(
+                    label = "Tag",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Positive
+                ),
+                onClick = {}
+            )
+
+            OceanCardListItem(
+                title = "Title with Tag at End",
+                description = "Description",
+                tagStyle = OceanTagStyle.Default(
+                    label = "Tag",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Positive
+                ),
+                tagAlignment = OceanCardListItemTagAlignment.END,
                 onClick = {}
             )
 
@@ -325,74 +376,24 @@ fun OceanCardListItemPreview() {
             )
 
             OceanCardListItem(
-                title = "Title Highlighted",
-                description = "Without Animation",
+                title = "Highlighted with Tag at End",
+                description = "Tag alinhada ao final",
                 type = OceanCardListItemType.Selectable(
                     selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
                     didUpdate = { }
                 ),
                 style = OceanCardListItemStyle.Highlighted(
                     caption = "Short Caption",
-                    backgroundColor = OceanColors.statusNegativeUp,
-                    icon = OceanIcons.SPARKLES_OUTLINE,
-                    iconColor = OceanColors.statusNegativeDeep
-                ),
-                tagStyle = OceanTagStyle.Default(
-                    label = "Tag label",
-                    layout = OceanTagLayout.Medium(),
-                    type = OceanTagType.Positive
-                ),
-                onClick = {}
-            )
-
-            OceanCardListItem(
-                title = "Title Highlighted",
-                description = "Without Animation",
-                disabled = true,
-                type = OceanCardListItemType.Selectable(
-                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
-                    didUpdate = { }
-                ),
-                style = OceanCardListItemStyle.Highlighted(
-                    caption = "Short Caption",
-                    backgroundColor = OceanColors.statusNegativeUp,
-                    icon = OceanIcons.SPARKLES_OUTLINE,
-                    iconColor = OceanColors.statusNegativeDeep
-                ),
-                tagStyle = OceanTagStyle.Default(
-                    label = "Tag label",
-                    layout = OceanTagLayout.Medium(),
-                    type = OceanTagType.Positive
-                ),
-                onClick = {},
-                onDisabledClick = {
-                    Toast.makeText(context, "Item disabled", Toast.LENGTH_SHORT).show()
-                }
-            )
-
-            OceanCardListItem(
-                title = "Title Highlighted Selected",
-                description = "Description selected",
-                type = OceanCardListItemType.Selectable(
-                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
-                    didUpdate = { }
-                ),
-                style = OceanCardListItemStyle.Highlighted(
-                    caption = "Receba no mesmo dia em que seu cliente pagar, com um menor custo de antecipação.",
                     backgroundColor = OceanColors.statusPositiveUp,
-                    icon = OceanIcons.SPARKLES_ALT_SOLID,
-                    iconColor = OceanColors.statusPositiveDeep,
-                    animation = OceanCardListItemStyle.Highlighted.Animation(
-                        targetBorderColor = OceanColors.statusPositiveDeep,
-                        shadowColor = OceanColors.statusPositiveDeep
-                    )
+                    icon = OceanIcons.SPARKLES_OUTLINE,
+                    iconColor = OceanColors.statusPositiveDeep
                 ),
                 tagStyle = OceanTagStyle.Default(
-                    label = "Mais vendido",
+                    label = "Tag",
                     layout = OceanTagLayout.Medium(),
                     type = OceanTagType.Positive
                 ),
-                isSelected = true,
+                tagAlignment = OceanCardListItemTagAlignment.END,
                 onClick = {}
             )
 
@@ -402,25 +403,6 @@ fun OceanCardListItemPreview() {
                 type = OceanCardListItemType.Default(
                     leadingIconToken = OceanIcons.PAGBLU_OUTLINE
                 )
-            ) { }
-
-            OceanCardListItem(
-                title = "Title Selected",
-                description = "Selected",
-                type = OceanCardListItemType.Default(
-                    leadingIconToken = OceanIcons.PAGBLU_OUTLINE
-                ),
-                isSelected = true
-            ) { }
-
-            OceanCardListItem(
-                title = "Title Disabled",
-                description = "Disabled",
-                caption = "Caption",
-                type = OceanCardListItemType.Default(
-                    leadingIconToken = OceanIcons.PAGBLU_OUTLINE
-                ),
-                disabled = true
             ) { }
 
             var checkboxUnselected by remember { mutableStateOf(false) }
@@ -433,29 +415,6 @@ fun OceanCardListItemPreview() {
                 ),
                 isSelected = checkboxUnselected
             ) { checkboxUnselected = !checkboxUnselected }
-
-            var checkboxSelected by remember { mutableStateOf(true) }
-            OceanCardListItem(
-                title = "Title Checkbox selected",
-                description = "checkbox",
-                type = OceanCardListItemType.Selectable(
-                    selectionType = OceanCardListItemType.Selectable.SelectionType.Checkbox,
-                    didUpdate = { checkboxSelected = it }
-                ),
-                isSelected = checkboxSelected
-            ) { checkboxSelected = !checkboxSelected }
-
-            var radioUnselected by remember { mutableStateOf(false) }
-            OceanCardListItem(
-                title = "Title Radio unselected",
-                description = "Radio",
-                caption = "Selectable",
-                type = OceanCardListItemType.Selectable(
-                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
-                    didUpdate = { radioUnselected = it }
-                ),
-                isSelected = radioUnselected
-            ) { radioUnselected = !radioUnselected }
 
             var radioSelected by remember { mutableStateOf(true) }
             OceanCardListItem(

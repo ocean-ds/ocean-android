@@ -51,27 +51,33 @@ fun OceanUnorderedListItemPreview() {
         )
     )
 
-    OceanUnorderedList(models)
+    OceanUnorderedList(models = models)
 }
 
 @Composable
 fun OceanUnorderedList(
     models: List<OceanUnorderedListItemModel>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    verticalAlignment: Alignment.Vertical = Alignment.Top
+
 ) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
     ) {
         models.forEach { item ->
-            OceanUnorderedListItem(item)
+            OceanUnorderedListItem(
+                model = item,
+                verticalAlignment = verticalAlignment
+            )
         }
     }
 }
 
 @Composable
 fun OceanUnorderedListItem(
-    model: OceanUnorderedListItemModel
+    model: OceanUnorderedListItemModel,
+    verticalAlignment: Alignment.Vertical
 ) {
     OceanUnorderedListItem(
         title = model.title,
@@ -80,7 +86,8 @@ fun OceanUnorderedListItem(
         style = model.style ?: OceanTextStyle.description,
         showIconBackground = model.showIconBackground,
         iconColor = model.iconColor,
-        roundBackgroundColor = model.roundBackgroundColor
+        roundBackgroundColor = model.roundBackgroundColor,
+        verticalAlignment = verticalAlignment
     )
 }
 
@@ -92,14 +99,15 @@ fun OceanUnorderedListItem(
     style: TextStyle = OceanTextStyle.description,
     showIconBackground: Boolean = false,
     iconColor: Color? = null,
-    roundBackgroundColor: Color? = null
+    roundBackgroundColor: Color? = null,
+    verticalAlignment: Alignment.Vertical
 ) {
     Row(
         modifier = Modifier.padding(
             horizontal = OceanSpacing.xs,
             vertical = OceanSpacing.xxxs
         ),
-        verticalAlignment = Alignment.Top
+        verticalAlignment = verticalAlignment
     ) {
         val iconSize = if (showIconBackground) 16.dp else 24.dp
 
@@ -123,6 +131,7 @@ fun OceanUnorderedListItem(
         OceanSpacing.StackXXS()
 
         Column(
+            verticalArrangement = Arrangement.Center,
             modifier = Modifier
         ) {
             OceanText(

@@ -33,8 +33,8 @@ sealed class OceanChipFilterOptions {
                 bottomSheet.withCustomList(adapter)
 
                 bottomSheet.withFooterButton(
-                    primaryButtonLabel,
-                    secondaryButtonLabel,
+                    primaryText = primaryButtonLabel,
+                    secondaryText = secondaryButtonLabel,
                     primaryAction = {
                         val selectedItems = internalItems.getSelectedIndexes()
                         onPrimaryButtonClick(selectedItems)
@@ -42,7 +42,8 @@ sealed class OceanChipFilterOptions {
                     secondaryAction = {
                         val selectedItems = internalItems.getSelectedIndexes()
                         onSecondaryButtonClick(selectedItems)
-                    }
+                    },
+                    shouldShowDivider = shouldShowButtonDivider
                 )
             }
 
@@ -72,7 +73,8 @@ sealed class OceanChipFilterOptions {
         val onSecondaryButtonClick: (selectedIndexes: List<Int>) -> Unit,
         val showSelectAllButton: Boolean = false,
         val primaryButtonLabel: String,
-        val secondaryButtonLabel: String
+        val secondaryButtonLabel: String,
+        val shouldShowButtonDivider: Boolean = true
     ) : OceanChipFilterOptions()
 }
 

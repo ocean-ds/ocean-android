@@ -51,7 +51,7 @@ fun OceanUnorderedListItemPreview() {
         )
     )
 
-    OceanUnorderedList(models = models)
+    OceanUnorderedList(models = models, verticalAlignment = Alignment.CenterVertically)
 }
 
 @Composable
@@ -77,7 +77,7 @@ fun OceanUnorderedList(
 @Composable
 fun OceanUnorderedListItem(
     model: OceanUnorderedListItemModel,
-    verticalAlignment: Alignment.Vertical
+    verticalAlignment: Alignment.Vertical = Alignment.Top
 ) {
     OceanUnorderedListItem(
         title = model.title,
@@ -100,7 +100,7 @@ fun OceanUnorderedListItem(
     showIconBackground: Boolean = false,
     iconColor: Color? = null,
     roundBackgroundColor: Color? = null,
-    verticalAlignment: Alignment.Vertical
+    verticalAlignment: Alignment.Vertical = Alignment.Top
 ) {
     Row(
         modifier = Modifier.padding(

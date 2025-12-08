@@ -28,6 +28,7 @@ import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.cardlistitem.ContentCardListItem
+import br.com.useblu.oceands.components.compose.cardlistitem.OceanCardListItemTagAlignment
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
@@ -46,10 +47,12 @@ internal fun HighlightedCardListItem(
     caption: String = "",
     contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     tagStyle: OceanTagStyle? = null,
+    tagAlignment: OceanCardListItemTagAlignment = OceanCardListItemTagAlignment.START,
     type: OceanCardListItemType,
     style: OceanCardListItemStyle.Highlighted,
     disabled: Boolean = false,
     isSelected: Boolean = false,
+    showChevron: Boolean = false,
     onClick: (() -> Unit)?,
     onDisabledClick: (() -> Unit)?
 ) {
@@ -101,10 +104,12 @@ internal fun HighlightedCardListItem(
                     caption = caption,
                     contentStyle = contentStyle,
                     tagStyle = tagStyle,
+                    tagAlignment = tagAlignment,
                     type = type,
                     style = style,
                     isSelected = isSelected,
-                    disabled = disabled
+                    disabled = disabled,
+                    showChevron = showChevron
                 )
             }
         }

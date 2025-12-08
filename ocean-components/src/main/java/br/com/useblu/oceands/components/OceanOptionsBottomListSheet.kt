@@ -89,7 +89,7 @@ internal class OceanOptionsBottomListSheet(context: Context) : BottomSheetDialog
         secondaryText: String,
         primaryAction: () -> Unit,
         secondaryAction: (() -> Unit)? = null,
-        shouldShowDivider: Boolean
+        shouldShowDivider: Boolean = true
     ): OceanOptionsBottomListSheet {
         this.withFooterButton = true
         this.primaryButtonText = primaryText

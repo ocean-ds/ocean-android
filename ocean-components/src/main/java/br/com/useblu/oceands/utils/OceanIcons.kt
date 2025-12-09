@@ -2391,6 +2391,10 @@ enum class OceanIcons(
     RESTART_OUTLINE(
         token = "restartoutline",
         icon = R.drawable.icon_restart_outline
+    ),
+    QRCODE_LIST_OUTLINE(
+        token = "qrcodelistoutline",
+        icon = R.drawable.ocean_icon_qrcode_list_outline
     );
 
     companion object {

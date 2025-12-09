@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import br.com.useblu.blupos.presentation.features.sale.installments.pinpad.OceanInstallmentsPinPadHandler
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanDivider
@@ -23,6 +24,7 @@ import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPad
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.OceanCurrencyPinPadHandler
+import br.com.useblu.oceands.components.compose.pinpad.handlers.installments.models.OceanInstallmentsPinPadTextSetup
 import br.com.useblu.oceands.components.compose.pinpad.handlers.password.OceanPasswordPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.handlers.password.models.OceanPasswordPinPadType
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -65,6 +67,7 @@ private fun PinPadExample(toast: OceanToast) {
                                 isLoading = isLoading
                             )
                         }
+
                         PinPadKnownType.Password -> {
                             val passwordHandler = OceanPasswordPinPadHandler(
                                 type = OceanPasswordPinPadType.FixedSize(6),
@@ -73,6 +76,29 @@ private fun PinPadExample(toast: OceanToast) {
                             handler = passwordHandler
                             OceanPinPad(
                                 handler = passwordHandler,
+                                isEnabled = isEnabled,
+                                isLoading = isLoading
+                            )
+                        }
+
+                        PinPadKnownType.Installments -> {
+                            val installmentsHandler = OceanInstallmentsPinPadHandler(
+                                maxInstallments = 12,
+                                textSetup = object : OceanInstallmentsPinPadTextSetup {
+                                    override fun getPlaceholder(): String = "0x"
+
+                                    override fun getHint(maxInstallments: Int): String =
+                                        "Até ${maxInstallments}x"
+
+                                    override fun getErrorEmpty(): String = "Selecione o número de parcelas"
+
+                                    override fun getErrorMax(maxInstallments: Int): String =
+                                        "O número máximo de parcelas é $maxInstallments"
+                                }
+                            )
+                            handler = installmentsHandler
+                            OceanPinPad(
+                                handler = installmentsHandler,
                                 isEnabled = isEnabled,
                                 isLoading = isLoading
                             )
@@ -142,5 +168,7 @@ private fun PinPadExample(toast: OceanToast) {
 
 private enum class PinPadKnownType {
     Currency,
-    Password
+    Password,
+
+    Installments
 }

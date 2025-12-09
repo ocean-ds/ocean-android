@@ -1,4 +1,4 @@
-package br.com.useblu.blupos.presentation.features.sale.installments.pinpad
+package br.com.useblu.oceands.components.compose.pinpad.handlers.installments
 
 import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.Composable

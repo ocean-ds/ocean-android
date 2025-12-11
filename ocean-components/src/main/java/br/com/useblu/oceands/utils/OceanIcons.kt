@@ -2395,6 +2395,18 @@ enum class OceanIcons(
     QRCODE_LIST_OUTLINE(
         token = "qrcodelistoutline",
         icon = R.drawable.ocean_icon_qrcode_list_outline
+    ),
+    QRCODE_PLUS_OUTLINE(
+        token = "qrcodeplusoutline",
+        icon = R.drawable.ocean_icon_qr_code_plus_outline
+    ),
+    COPY_ALT_OUTLINE(
+        token = "copyaltoutline",
+        icon = R.drawable.ocean_icon_copy_alt_outline
+    ),
+    BLU_ANALISYS_OUTLINE(
+        token = "bluanalisysoutline",
+        icon = R.drawable.ocean_icon_blu_analisys_outline
     );
 
     companion object {

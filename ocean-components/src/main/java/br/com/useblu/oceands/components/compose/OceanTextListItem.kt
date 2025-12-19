@@ -17,12 +17,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -54,7 +54,7 @@ fun OceanTextListItem(
     textInfo: String = "",
     textInfoColor: Color? = null,
     selected: Boolean = false,
-    dividerStyle: OceanTextListItemDividerStyle,
+    showDivider: Boolean = true,
     tagStyle: OceanTagStyle = OceanTagStyle.None,
     textListStyle: OceanTextListStyle = OceanTextListStyle.Default,
     contentStyle: OceanTextListContentStyle = OceanTextListContentStyle.Default,
@@ -65,6 +65,15 @@ fun OceanTextListItem(
     showClickableChevron: Boolean = true,
     onClick: (() -> Unit)? = null
 ) {
+    val isNotReadOnly = (
+        onClick != null &&
+            showClickableChevron
+        ) ||
+        (
+            textListStyle != OceanTextListStyle.RadioButton ||
+                textListStyle != OceanTextListStyle.Checkbox
+            )
+
     Column(
         modifier = modifier
     ) {
@@ -73,7 +82,7 @@ fun OceanTextListItem(
         Row(
             modifier = Modifier
                 .background(backgroundColor)
-                .padding(vertical = OceanSpacing.xs)
+                .padding(vertical = if (isNotReadOnly) OceanSpacing.xs else OceanSpacing.xxs)
                 .padding(horizontal = contentHorizontalPadding)
                 .fillMaxWidth()
                 .clickable(
@@ -124,8 +133,8 @@ fun OceanTextListItem(
             Column(
                 modifier = Modifier
                     .padding(
-                        end = if (onClick != null && showClickableChevron) OceanSpacing.xxsExtra
-                        else OceanSpacing.xxs
+                        end = if (isNotReadOnly) OceanSpacing.xxs
+                        else OceanSpacing.xs
                     )
                     .weight(2f)
             ) {
@@ -210,21 +219,17 @@ fun OceanTextListItem(
                 ) {
                     Image(
                         modifier = Modifier.size(20.dp),
-                        painter = painterResource(id = OceanIcons.CHEVRON_RIGHT_OUTLINE.icon),
+                        painter = painterResource(id = OceanIcons.CHEVRON_RIGHT_SOLID.icon),
+                        colorFilter = ColorFilter.tint(OceanColors.interfaceDarkUp),
                         contentDescription = ""
                     )
                 }
             }
         }
 
-        if (textListStyle != OceanTextListStyle.Default) {
-            HorizontalDivider(
-                modifier = Modifier.padding(
-                    start = dividerStyle.startPadding(contentHorizontalPadding),
-                    end = dividerStyle.endPadding(contentHorizontalPadding)
-                ),
-                thickness = dividerStyle.getTickness(),
-                color = OceanColors.interfaceLightDown
+        if (textListStyle != OceanTextListStyle.Default && showDivider) {
+            OceanDivider(
+                modifier = Modifier.padding(horizontal = contentHorizontalPadding)
             )
         }
     }
@@ -263,51 +268,6 @@ fun OceanTextListItemSkeleton(items: Int) {
             }
         }
     }
-}
-
-@Composable
-fun OceanTextListItem(
-    modifier: Modifier = Modifier,
-    contentHorizontalPadding: Dp = OceanSpacing.xs,
-    title: String,
-    description: String = "",
-    caption: String = "",
-    captionStyle: TextStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkUp),
-    textInfo: String = "",
-    textInfoColor: Color? = null,
-    selected: Boolean = false,
-    showDivider: Boolean = true,
-    tagStyle: OceanTagStyle = OceanTagStyle.None,
-    textListStyle: OceanTextListStyle = OceanTextListStyle.Default,
-    contentStyle: OceanTextListContentStyle = OceanTextListContentStyle.Default,
-    backgroundColor: Color = OceanColors.interfaceLightPure,
-    showError: Boolean = false,
-    enabled: Boolean = true,
-    onSelectedBox: ((Boolean) -> Unit)? = null,
-    showClickableChevron: Boolean = true,
-    onClick: (() -> Unit)? = null
-) {
-    OceanTextListItem(
-        modifier = modifier,
-        contentHorizontalPadding = contentHorizontalPadding,
-        title = title,
-        description = description,
-        caption = caption,
-        captionStyle = captionStyle,
-        textInfo = textInfo,
-        textInfoColor = textInfoColor,
-        selected = selected,
-        dividerStyle = if (showDivider) OceanTextListItemDividerStyle.FullWidth else OceanTextListItemDividerStyle.None,
-        tagStyle = tagStyle,
-        textListStyle = textListStyle,
-        contentStyle = contentStyle,
-        backgroundColor = backgroundColor,
-        showError = showError,
-        enabled = enabled,
-        onSelectedBox = onSelectedBox,
-        showClickableChevron = showClickableChevron,
-        onClick = onClick
-    )
 }
 
 @Preview(heightDp = 1200)
@@ -445,20 +405,6 @@ fun OceanTextListItemPreview() {
         )
         OceanTextListItem(
             modifier = Modifier,
-            title = "Title divider on content inset",
-            caption = "Caption with bold and colorInterfaceDarkDown",
-            captionStyle = OceanTextStyle.captionBold.copy(color = OceanColors.interfaceDarkDown),
-            selected = true,
-            textListStyle = OceanTextListStyle.RadioButton,
-            showError = false,
-            enabled = true,
-            dividerStyle = OceanTextListItemDividerStyle.ContentInset,
-            onSelectedBox = {
-                println("isSelected: $it")
-            }
-        )
-        OceanTextListItem(
-            modifier = Modifier,
             title = "Title Sem divider",
             description = "Description",
             selected = true,
@@ -479,39 +425,5 @@ fun OceanTextListItemPreview() {
             enabled = false
         )
         OceanTextListItemSkeleton(5)
-    }
-}
-
-sealed class OceanTextListItemDividerStyle {
-    object FullWidth : OceanTextListItemDividerStyle()
-    object ContentInset : OceanTextListItemDividerStyle()
-    object None : OceanTextListItemDividerStyle()
-    data class Custom(val startPadding: Dp, val endPadding: Dp) : OceanTextListItemDividerStyle()
-
-    @Composable
-    fun startPadding(contentPadding: Dp): Dp {
-        return when (this) {
-            FullWidth -> 0.dp
-            ContentInset -> contentPadding
-            is Custom -> this.startPadding
-            None -> 0.dp
-        }
-    }
-
-    @Composable
-    fun endPadding(contentPadding: Dp): Dp {
-        return when (this) {
-            FullWidth -> 0.dp
-            ContentInset -> contentPadding
-            is Custom -> this.endPadding
-            None -> 0.dp
-        }
-    }
-
-    fun getTickness(): Dp {
-        return when (this) {
-            None -> 0.dp
-            else -> 1.dp
-        }
     }
 }

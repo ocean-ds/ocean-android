@@ -22,7 +22,7 @@ internal fun DefaultCardListItem(
     disabled: Boolean = false,
     isSelected: Boolean = false,
     showChevron: Boolean = false,
-    onClick: (() -> Unit)?,
+    onClick: (() -> Unit)? = null,
     onDisabledClick: (() -> Unit)?
 ) {
     BaseCardListItem(

@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -145,6 +144,9 @@ internal fun ContentCardListItem(
     disabled: Boolean,
     showChevron: Boolean = false
 ) {
+    val hasSelectableType = type is OceanCardListItemType.Selectable
+    val isTagAlignedEndWithSelectable = tagAlignment == OceanCardListItemTagAlignment.END && hasSelectableType
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(OceanSpacing.xs)
@@ -162,10 +164,16 @@ internal fun ContentCardListItem(
             description = description,
             caption = caption,
             contentStyle = contentStyle,
-            tagStyle = tagStyle,
+            tagStyle = if (isTagAlignedEndWithSelectable) null else tagStyle,
             tagAlignment = tagAlignment,
             disabled = disabled
         )
+
+        if (isTagAlignedEndWithSelectable && tagStyle != null) {
+            OceanTag(
+                style = tagStyle
+            )
+        }
 
         TrailingContentCardListItem(
             type = type,
@@ -223,7 +231,7 @@ private fun CenterContent(
             OceanText(
                 text = description,
                 style = contentStyle.getDescriptionStyle(),
-                color = if (disabled) OceanColors.interfaceLightDeep else Color.Unspecified
+                color = if (disabled) OceanColors.interfaceDarkUp else Color.Unspecified
             )
         }
 
@@ -232,8 +240,8 @@ private fun CenterContent(
 
             OceanText(
                 text = caption,
-                style = OceanTextStyle.caption,
-                color = if (disabled) OceanColors.interfaceLightDeep else Color.Unspecified
+                style = OceanTextStyle.captionBold,
+                color = if (disabled) OceanColors.interfaceDarkUp else Color.Unspecified
             )
         }
     }
@@ -246,10 +254,10 @@ private fun TitleWithTag(
     tagStyle: OceanTagStyle?,
     disabled: Boolean
 ) {
-    Text(
+    OceanText(
         text = title,
         style = contentStyle.getTitleStyle(),
-        color = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkPure
+        color = if (disabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure
     )
 
     if (tagStyle != null) {
@@ -304,7 +312,7 @@ private fun TrailingContentCardListItem(
                     OceanSpacing.StackXS()
 
                     OceanIcon(
-                        iconType = OceanIcons.CHEVRON_RIGHT_OUTLINE,
+                        iconType = OceanIcons.CHEVRON_RIGHT_SOLID,
                         modifier = Modifier.size(20.dp),
                         tint = if (disabled) OceanColors.interfaceLightDeep else OceanColors.interfaceDarkUp
                     )
@@ -313,7 +321,7 @@ private fun TrailingContentCardListItem(
         }
 
         is OceanCardListItemType.Selectable -> {
-            OceanSpacing.StackXS()
+            OceanSpacing.StackXXS()
 
             TrailingSelectableCardListItem(
                 type = type,
@@ -338,8 +346,7 @@ fun OceanCardListItemPreview() {
             verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
         ) {
             OceanCardListItem(
-                title = "Title",
-                onClick = {}
+                title = "Title"
             )
 
             OceanCardListItem(
@@ -350,7 +357,7 @@ fun OceanCardListItemPreview() {
                     layout = OceanTagLayout.Medium(),
                     type = OceanTagType.Positive
                 ),
-                onClick = {}
+                onClick = null
             )
 
             OceanCardListItem(
@@ -361,15 +368,16 @@ fun OceanCardListItemPreview() {
                     layout = OceanTagLayout.Medium(),
                     type = OceanTagType.Positive
                 ),
-                tagAlignment = OceanCardListItemTagAlignment.END,
-                onClick = {}
+                tagAlignment = OceanCardListItemTagAlignment.END
             )
 
             OceanCardListItem(
                 title = "Title with Chevron",
                 description = "Description with chevron icon",
                 showChevron = true,
-                onClick = {}
+                onClick = {
+                    Toast.makeText(context, "CardListItem clicked", Toast.LENGTH_SHORT).show()
+                }
             )
 
             OceanCardListItem(
@@ -377,10 +385,7 @@ fun OceanCardListItemPreview() {
                 description = "Description",
                 caption = "Caption",
                 onClick = {},
-                disabled = true,
-                onDisabledClick = {
-                    Toast.makeText(context, "Item disabled", Toast.LENGTH_SHORT).show()
-                }
+                disabled = true
             )
 
             OceanCardListItem(
@@ -441,6 +446,7 @@ fun OceanCardListItemPreview() {
             var checkboxUnselected by remember { mutableStateOf(false) }
             OceanCardListItem(
                 title = "Title Checkbox unselected",
+                caption = "asdfasdf",
                 description = "checkbox",
                 type = OceanCardListItemType.Selectable(
                     selectionType = OceanCardListItemType.Selectable.SelectionType.Checkbox,
@@ -460,6 +466,42 @@ fun OceanCardListItemPreview() {
                 ),
                 isSelected = radioSelected
             ) { radioSelected = !radioSelected }
+
+            var checkboxWithTag by remember { mutableStateOf(false) }
+            OceanCardListItem(
+                title = "Tag ao lado do Checkbox",
+                description = "Tag alinhada END com tipo Selectable",
+                tagStyle = OceanTagStyle.Default(
+                    label = "Tag",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Positive
+                ),
+                tagAlignment = OceanCardListItemTagAlignment.END,
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Checkbox,
+                    didUpdate = { checkboxWithTag = it }
+                ),
+                isSelected = checkboxWithTag,
+                onClick = { checkboxWithTag = !checkboxWithTag }
+            )
+
+            var radioWithTag by remember { mutableStateOf(true) }
+            OceanCardListItem(
+                title = "Tag ao lado do Radio",
+                description = "Tag alinhada END com radiobutton",
+                tagStyle = OceanTagStyle.Default(
+                    label = "Tag",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Warning
+                ),
+                tagAlignment = OceanCardListItemTagAlignment.END,
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
+                    didUpdate = { radioWithTag = it }
+                ),
+                isSelected = radioWithTag,
+                onClick = { radioWithTag = !radioWithTag }
+            )
         }
     }
 }

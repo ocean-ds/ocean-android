@@ -50,11 +50,4 @@ sealed interface OceanCardListItemStyle {
             }
         }
     }
-
-    @Composable
-    fun getIconBackgroundColor(isSelected: Boolean): Color {
-        return if (isSelected) {
-            OceanColors.brandPrimaryDown
-        } else OceanColors.interfaceLightUp
-    }
 }

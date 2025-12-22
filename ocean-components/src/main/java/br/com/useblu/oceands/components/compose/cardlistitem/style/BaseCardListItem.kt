@@ -18,11 +18,13 @@ internal fun BaseCardListItem(
     type: OceanCardListItemType,
     disabled: Boolean,
     isSelected: Boolean,
-    onClick: (() -> Unit)?,
-    onDisabledClick: (() -> Unit)?,
+    onClick: (() -> Unit)? = null,
+    onDisabledClick: (() -> Unit)? = null,
     targetBorderColor: Color? = null,
     content: @Composable () -> Unit
 ) {
+    val hasValidClick = onClick != null || (disabled && onDisabledClick != null)
+
     val backgroundColor = OceanCardListItemStyle.Default.getBackgroundColor(
         isSelected = isSelected,
         type = type
@@ -34,28 +36,42 @@ internal fun BaseCardListItem(
 
     val borderRadius = OceanBorderRadius.SM.allCorners
 
-    Card(
-        modifier = modifier
-            .disabledOverlay(
-                isDisabled = disabled,
-                disabledAlpha = 0.05f,
-                borderRadius = borderRadius
-            ),
-        colors = CardDefaults.cardColors(
-            containerColor = backgroundColor,
-            disabledContainerColor = backgroundColor
-        ),
-        shape = borderRadius.shape(),
-        border = BorderStroke(1.dp, borderColor),
-        enabled = (disabled && onDisabledClick == null).not(),
-        onClick = {
-            if (disabled) {
-                onDisabledClick?.invoke()
-            } else {
-                onClick?.invoke()
+    val cardModifier = modifier.disabledOverlay(
+        isDisabled = disabled,
+        disabledAlpha = 0.00f,
+        borderRadius = borderRadius
+    )
+
+    val cardColors = CardDefaults.cardColors(
+        containerColor = backgroundColor,
+        disabledContainerColor = backgroundColor
+    )
+
+    if (hasValidClick) {
+        Card(
+            modifier = cardModifier,
+            colors = cardColors,
+            shape = borderRadius.shape(),
+            border = BorderStroke(1.dp, borderColor),
+            enabled = (disabled && onDisabledClick == null).not(),
+            onClick = {
+                if (disabled) {
+                    onDisabledClick?.invoke()
+                } else {
+                    onClick?.invoke()
+                }
             }
+        ) {
+            content()
         }
-    ) {
-        content()
+    } else {
+        Card(
+            modifier = cardModifier,
+            colors = cardColors,
+            shape = borderRadius.shape(),
+            border = BorderStroke(1.dp, borderColor)
+        ) {
+            content()
+        }
     }
 }

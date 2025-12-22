@@ -5,6 +5,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -31,7 +32,8 @@ fun OceanIcon(
         Icon(
             painter = painterResource(id = iconType.icon),
             contentDescription = null,
-            modifier = modifier,
+            modifier = modifier
+                .testTag(iconType.name),
             tint = tint
         )
 
@@ -42,7 +44,8 @@ fun OceanIcon(
         Icon(
             painter = painterResource(id = fallbackIcon.icon),
             contentDescription = null,
-            modifier = modifier,
+            modifier = modifier
+                .testTag(fallbackIcon.name),
             tint = tint
         )
 

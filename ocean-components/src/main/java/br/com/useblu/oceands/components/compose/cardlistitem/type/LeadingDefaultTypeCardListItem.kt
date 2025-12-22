@@ -9,7 +9,6 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
-import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 
@@ -21,18 +20,14 @@ internal fun LeadingDefaultTypeCardListItem(
     disabled: Boolean
 ) {
     if (type.leadingIconToken != null) {
-        val iconSize = if (type.showIconBackground) 24.dp else 20.dp
-        val iconBackgroundColor = style.getIconBackgroundColor(isSelected = isSelected)
         Box(
-            modifier = Modifier
-                .size(40.dp)
-                .iconContainerBackground(type.showIconBackground, iconBackgroundColor)
+            modifier = Modifier.size(40.dp)
         ) {
             OceanIcon(
                 iconType = type.leadingIconToken,
                 modifier = Modifier
                     .align(Alignment.Center)
-                    .size(iconSize),
+                    .size(20.dp),
                 tint = when {
                     disabled -> OceanColors.interfaceLightDeep
                     isSelected -> OceanColors.interfaceLightPure

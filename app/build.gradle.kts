@@ -13,7 +13,7 @@ android {
         applicationId = "br.com.useblu.oceands.client"
         minSdk = Configs.minSdkVersion
         targetSdk = Configs.targetSdkVersion
-        versionCode = 21
+        versionCode = 22
         versionName = "1.0.0"
     }
 

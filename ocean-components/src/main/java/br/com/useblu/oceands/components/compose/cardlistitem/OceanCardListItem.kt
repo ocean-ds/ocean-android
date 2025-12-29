@@ -64,6 +64,16 @@ fun OceanCardListItem(
     onClick: (() -> Unit)? = null,
     onDisabledClick: (() -> Unit)? = null
 ) {
+    val effectiveOnClick: (() -> Unit)? = when {
+        type is OceanCardListItemType.Selectable -> {
+            {
+                type.didUpdate(!isSelected)
+                onClick?.let { it() }
+            }
+        }
+        else -> onClick
+    }
+
     when (style) {
         is OceanCardListItemStyle.Default -> {
             DefaultCardListItem(
@@ -78,7 +88,7 @@ fun OceanCardListItem(
                 disabled = disabled,
                 isSelected = isSelected,
                 showChevron = showChevron,
-                onClick = onClick,
+                onClick = effectiveOnClick,
                 onDisabledClick = onDisabledClick
             )
         }
@@ -96,7 +106,7 @@ fun OceanCardListItem(
                 disabled = disabled,
                 isSelected = isSelected,
                 showChevron = showChevron,
-                onClick = onClick,
+                onClick = effectiveOnClick,
                 onDisabledClick = onDisabledClick
             )
         }
@@ -446,14 +456,14 @@ fun OceanCardListItemPreview() {
             var checkboxUnselected by remember { mutableStateOf(false) }
             OceanCardListItem(
                 title = "Title Checkbox unselected",
-                caption = "asdfasdf",
+                caption = "clicável",
                 description = "checkbox",
                 type = OceanCardListItemType.Selectable(
                     selectionType = OceanCardListItemType.Selectable.SelectionType.Checkbox,
                     didUpdate = { checkboxUnselected = it }
                 ),
                 isSelected = checkboxUnselected
-            ) { checkboxUnselected = !checkboxUnselected }
+            )
 
             var radioSelected by remember { mutableStateOf(true) }
             OceanCardListItem(
@@ -462,10 +472,10 @@ fun OceanCardListItemPreview() {
                 caption = "Selectable",
                 type = OceanCardListItemType.Selectable(
                     selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
-                    didUpdate = { radioSelected = it }
+                    didUpdate = { radioSelected = !radioSelected }
                 ),
                 isSelected = radioSelected
-            ) { radioSelected = !radioSelected }
+            )
 
             var checkboxWithTag by remember { mutableStateOf(false) }
             OceanCardListItem(
@@ -481,8 +491,7 @@ fun OceanCardListItemPreview() {
                     selectionType = OceanCardListItemType.Selectable.SelectionType.Checkbox,
                     didUpdate = { checkboxWithTag = it }
                 ),
-                isSelected = checkboxWithTag,
-                onClick = { checkboxWithTag = !checkboxWithTag }
+                isSelected = checkboxWithTag
             )
 
             var radioWithTag by remember { mutableStateOf(true) }
@@ -499,8 +508,7 @@ fun OceanCardListItemPreview() {
                     selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
                     didUpdate = { radioWithTag = it }
                 ),
-                isSelected = radioWithTag,
-                onClick = { radioWithTag = !radioWithTag }
+                isSelected = radioWithTag
             )
         }
     }

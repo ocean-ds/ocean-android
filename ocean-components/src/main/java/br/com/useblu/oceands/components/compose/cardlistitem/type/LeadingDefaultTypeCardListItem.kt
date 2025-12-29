@@ -20,9 +20,7 @@ internal fun LeadingDefaultTypeCardListItem(
     disabled: Boolean
 ) {
     if (type.leadingIconToken != null) {
-        Box(
-            modifier = Modifier.size(40.dp)
-        ) {
+        Box {
             OceanIcon(
                 iconType = type.leadingIconToken,
                 modifier = Modifier
@@ -36,6 +34,6 @@ internal fun LeadingDefaultTypeCardListItem(
             )
         }
 
-        OceanSpacing.StackXS()
+        OceanSpacing.StackXXSExtra()
     }
 }

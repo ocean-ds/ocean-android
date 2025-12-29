@@ -33,7 +33,11 @@ internal fun TrailingSelectableCardListItem(
                 OceanSelectableRadio(
                     isSelected = isSelected,
                     enabled = !disabled,
-                    onSelectedBox = { type.didUpdate(!isSelected) }
+                    onSelectedBox = {
+                        if (!isSelected) {
+                            type.didUpdate(true)
+                        }
+                    }
                 )
             }
         }

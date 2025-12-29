@@ -64,11 +64,18 @@ fun OceanCardListItem(
     onClick: (() -> Unit)? = null,
     onDisabledClick: (() -> Unit)? = null
 ) {
-    val effectiveOnClick: (() -> Unit)? = when {
-        type is OceanCardListItemType.Selectable -> {
+    val effectiveOnClick: (() -> Unit)? = when (type) {
+        is OceanCardListItemType.Selectable -> {
             {
-                type.didUpdate(!isSelected)
-                onClick?.let { it() }
+                when (type.selectionType) {
+                    OceanCardListItemType.Selectable.SelectionType.Radiobutton -> {
+                        if (!isSelected) type.didUpdate(true)
+                    }
+                    OceanCardListItemType.Selectable.SelectionType.Checkbox -> {
+                        type.didUpdate(!isSelected)
+                    }
+                }
+                onClick?.invoke()
             }
         }
         else -> onClick
@@ -465,7 +472,7 @@ fun OceanCardListItemPreview() {
                 isSelected = checkboxUnselected
             )
 
-            var radioSelected by remember { mutableStateOf(true) }
+            var radioSelected by remember { mutableStateOf(false) }
             OceanCardListItem(
                 title = "Title Radio selected",
                 description = "Radio",
@@ -494,7 +501,7 @@ fun OceanCardListItemPreview() {
                 isSelected = checkboxWithTag
             )
 
-            var radioWithTag by remember { mutableStateOf(true) }
+            var radioWithTag by remember { mutableStateOf(false) }
             OceanCardListItem(
                 title = "Tag ao lado do Radio",
                 description = "Tag alinhada END com radiobutton",

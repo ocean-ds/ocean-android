@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
@@ -20,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.CardCta
+import br.com.useblu.oceands.components.compose.OceanAlert
 import br.com.useblu.oceands.components.compose.OceanBadge
 import br.com.useblu.oceands.components.compose.OceanBadgeSize
 import br.com.useblu.oceands.components.compose.OceanProgressBar
@@ -35,6 +38,8 @@ import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.OceanTextListContentStyle
 import br.com.useblu.oceands.model.OceanTextListStyle
+import br.com.useblu.oceands.model.compose.AlertStyle
+import br.com.useblu.oceands.model.compose.OceanAlertType
 import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -50,8 +55,93 @@ import br.com.useblu.oceands.utils.OceanIcons
 fun OceanCardGroupPreview() {
     OceanTheme {
         Column(
-            modifier = Modifier.background(color = OceanColors.interfaceLightPure)
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .background(color = OceanColors.interfaceLightPure)
         ) {
+            OceanCardGroup(
+                modifier = Modifier.padding(16.dp),
+                title = "Crédito",
+                tag = OceanTagModel(
+                    type = OceanTagType.Highlight,
+                    text = "Boletos disponiveis"
+                ),
+                actionTitle = "Ir para boletos",
+                actionClick = { },
+                badgeText = "9",
+                badgeType = OceanBadgeType.WARNING,
+                alert = OceanAlertType.WithBadges(
+                    alertType = AlertStyle.StyleInfo(),
+                    badges = listOf("getnet", "blu", "cielo"),
+                    label = "Use o saldo disponível na Rede e pague hoje",
+                    wrapSize = 3
+                )
+            ) {
+                OceanTextListItem(
+                    title = "Limite para pagar boletos",
+                    description = "R$ 9.000,00",
+                    caption = "Pague em até 12 vezes",
+                    contentStyle = OceanTextListContentStyle.Inverted,
+                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
+                    showDivider = false
+                )
+            }
+
+            OceanCardGroup(
+                modifier = Modifier.padding(16.dp),
+                title = "Crédito",
+                tag = OceanTagModel(
+                    type = OceanTagType.Highlight,
+                    text = "Boletos disponiveis"
+                ),
+                actionTitle = "Ir para boletos",
+                actionClick = { },
+                badgeText = "9",
+                badgeType = OceanBadgeType.WARNING,
+                alert = OceanAlertType.WithBadges(
+                    alertType = AlertStyle.StylePositive(),
+                    badges = listOf("getnet", "blu", "cielo"),
+                    label = "Use o saldo disponível na Rede e pague hoje",
+                    wrapSize = 3
+                )
+            ) {
+                OceanTextListItem(
+                    title = "Limite para pagar boletos",
+                    description = "R$ 9.000,00",
+                    caption = "Pague em até 12 vezes",
+                    contentStyle = OceanTextListContentStyle.Inverted,
+                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
+                    showDivider = false
+                )
+            }
+
+            OceanCardGroup(
+                modifier = Modifier.padding(16.dp),
+                title = "Crédito",
+                tag = OceanTagModel(
+                    type = OceanTagType.Highlight,
+                    text = "Boletos disponiveis"
+                ),
+                actionTitle = "Ir para boletos",
+                actionClick = { },
+                badgeText = "9",
+                badgeType = OceanBadgeType.WARNING,
+                alert = OceanAlertType.WithBadges(
+                    alertType = AlertStyle.StyleWarning(),
+                    label = "Use o saldo disponível na Rede e pague hoje",
+                    wrapSize = 3
+                )
+            ) {
+                OceanTextListItem(
+                    title = "Limite para pagar boletos",
+                    description = "R$ 9.000,00",
+                    caption = "Pague em até 12 vezes",
+                    contentStyle = OceanTextListContentStyle.Inverted,
+                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
+                    showDivider = false
+                )
+            }
+
             OceanCardGroup(
                 modifier = Modifier.padding(16.dp),
                 title = "Crédito",
@@ -170,6 +260,7 @@ fun OceanCardGroup(
     highlightText: String = "",
     highlightTextColor: Color = OceanColors.interfaceLightUp,
     highlightBackgroundColor: Color = OceanColors.brandPrimaryPure,
+    alert: OceanAlertType.WithBadges? = null,
     content: @Composable () -> Unit
 ) {
     Card(
@@ -215,6 +306,14 @@ fun OceanCardGroup(
         }
 
         content()
+
+        alert?.let { type ->
+            OceanAlert(
+                type = type,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
 
         CardCta(
             showProgress = showProgress,

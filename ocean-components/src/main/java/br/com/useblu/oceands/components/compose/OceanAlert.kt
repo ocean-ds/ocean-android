@@ -19,14 +19,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.components.compose.balance.cardbalance.BadgesInteraction
 import br.com.useblu.oceands.model.compose.AlertStyle
 import br.com.useblu.oceands.model.compose.OceanAlertType
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
 
 @Preview
@@ -41,6 +44,17 @@ fun OceanAlertPreview() {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         val context = LocalContext.current
+
+        OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
+            type = OceanAlertType.WithBadges(
+                alertType = AlertStyle.StyleInfo(),
+                badges = listOf("getnet", "blu"),
+                label = "Estas pessoas também visualizaram este documento",
+                wrapSize = 3
+            )
+        )
+
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.Labeled(
@@ -303,6 +317,17 @@ fun OceanAlert(
             )
         }
 
+        is OceanAlertType.WithBadges -> {
+            OceanAlertWithBadges(
+                modifier = modifier,
+                badges = type.badges,
+                label = type.label,
+                style = type.alertType,
+                wrapSize = type.wrapSize,
+                badgeSize = OceanSpacing.sm
+            )
+        }
+
         is OceanAlertType.EntitledShort -> {
             OceanAlertEntitledShort(
                 modifier = modifier,
@@ -395,6 +420,50 @@ fun OceanAlertDefaultStyle(
 }
 
 @Composable
+fun OceanAlertWithBadges(
+    modifier: Modifier = Modifier,
+    badges: List<String>? = null,
+    label: String,
+    style: AlertStyle,
+    wrapSize: Int,
+    badgeSize: Dp,
+    roundedCorner: Boolean = false
+) {
+    Row(
+        verticalAlignment = CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .borderBackground(
+                color = style.alertBackgroundColor(),
+                borderRadius = if (roundedCorner) {
+                    OceanBorderRadius.SM.allCorners
+                } else {
+                    OceanBorderRadius.None
+                }
+            )
+            .padding(
+                vertical = OceanSpacing.xxsExtra,
+                horizontal = OceanSpacing.xs
+            )
+    ) {
+        badges?.let {
+            BadgesInteraction(
+                badges = badges,
+                wrapSize = wrapSize,
+                badgeSize = badgeSize
+            )
+
+            OceanSpacing.StackXXS()
+        }
+
+        OceanText(
+            text = label,
+            style = OceanTextStyle.captionBold
+        )
+    }
+}
+
+@Composable
 fun OceanAlertEntitledShort(
     modifier: Modifier = Modifier,
     title: String,
@@ -425,7 +494,8 @@ fun OceanAlertEntitledShort(
             modifier = Modifier.weight(1f)
         ) {
             Row(
-                verticalAlignment = CenterVertically
+                verticalAlignment = CenterVertically,
+                modifier = Modifier
             ) {
                 OceanText(
                     text = title,

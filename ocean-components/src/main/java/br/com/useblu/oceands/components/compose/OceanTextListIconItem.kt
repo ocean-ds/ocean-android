@@ -120,7 +120,7 @@ private fun OceanTextListIconItemPreview() {
 
             OceanTextListIconItem(
                 title = "Title",
-                description = "Very long description to check if line breaks",
+                description = "Very long label to check if line breaks",
                 caption = "Very long caption to check if line breaks",
                 isWarningCaption = true,
                 badgeText = "Teste",

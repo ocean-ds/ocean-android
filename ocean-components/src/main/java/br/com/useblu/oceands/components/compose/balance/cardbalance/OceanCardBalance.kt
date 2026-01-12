@@ -25,8 +25,6 @@ import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanLink
 import br.com.useblu.oceands.components.compose.OceanLinkIcon
 import br.com.useblu.oceands.components.compose.OceanText
-import br.com.useblu.oceands.components.compose.balance.BadgeStyle
-import br.com.useblu.oceands.components.compose.balance.BadgesContent
 import br.com.useblu.oceands.components.compose.balance.BalanceItemContent
 import br.com.useblu.oceands.components.compose.balance.ItemExpandableContent
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceBanner
@@ -101,24 +99,6 @@ fun OceanCardBalance(
             }
         }
     }
-}
-
-@Composable
-private fun BadgesInteraction(
-    badges: List<String>,
-    wrapSize: Int
-) {
-    BadgesContent(
-        wrapSize = wrapSize,
-        badges = badges,
-        style = BadgeStyle(
-            size = OceanSpacing.md,
-            shape = OceanBorderRadius.Circle.allCorners.shape(),
-            fallbackBackgroundColor = OceanColors.brandPrimaryPure,
-            fallbackTextColor = OceanColors.interfaceLightPure,
-            useClip = true
-        )
-    )
 }
 
 @Composable

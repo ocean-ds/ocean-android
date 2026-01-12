@@ -15,7 +15,7 @@ enum class OceanTagType {
 }
 
 fun fromString(tagType: String): OceanTagType {
-    return when (tagType.lowercase()) {
+    return when (tagType.lowercase().replace("_", "")) {
         "neutral" -> OceanTagType.Neutral
         "neutralprimary" -> OceanTagType.NeutralPrimary
         "negative" -> OceanTagType.Negative

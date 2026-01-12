@@ -25,7 +25,7 @@ internal fun LeadingDefaultTypeCardListItem(
                 iconType = type.leadingIconToken,
                 modifier = Modifier
                     .align(Alignment.Center)
-                    .size(20.dp),
+                    .size(24.dp),
                 tint = when {
                     disabled -> OceanColors.interfaceLightDeep
                     isSelected -> OceanColors.interfaceLightPure

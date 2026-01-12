@@ -19,9 +19,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.components.compose.balance.cardbalance.BadgeSize
 import br.com.useblu.oceands.components.compose.balance.cardbalance.BadgesInteraction
 import br.com.useblu.oceands.model.compose.AlertStyle
 import br.com.useblu.oceands.model.compose.OceanAlertType
@@ -324,7 +324,7 @@ fun OceanAlert(
                 label = type.label,
                 style = type.alertType,
                 wrapSize = type.wrapSize,
-                badgeSize = OceanSpacing.sm
+                badgeSize = BadgeSize.SM
             )
         }
 
@@ -426,7 +426,7 @@ fun OceanAlertWithBadges(
     label: String,
     style: AlertStyle,
     wrapSize: Int,
-    badgeSize: Dp,
+    badgeSize: BadgeSize,
     roundedCorner: Boolean = false
 ) {
     Row(

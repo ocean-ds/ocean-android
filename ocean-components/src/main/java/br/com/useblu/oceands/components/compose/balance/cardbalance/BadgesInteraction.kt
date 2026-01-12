@@ -12,17 +12,32 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 fun BadgesInteraction(
     badges: List<String>,
     wrapSize: Int,
-    badgeSize: Dp = OceanSpacing.md
+    badgeSize: BadgeSize = BadgeSize.MD
 ) {
     BadgesContent(
         wrapSize = wrapSize,
         badges = badges,
         style = BadgeStyle(
-            size = badgeSize,
+            size = badgeSize.toDp(),
             shape = OceanBorderRadius.Circle.allCorners.shape(),
             fallbackBackgroundColor = OceanColors.brandPrimaryPure,
             fallbackTextColor = OceanColors.interfaceLightPure,
             useClip = true
         )
     )
+}
+
+sealed interface BadgeSize {
+    @Composable
+    fun toDp(): Dp
+
+    data object SM : BadgeSize {
+        @Composable
+        override fun toDp(): Dp = OceanSpacing.sm
+    }
+
+    data object MD : BadgeSize {
+        @Composable
+        override fun toDp(): Dp = OceanSpacing.md
+    }
 }

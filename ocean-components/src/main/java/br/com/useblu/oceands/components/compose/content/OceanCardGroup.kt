@@ -38,7 +38,6 @@ import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.OceanTextListContentStyle
 import br.com.useblu.oceands.model.OceanTextListStyle
-import br.com.useblu.oceands.model.compose.AlertStyle
 import br.com.useblu.oceands.model.compose.OceanAlertType
 import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
@@ -59,89 +58,6 @@ fun OceanCardGroupPreview() {
                 .verticalScroll(rememberScrollState())
                 .background(color = OceanColors.interfaceLightPure)
         ) {
-            OceanCardGroup(
-                modifier = Modifier.padding(16.dp),
-                title = "Crédito",
-                tag = OceanTagModel(
-                    type = OceanTagType.Highlight,
-                    text = "Boletos disponiveis"
-                ),
-                actionTitle = "Ir para boletos",
-                actionClick = { },
-                badgeText = "9",
-                badgeType = OceanBadgeType.WARNING,
-                alert = OceanAlertType.WithBadges(
-                    alertType = AlertStyle.StyleInfo(),
-                    badges = listOf("getnet", "blu", "cielo"),
-                    label = "Use o saldo disponível na Rede e pague hoje",
-                    wrapSize = 3
-                )
-            ) {
-                OceanTextListItem(
-                    title = "Limite para pagar boletos",
-                    description = "R$ 9.000,00",
-                    caption = "Pague em até 12 vezes",
-                    contentStyle = OceanTextListContentStyle.Inverted,
-                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
-                    showDivider = false
-                )
-            }
-
-            OceanCardGroup(
-                modifier = Modifier.padding(16.dp),
-                title = "Crédito",
-                tag = OceanTagModel(
-                    type = OceanTagType.Highlight,
-                    text = "Boletos disponiveis"
-                ),
-                actionTitle = "Ir para boletos",
-                actionClick = { },
-                badgeText = "9",
-                badgeType = OceanBadgeType.WARNING,
-                alert = OceanAlertType.WithBadges(
-                    alertType = AlertStyle.StylePositive(),
-                    badges = listOf("getnet", "blu", "cielo"),
-                    label = "Use o saldo disponível na Rede e pague hoje",
-                    wrapSize = 3
-                )
-            ) {
-                OceanTextListItem(
-                    title = "Limite para pagar boletos",
-                    description = "R$ 9.000,00",
-                    caption = "Pague em até 12 vezes",
-                    contentStyle = OceanTextListContentStyle.Inverted,
-                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
-                    showDivider = false
-                )
-            }
-
-            OceanCardGroup(
-                modifier = Modifier.padding(16.dp),
-                title = "Crédito",
-                tag = OceanTagModel(
-                    type = OceanTagType.Highlight,
-                    text = "Boletos disponiveis"
-                ),
-                actionTitle = "Ir para boletos",
-                actionClick = { },
-                badgeText = "9",
-                badgeType = OceanBadgeType.WARNING,
-                alert = OceanAlertType.WithBadges(
-                    alertType = AlertStyle.StyleWarning(),
-                    label = "Use o saldo disponível na Rede e pague hoje",
-                    wrapSize = 3
-                )
-            ) {
-                OceanTextListItem(
-                    title = "Limite para pagar boletos",
-                    description = "R$ 9.000,00",
-                    caption = "Pague em até 12 vezes",
-                    contentStyle = OceanTextListContentStyle.Inverted,
-                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
-                    showDivider = false
-                )
-            }
-
             OceanCardGroup(
                 modifier = Modifier.padding(16.dp),
                 title = "Crédito",

@@ -51,10 +51,16 @@ sealed interface OceanAlertType {
         val title: String,
         val description: String
     ) : OceanAlertType
+
+    class WithBadges(
+        val alertType: AlertStyle = AlertStyle.StyleInfo(),
+        val badges: List<String>? = null,
+        val label: String,
+        val wrapSize: Int = 3
+    ) : OceanAlertType
 }
 
 sealed interface AlertStyle {
-
     val titleColor: @Composable () -> Color
     val titleStyle: @Composable () -> TextStyle
     val descriptionStyle: @Composable () -> TextStyle
@@ -102,4 +108,14 @@ sealed interface AlertStyle {
         override val oceanIcon: OceanIcons? = OceanIcons.X_CIRCLE_OUTLINE,
         override val iconTint: @Composable () -> Color = { OceanColors.statusNegativePure }
     ) : AlertStyle
+
+    fun fromString(style: String): AlertStyle {
+        return when (style.lowercase().replace("_", "")) {
+            "info" -> StyleInfo()
+            "warning" -> StyleWarning()
+            "positive" -> StylePositive()
+            "negative" -> StyleNegative()
+            else -> StyleInfo()
+        }
+    }
 }

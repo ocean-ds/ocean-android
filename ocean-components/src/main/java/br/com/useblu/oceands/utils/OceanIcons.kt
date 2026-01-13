@@ -3,10 +3,7 @@ package br.com.useblu.oceands.utils
 import androidx.annotation.DrawableRes
 import br.com.useblu.oceands.R
 
-enum class OceanIcons(
-    val token: String,
-    @DrawableRes val icon: Int
-) {
+enum class OceanIcons(val token: String, @DrawableRes val icon: Int) {
     APPAREL_OUTLINE(
         token = "appareloutline",
         icon = R.drawable.ocean_icon_apparel_outline
@@ -1995,6 +1992,14 @@ enum class OceanIcons(
     FLASH_ON_OUTLINE(
         token = "flashonoutline",
         icon = R.drawable.ocean_icon_flash_on_outline
+    ),
+    FLASH_OFF_ALT_OUTLINE(
+        token = "flashoffaltoutline",
+        icon = R.drawable.icon_flash_off_alt_outline
+    ),
+    FLASH_ON_ALT_OUTLINE(
+        token = "flashonaltoutline",
+        icon = R.drawable.icon_flash_alt_outline
     ),
     FOOD_AND_BEVERAGE_OUTLINE(
         token = "foodandbeverageoutline",

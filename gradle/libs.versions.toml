@@ -1,7 +1,7 @@
 [versions]
 gradle = "8.13.1"
 junitVersion = "4.13.2"
-kotlinGradlePlugin = "2.2.21"
+kotlinGradlePlugin = "2.3.0"
 benchmarkBaselineProfileGradlePlugin = "1.4.1"
 benchmarkMacroJunit4 = "1.4.1"
 composeBom = "2025.11.01"

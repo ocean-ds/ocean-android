@@ -46,7 +46,8 @@ fun PreviewOceanTopBarInverse() {
             onClickIcon = {},
             onClickToolbar = {},
             visibleShadow = true,
-            backgroundColor = OceanColors.interfaceLightUp
+            backgroundColor = OceanColors.brandPrimaryPure,
+            itemsStyle = OceanTopBarItemsStyle.INVERSE
         )
 
         OceanSpacing.StackSM()
@@ -67,7 +68,9 @@ fun PreviewOceanTopBarInverse() {
             onClickToolbar = {},
             visibleShadow = true,
             iconInvisible = true,
-            menuIcon = OceanIcons.HELP_OUTLINE
+            menuIcon = OceanIcons.HELP_OUTLINE,
+            backgroundColor = OceanColors.brandPrimaryPure,
+            itemsStyle = OceanTopBarItemsStyle.INVERSE
         )
 
         OceanSpacing.StackSM()
@@ -151,8 +154,8 @@ fun OceanTopBarInverse(
     onClickToolbar: () -> Unit = {},
     visibleShadow: Boolean = false,
     iconInvisible: Boolean = false,
-    backgroundColor: Color = OceanColors.interfaceLightPure
-
+    backgroundColor: Color = OceanColors.interfaceLightPure,
+    itemsStyle: OceanTopBarItemsStyle = OceanTopBarItemsStyle.DEFAULT
 ) {
     TopBar(
         onClickToolbar = onClickToolbar,
@@ -162,7 +165,8 @@ fun OceanTopBarInverse(
         title = title,
         visibleShadow = visibleShadow,
         actions = actions,
-        backgroundColor = backgroundColor
+        backgroundColor = backgroundColor,
+        itemsStyle = itemsStyle
     )
 }
 
@@ -176,7 +180,8 @@ fun OceanTopBarInverse(
     onClickToolbar: () -> Unit = {},
     visibleShadow: Boolean = false,
     iconInvisible: Boolean = false,
-    backgroundColor: Color = OceanColors.interfaceLightPure
+    backgroundColor: Color = OceanColors.interfaceLightPure,
+    itemsStyle: OceanTopBarItemsStyle = OceanTopBarItemsStyle.DEFAULT
 ) {
     TopBar(
         onClickToolbar = onClickToolbar,
@@ -187,7 +192,8 @@ fun OceanTopBarInverse(
         menuIcon = menuIcon,
         onClickMenuIcon = onClickMenuIcon,
         visibleShadow = visibleShadow,
-        backgroundColor = backgroundColor
+        backgroundColor = backgroundColor,
+        itemsStyle = itemsStyle
     )
 }
 
@@ -202,8 +208,10 @@ private fun TopBar(
     onClickMenuIcon: (() -> Unit)? = null,
     actions: (@Composable () -> Unit)? = null,
     visibleShadow: Boolean,
-    backgroundColor: Color
+    backgroundColor: Color,
+    itemsStyle: OceanTopBarItemsStyle = OceanTopBarItemsStyle.DEFAULT
 ) {
+    val itemsColor = itemsStyle.getColor()
     Column(
         modifier = Modifier
             .topBarBackground(backgroundColor)
@@ -228,7 +236,7 @@ private fun TopBar(
                         painter = painterResource(id = topBarIcon.icon),
                         contentDescription = null,
                         modifier = Modifier.size(24.dp),
-                        tint = OceanColors.brandPrimaryPure
+                        tint = itemsColor
                     )
                 }
             }
@@ -240,7 +248,7 @@ private fun TopBar(
                 text = title,
                 fontSize = OceanFontSize.sm,
                 fontFamily = OceanFontFamily.HighlightExtraBold,
-                color = OceanColors.brandPrimaryPure,
+                color = itemsColor,
                 maxLines = 1,
                 modifier = Modifier
                     .padding(vertical = OceanSpacing.xs)
@@ -256,7 +264,7 @@ private fun TopBar(
                     Icon(
                         painter = painterResource(id = menuIcon.icon),
                         contentDescription = null,
-                        tint = OceanColors.brandPrimaryPure,
+                        tint = itemsColor,
                         modifier = Modifier.size(24.dp)
                     )
                 }
@@ -281,6 +289,19 @@ private fun TopBar(
                         )
                     )
             )
+        }
+    }
+}
+
+enum class OceanTopBarItemsStyle {
+    DEFAULT,
+    INVERSE;
+
+    @Composable
+    fun getColor(): Color {
+        return when (this) {
+            DEFAULT -> OceanColors.brandPrimaryPure
+            INVERSE -> OceanColors.interfaceLightPure
         }
     }
 }

@@ -29,7 +29,7 @@ class OceanInstallmentsPinPadHandler(
 
     override var uiState: OceanPinPadUIState by mutableStateOf(
         OceanPinPadUIState(
-            inputValue = selectedInstallment?.let { "${it}x" } ?: "",
+            inputValue = selectedInstallment?.let { "$it" } ?: "",
             placeholder = textSetup.getPlaceholder(),
             hint = textSetup.getHint(maxInstallments)
         )

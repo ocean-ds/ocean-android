@@ -87,7 +87,7 @@ class OceanInstallmentsPinPadHandler(
     fun updateFormattedValue() {
         val maskedValue =
             selectedInstallment?.let {
-                "${it}x"
+                "$it"
             } ?: ""
         uiState =
             uiState.copy(

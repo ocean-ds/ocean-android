@@ -85,7 +85,7 @@ private fun PinPadExample(toast: OceanToast) {
                             val installmentsHandler = OceanInstallmentsPinPadHandler(
                                 maxInstallments = 12,
                                 textSetup = object : OceanInstallmentsPinPadTextSetup {
-                                    override fun getPlaceholder(): String = "0x"
+                                    override fun getPlaceholder(): String = "0"
 
                                     override fun getHint(maxInstallments: Int): String =
                                         "Até ${maxInstallments}x"

@@ -59,6 +59,13 @@ fun OceanCardGroupPreview() {
                 .verticalScroll(rememberScrollState())
                 .background(color = OceanColors.interfaceLightPure)
         ) {
+            val alertInfo = OceanAlertType.WithBadges(
+                alertType = AlertStyle.StyleInfo(),
+                badges = listOf("getnet", "blu", "cielo"),
+                label = "Use o saldo disponível na Rede e pague hoje",
+                wrapSize = 3
+            )
+
             OceanCardGroup(
                 modifier = Modifier.padding(16.dp),
                 title = "Crédito disponível",
@@ -70,12 +77,7 @@ fun OceanCardGroupPreview() {
                 actionClick = { },
                 badgeText = "9",
                 badgeType = OceanBadgeType.WARNING,
-                alert = OceanAlertType.WithBadges(
-                    alertType = AlertStyle.StyleInfo(),
-                    badges = listOf("getnet", "blu", "cielo"),
-                    label = "Use o saldo disponível na Rede e pague hoje",
-                    wrapSize = 3
-                )
+                alert = alertInfo
             ) {
                 OceanTextListItem(
                     title = "Limite para pagar boletos",
@@ -86,6 +88,13 @@ fun OceanCardGroupPreview() {
                     showDivider = false
                 )
             }
+
+            val alertPositive = OceanAlertType.WithBadges(
+                alertType = AlertStyle.StylePositive(),
+                badges = listOf("getnet", "blu", "cielo"),
+                label = "Antecipe seus recebíveis com taxas especiais",
+                wrapSize = 3
+            )
 
             OceanCardGroup(
                 modifier = Modifier.padding(16.dp),
@@ -98,12 +107,7 @@ fun OceanCardGroupPreview() {
                 actionClick = { },
                 badgeText = "5",
                 badgeType = OceanBadgeType.WARNING,
-                alert = OceanAlertType.WithBadges(
-                    alertType = AlertStyle.StylePositive(),
-                    badges = listOf("getnet", "blu", "cielo"),
-                    label = "Antecipe seus recebíveis com taxas especiais",
-                    wrapSize = 3
-                )
+                alert = alertPositive
             ) {
                 OceanTextListItem(
                     title = "Valor disponível para antecipação",
@@ -114,6 +118,12 @@ fun OceanCardGroupPreview() {
                     showDivider = false
                 )
             }
+
+            val alertWarning = OceanAlertType.WithBadges(
+                alertType = AlertStyle.StyleWarning(),
+                label = "Você tem pagamentos que vencem em breve",
+                wrapSize = 3
+            )
 
             OceanCardGroup(
                 modifier = Modifier.padding(16.dp),
@@ -126,11 +136,7 @@ fun OceanCardGroupPreview() {
                 actionClick = { },
                 badgeText = "3",
                 badgeType = OceanBadgeType.WARNING,
-                alert = OceanAlertType.WithBadges(
-                    alertType = AlertStyle.StyleWarning(),
-                    label = "Você tem pagamentos que vencem em breve",
-                    wrapSize = 3
-                )
+                alert = alertWarning
             ) {
                 OceanTextListItem(
                     title = "Total a pagar",

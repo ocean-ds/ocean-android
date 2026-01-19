@@ -38,6 +38,7 @@ import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.OceanTextListContentStyle
 import br.com.useblu.oceands.model.OceanTextListStyle
+import br.com.useblu.oceands.model.compose.AlertStyle
 import br.com.useblu.oceands.model.compose.OceanAlertType
 import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
@@ -58,6 +59,95 @@ fun OceanCardGroupPreview() {
                 .verticalScroll(rememberScrollState())
                 .background(color = OceanColors.interfaceLightPure)
         ) {
+            val alertInfo = OceanAlertType.WithBadges(
+                alertType = AlertStyle.StyleInfo(),
+                badges = listOf("getnet", "blu", "cielo"),
+                label = "Use o saldo disponível na Rede e pague hoje",
+                wrapSize = 3
+            )
+
+            OceanCardGroup(
+                modifier = Modifier.padding(16.dp),
+                title = "Crédito disponível",
+                tag = OceanTagModel(
+                    type = OceanTagType.Highlight,
+                    text = "Boletos disponiveis"
+                ),
+                actionTitle = "Ver todos os boletos",
+                actionClick = { },
+                badgeText = "9",
+                badgeType = OceanBadgeType.WARNING,
+                alert = alertInfo
+            ) {
+                OceanTextListItem(
+                    title = "Limite para pagar boletos",
+                    description = "R$ 9.000,00",
+                    caption = "Pague em até 12 vezes",
+                    contentStyle = OceanTextListContentStyle.Inverted,
+                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
+                    showDivider = false
+                )
+            }
+
+            val alertPositive = OceanAlertType.WithBadges(
+                alertType = AlertStyle.StylePositive(),
+                badges = listOf("getnet", "blu", "cielo"),
+                label = "Antecipe seus recebíveis com taxas especiais",
+                wrapSize = 3
+            )
+
+            OceanCardGroup(
+                modifier = Modifier.padding(16.dp),
+                title = "Antecipação",
+                tag = OceanTagModel(
+                    type = OceanTagType.Highlight,
+                    text = "Saldo disponível"
+                ),
+                actionTitle = "Antecipar recebíveis",
+                actionClick = { },
+                badgeText = "5",
+                badgeType = OceanBadgeType.WARNING,
+                alert = alertPositive
+            ) {
+                OceanTextListItem(
+                    title = "Valor disponível para antecipação",
+                    description = "R$ 15.000,00",
+                    caption = "Taxa a partir de 1,99% a.m.",
+                    contentStyle = OceanTextListContentStyle.Inverted,
+                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
+                    showDivider = false
+                )
+            }
+
+            val alertWarning = OceanAlertType.WithBadges(
+                alertType = AlertStyle.StyleWarning(),
+                label = "Você tem pagamentos que vencem em breve",
+                wrapSize = 3
+            )
+
+            OceanCardGroup(
+                modifier = Modifier.padding(16.dp),
+                title = "Pagamentos pendentes",
+                tag = OceanTagModel(
+                    type = OceanTagType.Highlight,
+                    text = "Requer atenção"
+                ),
+                actionTitle = "Gerenciar pagamentos",
+                actionClick = { },
+                badgeText = "3",
+                badgeType = OceanBadgeType.WARNING,
+                alert = alertWarning
+            ) {
+                OceanTextListItem(
+                    title = "Total a pagar",
+                    description = "R$ 2.500,00",
+                    caption = "Vencimento em 3 dias",
+                    contentStyle = OceanTextListContentStyle.Inverted,
+                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
+                    showDivider = false
+                )
+            }
+
             OceanCardGroup(
                 modifier = Modifier.padding(16.dp),
                 title = "Crédito",

@@ -312,8 +312,9 @@ fun OceanTextListItemPreview() {
         )
         OceanTextListItem(
             modifier = Modifier,
-            title = "Title",
+            title = "Title - Blank Icon",
             description = "Description",
+            textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BLANK_ICON),
             selected = false,
             showError = false,
             enabled = false

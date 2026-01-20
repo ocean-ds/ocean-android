@@ -2412,6 +2412,11 @@ enum class OceanIcons(val token: String, @DrawableRes val icon: Int) {
     BLU_ANALISYS_OUTLINE(
         token = "bluanalisysoutline",
         icon = R.drawable.ocean_icon_blu_analisys_outline
+    ),
+
+    BLANK_ICON(
+        token = "localblankicon",
+        icon = R.drawable.local_blank_icon
     );
 
     companion object {

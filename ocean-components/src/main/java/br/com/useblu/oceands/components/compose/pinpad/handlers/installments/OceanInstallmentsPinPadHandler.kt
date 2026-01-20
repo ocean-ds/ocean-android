@@ -29,7 +29,7 @@ class OceanInstallmentsPinPadHandler(
 
     override var uiState: OceanPinPadUIState by mutableStateOf(
         OceanPinPadUIState(
-            inputValue = selectedInstallment?.let { "${it}x" } ?: "",
+            inputValue = selectedInstallment?.let { "$it" } ?: "",
             placeholder = textSetup.getPlaceholder(),
             hint = textSetup.getHint(maxInstallments)
         )
@@ -87,7 +87,7 @@ class OceanInstallmentsPinPadHandler(
     fun updateFormattedValue() {
         val maskedValue =
             selectedInstallment?.let {
-                "${it}x"
+                "$it"
             } ?: ""
         uiState =
             uiState.copy(

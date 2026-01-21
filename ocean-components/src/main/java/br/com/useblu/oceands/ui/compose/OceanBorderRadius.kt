@@ -353,12 +353,14 @@ fun Modifier.borderRadius(borderRadius: OceanBorderRadius): Modifier {
 
 fun Modifier.borderBackground(color: Color, borderRadius: OceanBorderRadius): Modifier {
     return this
+        .borderRadius(borderRadius)
         .background(color = color, shape = borderRadius.shape())
 }
 
 fun Modifier.borderBackground(brush: Brush, borderRadius: OceanBorderRadius): Modifier {
     return this
-        .background(brush = brush, shape = borderRadius.shape())
+        .borderRadius(borderRadius)
+        .background(brush = brush)
 }
 
 fun Modifier.borderWithBackground(

@@ -1,4 +1,5 @@
 import com.android.build.gradle.internal.dsl.ManagedVirtualDevice
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id("com.android.test")
@@ -8,15 +9,17 @@ plugins {
 
 android {
     namespace = "br.com.useblu.oceands.baselineprofile"
-    compileSdk = 35
+    compileSdk = Configs.compileSdkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
     }
 
     defaultConfig {

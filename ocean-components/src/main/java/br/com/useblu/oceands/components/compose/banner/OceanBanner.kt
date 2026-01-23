@@ -45,7 +45,8 @@ fun OceanBanner(
     title: String,
     description: String = "",
     ctaTitle: String,
-    onCtaClick: () -> Unit
+    onCtaClick: () -> Unit,
+    ctaIsEnabled: Boolean = true
 ) = Box(
     modifier = modifier
         .borderBackground(
@@ -60,7 +61,8 @@ fun OceanBanner(
             title = title,
             description = description,
             ctaTitle = ctaTitle,
-            onCtaClick = onCtaClick
+            onCtaClick = onCtaClick,
+            ctaIsEnabled = ctaIsEnabled
         )
         is OceanBannerKind.Small -> OceanBannerSmall(
             style = style,
@@ -68,7 +70,8 @@ fun OceanBanner(
             title = title,
             description = description,
             ctaTitle = ctaTitle,
-            onCtaClick = onCtaClick
+            onCtaClick = onCtaClick,
+            ctaIsEnabled = ctaIsEnabled
         )
     }
 }
@@ -80,7 +83,8 @@ private fun OceanBannerLarge(
     title: String,
     description: String,
     ctaTitle: String,
-    onCtaClick: () -> Unit
+    onCtaClick: () -> Unit,
+    ctaIsEnabled: Boolean
 ) = Column {
     image.View()
     OceanBannerInfoContent(
@@ -88,7 +92,8 @@ private fun OceanBannerLarge(
         title = title,
         description = description,
         ctaTitle = ctaTitle,
-        onCtaClick = onCtaClick
+        onCtaClick = onCtaClick,
+        ctaIsEnabled = ctaIsEnabled
     )
 }
 
@@ -99,7 +104,8 @@ private fun OceanBannerSmall(
     title: String,
     description: String,
     ctaTitle: String,
-    onCtaClick: () -> Unit
+    onCtaClick: () -> Unit,
+    ctaIsEnabled: Boolean
 ) = Row(modifier = Modifier.height(IntrinsicSize.Min)) {
     var contentHeight by remember { mutableIntStateOf(0) }
 
@@ -111,7 +117,8 @@ private fun OceanBannerSmall(
         title = title,
         description = description,
         ctaTitle = ctaTitle,
-        onCtaClick = onCtaClick
+        onCtaClick = onCtaClick,
+        ctaIsEnabled = ctaIsEnabled
     )
     image?.View(
         modifier = Modifier
@@ -127,7 +134,8 @@ private fun OceanBannerInfoContent(
     title: String,
     description: String,
     ctaTitle: String,
-    onCtaClick: () -> Unit
+    onCtaClick: () -> Unit,
+    ctaIsEnabled: Boolean
 ) = Column(
     modifier = modifier
         .padding(OceanSpacing.xs)
@@ -155,7 +163,8 @@ private fun OceanBannerInfoContent(
     OceanButton(
         text = ctaTitle,
         onClick = onCtaClick,
-        buttonStyle = style.getButtonStyle()
+        buttonStyle = style.getButtonStyle(),
+        disabled = !ctaIsEnabled
     )
 }
 
@@ -232,7 +241,8 @@ private fun OceanBannerPreview() = OceanTheme {
             title = "Banner Title",
             description = "ahfsaidhfsiuahdfosiadhoasdhfoasduifaosdufhoasdufhsodfhsaoidfhsaoiudhfshiudhfsiuadhaoisdfhu",
             ctaTitle = "Click Here",
-            onCtaClick = {}
+            onCtaClick = {},
+            ctaIsEnabled = false
         )
     }
 }

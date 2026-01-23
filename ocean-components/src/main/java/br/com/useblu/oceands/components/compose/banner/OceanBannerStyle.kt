@@ -8,31 +8,33 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 sealed interface OceanBannerStyle {
     data object Neutral : OceanBannerStyle
     data object Brand : OceanBannerStyle
+    data object Warning : OceanBannerStyle
 
     @Composable
     fun getBackgroundColor(): Color =
         when (this) {
             Neutral -> OceanColors.interfaceLightUp
             Brand -> OceanColors.brandPrimaryPure
+            Warning -> OceanColors.statusWarningUp
         }
 
     @Composable
     fun getTitleColor(): Color =
         when (this) {
-            Neutral -> OceanColors.interfaceDarkDeep
+            Neutral, Warning -> OceanColors.interfaceDarkDeep
             Brand -> OceanColors.interfaceLightPure
         }
 
     @Composable
     fun getDescriptionColor(): Color =
         when (this) {
-            Neutral -> OceanColors.interfaceDarkDown
+            Neutral, Warning -> OceanColors.interfaceDarkDown
             Brand -> OceanColors.interfaceLightUp
         }
 
     fun getButtonStyle(): OceanButtonStyle =
         when (this) {
-            Neutral -> OceanButtonStyle.PrimarySmall
+            Neutral, Warning -> OceanButtonStyle.PrimarySmall
             Brand -> OceanButtonStyle.SecondarySmall
         }
 }

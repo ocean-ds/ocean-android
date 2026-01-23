@@ -159,7 +159,7 @@ private fun OceanBannerInfoContent(
     )
 }
 
-@Preview(heightDp = 1000)
+@Preview(heightDp = 1100)
 @Composable
 private fun OceanBannerPreview() = OceanTheme {
     Column(
@@ -218,6 +218,16 @@ private fun OceanBannerPreview() = OceanTheme {
         OceanBanner(
             modifier = Modifier,
             style = OceanBannerStyle.Neutral,
+            kind = OceanBannerKind.Small(),
+            title = "Banner Title",
+            description = "ahfsaidhfsiuahdfosiadhoasdhfoasduifaosdufhoasdufhsodfhsaoidfhsaoiudhfshiudhfsiuadhaoisdfhu",
+            ctaTitle = "Click Here",
+            onCtaClick = {}
+        )
+
+        OceanBanner(
+            modifier = Modifier,
+            style = OceanBannerStyle.Warning,
             kind = OceanBannerKind.Small(),
             title = "Banner Title",
             description = "ahfsaidhfsiuahdfosiadhoasdhfoasduifaosdufhoasdufhsodfhsaoidfhsaoiudhfshiudhfsiuadhaoisdfhu",

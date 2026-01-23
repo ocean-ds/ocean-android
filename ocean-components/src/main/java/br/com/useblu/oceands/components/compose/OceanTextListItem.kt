@@ -64,7 +64,8 @@ fun OceanTextListItem(
     enabled: Boolean = true,
     onSelectedBox: ((Boolean) -> Unit)? = null,
     showClickableChevron: Boolean = true,
-    onClick: (() -> Unit)? = null
+    onClick: ((isEnabled: Boolean) -> Unit)? = null,
+    onDisabledClickAvailable: Boolean = false
 ) {
     val isNotReadOnly = (
         onClick != null &&
@@ -89,9 +90,9 @@ fun OceanTextListItem(
                 .clickable(
                     interactionSource = null,
                     indication = null,
-                    enabled = enabled,
+                    enabled = enabled || onDisabledClickAvailable,
                     onClick = {
-                        onClick?.invoke()
+                        onClick?.invoke(enabled)
                     }
                 )
         ) {
@@ -425,7 +426,11 @@ fun OceanTextListItemPreview() {
             selected = true,
             textListStyle = OceanTextListStyle.RadioButton,
             showError = false,
-            enabled = false
+            enabled = false,
+            onClick = {
+                println("onDisableClick called: $it")
+            },
+            onDisabledClickAvailable = true
         )
         OceanTextListItemSkeleton(5)
     }

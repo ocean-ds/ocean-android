@@ -34,7 +34,8 @@ sealed interface OceanBannerStyle {
 
     fun getButtonStyle(): OceanButtonStyle =
         when (this) {
-            Neutral, Warning -> OceanButtonStyle.PrimarySmall
+            Neutral -> OceanButtonStyle.PrimarySmall
             Brand -> OceanButtonStyle.SecondarySmall
+            Warning -> OceanButtonStyle.PrimaryWarningSmall
         }
 }

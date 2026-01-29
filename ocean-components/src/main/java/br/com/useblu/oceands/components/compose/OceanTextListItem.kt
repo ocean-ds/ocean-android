@@ -37,7 +37,6 @@ import br.com.useblu.oceands.model.OceanTextListContentStyle
 import br.com.useblu.oceands.model.OceanTextListStyle
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
-import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderRadius
@@ -52,7 +51,7 @@ fun OceanTextListItem(
     title: String,
     description: String = "",
     caption: String = "",
-    captionStyle: TextStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkDown),
+    captionStyle: TextStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkUp),
     textInfo: String = "",
     textInfoColor: Color? = null,
     selected: Boolean = false,
@@ -152,7 +151,6 @@ fun OceanTextListItem(
                         modifier = Modifier.padding(bottom = OceanSpacing.xxxs),
                         text = description,
                         style = contentStyle.descriptionTextStyle(),
-                        fontSize = OceanFontSize.xs,
                         color = contentStyle.descriptionColor(enabled)
                     )
                 }

@@ -102,6 +102,9 @@ private val primaryCriticalColors = object : IButtonColors {
 private val primaryWarningColors = object : IButtonColors {
     @Composable
     override fun getColors() = OceanButtonColors.primaryWarning
+
+    @Composable
+    override fun getLoadingColor() = OceanColors.interfaceLightPure
 }
 private val secondaryDefaultColors = object : IButtonColors {
     @Composable
@@ -122,7 +125,7 @@ private val secondaryWarningColors = object : IButtonColors {
     override fun getColors() = OceanButtonColors.secondaryWarning
 
     @Composable
-    override fun getLoadingColor() = OceanColors.brandPrimaryPure
+    override fun getLoadingColor() = OceanColors.statusWarningDeep
 }
 private val tertiaryDefaultColors = object : IButtonColors {
     @Composable
@@ -135,4 +138,7 @@ private val tertiaryCriticalColors = object : IButtonColors {
 private val tertiaryWarningColors = object : IButtonColors {
     @Composable
     override fun getColors() = OceanButtonColors.tertiaryWarning
+
+    @Composable
+    override fun getLoadingColor() = OceanColors.statusWarningDeep
 }

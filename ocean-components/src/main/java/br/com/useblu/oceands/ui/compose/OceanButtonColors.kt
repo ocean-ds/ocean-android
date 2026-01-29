@@ -51,6 +51,13 @@ object OceanButtonColors {
         disabledContentColor = colorResource(id = R.color.ocean_color_interface_dark_up)
     )
 
+    val secondaryWarning @Composable get() = ButtonDefaults.buttonColors(
+        containerColor = colorResource(id = R.color.ocean_color_status_warning_up),
+        contentColor = colorResource(id = R.color.ocean_color_status_warning_deep),
+        disabledContainerColor = colorResource(id = R.color.ocean_color_interface_light_down),
+        disabledContentColor = colorResource(id = R.color.ocean_color_interface_dark_up)
+    )
+
     val tertiaryDefault @Composable get() = ButtonDefaults.buttonColors(
         containerColor = Color.Transparent,
         contentColor = colorResource(id = R.color.ocean_color_brand_primary_pure),
@@ -62,6 +69,12 @@ object OceanButtonColors {
         containerColor = Color.Transparent,
         contentColor = colorResource(id = R.color.ocean_color_status_negative_pure),
         disabledContainerColor = colorResource(id = R.color.ocean_color_interface_light_down),
+        disabledContentColor = colorResource(id = R.color.ocean_color_interface_dark_up)
+    )
+    val tertiaryWarning @Composable get() = ButtonDefaults.buttonColors(
+        containerColor = Color.Transparent,
+        contentColor = colorResource(id = R.color.ocean_color_status_warning_deep),
+        disabledContainerColor = Color.Transparent,
         disabledContentColor = colorResource(id = R.color.ocean_color_interface_dark_up)
     )
 }

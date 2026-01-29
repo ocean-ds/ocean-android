@@ -83,7 +83,9 @@ fun OceanCardGroupPreview() {
                     title = "Limite para pagar boletos",
                     description = "R$ 9.000,00",
                     caption = "Pague em até 12 vezes",
-                    contentStyle = OceanTextListContentStyle.Default,
+                    isTextBold = true,
+                    captionStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkDown),
+                    contentStyle = OceanTextListContentStyle.Inverted,
                     textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
                     showDivider = false
                 )
@@ -113,7 +115,9 @@ fun OceanCardGroupPreview() {
                     title = "Valor disponível para antecipação",
                     description = "R$ 15.000,00",
                     caption = "Taxa a partir de 1,99% a.m.",
-                    contentStyle = OceanTextListContentStyle.Default,
+                    isTextBold = true,
+                    captionStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkDown),
+                    contentStyle = OceanTextListContentStyle.Inverted,
                     textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
                     showDivider = false
                 )
@@ -142,7 +146,9 @@ fun OceanCardGroupPreview() {
                     title = "Total a pagar",
                     description = "R$ 2.500,00",
                     caption = "Vencimento em 3 dias",
-                    contentStyle = OceanTextListContentStyle.Default,
+                    isTextBold = true,
+                    captionStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkDown),
+                    contentStyle = OceanTextListContentStyle.Inverted,
                     textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
                     showDivider = false
                 )

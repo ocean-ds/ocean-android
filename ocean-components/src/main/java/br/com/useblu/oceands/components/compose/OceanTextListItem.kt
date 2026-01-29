@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -51,6 +52,7 @@ fun OceanTextListItem(
     title: String,
     description: String = "",
     caption: String = "",
+    isTextBold: Boolean = false,
     captionStyle: TextStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkUp),
     textInfo: String = "",
     textInfoColor: Color? = null,
@@ -142,7 +144,11 @@ fun OceanTextListItem(
             ) {
                 OceanText(
                     text = title,
-                    style = contentStyle.titleTextStyle(),
+                    style = if (isTextBold && contentStyle == OceanTextListContentStyle.Default) {
+                        contentStyle.titleTextStyle().copy(fontWeight = FontWeight.Bold)
+                    } else {
+                        contentStyle.titleTextStyle()
+                    },
                     color = contentStyle.titleColor(enabled)
                 )
 
@@ -150,7 +156,11 @@ fun OceanTextListItem(
                     OceanText(
                         modifier = Modifier.padding(bottom = OceanSpacing.xxxs),
                         text = description,
-                        style = contentStyle.descriptionTextStyle(),
+                        style = if (isTextBold && contentStyle == OceanTextListContentStyle.Inverted) {
+                            contentStyle.descriptionTextStyle().copy(fontWeight = FontWeight.Bold)
+                        } else {
+                            contentStyle.descriptionTextStyle()
+                        },
                         color = contentStyle.descriptionColor(enabled)
                     )
                 }

@@ -51,7 +51,7 @@ fun OceanTextListItem(
     title: String,
     description: String = "",
     caption: String = "",
-    captionStyle: TextStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkUp),
+    captionStyle: TextStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkDown),
     textInfo: String = "",
     textInfoColor: Color? = null,
     selected: Boolean = false,

@@ -24,7 +24,7 @@ sealed interface OceanTextListContentStyle {
     fun descriptionColor(enabled: Boolean) =
         when (this) {
             Default ->
-                if (enabled) OceanColors.interfaceDarkDown
+                if (enabled) OceanColors.interfaceDarkDeep
                 else OceanColors.interfaceLightDeep
             Inverted ->
                 if (enabled) OceanColors.interfaceDarkPure

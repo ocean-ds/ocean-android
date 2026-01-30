@@ -52,6 +52,11 @@ fun PreviewButton() {
             OceanButtonStyle.PrimaryCriticalLarge
         ),
         listOf(
+            OceanButtonStyle.PrimaryWarningSmall,
+            OceanButtonStyle.PrimaryWarningMedium,
+            OceanButtonStyle.PrimaryWarningLarge
+        ),
+        listOf(
             OceanButtonStyle.SecondarySmall,
             OceanButtonStyle.SecondaryMedium,
             OceanButtonStyle.SecondaryLarge
@@ -62,6 +67,11 @@ fun PreviewButton() {
             OceanButtonStyle.SecondaryCriticalLarge
         ),
         listOf(
+            OceanButtonStyle.SecondaryWarningSmall,
+            OceanButtonStyle.SecondaryWarningMedium,
+            OceanButtonStyle.SecondaryWarningLarge
+        ),
+        listOf(
             OceanButtonStyle.TertiarySmall,
             OceanButtonStyle.TertiaryMedium,
             OceanButtonStyle.TertiaryLarge
@@ -70,6 +80,11 @@ fun PreviewButton() {
             OceanButtonStyle.TertiaryCriticalSmall,
             OceanButtonStyle.TertiaryCriticalMedium,
             OceanButtonStyle.TertiaryCriticalLarge
+        ),
+        listOf(
+            OceanButtonStyle.TertiaryWarningSmall,
+            OceanButtonStyle.TertiaryWarningMedium,
+            OceanButtonStyle.TertiaryWarningLarge
         )
     )
 

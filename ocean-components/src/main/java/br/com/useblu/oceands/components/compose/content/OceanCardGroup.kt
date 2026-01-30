@@ -83,6 +83,8 @@ fun OceanCardGroupPreview() {
                     title = "Limite para pagar boletos",
                     description = "R$ 9.000,00",
                     caption = "Pague em até 12 vezes",
+                    isTextBold = true,
+                    captionStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkDown),
                     contentStyle = OceanTextListContentStyle.Inverted,
                     textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
                     showDivider = false
@@ -113,6 +115,8 @@ fun OceanCardGroupPreview() {
                     title = "Valor disponível para antecipação",
                     description = "R$ 15.000,00",
                     caption = "Taxa a partir de 1,99% a.m.",
+                    isTextBold = true,
+                    captionStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkDown),
                     contentStyle = OceanTextListContentStyle.Inverted,
                     textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
                     showDivider = false
@@ -142,6 +146,8 @@ fun OceanCardGroupPreview() {
                     title = "Total a pagar",
                     description = "R$ 2.500,00",
                     caption = "Vencimento em 3 dias",
+                    isTextBold = true,
+                    captionStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkDown),
                     contentStyle = OceanTextListContentStyle.Inverted,
                     textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
                     showDivider = false
@@ -168,7 +174,7 @@ fun OceanCardGroupPreview() {
                     title = "Limite para pagar boletos",
                     description = "R$ 9.000,00",
                     caption = "Pague em até 12 vezes",
-                    contentStyle = OceanTextListContentStyle.Inverted,
+                    contentStyle = OceanTextListContentStyle.Default,
                     textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
                     backgroundColor = OceanColors.interfaceLightUp,
                     showDivider = false
@@ -190,7 +196,7 @@ fun OceanCardGroupPreview() {
                     title = "Seu parcelamento está atrasado",
                     description = "R$ 4.328,04",
                     caption = "Fique em dia e tenha mais crédito",
-                    contentStyle = OceanTextListContentStyle.Inverted,
+                    contentStyle = OceanTextListContentStyle.Default,
                     textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
                     showDivider = false
                 )

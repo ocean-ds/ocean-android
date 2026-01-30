@@ -24,8 +24,8 @@ sealed class OceanButtonStyle(
     data object PrimaryCriticalLarge : OceanButtonStyle(large, primaryCriticalColors)
 
     data object PrimaryWarningSmall : OceanButtonStyle(small, primaryWarningColors)
-    data object PrimaryWarningMedium : OceanButtonStyle(medium, primaryCriticalColors)
-    data object PrimaryWarningLarge : OceanButtonStyle(large, primaryCriticalColors)
+    data object PrimaryWarningMedium : OceanButtonStyle(medium, primaryWarningColors)
+    data object PrimaryWarningLarge : OceanButtonStyle(large, primaryWarningColors)
 
     data object SecondarySmall : OceanButtonStyle(small, secondaryDefaultColors)
     data object SecondaryMedium : OceanButtonStyle(medium, secondaryDefaultColors)
@@ -35,6 +35,10 @@ sealed class OceanButtonStyle(
     data object SecondaryCriticalMedium : OceanButtonStyle(medium, secondaryCriticalColors)
     data object SecondaryCriticalLarge : OceanButtonStyle(large, secondaryCriticalColors)
 
+    data object SecondaryWarningSmall : OceanButtonStyle(small, secondaryWarningColors)
+    data object SecondaryWarningMedium : OceanButtonStyle(medium, secondaryWarningColors)
+    data object SecondaryWarningLarge : OceanButtonStyle(large, secondaryWarningColors)
+
     data object TertiarySmall : OceanButtonStyle(small, tertiaryDefaultColors)
     data object TertiaryMedium : OceanButtonStyle(medium, tertiaryDefaultColors)
     data object TertiaryLarge : OceanButtonStyle(large, tertiaryDefaultColors)
@@ -42,6 +46,10 @@ sealed class OceanButtonStyle(
     data object TertiaryCriticalSmall : OceanButtonStyle(small, tertiaryCriticalColors)
     data object TertiaryCriticalMedium : OceanButtonStyle(medium, tertiaryCriticalColors)
     data object TertiaryCriticalLarge : OceanButtonStyle(large, tertiaryCriticalColors)
+
+    data object TertiaryWarningSmall : OceanButtonStyle(small, tertiaryWarningColors)
+    data object TertiaryWarningMedium : OceanButtonStyle(medium, tertiaryWarningColors)
+    data object TertiaryWarningLarge : OceanButtonStyle(large, tertiaryWarningColors)
 }
 
 private interface ButtonSizes {
@@ -94,6 +102,9 @@ private val primaryCriticalColors = object : IButtonColors {
 private val primaryWarningColors = object : IButtonColors {
     @Composable
     override fun getColors() = OceanButtonColors.primaryWarning
+
+    @Composable
+    override fun getLoadingColor() = OceanColors.interfaceLightPure
 }
 private val secondaryDefaultColors = object : IButtonColors {
     @Composable
@@ -107,13 +118,33 @@ private val secondaryCriticalColors = object : IButtonColors {
     override fun getColors() = OceanButtonColors.secondaryCritical
 
     @Composable
-    override fun getLoadingColor() = OceanColors.brandPrimaryPure
+    override fun getLoadingColor() = OceanColors.statusNegativePure
+}
+private val secondaryWarningColors = object : IButtonColors {
+    @Composable
+    override fun getColors() = OceanButtonColors.secondaryWarning
+
+    @Composable
+    override fun getLoadingColor() = OceanColors.statusWarningDeep
 }
 private val tertiaryDefaultColors = object : IButtonColors {
     @Composable
     override fun getColors() = OceanButtonColors.tertiaryDefault
+
+    @Composable
+    override fun getLoadingColor() = OceanColors.brandPrimaryPure
 }
 private val tertiaryCriticalColors = object : IButtonColors {
     @Composable
     override fun getColors() = OceanButtonColors.tertiaryCritical
+
+    @Composable
+    override fun getLoadingColor() = OceanColors.statusNegativePure
+}
+private val tertiaryWarningColors = object : IButtonColors {
+    @Composable
+    override fun getColors() = OceanButtonColors.tertiaryWarning
+
+    @Composable
+    override fun getLoadingColor() = OceanColors.statusWarningDeep
 }

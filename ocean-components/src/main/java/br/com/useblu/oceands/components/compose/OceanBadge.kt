@@ -16,61 +16,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.model.Badge
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
-
-@Preview(showBackground = true)
-@Composable
-fun OceanBadgePreview() {
-    Row {
-        Column {
-            OceanBadge(
-                text = "1",
-                OceanBadgeType.PRIMARY,
-                OceanBadgeSize.Small
-            )
-
-            OceanBadge(
-                text = "12",
-                OceanBadgeType.DISABLED,
-                OceanBadgeSize.Small
-            )
-
-            OceanBadge(
-                text = "1",
-                OceanBadgeType.HIGHLIGHT,
-                OceanBadgeSize.Small
-            )
-
-            OceanBadge(
-                text = "",
-                type = OceanBadgeType.HIGHLIGHT,
-                size = OceanBadgeSize.Dot
-            )
-        }
-
-        Column {
-            OceanBadge(
-                text = "120",
-                type = OceanBadgeType.WARNING,
-                size = OceanBadgeSize.Medium
-            )
-
-            OceanBadge(
-                text = "12",
-                type = OceanBadgeType.PRIMARY_INVERTED,
-                size = OceanBadgeSize.Medium
-            )
-
-            OceanBadge(
-                text = "1",
-                type = OceanBadgeType.HIGHLIGHT,
-                size = OceanBadgeSize.Medium
-            )
-        }
-    }
-}
 
 @Composable
 fun OceanBadge(
@@ -149,6 +98,18 @@ fun OceanBadge(
     }
 }
 
+@Composable
+fun OceanBadge(
+    modifier: Modifier = Modifier,
+    model: Badge,
+    size: OceanBadgeSize = OceanBadgeSize.Small
+) = OceanBadge(
+    modifier = modifier,
+    text = model.text.toString(),
+    type = model.type,
+    size = size
+)
+
 sealed interface OceanBadgeSize {
     fun getTextSize() = 10.sp
     fun getMinSize() = 8.dp
@@ -162,5 +123,57 @@ sealed interface OceanBadgeSize {
     data object Medium : OceanBadgeSize {
         override fun getMinSize() = 24.dp
         override fun getTextSize() = 12.sp
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun OceanBadgePreview() {
+    Row {
+        Column {
+            OceanBadge(
+                text = "1",
+                OceanBadgeType.PRIMARY,
+                OceanBadgeSize.Small
+            )
+
+            OceanBadge(
+                text = "12",
+                OceanBadgeType.DISABLED,
+                OceanBadgeSize.Small
+            )
+
+            OceanBadge(
+                text = "1",
+                OceanBadgeType.HIGHLIGHT,
+                OceanBadgeSize.Small
+            )
+
+            OceanBadge(
+                text = "",
+                type = OceanBadgeType.HIGHLIGHT,
+                size = OceanBadgeSize.Dot
+            )
+        }
+
+        Column {
+            OceanBadge(
+                text = "120",
+                type = OceanBadgeType.WARNING,
+                size = OceanBadgeSize.Medium
+            )
+
+            OceanBadge(
+                text = "12",
+                type = OceanBadgeType.PRIMARY_INVERTED,
+                size = OceanBadgeSize.Medium
+            )
+
+            OceanBadge(
+                text = "1",
+                type = OceanBadgeType.HIGHLIGHT,
+                size = OceanBadgeSize.Medium
+            )
+        }
     }
 }

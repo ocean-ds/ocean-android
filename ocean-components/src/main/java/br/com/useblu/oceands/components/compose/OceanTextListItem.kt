@@ -33,6 +33,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.components.compose.input.OceanSelectableRadio
+import br.com.useblu.oceands.model.Badge
+import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.OceanTextListContentStyle
 import br.com.useblu.oceands.model.OceanTextListStyle
@@ -67,7 +69,8 @@ fun OceanTextListItem(
     onSelectedBox: ((Boolean) -> Unit)? = null,
     showClickableChevron: Boolean = true,
     onClick: ((isEnabled: Boolean) -> Unit)? = null,
-    onDisabledClickAvailable: Boolean = false
+    onDisabledClickAvailable: Boolean = false,
+    badge: Badge? = null
 ) {
     val isNotReadOnly = (
         onClick != null &&
@@ -109,7 +112,8 @@ fun OceanTextListItem(
                             .padding(end = OceanSpacing.xs)
                     ) {
                         OceanIcon(
-                            iconType = textListStyle.icon ?: OceanIcons.INFO_OUTLINE
+                            iconType = textListStyle.icon ?: OceanIcons.INFO_OUTLINE,
+                            tint = textListStyle.tint
                         )
                     }
                 }
@@ -224,6 +228,15 @@ fun OceanTextListItem(
 
                 else -> Unit
             }
+            badge?.let {
+                OceanBadge(
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .padding(start = OceanSpacing.xxs),
+                    model = it,
+                    size = OceanBadgeSize.Medium
+                )
+            }
             if (onClick != null && showClickableChevron) {
                 Column(
                     Modifier
@@ -312,7 +325,7 @@ fun OceanTextListItemPreview() {
             showClickableChevron = true,
             selected = false,
             showError = false,
-            textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
+            textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD, tint = OceanColors.brandPrimaryUp),
             tagStyle = OceanTagStyle.Default(
                 label = "Label",
                 layout = OceanTagLayout.Medium(),
@@ -340,7 +353,11 @@ fun OceanTextListItemPreview() {
             enabled = true,
             onClick = {
                 println("text list clicked")
-            }
+            },
+            badge = Badge(
+                text = 3,
+                type = OceanBadgeType.WARNING
+            )
         )
         OceanTextListItem(
             modifier = Modifier,

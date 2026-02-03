@@ -5,5 +5,8 @@ import androidx.compose.runtime.Immutable
 @Immutable
 enum class OceanHeaderType {
     PRIMARY,
-    SECONDARY
+    SECONDARY,
+    TERTIARY,
+    WARNING,
+    CRITICAL
 }

@@ -105,16 +105,21 @@ fun MinimalHeader(
     val backgroundColor = when (type) {
         OceanHeaderType.PRIMARY -> OceanColors.brandPrimaryPure
         OceanHeaderType.SECONDARY -> OceanColors.interfaceLightPure
+        OceanHeaderType.TERTIARY -> OceanColors.interfaceLightUp
+        OceanHeaderType.WARNING -> OceanColors.statusWarningUp
+        OceanHeaderType.CRITICAL -> OceanColors.statusNegativeUp
     }
 
     val textColor = when (type) {
         OceanHeaderType.PRIMARY -> OceanColors.interfaceLightPure
         OceanHeaderType.SECONDARY -> OceanColors.brandPrimaryPure
+        else -> OceanColors.interfaceDarkDeep
     }
 
     val cnpjColor = when (type) {
         OceanHeaderType.PRIMARY -> OceanColors.brandPrimaryUp
         OceanHeaderType.SECONDARY -> OceanColors.interfaceDarkUp
+        else -> OceanColors.interfaceDarkDeep
     }
 
     Row(
@@ -302,6 +307,36 @@ fun OceanHeaderSecondaryWithoutBalanceTogglePreview() {
 }
 
 @Composable
+@Preview
+fun OceanHeaderTertiaryPreview() {
+    OceanHeader(
+        headerModel = modelPreview,
+        style = OceanHeaderStyle.Minimal,
+        type = OceanHeaderType.TERTIARY
+    )
+}
+
+@Composable
+@Preview
+fun OceanHeaderWarningPreview() {
+    OceanHeader(
+        headerModel = modelPreview,
+        style = OceanHeaderStyle.Minimal,
+        type = OceanHeaderType.WARNING
+    )
+}
+
+@Composable
+@Preview
+fun OceanHeaderCriticalPreview() {
+    OceanHeader(
+        headerModel = modelPreview,
+        style = OceanHeaderStyle.Minimal,
+        type = OceanHeaderType.CRITICAL
+    )
+}
+
+@Composable
 fun OceanHeader(
     modifier: Modifier = Modifier,
     headerModel: OceanHeaderAppModel,
@@ -314,6 +349,9 @@ fun OceanHeader(
     val backgroundColor = when (type) {
         OceanHeaderType.PRIMARY -> OceanColors.brandPrimaryPure
         OceanHeaderType.SECONDARY -> OceanColors.interfaceLightPure
+        OceanHeaderType.TERTIARY -> OceanColors.interfaceLightUp
+        OceanHeaderType.WARNING -> OceanColors.statusWarningUp
+        OceanHeaderType.CRITICAL -> OceanColors.statusNegativeUp
     }
 
     Column(

@@ -103,18 +103,21 @@ fun MinimalHeader(
     toggleContentHidden: () -> Unit
 ) {
     val backgroundColor = when (type) {
-        OceanHeaderType.PRIMARY -> OceanColors.brandPrimaryPure
-        OceanHeaderType.SECONDARY -> OceanColors.interfaceLightPure
+        OceanHeaderType.Primary -> OceanColors.brandPrimaryPure
+        OceanHeaderType.Secondary -> OceanColors.interfaceLightPure
+        is OceanHeaderType.Custom -> OceanColors.fromString(type.backgroundColor)
     }
 
     val textColor = when (type) {
-        OceanHeaderType.PRIMARY -> OceanColors.interfaceLightPure
-        OceanHeaderType.SECONDARY -> OceanColors.brandPrimaryPure
+        OceanHeaderType.Primary -> OceanColors.interfaceLightPure
+        OceanHeaderType.Secondary -> OceanColors.brandPrimaryPure
+        is OceanHeaderType.Custom -> OceanColors.fromString(type.textColor)
     }
 
     val cnpjColor = when (type) {
-        OceanHeaderType.PRIMARY -> OceanColors.brandPrimaryUp
-        OceanHeaderType.SECONDARY -> OceanColors.interfaceDarkUp
+        OceanHeaderType.Primary -> OceanColors.brandPrimaryUp
+        OceanHeaderType.Secondary -> OceanColors.interfaceDarkUp
+        is OceanHeaderType.Custom -> OceanColors.fromString(type.cnpjColor)
     }
 
     Row(
@@ -283,7 +286,7 @@ fun OceanHeaderSecondaryPreview() {
         OceanHeader(
             headerModel = modelPreview,
             style = OceanHeaderStyle.Small,
-            type = OceanHeaderType.SECONDARY
+            type = OceanHeaderType.Secondary
         )
     }
 }
@@ -295,10 +298,52 @@ fun OceanHeaderSecondaryWithoutBalanceTogglePreview() {
         OceanHeader(
             headerModel = modelPreview,
             style = OceanHeaderStyle.Small,
-            type = OceanHeaderType.SECONDARY,
+            type = OceanHeaderType.Secondary,
             showBalanceToggle = false
         )
     }
+}
+
+@Composable
+@Preview
+fun OceanHeaderTertiaryPreview() {
+    OceanHeader(
+        headerModel = modelPreview,
+        style = OceanHeaderStyle.Minimal,
+        type = OceanHeaderType.Custom(
+            backgroundColor = "colorInterfaceLightUp",
+            textColor = "colorInterfaceDarkPure",
+            cnpjColor = "colorInterfaceDarkPure"
+        )
+    )
+}
+
+@Composable
+@Preview
+fun OceanHeaderWarningPreview() {
+    OceanHeader(
+        headerModel = modelPreview,
+        style = OceanHeaderStyle.Minimal,
+        type = OceanHeaderType.Custom(
+            backgroundColor = "colorStatusWarningUp",
+            textColor = "colorInterfaceDarkPure",
+            cnpjColor = "colorInterfaceDarkPure"
+        )
+    )
+}
+
+@Composable
+@Preview
+fun OceanHeaderCriticalPreview() {
+    OceanHeader(
+        headerModel = modelPreview,
+        style = OceanHeaderStyle.Minimal,
+        type = OceanHeaderType.Custom(
+            backgroundColor = "colorStatusNegativeUp",
+            textColor = "colorInterfaceDarkPure",
+            cnpjColor = "colorInterfaceDarkPure"
+        )
+    )
 }
 
 @Composable
@@ -306,14 +351,15 @@ fun OceanHeader(
     modifier: Modifier = Modifier,
     headerModel: OceanHeaderAppModel,
     style: OceanHeaderStyle = OceanHeaderStyle.Small,
-    type: OceanHeaderType = OceanHeaderType.PRIMARY,
+    type: OceanHeaderType = OceanHeaderType.Primary,
     showBalanceToggle: Boolean = true
 ) {
     var isContentHidden by remember { mutableStateOf(false) }
 
     val backgroundColor = when (type) {
-        OceanHeaderType.PRIMARY -> OceanColors.brandPrimaryPure
-        OceanHeaderType.SECONDARY -> OceanColors.interfaceLightPure
+        OceanHeaderType.Primary -> OceanColors.brandPrimaryPure
+        OceanHeaderType.Secondary -> OceanColors.interfaceLightPure
+        is OceanHeaderType.Custom -> OceanColors.fromString(type.backgroundColor)
     }
 
     Column(

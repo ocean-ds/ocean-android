@@ -132,9 +132,7 @@ fun PreviewButtonInteractive() {
                 disabled = isDisabled,
                 modifier = Modifier,
                 buttonStyle = selectedStyle,
-                onClick = {
-                    println("Botão clicado!")
-                }
+                onClick = { }
             )
 
             OceanSpacing.StackMD()

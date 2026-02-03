@@ -3,10 +3,12 @@ package br.com.useblu.oceands.model.compose
 import androidx.compose.runtime.Immutable
 
 @Immutable
-enum class OceanHeaderType {
-    PRIMARY,
-    SECONDARY,
-    TERTIARY,
-    WARNING,
-    CRITICAL
+sealed class OceanHeaderType {
+    object Primary : OceanHeaderType()
+    object Secondary : OceanHeaderType()
+    data class Custom(
+        val backgroundColor: String,
+        val textColor: String,
+        val cnpjColor: String
+    ) : OceanHeaderType()
 }

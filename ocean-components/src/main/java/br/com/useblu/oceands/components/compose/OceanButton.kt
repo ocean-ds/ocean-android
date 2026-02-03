@@ -8,7 +8,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -27,128 +28,205 @@ import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 
-@Preview(widthDp = 480)
+@Preview()
 @Composable
-fun PreviewButton() {
-    val icon = OceanIcons.CHEVRON_DOWN_OUTLINE
+fun PreviewButtonInteractive() {
+    var selectedStyle by remember { mutableStateOf<OceanButtonStyle>(OceanButtonStyle.PrimaryMedium) }
+    var showIcon by remember { mutableStateOf(true) }
+    var isDisabled by remember { mutableStateOf(false) }
+    var isLoading by remember { mutableStateOf(false) }
+    var selectedSize by remember { mutableStateOf("Medium") }
+    var selectedVariant by remember { mutableStateOf("Primary") }
 
-    val styles = listOf(
-        listOf(
-            OceanButtonStyle.PrimarySmall,
-            OceanButtonStyle.PrimaryMedium,
-            OceanButtonStyle.PrimaryLarge
-        ),
-        listOf(
-            OceanButtonStyle.PrimaryInverseSmall,
-            OceanButtonStyle.PrimaryInverseMedium,
-            OceanButtonStyle.PrimaryInverseLarge
-        ),
-        listOf(
-            OceanButtonStyle.PrimaryCriticalSmall,
-            OceanButtonStyle.PrimaryCriticalMedium,
-            OceanButtonStyle.PrimaryCriticalLarge
-        ),
-        listOf(
-            OceanButtonStyle.PrimaryWarningSmall,
-            OceanButtonStyle.PrimaryWarningMedium,
-            OceanButtonStyle.PrimaryWarningLarge
-        ),
-        listOf(
-            OceanButtonStyle.SecondarySmall,
-            OceanButtonStyle.SecondaryMedium,
-            OceanButtonStyle.SecondaryLarge
-        ),
-        listOf(
-            OceanButtonStyle.SecondaryCriticalSmall,
-            OceanButtonStyle.SecondaryCriticalMedium,
-            OceanButtonStyle.SecondaryCriticalLarge
-        ),
-        listOf(
-            OceanButtonStyle.SecondaryWarningSmall,
-            OceanButtonStyle.SecondaryWarningMedium,
-            OceanButtonStyle.SecondaryWarningLarge
-        ),
-        listOf(
-            OceanButtonStyle.TertiarySmall,
-            OceanButtonStyle.TertiaryMedium,
-            OceanButtonStyle.TertiaryLarge
-        ),
-        listOf(
-            OceanButtonStyle.TertiaryCriticalSmall,
-            OceanButtonStyle.TertiaryCriticalMedium,
-            OceanButtonStyle.TertiaryCriticalLarge
-        ),
-        listOf(
-            OceanButtonStyle.TertiaryWarningSmall,
-            OceanButtonStyle.TertiaryWarningMedium,
-            OceanButtonStyle.TertiaryWarningLarge
-        )
-    )
+    val icon = if (showIcon) OceanIcons.CHEVRON_DOWN_OUTLINE else null
+
+    fun updateStyle() {
+        selectedStyle = when (selectedVariant) {
+            "Primary" -> when (selectedSize) {
+                "Small" -> OceanButtonStyle.PrimarySmall
+                "Medium" -> OceanButtonStyle.PrimaryMedium
+                "Large" -> OceanButtonStyle.PrimaryLarge
+                else -> OceanButtonStyle.PrimaryMedium
+            }
+            "PrimaryInverse" -> when (selectedSize) {
+                "Small" -> OceanButtonStyle.PrimaryInverseSmall
+                "Medium" -> OceanButtonStyle.PrimaryInverseMedium
+                "Large" -> OceanButtonStyle.PrimaryInverseLarge
+                else -> OceanButtonStyle.PrimaryInverseMedium
+            }
+            "PrimaryCritical" -> when (selectedSize) {
+                "Small" -> OceanButtonStyle.PrimaryCriticalSmall
+                "Medium" -> OceanButtonStyle.PrimaryCriticalMedium
+                "Large" -> OceanButtonStyle.PrimaryCriticalLarge
+                else -> OceanButtonStyle.PrimaryCriticalMedium
+            }
+            "PrimaryWarning" -> when (selectedSize) {
+                "Small" -> OceanButtonStyle.PrimaryWarningSmall
+                "Medium" -> OceanButtonStyle.PrimaryWarningMedium
+                "Large" -> OceanButtonStyle.PrimaryWarningLarge
+                else -> OceanButtonStyle.PrimaryWarningMedium
+            }
+            "Secondary" -> when (selectedSize) {
+                "Small" -> OceanButtonStyle.SecondarySmall
+                "Medium" -> OceanButtonStyle.SecondaryMedium
+                "Large" -> OceanButtonStyle.SecondaryLarge
+                else -> OceanButtonStyle.SecondaryMedium
+            }
+            "SecondaryCritical" -> when (selectedSize) {
+                "Small" -> OceanButtonStyle.SecondaryCriticalSmall
+                "Medium" -> OceanButtonStyle.SecondaryCriticalMedium
+                "Large" -> OceanButtonStyle.SecondaryCriticalLarge
+                else -> OceanButtonStyle.SecondaryCriticalMedium
+            }
+            "SecondaryWarning" -> when (selectedSize) {
+                "Small" -> OceanButtonStyle.SecondaryWarningSmall
+                "Medium" -> OceanButtonStyle.SecondaryWarningMedium
+                "Large" -> OceanButtonStyle.SecondaryWarningLarge
+                else -> OceanButtonStyle.SecondaryWarningMedium
+            }
+            "Tertiary" -> when (selectedSize) {
+                "Small" -> OceanButtonStyle.TertiarySmall
+                "Medium" -> OceanButtonStyle.TertiaryMedium
+                "Large" -> OceanButtonStyle.TertiaryLarge
+                else -> OceanButtonStyle.TertiaryMedium
+            }
+            "TertiaryCritical" -> when (selectedSize) {
+                "Small" -> OceanButtonStyle.TertiaryCriticalSmall
+                "Medium" -> OceanButtonStyle.TertiaryCriticalMedium
+                "Large" -> OceanButtonStyle.TertiaryCriticalLarge
+                else -> OceanButtonStyle.TertiaryCriticalMedium
+            }
+            "TertiaryWarning" -> when (selectedSize) {
+                "Small" -> OceanButtonStyle.TertiaryWarningSmall
+                "Medium" -> OceanButtonStyle.TertiaryWarningMedium
+                "Large" -> OceanButtonStyle.TertiaryWarningLarge
+                else -> OceanButtonStyle.TertiaryWarningMedium
+            }
+            else -> OceanButtonStyle.PrimaryMedium
+        }
+    }
 
     OceanTheme {
         Column(
-            modifier = Modifier.background(color = OceanColors.interfaceLightPure)
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .background(color = OceanColors.interfaceLightPure)
+                .padding(OceanSpacing.md)
         ) {
+            OceanText(
+                text = "Preview",
+                fontSize = OceanFontSize.xs,
+                fontFamily = OceanFontFamily.BaseBold
+            )
+
             OceanSpacing.StackXS()
 
-            styles.forEach {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    OceanSpacing.StackXS()
+            OceanButton(
+                text = "Avançar",
+                showProgress = isLoading,
+                icon = icon,
+                disabled = isDisabled,
+                modifier = Modifier,
+                buttonStyle = selectedStyle,
+                onClick = { }
+            )
 
-                    it.forEach { style ->
+            OceanSpacing.StackMD()
+
+            OceanText(
+                text = "Controles",
+                fontSize = OceanFontSize.xs,
+                fontFamily = OceanFontFamily.BaseBold
+            )
+
+            OceanSpacing.StackXS()
+
+            OceanText(text = "Tamanho:", fontSize = OceanFontSize.xxxs)
+            Row {
+                listOf("Small", "Medium", "Large").forEach { size ->
+                    OceanButton(
+                        text = size,
+                        buttonStyle = if (selectedSize == size)
+                            OceanButtonStyle.PrimarySmall
+                        else
+                            OceanButtonStyle.SecondarySmall,
+                        onClick = {
+                            selectedSize = size
+                            updateStyle()
+                        }
+                    )
+                    OceanSpacing.StackXS()
+                }
+            }
+
+            OceanSpacing.StackXS()
+
+            OceanText(text = "Variante:", fontSize = OceanFontSize.xxxs)
+            Column {
+                listOf(
+                    "Primary",
+                    "PrimaryInverse",
+                    "PrimaryCritical",
+                    "PrimaryWarning",
+                    "Secondary",
+                    "SecondaryCritical",
+                    "SecondaryWarning",
+                    "Tertiary",
+                    "TertiaryCritical",
+                    "TertiaryWarning"
+                ).forEach { variant ->
+                    Row {
                         OceanButton(
-                            text = "Avançar",
-                            showProgress = false,
-                            icon = icon,
-                            disabled = false,
-                            modifier = Modifier,
-                            buttonStyle = style,
+                            text = variant,
+                            buttonStyle = if (selectedVariant == variant)
+                                OceanButtonStyle.PrimarySmall
+                            else
+                                OceanButtonStyle.SecondarySmall,
                             onClick = {
-                                println("Botão clicado")
+                                selectedVariant = variant
+                                updateStyle()
                             }
                         )
-                        OceanSpacing.StackXS()
                     }
+                    OceanSpacing.StackXXS()
                 }
+            }
+
+            OceanSpacing.StackXS()
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(vertical = OceanSpacing.xxxs)
+            ) {
+                OceanButton(
+                    text = if (showIcon) "Esconder Ícone" else "Mostrar Ícone",
+                    buttonStyle = OceanButtonStyle.TertiarySmall,
+                    onClick = { showIcon = !showIcon }
+                )
                 OceanSpacing.StackXS()
+                OceanButton(
+                    text = if (isDisabled) "Habilitar" else "Desabilitar",
+                    buttonStyle = OceanButtonStyle.TertiarySmall,
+                    onClick = { isDisabled = !isDisabled }
+                )
             }
 
-            OceanButton(
-                text = "",
-                showProgress = false,
-                icon = icon,
-                disabled = false,
-                modifier = Modifier,
-                buttonStyle = OceanButtonStyle.PrimaryMedium,
-                onClick = {
-                    println("Botão clicado")
-                }
-            )
-
-            var isLoading by remember {
-                mutableStateOf(false)
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OceanButton(
+                    text = if (isLoading) "Esconder Loading" else "Mostrar Loading",
+                    buttonStyle = OceanButtonStyle.TertiarySmall,
+                    onClick = { isLoading = !isLoading }
+                )
             }
-            OceanButton(
-                text = "Permitir",
-                showProgress = isLoading,
-                modifier = Modifier
-                    .padding(top = OceanSpacing.xs)
-                    .width(200.dp),
-                buttonStyle = OceanButtonStyle.PrimaryMedium,
-                onClick = {
-                    println("Botão clicado")
-                    isLoading = true
-                }
-            )
         }
     }
 }
-
 enum class Orientation {
     Horizontal,
     Vertical

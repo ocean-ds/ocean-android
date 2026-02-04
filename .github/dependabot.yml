@@ -1,11 +1,16 @@
 version: 2
 updates:
-  - package-ecosystem: "gradle"
-    directory: "/"
-    schedule:
-      interval: "daily"
-      time: "03:00"
-      timezone: Brazil/East
-    open-pull-requests-limit: 20
-    commit-message:
-      prefix: "chore"
+    - package-ecosystem: gradle
+      directory: "/"
+      schedule:
+          interval: daily
+          time: "10:00"
+          timezone: Brazil/East
+      open-pull-requests-limit: 20
+      groups:
+          minor-and-patch:
+              patterns:
+                  - "*"
+              update-types:
+                  - "minor"
+                  - "patch"

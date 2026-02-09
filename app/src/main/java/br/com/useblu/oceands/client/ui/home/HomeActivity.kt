@@ -100,10 +100,12 @@ import br.com.useblu.oceands.components.OceanTooltip
 import br.com.useblu.oceands.components.compose.BottomSheetButtonsOrientation
 import br.com.useblu.oceands.components.compose.OceanBottomSheet
 import br.com.useblu.oceands.components.compose.OceanBottomSheetModel
+import br.com.useblu.oceands.components.compose.OceanButtonModel
 import br.com.useblu.oceands.components.compose.OceanDatePickerDialog
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanUnorderedListItem
+import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -154,17 +156,21 @@ class HomeActivity : AppCompatActivity() {
                                 imageUrl = "https://portal-cicloentrada.blu.com.br/assets/icons/coin_trail-cc541831a7fbf4d215f3910fb241b14701f5ab0f79d574ad3a6e12379b7e871e.png",
                                 icon = R.drawable.icon_easter_eggs,
                                 code = 2000,
-                                actionPositive = OceanBottomSheetModel.Button(
-                                    text = "Aceitar",
-                                    onClick = {
-                                        println("Positive Button Clicked")
-                                    }
-                                ),
-                                actionNegative = OceanBottomSheetModel.Button(
-                                    text = "Cancelar",
-                                    onClick = {
-                                        println("Negative Button Clicked")
-                                    }
+                                buttons = listOf(
+                                    OceanButtonModel(
+                                        text = "Aceitar Custom",
+                                        buttonStyle = OceanButtonStyle.PrimaryMedium,
+                                        onClick = {
+                                            println("Positive Button Clicked")
+                                        }
+                                    ),
+                                    OceanButtonModel(
+                                        text = "Cancelar Custom",
+                                        buttonStyle = OceanButtonStyle.TertiaryMedium,
+                                        onClick = {
+                                            println("Negative Button Clicked")
+                                        }
+                                    )
                                 ),
                                 buttonsOrientation = BottomSheetButtonsOrientation.Vertical,
                                 onDismiss = {

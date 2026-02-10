@@ -77,8 +77,8 @@ fun OceanTextListItem(
             showClickableChevron
         ) ||
         (
-            textListStyle != OceanTextListStyle.RadioButton ||
-                textListStyle != OceanTextListStyle.Checkbox
+            textListStyle == OceanTextListStyle.RadioButton ||
+                textListStyle == OceanTextListStyle.Checkbox
             )
 
     Column(
@@ -314,7 +314,6 @@ fun OceanTextListItemPreview() {
             selected = false,
             showError = false,
             enabled = true,
-            onClick = {},
             showClickableChevron = false
         )
         OceanTextListItem(

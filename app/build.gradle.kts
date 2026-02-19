@@ -2,8 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
     id("androidx.baselineprofile")
     alias(libs.plugins.compose.compiler)
 }

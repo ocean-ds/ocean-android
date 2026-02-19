@@ -5,8 +5,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     id("maven-publish")
     id("com.android.library")
-    kotlin("android")
-    kotlin("kapt")
     id("androidx.baselineprofile")
     alias(libs.plugins.compose.compiler)
 }
@@ -67,6 +65,10 @@ android {
         }
     }
     namespace = "br.com.useblu.oceands"
+
+    publishing {
+        singleVariant("release")
+    }
 }
 
 afterEvaluate {

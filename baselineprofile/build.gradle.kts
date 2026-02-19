@@ -1,44 +1,32 @@
-import com.android.build.gradle.internal.dsl.ManagedVirtualDevice
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.android.build.api.dsl.ManagedVirtualDevice
+import com.android.build.api.dsl.TestExtension
 
 plugins {
     id("com.android.test")
-    id("org.jetbrains.kotlin.android")
     id("androidx.baselineprofile")
 }
 
-android {
+extensions.configure<TestExtension> {
     namespace = "br.com.useblu.oceands.baselineprofile"
     compileSdk = Configs.compileSdkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     defaultConfig {
         minSdk = Configs.minSdkVersion
         targetSdk = Configs.targetSdkVersion
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     targetProjectPath = ":app"
 
-    testOptions.managedDevices.devices {
-        add(
-            ManagedVirtualDevice("pixel7Api30").apply {
-                device = "Pixel 7"
-                apiLevel = 30
-                systemImageSource = "aosp"
-            }
-        )
+    testOptions.managedDevices.allDevices.create<ManagedVirtualDevice>("pixel7Api30") {
+        device = "Pixel 7"
+        sdkVersion = 30
+        systemImageSource = "aosp"
     }
 }
 

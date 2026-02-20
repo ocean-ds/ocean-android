@@ -39,6 +39,7 @@ import br.com.useblu.oceands.client.ui.accordion.AccordionActivity
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.badges.BadgesActivity
 import br.com.useblu.oceands.client.ui.balance.BalanceActivity
+import br.com.useblu.oceands.client.ui.banner.BannerActivity
 import br.com.useblu.oceands.client.ui.blubalance.BluBalanceActivity
 import br.com.useblu.oceands.client.ui.bottomnavigation.BottomNavigationActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
@@ -188,6 +189,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Alerts", onClick = { onClickAlert() })
                         textAction(text = "Badges", onClick = { onClickBadges() })
                         textAction(text = "Balance", onClick = { onClickBalance() })
+                        textAction(text = "Banner", onClick = { onClickBanner() })
                         textAction(text = "Blu Balance", onClick = { onClickBluBalance() })
                         textAction(text = "Bottom Navigation", onClick = { onClickBottomNavigation() })
                         textAction(text = "BottomSheet 100% Compose", onClick = { showSheet = true })
@@ -357,6 +359,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onClickBalance() {
         val intent = Intent(this, BalanceActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun onClickBanner() {
+        val intent = Intent(this, BannerActivity::class.java)
         startActivity(intent)
     }
 

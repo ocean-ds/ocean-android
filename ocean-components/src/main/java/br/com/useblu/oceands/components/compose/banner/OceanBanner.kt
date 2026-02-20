@@ -4,14 +4,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -29,8 +29,8 @@ import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTextNotBlank
 import br.com.useblu.oceands.components.compose.OceanTheme
-import br.com.useblu.oceands.extensions.compose.height
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -44,8 +44,8 @@ fun OceanBanner(
     kind: OceanBannerKind,
     title: String,
     description: String = "",
-    ctaTitle: String,
-    onCtaClick: () -> Unit,
+    ctaTitle: String = "",
+    onCtaClick: () -> Unit = { /* No-op */ },
     ctaIsEnabled: Boolean = true
 ) = Box(
     modifier = modifier
@@ -106,8 +106,10 @@ private fun OceanBannerSmall(
     ctaTitle: String,
     onCtaClick: () -> Unit,
     ctaIsEnabled: Boolean
-) = Row(modifier = Modifier.height(IntrinsicSize.Min)) {
+) = Row {
     var contentHeight by remember { mutableIntStateOf(0) }
+    val density = androidx.compose.ui.platform.LocalDensity.current
+    val heightDp = with(density) { contentHeight.toDp() }
 
     OceanBannerInfoContent(
         modifier = Modifier
@@ -120,9 +122,10 @@ private fun OceanBannerSmall(
         onCtaClick = onCtaClick,
         ctaIsEnabled = ctaIsEnabled
     )
+
     image?.View(
         modifier = Modifier
-            .fillMaxHeight()
+            .height(heightDp)
             .widthIn(max = with(LocalConfiguration.current) { screenWidthDp.dp * 0.25f })
     )
 }
@@ -158,91 +161,103 @@ private fun OceanBannerInfoContent(
             .padding(top = OceanSpacing.xxxs)
     )
 
-    OceanSpacing.StackXXSExtra()
+    if (ctaTitle.isNotEmpty()) {
+        OceanSpacing.StackXXSExtra()
 
-    OceanButton(
-        text = ctaTitle,
-        onClick = onCtaClick,
-        buttonStyle = style.getButtonStyle(),
-        disabled = !ctaIsEnabled
-    )
+        OceanButton(
+            text = ctaTitle,
+            onClick = onCtaClick,
+            buttonStyle = style.getButtonStyle(),
+            disabled = !ctaIsEnabled
+        )
+    }
 }
 
 @Preview(heightDp = 1100)
 @Composable
-private fun OceanBannerPreview() = OceanTheme {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = OceanColors.interfaceLightPure)
-            .padding(OceanSpacing.xxs),
-        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
-    ) {
-        OceanBanner(
-            modifier = Modifier,
-            style = OceanBannerStyle.Neutral,
-            kind = OceanBannerKind.Large(
-                image = OceanImageProxy.Resource(
-                    resId = R.drawable.image_placeholder
-                )
-            ),
-            title = "Banner Title",
-            description = "This is a description for the banner component.",
-            ctaTitle = "Click Here",
-            onCtaClick = {}
-        )
+fun OceanBannerPreview() {
+    OceanTheme {
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .fillMaxSize()
+                .background(color = OceanColors.interfaceLightPure)
+                .padding(OceanSpacing.xxs),
+            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
+        ) {
+            OceanBanner(
+                modifier = Modifier,
+                style = OceanBannerStyle.Neutral,
+                kind = OceanBannerKind.Large(
+                    image = OceanImageProxy.Resource(
+                        resId = R.drawable.image_placeholder
+                    )
+                ),
+                title = "Banner Title",
+                description = "This is a description for the banner component.",
+                ctaTitle = "Click Here",
+                onCtaClick = {}
+            )
 
-        OceanBanner(
-            modifier = Modifier.wrapContentSize(),
-            style = OceanBannerStyle.Brand,
-            kind = OceanBannerKind.Small(
-                image = OceanImageProxy.Resource(
-                    resId = R.drawable.image_blocked,
-                    contentScale = ContentScale.FillHeight,
-                    alignment = Alignment.Center
-                )
-            ),
-            title = "Banner Title",
-            description = "ahfsaidhfsiuahdfosiadhoasdhfoasduifaosdufhoasdufhsodfhsaoidfhsaoiudhfshiudhfsiuadhaoisdfhu",
-            ctaTitle = "Click Here",
-            onCtaClick = {}
-        )
+            OceanBanner(
+                modifier = Modifier.wrapContentSize(),
+                style = OceanBannerStyle.Brand,
+                kind = OceanBannerKind.Small(
+                    image = OceanImageProxy.Resource(
+                        resId = R.drawable.image_blocked,
+                        contentScale = ContentScale.FillHeight,
+                        alignment = Alignment.Center
+                    )
+                ),
+                title = "Banner Title",
+                description = "ahfsaidhfsiuahdfosiadhoasdhfoasduifaosdufhoasdufhsodfhsaoidfhsaoiudhfshiudhfsiuadhaoisdfhu",
+                ctaTitle = "Click Here",
+                onCtaClick = {}
+            )
 
-        OceanBanner(
-            modifier = Modifier.wrapContentSize(),
-            style = OceanBannerStyle.Neutral,
-            kind = OceanBannerKind.Small(
-                image = OceanImageProxy.Resource(
-                    resId = R.drawable.image_placeholder,
-                    contentScale = ContentScale.Fit,
-                    alignment = Alignment.Center
-                )
-            ),
-            title = "Banner Title",
-            description = "ahfsaidhfsiuahdfosiadhoasdhfoasduifaosdufhoasdufhsodfhsaoidfhsaoiudhfshiudhfsiuadhaoisdfhu",
-            ctaTitle = "Click Here",
-            onCtaClick = {}
-        )
+            OceanBanner(
+                modifier = Modifier.wrapContentSize(),
+                style = OceanBannerStyle.Neutral,
+                kind = OceanBannerKind.Small(
+                    image = OceanImageProxy.Resource(
+                        resId = R.drawable.image_placeholder,
+                        contentScale = ContentScale.Fit,
+                        alignment = Alignment.Center
+                    )
+                ),
+                title = "Banner Title",
+                description = "ahfsaidhfsiuahdfosiadhoasdhfoasduifaosdufhoasdufhsodfhsaoidfhsaoiudhfshiudhfsiuadhaoisdfhu",
+                ctaTitle = "Click Here",
+                onCtaClick = {}
+            )
 
-        OceanBanner(
-            modifier = Modifier,
-            style = OceanBannerStyle.Neutral,
-            kind = OceanBannerKind.Small(),
-            title = "Banner Title",
-            description = "ahfsaidhfsiuahdfosiadhoasdhfoasduifaosdufhoasdufhsodfhsaoidfhsaoiudhfshiudhfsiuadhaoisdfhu",
-            ctaTitle = "Click Here",
-            onCtaClick = {}
-        )
+            OceanBanner(
+                modifier = Modifier,
+                style = OceanBannerStyle.Custom(
+                    backgroundColor = OceanColors.statusNegativeUp,
+                    titleColor = OceanColors.interfaceDarkDeep,
+                    descriptionColor = OceanColors.interfaceDarkDown,
+                    customButtonStyle = OceanButtonStyle.PrimaryMedium
+                ),
+                kind = OceanBannerKind.Small(
+                    image = OceanImageProxy.URL(
+                        url = "https://portal-cob.blu.com.br/assets/credblu/image_hero_bill_overdue_negative-b5bb0660469f00e54ae453279e54f24800fb953f9d4664d704f89f3ebadd9203.webp"
+                    )
+                ),
+                title = "Recebíveis de fora da Blu podem ser usados pra pagar este boleto",
+                description = "Para evitar isso, faça um Pix para a sua conta Blu ou pague em qualquer banco copiando o código de barras."
+            )
 
-        OceanBanner(
-            modifier = Modifier,
-            style = OceanBannerStyle.Warning,
-            kind = OceanBannerKind.Small(),
-            title = "Banner Title",
-            description = "ahfsaidhfsiuahdfosiadhoasdhfoasduifaosdufhoasdufhsodfhsaoidfhsaoiudhfshiudhfsiuadhaoisdfhu",
-            ctaTitle = "Click Here",
-            onCtaClick = {},
-            ctaIsEnabled = false
-        )
+            OceanBanner(
+                modifier = Modifier,
+                style = OceanBannerStyle.Warning,
+                kind = OceanBannerKind.Small(),
+                title = "Banner Title",
+                description = "ahfsaidhfsiuahdfosiadhoasdhfoasduifaosdufhoasdufhsodfhsaoidfhsaoiudhfshiudhfsiuadhaoisdfhu",
+                ctaTitle = "Click Here",
+                onCtaClick = {},
+                ctaIsEnabled = false
+            )
+        }
     }
 }

@@ -9,6 +9,12 @@ sealed interface OceanBannerStyle {
     data object Neutral : OceanBannerStyle
     data object Brand : OceanBannerStyle
     data object Warning : OceanBannerStyle
+    data class Custom(
+        val backgroundColor: Color,
+        val titleColor: Color,
+        val descriptionColor: Color,
+        val customButtonStyle: OceanButtonStyle
+    ) : OceanBannerStyle
 
     @Composable
     fun getBackgroundColor(): Color =
@@ -16,6 +22,7 @@ sealed interface OceanBannerStyle {
             Neutral -> OceanColors.interfaceLightUp
             Brand -> OceanColors.brandPrimaryPure
             Warning -> OceanColors.statusWarningUp
+            is Custom -> backgroundColor
         }
 
     @Composable
@@ -23,6 +30,7 @@ sealed interface OceanBannerStyle {
         when (this) {
             Neutral, Warning -> OceanColors.interfaceDarkDeep
             Brand -> OceanColors.interfaceLightPure
+            is Custom -> titleColor
         }
 
     @Composable
@@ -30,6 +38,7 @@ sealed interface OceanBannerStyle {
         when (this) {
             Neutral, Warning -> OceanColors.interfaceDarkDown
             Brand -> OceanColors.interfaceLightUp
+            is Custom -> descriptionColor
         }
 
     fun getButtonStyle(): OceanButtonStyle =
@@ -37,5 +46,6 @@ sealed interface OceanBannerStyle {
             Neutral -> OceanButtonStyle.PrimarySmall
             Brand -> OceanButtonStyle.SecondarySmall
             Warning -> OceanButtonStyle.PrimaryWarningSmall
+            is Custom -> customButtonStyle
         }
 }

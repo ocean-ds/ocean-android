@@ -15,7 +15,83 @@ import br.com.useblu.oceands.model.OceanInlineTextList
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
+
+@Composable
+fun OceanTransactionFooter(
+    modifier: Modifier = Modifier,
+    entries: List<OceanInlineTextList>,
+    firstButton: OceanButtonModel,
+    secondButton: OceanButtonModel? = null,
+    entriesSpacing: Dp = OceanSpacing.xxs,
+    buttonsOrientation: Orientation = Orientation.Vertical,
+    caption: String = ""
+) {
+    Column(
+        modifier = modifier
+            .background(OceanColors.interfaceLightPure)
+            .padding(OceanSpacing.xs),
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
+    ) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(entriesSpacing),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            entries.forEach { item ->
+                OceanInlineTextListItem(
+                    item = item
+                )
+            }
+            OceanTextNotBlank(
+                text = caption,
+                style = OceanTextStyle.paragraph,
+                color = OceanColors.interfaceDarkUp
+            )
+        }
+
+        val buttons: @Composable (Modifier) -> Unit = {
+            OceanButton(
+                showProgress = firstButton.showProgress,
+                text = firstButton.text,
+                buttonStyle = firstButton.buttonStyle,
+                icon = firstButton.icon,
+                onClick = firstButton.onClick,
+                modifier = it
+            )
+
+            if (secondButton != null) {
+                OceanButton(
+                    showProgress = secondButton.showProgress,
+                    text = secondButton.text,
+                    icon = secondButton.icon,
+                    buttonStyle = secondButton.buttonStyle,
+                    onClick = secondButton.onClick,
+                    modifier = it
+                )
+            }
+        }
+
+        when (buttonsOrientation) {
+            Orientation.Horizontal -> {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    buttons(Modifier.weight(1f))
+                }
+            }
+
+            Orientation.Vertical -> {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
+                ) {
+                    buttons(Modifier.fillMaxWidth())
+                }
+            }
+        }
+    }
+}
 
 @Preview
 @Composable
@@ -77,75 +153,8 @@ private fun OceanTransactionFooterPreview() {
                 onClick = {},
                 buttonStyle = OceanButtonStyle.SecondaryMedium
             ),
-            buttonsOrientation = Orientation.Vertical
+            buttonsOrientation = Orientation.Vertical,
+            caption = "Lorem ipsum dolor sit amet, consectetur adipis"
         )
-    }
-}
-
-@Composable
-fun OceanTransactionFooter(
-    modifier: Modifier = Modifier,
-    entries: List<OceanInlineTextList>,
-    firstButton: OceanButtonModel,
-    secondButton: OceanButtonModel? = null,
-    entriesSpacing: Dp = OceanSpacing.xxs,
-    buttonsOrientation: Orientation = Orientation.Vertical
-) {
-    Column(
-        modifier = modifier
-            .background(OceanColors.interfaceLightPure)
-            .padding(OceanSpacing.xs),
-        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
-    ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(entriesSpacing)
-        ) {
-            entries.forEach { item ->
-                OceanInlineTextListItem(
-                    item = item
-                )
-            }
-        }
-
-        val buttons: @Composable (Modifier) -> Unit = {
-            OceanButton(
-                showProgress = firstButton.showProgress,
-                text = firstButton.text,
-                buttonStyle = firstButton.buttonStyle,
-                icon = firstButton.icon,
-                onClick = firstButton.onClick,
-                modifier = it
-            )
-
-            if (secondButton != null) {
-                OceanButton(
-                    showProgress = secondButton.showProgress,
-                    text = secondButton.text,
-                    icon = secondButton.icon,
-                    buttonStyle = secondButton.buttonStyle,
-                    onClick = secondButton.onClick,
-                    modifier = it
-                )
-            }
-        }
-
-        when (buttonsOrientation) {
-            Orientation.Horizontal -> {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    buttons(Modifier.weight(1f))
-                }
-            }
-
-            Orientation.Vertical -> {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
-                ) {
-                    buttons(Modifier.fillMaxWidth())
-                }
-            }
-        }
     }
 }

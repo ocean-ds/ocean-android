@@ -153,7 +153,8 @@ private fun OceanTransactionFooterPreview() {
                 onClick = {},
                 buttonStyle = OceanButtonStyle.SecondaryMedium
             ),
-            buttonsOrientation = Orientation.Vertical
+            buttonsOrientation = Orientation.Vertical,
+            caption = "Lorem ipsum dolor sit amet, consectetur adipis"
         )
     }
 }

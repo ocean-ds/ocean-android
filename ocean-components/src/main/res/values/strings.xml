@@ -43,7 +43,8 @@
     <string name="date_range_invalid_date_error">Data inválida</string>
     <string name="date_range_empty_error">Este campo não pode ficar em branco</string>
     <string name="date_range_invalid_range_error">A data inicial deve ser menor ou igual à data final</string>
-
+    <string name="date_picker_date_selected_tooltip">Data selecionada</string>
+    <string name="date_picker_disabled_date_tooltip">Esta data não está disponível para seleção</string>
 
     <!--  PinPad Currency Default  -->
     <string name="pinpad_currency_message_larger">Digite um valor maior do que %s.</string>

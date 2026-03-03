@@ -8,8 +8,14 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanDatePickerFullscreenBinding
+import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
 import br.com.useblu.oceands.utils.DisabledDaysDecorator
+import br.com.useblu.oceands.utils.findDayViewByDate
+import br.com.useblu.oceands.utils.isDisabled
+import br.com.useblu.oceands.utils.toDayOfYearKey
 import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -23,6 +29,7 @@ class OceanDatePickerFullscreen(
     private var maxDate: Calendar? = null
     private var defaultSelected: Calendar? = null
     private var disabledDays: Array<Calendar> = emptyArray()
+    private var tooltipSetups: Map<String, OceanDatePickerTooltipSetup> = emptyMap()
     private var onClickConfirm: (Calendar) -> Unit = {}
     private var _binding: OceanDatePickerFullscreenBinding? = null
     private val binding get() = _binding!!
@@ -80,7 +87,55 @@ class OceanDatePickerFullscreen(
         calendarState.commit()
 
         disabledDays.let {
-            binding.calendarView.addDecorators(DisabledDaysDecorator(it))
+            context?.let { ctx ->
+                binding.calendarView.addDecorators(DisabledDaysDecorator(ctx, it))
+            }
+        }
+
+        var lastValidSelectedDate: CalendarDay? = binding.calendarView.selectedDate
+            ?: defaultSelected?.let {
+                CalendarDay.from(it.get(Calendar.YEAR), it.get(Calendar.MONTH) + 1, it.get(Calendar.DAY_OF_MONTH))
+            }
+        binding.calendarView.setOnDateChangedListener(object : OnDateSelectedListener {
+            override fun onDateSelected(
+                widget: MaterialCalendarView,
+                date: CalendarDay,
+                selected: Boolean
+            ) {
+                val setup = tooltipSetups[date.toDayOfYearKey()]
+                val message = setup?.message ?: getString(R.string.date_picker_disabled_date_tooltip)
+                val autoDismissMs = setup?.autoDismissMs ?: Long.MAX_VALUE
+                widget.findDayViewByDate(date) { anchorView ->
+                    showDateSelectedTooltip(anchorView, OceanDatePickerTooltipSetup(message, autoDismissMs))
+                }
+
+                if (!selected) return
+                val isDisabled = date.isDisabled(disabledDays)
+                if (isDisabled) {
+                    if (lastValidSelectedDate != null) {
+                        widget.selectedDate = lastValidSelectedDate
+                    } else {
+                        val today = Calendar.getInstance()
+                        widget.selectedDate = CalendarDay.from(
+                            today.get(Calendar.YEAR),
+                            today.get(Calendar.MONTH) + 1,
+                            today.get(Calendar.DAY_OF_MONTH)
+                        )
+                    }
+                } else {
+                    lastValidSelectedDate = date
+                }
+            }
+        })
+    }
+
+    private fun showDateSelectedTooltip(anchorView: View, setup: OceanDatePickerTooltipSetup) {
+        context?.let { ctx ->
+            OceanTooltip(context = ctx, lifecycle = viewLifecycleOwner)
+                .withMessage(setup.message)
+                .withAutoDismissDuration(setup.autoDismissMs ?: Long.MAX_VALUE)
+                .build()
+                .showAlignTop(anchorView)
         }
     }
 
@@ -119,6 +174,11 @@ class OceanDatePickerFullscreen(
 
     fun withDisabledDays(disabledDays: Array<Calendar> = emptyArray()): OceanDatePickerFullscreen {
         this.disabledDays = disabledDays
+        return this
+    }
+
+    fun withTooltipSetups(setups: Map<String, OceanDatePickerTooltipSetup>): OceanDatePickerFullscreen {
+        this.tooltipSetups = setups
         return this
     }
 

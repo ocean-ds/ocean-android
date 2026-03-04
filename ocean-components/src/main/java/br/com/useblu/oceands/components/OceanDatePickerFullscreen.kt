@@ -10,12 +10,9 @@ import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanDatePickerFullscreenBinding
 import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
 import br.com.useblu.oceands.utils.DisabledDaysDecorator
-import br.com.useblu.oceands.utils.findDayViewByDate
+import br.com.useblu.oceands.utils.OceanDatePickerSelectionHandler
 import br.com.useblu.oceands.utils.isDisabled
-import br.com.useblu.oceands.utils.toDayOfYearKey
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -92,49 +89,18 @@ class OceanDatePickerFullscreen(
             }
         }
 
-        var lastValidSelectedDate: CalendarDay? = binding.calendarView.selectedDate
-            ?: defaultSelected?.let {
-                CalendarDay.from(it.get(Calendar.YEAR), it.get(Calendar.MONTH) + 1, it.get(Calendar.DAY_OF_MONTH))
-            }
-        binding.calendarView.setOnDateChangedListener(object : OnDateSelectedListener {
-            override fun onDateSelected(
-                widget: MaterialCalendarView,
-                date: CalendarDay,
-                selected: Boolean
-            ) {
-                val isDisabled = date.isDisabled(disabledDays)
-                if (isDisabled) {
-                    if (lastValidSelectedDate != null) {
-                        widget.selectedDate = lastValidSelectedDate
-                    } else {
-                        val today = Calendar.getInstance()
-                        widget.selectedDate = CalendarDay.from(
-                            today.get(Calendar.YEAR),
-                            today.get(Calendar.MONTH) + 1,
-                            today.get(Calendar.DAY_OF_MONTH)
-                        )
-                    }
-                } else {
-                    lastValidSelectedDate = date
+        val selectionController = OceanDatePickerSelectionHandler(
+            tooltipSetups = tooltipSetups,
+            isDisabled = { date -> date.isDisabled(disabledDays) },
+            context = context,
+            lifecycleOwner = viewLifecycleOwner,
+            lastValidSelectedDate = binding.calendarView.selectedDate
+                ?: defaultSelected?.let {
+                    CalendarDay.from(it.get(Calendar.YEAR), it.get(Calendar.MONTH) + 1, it.get(Calendar.DAY_OF_MONTH))
                 }
-                val setup = tooltipSetups[date.toDayOfYearKey()]
-                if (setup != null) {
-                    widget.findDayViewByDate(date) { anchorView ->
-                        showDateSelectedTooltip(anchorView, setup)
-                    }
-                }
-            }
-        })
-    }
+        )
 
-    private fun showDateSelectedTooltip(anchorView: View, setup: OceanDatePickerTooltipSetup) {
-        context?.let { ctx ->
-            OceanTooltip(context = ctx, lifecycle = viewLifecycleOwner)
-                .withMessage(setup.message)
-                .withAutoDismissDuration(setup.getAutoDismissDuration())
-                .build()
-                .showAlignTop(anchorView)
-        }
+        binding.calendarView.setOnDateChangedListener(selectionController.getListener())
     }
 
     private fun setupButton() {

@@ -46,10 +46,12 @@ class DatePickerActivity : AppCompatActivity() {
                         message = "Amanhã - sem auto dismiss",
                         autoDismissMs = null
                     ),
-                    Calendar.getInstance().apply { set(Calendar.DAY_OF_MONTH, 15) }.toDayOfYearKey() to OceanDatePickerTooltipSetup(
+                    Calendar.getInstance().apply { set(Calendar.DAY_OF_MONTH, 15) }
+                        .toDayOfYearKey() to OceanDatePickerTooltipSetup(
                         message = "Dia 15 - tooltip customizada"
                     ),
-                    Calendar.getInstance().apply { set(Calendar.DAY_OF_MONTH, 20) }.toDayOfYearKey() to OceanDatePickerTooltipSetup(
+                    Calendar.getInstance().apply { set(Calendar.DAY_OF_MONTH, 20) }
+                        .toDayOfYearKey() to OceanDatePickerTooltipSetup(
                         message = "Dia 20 - tooltip customizada"
                     )
                 )
@@ -72,14 +74,18 @@ class DatePickerActivity : AppCompatActivity() {
                 }
 
                 if (showComposeDialog) {
-                    val calendarMinDate = remember { Calendar.getInstance().apply { time = Date() } }
+                    val calendarMinDate = remember {
+                        Calendar.getInstance().apply {
+                            time = Date()
+                            add(Calendar.DAY_OF_YEAR, 1)
+                        }
+                    }
                     val calendarMaxDate = remember {
                         Calendar.getInstance().apply {
                             time = Date()
                             add(Calendar.MONTH, 5)
                         }
                     }
-                    val defaultDate = remember { Date() }
                     val disabledDays = remember {
                         listOf(
                             Calendar.getInstance().apply { set(Calendar.DAY_OF_MONTH, 15) }.time,
@@ -92,7 +98,7 @@ class DatePickerActivity : AppCompatActivity() {
                         infoMessage = "Selecione uma data. Tooltips aparecem em datas configuradas (hoje e amanhã).",
                         minDate = calendarMinDate.time,
                         maxDate = calendarMaxDate.time,
-                        defaultDate = defaultDate,
+                        defaultDate = calendarMinDate.time,
                         disabledDays = disabledDays,
                         tooltipSetups = tooltipSetups,
                         onConfirm = { date ->
@@ -110,12 +116,14 @@ class DatePickerActivity : AppCompatActivity() {
     }
 
     private fun onDatePickerFullscreen(tooltipSetups: Map<String, OceanDatePickerTooltipSetup>) {
-        val calendarMinDate = Calendar.getInstance().apply { time = Date() }
+        val calendarMinDate = Calendar.getInstance().apply {
+            time = Date()
+            add(Calendar.DAY_OF_YEAR, 1)
+        }
         val calendarMaxDate = Calendar.getInstance().apply {
             time = Date()
             add(Calendar.MONTH, 5)
         }
-        val calendarDefaultSelected = Calendar.getInstance().apply { time = Date() }
         val disabledDays = arrayOf(
             Calendar.getInstance().apply { set(Calendar.DAY_OF_MONTH, 15) },
             Calendar.getInstance().apply { set(Calendar.DAY_OF_MONTH, 20) }
@@ -125,7 +133,7 @@ class DatePickerActivity : AppCompatActivity() {
             .withTitle("Selecione uma data")
             .withMinDate(calendarMinDate)
             .withMaxDate(calendarMaxDate)
-            .withDefaultSelect(calendarDefaultSelected)
+            .withDefaultSelect(calendarMinDate)
             .withDisabledDays(disabledDays)
             .withTooltipSetups(tooltipSetups)
             .withOnConfirm { calendar ->

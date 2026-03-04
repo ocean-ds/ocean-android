@@ -161,19 +161,6 @@ fun OceanDatePickerDialog(
                                 selected: Boolean
                             ) {
                                 val setup = tooltipSetups[date.toDayOfYearKey()]
-                                val message = setup?.message ?: context.getString(R.string.date_picker_disabled_date_tooltip)
-                                val autoDismissMs = setup?.autoDismissMs ?: Long.MAX_VALUE
-                                widget.findDayViewByDate(date) { anchorView ->
-                                    OceanTooltip(
-                                        context = context,
-                                        lifecycle = lifecycleOwner
-                                    )
-                                        .withMessage(message)
-                                        .withAutoDismissDuration(autoDismissMs)
-                                        .build()
-                                        .showAlignTop(anchorView)
-                                }
-                                if (!selected) return
                                 val isDisabled = date.isDisabled(disabledDays)
                                 if (isDisabled) {
                                     if (lastValidSelectedDate != null) {
@@ -188,6 +175,18 @@ fun OceanDatePickerDialog(
                                     }
                                 } else {
                                     lastValidSelectedDate = date
+                                }
+                                if (setup != null) {
+                                    widget.findDayViewByDate(date) { anchorView ->
+                                        OceanTooltip(
+                                            context = context,
+                                            lifecycle = lifecycleOwner
+                                        )
+                                            .withMessage(setup.message)
+                                            .withAutoDismissDuration(setup.getAutoDismissDuration())
+                                            .build()
+                                            .showAlignTop(anchorView)
+                                    }
                                 }
                             }
                         })

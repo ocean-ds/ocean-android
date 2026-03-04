@@ -2,5 +2,9 @@ package br.com.useblu.oceands.model
 
 data class OceanDatePickerTooltipSetup(
     val message: String,
-    val autoDismissMs: Long? = null
-)
+    private val autoDismissMs: Long? = null
+) {
+    fun getAutoDismissDuration(): Long {
+        return autoDismissMs ?: -1
+    }
+}

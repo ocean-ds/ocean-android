@@ -102,14 +102,6 @@ class OceanDatePickerFullscreen(
                 date: CalendarDay,
                 selected: Boolean
             ) {
-                val setup = tooltipSetups[date.toDayOfYearKey()]
-                val message = setup?.message ?: getString(R.string.date_picker_disabled_date_tooltip)
-                val autoDismissMs = setup?.autoDismissMs ?: Long.MAX_VALUE
-                widget.findDayViewByDate(date) { anchorView ->
-                    showDateSelectedTooltip(anchorView, OceanDatePickerTooltipSetup(message, autoDismissMs))
-                }
-
-                if (!selected) return
                 val isDisabled = date.isDisabled(disabledDays)
                 if (isDisabled) {
                     if (lastValidSelectedDate != null) {
@@ -125,6 +117,12 @@ class OceanDatePickerFullscreen(
                 } else {
                     lastValidSelectedDate = date
                 }
+                val setup = tooltipSetups[date.toDayOfYearKey()]
+                if (setup != null) {
+                    widget.findDayViewByDate(date) { anchorView ->
+                        showDateSelectedTooltip(anchorView, setup)
+                    }
+                }
             }
         })
     }
@@ -133,7 +131,7 @@ class OceanDatePickerFullscreen(
         context?.let { ctx ->
             OceanTooltip(context = ctx, lifecycle = viewLifecycleOwner)
                 .withMessage(setup.message)
-                .withAutoDismissDuration(setup.autoDismissMs ?: Long.MAX_VALUE)
+                .withAutoDismissDuration(setup.getAutoDismissDuration())
                 .build()
                 .showAlignTop(anchorView)
         }

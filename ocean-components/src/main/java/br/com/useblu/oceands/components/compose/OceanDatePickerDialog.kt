@@ -158,6 +158,7 @@ fun OceanDatePickerDialog(
                             lastValidSelectedDate = this.selectedDate
                         )
                         setOnDateChangedListener(selectionController.getListener())
+                        selectionController.showTooltipsOnOpen(this)
                     }
                 }
             )

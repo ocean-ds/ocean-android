@@ -24,6 +24,22 @@ fun Calendar.toDayOfYearKey(): String {
     return "%04d-%03d".format(year, dayOfYear)
 }
 
+fun String.toCalendarDay(): CalendarDay? {
+    val parts = split("-")
+    if (parts.size != 2) return null
+    val year = parts[0].toIntOrNull() ?: return null
+    val dayOfYear = parts[1].toIntOrNull() ?: return null
+    val calendar = Calendar.getInstance().apply {
+        set(Calendar.YEAR, year)
+        set(Calendar.DAY_OF_YEAR, dayOfYear)
+    }
+    return CalendarDay.from(
+        calendar.get(Calendar.YEAR),
+        calendar.get(Calendar.MONTH) + 1,
+        calendar.get(Calendar.DAY_OF_MONTH)
+    )
+}
+
 fun CalendarDay.isDisabled(disabledDays: Array<Calendar>): Boolean {
     return disabledDays.any {
         it.get(Calendar.DAY_OF_MONTH) == day &&

@@ -20,6 +20,16 @@ class OceanDatePickerSelectionHandler(
 
     fun getListener() = OnDateSelectedListener { widget, date, _ -> onDateSelected(widget, date) }
 
+    fun showTooltipsOnOpen(widget: MaterialCalendarView) {
+        tooltipSetups.forEach { (key, setup) ->
+            if (!setup.showOnOpen) return@forEach
+            val date = key.toCalendarDay() ?: return@forEach
+            widget.findDayViewByDate(date) { anchorView ->
+                showDatePickerTooltip(anchorView, setup)
+            }
+        }
+    }
+
     private fun onDateSelected(widget: MaterialCalendarView, date: CalendarDay) {
         lastValidSelectedDate = handleDateSelection(
             widget = widget,
@@ -64,6 +74,7 @@ class OceanDatePickerSelectionHandler(
         }
 
         tooltipSetups[date.toDayOfYearKey()]?.let { setup ->
+            if (!setup.showOnTap) return@let
             findDayViewByDate(date) { anchorView ->
                 showDatePickerTooltip(anchorView, setup)
             }

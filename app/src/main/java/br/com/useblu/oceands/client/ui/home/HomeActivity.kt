@@ -15,20 +15,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
@@ -55,6 +51,7 @@ import br.com.useblu.oceands.client.ui.chartcard.ChartCardActivity
 import br.com.useblu.oceands.client.ui.checkbox.CheckBoxActivity
 import br.com.useblu.oceands.client.ui.chips.ChipsActivity
 import br.com.useblu.oceands.client.ui.crosscellcard.CardCrossSellActivity
+import br.com.useblu.oceands.client.ui.datepicker.DatePickerActivity
 import br.com.useblu.oceands.client.ui.descriptorlistitem.DescriptorListActivity
 import br.com.useblu.oceands.client.ui.detailed.DetailedCardActivity
 import br.com.useblu.oceands.client.ui.donut.DonutActivity
@@ -94,7 +91,6 @@ import br.com.useblu.oceands.components.OceanBottomListSheet
 import br.com.useblu.oceands.components.OceanBottomListSheetUIModel
 import br.com.useblu.oceands.components.OceanBottomSheet
 import br.com.useblu.oceands.components.OceanBottomSheetCompose
-import br.com.useblu.oceands.components.OceanDatePickerFullscreen
 import br.com.useblu.oceands.components.OceanSnackBar
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.OceanTooltip
@@ -102,8 +98,9 @@ import br.com.useblu.oceands.components.compose.BottomSheetButtonsOrientation
 import br.com.useblu.oceands.components.compose.OceanBottomSheet
 import br.com.useblu.oceands.components.compose.OceanBottomSheetModel
 import br.com.useblu.oceands.components.compose.OceanButtonModel
-import br.com.useblu.oceands.components.compose.OceanDatePickerDialog
+import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanUnorderedListItem
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -111,8 +108,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
-import java.util.Calendar
-import java.util.Date
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -129,25 +124,9 @@ class HomeActivity : AppCompatActivity() {
             view = LocalView.current
 
             var showSheet by remember { mutableStateOf(false) }
-            var showDatePicker by remember { mutableStateOf(false) }
 
             OceanTheme {
                 Scaffold {
-                    if (showDatePicker) {
-                        OceanDatePickerDialog(
-                            title = "Selecione uma data",
-                            infoTitle = "Título",
-                            infoMessage = "Mensagem",
-                            onConfirm = {
-                                println(it)
-                                showDatePicker = false
-                            },
-                            onDismiss = {
-                                showDatePicker = false
-                            }
-                        )
-                    }
-
                     if (showSheet) {
                         OceanBottomSheet(
                             model = OceanBottomSheetModel(
@@ -222,8 +201,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Chart Card", onClick = { chartCardClick() })
                         textAction(text = "Checkbox", onClick = { checkbox() })
                         textAction(text = "Chips", onClick = { onClickChips() })
-                        textAction(text = "DatePicker Fullscreen", onClick = { onOceanDatePickerFullScreen() })
-                        textAction(text = "DatePicker Fullscreen Compose", onClick = { showDatePicker = true })
+                        textAction(text = "DatePicker", onClick = { onClickDatePicker() })
                         textAction(text = "Descriptor List Item", onClick = { descriptorList() })
                         textAction(text = "Detailed Card", onClick = { detailedCardClick() })
                         textAction(text = "Donut", onClick = { donutView() })
@@ -268,33 +246,6 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun LazyListScope.textAction(
-        text: String,
-        onClick: () -> Unit
-    ) {
-        item {
-            Text(
-                text = text,
-                modifier = Modifier
-                    .clickable { onClick() }
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                fontSize = 24.sp,
-                color = OceanColors.interfaceDarkDown
-            )
-            Divider()
-        }
-    }
-
-    @Composable
-    private fun Divider() {
-        HorizontalDivider(
-            modifier = Modifier.padding(horizontal = 12.dp),
-            thickness = 1.dp,
-            color = Color(0xFFE7E7E7)
-        )
     }
 
     private fun onClickTypography() {
@@ -860,48 +811,9 @@ class HomeActivity : AppCompatActivity() {
             ).show()
     }
 
-    private fun onOceanDatePickerFullScreen() {
-        val calendarMinDate = Calendar.getInstance()
-        calendarMinDate.time = Date()
-
-        val calendarMaxDate = Calendar.getInstance()
-        calendarMaxDate.time = Date()
-        calendarMaxDate.add(Calendar.MONTH, 5)
-
-        val calendarDefaultSelected = Calendar.getInstance()
-        calendarDefaultSelected.time = Date()
-
-        val disableDay1 = Calendar.getInstance().apply {
-            set(Calendar.YEAR, 2022)
-            set(Calendar.MONTH, Calendar.JUNE)
-            set(Calendar.DAY_OF_MONTH, 28)
-        }
-
-        val disabledDay2 = Calendar.getInstance().apply {
-            set(Calendar.YEAR, 2022)
-            set(Calendar.MONTH, Calendar.JULY)
-            set(Calendar.DAY_OF_MONTH, 12)
-        }
-
-        val disabledDay3 = Calendar.getInstance().apply {
-            set(Calendar.YEAR, 2022)
-            set(Calendar.MONTH, Calendar.AUGUST)
-            set(Calendar.DAY_OF_MONTH, 13)
-        }
-
-        OceanDatePickerFullscreen(supportFragmentManager)
-            .withTitle("Teste de título 2")
-            .withMinDate(calendarMinDate)
-            .withMaxDate(calendarMaxDate)
-            .withDefaultSelect(calendarDefaultSelected)
-            .withDisabledDays(arrayOf(disableDay1, disabledDay2, disabledDay3))
-            .withOnConfirm { calendar ->
-                OceanToast(this)
-                    .withType(OceanToast.OceanToastType.Warning)
-                    .withMessage(calendar.time.toString())
-                    .show()
-            }
-            .show()
+    private fun onClickDatePicker() {
+        val intent = Intent(this, DatePickerActivity::class.java)
+        startActivity(intent)
     }
 
     private fun onClickToast() {
@@ -955,5 +867,23 @@ class HomeActivity : AppCompatActivity() {
     private fun onClickTokenInput() {
         val intent = Intent(this, TokenInputActivity::class.java)
         startActivity(intent)
+    }
+}
+
+internal fun LazyListScope.textAction(
+    text: String,
+    onClick: () -> Unit
+) {
+    item {
+        OceanText(
+            text = text,
+            modifier = Modifier
+                .clickable { onClick() }
+                .fillMaxWidth()
+                .padding(OceanSpacing.xs),
+            style = OceanTextStyle.subtitle1,
+            color = OceanColors.interfaceDarkDown
+        )
+        OceanDivider()
     }
 }

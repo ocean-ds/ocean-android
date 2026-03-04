@@ -11,18 +11,22 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.DisabledDaysDecorator
+import br.com.useblu.oceands.utils.OceanDatePickerSelectionHandler
 import br.com.useblu.oceands.utils.OceanIcons
+import br.com.useblu.oceands.utils.isDisabled
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import java.util.Calendar
@@ -51,9 +55,11 @@ fun OceanDatePickerDialog(
     maxDate: Date? = null,
     defaultDate: Date = Date(),
     disabledDays: List<Date> = emptyList(),
+    tooltipSetups: Map<String, OceanDatePickerTooltipSetup> = emptyMap(),
     onConfirm: (Date) -> Unit,
     onDismiss: () -> Unit
 ) {
+    val lifecycleOwner = LocalLifecycleOwner.current
     var calendarView by remember {
         mutableStateOf<MaterialCalendarView?>(null)
     }
@@ -133,6 +139,7 @@ fun OceanDatePickerDialog(
                         if (disabledDays.isNotEmpty()) {
                             this.addDecorators(
                                 DisabledDaysDecorator(
+                                    context,
                                     disabledDays.map {
                                         Calendar.getInstance().apply {
                                             time = it
@@ -142,6 +149,15 @@ fun OceanDatePickerDialog(
                             )
                         }
                         calendarState.commit()
+
+                        val selectionController = OceanDatePickerSelectionHandler(
+                            tooltipSetups = tooltipSetups,
+                            isDisabled = { date -> date.isDisabled(disabledDays) },
+                            context = context,
+                            lifecycleOwner = lifecycleOwner,
+                            lastValidSelectedDate = this.selectedDate
+                        )
+                        setOnDateChangedListener(selectionController.getListener())
                     }
                 }
             )

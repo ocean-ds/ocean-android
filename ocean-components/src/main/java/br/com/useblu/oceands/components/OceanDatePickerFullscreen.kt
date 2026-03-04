@@ -8,7 +8,10 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanDatePickerFullscreenBinding
+import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
 import br.com.useblu.oceands.utils.DisabledDaysDecorator
+import br.com.useblu.oceands.utils.OceanDatePickerSelectionHandler
+import br.com.useblu.oceands.utils.isDisabled
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -23,6 +26,7 @@ class OceanDatePickerFullscreen(
     private var maxDate: Calendar? = null
     private var defaultSelected: Calendar? = null
     private var disabledDays: Array<Calendar> = emptyArray()
+    private var tooltipSetups: Map<String, OceanDatePickerTooltipSetup> = emptyMap()
     private var onClickConfirm: (Calendar) -> Unit = {}
     private var _binding: OceanDatePickerFullscreenBinding? = null
     private val binding get() = _binding!!
@@ -80,8 +84,23 @@ class OceanDatePickerFullscreen(
         calendarState.commit()
 
         disabledDays.let {
-            binding.calendarView.addDecorators(DisabledDaysDecorator(it))
+            context?.let { ctx ->
+                binding.calendarView.addDecorators(DisabledDaysDecorator(ctx, it))
+            }
         }
+
+        val selectionController = OceanDatePickerSelectionHandler(
+            tooltipSetups = tooltipSetups,
+            isDisabled = { date -> date.isDisabled(disabledDays) },
+            context = context,
+            lifecycleOwner = viewLifecycleOwner,
+            lastValidSelectedDate = binding.calendarView.selectedDate
+                ?: defaultSelected?.let {
+                    CalendarDay.from(it.get(Calendar.YEAR), it.get(Calendar.MONTH) + 1, it.get(Calendar.DAY_OF_MONTH))
+                }
+        )
+
+        binding.calendarView.setOnDateChangedListener(selectionController.getListener())
     }
 
     private fun setupButton() {
@@ -119,6 +138,11 @@ class OceanDatePickerFullscreen(
 
     fun withDisabledDays(disabledDays: Array<Calendar> = emptyArray()): OceanDatePickerFullscreen {
         this.disabledDays = disabledDays
+        return this
+    }
+
+    fun withTooltipSetups(setups: Map<String, OceanDatePickerTooltipSetup>): OceanDatePickerFullscreen {
+        this.tooltipSetups = setups
         return this
     }
 

@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanDatePickerFullscreenBinding
 import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
-import br.com.useblu.oceands.utils.DisabledDaysDecorator
 import br.com.useblu.oceands.utils.OceanDatePickerSelectionHandler
 import br.com.useblu.oceands.utils.isDisabled
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -68,25 +67,21 @@ class OceanDatePickerFullscreen(
             binding.calendarView.selectedDate = CalendarDay.from(year, month, day)
         }
 
-        val calendarState = binding.calendarView.state().edit()
-        minDate?.let {
-            val day = it.get(Calendar.DAY_OF_MONTH)
-            val month = it.get(Calendar.MONTH) + 1
-            val year = it.get(Calendar.YEAR)
-            calendarState.setMinimumDate(CalendarDay.from(year, month, day))
+        val minDay = minDate?.let {
+            CalendarDay.from(it.get(Calendar.YEAR), it.get(Calendar.MONTH) + 1, it.get(Calendar.DAY_OF_MONTH))
         }
-        maxDate?.let {
-            val day = it.get(Calendar.DAY_OF_MONTH)
-            val month = it.get(Calendar.MONTH) + 1
-            val year = it.get(Calendar.YEAR)
-            calendarState.setMaximumDate(CalendarDay.from(year, month, day))
+        val maxDay = maxDate?.let {
+            CalendarDay.from(it.get(Calendar.YEAR), it.get(Calendar.MONTH) + 1, it.get(Calendar.DAY_OF_MONTH))
         }
-        calendarState.commit()
 
-        disabledDays.let {
-            context?.let { ctx ->
-                binding.calendarView.addDecorators(DisabledDaysDecorator(ctx, it))
-            }
+        context?.let { ctx ->
+            OceanDatePickerSelectionHandler.setupCalendar(
+                context = ctx,
+                widget = binding.calendarView,
+                minDate = minDay,
+                maxDate = maxDay,
+                disabledDays = disabledDays
+            )
         }
 
         val selectionController = OceanDatePickerSelectionHandler(

@@ -3,6 +3,7 @@ package br.com.useblu.oceands.utils
 import android.content.Context
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
+import br.com.useblu.oceands.R
 import br.com.useblu.oceands.components.OceanTooltip
 import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -17,6 +18,30 @@ class OceanDatePickerSelectionHandler(
     private val context: Context?,
     private val lifecycleOwner: LifecycleOwner
 ) {
+
+    companion object {
+        fun setupCalendar(
+            context: Context,
+            widget: MaterialCalendarView,
+            minDate: CalendarDay? = null,
+            maxDate: CalendarDay? = null,
+            disabledDays: Array<Calendar> = emptyArray()
+        ) {
+            widget.showOtherDates = MaterialCalendarView.SHOW_OUT_OF_RANGE
+            widget.setHeaderTextAppearance(R.style.Ocean_Heading_4)
+            widget.setWeekDayTextAppearance(R.color.ocean_color_interface_dark_down)
+            widget.selectionColor = context.getColor(R.color.ocean_color_complementary_pure)
+
+            val calendarState = widget.state().edit()
+            minDate?.let { calendarState.setMinimumDate(it) }
+            maxDate?.let { calendarState.setMaximumDate(it) }
+            calendarState.commit()
+
+            if (disabledDays.isNotEmpty()) {
+                widget.addDecorators(DisabledDaysDecorator(context, disabledDays))
+            }
+        }
+    }
 
     fun getListener() = OnDateSelectedListener { widget, date, _ -> onDateSelected(widget, date) }
 

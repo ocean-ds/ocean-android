@@ -23,7 +23,6 @@ import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
-import br.com.useblu.oceands.utils.DisabledDaysDecorator
 import br.com.useblu.oceands.utils.OceanDatePickerSelectionHandler
 import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.utils.isDisabled
@@ -102,53 +101,35 @@ fun OceanDatePickerDialog(
                 factory = { context ->
                     MaterialCalendarView(context).apply {
                         calendarView = this
-                        setHeaderTextAppearance(R.style.Ocean_Heading_4)
-                        setWeekDayTextAppearance(R.color.ocean_color_interface_dark_down)
-                        selectionColor = context.getColor(R.color.ocean_color_complementary_pure)
-                        val defaultDate = Calendar.getInstance().apply {
-                            time = defaultDate
-                        }
+                        val defaultCal = Calendar.getInstance().apply { time = defaultDate }
                         val defaultDay = CalendarDay.from(
-                            defaultDate.get(Calendar.YEAR),
-                            defaultDate.get(Calendar.MONTH) + 1,
-                            defaultDate.get(Calendar.DAY_OF_MONTH)
+                            defaultCal.get(Calendar.YEAR),
+                            defaultCal.get(Calendar.MONTH) + 1,
+                            defaultCal.get(Calendar.DAY_OF_MONTH)
                         )
                         this.selectedDate = defaultDay
 
-                        val calendarState = this.state().edit()
-                        if (minDate != null) {
-                            val calendar = Calendar.getInstance().apply {
-                                time = minDate
+                        val minDay = minDate?.let {
+                            Calendar.getInstance().apply { time = it }.let { c ->
+                                CalendarDay.from(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH))
                             }
-                            val year = calendar.get(Calendar.YEAR)
-                            val month = calendar.get(Calendar.MONTH) + 1
-                            val day = calendar.get(Calendar.DAY_OF_MONTH)
-                            calendarState.setMinimumDate(CalendarDay.from(year, month, day))
                         }
-
-                        if (maxDate != null) {
-                            val calendar = Calendar.getInstance().apply {
-                                time = maxDate
+                        val maxDay = maxDate?.let {
+                            Calendar.getInstance().apply { time = it }.let { c ->
+                                CalendarDay.from(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH))
                             }
-                            val year = calendar.get(Calendar.YEAR)
-                            val month = calendar.get(Calendar.MONTH) + 1
-                            val day = calendar.get(Calendar.DAY_OF_MONTH)
-                            calendarState.setMaximumDate(CalendarDay.from(year, month, day))
                         }
+                        val disabledCalendars = disabledDays.map {
+                            Calendar.getInstance().apply { time = it }
+                        }.toTypedArray()
 
-                        if (disabledDays.isNotEmpty()) {
-                            this.addDecorators(
-                                DisabledDaysDecorator(
-                                    context,
-                                    disabledDays.map {
-                                        Calendar.getInstance().apply {
-                                            time = it
-                                        }
-                                    }.toTypedArray()
-                                )
-                            )
-                        }
-                        calendarState.commit()
+                        OceanDatePickerSelectionHandler.setupCalendar(
+                            context = context,
+                            widget = this,
+                            minDate = minDay,
+                            maxDate = maxDay,
+                            disabledDays = disabledCalendars
+                        )
 
                         val selectionController = OceanDatePickerSelectionHandler(
                             tooltipSetups = tooltipSetups,

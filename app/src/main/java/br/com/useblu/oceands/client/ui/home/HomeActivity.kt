@@ -15,20 +15,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
@@ -102,7 +98,9 @@ import br.com.useblu.oceands.components.compose.BottomSheetButtonsOrientation
 import br.com.useblu.oceands.components.compose.OceanBottomSheet
 import br.com.useblu.oceands.components.compose.OceanBottomSheetModel
 import br.com.useblu.oceands.components.compose.OceanButtonModel
+import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
+import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanUnorderedListItem
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -248,33 +246,6 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun LazyListScope.textAction(
-        text: String,
-        onClick: () -> Unit
-    ) {
-        item {
-            Text(
-                text = text,
-                modifier = Modifier
-                    .clickable { onClick() }
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                fontSize = 24.sp,
-                color = OceanColors.interfaceDarkDown
-            )
-            Divider()
-        }
-    }
-
-    @Composable
-    private fun Divider() {
-        HorizontalDivider(
-            modifier = Modifier.padding(horizontal = 12.dp),
-            thickness = 1.dp,
-            color = Color(0xFFE7E7E7)
-        )
     }
 
     private fun onClickTypography() {
@@ -896,5 +867,23 @@ class HomeActivity : AppCompatActivity() {
     private fun onClickTokenInput() {
         val intent = Intent(this, TokenInputActivity::class.java)
         startActivity(intent)
+    }
+}
+
+internal fun LazyListScope.textAction(
+    text: String,
+    onClick: () -> Unit
+) {
+    item {
+        OceanText(
+            text = text,
+            modifier = Modifier
+                .clickable { onClick() }
+                .fillMaxWidth()
+                .padding(OceanSpacing.xs),
+            style = OceanTextStyle.subtitle1,
+            color = OceanColors.interfaceDarkDown
+        )
+        OceanDivider()
     }
 }

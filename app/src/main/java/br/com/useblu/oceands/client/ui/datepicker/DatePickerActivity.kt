@@ -4,29 +4,21 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.client.ui.home.textAction
 import br.com.useblu.oceands.components.OceanDatePickerFullscreen
 import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.compose.OceanDatePickerDialog
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
-import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.utils.toDayOfYearKey
 import java.util.Calendar
 import java.util.Date
@@ -142,27 +134,5 @@ class DatePickerActivity : AppCompatActivity() {
                     .show()
             }
             .show()
-    }
-
-    private fun LazyListScope.textAction(
-        text: String,
-        onClick: () -> Unit
-    ) {
-        item {
-            Text(
-                text = text,
-                modifier = Modifier
-                    .clickable { onClick() }
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                fontSize = 24.sp,
-                color = OceanColors.interfaceDarkDown
-            )
-            HorizontalDivider(
-                modifier = Modifier.padding(horizontal = 12.dp),
-                thickness = 1.dp,
-                color = Color(0xFFE7E7E7)
-            )
-        }
     }
 }

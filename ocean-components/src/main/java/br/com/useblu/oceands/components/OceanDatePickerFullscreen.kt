@@ -101,6 +101,7 @@ class OceanDatePickerFullscreen(
         )
 
         binding.calendarView.setOnDateChangedListener(selectionController.getListener())
+        selectionController.showTooltipsOnOpen(binding.calendarView)
     }
 
     private fun setupButton() {

@@ -39,7 +39,8 @@ class DatePickerActivity : AppCompatActivity() {
                 mapOf(
                     today.toDayOfYearKey() to OceanDatePickerTooltipSetup(
                         message = "Data selecionada (hoje)",
-                        autoDismissMs = 3000L
+                        autoDismissMs = 3000L,
+                        showOnOpen = true
                     ),
                     tomorrow.toDayOfYearKey() to OceanDatePickerTooltipSetup(
                         message = "Amanhã - sem auto dismiss",

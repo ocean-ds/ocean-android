@@ -100,6 +100,12 @@ object OceanTextStyle {
         fontFamily = OceanFontFamily.BaseBold
     )
 
+    val heading4Strike @Composable get() = heading.copy(
+        fontSize = OceanFontSize.xs,
+        fontFamily = OceanFontFamily.BaseBold,
+        textDecoration = TextDecoration.LineThrough
+    )
+
     val heading5 @Composable get() = heading4.copy(
         fontSize = OceanFontSize.xxs
     )

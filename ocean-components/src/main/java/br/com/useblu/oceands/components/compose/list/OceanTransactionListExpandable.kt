@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -34,8 +35,7 @@ fun OceanTransactionListExpandable(
     title: String,
     value: Double,
     modifier: Modifier = Modifier,
-    valueIsPositive: Boolean = false,
-    timelineIcon: OceanIcons = OceanIcons.LOCK_CLOSED_SOLID,
+    itemsIcon: OceanIcons = OceanIcons.LOCK_CLOSED_SOLID,
     items: List<@Composable () -> Unit> = emptyList(),
     footerText: String = "",
     startExpanded: Boolean = false
@@ -46,6 +46,8 @@ fun OceanTransactionListExpandable(
         OceanTransactionListItem(
             primaryLabel = title,
             primaryValue = value,
+            valueWithSignal = true,
+            valueWithSignalPositive = false,
             trailingIcon = if (isExpanded) OceanIcons.CHEVRON_UP_SOLID else OceanIcons.CHEVRON_DOWN_SOLID,
             showDivider = false,
             onClick = { isExpanded = !isExpanded }
@@ -58,6 +60,7 @@ fun OceanTransactionListExpandable(
                     .background(OceanColors.interfaceLightPure)
             ) {
                 items.forEachIndexed { index, itemContent ->
+                    val isFirst = index == 0
                     val isLast = index == items.lastIndex
 
                     Row(modifier = Modifier.height(IntrinsicSize.Min)) {
@@ -65,15 +68,24 @@ fun OceanTransactionListExpandable(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier
                                 .padding(start = OceanSpacing.xs)
-                                .padding(
-                                    top = OceanSpacing.xs,
-                                    bottom = if (isLast) OceanSpacing.xs else 0.dp
-                                )
                                 .fillMaxHeight()
                         ) {
+                            if (!isFirst) {
+                                Box(
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .width(1.dp)
+                                        .background(OceanColors.interfaceLightDown)
+                                )
+                            } else {
+                                Spacer(modifier = Modifier.weight(1f))
+                            }
+
                             OceanIcon(
-                                iconType = timelineIcon,
-                                tint = OceanColors.interfaceDarkUp
+                                iconType = itemsIcon,
+                                tint = OceanColors.interfaceDarkUp,
+                                modifier = Modifier
+                                    .padding(vertical = OceanSpacing.xxxs)
                             )
 
                             if (!isLast) {
@@ -83,6 +95,8 @@ fun OceanTransactionListExpandable(
                                         .width(1.dp)
                                         .background(OceanColors.interfaceLightDown)
                                 )
+                            } else {
+                                Spacer(modifier = Modifier.weight(1f))
                             }
                         }
 
@@ -116,8 +130,8 @@ fun OceanTransactionListExpandable(
     backgroundColor = 0xFFFFFFFF
 )
 @Composable
-private fun OceanTransactionListExpandableRetençõesPreview() {
-    val retencaoInfo: (String) -> ContentListStyle = { description ->
+private fun OceanTransactionListExpandableRetainPreview() {
+    val retainInfo: (String) -> ContentListStyle = { description ->
         ContentListStyle.Inverted(
             title = "Retenção de saldo",
             description = description
@@ -127,12 +141,11 @@ private fun OceanTransactionListExpandableRetençõesPreview() {
     OceanTransactionListExpandable(
         title = "Retenções",
         value = -2260.00,
-        valueIsPositive = false,
         items = listOf(
             {
                 OceanTransactionListItem(
                     style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = retencaoInfo("Boleto de Blu Instituição de Pag..."),
+                        contentInfo = retainInfo("Boleto de Blu Instituição de Pag..."),
                         contentValues = ContentListStyle.Transaction(
                             value = "R$ 150,00",
                             type = TransactionType.OUTFLOW
@@ -144,7 +157,7 @@ private fun OceanTransactionListExpandableRetençõesPreview() {
             {
                 OceanTransactionListItem(
                     style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = retencaoInfo("Boleto de Blu Instituição de Pag..."),
+                        contentInfo = retainInfo("Boleto de Blu Instituição de Pag..."),
                         contentValues = ContentListStyle.Transaction(
                             value = "R$ 200,00",
                             type = TransactionType.OUTFLOW
@@ -156,7 +169,7 @@ private fun OceanTransactionListExpandableRetençõesPreview() {
             {
                 OceanTransactionListItem(
                     style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = retencaoInfo("Boleto de Blu Instituição de P..."),
+                        contentInfo = retainInfo("Boleto de Blu Instituição de P..."),
                         contentValues = ContentListStyle.Transaction(
                             value = "R$ 1.500,00",
                             type = TransactionType.OUTFLOW
@@ -168,7 +181,7 @@ private fun OceanTransactionListExpandableRetençõesPreview() {
             {
                 OceanTransactionListItem(
                     style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = retencaoInfo("Boleto de Blu Instituição de Pag..."),
+                        contentInfo = retainInfo("Boleto de Blu Instituição de Pag..."),
                         contentValues = ContentListStyle.Transaction(
                             value = "R$ 300,00",
                             type = TransactionType.OUTFLOW
@@ -180,7 +193,7 @@ private fun OceanTransactionListExpandableRetençõesPreview() {
             {
                 OceanTransactionListItem(
                     style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = retencaoInfo("Boleto de Blu Instituição de Pag..."),
+                        contentInfo = retainInfo("Boleto de Blu Instituição de Pag..."),
                         contentValues = ContentListStyle.Transaction(
                             value = "R$ 100,00",
                             type = TransactionType.OUTFLOW
@@ -215,8 +228,8 @@ private fun OceanTransactionListExpandableRetençõesPreview() {
     backgroundColor = 0xFFFFFFFF
 )
 @Composable
-private fun OceanTransactionListExpandableCancelamentoPreview() {
-    val cancelamentoInfo: (String) -> ContentListStyle = { description ->
+private fun OceanTransactionListExpandableCancelPreview() {
+    val cancelInfo: (String) -> ContentListStyle = { description ->
         ContentListStyle.Inverted(
             title = "Cancelamento de retenção",
             description = description,
@@ -227,12 +240,11 @@ private fun OceanTransactionListExpandableCancelamentoPreview() {
     OceanTransactionListExpandable(
         title = "Cancelamento de retenções",
         value = 3295.00,
-        valueIsPositive = true,
         items = listOf(
             {
                 OceanTransactionListItem(
                     style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelamentoInfo("Boleto de Blu Instituição de Paga..."),
+                        contentInfo = cancelInfo("Boleto de Blu Instituição de Paga..."),
                         contentValues = ContentListStyle.Transaction(
                             value = "R$ 150,00",
                             type = TransactionType.INFLOW
@@ -244,7 +256,7 @@ private fun OceanTransactionListExpandableCancelamentoPreview() {
             {
                 OceanTransactionListItem(
                     style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelamentoInfo("Boleto de Blu Instituição de Paga..."),
+                        contentInfo = cancelInfo("Boleto de Blu Instituição de Paga..."),
                         contentValues = ContentListStyle.Transaction(
                             value = "R$ 200,00",
                             type = TransactionType.INFLOW
@@ -256,7 +268,7 @@ private fun OceanTransactionListExpandableCancelamentoPreview() {
             {
                 OceanTransactionListItem(
                     style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelamentoInfo("Boleto de Blu Instituição de Pag..."),
+                        contentInfo = cancelInfo("Boleto de Blu Instituição de Pag..."),
                         contentValues = ContentListStyle.Transaction(
                             value = "R$ 1.500,00",
                             type = TransactionType.INFLOW
@@ -268,7 +280,7 @@ private fun OceanTransactionListExpandableCancelamentoPreview() {
             {
                 OceanTransactionListItem(
                     style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelamentoInfo("Boleto de Blu Instituição de Paga..."),
+                        contentInfo = cancelInfo("Boleto de Blu Instituição de Paga..."),
                         contentValues = ContentListStyle.Transaction(
                             value = "R$ 300,00",
                             type = TransactionType.INFLOW
@@ -280,7 +292,7 @@ private fun OceanTransactionListExpandableCancelamentoPreview() {
             {
                 OceanTransactionListItem(
                     style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelamentoInfo("Boleto de Blu Instituição de Paga..."),
+                        contentInfo = cancelInfo("Boleto de Blu Instituição de Paga..."),
                         contentValues = ContentListStyle.Transaction(
                             value = "R$ 100,00",
                             type = TransactionType.INFLOW
@@ -292,7 +304,7 @@ private fun OceanTransactionListExpandableCancelamentoPreview() {
             {
                 OceanTransactionListItem(
                     style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelamentoInfo("Boleto de Blu Instituição de Pag..."),
+                        contentInfo = cancelInfo("Boleto de Blu Instituição de Pag..."),
                         contentValues = ContentListStyle.Transaction(
                             value = "R$ 1.045,00",
                             type = TransactionType.INFLOW

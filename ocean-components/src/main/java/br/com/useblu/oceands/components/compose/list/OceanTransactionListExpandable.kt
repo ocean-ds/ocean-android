@@ -21,11 +21,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
-import br.com.useblu.oceands.components.compose.OceanText
+import br.com.useblu.oceands.components.compose.OceanTextNotBlank
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -120,13 +121,20 @@ fun OceanTransactionListExpandable(
                             .padding(bottom = OceanSpacing.sm),
                         contentAlignment = Alignment.Center
                     ) {
-                        OceanText(
-                            text = footerText,
-                            style = OceanTextStyle.caption,
-                            color = OceanColors.interfaceDarkUp
-                        )
                     }
                 }
+
+                OceanTextNotBlank(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = OceanSpacing.xxs)
+                        .padding(horizontal = OceanSpacing.xs)
+                        .padding(bottom = OceanSpacing.sm),
+                    text = footerText,
+                    style = OceanTextStyle.caption,
+                    color = OceanColors.interfaceDarkUp,
+                    textAlign = TextAlign.Center
+                )
             }
         }
 
@@ -134,10 +142,7 @@ fun OceanTransactionListExpandable(
     }
 }
 
-@Preview(
-    showBackground = true,
-    backgroundColor = 0xFFFFFFFF
-)
+@Preview
 @Composable
 fun OceanTransactionListExpandablePreview() {
     val retainValue = -150.00

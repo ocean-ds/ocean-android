@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
+import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -155,22 +156,31 @@ fun OceanTransactionListExpandablePreview() {
                 {
                     OceanChildTransactionListItem(
                         primaryLabel = "Retenção de saldo",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
-                        primaryValue = retainValue
+                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
+                        primaryValue = retainValue,
+                        time = "Additional data",
+                        tagTitle = "Label",
+                        tagType = OceanTagType.Positive
                     )
                 },
                 {
                     OceanChildTransactionListItem(
                         primaryLabel = "Retenção de saldo",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
-                        primaryValue = retainValue
+                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
+                        primaryValue = retainValue,
+                        time = "Additional data",
+                        tagTitle = "Label",
+                        tagType = OceanTagType.Positive
                     )
                 },
                 {
                     OceanChildTransactionListItem(
                         primaryLabel = "Retenção de saldo",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
-                        primaryValue = retainValue
+                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
+                        primaryValue = retainValue,
+                        time = "Additional data",
+                        tagTitle = "Label",
+                        tagType = OceanTagType.Positive
                     )
                 }
             ),
@@ -186,25 +196,34 @@ fun OceanTransactionListExpandablePreview() {
                 {
                     OceanChildTransactionListItem(
                         primaryLabel = "Cancelamento de retenção",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
                         dimmedLabel = "Retenção lançada em 14/01/2026",
-                        primaryValue = cancelValue
+                        primaryValue = cancelValue,
+                        time = "Additional data",
+                        tagTitle = "Label",
+                        tagType = OceanTagType.Positive
                     )
                 },
                 {
                     OceanChildTransactionListItem(
                         primaryLabel = "Cancelamento de retenção",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
                         dimmedLabel = "Retenção lançada em 14/01/2026",
-                        primaryValue = cancelValue
+                        primaryValue = cancelValue,
+                        time = "Additional data",
+                        tagTitle = "Label",
+                        tagType = OceanTagType.Positive
                     )
                 },
                 {
                     OceanChildTransactionListItem(
                         primaryLabel = "Cancelamento de retenção",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
                         dimmedLabel = "Retenção lançada em 14/01/2026",
-                        primaryValue = cancelValue
+                        primaryValue = cancelValue,
+                        time = "Additional data",
+                        tagTitle = "Label",
+                        tagType = OceanTagType.Positive
                     )
                 }
             ),

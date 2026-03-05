@@ -90,7 +90,10 @@ fun OceanChildTransactionListItem(
     secondaryLabel: String = "",
     dimmedLabel: String = "",
     highlightedLabel: String = "",
-    primaryValue: Double? = null
+    primaryValue: Double? = null,
+    tagTitle: String = "",
+    tagType: OceanTagType = OceanTagType.Warning,
+    time: String = ""
 ) {
     OceanTransactionListItem(
         primaryLabel = primaryLabel,
@@ -102,6 +105,9 @@ fun OceanChildTransactionListItem(
         valueWithSignal = true,
         valueWithSignalPositive = false,
         valueIsHighlighted = true,
+        tagTitle = tagTitle,
+        tagType = tagType,
+        time = time,
         showDivider = false,
         trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
         paddingVertical = OceanSpacing.xxsExtra,

@@ -11,18 +11,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
-import br.com.useblu.oceands.utils.DisabledDaysDecorator
+import br.com.useblu.oceands.utils.OceanDatePickerSelectionHandler
 import br.com.useblu.oceands.utils.OceanIcons
+import br.com.useblu.oceands.utils.isDisabled
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import java.util.Calendar
@@ -51,9 +54,11 @@ fun OceanDatePickerDialog(
     maxDate: Date? = null,
     defaultDate: Date = Date(),
     disabledDays: List<Date> = emptyList(),
+    tooltipSetups: Map<String, OceanDatePickerTooltipSetup> = emptyMap(),
     onConfirm: (Date) -> Unit,
     onDismiss: () -> Unit
 ) {
+    val lifecycleOwner = LocalLifecycleOwner.current
     var calendarView by remember {
         mutableStateOf<MaterialCalendarView?>(null)
     }
@@ -96,52 +101,45 @@ fun OceanDatePickerDialog(
                 factory = { context ->
                     MaterialCalendarView(context).apply {
                         calendarView = this
-                        setHeaderTextAppearance(R.style.Ocean_Heading_4)
-                        setWeekDayTextAppearance(R.color.ocean_color_interface_dark_down)
-                        selectionColor = context.getColor(R.color.ocean_color_complementary_pure)
-                        val defaultDate = Calendar.getInstance().apply {
-                            time = defaultDate
-                        }
+                        val defaultCal = Calendar.getInstance().apply { time = defaultDate }
                         val defaultDay = CalendarDay.from(
-                            defaultDate.get(Calendar.YEAR),
-                            defaultDate.get(Calendar.MONTH) + 1,
-                            defaultDate.get(Calendar.DAY_OF_MONTH)
+                            defaultCal.get(Calendar.YEAR),
+                            defaultCal.get(Calendar.MONTH) + 1,
+                            defaultCal.get(Calendar.DAY_OF_MONTH)
                         )
                         this.selectedDate = defaultDay
 
-                        val calendarState = this.state().edit()
-                        if (minDate != null) {
-                            val calendar = Calendar.getInstance().apply {
-                                time = minDate
+                        val minDay = minDate?.let {
+                            Calendar.getInstance().apply { time = it }.let { c ->
+                                CalendarDay.from(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH))
                             }
-                            val year = calendar.get(Calendar.YEAR)
-                            val month = calendar.get(Calendar.MONTH) + 1
-                            val day = calendar.get(Calendar.DAY_OF_MONTH)
-                            calendarState.setMinimumDate(CalendarDay.from(year, month, day))
                         }
-
-                        if (maxDate != null) {
-                            val calendar = Calendar.getInstance().apply {
-                                time = maxDate
+                        val maxDay = maxDate?.let {
+                            Calendar.getInstance().apply { time = it }.let { c ->
+                                CalendarDay.from(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH))
                             }
-                            val year = calendar.get(Calendar.YEAR)
-                            val month = calendar.get(Calendar.MONTH) + 1
-                            val day = calendar.get(Calendar.DAY_OF_MONTH)
-                            calendarState.setMaximumDate(CalendarDay.from(year, month, day))
                         }
+                        val disabledCalendars = disabledDays.map {
+                            Calendar.getInstance().apply { time = it }
+                        }.toTypedArray()
 
-                        if (disabledDays.isNotEmpty()) {
-                            this.addDecorators(
-                                DisabledDaysDecorator(
-                                    disabledDays.map {
-                                        Calendar.getInstance().apply {
-                                            time = it
-                                        }
-                                    }.toTypedArray()
-                                )
-                            )
-                        }
-                        calendarState.commit()
+                        OceanDatePickerSelectionHandler.setupCalendar(
+                            context = context,
+                            widget = this,
+                            minDate = minDay,
+                            maxDate = maxDay,
+                            disabledDays = disabledCalendars
+                        )
+
+                        val selectionController = OceanDatePickerSelectionHandler(
+                            tooltipSetups = tooltipSetups,
+                            isDisabled = { date -> date.isDisabled(disabledDays) },
+                            context = context,
+                            lifecycleOwner = lifecycleOwner,
+                            lastValidSelectedDate = this.selectedDate
+                        )
+                        setOnDateChangedListener(selectionController.getListener())
+                        selectionController.showTooltipsOnOpen(this)
                     }
                 }
             )

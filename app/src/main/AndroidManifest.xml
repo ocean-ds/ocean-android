@@ -54,6 +54,7 @@
         <activity android:name=".ui.checkbox.CheckBoxActivity" />
         <activity android:name=".ui.textlistexpandable.TextListExpandableActivity" />
         <activity android:name=".ui.crosscellcard.CardCrossSellActivity" />
+        <activity android:name=".ui.datepicker.DatePickerActivity" />
         <activity android:name=".ui.footer.FooterBluActivity" />
         <activity android:name=".ui.transactionfooter.TransactionFooterActivity" />
         <activity android:name=".ui.descriptorlistitem.DescriptorListActivity" />

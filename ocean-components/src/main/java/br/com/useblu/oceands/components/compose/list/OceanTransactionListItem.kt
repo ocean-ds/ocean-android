@@ -92,6 +92,7 @@ fun OceanTransactionListItem(
     modifier: Modifier = Modifier,
     secondaryLabel: String = "",
     secondaryLabelStyle: TextStyle = OceanTextStyle.paragraph,
+    secondaryLabelMaxLines: Int = Int.MAX_VALUE,
     dimmedLabel: String = "",
     dimmedLabelStyle: TextStyle = OceanTextStyle.captionBold,
     highlightedLabel: String = "",
@@ -99,6 +100,7 @@ fun OceanTransactionListItem(
     primaryValue: Double? = null,
     primaryValueFormatted: String = "",
     primaryValueFormattedColor: Color? = null,
+    primaryValueStyle: TextStyle = OceanTextStyle.description,
     secondaryValue: Double? = null,
     valueIsHighlighted: Boolean = false,
     valueWithSignal: Boolean = false,
@@ -183,7 +185,9 @@ fun OceanTransactionListItem(
                     OceanText(
                         text = secondaryLabel,
                         color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown,
-                        style = secondaryLabelStyle
+                        style = secondaryLabelStyle,
+                        maxLines = secondaryLabelMaxLines,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
 
@@ -204,6 +208,7 @@ fun OceanTransactionListItem(
             ) {
                 if (primaryValue != null) {
                     val color = when {
+                        primaryValueFormattedColor != null -> primaryValueFormattedColor
                         isDisabled || valueIsHighlighted && valueIsCanceled -> OceanColors.interfaceDarkUp
                         valueIsHighlighted && primaryValue > 0 -> OceanColors.statusPositiveDeep
                         else -> OceanColors.interfaceDarkPure
@@ -226,7 +231,7 @@ fun OceanTransactionListItem(
                         style = if (valueIsStrike) {
                             OceanTextStyle.heading4Strike
                         } else {
-                            OceanTextStyle.heading4
+                            primaryValueStyle
                         }
                     )
                 }
@@ -245,7 +250,7 @@ fun OceanTransactionListItem(
                         style = if (valueIsStrike) {
                             OceanTextStyle.heading4Strike
                         } else {
-                            OceanTextStyle.heading4
+                            primaryValueStyle
                         }
                     )
                 }

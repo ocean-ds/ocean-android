@@ -21,10 +21,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
-import br.com.useblu.oceands.components.compose.TransactionType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -35,7 +33,7 @@ fun OceanTransactionListExpandable(
     title: String,
     value: Double,
     modifier: Modifier = Modifier,
-    itemsIcon: OceanIcons = OceanIcons.LOCK_CLOSED_SOLID,
+    itemsIcon: OceanIcons? = null,
     items: List<@Composable () -> Unit> = emptyList(),
     footerText: String = "",
     startExpanded: Boolean = false
@@ -48,6 +46,7 @@ fun OceanTransactionListExpandable(
             primaryValue = value,
             valueWithSignal = true,
             valueWithSignalPositive = false,
+            valueIsHighlighted = true,
             trailingIcon = if (isExpanded) OceanIcons.CHEVRON_UP_SOLID else OceanIcons.CHEVRON_DOWN_SOLID,
             showDivider = false,
             onClick = { isExpanded = !isExpanded }
@@ -64,39 +63,41 @@ fun OceanTransactionListExpandable(
                     val isLast = index == items.lastIndex
 
                     Row(modifier = Modifier.height(IntrinsicSize.Min)) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier
-                                .padding(start = OceanSpacing.xs)
-                                .fillMaxHeight()
-                        ) {
-                            if (!isFirst) {
-                                Box(
-                                    modifier = Modifier
-                                        .weight(1f)
-                                        .width(1.dp)
-                                        .background(OceanColors.interfaceLightDown)
-                                )
-                            } else {
-                                Spacer(modifier = Modifier.weight(1f))
-                            }
-
-                            OceanIcon(
-                                iconType = itemsIcon,
-                                tint = OceanColors.interfaceDarkUp,
+                        itemsIcon?.let {
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
                                 modifier = Modifier
-                                    .padding(vertical = OceanSpacing.xxxs)
-                            )
+                                    .padding(start = OceanSpacing.xs)
+                                    .fillMaxHeight()
+                            ) {
+                                if (!isFirst) {
+                                    Box(
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .width(1.dp)
+                                            .background(OceanColors.interfaceLightDown)
+                                    )
+                                } else {
+                                    Spacer(modifier = Modifier.weight(1f))
+                                }
 
-                            if (!isLast) {
-                                Box(
+                                OceanIcon(
+                                    iconType = it,
+                                    tint = OceanColors.interfaceDarkUp,
                                     modifier = Modifier
-                                        .weight(1f)
-                                        .width(1.dp)
-                                        .background(OceanColors.interfaceLightDown)
+                                        .padding(vertical = OceanSpacing.xxxs)
                                 )
-                            } else {
-                                Spacer(modifier = Modifier.weight(1f))
+
+                                if (!isLast) {
+                                    Box(
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .width(1.dp)
+                                            .background(OceanColors.interfaceLightDown)
+                                    )
+                                } else {
+                                    Spacer(modifier = Modifier.weight(1f))
+                                }
                             }
                         }
 
@@ -131,90 +132,90 @@ fun OceanTransactionListExpandable(
 )
 @Composable
 private fun OceanTransactionListExpandableRetainPreview() {
-    val retainInfo: (String) -> ContentListStyle = { description ->
-        ContentListStyle.Inverted(
-            title = "Retenção de saldo",
-            description = description
-        )
-    }
-
+    val itemsValue = -150.00
     OceanTransactionListExpandable(
         title = "Retenções",
+        itemsIcon = OceanIcons.LOCK_CLOSED_SOLID,
         value = -2260.00,
         items = listOf(
             {
                 OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = retainInfo("Boleto de Blu Instituição de Pag..."),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 150,00",
-                            type = TransactionType.OUTFLOW
-                        ),
-                        onClick = {}
-                    )
+                    primaryLabel = "Retenção de saldo",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                    secondaryLabelMaxLines = 1,
+                    primaryValue = itemsValue,
+                    valueWithSignal = true,
+                    valueWithSignalPositive = false,
+                    showDivider = false,
+                    trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
+                    primaryLabelStyle = OceanTextStyle.captionBold,
+                    secondaryLabelStyle = OceanTextStyle.description,
+                    primaryValueStyle = OceanTextStyle.heading5,
+                    primaryValueFormattedColor = if (itemsValue < 0.00) OceanColors.interfaceDarkDown else null
                 )
             },
             {
                 OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = retainInfo("Boleto de Blu Instituição de Pag..."),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 200,00",
-                            type = TransactionType.OUTFLOW
-                        ),
-                        onClick = {}
-                    )
+                    primaryLabel = "Retenção de saldo",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                    secondaryLabelMaxLines = 1,
+                    primaryValue = itemsValue,
+                    valueWithSignal = true,
+                    valueWithSignalPositive = false,
+                    showDivider = false,
+                    trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
+                    primaryLabelStyle = OceanTextStyle.captionBold,
+                    secondaryLabelStyle = OceanTextStyle.description,
+                    primaryValueStyle = OceanTextStyle.heading5,
+                    primaryValueFormattedColor = if (itemsValue < 0.00) OceanColors.interfaceDarkDown else null
                 )
             },
             {
                 OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = retainInfo("Boleto de Blu Instituição de P..."),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 1.500,00",
-                            type = TransactionType.OUTFLOW
-                        ),
-                        onClick = {}
-                    )
+                    primaryLabel = "Retenção de saldo",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                    secondaryLabelMaxLines = 1,
+                    primaryValue = itemsValue,
+                    valueWithSignal = true,
+                    valueWithSignalPositive = false,
+                    showDivider = false,
+                    trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
+                    primaryLabelStyle = OceanTextStyle.captionBold,
+                    secondaryLabelStyle = OceanTextStyle.description,
+                    primaryValueStyle = OceanTextStyle.heading5,
+                    primaryValueFormattedColor = if (itemsValue < 0.00) OceanColors.interfaceDarkDown else null
                 )
             },
             {
                 OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = retainInfo("Boleto de Blu Instituição de Pag..."),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 300,00",
-                            type = TransactionType.OUTFLOW
-                        ),
-                        onClick = {}
-                    )
+                    primaryLabel = "Retenção de saldo",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                    secondaryLabelMaxLines = 1,
+                    primaryValue = itemsValue,
+                    valueWithSignal = true,
+                    valueWithSignalPositive = false,
+                    showDivider = false,
+                    trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
+                    primaryLabelStyle = OceanTextStyle.captionBold,
+                    secondaryLabelStyle = OceanTextStyle.description,
+                    primaryValueStyle = OceanTextStyle.heading5,
+                    primaryValueFormattedColor = if (itemsValue < 0.00) OceanColors.interfaceDarkDown else null
                 )
             },
             {
                 OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = retainInfo("Boleto de Blu Instituição de Pag..."),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 100,00",
-                            type = TransactionType.OUTFLOW
-                        ),
-                        onClick = {}
-                    )
-                )
-            },
-            {
-                OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = ContentListStyle.Inverted(
-                            title = "Retenção de multa e juros",
-                            description = "Boleto de Blu Instituição de Paga..."
-                        ),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 10,00",
-                            type = TransactionType.OUTFLOW
-                        ),
-                        onClick = {}
-                    )
+                    primaryLabel = "Retenção de saldo",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                    secondaryLabelMaxLines = 1,
+                    primaryValue = itemsValue,
+                    valueWithSignal = true,
+                    valueWithSignalPositive = false,
+                    showDivider = false,
+                    trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
+                    primaryLabelStyle = OceanTextStyle.captionBold,
+                    secondaryLabelStyle = OceanTextStyle.description,
+                    primaryValueStyle = OceanTextStyle.heading5,
+                    primaryValueFormattedColor = if (itemsValue < 0.00) OceanColors.interfaceDarkDown else null
                 )
             }
         ),
@@ -229,88 +230,83 @@ private fun OceanTransactionListExpandableRetainPreview() {
 )
 @Composable
 private fun OceanTransactionListExpandableCancelPreview() {
-    val cancelInfo: (String) -> ContentListStyle = { description ->
-        ContentListStyle.Inverted(
-            title = "Cancelamento de retenção",
-            description = description,
-            caption = "Retenção lançada em 14/01/2026"
-        )
-    }
+    val itemsValue = 150.00
 
     OceanTransactionListExpandable(
         title = "Cancelamento de retenções",
+        itemsIcon = OceanIcons.LOCK_OPEN_SOLID,
         value = 3295.00,
         items = listOf(
             {
                 OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelInfo("Boleto de Blu Instituição de Paga..."),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 150,00",
-                            type = TransactionType.INFLOW
-                        ),
-                        onClick = {}
-                    )
+                    primaryLabel = "Cancelamento de retenção",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                    secondaryLabelMaxLines = 1,
+                    dimmedLabel = "Retenção lançada em 14/01/2026",
+                    primaryValue = itemsValue,
+                    valueWithSignal = true,
+                    valueWithSignalPositive = false,
+                    showDivider = false,
+                    trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
+                    valueIsHighlighted = true,
+                    primaryLabelStyle = OceanTextStyle.captionBold,
+                    secondaryLabelStyle = OceanTextStyle.description,
+                    primaryValueStyle = OceanTextStyle.heading5,
+                    primaryValueFormattedColor = if (itemsValue < 0.00) OceanColors.interfaceDarkDown else null
                 )
             },
             {
                 OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelInfo("Boleto de Blu Instituição de Paga..."),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 200,00",
-                            type = TransactionType.INFLOW
-                        ),
-                        onClick = {}
-                    )
+                    primaryLabel = "Cancelamento de retenção",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                    secondaryLabelMaxLines = 1,
+                    dimmedLabel = "Retenção lançada em 14/01/2026",
+                    primaryValue = itemsValue,
+                    valueWithSignal = true,
+                    valueWithSignalPositive = false,
+                    showDivider = false,
+                    trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
+                    valueIsHighlighted = true,
+                    primaryLabelStyle = OceanTextStyle.captionBold,
+                    secondaryLabelStyle = OceanTextStyle.description,
+                    primaryValueStyle = OceanTextStyle.heading5,
+                    primaryValueFormattedColor = if (itemsValue < 0.00) OceanColors.interfaceDarkDown else null
                 )
             },
             {
                 OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelInfo("Boleto de Blu Instituição de Pag..."),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 1.500,00",
-                            type = TransactionType.INFLOW
-                        ),
-                        onClick = {}
-                    )
+                    primaryLabel = "Cancelamento de retenção",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                    secondaryLabelMaxLines = 1,
+                    dimmedLabel = "Retenção lançada em 14/01/2026",
+                    primaryValue = itemsValue,
+                    valueWithSignal = true,
+                    valueWithSignalPositive = false,
+                    showDivider = false,
+                    trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
+                    valueIsHighlighted = true,
+                    primaryLabelStyle = OceanTextStyle.captionBold,
+                    secondaryLabelStyle = OceanTextStyle.description,
+                    primaryValueStyle = OceanTextStyle.heading5,
+                    primaryValueFormattedColor = if (itemsValue < 0.00) OceanColors.interfaceDarkDown else null
                 )
             },
             {
                 OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelInfo("Boleto de Blu Instituição de Paga..."),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 300,00",
-                            type = TransactionType.INFLOW
-                        ),
-                        onClick = {}
-                    )
-                )
-            },
-            {
-                OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelInfo("Boleto de Blu Instituição de Paga..."),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 100,00",
-                            type = TransactionType.INFLOW
-                        ),
-                        onClick = {}
-                    )
-                )
-            },
-            {
-                OceanTransactionListItem(
-                    style = TransactionListItemStyle.CommonStyle.Default(
-                        contentInfo = cancelInfo("Boleto de Blu Instituição de Pag..."),
-                        contentValues = ContentListStyle.Transaction(
-                            value = "R$ 1.045,00",
-                            type = TransactionType.INFLOW
-                        ),
-                        onClick = {}
-                    )
+                    primaryLabel = "Cancelamento de retenção",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
+                    secondaryLabelMaxLines = 1,
+                    dimmedLabel = "Retenção lançada em 14/01/2026",
+                    primaryValue = itemsValue,
+                    valueWithSignal = true,
+                    valueWithSignalPositive = false,
+                    showDivider = false,
+                    trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
+                    valueIsHighlighted = true,
+                    primaryLabelStyle = OceanTextStyle.captionBold,
+                    secondaryLabelStyle = OceanTextStyle.description,
+                    primaryValueStyle = OceanTextStyle.heading5,
+                    primaryValueFormattedColor = if (itemsValue < 0.00) OceanColors.interfaceDarkDown else null
                 )
             }
         ),

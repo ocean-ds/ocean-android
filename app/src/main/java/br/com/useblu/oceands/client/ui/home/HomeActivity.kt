@@ -87,6 +87,7 @@ import br.com.useblu.oceands.client.ui.textlistitem.TextListItemActivity
 import br.com.useblu.oceands.client.ui.tokeninput.TokenInputActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivity
+import br.com.useblu.oceands.client.ui.transactionlistexpandable.OceanTransactionListExpandableActivity
 import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
 import br.com.useblu.oceands.client.ui.unorderedlistitem.UnorderedListItemActivity
@@ -262,6 +263,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "TopBar", onClick = { topBarClick() })
                         textAction(text = "Transaction Footer", onClick = { transactionFooter() })
                         textAction(text = "Transaction List", onClick = { transactionListClick() })
+                        textAction(text = "Transaction List Expandable", onClick = { transactionListExpandableClick() })
                         textAction(text = "Typography", onClick = { onClickTypography() })
                         textAction(text = "Unordered List Item", onClick = { onClickUnorderedListItem() })
                     }
@@ -379,6 +381,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun transactionListClick() {
         val intent = Intent(this, TransactionListItemActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun transactionListExpandableClick() {
+        val intent = Intent(this, OceanTransactionListExpandableActivity::class.java)
         startActivity(intent)
     }
 

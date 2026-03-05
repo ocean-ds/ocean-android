@@ -85,6 +85,34 @@ sealed interface TransactionListItemStyle {
 }
 
 @Composable
+fun OceanChildTransactionListItem(
+    primaryLabel: String,
+    secondaryLabel: String = "",
+    dimmedLabel: String = "",
+    highlightedLabel: String = "",
+    primaryValue: Double? = null
+) {
+    OceanTransactionListItem(
+        primaryLabel = primaryLabel,
+        secondaryLabel = secondaryLabel,
+        secondaryLabelMaxLines = 1,
+        dimmedLabel = dimmedLabel,
+        highlightedLabel = highlightedLabel,
+        primaryValue = primaryValue,
+        valueWithSignal = true,
+        valueWithSignalPositive = false,
+        valueIsHighlighted = true,
+        showDivider = false,
+        trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
+        paddingVertical = OceanSpacing.xxsExtra,
+        primaryLabelStyle = OceanTextStyle.captionBold,
+        secondaryLabelStyle = OceanTextStyle.description,
+        primaryValueStyle = OceanTextStyle.heading5,
+        primaryValueFormattedColor = if ((primaryValue ?: 0.0) < 0.0) OceanColors.interfaceDarkDown else null
+    )
+}
+
+@Composable
 fun OceanTransactionListItem(
     primaryLabel: String,
     primaryLabelMaxLines: Int = Int.MAX_VALUE,
@@ -100,7 +128,7 @@ fun OceanTransactionListItem(
     primaryValue: Double? = null,
     primaryValueFormatted: String = "",
     primaryValueFormattedColor: Color? = null,
-    primaryValueStyle: TextStyle = OceanTextStyle.description,
+    primaryValueStyle: TextStyle = OceanTextStyle.heading4,
     secondaryValue: Double? = null,
     valueIsHighlighted: Boolean = false,
     valueWithSignal: Boolean = false,

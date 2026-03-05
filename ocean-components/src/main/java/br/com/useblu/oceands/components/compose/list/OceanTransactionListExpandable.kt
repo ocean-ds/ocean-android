@@ -153,54 +153,24 @@ fun OceanTransactionListExpandablePreview() {
             value = -2260.00,
             items = listOf(
                 {
-                    OceanTransactionListItem(
+                    OceanChildTransactionListItem(
                         primaryLabel = "Retenção de saldo",
                         secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
-                        secondaryLabelMaxLines = 1,
-                        primaryValue = retainValue,
-                        valueWithSignal = true,
-                        valueWithSignalPositive = false,
-                        showDivider = false,
-                        trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
-                        paddingVertical = OceanSpacing.xxsExtra,
-                        primaryLabelStyle = OceanTextStyle.captionBold,
-                        secondaryLabelStyle = OceanTextStyle.description,
-                        primaryValueStyle = OceanTextStyle.heading5,
-                        primaryValueFormattedColor = if (retainValue < 0) OceanColors.interfaceDarkDown else null
+                        primaryValue = retainValue
                     )
                 },
                 {
-                    OceanTransactionListItem(
+                    OceanChildTransactionListItem(
                         primaryLabel = "Retenção de saldo",
                         secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
-                        secondaryLabelMaxLines = 1,
-                        primaryValue = retainValue,
-                        valueWithSignal = true,
-                        valueWithSignalPositive = false,
-                        showDivider = false,
-                        trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
-                        paddingVertical = OceanSpacing.xxsExtra,
-                        primaryLabelStyle = OceanTextStyle.captionBold,
-                        secondaryLabelStyle = OceanTextStyle.description,
-                        primaryValueStyle = OceanTextStyle.heading5,
-                        primaryValueFormattedColor = if (retainValue < 0) OceanColors.interfaceDarkDown else null
+                        primaryValue = retainValue
                     )
                 },
                 {
-                    OceanTransactionListItem(
-                        primaryLabel = "Retenção de multa e juros",
+                    OceanChildTransactionListItem(
+                        primaryLabel = "Retenção de saldo",
                         secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
-                        secondaryLabelMaxLines = 1,
-                        primaryValue = retainValue,
-                        valueWithSignal = true,
-                        valueWithSignalPositive = false,
-                        showDivider = false,
-                        trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
-                        paddingVertical = OceanSpacing.xxsExtra,
-                        primaryLabelStyle = OceanTextStyle.captionBold,
-                        secondaryLabelStyle = OceanTextStyle.description,
-                        primaryValueStyle = OceanTextStyle.heading5,
-                        primaryValueFormattedColor = if (retainValue < 0) OceanColors.interfaceDarkDown else null
+                        primaryValue = retainValue
                     )
                 }
             ),
@@ -214,60 +184,27 @@ fun OceanTransactionListExpandablePreview() {
             value = 3295.00,
             items = listOf(
                 {
-                    OceanTransactionListItem(
+                    OceanChildTransactionListItem(
                         primaryLabel = "Cancelamento de retenção",
                         secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
-                        secondaryLabelMaxLines = 1,
                         dimmedLabel = "Retenção lançada em 14/01/2026",
-                        primaryValue = cancelValue,
-                        valueWithSignal = true,
-                        valueWithSignalPositive = false,
-                        showDivider = false,
-                        trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
-                        paddingVertical = OceanSpacing.xxsExtra,
-                        valueIsHighlighted = true,
-                        primaryLabelStyle = OceanTextStyle.captionBold,
-                        secondaryLabelStyle = OceanTextStyle.description,
-                        primaryValueStyle = OceanTextStyle.heading5,
-                        primaryValueFormattedColor = if (cancelValue < 0) OceanColors.interfaceDarkDown else null
+                        primaryValue = cancelValue
                     )
                 },
                 {
-                    OceanTransactionListItem(
+                    OceanChildTransactionListItem(
                         primaryLabel = "Cancelamento de retenção",
                         secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
-                        secondaryLabelMaxLines = 1,
                         dimmedLabel = "Retenção lançada em 14/01/2026",
-                        primaryValue = cancelValue,
-                        valueWithSignal = true,
-                        valueWithSignalPositive = false,
-                        showDivider = false,
-                        trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
-                        paddingVertical = OceanSpacing.xxsExtra,
-                        valueIsHighlighted = true,
-                        primaryLabelStyle = OceanTextStyle.captionBold,
-                        secondaryLabelStyle = OceanTextStyle.description,
-                        primaryValueStyle = OceanTextStyle.heading5,
-                        primaryValueFormattedColor = if (cancelValue < 0) OceanColors.interfaceDarkDown else null
+                        primaryValue = cancelValue
                     )
                 },
                 {
-                    OceanTransactionListItem(
+                    OceanChildTransactionListItem(
                         primaryLabel = "Cancelamento de retenção",
                         secondaryLabel = "Boleto de Blu Instituição de Pagagamentos LTDA",
-                        secondaryLabelMaxLines = 1,
                         dimmedLabel = "Retenção lançada em 14/01/2026",
-                        primaryValue = cancelValue,
-                        valueWithSignal = true,
-                        valueWithSignalPositive = false,
-                        showDivider = false,
-                        trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
-                        paddingVertical = OceanSpacing.xxsExtra,
-                        valueIsHighlighted = true,
-                        primaryLabelStyle = OceanTextStyle.captionBold,
-                        secondaryLabelStyle = OceanTextStyle.description,
-                        primaryValueStyle = OceanTextStyle.heading5,
-                        primaryValueFormattedColor = if (cancelValue < 0) OceanColors.interfaceDarkDown else null
+                        primaryValue = cancelValue
                     )
                 }
             ),

@@ -33,27 +33,85 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
+data class OceanTransactionListExpandableItem(
+    val primaryLabel: String = "",
+    val secondaryLabel: String = "",
+    val dimmedLabel: String = "",
+    val highlightedLabel: String = "",
+    val primaryValue: Double? = null,
+    val tagTitle: String = "",
+    val tagType: OceanTagType = OceanTagType.Warning,
+    val time: String = ""
+)
+
+@Composable
+fun OceanParentTransactionListExpandable(
+    item: OceanTransactionListExpandableItem,
+    isExpanded: Boolean,
+    onClick: () -> Unit
+) {
+    OceanTransactionListItem(
+        primaryLabel = item.primaryLabel,
+        secondaryLabel = item.secondaryLabel,
+        secondaryLabelMaxLines = 1,
+        dimmedLabel = item.dimmedLabel,
+        highlightedLabel = item.highlightedLabel,
+        primaryValue = item.primaryValue,
+        valueWithSignal = true,
+        valueWithSignalPositive = false,
+        valueIsHighlighted = true,
+        tagTitle = item.tagTitle,
+        tagType = item.tagType,
+        time = item.time,
+        showDivider = false,
+        primaryValueFormattedColor = if ((item.primaryValue ?: 0.0) <= 0.0) OceanColors.interfaceDarkDown else null,
+        trailingIcon = if (isExpanded) OceanIcons.CHEVRON_UP_SOLID else OceanIcons.CHEVRON_DOWN_SOLID,
+        onClick = onClick
+    )
+}
+
+@Composable
+fun OceanChildTransactionListExpandable(
+    item: OceanTransactionListExpandableItem
+) {
+    OceanTransactionListItem(
+        primaryLabel = item.primaryLabel,
+        secondaryLabel = item.secondaryLabel,
+        secondaryLabelMaxLines = 1,
+        dimmedLabel = item.dimmedLabel,
+        highlightedLabel = item.highlightedLabel,
+        primaryValue = item.primaryValue,
+        valueWithSignal = true,
+        valueWithSignalPositive = false,
+        valueIsHighlighted = true,
+        tagTitle = item.tagTitle,
+        tagType = item.tagType,
+        time = item.time,
+        showDivider = false,
+        trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID,
+        paddingVertical = OceanSpacing.xxsExtra,
+        primaryLabelStyle = OceanTextStyle.captionBold,
+        secondaryLabelStyle = OceanTextStyle.description,
+        primaryValueStyle = OceanTextStyle.heading5,
+        primaryValueFormattedColor = if ((item.primaryValue ?: 0.0) <= 0.0) OceanColors.interfaceDarkDown else null
+    )
+}
+
 @Composable
 fun OceanTransactionListExpandable(
-    title: String,
-    value: Double,
+    parent: OceanTransactionListExpandableItem,
     modifier: Modifier = Modifier,
     itemsIcon: OceanIcons? = null,
-    items: List<@Composable () -> Unit> = emptyList(),
+    items: List<OceanTransactionListExpandableItem> = emptyList(),
     footerText: String = "",
     startExpanded: Boolean = false
 ) {
     var isExpanded by remember { mutableStateOf(startExpanded) }
 
     Column(modifier = modifier) {
-        OceanTransactionListItem(
-            primaryLabel = title,
-            primaryValue = value,
-            valueWithSignal = true,
-            valueWithSignalPositive = false,
-            valueIsHighlighted = true,
-            trailingIcon = if (isExpanded) OceanIcons.CHEVRON_UP_SOLID else OceanIcons.CHEVRON_DOWN_SOLID,
-            showDivider = false,
+        OceanParentTransactionListExpandable(
+            item = parent,
+            isExpanded = isExpanded,
             onClick = { isExpanded = !isExpanded }
         )
 
@@ -107,7 +165,9 @@ fun OceanTransactionListExpandable(
                         }
 
                         Box(modifier = Modifier.weight(1f)) {
-                            itemContent()
+                            OceanChildTransactionListExpandable(
+                                item = itemContent
+                            )
                         }
                     }
                 }
@@ -154,83 +214,101 @@ fun OceanTransactionListExpandablePreview() {
             .verticalScroll(rememberScrollState())
     ) {
         OceanTransactionListExpandable(
-            title = "Retenções",
+            parent = OceanTransactionListExpandableItem(
+                primaryLabel = "Title",
+                secondaryLabel = "Description",
+                dimmedLabel = "Caption",
+                primaryValue = 0.0,
+                time = "Additional data",
+                tagTitle = "Label",
+                tagType = OceanTagType.Positive
+            ),
             itemsIcon = OceanIcons.LOCK_CLOSED_SOLID,
-            value = -2260.00,
             items = listOf(
-                {
-                    OceanChildTransactionListItem(
-                        primaryLabel = "Retenção de saldo",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
-                        primaryValue = retainValue,
-                        time = "Additional data",
-                        tagTitle = "Label",
-                        tagType = OceanTagType.Positive
-                    )
-                },
-                {
-                    OceanChildTransactionListItem(
-                        primaryLabel = "Retenção de saldo",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
-                        primaryValue = retainValue,
-                        time = "Additional data",
-                        tagTitle = "Label",
-                        tagType = OceanTagType.Positive
-                    )
-                },
-                {
-                    OceanChildTransactionListItem(
-                        primaryLabel = "Retenção de saldo",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
-                        primaryValue = retainValue,
-                        time = "Additional data",
-                        tagTitle = "Label",
-                        tagType = OceanTagType.Positive
-                    )
-                }
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Title",
+                    secondaryLabel = "Description",
+                    dimmedLabel = "Caption",
+                    primaryValue = 0.0,
+                    time = "Additional data",
+                    tagTitle = "Label",
+                    tagType = OceanTagType.Positive
+                ),
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Title",
+                    secondaryLabel = "Description",
+                    dimmedLabel = "Caption",
+                    primaryValue = 0.0,
+                    time = "Additional data",
+                    tagTitle = "Label",
+                    tagType = OceanTagType.Positive
+                ),
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Title",
+                    secondaryLabel = "Description",
+                    dimmedLabel = "Caption",
+                    primaryValue = 0.0,
+                    time = "Additional data",
+                    tagTitle = "Label",
+                    tagType = OceanTagType.Positive
+                )
+            ),
+            footerText = "Supporting text that providing context.",
+            startExpanded = true
+        )
+
+        OceanTransactionListExpandable(
+            parent = OceanTransactionListExpandableItem(
+                primaryLabel = "Retenções",
+                primaryValue = -2260.00
+            ),
+            itemsIcon = OceanIcons.LOCK_CLOSED_SOLID,
+            items = listOf(
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Retenção de saldo",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
+                    primaryValue = retainValue
+                ),
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Retenção de saldo",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
+                    primaryValue = retainValue
+                ),
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Retenção de saldo",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
+                    primaryValue = retainValue
+                )
             ),
             footerText = "Fim das retenções de saldo",
             startExpanded = true
         )
 
         OceanTransactionListExpandable(
-            title = "Cancelamento de retenções",
+            parent = OceanTransactionListExpandableItem(
+                primaryLabel = "Cancelamento de retenções",
+                primaryValue = 3295.00
+            ),
             itemsIcon = OceanIcons.LOCK_OPEN_SOLID,
-            value = 3295.00,
             items = listOf(
-                {
-                    OceanChildTransactionListItem(
-                        primaryLabel = "Cancelamento de retenção",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
-                        dimmedLabel = "Retenção lançada em 14/01/2026",
-                        primaryValue = cancelValue,
-                        time = "Additional data",
-                        tagTitle = "Label",
-                        tagType = OceanTagType.Positive
-                    )
-                },
-                {
-                    OceanChildTransactionListItem(
-                        primaryLabel = "Cancelamento de retenção",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
-                        dimmedLabel = "Retenção lançada em 14/01/2026",
-                        primaryValue = cancelValue,
-                        time = "Additional data",
-                        tagTitle = "Label",
-                        tagType = OceanTagType.Positive
-                    )
-                },
-                {
-                    OceanChildTransactionListItem(
-                        primaryLabel = "Cancelamento de retenção",
-                        secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
-                        dimmedLabel = "Retenção lançada em 14/01/2026",
-                        primaryValue = cancelValue,
-                        time = "Additional data",
-                        tagTitle = "Label",
-                        tagType = OceanTagType.Positive
-                    )
-                }
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Cancelamento de retenção",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
+                    dimmedLabel = "Retenção lançada em 14/01/2026",
+                    primaryValue = cancelValue
+                ),
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Cancelamento de retenção",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
+                    dimmedLabel = "Retenção lançada em 14/01/2026",
+                    primaryValue = cancelValue
+                ),
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Cancelamento de retenção",
+                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
+                    dimmedLabel = "Retenção lançada em 14/01/2026",
+                    primaryValue = cancelValue
+                )
             ),
             footerText = "Fim dos cancelamentos das retenções",
             startExpanded = true

@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,8 +26,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.ChildListItemStyle
 import br.com.useblu.oceands.components.compose.ChildScope
@@ -43,117 +44,43 @@ import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.TransactionType
 import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
-import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.extensions.oceanFormatWithCurrency
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
-import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.FormatTypes
 import br.com.useblu.oceands.utils.OceanIcons
 
-@Preview
-@Composable
-fun OceanTransactionListItemPreview() {
-    Column {
-        OceanTransactionListItem(
-            primaryLabel = "Level 1",
-            secondaryLabel = "Level 2",
-            dimmedLabel = "Level 3",
-            highlightedLabel = "Level 4",
-            primaryValue = 10045.32,
-            secondaryValue = 10002.78,
-            valueWithSignal = true,
-            valueIsHighlighted = true,
-            time = "Time",
-            tagTitle = "Title",
-            icon = OceanIcons.LOCK_CLOSED_SOLID,
-            onClick = {
-                println("Clicked")
-            }
-        )
-        OceanTransactionListItem(
-            primaryLabel = "Level 1",
-            secondaryLabel = "Level 2",
-            dimmedLabel = "Level 3",
-            highlightedLabel = "Level 4",
-            primaryValueFormatted = "R$ 10.045,32",
-            primaryValueFormattedColor = OceanColors.interfaceDarkUp,
-            primaryValueFormattedIsStrike = true,
-            secondaryValue = 10002.78,
-            valueWithSignal = true,
-            valueIsHighlighted = true,
-            time = "Time",
-            tagTitle = "Title",
-            icon = OceanIcons.LOCK_CLOSED_SOLID,
-            onClick = {
-                println("Clicked")
-            }
-        )
-        OceanTransactionListItem(
-            primaryLabel = "Level 1",
-            secondaryLabel = "Level 2",
-            dimmedLabel = "Level 3",
-            highlightedLabel = "Level 4",
-            primaryValue = -10045.32,
-            valueWithSignal = true,
-            valueIsHighlighted = true,
-            time = "Time",
-            tagTitle = "Title",
-            icon = OceanIcons.LOCK_CLOSED_SOLID
-        )
-        OceanTransactionListItem(
-            primaryLabel = "Level 1",
-            secondaryLabel = "Level 2",
-            dimmedLabel = "Level 3",
-            highlightedLabel = "Level 4",
-            primaryValue = -10045.32,
-            valueWithSignal = true,
-            valueIsHighlighted = true,
-            valueIsCanceled = true,
-            time = "Time",
-            tagTitle = "Canceled",
-            tagType = OceanTagType.Negative,
-            icon = OceanIcons.LOCK_CLOSED_SOLID
-        )
-        OceanTransactionListItem(
-            primaryLabel = "Level 1",
-            secondaryLabel = "Level 2",
-            dimmedLabel = "Level 3",
-            highlightedLabel = "Level 4",
-            primaryValue = 10045.32,
-            valueWithSignal = true,
-            valueIsHighlighted = true,
-            valueIsCanceled = true,
-            time = "Time",
-            tagTitle = "Canceled",
-            tagType = OceanTagType.Negative,
-            icon = OceanIcons.LOCK_CLOSED_SOLID,
-            trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID
-        )
-        OceanTransactionListItem(
-            primaryLabel = "Level 1",
-            secondaryLabel = "Level 2",
-            primaryValue = 10045.32,
-            tagTitle = "Expiried",
-            tagType = OceanTagType.Neutral,
-            showCheckbox = true,
-            isCheckboxSelected = false,
-            isDisabled = true
-        )
-        OceanTransactionListItem(
-            primaryLabel = "Level 1",
-            secondaryLabel = "Level 2",
-            primaryValue = 10045.32,
-            tagTitle = "Processando",
-            tagType = OceanTagType.NeutralPrimary,
-            showCheckbox = true,
-            isCheckboxSelected = true
-        )
+sealed interface TransactionListItemStyle {
+
+    val contentInfo: ContentListStyle
+    val contentValues: ContentListStyle
+
+    sealed interface CommonStyle : TransactionListItemStyle {
+        data class Default(
+            override val contentInfo: ContentListStyle,
+            override val contentValues: ContentListStyle,
+            val onClick: () -> Unit
+        ) : CommonStyle
+
+        data class Selectable(
+            override val contentInfo: ContentListStyle,
+            override val contentValues: ContentListStyle,
+            val selected: Boolean = false,
+            val onSelectBox: (Boolean) -> Unit
+        ) : CommonStyle
+    }
+
+    sealed interface WithChildStyle : TransactionListItemStyle {
+        data class Child(
+            override val contentInfo: ContentListStyle,
+            override val contentValues: ContentListStyle,
+            val onClick: () -> Unit
+        ) : WithChildStyle
     }
 }
 
@@ -161,17 +88,23 @@ fun OceanTransactionListItemPreview() {
 fun OceanTransactionListItem(
     primaryLabel: String,
     primaryLabelMaxLines: Int = Int.MAX_VALUE,
+    primaryLabelStyle: TextStyle = OceanTextStyle.description,
     modifier: Modifier = Modifier,
     secondaryLabel: String = "",
+    secondaryLabelStyle: TextStyle = OceanTextStyle.paragraph,
+    secondaryLabelMaxLines: Int = Int.MAX_VALUE,
     dimmedLabel: String = "",
+    dimmedLabelStyle: TextStyle = OceanTextStyle.captionBold,
     highlightedLabel: String = "",
+    highlightedLabelStyle: TextStyle = OceanTextStyle.captionBold,
     primaryValue: Double? = null,
     primaryValueFormatted: String = "",
     primaryValueFormattedColor: Color? = null,
-    primaryValueFormattedIsStrike: Boolean = false,
+    primaryValueStyle: TextStyle = OceanTextStyle.heading4,
     secondaryValue: Double? = null,
     valueIsHighlighted: Boolean = false,
     valueWithSignal: Boolean = false,
+    valueWithSignalPositive: Boolean = true,
     valueIsCanceled: Boolean = false,
     valueIsStrike: Boolean = false,
     tagTitle: String = "",
@@ -185,6 +118,7 @@ fun OceanTransactionListItem(
     onSelectedBox: ((Boolean) -> Unit)? = null,
     showError: Boolean = false,
     isDisabled: Boolean = false,
+    paddingVertical: Dp = OceanSpacing.xs,
     onClick: () -> Unit = {}
 ) {
     Column {
@@ -200,7 +134,9 @@ fun OceanTransactionListItem(
                     indication = null,
                     enabled = !isDisabled
                 )
-                .padding(OceanSpacing.xs),
+                .padding(vertical = paddingVertical)
+                .padding(start = OceanSpacing.xs)
+                .padding(end = if (trailingIcon == null) OceanSpacing.xs else OceanSpacing.xxs),
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (showCheckbox) {
@@ -209,26 +145,16 @@ fun OceanTransactionListItem(
                     selected = isCheckboxSelected,
                     onSelectedBox = onSelectedBox,
                     enabled = !isDisabled,
-                    modifier = Modifier.padding(end = OceanSpacing.xs),
+                    modifier = Modifier.padding(end = OceanSpacing.xxsExtra),
                     interactionSource = interactionSource
                 )
-            }
-
-            if (icon != null) {
-                Box(
+            } else if (icon != null) {
+                OceanIcon(
+                    iconType = icon,
+                    tint = OceanColors.interfaceDarkUp,
                     modifier = Modifier
-                        .padding(end = OceanSpacing.xs)
-                        .iconContainerBackground(true)
-                        .size(40.dp)
-                ) {
-                    OceanIcon(
-                        iconType = icon,
-                        tint = OceanColors.interfaceDarkUp,
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .size(24.dp)
-                    )
-                }
+                        .padding(end = OceanSpacing.xxsExtra)
+                )
             }
 
             Column(
@@ -240,7 +166,7 @@ fun OceanTransactionListItem(
                     OceanText(
                         text = highlightedLabel,
                         color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.brandPrimaryDeep,
-                        style = OceanTextStyle.captionBold
+                        style = highlightedLabelStyle
                     )
 
                     OceanSpacing.StackXXS()
@@ -248,9 +174,8 @@ fun OceanTransactionListItem(
 
                 OceanText(
                     text = primaryLabel,
-                    fontSize = OceanFontSize.xs,
-                    fontFamily = OceanFontFamily.BaseRegular,
                     color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure,
+                    style = primaryLabelStyle,
                     maxLines = primaryLabelMaxLines,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -259,8 +184,10 @@ fun OceanTransactionListItem(
                     OceanSpacing.StackXXXS()
                     OceanText(
                         text = secondaryLabel,
-                        style = OceanTextStyle.description,
-                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown
+                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown,
+                        style = secondaryLabelStyle,
+                        maxLines = secondaryLabelMaxLines,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
 
@@ -270,8 +197,8 @@ fun OceanTransactionListItem(
                         text = dimmedLabel,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
-                        style = OceanTextStyle.caption,
-                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown
+                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown,
+                        style = dimmedLabelStyle
                     )
                 }
             }
@@ -281,6 +208,7 @@ fun OceanTransactionListItem(
             ) {
                 if (primaryValue != null) {
                     val color = when {
+                        primaryValueFormattedColor != null -> primaryValueFormattedColor
                         isDisabled || valueIsHighlighted && valueIsCanceled -> OceanColors.interfaceDarkUp
                         valueIsHighlighted && primaryValue > 0 -> OceanColors.statusPositiveDeep
                         else -> OceanColors.interfaceDarkPure
@@ -290,7 +218,7 @@ fun OceanTransactionListItem(
                         FormatTypes.FORMAT_VALUE_WITH_SYMBOL.format(primaryValue.toString())
 
                     if (valueWithSignal) {
-                        if (primaryValue >= 0) {
+                        if (valueWithSignalPositive && primaryValue >= 0) {
                             formattedValue = "+ $formattedValue"
                         }
                     } else {
@@ -300,11 +228,10 @@ fun OceanTransactionListItem(
                     OceanText(
                         text = formattedValue,
                         color = color,
-                        fontFamily = OceanFontFamily.BaseMedium,
                         style = if (valueIsStrike) {
-                            OceanTextStyle.descriptionStrike
+                            OceanTextStyle.heading4Strike
                         } else {
-                            OceanTextStyle.description
+                            primaryValueStyle
                         }
                     )
                 }
@@ -320,11 +247,10 @@ fun OceanTransactionListItem(
                     OceanText(
                         text = primaryValueFormatted,
                         color = color,
-                        fontFamily = OceanFontFamily.BaseMedium,
-                        style = if (primaryValueFormattedIsStrike) {
-                            OceanTextStyle.descriptionStrike
+                        style = if (valueIsStrike) {
+                            OceanTextStyle.heading4Strike
                         } else {
-                            OceanTextStyle.description
+                            primaryValueStyle
                         }
                     )
                 }
@@ -353,8 +279,7 @@ fun OceanTransactionListItem(
                     OceanSpacing.StackXXXS()
                     OceanText(
                         text = time,
-                        style = OceanTextStyle.caption,
-                        fontFamily = OceanFontFamily.BaseMedium
+                        style = OceanTextStyle.captionBold
                     )
                 }
             }
@@ -371,115 +296,10 @@ fun OceanTransactionListItem(
         }
 
         if (showDivider) {
-            OceanDivider()
-        }
-    }
-}
-
-@Preview(
-    showBackground = true,
-    backgroundColor = 0xFFFFFFFF,
-    heightDp = 750
-)
-@Composable
-private fun TransactionListItemPreview() {
-    val commonContentInfo = ContentListStyle.Default(
-        title = "Title",
-        description = "Subtitle to long to be displayed on a single line",
-        caption = "Caption"
-    )
-    val commonContentValue = ContentListStyle.Transaction(
-        value = "R$ 1.000.000.000,00",
-        caption = "Aditional info",
-        tagStyle = OceanTagStyle.Default(
-            label = "Title",
-            type = OceanTagType.Warning,
-            layout = OceanTagLayout.Small()
-        ),
-        type = TransactionType.OUTFLOW
-    )
-
-    Column(
-        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs),
-        modifier = Modifier
-            .background(color = OceanColors.interfaceLightDeep)
-            .verticalScroll(rememberScrollState())
-    ) {
-        OceanTransactionListItem(
-            style = TransactionListItemStyle.CommonStyle.Default(
-                contentInfo = commonContentInfo,
-                contentValues = commonContentValue,
-                onClick = { println("Clicked") }
+            OceanDivider(
+                modifier = Modifier
+                    .padding(horizontal = OceanSpacing.xs)
             )
-        )
-        OceanTransactionListItem(
-            enabled = false,
-            style = TransactionListItemStyle.CommonStyle.Default(
-                contentInfo = commonContentInfo,
-                contentValues = commonContentValue,
-                onClick = { println("Clicked") }
-            )
-        )
-        OceanTransactionListItem(
-            style = TransactionListItemStyle.CommonStyle.Selectable(
-                contentInfo = commonContentInfo,
-                contentValues = commonContentValue,
-                selected = true,
-                onSelectBox = { println("Selected: $it") }
-            )
-        )
-        OceanTransactionListItem(
-            style = TransactionListItemStyle.WithChildStyle.Child(
-                contentInfo = commonContentInfo,
-                contentValues = commonContentValue,
-                onClick = { println("Clicked") }
-            )
-        ) {
-            OceanChildListItem(
-                style = ChildListItemStyle.Child(
-                    icon = OceanIcons.PLACEHOLDER_SOLID,
-                    description = "Description",
-                    value = "R$ 1.000.000,00",
-                    type = TransactionType.OUTFLOW
-                )
-            )
-            OceanChildListItem(
-                style = ChildListItemStyle.Child(
-                    icon = OceanIcons.PLACEHOLDER_SOLID,
-                    description = "Description",
-                    value = "R$ 2.000.000,00",
-                    type = TransactionType.INFLOW
-                )
-            )
-        }
-
-        OceanTransactionListItem(
-            isLoading = true,
-            style = TransactionListItemStyle.WithChildStyle.Child(
-                contentInfo = commonContentInfo,
-                contentValues = commonContentValue,
-                onClick = { println("Clicked") }
-            )
-        ) {
-            OceanChildListItem(
-                isLoading = true,
-                style = ChildListItemStyle.Child(
-                    icon = OceanIcons.PLACEHOLDER_SOLID,
-                    description = "Description",
-                    value = "R$ 2.000.000,00",
-                    type = TransactionType.INFLOW
-                )
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun OceanTransactionListItemSkeletonPreview() {
-    Column {
-        repeat(3) {
-            OceanTransactionListItemSkeleton()
         }
     }
 }
@@ -783,31 +603,212 @@ fun OceanTransactionListItemSkeleton() {
     }
 }
 
-sealed interface TransactionListItemStyle {
-
-    val contentInfo: ContentListStyle
-    val contentValues: ContentListStyle
-
-    sealed interface CommonStyle : TransactionListItemStyle {
-        data class Default(
-            override val contentInfo: ContentListStyle,
-            override val contentValues: ContentListStyle,
-            val onClick: () -> Unit
-        ) : CommonStyle
-
-        data class Selectable(
-            override val contentInfo: ContentListStyle,
-            override val contentValues: ContentListStyle,
-            val selected: Boolean = false,
-            val onSelectBox: (Boolean) -> Unit
-        ) : CommonStyle
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xFFFFFFFF
+)
+@Composable
+fun OceanTransactionListItemPreview() {
+    Column {
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            primaryValue = 10045.32,
+            secondaryValue = 10002.78,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            time = "Time",
+            tagTitle = "Title",
+            icon = OceanIcons.LOCK_CLOSED_SOLID,
+            onClick = {
+                println("Clicked")
+            }
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            primaryValueFormatted = "R$ 10.045,32",
+            primaryValueFormattedColor = OceanColors.interfaceDarkUp,
+            secondaryValue = 10002.78,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            time = "Time",
+            tagTitle = "Title",
+            icon = OceanIcons.LOCK_CLOSED_SOLID,
+            onClick = {
+                println("Clicked")
+            }
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            primaryValue = -10045.32,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            time = "Time",
+            tagTitle = "Title",
+            icon = OceanIcons.LOCK_CLOSED_SOLID
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            primaryValue = -10045.32,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            valueIsCanceled = true,
+            time = "Time",
+            tagTitle = "Canceled",
+            tagType = OceanTagType.Negative,
+            icon = OceanIcons.LOCK_CLOSED_SOLID
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            dimmedLabel = "Level 3",
+            highlightedLabel = "Level 4",
+            primaryValue = 10045.32,
+            valueWithSignal = true,
+            valueIsHighlighted = true,
+            valueIsCanceled = true,
+            time = "Time",
+            tagTitle = "Canceled",
+            tagType = OceanTagType.Negative,
+            icon = OceanIcons.LOCK_CLOSED_SOLID,
+            trailingIcon = OceanIcons.CHEVRON_RIGHT_SOLID
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            primaryValue = 10045.32,
+            tagTitle = "Expiried",
+            tagType = OceanTagType.Neutral,
+            showCheckbox = true,
+            isCheckboxSelected = false,
+            isDisabled = true
+        )
+        OceanTransactionListItem(
+            primaryLabel = "Level 1",
+            secondaryLabel = "Level 2",
+            primaryValue = 10045.32,
+            tagTitle = "Processando",
+            tagType = OceanTagType.NeutralPrimary,
+            showCheckbox = true,
+            isCheckboxSelected = true
+        )
     }
+}
 
-    sealed interface WithChildStyle : TransactionListItemStyle {
-        data class Child(
-            override val contentInfo: ContentListStyle,
-            override val contentValues: ContentListStyle,
-            val onClick: () -> Unit
-        ) : WithChildStyle
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xFFFFFFFF,
+    heightDp = 750
+)
+@Composable
+private fun TransactionListItemPreview() {
+    val commonContentInfo = ContentListStyle.Default(
+        title = "Title",
+        description = "Subtitle to long to be displayed on a single line",
+        caption = "Caption"
+    )
+    val commonContentValue = ContentListStyle.Transaction(
+        value = "R$ 1.000.000.000,00",
+        caption = "Aditional info",
+        tagStyle = OceanTagStyle.Default(
+            label = "Title",
+            type = OceanTagType.Warning,
+            layout = OceanTagLayout.Small()
+        ),
+        type = TransactionType.OUTFLOW
+    )
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs),
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+    ) {
+        OceanTransactionListItem(
+            style = TransactionListItemStyle.CommonStyle.Default(
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
+                onClick = { println("Clicked") }
+            )
+        )
+        OceanTransactionListItem(
+            enabled = false,
+            style = TransactionListItemStyle.CommonStyle.Default(
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
+                onClick = { println("Clicked") }
+            )
+        )
+        OceanTransactionListItem(
+            style = TransactionListItemStyle.CommonStyle.Selectable(
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
+                selected = true,
+                onSelectBox = { println("Selected: $it") }
+            )
+        )
+        OceanTransactionListItem(
+            style = TransactionListItemStyle.WithChildStyle.Child(
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
+                onClick = { println("Clicked") }
+            )
+        ) {
+            OceanChildListItem(
+                style = ChildListItemStyle.Child(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    description = "Description",
+                    value = "R$ 1.000.000,00",
+                    type = TransactionType.OUTFLOW
+                )
+            )
+            OceanChildListItem(
+                style = ChildListItemStyle.Child(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    description = "Description",
+                    value = "R$ 2.000.000,00",
+                    type = TransactionType.INFLOW
+                )
+            )
+        }
+
+        OceanTransactionListItem(
+            isLoading = true,
+            style = TransactionListItemStyle.WithChildStyle.Child(
+                contentInfo = commonContentInfo,
+                contentValues = commonContentValue,
+                onClick = { println("Clicked") }
+            )
+        ) {
+            OceanChildListItem(
+                isLoading = true,
+                style = ChildListItemStyle.Child(
+                    icon = OceanIcons.PLACEHOLDER_SOLID,
+                    description = "Description",
+                    value = "R$ 2.000.000,00",
+                    type = TransactionType.INFLOW
+                )
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun OceanTransactionListItemSkeletonPreview() {
+    Column {
+        repeat(3) {
+            OceanTransactionListItemSkeleton()
+        }
     }
 }

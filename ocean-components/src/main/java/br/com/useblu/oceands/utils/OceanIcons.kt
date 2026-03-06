@@ -2413,7 +2413,14 @@ enum class OceanIcons(val token: String, @DrawableRes val icon: Int) {
         token = "bluanalisysoutline",
         icon = R.drawable.ocean_icon_blu_analisys_outline
     ),
-
+    INFLOW_OUTLINE(
+        token = "inflowoutline",
+        icon = R.drawable.icon_inflow_outline
+    ),
+    OUTFLOW_OUTLINE(
+        token = "outflowoutline",
+        icon = R.drawable.icon_outflow_outline
+    ),
     BLANK_ICON(
         token = "localblankicon",
         icon = R.drawable.local_blank_icon

@@ -41,7 +41,8 @@ data class OceanTransactionListExpandableItem(
     val primaryValue: Double? = null,
     val tagTitle: String = "",
     val tagType: OceanTagType = OceanTagType.Warning,
-    val time: String = ""
+    val time: String = "",
+    val onClick: () -> Unit = { }
 )
 
 @Composable
@@ -64,7 +65,6 @@ fun OceanParentTransactionListExpandable(
         tagType = item.tagType,
         time = item.time,
         showDivider = false,
-        primaryValueFormattedColor = if ((item.primaryValue ?: 0.0) <= 0.0) OceanColors.interfaceDarkDown else null,
         trailingIcon = if (isExpanded) OceanIcons.CHEVRON_UP_SOLID else OceanIcons.CHEVRON_DOWN_SOLID,
         onClick = onClick
     )
@@ -93,7 +93,8 @@ fun OceanChildTransactionListExpandable(
         primaryLabelStyle = OceanTextStyle.captionBold,
         secondaryLabelStyle = OceanTextStyle.description,
         primaryValueStyle = OceanTextStyle.heading5,
-        primaryValueFormattedColor = if ((item.primaryValue ?: 0.0) <= 0.0) OceanColors.interfaceDarkDown else null
+        primaryValueFormattedColor = if ((item.primaryValue ?: 0.0) <= 0.0) OceanColors.interfaceDarkDown else null,
+        onClick = item.onClick
     )
 }
 
@@ -104,6 +105,7 @@ fun OceanTransactionListExpandable(
     itemsIcon: OceanIcons? = null,
     items: List<OceanTransactionListExpandableItem> = emptyList(),
     footerText: String = "",
+    showDivider: Boolean = true,
     startExpanded: Boolean = false
 ) {
     var isExpanded by remember { mutableStateOf(startExpanded) }
@@ -172,18 +174,6 @@ fun OceanTransactionListExpandable(
                     }
                 }
 
-                if (footerText.isNotBlank()) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = OceanSpacing.xxs)
-                            .padding(horizontal = OceanSpacing.xs)
-                            .padding(bottom = OceanSpacing.sm),
-                        contentAlignment = Alignment.Center
-                    ) {
-                    }
-                }
-
                 OceanTextNotBlank(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -198,7 +188,9 @@ fun OceanTransactionListExpandable(
             }
         }
 
-        OceanDivider()
+        if (showDivider) {
+            OceanDivider()
+        }
     }
 }
 

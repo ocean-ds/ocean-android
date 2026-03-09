@@ -50,6 +50,293 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
+@Composable
+fun OceanCardGroup(
+    modifier: Modifier = Modifier,
+    title: String,
+    description: String = "",
+    tag: OceanTagModel? = null,
+    backgroundColor: Color = OceanColors.interfaceLightPure,
+    actionTitle: String = "",
+    actionClick: () -> Unit = { },
+    showProgress: Boolean = false,
+    badgeText: String = "",
+    badgeType: OceanBadgeType = OceanBadgeType.WARNING,
+    highlightText: String = "",
+    highlightTextColor: Color = OceanColors.interfaceLightUp,
+    highlightBackgroundColor: Color = OceanColors.brandPrimaryPure,
+    alert: OceanAlertType.WithBadges? = null,
+    content: @Composable () -> Unit
+) {
+    Card(
+        modifier = modifier,
+        colors = CardDefaults.cardColors(
+            containerColor = backgroundColor,
+            disabledContainerColor = backgroundColor
+        ),
+        shape = OceanBorderRadius.SM.allCorners.shape(),
+        border = BorderStroke(1.dp, OceanColors.interfaceLightDown),
+        onClick = { /* No-op */ }
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = OceanSpacing.xs)
+                .padding(horizontal = OceanSpacing.xs)
+                .padding(bottom = OceanSpacing.xxxs)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ContentDefault(
+                    title = title,
+                    subtitle = description
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                if (tag != null && tag.text.isNotEmpty()) {
+                    OceanTag(
+                        modifier = Modifier
+                            .padding(top = OceanSpacing.xxs),
+                        style = OceanTagStyle.Default(
+                            label = tag.text,
+                            layout = OceanTagLayout.Medium(),
+                            type = tag.type
+                        )
+                    )
+                }
+            }
+        }
+
+        content()
+
+        alert?.let { type ->
+            OceanAlert(
+                type = type,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
+
+        if (actionTitle.isNotEmpty()) {
+            CardCta(
+                showProgress = showProgress,
+                actionTitle = actionTitle,
+                badgeText = badgeText,
+                badgeType = badgeType,
+                backgroundColor = if (highlightText.isNotEmpty()) highlightBackgroundColor else backgroundColor,
+                actionClick = actionClick
+            )
+        }
+
+        if (highlightText.isNotEmpty()) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = highlightBackgroundColor,
+                        shape = OceanBorderRadius.SM.bottomCorners.shape()
+                    )
+                    .padding(
+                        horizontal = OceanSpacing.xs,
+                        vertical = OceanSpacing.xxsExtra
+                    )
+            ) {
+                OceanText(
+                    text = highlightText,
+                    style = OceanTextStyle.captionBold,
+                    color = highlightTextColor
+                )
+            }
+        }
+    }
+}
+
+@Composable
+@Deprecated("Use the version with content lambda instead")
+fun OceanCardGroup(
+    title: String,
+    modifier: Modifier = Modifier,
+    subtitle: String = "",
+    caption: String = "",
+    badgeText: String = "",
+    badgeType: OceanBadgeType = OceanBadgeType.WARNING,
+    actionTitle: String,
+    actionClick: () -> Unit,
+    @FloatRange(0.0, 1.0) progressBar: Float? = null,
+    showProgress: Boolean = false,
+    label: String = "",
+    type: CardGroupType = DEFAULT,
+    tag: OceanTagModel? = null
+) {
+    Box(modifier = modifier) {
+        val paddingTop = if (label.isNotBlank()) 9.dp else 0.dp
+        Column(
+            modifier = Modifier
+                .padding(top = paddingTop)
+                .border(
+                    width = 1.dp,
+                    color = if (label.isBlank()) OceanColors.interfaceLightDown
+                    else OceanColors.brandPrimaryUp,
+                    shape = OceanBorderRadius.SM.allCorners.shape()
+                )
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .borderBackground(
+                        color = OceanColors.interfaceLightPure,
+                        borderRadius = OceanBorderRadius.SM.topCorners
+                    )
+                    .padding(horizontal = OceanSpacing.xs)
+                    .padding(top = OceanSpacing.xs)
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    when (type) {
+                        DEFAULT -> {
+                            ContentDefault(title, subtitle)
+                        }
+
+                        INVERTED -> {
+                            ContentInverted(title, subtitle)
+                        }
+                    }
+
+                    if (caption.isNotBlank()) {
+                        OceanSpacing.StackXXS()
+
+                        OceanText(
+                            text = caption,
+                            style = OceanTextStyle.captionBold,
+                            color = OceanColors.interfaceDarkDown
+                        )
+                    }
+
+                    tag?.let { tag ->
+                        OceanTag(
+                            modifier = Modifier
+                                .padding(top = OceanSpacing.xxs),
+                            style = OceanTagStyle.Default(
+                                label = tag.text,
+                                layout = OceanTagLayout.Medium(),
+                                type = tag.type
+                            )
+                        )
+                    }
+                }
+
+                if (badgeText.isNotBlank()) {
+                    OceanSpacing.StackXS()
+
+                    OceanBadge(
+                        text = badgeText,
+                        type = badgeType,
+                        size = OceanBadgeSize.Medium
+                    )
+                }
+            }
+
+            if (progressBar != null) {
+                OceanSpacing.StackXXS()
+                OceanSpacing.StackXXXS()
+                OceanProgressBar(
+                    progress = progressBar,
+                    modifier = Modifier
+                        .padding(horizontal = OceanSpacing.xs)
+                )
+            }
+
+            OceanSpacing.StackXS()
+            if (actionTitle.isNotBlank()) {
+                CardCta(
+                    showProgress = showProgress,
+                    actionTitle = actionTitle,
+                    actionClick = actionClick
+                )
+            }
+        }
+
+        if (label.isNotBlank()) {
+            Box(
+                modifier = Modifier
+                    .padding(start = OceanSpacing.xs)
+                    .height(18.dp)
+                    .borderBackground(
+                        color = OceanColors.brandPrimaryDown,
+                        borderRadius = OceanBorderRadius.Circle.allCorners
+                    )
+                    .padding(horizontal = 6.dp)
+                    .align(Alignment.TopStart)
+            ) {
+                OceanText(
+                    text = label,
+                    fontSize = OceanFontSize.xxxs,
+                    color = OceanColors.interfaceLightPure,
+                    fontFamily = OceanFontFamily.BaseBold,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun ContentDefault(
+    title: String,
+    subtitle: String
+) {
+    OceanText(
+        text = title,
+        fontFamily = OceanFontFamily.BaseExtraBold,
+        fontSize = OceanFontSize.xs,
+        color = OceanColors.interfaceDarkDeep
+    )
+
+    if (subtitle.isNotBlank()) {
+        OceanSpacing.StackXXS()
+
+        OceanText(
+            text = subtitle,
+            fontFamily = OceanFontFamily.BaseRegular,
+            fontSize = OceanFontSize.xxs,
+            color = OceanColors.interfaceDarkDown
+        )
+    }
+}
+
+@Composable
+private fun ContentInverted(
+    title: String,
+    subtitle: String
+) {
+    OceanText(
+        text = title,
+        style = OceanTextStyle.description,
+        color = OceanColors.interfaceDarkDown
+    )
+
+    if (subtitle.isNotBlank()) {
+        OceanSpacing.StackXXS()
+
+        OceanText(
+            text = subtitle,
+            style = OceanTextStyle.heading4,
+            color = OceanColors.interfaceDarkDeep
+        )
+    }
+}
+
+enum class CardGroupType {
+    DEFAULT,
+    INVERTED
+}
+
 @Preview
 @Composable
 fun OceanCardGroupPreview() {
@@ -72,11 +359,27 @@ fun OceanCardGroupPreview() {
                 tag = OceanTagModel(
                     type = OceanTagType.Highlight,
                     text = "Boletos disponiveis"
+                )
+            ) {
+                OceanTextListItem(
+                    title = "Limite para pagar boletos",
+                    description = "R$ 9.000,00",
+                    caption = "Pague em até 12 vezes",
+                    isTextBold = true,
+                    captionStyle = OceanTextStyle.caption.copy(color = OceanColors.interfaceDarkDown),
+                    contentStyle = OceanTextListContentStyle.Inverted,
+                    textListStyle = OceanTextListStyle.Icon(icon = OceanIcons.BRAND_MASTERCARD),
+                    showDivider = false
+                )
+            }
+
+            OceanCardGroup(
+                modifier = Modifier.padding(16.dp),
+                title = "Crédito disponível",
+                tag = OceanTagModel(
+                    type = OceanTagType.Highlight,
+                    text = "Boletos disponiveis"
                 ),
-                actionTitle = "Ver todos os boletos",
-                actionClick = { },
-                badgeText = "9",
-                badgeType = OceanBadgeType.WARNING,
                 alert = alertInfo
             ) {
                 OceanTextListItem(
@@ -255,288 +558,4 @@ fun OceanCardGroupPreview() {
             )
         }
     }
-}
-
-@Composable
-fun OceanCardGroup(
-    modifier: Modifier = Modifier,
-    title: String,
-    description: String = "",
-    tag: OceanTagModel? = null,
-    backgroundColor: Color = OceanColors.interfaceLightPure,
-    actionTitle: String = "",
-    actionClick: () -> Unit = { },
-    showProgress: Boolean = false,
-    badgeText: String = "",
-    badgeType: OceanBadgeType = OceanBadgeType.WARNING,
-    highlightText: String = "",
-    highlightTextColor: Color = OceanColors.interfaceLightUp,
-    highlightBackgroundColor: Color = OceanColors.brandPrimaryPure,
-    alert: OceanAlertType.WithBadges? = null,
-    content: @Composable () -> Unit
-) {
-    Card(
-        modifier = modifier,
-        colors = CardDefaults.cardColors(
-            containerColor = backgroundColor,
-            disabledContainerColor = backgroundColor
-        ),
-        shape = OceanBorderRadius.SM.allCorners.shape(),
-        border = BorderStroke(1.dp, OceanColors.interfaceLightDown),
-        onClick = { /* No-op */ }
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = OceanSpacing.xs)
-                .padding(horizontal = OceanSpacing.xs)
-                .padding(bottom = OceanSpacing.xxxs)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                ContentDefault(
-                    title = title,
-                    subtitle = description
-                )
-
-                Spacer(modifier = Modifier.weight(1f))
-
-                if (tag != null && tag.text.isNotEmpty()) {
-                    OceanTag(
-                        modifier = Modifier
-                            .padding(top = OceanSpacing.xxs),
-                        style = OceanTagStyle.Default(
-                            label = tag.text,
-                            layout = OceanTagLayout.Medium(),
-                            type = tag.type
-                        )
-                    )
-                }
-            }
-        }
-
-        content()
-
-        alert?.let { type ->
-            OceanAlert(
-                type = type,
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-        }
-
-        CardCta(
-            showProgress = showProgress,
-            actionTitle = actionTitle,
-            badgeText = badgeText,
-            badgeType = badgeType,
-            backgroundColor = if (highlightText.isNotEmpty()) highlightBackgroundColor else backgroundColor,
-            actionClick = actionClick
-        )
-
-        if (highlightText.isNotEmpty()) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        color = highlightBackgroundColor,
-                        shape = OceanBorderRadius.SM.bottomCorners.shape()
-                    )
-                    .padding(
-                        horizontal = OceanSpacing.xs,
-                        vertical = OceanSpacing.xxsExtra
-                    )
-            ) {
-                OceanText(
-                    text = highlightText,
-                    style = OceanTextStyle.captionBold,
-                    color = highlightTextColor
-                )
-            }
-        }
-    }
-}
-
-@Composable
-@Deprecated("Use the version with content lambda instead")
-fun OceanCardGroup(
-    title: String,
-    modifier: Modifier = Modifier,
-    subtitle: String = "",
-    caption: String = "",
-    badgeText: String = "",
-    badgeType: OceanBadgeType = OceanBadgeType.WARNING,
-    actionTitle: String,
-    actionClick: () -> Unit,
-    @FloatRange(0.0, 1.0) progressBar: Float? = null,
-    showProgress: Boolean = false,
-    label: String = "",
-    type: CardGroupType = DEFAULT,
-    tag: OceanTagModel? = null
-) {
-    Box(modifier = modifier) {
-        val paddingTop = if (label.isNotBlank()) 9.dp else 0.dp
-        Column(
-            modifier = Modifier
-                .padding(top = paddingTop)
-                .border(
-                    width = 1.dp,
-                    color = if (label.isBlank()) OceanColors.interfaceLightDown
-                    else OceanColors.brandPrimaryUp,
-                    shape = OceanBorderRadius.SM.allCorners.shape()
-                )
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .borderBackground(
-                        color = OceanColors.interfaceLightPure,
-                        borderRadius = OceanBorderRadius.SM.topCorners
-                    )
-                    .padding(horizontal = OceanSpacing.xs)
-                    .padding(top = OceanSpacing.xs)
-            ) {
-                Column(
-                    modifier = Modifier.weight(1f)
-                ) {
-                    when (type) {
-                        DEFAULT -> {
-                            ContentDefault(title, subtitle)
-                        }
-
-                        INVERTED -> {
-                            ContentInverted(title, subtitle)
-                        }
-                    }
-
-                    if (caption.isNotBlank()) {
-                        OceanSpacing.StackXXS()
-
-                        OceanText(
-                            text = caption,
-                            style = OceanTextStyle.captionBold,
-                            color = OceanColors.interfaceDarkDown
-                        )
-                    }
-
-                    tag?.let { tag ->
-                        OceanTag(
-                            modifier = Modifier
-                                .padding(top = OceanSpacing.xxs),
-                            style = OceanTagStyle.Default(
-                                label = tag.text,
-                                layout = OceanTagLayout.Medium(),
-                                type = tag.type
-                            )
-                        )
-                    }
-                }
-
-                if (badgeText.isNotBlank()) {
-                    OceanSpacing.StackXS()
-
-                    OceanBadge(
-                        text = badgeText,
-                        type = badgeType,
-                        size = OceanBadgeSize.Medium
-                    )
-                }
-            }
-
-            if (progressBar != null) {
-                OceanSpacing.StackXXS()
-                OceanSpacing.StackXXXS()
-                OceanProgressBar(
-                    progress = progressBar,
-                    modifier = Modifier
-                        .padding(horizontal = OceanSpacing.xs)
-                )
-            }
-
-            OceanSpacing.StackXS()
-
-            CardCta(
-                showProgress = showProgress,
-                actionTitle = actionTitle,
-                actionClick = actionClick
-            )
-        }
-
-        if (label.isNotBlank()) {
-            Box(
-                modifier = Modifier
-                    .padding(start = OceanSpacing.xs)
-                    .height(18.dp)
-                    .borderBackground(
-                        color = OceanColors.brandPrimaryDown,
-                        borderRadius = OceanBorderRadius.Circle.allCorners
-                    )
-                    .padding(horizontal = 6.dp)
-                    .align(Alignment.TopStart)
-            ) {
-                OceanText(
-                    text = label,
-                    fontSize = OceanFontSize.xxxs,
-                    color = OceanColors.interfaceLightPure,
-                    fontFamily = OceanFontFamily.BaseBold,
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun ContentDefault(
-    title: String,
-    subtitle: String
-) {
-    OceanText(
-        text = title,
-        fontFamily = OceanFontFamily.BaseExtraBold,
-        fontSize = OceanFontSize.xs,
-        color = OceanColors.interfaceDarkDeep
-    )
-
-    if (subtitle.isNotBlank()) {
-        OceanSpacing.StackXXS()
-
-        OceanText(
-            text = subtitle,
-            fontFamily = OceanFontFamily.BaseRegular,
-            fontSize = OceanFontSize.xxs,
-            color = OceanColors.interfaceDarkDown
-        )
-    }
-}
-
-@Composable
-private fun ContentInverted(
-    title: String,
-    subtitle: String
-) {
-    OceanText(
-        text = title,
-        style = OceanTextStyle.description,
-        color = OceanColors.interfaceDarkDown
-    )
-
-    if (subtitle.isNotBlank()) {
-        OceanSpacing.StackXXS()
-
-        OceanText(
-            text = subtitle,
-            style = OceanTextStyle.heading4,
-            color = OceanColors.interfaceDarkDeep
-        )
-    }
-}
-
-enum class CardGroupType {
-    DEFAULT,
-    INVERTED
 }

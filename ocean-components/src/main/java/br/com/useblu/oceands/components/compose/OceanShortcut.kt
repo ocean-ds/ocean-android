@@ -3,6 +3,7 @@ package br.com.useblu.oceands.components.compose
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -52,7 +53,12 @@ fun OceanShortcutPreview() {
         OceanShortcutModel(
             label = "TinyHorizontal",
             icon = OceanIcons.ACADEMIC_CAP_SOLID,
-            layout = OceanShortcutLayout.TinyHorizontal
+            layout = OceanShortcutLayout.TinyHorizontal,
+            tag = OceanShortcutTag(
+                text = "A 21x",
+                type = OceanTagType.Highlight,
+                position = OceanShortcutTag.Position.Center
+            )
         ),
 
         OceanShortcutModel(
@@ -183,8 +189,31 @@ data class OceanShortcutBadge(
 
 data class OceanShortcutTag(
     val text: String,
-    val type: OceanTagType
-)
+    val type: OceanTagType,
+    val position: Position = Position.Top
+) {
+    enum class Position {
+        Top,
+        Center;
+
+        @Composable
+        fun getModifier(boxScope: BoxScope): Modifier {
+            return when (this) {
+                Top -> with(boxScope) {
+                    Modifier
+                        .padding(top = OceanSpacing.xxs, end = OceanSpacing.xxs)
+                        .align(Alignment.TopEnd)
+                }
+
+                Center -> with(boxScope) {
+                    Modifier
+                        .align(Alignment.CenterEnd)
+                        .padding(end = OceanSpacing.xxs)
+                }
+            }
+        }
+    }
+}
 
 @Composable
 fun OceanShortcut(
@@ -251,9 +280,7 @@ fun OceanShortcut(
                             type = tag.type,
                             layout = OceanTagLayout.Small()
                         ),
-                        modifier = Modifier
-                            .padding(top = OceanSpacing.xxs, end = OceanSpacing.xxs)
-                            .align(Alignment.TopEnd)
+                        modifier = tag.position.getModifier(this)
                     )
                 }
 

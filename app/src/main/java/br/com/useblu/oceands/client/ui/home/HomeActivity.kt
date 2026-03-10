@@ -61,6 +61,7 @@ import br.com.useblu.oceands.client.ui.groupcta.GroupCTAActivity
 import br.com.useblu.oceands.client.ui.headerapp.HeaderAppActivity
 import br.com.useblu.oceands.client.ui.informativecard.InformativeCardActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
+import br.com.useblu.oceands.client.ui.internalpageheader.InternalPageHeaderActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
 import br.com.useblu.oceands.client.ui.onboarding.OceanOnboardingPagerActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
@@ -210,6 +211,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Footer Blu", onClick = { onFooterBlu() })
                         textAction(text = "Group CTA", onClick = { onClickCta() })
                         textAction(text = "Header App", onClick = { onClickHeaderApp() })
+                        textAction(text = "Internal Page Header", onClick = { onClickInternalPageHeader() })
                         textAction(text = "Informative Card", onClick = { informativeCardClick() })
                         textAction(text = "Input", onClick = { onClickInputs() })
                         textAction(text = "List Ordered", onClick = { listOrderedClick() })
@@ -277,6 +279,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onClickHeaderApp() {
         val intent = Intent(this, HeaderAppActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun onClickInternalPageHeader() {
+        val intent = Intent(this, InternalPageHeaderActivity::class.java)
         startActivity(intent)
     }
 

@@ -43,6 +43,7 @@ import br.com.useblu.oceands.client.ui.cardbalance.CardBalanceActivity
 import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
 import br.com.useblu.oceands.client.ui.carditem.CardItemActivity
 import br.com.useblu.oceands.client.ui.cardlistexpandable.OceanCardListExpandableActivity
+import br.com.useblu.oceands.client.ui.cardoption.CardOptionActivity
 import br.com.useblu.oceands.client.ui.cardreadonly.CardReadOnlyActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
 import br.com.useblu.oceands.client.ui.carouselwithcomponents.CarouselWithComponentsActivity
@@ -196,6 +197,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Card Expandable", onClick = { onClickOceanCardListExpandable() })
                         textAction(text = "Card Group", onClick = { cardContentClick() })
                         textAction(text = "Card Item", onClick = { onClickCardItem() })
+                        textAction(text = "Card Option", onClick = { cardOptionClick() })
                         textAction(text = "Card Read Only", onClick = { cardReadOnlyItem() })
                         textAction(text = "Carousel", onClick = { carousel() })
                         textAction(text = "Carousel With Components", onClick = { carouselWithComponents() })
@@ -459,6 +461,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onClickTextLink() {
         val intent = Intent(this, TextLinkActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun cardOptionClick() {
+        val intent = Intent(this, CardOptionActivity::class.java)
         startActivity(intent)
     }
 

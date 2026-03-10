@@ -83,6 +83,7 @@
         <activity android:name=".ui.cardlistexpandable.OceanCardListExpandableActivity" />
         <activity android:name=".ui.textlistaction.OceanTextListActionActivity" />
         <activity android:name=".ui.cardbalance.CardBalanceActivity" />
+        <activity android:name=".ui.cardoption.CardOptionActivity" />
         <activity android:name=".ui.banner.BannerActivity" />
     </application>
 

@@ -181,7 +181,7 @@ fun OceanCardOption(
                 Row(
                     modifier = Modifier
                         .weight(1f)
-                        .padding(vertical = OceanSpacing.md),
+                        .padding(vertical = OceanSpacing.xs),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     val contentPadding = if (item.heightSize == OceanOptionCardSize.SMALL) {

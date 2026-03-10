@@ -19,7 +19,7 @@ import br.com.useblu.oceands.components.OceanToast
 import br.com.useblu.oceands.components.compose.OceanDatePickerDialog
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
-import br.com.useblu.oceands.utils.toDayOfYearKey
+import br.com.useblu.oceands.utils.datepicker.toDayOfYearKey
 import java.util.Calendar
 import java.util.Date
 
@@ -93,7 +93,7 @@ class DatePickerActivity : AppCompatActivity() {
                         )
                     }
                     OceanDatePickerDialog(
-                        title = "Selecione uma data",
+                        title = "",
                         infoTitle = "Date Picker Compose",
                         infoMessage = "Selecione uma data. Tooltips aparecem em datas configuradas (hoje e amanhã).",
                         minDate = calendarMinDate.time,
@@ -130,7 +130,6 @@ class DatePickerActivity : AppCompatActivity() {
         )
 
         OceanDatePickerFullscreen(supportFragmentManager)
-            .withTitle("Selecione uma data")
             .withMinDate(calendarMinDate)
             .withMaxDate(calendarMaxDate)
             .withDefaultSelect(calendarMinDate)

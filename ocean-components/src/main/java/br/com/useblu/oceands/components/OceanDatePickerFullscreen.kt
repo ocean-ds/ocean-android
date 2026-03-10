@@ -9,8 +9,8 @@ import androidx.fragment.app.FragmentManager
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.databinding.OceanDatePickerFullscreenBinding
 import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
-import br.com.useblu.oceands.utils.OceanDatePickerSelectionHandler
-import br.com.useblu.oceands.utils.isDisabled
+import br.com.useblu.oceands.utils.datepicker.OceanDatePickerSelectionHandler
+import br.com.useblu.oceands.utils.datepicker.isDisabled
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import java.text.SimpleDateFormat
 import java.util.Calendar

@@ -18,14 +18,14 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.components.compose.internalpageheader.OceanInternalPageHeader
 import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
-import br.com.useblu.oceands.ui.compose.OceanTextStyle
-import br.com.useblu.oceands.utils.OceanDatePickerSelectionHandler
 import br.com.useblu.oceands.utils.OceanIcons
-import br.com.useblu.oceands.utils.isDisabled
+import br.com.useblu.oceands.utils.datepicker.OceanDatePickerSelectionHandler
+import br.com.useblu.oceands.utils.datepicker.isDisabled
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import java.util.Calendar
@@ -74,25 +74,11 @@ fun OceanDatePickerDialog(
         ) {
             OceanTopBarInverse(title = title, onClickIcon = onDismiss, icon = OceanIcons.X_OUTLINE)
 
-            if (infoTitle.isNotBlank()) {
-                OceanText(
-                    modifier = Modifier
-                        .padding(horizontal = OceanSpacing.xs)
-                        .padding(bottom = OceanSpacing.xxs),
-                    text = infoTitle,
-                    style = OceanTextStyle.heading4
-                )
-            }
-
-            if (infoMessage.isNotBlank()) {
-                OceanText(
-                    modifier = Modifier
-                        .padding(horizontal = OceanSpacing.xs)
-                        .padding(bottom = OceanSpacing.xs),
-                    text = infoMessage,
-                    style = OceanTextStyle.description
-                )
-            }
+            OceanInternalPageHeader(
+                modifier = Modifier.padding(top = OceanSpacing.xs),
+                title = infoTitle,
+                subtitle = infoMessage
+            )
 
             AndroidView(
                 modifier = Modifier

@@ -2,6 +2,7 @@ package br.com.useblu.oceands.components.compose.cardlistitem.model
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
+import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 
 sealed interface OceanCardListItemContentStyle {
@@ -16,9 +17,9 @@ sealed interface OceanCardListItemContentStyle {
     fun OceanCardListItemContentStyle.getTitleStyle(): TextStyle {
         return when (this) {
             is Default ->
-                OceanTextStyle.paragraph
+                OceanTextStyle.paragraph.copy(color = OceanColors.interfaceDarkDeep)
             is Inverted ->
-                OceanTextStyle.description
+                OceanTextStyle.description.copy(color = OceanColors.interfaceDarkDown)
             is Custom ->
                 titleStyle
         }
@@ -28,9 +29,9 @@ sealed interface OceanCardListItemContentStyle {
     fun OceanCardListItemContentStyle.getDescriptionStyle(): TextStyle {
         return when (this) {
             is Default ->
-                OceanTextStyle.description
+                OceanTextStyle.description.copy(color = OceanColors.interfaceDarkDown)
             is Inverted ->
-                OceanTextStyle.paragraph
+                OceanTextStyle.paragraph.copy(color = OceanColors.interfaceDarkDeep)
             is Custom ->
                 descriptionStyle
         }

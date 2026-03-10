@@ -274,7 +274,7 @@ private fun TitleWithTag(
     OceanText(
         text = title,
         style = contentStyle.getTitleStyle(),
-        color = if (disabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure
+        color = if (disabled) OceanColors.interfaceDarkUp else Color.Unspecified
     )
 
     if (tagStyle != null) {
@@ -374,7 +374,8 @@ fun OceanCardListItemPreview() {
                     layout = OceanTagLayout.Medium(),
                     type = OceanTagType.Positive
                 ),
-                onClick = null
+                onClick = null,
+                contentStyle = OceanCardListItemContentStyle.Inverted
             )
 
             OceanCardListItem(

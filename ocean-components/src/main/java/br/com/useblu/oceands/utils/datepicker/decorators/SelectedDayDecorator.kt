@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.utils.datepicker.decorators
 
 import android.content.Context
+import android.os.Build
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import androidx.core.content.ContextCompat
@@ -24,8 +25,10 @@ class SelectedDayDecorator(
                 )
             )
         )
-        view?.addSpan(
-            StyleSpan(R.style.Ocean_Description, 700)
-        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            view.addSpan(
+                StyleSpan(R.style.Ocean_Description, 700)
+            )
+        }
     }
 }

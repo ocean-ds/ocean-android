@@ -367,7 +367,7 @@ fun OceanCardListItemPreview() {
             )
 
             OceanCardListItem(
-                title = "Title with Tag at Start (default)",
+                title = "Title with Tag at Start (default) - Inverted",
                 description = "Description",
                 tagStyle = OceanTagStyle.Default(
                     label = "Tag",

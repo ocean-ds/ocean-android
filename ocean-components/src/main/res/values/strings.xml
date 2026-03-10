@@ -52,13 +52,13 @@
     <string name="pinpad_currency_empty_error">Digite um valor para continuar</string>
 
     <string-array name="ocean_week_day_labels">
-        <item>Dom</item>
         <item>Seg</item>
         <item>Ter</item>
         <item>Qua</item>
         <item>Qui</item>
         <item>Sex</item>
         <item>Sáb</item>
+        <item>Dom</item>
     </string-array>
 
     <string-array name="ocean_month_labels">

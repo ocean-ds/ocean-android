@@ -352,6 +352,16 @@ private fun DefaultSmallTag(
             .padding(horizontal = OceanSpacing.xxxs),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        layout.icon?.let {
+            OceanIcon(
+                iconType = layout.icon,
+                tint = textColor,
+                modifier = Modifier
+                    .padding(end = OceanSpacing.xxxs)
+                    .size(12.dp)
+            )
+        }
+
         OceanText(
             text = style.label,
             color = textColor,
@@ -497,6 +507,7 @@ sealed interface OceanTagLayout {
     ) : OceanTagLayout
 
     data class Small(
+        val icon: OceanIcons? = null,
         val height: Dp = 16.dp,
         val fontSize: TextUnit = 10.sp
     ) : OceanTagLayout

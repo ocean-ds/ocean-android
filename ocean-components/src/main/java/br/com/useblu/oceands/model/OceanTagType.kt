@@ -11,19 +11,21 @@ enum class OceanTagType {
     Warning,
     Complementary,
     Important,
-    Highlight
-}
+    Highlight;
 
-fun fromString(tagType: String): OceanTagType {
-    return when (tagType.lowercase().replace("_", "")) {
-        "neutral" -> OceanTagType.Neutral
-        "neutralprimary" -> OceanTagType.NeutralPrimary
-        "negative" -> OceanTagType.Negative
-        "positive" -> OceanTagType.Positive
-        "warning" -> OceanTagType.Warning
-        "complementary" -> OceanTagType.Complementary
-        "important" -> OceanTagType.Important
-        "highlight" -> OceanTagType.Highlight
-        else -> OceanTagType.Neutral
+    companion object {
+        fun fromString(tagType: String): OceanTagType {
+            return when (tagType.lowercase().replace("_", "")) {
+                "neutral", "neutral01" -> Neutral
+                "neutralprimary", "neutral02" -> NeutralPrimary
+                "negative" -> Negative
+                "positive" -> Positive
+                "warning" -> Warning
+                "complementary" -> Complementary
+                "important" -> Important
+                "highlight" -> Highlight
+                else -> Neutral
+            }
+        }
     }
 }

@@ -109,6 +109,7 @@ fun OceanTransactionListItem(
     valueIsStrike: Boolean = false,
     tagTitle: String = "",
     tagType: OceanTagType = OceanTagType.Warning,
+    tagIcon: OceanIcons? = null,
     time: String = "",
     icon: OceanIcons? = null,
     trailingIcon: OceanIcons? = null,
@@ -270,7 +271,9 @@ fun OceanTransactionListItem(
                         style = OceanTagStyle.Default(
                             label = tagTitle,
                             type = tagType,
-                            layout = OceanTagLayout.Small()
+                            layout = OceanTagLayout.Small(
+                                icon = tagIcon
+                            )
                         )
                     )
                 }
@@ -667,6 +670,7 @@ fun OceanTransactionListItemPreview() {
             time = "Time",
             tagTitle = "Canceled",
             tagType = OceanTagType.Negative,
+            tagIcon = OceanIcons.EXCLAMATION_CIRCLE_SOLID,
             icon = OceanIcons.LOCK_CLOSED_SOLID
         )
         OceanTransactionListItem(

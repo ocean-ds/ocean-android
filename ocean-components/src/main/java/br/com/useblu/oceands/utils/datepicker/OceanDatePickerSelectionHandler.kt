@@ -8,6 +8,7 @@ import br.com.useblu.oceands.components.OceanTooltip
 import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
 import br.com.useblu.oceands.utils.datepicker.decorators.DisabledDaysDecorator
 import br.com.useblu.oceands.utils.datepicker.decorators.SelectedDayDecorator
+import br.com.useblu.oceands.utils.datepicker.decorators.TodayDayDecorator
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
@@ -44,6 +45,7 @@ class OceanDatePickerSelectionHandler(
             maxDate?.let { calendarState.setMaximumDate(it) }
             calendarState.commit()
             widget.addDecorators(
+                TodayDayDecorator(context),
                 DisabledDaysDecorator(
                     context = context,
                     disabledDays = disabledDays,

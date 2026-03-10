@@ -77,7 +77,6 @@ class DatePickerActivity : AppCompatActivity() {
                     val calendarMinDate = remember {
                         Calendar.getInstance().apply {
                             time = Date()
-                            add(Calendar.DAY_OF_YEAR, 1)
                         }
                     }
                     val calendarMaxDate = remember {

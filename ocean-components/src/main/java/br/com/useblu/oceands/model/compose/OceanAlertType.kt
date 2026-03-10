@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import br.com.useblu.oceands.components.compose.OceanLinkIcon
 import br.com.useblu.oceands.components.compose.OceanLinkType
+import br.com.useblu.oceands.extensions.fromToken
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
@@ -110,7 +111,7 @@ sealed interface AlertStyle {
     ) : AlertStyle
 
     fun fromString(style: String): AlertStyle {
-        return when (style.lowercase().replace("_", "")) {
+        return when (style.fromToken()) {
             "info" -> StyleInfo()
             "warning" -> StyleWarning()
             "positive" -> StylePositive()

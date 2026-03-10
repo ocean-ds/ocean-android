@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.model
 
 import androidx.compose.runtime.Immutable
+import br.com.useblu.oceands.extensions.fromToken
 
 @Immutable
 enum class OceanTagType {
@@ -15,7 +16,7 @@ enum class OceanTagType {
 
     companion object {
         fun fromString(tagType: String): OceanTagType {
-            return when (tagType.lowercase().replace("_", "")) {
+            return when (tagType.fromToken()) {
                 "neutral", "neutral01" -> Neutral
                 "neutralprimary", "neutral02" -> NeutralPrimary
                 "negative" -> Negative

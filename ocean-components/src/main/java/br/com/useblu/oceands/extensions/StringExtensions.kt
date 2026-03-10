@@ -6,6 +6,14 @@ import br.com.useblu.oceands.extensions.compose.toHexString
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+fun String.fromToken(): String {
+    return this
+        .trim()
+        .lowercase()
+        .replace("_", "")
+        .replace("-", "")
+}
+
 fun String.isValidDate(pattern: String): Boolean {
     val format = SimpleDateFormat(
         pattern,

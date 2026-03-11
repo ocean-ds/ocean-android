@@ -60,6 +60,7 @@
         <activity android:name=".ui.descriptorlistitem.DescriptorListActivity" />
         <activity android:name=".ui.groupcta.GroupCTAActivity" />
         <activity android:name=".ui.headerapp.HeaderAppActivity" />
+        <activity android:name=".ui.internalpageheader.InternalPageHeaderActivity" />
         <activity android:name=".ui.carditem.CardItemActivity" />
         <activity android:name=".ui.orderedlistitem.OrderedListItemActivity" />
         <activity android:name=".ui.settingslistitem.SettingsListItemActivity" />
@@ -82,6 +83,7 @@
         <activity android:name=".ui.cardlistexpandable.OceanCardListExpandableActivity" />
         <activity android:name=".ui.textlistaction.OceanTextListActionActivity" />
         <activity android:name=".ui.cardbalance.CardBalanceActivity" />
+        <activity android:name=".ui.cardoption.CardOptionActivity" />
         <activity android:name=".ui.banner.BannerActivity" />
     </application>
 

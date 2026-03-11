@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.utils
+package br.com.useblu.oceands.utils.datepicker
 
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import java.util.Calendar

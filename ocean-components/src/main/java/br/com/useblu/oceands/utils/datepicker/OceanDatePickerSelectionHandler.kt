@@ -1,4 +1,4 @@
-package br.com.useblu.oceands.utils
+package br.com.useblu.oceands.utils.datepicker
 
 import android.content.Context
 import android.view.View
@@ -6,6 +6,9 @@ import androidx.lifecycle.LifecycleOwner
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.components.OceanTooltip
 import br.com.useblu.oceands.model.OceanDatePickerTooltipSetup
+import br.com.useblu.oceands.utils.datepicker.decorators.DisabledDaysDecorator
+import br.com.useblu.oceands.utils.datepicker.decorators.SelectedDayDecorator
+import br.com.useblu.oceands.utils.datepicker.decorators.TodayDayDecorator
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
@@ -27,19 +30,33 @@ class OceanDatePickerSelectionHandler(
             maxDate: CalendarDay? = null,
             disabledDays: Array<Calendar> = emptyArray()
         ) {
+            widget.setLeftArrow(R.drawable.ocean_icon_chevron_left_outline_primary)
+            widget.setRightArrow(R.drawable.ocean_icon_chevron_right_outline_primary)
             widget.showOtherDates = MaterialCalendarView.SHOW_OUT_OF_RANGE
             widget.setHeaderTextAppearance(R.style.Ocean_Heading_4)
             widget.setWeekDayTextAppearance(R.color.ocean_color_interface_dark_down)
+            widget.setWeekDayLabels(R.array.ocean_week_day_labels)
+            widget.setTitleMonths(R.array.ocean_month_labels)
+            widget.setDateTextAppearance(R.style.Ocean_Description)
             widget.selectionColor = context.getColor(R.color.ocean_color_complementary_pure)
 
             val calendarState = widget.state().edit()
             minDate?.let { calendarState.setMinimumDate(it) }
             maxDate?.let { calendarState.setMaximumDate(it) }
             calendarState.commit()
-
-            if (disabledDays.isNotEmpty()) {
-                widget.addDecorators(DisabledDaysDecorator(context, disabledDays))
-            }
+            widget.addDecorators(
+                TodayDayDecorator(context),
+                DisabledDaysDecorator(
+                    context = context,
+                    disabledDays = disabledDays,
+                    minDate = minDate,
+                    maxDate = maxDate
+                ),
+                SelectedDayDecorator(
+                    context = context,
+                    getSelectedDay = { widget.selectedDate }
+                )
+            )
         }
     }
 
@@ -61,6 +78,7 @@ class OceanDatePickerSelectionHandler(
             date = date,
             isDisabled = isDisabled(date)
         )
+        widget.invalidateDecorators()
     }
 
     private fun showDatePickerTooltip(

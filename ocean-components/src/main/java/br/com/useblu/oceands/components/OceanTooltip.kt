@@ -26,7 +26,8 @@ class OceanTooltip(
                 setTextTypeface(it)
             }
             setTextGravity(Gravity.LEFT)
-            setArrowSize(12)
+            setArrowHeight(8)
+            setArrowWidth(16)
             setArrowPosition(0.5f)
             setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
             setPaddingVertical(12)

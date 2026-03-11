@@ -43,6 +43,7 @@ import br.com.useblu.oceands.client.ui.cardbalance.CardBalanceActivity
 import br.com.useblu.oceands.client.ui.cardgroup.CardGroupActivity
 import br.com.useblu.oceands.client.ui.carditem.CardItemActivity
 import br.com.useblu.oceands.client.ui.cardlistexpandable.OceanCardListExpandableActivity
+import br.com.useblu.oceands.client.ui.cardoption.CardOptionActivity
 import br.com.useblu.oceands.client.ui.cardreadonly.CardReadOnlyActivity
 import br.com.useblu.oceands.client.ui.carousel.CarouselActivity
 import br.com.useblu.oceands.client.ui.carouselwithcomponents.CarouselWithComponentsActivity
@@ -61,6 +62,7 @@ import br.com.useblu.oceands.client.ui.groupcta.GroupCTAActivity
 import br.com.useblu.oceands.client.ui.headerapp.HeaderAppActivity
 import br.com.useblu.oceands.client.ui.informativecard.InformativeCardActivity
 import br.com.useblu.oceands.client.ui.input.InputActivity
+import br.com.useblu.oceands.client.ui.internalpageheader.InternalPageHeaderActivity
 import br.com.useblu.oceands.client.ui.listsubheader.ListSubheaderActivity
 import br.com.useblu.oceands.client.ui.onboarding.OceanOnboardingPagerActivity
 import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
@@ -195,6 +197,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Card Expandable", onClick = { onClickOceanCardListExpandable() })
                         textAction(text = "Card Group", onClick = { cardContentClick() })
                         textAction(text = "Card Item", onClick = { onClickCardItem() })
+                        textAction(text = "Card Option", onClick = { cardOptionClick() })
                         textAction(text = "Card Read Only", onClick = { cardReadOnlyItem() })
                         textAction(text = "Carousel", onClick = { carousel() })
                         textAction(text = "Carousel With Components", onClick = { carouselWithComponents() })
@@ -210,6 +213,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Footer Blu", onClick = { onFooterBlu() })
                         textAction(text = "Group CTA", onClick = { onClickCta() })
                         textAction(text = "Header App", onClick = { onClickHeaderApp() })
+                        textAction(text = "Internal Page Header", onClick = { onClickInternalPageHeader() })
                         textAction(text = "Informative Card", onClick = { informativeCardClick() })
                         textAction(text = "Input", onClick = { onClickInputs() })
                         textAction(text = "List Ordered", onClick = { listOrderedClick() })
@@ -277,6 +281,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onClickHeaderApp() {
         val intent = Intent(this, HeaderAppActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun onClickInternalPageHeader() {
+        val intent = Intent(this, InternalPageHeaderActivity::class.java)
         startActivity(intent)
     }
 
@@ -452,6 +461,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onClickTextLink() {
         val intent = Intent(this, TextLinkActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun cardOptionClick() {
+        val intent = Intent(this, CardOptionActivity::class.java)
         startActivity(intent)
     }
 

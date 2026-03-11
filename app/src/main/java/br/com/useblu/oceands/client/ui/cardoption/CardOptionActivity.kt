@@ -19,7 +19,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanCardOption
 import br.com.useblu.oceands.components.compose.OceanLink
@@ -41,7 +40,7 @@ class CardOptionActivity : AppCompatActivity() {
 
         setContent {
             OceanTheme {
-                CardOptionDemo()
+                CardOptionDemo(this)
             }
         }
     }
@@ -49,8 +48,7 @@ class CardOptionActivity : AppCompatActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun CardOptionDemo() {
-    val activity = LocalContext.current as? AppCompatActivity
+private fun CardOptionDemo(activity: CardOptionActivity) {
     val cardOptions = listOf(
         OceanOptionCardItem(
             data = Any(),
@@ -90,7 +88,7 @@ private fun CardOptionDemo() {
         topBar = {
             OceanTopBarInverse(
                 title = "Card Option Demo",
-                onClickIcon = { activity?.onBackPressedDispatcher?.onBackPressed() },
+                onClickIcon = { activity.onBackPressedDispatcher.onBackPressed() },
                 onClickToolbar = {}
             )
         },

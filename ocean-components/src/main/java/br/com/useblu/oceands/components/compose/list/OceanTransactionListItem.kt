@@ -86,10 +86,10 @@ sealed interface TransactionListItemStyle {
 
 @Composable
 fun OceanTransactionListItem(
-    primaryLabel: String,
+    modifier: Modifier = Modifier,
+    primaryLabel: String = "",
     primaryLabelMaxLines: Int = Int.MAX_VALUE,
     primaryLabelStyle: TextStyle = OceanTextStyle.description,
-    modifier: Modifier = Modifier,
     secondaryLabel: String = "",
     secondaryLabelStyle: TextStyle = OceanTextStyle.paragraph,
     secondaryLabelMaxLines: Int = Int.MAX_VALUE,
@@ -161,7 +161,8 @@ fun OceanTransactionListItem(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(end = OceanSpacing.xs)
+                    .padding(end = OceanSpacing.xs),
+                verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
             ) {
                 if (highlightedLabel.isNotBlank()) {
                     OceanText(
@@ -169,20 +170,19 @@ fun OceanTransactionListItem(
                         color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.brandPrimaryDeep,
                         style = highlightedLabelStyle
                     )
-
-                    OceanSpacing.StackXXS()
                 }
 
-                OceanText(
-                    text = primaryLabel,
-                    color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure,
-                    style = primaryLabelStyle,
-                    maxLines = primaryLabelMaxLines,
-                    overflow = TextOverflow.Ellipsis
-                )
+                if (primaryLabel.isNotBlank()) {
+                    OceanText(
+                        text = primaryLabel,
+                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure,
+                        style = primaryLabelStyle,
+                        maxLines = primaryLabelMaxLines,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
 
                 if (secondaryLabel.isNotBlank()) {
-                    OceanSpacing.StackXXXS()
                     OceanText(
                         text = secondaryLabel,
                         color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown,
@@ -193,7 +193,6 @@ fun OceanTransactionListItem(
                 }
 
                 if (dimmedLabel.isNotBlank()) {
-                    OceanSpacing.StackXXS()
                     OceanText(
                         text = dimmedLabel,
                         maxLines = 1,
@@ -271,7 +270,7 @@ fun OceanTransactionListItem(
                         style = OceanTagStyle.Default(
                             label = tagTitle,
                             type = tagType,
-                            layout = OceanTagLayout.Small(
+                            layout = OceanTagLayout.Medium(
                                 icon = tagIcon
                             )
                         )

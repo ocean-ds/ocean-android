@@ -11,8 +11,8 @@ sealed interface OceanCardListItemStyle {
     data class Highlighted(
         val caption: String,
         val backgroundColor: Color,
-        val icon: OceanIcons,
-        val iconColor: Color,
+        val icon: OceanIcons? = null,
+        val iconColor: Color? = null,
         val animation: Animation? = null
     ) : OceanCardListItemStyle {
         data class Animation(

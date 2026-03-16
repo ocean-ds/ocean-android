@@ -27,6 +27,8 @@ import br.com.useblu.oceands.components.compose.OceanTagLayout
 import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
+import br.com.useblu.oceands.components.compose.balance.cardbalance.BadgeSize
+import br.com.useblu.oceands.components.compose.balance.cardbalance.BadgesInteraction
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle.Default.getDescriptionStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle.Default.getTitleStyle
@@ -41,6 +43,7 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
+import br.com.useblu.oceands.utils.vibrator.rememberVibrator
 
 enum class OceanCardListItemTagAlignment {
     START,
@@ -55,6 +58,7 @@ fun OceanCardListItem(
     caption: String = "",
     contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     tagStyle: OceanTagStyle? = null,
+    brands: List<String>? = null,
     tagAlignment: OceanCardListItemTagAlignment = OceanCardListItemTagAlignment.START,
     type: OceanCardListItemType = OceanCardListItemType.Default(),
     style: OceanCardListItemStyle = OceanCardListItemStyle.Default,
@@ -64,6 +68,7 @@ fun OceanCardListItem(
     onClick: (() -> Unit)? = null,
     onDisabledClick: (() -> Unit)? = null
 ) {
+    val vibration = rememberVibrator()
     val effectiveOnClick: (() -> Unit)? = when (type) {
         is OceanCardListItemType.Selectable -> {
             {
@@ -75,6 +80,7 @@ fun OceanCardListItem(
                         type.didUpdate(!isSelected)
                     }
                 }
+                vibration.vibrate()
                 onClick?.invoke()
             }
         }
@@ -91,6 +97,7 @@ fun OceanCardListItem(
                 contentStyle = contentStyle,
                 tagStyle = tagStyle,
                 tagAlignment = tagAlignment,
+                brands = brands,
                 type = type,
                 disabled = disabled,
                 isSelected = isSelected,
@@ -108,6 +115,7 @@ fun OceanCardListItem(
                 caption = caption,
                 tagStyle = tagStyle,
                 tagAlignment = tagAlignment,
+                brands = brands,
                 type = type,
                 style = style,
                 disabled = disabled,
@@ -154,6 +162,7 @@ internal fun ContentCardListItem(
     caption: String,
     tagStyle: OceanTagStyle?,
     tagAlignment: OceanCardListItemTagAlignment = OceanCardListItemTagAlignment.START,
+    brands: List<String>? = null,
     contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     type: OceanCardListItemType,
     style: OceanCardListItemStyle,
@@ -189,6 +198,14 @@ internal fun ContentCardListItem(
         if (isTagAlignedEndWithSelectable && tagStyle != null) {
             OceanTag(
                 style = tagStyle
+            )
+        }
+
+        if (!brands.isNullOrEmpty()) {
+            BadgesInteraction(
+                badges = brands,
+                wrapSize = 3,
+                badgeSize = BadgeSize.SM
             )
         }
 
@@ -517,6 +534,61 @@ fun OceanCardListItemPreview() {
                     didUpdate = { radioWithTag = it }
                 ),
                 isSelected = radioWithTag
+            )
+
+            var radioWithBrands by remember { mutableStateOf(false) }
+            val vibration = rememberVibrator()
+            OceanCardListItem(
+                title = "Brands ao lado do Radio",
+                description = "Brands com radiobutton",
+                tagAlignment = OceanCardListItemTagAlignment.END,
+                brands = listOf(
+                    "rede",
+                    "getnet"
+                ),
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
+                    didUpdate = { radioWithBrands = it }
+                ),
+                isSelected = radioWithBrands,
+                onClick = {
+                    vibration.vibrate()
+                }
+            )
+
+            var radioWithBrandsHighlighted by remember { mutableStateOf(false) }
+            OceanCardListItem(
+                title = "Brands e Highlight",
+                description = "Brands com radiobutton e Highlight",
+                tagAlignment = OceanCardListItemTagAlignment.END,
+                brands = listOf(
+                    "rede",
+                    "getnet",
+                    "blu"
+                ),
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
+                    didUpdate = { radioWithBrandsHighlighted = it }
+                ),
+                style = OceanCardListItemStyle.Highlighted(
+                    caption = "Texto do Highlight com Brands",
+                    backgroundColor = OceanColors.interfaceLightUp
+                ),
+                isSelected = radioWithBrandsHighlighted,
+                onClick = {
+                    vibration.vibrate()
+                }
+            )
+
+            OceanCardListItem(
+                title = "Brands desabilitados e sem o radio",
+                description = "Brands com radiobutton desabiltados",
+                tagAlignment = OceanCardListItemTagAlignment.START,
+                brands = listOf(
+                    "rede",
+                    "getnet"
+                ),
+                disabled = true
             )
         }
     }

@@ -48,6 +48,7 @@ internal fun HighlightedCardListItem(
     contentStyle: OceanCardListItemContentStyle = OceanCardListItemContentStyle.Default,
     tagStyle: OceanTagStyle? = null,
     tagAlignment: OceanCardListItemTagAlignment = OceanCardListItemTagAlignment.START,
+    brands: List<String>? = null,
     type: OceanCardListItemType,
     style: OceanCardListItemStyle.Highlighted,
     disabled: Boolean = false,
@@ -105,6 +106,7 @@ internal fun HighlightedCardListItem(
                     contentStyle = contentStyle,
                     tagStyle = tagStyle,
                     tagAlignment = tagAlignment,
+                    brands = brands,
                     type = type,
                     style = style,
                     isSelected = isSelected,
@@ -150,10 +152,12 @@ private fun HighlightedCardListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(space = OceanSpacing.xxs)
     ) {
-        OceanIcon(
-            iconType = style.icon,
-            tint = style.iconColor
-        )
+        style.icon?.let {
+            OceanIcon(
+                iconType = style.icon,
+                tint = style.iconColor ?: OceanColors.brandPrimaryDown
+            )
+        }
 
         OceanText(
             text = style.caption,

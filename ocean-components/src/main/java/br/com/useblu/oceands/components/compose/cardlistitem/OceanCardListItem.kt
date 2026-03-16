@@ -68,6 +68,7 @@ fun OceanCardListItem(
     onClick: (() -> Unit)? = null,
     onDisabledClick: (() -> Unit)? = null
 ) {
+    val vibration = rememberVibrator()
     val effectiveOnClick: (() -> Unit)? = when (type) {
         is OceanCardListItemType.Selectable -> {
             {
@@ -79,6 +80,7 @@ fun OceanCardListItem(
                         type.didUpdate(!isSelected)
                     }
                 }
+                vibration.vibrate()
                 onClick?.invoke()
             }
         }

@@ -205,7 +205,7 @@ internal fun ContentCardListItem(
             BadgesInteraction(
                 badges = brands,
                 wrapSize = 3,
-                badgeSize = BadgeSize.SM
+                badgeSize = BadgeSize.MD
             )
         }
 

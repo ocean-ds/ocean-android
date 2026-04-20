@@ -148,6 +148,7 @@ fun OceanFilterChip(
     model: OceanFilterChip
 ) {
     val context = LocalContext.current
+    val endPadding = if (model.showTrailingIcon) OceanSpacing.xxs else OceanSpacing.xxsExtra
     Row(
         modifier = Modifier
             .height(32.dp)
@@ -158,7 +159,7 @@ fun OceanFilterChip(
             .clickable {
                 model.bottomSheet.showBottomSheet(context)
             }
-            .padding(start = OceanSpacing.xxsExtra, end = OceanSpacing.xxs),
+            .padding(start = OceanSpacing.xxsExtra, end = endPadding),
         verticalAlignment = CenterVertically
     ) {
         Text(
@@ -177,13 +178,15 @@ fun OceanFilterChip(
             )
         }
 
-        OceanSpacing.StackXXXS()
+        if (model.showTrailingIcon) {
+            OceanSpacing.StackXXXS()
 
-        OceanIcon(
-            iconType = OceanIcons.CHEVRON_DOWN_SOLID,
-            modifier = Modifier.size(16.dp),
-            tint = getContentColor(model)
-        )
+            OceanIcon(
+                iconType = OceanIcons.CHEVRON_DOWN_SOLID,
+                modifier = Modifier.size(16.dp),
+                tint = getContentColor(model)
+            )
+        }
     }
 }
 

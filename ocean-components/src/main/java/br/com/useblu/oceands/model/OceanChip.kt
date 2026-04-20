@@ -28,19 +28,22 @@ data class OceanFilterChip(
     override val label: String,
     override val badge: Badge? = null,
     override var state: OceanChipItemState = OceanChipItemState.HOVER_INACTIVE,
-    val bottomSheet: OceanFilterChipBottomSheet
+    val bottomSheet: OceanFilterChipBottomSheet,
+    val showTrailingIcon: Boolean = true
 ) : OceanChip() {
     constructor(
         id: String,
         label: String,
         badge: Badge? = null,
         state: OceanChipItemState = OceanChipItemState.HOVER_INACTIVE,
-        filterOptions: OceanChipFilterOptions
+        filterOptions: OceanChipFilterOptions,
+        showTrailingIcon: Boolean = true
     ) : this(
         id = id,
         label = label,
         badge = badge,
         state = state,
-        bottomSheet = OceanFilterChipBottomSheet.FilterOptions(options = filterOptions)
+        bottomSheet = OceanFilterChipBottomSheet.FilterOptions(options = filterOptions),
+        showTrailingIcon = showTrailingIcon
     )
 }

@@ -2,12 +2,17 @@ package br.com.useblu.oceands.client.ui.transactionlistitem
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Column
+import androidx.compose.runtime.Composable
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityTransactionListItemBinding
+import br.com.useblu.oceands.components.compose.list.OceanTransactionListItem
+import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.OceanTransactionListUIModel
+import br.com.useblu.oceands.utils.OceanIcons
 
 class TransactionListItemActivity : AppCompatActivity() {
 
@@ -24,6 +29,10 @@ class TransactionListItemActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[TransactionListItemViewModel::class.java]
         binding.viewmodel = viewModel
         recyclerViewAdapter = getRecyclerViewAdapter()
+
+        binding.extractPreviewCompose.setContent {
+            ExtractScreenPreview()
+        }
 
         viewModel.loadData()
         initObservers()
@@ -69,5 +78,66 @@ class TransactionListItemActivity : AppCompatActivity() {
             }.toList()
             submitList(list)
         }
+    }
+}
+
+@Composable
+private fun ExtractScreenPreview() {
+    Column {
+        OceanTransactionListItem(
+            icon = OceanIcons.INFLOW_OUTLINE,
+            primaryLabel = "Recebimento Pix",
+            secondaryLabel = "João da Silva",
+            dimmedLabel = "ID E1234567890ABC",
+            primaryValue = 1500.00,
+            valueWithSignal = true,
+            valueWithSignalPositive = false,
+            valueIsHighlighted = true,
+            trailingIcon = OceanIcons.CHEVRON_RIGHT_OUTLINE,
+            onClick = {}
+        )
+        OceanTransactionListItem(
+            icon = OceanIcons.OUTFLOW_OUTLINE,
+            primaryLabel = "Pagamento de boleto",
+            secondaryLabel = "Energia Elétrica S.A.",
+            dimmedLabel = "ID B9876543210XYZ",
+            tagTitle = "Agendado",
+            tagType = OceanTagType.Warning,
+            primaryValue = -250.90,
+            valueWithSignal = true,
+            valueWithSignalPositive = false,
+            valueIsHighlighted = true,
+            trailingIcon = OceanIcons.CHEVRON_RIGHT_OUTLINE,
+            onClick = {}
+        )
+        OceanTransactionListItem(
+            icon = OceanIcons.OUTFLOW_OUTLINE,
+            primaryLabel = "Transferência Pix",
+            secondaryLabel = "Maria Souza",
+            dimmedLabel = "ID P5551234567CDE",
+            tagTitle = "Cancelado",
+            tagType = OceanTagType.Negative,
+            tagIcon = OceanIcons.EXCLAMATION_CIRCLE_SOLID,
+            primaryValue = -75.50,
+            valueWithSignal = true,
+            valueWithSignalPositive = false,
+            valueIsHighlighted = true,
+            valueIsCanceled = true,
+            trailingIcon = OceanIcons.CHEVRON_RIGHT_OUTLINE,
+            onClick = {}
+        )
+        OceanTransactionListItem(
+            icon = OceanIcons.INFLOW_OUTLINE,
+            primaryLabel = "Recebimento cartão",
+            secondaryLabel = "Venda parcelada 3x",
+            dimmedLabel = "ID C7890123456FGH",
+            primaryValue = 450.00,
+            valueWithSignal = true,
+            valueWithSignalPositive = false,
+            valueIsHighlighted = true,
+            trailingIcon = OceanIcons.CHEVRON_RIGHT_OUTLINE,
+            showDivider = false,
+            onClick = {}
+        )
     }
 }

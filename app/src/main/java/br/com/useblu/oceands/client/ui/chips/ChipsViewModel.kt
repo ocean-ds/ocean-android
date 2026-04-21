@@ -83,6 +83,16 @@ class ChipsViewModel : ViewModel() {
             )
         ),
         OceanFilterChip(
+            label = "Sem chevron",
+            id = "no-trailing",
+            showTrailingIcon = false,
+            filterOptions = OceanChipFilterOptions.SingleChoice(
+                title = "Filtro sem chevron trailing",
+                optionsItems = singleChoiceFilterOptions,
+                onSelectItem = {}
+            )
+        ),
+        OceanFilterChip(
             label = "Filtro Teste",
             id = "9999",
             badge = multipleChoiceBadge,

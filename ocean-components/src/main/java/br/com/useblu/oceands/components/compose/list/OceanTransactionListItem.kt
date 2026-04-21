@@ -119,6 +119,7 @@ fun OceanTransactionListItem(
     onSelectedBox: ((Boolean) -> Unit)? = null,
     showError: Boolean = false,
     isDisabled: Boolean = false,
+    isInverted: Boolean = false,
     paddingVertical: Dp = OceanSpacing.xs,
     onClick: () -> Unit = {}
 ) {
@@ -182,8 +183,12 @@ fun OceanTransactionListItem(
                     }
                     OceanText(
                         text = primaryLabel,
-                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure,
-                        style = primaryLabelStyle,
+                        color = when {
+                            isDisabled -> OceanColors.interfaceDarkUp
+                            isInverted -> OceanColors.interfaceDarkDown
+                            else -> OceanColors.interfaceDarkPure
+                        },
+                        style = if (isInverted) OceanTextStyle.description else primaryLabelStyle,
                         maxLines = primaryLabelMaxLines,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -195,8 +200,12 @@ fun OceanTransactionListItem(
                     }
                     OceanText(
                         text = secondaryLabel,
-                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown,
-                        style = secondaryLabelStyle,
+                        color = when {
+                            isDisabled -> OceanColors.interfaceDarkUp
+                            isInverted -> OceanColors.interfaceDarkDeep
+                            else -> OceanColors.interfaceDarkDown
+                        },
+                        style = if (isInverted) OceanTextStyle.paragraph else secondaryLabelStyle,
                         maxLines = secondaryLabelMaxLines,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -833,7 +842,7 @@ private fun OceanTransactionListItemSkeletonPreview() {
     name = "Extract screen — BAN-57",
     showBackground = true,
     backgroundColor = 0xFFFFFFFF,
-    heightDp = 560
+    heightDp = 760
 )
 @Composable
 private fun OceanTransactionListItemExtractPreview() {
@@ -890,6 +899,48 @@ private fun OceanTransactionListItemExtractPreview() {
             valueWithSignalPositive = false,
             valueIsHighlighted = true,
             trailingIcon = OceanIcons.CHEVRON_RIGHT_OUTLINE,
+            onClick = {}
+        )
+
+        OceanTransactionListItem(
+            icon = OceanIcons.INFLOW_OUTLINE,
+            primaryLabel = "Recebimento Pix",
+            secondaryLabel = "João da Silva",
+            dimmedLabel = "ID E1234567890ABC",
+            primaryValue = 1500.00,
+            valueWithSignal = true,
+            valueWithSignalPositive = false,
+            valueIsHighlighted = true,
+            trailingIcon = OceanIcons.CHEVRON_RIGHT_OUTLINE,
+            isInverted = true,
+            onClick = {}
+        )
+        OceanTransactionListItem(
+            icon = OceanIcons.OUTFLOW_OUTLINE,
+            primaryLabel = "Pagamento de boleto",
+            secondaryLabel = "Energia Elétrica S.A.",
+            dimmedLabel = "ID B9876543210XYZ",
+            tagTitle = "Agendado",
+            tagType = OceanTagType.Warning,
+            primaryValue = -250.90,
+            valueWithSignal = true,
+            valueWithSignalPositive = false,
+            valueIsHighlighted = true,
+            trailingIcon = OceanIcons.CHEVRON_RIGHT_OUTLINE,
+            isInverted = true,
+            onClick = {}
+        )
+        OceanTransactionListItem(
+            icon = OceanIcons.INFLOW_OUTLINE,
+            primaryLabel = "Recebimento cartão",
+            secondaryLabel = "Venda parcelada 3x",
+            dimmedLabel = "ID C7890123456FGH",
+            primaryValue = 450.00,
+            valueWithSignal = true,
+            valueWithSignalPositive = false,
+            valueIsHighlighted = true,
+            trailingIcon = OceanIcons.CHEVRON_RIGHT_OUTLINE,
+            isInverted = true,
             showDivider = false,
             onClick = {}
         )

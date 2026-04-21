@@ -9,7 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityTransactionListItemBinding
+import br.com.useblu.oceands.components.compose.ContentListStyle
+import br.com.useblu.oceands.components.compose.TransactionType
 import br.com.useblu.oceands.components.compose.list.OceanTransactionListItem
+import br.com.useblu.oceands.components.compose.list.TransactionListItemStyle
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.OceanTransactionListUIModel
 import br.com.useblu.oceands.utils.OceanIcons
@@ -138,6 +141,49 @@ private fun ExtractScreenPreview() {
             trailingIcon = OceanIcons.CHEVRON_RIGHT_OUTLINE,
             showDivider = false,
             onClick = {}
+        )
+
+        OceanTransactionListItem(
+            style = TransactionListItemStyle.CommonStyle.Default(
+                contentInfo = ContentListStyle.Inverted(
+                    title = "Recebimento Pix",
+                    description = "João da Silva",
+                    caption = "ID E1234567890ABC"
+                ),
+                contentValues = ContentListStyle.Transaction(
+                    value = "R$ 1.500,00",
+                    type = TransactionType.INFLOW
+                ),
+                onClick = {}
+            )
+        )
+        OceanTransactionListItem(
+            style = TransactionListItemStyle.CommonStyle.Default(
+                contentInfo = ContentListStyle.Inverted(
+                    title = "Pagamento de boleto",
+                    description = "Energia Elétrica S.A.",
+                    caption = "ID B9876543210XYZ"
+                ),
+                contentValues = ContentListStyle.Transaction(
+                    value = "R$ 250,90",
+                    type = TransactionType.OUTFLOW
+                ),
+                onClick = {}
+            )
+        )
+        OceanTransactionListItem(
+            style = TransactionListItemStyle.CommonStyle.Default(
+                contentInfo = ContentListStyle.Inverted(
+                    title = "Recebimento cartão",
+                    description = "Venda parcelada 3x",
+                    caption = "ID C7890123456FGH"
+                ),
+                contentValues = ContentListStyle.Transaction(
+                    value = "R$ 450,00",
+                    type = TransactionType.INFLOW
+                ),
+                onClick = {}
+            )
         )
     }
 }

@@ -120,9 +120,6 @@ fun OceanTransactionListItem(
     showError: Boolean = false,
     isDisabled: Boolean = false,
     paddingVertical: Dp = OceanSpacing.xs,
-    gapHighlightedLabel: Dp = OceanSpacing.xxs,
-    gapTitleDescription: Dp = OceanSpacing.xxs,
-    gapDescriptionCaption: Dp = OceanSpacing.xxs,
     onClick: () -> Unit = {}
 ) {
     Column {
@@ -166,20 +163,22 @@ fun OceanTransactionListItem(
                     .weight(1f)
                     .padding(end = OceanSpacing.xs)
             ) {
-                var hasPreviousLabel = false
+                val hasHighlighted = highlightedLabel.isNotBlank()
+                val hasPrimary = primaryLabel.isNotBlank()
+                val hasSecondary = secondaryLabel.isNotBlank()
+                val hasDimmed = dimmedLabel.isNotBlank()
 
-                if (highlightedLabel.isNotBlank()) {
+                if (hasHighlighted) {
                     OceanText(
                         text = highlightedLabel,
                         color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.brandPrimaryDeep,
                         style = highlightedLabelStyle
                     )
-                    hasPreviousLabel = true
                 }
 
-                if (primaryLabel.isNotBlank()) {
-                    if (hasPreviousLabel) {
-                        Spacer(modifier = Modifier.height(gapHighlightedLabel))
+                if (hasPrimary) {
+                    if (hasHighlighted) {
+                        Spacer(modifier = Modifier.height(OceanSpacing.xxxs))
                     }
                     OceanText(
                         text = primaryLabel,
@@ -188,12 +187,11 @@ fun OceanTransactionListItem(
                         maxLines = primaryLabelMaxLines,
                         overflow = TextOverflow.Ellipsis
                     )
-                    hasPreviousLabel = true
                 }
 
-                if (secondaryLabel.isNotBlank()) {
-                    if (hasPreviousLabel) {
-                        Spacer(modifier = Modifier.height(gapTitleDescription))
+                if (hasSecondary) {
+                    if (!hasPrimary && hasHighlighted) {
+                        Spacer(modifier = Modifier.height(OceanSpacing.xxxs))
                     }
                     OceanText(
                         text = secondaryLabel,
@@ -202,12 +200,11 @@ fun OceanTransactionListItem(
                         maxLines = secondaryLabelMaxLines,
                         overflow = TextOverflow.Ellipsis
                     )
-                    hasPreviousLabel = true
                 }
 
-                if (dimmedLabel.isNotBlank()) {
-                    if (hasPreviousLabel) {
-                        Spacer(modifier = Modifier.height(gapDescriptionCaption))
+                if (hasDimmed) {
+                    if (hasSecondary || hasPrimary || hasHighlighted) {
+                        Spacer(modifier = Modifier.height(OceanSpacing.xxxs))
                     }
                     OceanText(
                         text = dimmedLabel,

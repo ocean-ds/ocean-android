@@ -23,6 +23,7 @@ import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
 enum class OceanTextListReadOnlyState {
@@ -88,70 +89,23 @@ fun OceanTextListReadOnly(
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF, heightDp = 900)
 @Composable
-fun OceanTextListReadOnlyInvertedPreview() = OceanTheme {
+fun OceanTextListReadOnlyPreview() = OceanTheme {
     Column(
-        modifier = Modifier.background(OceanColors.interfaceLightPure)
+        modifier = Modifier.background(OceanColors.interfaceLightPure),
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
     ) {
-        OceanTextListReadOnly(
-            contentListStyle = ContentListStyle.Inverted(
-                title = "Saldo total na Blu",
-                description = "R$ 2.500,00"
-            )
-        )
-        OceanTextListReadOnly(
-            contentListStyle = ContentListStyle.Inverted(
-                title = "Saldo total na Blu",
-                description = "R$ 2.500,00"
-            ),
-            showDivider = true
-        )
-        OceanTextListReadOnly(
-            contentListStyle = ContentListStyle.Inverted(
-                title = "Saldo total na Blu",
-                description = "R$ 2.500,00"
-            ),
-            showIcon = true,
-            icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE
-        )
-        OceanTextListReadOnly(
-            contentListStyle = ContentListStyle.Inverted(
-                title = "Saldo total na Blu",
-                description = "R$ 2.500,00"
-            ),
-            showIndicator = true,
-            indicator = OceanTagStyle.Default(
-                label = "Ativo",
-                layout = OceanTagLayout.Medium(),
-                type = OceanTagType.Positive
-            )
-        )
+        // highlightLead + inverted — Blu balance header
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Inverted(
                 title = "Saldo total na Blu",
                 description = "R$ 2.500,00",
-                caption = "Atualizado agora"
-            ),
-            showIcon = true,
-            icon = OceanIcons.INFORMATION_CIRCLE_OUTLINE,
-            showIndicator = true,
-            indicator = OceanTagStyle.Default(
-                label = "Novo",
-                layout = OceanTagLayout.Medium(),
-                type = OceanTagType.Complementary
-            ),
-            showDivider = true
+                descriptionStyle = OceanTextStyle.lead
+            )
         )
-    }
-}
 
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
-@Composable
-fun OceanTextListReadOnlyDefaultPreview() = OceanTheme {
-    Column(
-        modifier = Modifier.background(OceanColors.interfaceLightPure)
-    ) {
+        // default with caption
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Default(
                 title = "Title",
@@ -159,13 +113,44 @@ fun OceanTextListReadOnlyDefaultPreview() = OceanTheme {
                 caption = "Caption"
             )
         )
+
+        // highlight + tag indicator
+        OceanTextListReadOnly(
+            contentListStyle = ContentListStyle.Inverted(
+                title = "Title",
+                description = "Description",
+                descriptionStyle = OceanTextStyle.lead
+            ),
+            showIndicator = true,
+            indicator = OceanTagStyle.Highlight(
+                label = "Novo",
+                type = OceanTagType.Highlight,
+                layout = OceanTagLayout.Small()
+            )
+        )
+
+        // default with icon + divider
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Default(
                 title = "Title",
                 description = "Description"
             ),
+            showIcon = true,
+            icon = OceanIcons.PLACEHOLDER_SOLID,
+            showDivider = true
+        )
+
+        // disabled
+        OceanTextListReadOnly(
+            contentListStyle = ContentListStyle.Default(
+                title = "Title",
+                description = "Description",
+                caption = "Caption"
+            ),
             state = OceanTextListReadOnlyState.Disabled
         )
+
+        // loading
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Default(
                 title = "Title",

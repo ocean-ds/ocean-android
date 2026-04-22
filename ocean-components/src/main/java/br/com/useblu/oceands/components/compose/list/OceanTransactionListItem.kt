@@ -179,7 +179,7 @@ fun OceanTransactionListItem(
 
                 if (hasPrimary) {
                     if (hasHighlighted) {
-                        Spacer(modifier = Modifier.height(OceanSpacing.xxxs))
+                        OceanSpacing.StackXXXS()
                     }
                     OceanText(
                         text = primaryLabel,
@@ -196,7 +196,7 @@ fun OceanTransactionListItem(
 
                 if (hasSecondary) {
                     if (!hasPrimary && hasHighlighted) {
-                        Spacer(modifier = Modifier.height(OceanSpacing.xxxs))
+                        OceanSpacing.StackXXXS()
                     }
                     OceanText(
                         text = secondaryLabel,
@@ -213,7 +213,7 @@ fun OceanTransactionListItem(
 
                 if (hasDimmed) {
                     if (hasSecondary || hasPrimary || hasHighlighted) {
-                        Spacer(modifier = Modifier.height(OceanSpacing.xxxs))
+                        OceanSpacing.StackXXXS()
                     }
                     OceanText(
                         text = dimmedLabel,

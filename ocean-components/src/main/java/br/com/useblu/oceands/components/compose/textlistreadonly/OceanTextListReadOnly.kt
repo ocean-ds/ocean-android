@@ -90,7 +90,7 @@ fun OceanTextListReadOnly(
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
-private fun OceanTextListReadOnlyInvertedPreview() = OceanTheme {
+fun OceanTextListReadOnlyInvertedPreview() = OceanTheme {
     Column(
         modifier = Modifier.background(OceanColors.interfaceLightPure)
     ) {
@@ -148,7 +148,7 @@ private fun OceanTextListReadOnlyInvertedPreview() = OceanTheme {
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
-private fun OceanTextListReadOnlyDefaultPreview() = OceanTheme {
+fun OceanTextListReadOnlyDefaultPreview() = OceanTheme {
     Column(
         modifier = Modifier.background(OceanColors.interfaceLightPure)
     ) {

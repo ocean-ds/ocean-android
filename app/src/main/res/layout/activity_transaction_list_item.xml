@@ -190,7 +190,6 @@
                 android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
                 android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item5">
@@ -211,6 +210,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{`Clear`}"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/item7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginEnd="@dimen/ocean_spacing_stack_xs"
+                android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item6">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Extract screen — BAN-57 (Compose)" />
+
+                <androidx.compose.ui.platform.ComposeView
+                    android:id="@+id/extractPreviewCompose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

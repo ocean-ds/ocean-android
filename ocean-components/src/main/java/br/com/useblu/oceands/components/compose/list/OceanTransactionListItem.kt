@@ -119,6 +119,7 @@ fun OceanTransactionListItem(
     onSelectedBox: ((Boolean) -> Unit)? = null,
     showError: Boolean = false,
     isDisabled: Boolean = false,
+    isInverted: Boolean = false,
     paddingVertical: Dp = OceanSpacing.xs,
     onClick: () -> Unit = {}
 ) {
@@ -161,10 +162,14 @@ fun OceanTransactionListItem(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(end = OceanSpacing.xs),
-                verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
+                    .padding(end = OceanSpacing.xs)
             ) {
-                if (highlightedLabel.isNotBlank()) {
+                val hasHighlighted = highlightedLabel.isNotBlank()
+                val hasPrimary = primaryLabel.isNotBlank()
+                val hasSecondary = secondaryLabel.isNotBlank()
+                val hasDimmed = dimmedLabel.isNotBlank()
+
+                if (hasHighlighted) {
                     OceanText(
                         text = highlightedLabel,
                         color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.brandPrimaryDeep,
@@ -172,27 +177,44 @@ fun OceanTransactionListItem(
                     )
                 }
 
-                if (primaryLabel.isNotBlank()) {
+                if (hasPrimary) {
+                    if (hasHighlighted) {
+                        OceanSpacing.StackXXXS()
+                    }
                     OceanText(
                         text = primaryLabel,
-                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkPure,
-                        style = primaryLabelStyle,
+                        color = when {
+                            isDisabled -> OceanColors.interfaceDarkUp
+                            isInverted -> OceanColors.interfaceDarkDown
+                            else -> OceanColors.interfaceDarkPure
+                        },
+                        style = if (isInverted) OceanTextStyle.description else primaryLabelStyle,
                         maxLines = primaryLabelMaxLines,
                         overflow = TextOverflow.Ellipsis
                     )
                 }
 
-                if (secondaryLabel.isNotBlank()) {
+                if (hasSecondary) {
+                    if (!hasPrimary && hasHighlighted) {
+                        OceanSpacing.StackXXXS()
+                    }
                     OceanText(
                         text = secondaryLabel,
-                        color = if (isDisabled) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown,
-                        style = secondaryLabelStyle,
+                        color = when {
+                            isDisabled -> OceanColors.interfaceDarkUp
+                            isInverted -> OceanColors.interfaceDarkDeep
+                            else -> OceanColors.interfaceDarkDown
+                        },
+                        style = if (isInverted) OceanTextStyle.paragraph else secondaryLabelStyle,
                         maxLines = secondaryLabelMaxLines,
                         overflow = TextOverflow.Ellipsis
                     )
                 }
 
-                if (dimmedLabel.isNotBlank()) {
+                if (hasDimmed) {
+                    if (hasSecondary || hasPrimary || hasHighlighted) {
+                        OceanSpacing.StackXXXS()
+                    }
                     OceanText(
                         text = dimmedLabel,
                         maxLines = 1,

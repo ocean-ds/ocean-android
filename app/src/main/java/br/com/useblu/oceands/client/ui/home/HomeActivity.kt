@@ -83,6 +83,7 @@ import br.com.useblu.oceands.client.ui.textlisticonitem.TextListIconItemActivity
 import br.com.useblu.oceands.client.ui.textlistinline.TextListInlineItemActivity
 import br.com.useblu.oceands.client.ui.textlistinverted.TextListInvertedItemActivity
 import br.com.useblu.oceands.client.ui.textlistitem.TextListItemActivity
+import br.com.useblu.oceands.client.ui.textlistreadonly.TextListReadOnlyActivity
 import br.com.useblu.oceands.client.ui.tokeninput.TokenInputActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivity
@@ -238,6 +239,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Text List Inline Item", onClick = { textListInlineItem() })
                         textAction(text = "Text List Inverted Item", onClick = { textListInvertedItem() })
                         textAction(text = "Text List Item", onClick = { textListItem() })
+                        textAction(text = "Text List Read Only", onClick = { textListReadOnly() })
                         textAction(text = "Text List Settings", onClick = { listItemsSettings() })
                         textAction(text = "Toast", onClick = { onClickToast() })
                         textAction(text = "Token Input", onClick = { onClickTokenInput() })
@@ -431,6 +433,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun textListInvertedItem() {
         val intent = Intent(this, TextListInvertedItemActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun textListReadOnly() {
+        val intent = Intent(this, TextListReadOnlyActivity::class.java)
         startActivity(intent)
     }
 

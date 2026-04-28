@@ -101,7 +101,7 @@ fun OceanChildTransactionListExpandable(
     )
 }
 
-@Suppress("LongParameterList")
+@Suppress("LongParameterList", "kotlin:S107")
 @Composable
 fun OceanTransactionListExpandable(
     parent: OceanTransactionListExpandableItem,

@@ -21,6 +21,11 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
+private const val ADDITIONAL_DATA = "Additional data"
+private const val BLU_ISSUER = BLU_ISSUER
+private const val CANCEL_LABEL = CANCEL_LABEL
+private const val CANCEL_DATE = CANCEL_DATE
+
 class OceanTransactionListExpandableActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +55,7 @@ private fun TransactionListExpandableSamples() {
                 secondaryLabel = "Description",
                 dimmedLabel = "Caption",
                 primaryValue = 0.0,
-                time = "Additional data",
+                time = ADDITIONAL_DATA,
                 tagTitle = "Label",
                 tagType = OceanTagType.Positive
             ),
@@ -61,7 +66,7 @@ private fun TransactionListExpandableSamples() {
                     secondaryLabel = "Description",
                     dimmedLabel = "Caption",
                     primaryValue = 0.0,
-                    time = "Additional data",
+                    time = ADDITIONAL_DATA,
                     tagTitle = "Label",
                     tagType = OceanTagType.Positive
                 ),
@@ -70,7 +75,7 @@ private fun TransactionListExpandableSamples() {
                     secondaryLabel = "Description",
                     dimmedLabel = "Caption",
                     primaryValue = 0.0,
-                    time = "Additional data",
+                    time = ADDITIONAL_DATA,
                     tagTitle = "Label",
                     tagType = OceanTagType.Positive
                 )
@@ -88,12 +93,12 @@ private fun TransactionListExpandableSamples() {
             items = listOf(
                 OceanTransactionListExpandableItem(
                     primaryLabel = "Retenção de saldo",
-                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
+                    secondaryLabel = BLU_ISSUER,
                     primaryValue = retainValue
                 ),
                 OceanTransactionListExpandableItem(
                     primaryLabel = "Retenção de saldo",
-                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
+                    secondaryLabel = BLU_ISSUER,
                     primaryValue = retainValue
                 )
             ),
@@ -109,15 +114,15 @@ private fun TransactionListExpandableSamples() {
             itemsIcon = OceanIcons.LOCK_OPEN_SOLID,
             items = listOf(
                 OceanTransactionListExpandableItem(
-                    primaryLabel = "Cancelamento de retenção",
-                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
-                    dimmedLabel = "Retenção lançada em 14/01/2026",
+                    primaryLabel = CANCEL_LABEL,
+                    secondaryLabel = BLU_ISSUER,
+                    dimmedLabel = CANCEL_DATE,
                     primaryValue = cancelValue
                 ),
                 OceanTransactionListExpandableItem(
-                    primaryLabel = "Cancelamento de retenção",
-                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
-                    dimmedLabel = "Retenção lançada em 14/01/2026",
+                    primaryLabel = CANCEL_LABEL,
+                    secondaryLabel = BLU_ISSUER,
+                    dimmedLabel = CANCEL_DATE,
                     primaryValue = cancelValue
                 )
             ),
@@ -159,15 +164,15 @@ private fun TransactionListExpandableSamples() {
             itemsIconTint = OceanColors.interfaceLightDown,
             items = listOf(
                 OceanTransactionListExpandableItem(
-                    primaryLabel = "Cancelamento de retenção",
-                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
-                    dimmedLabel = "Retenção lançada em 14/01/2026",
+                    primaryLabel = CANCEL_LABEL,
+                    secondaryLabel = BLU_ISSUER,
+                    dimmedLabel = CANCEL_DATE,
                     primaryValue = cancelValue
                 ),
                 OceanTransactionListExpandableItem(
-                    primaryLabel = "Cancelamento de retenção",
-                    secondaryLabel = "Boleto de Blu Instituição de Pagamentos LTDA",
-                    dimmedLabel = "Retenção lançada em 14/01/2026",
+                    primaryLabel = CANCEL_LABEL,
+                    secondaryLabel = BLU_ISSUER,
+                    dimmedLabel = CANCEL_DATE,
                     primaryValue = cancelValue
                 )
             ),

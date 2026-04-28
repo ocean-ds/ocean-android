@@ -101,6 +101,7 @@ fun OceanChildTransactionListExpandable(
     )
 }
 
+@Suppress("LongParameterList")
 @Composable
 fun OceanTransactionListExpandable(
     parent: OceanTransactionListExpandableItem,

@@ -84,7 +84,6 @@ fun OceanTextListReadOnlyPreview() = OceanTheme {
         modifier = Modifier.background(OceanColors.interfaceLightPure),
         verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
     ) {
-        // highlightLead + inverted — Blu balance header
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Inverted(
                 title = "Saldo total na Blu",
@@ -93,7 +92,6 @@ fun OceanTextListReadOnlyPreview() = OceanTheme {
             )
         )
 
-        // default with caption
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Default(
                 title = "Title",
@@ -102,7 +100,6 @@ fun OceanTextListReadOnlyPreview() = OceanTheme {
             )
         )
 
-        // highlight + tag
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Inverted(
                 title = "Title",
@@ -116,7 +113,6 @@ fun OceanTextListReadOnlyPreview() = OceanTheme {
             )
         )
 
-        // default with leading icon + divider
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Default(
                 title = "Title",
@@ -129,7 +125,6 @@ fun OceanTextListReadOnlyPreview() = OceanTheme {
             showDivider = true
         )
 
-        // disabled
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Default(
                 title = "Title",
@@ -139,7 +134,6 @@ fun OceanTextListReadOnlyPreview() = OceanTheme {
             state = OceanTextListReadOnlyState.Disabled
         )
 
-        // loading
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Default(
                 title = "Title",

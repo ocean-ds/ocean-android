@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.OceanContentList
 import br.com.useblu.oceands.components.compose.OceanDivider
@@ -21,29 +19,20 @@ import br.com.useblu.oceands.components.compose.OceanTagLayout
 import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.model.compose.OceanIconModel
+import br.com.useblu.oceands.model.compose.OceanTextListReadOnlyState
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
-
-enum class OceanTextListReadOnlyState {
-    Default,
-    Disabled,
-    Loading
-}
 
 @Composable
 fun OceanTextListReadOnly(
     modifier: Modifier = Modifier,
     contentListStyle: ContentListStyle,
     state: OceanTextListReadOnlyState = OceanTextListReadOnlyState.Default,
-    showIcon: Boolean = false,
-    icon: OceanIcons? = null,
-    iconTint: Color = OceanColors.interfaceDarkUp,
-    iconSize: Dp? = null,
-    showIndicator: Boolean = false,
-    indicator: OceanTagStyle? = null,
-    indicatorLayout: OceanTagLayout = OceanTagLayout.Medium(),
+    icon: OceanIconModel? = null,
+    tag: OceanTagStyle? = null,
     showDivider: Boolean = false
 ) {
     val enabled = state != OceanTextListReadOnlyState.Disabled
@@ -57,12 +46,11 @@ fun OceanTextListReadOnly(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
         ) {
-            if (showIcon && icon != null) {
-                val iconModifier = iconSize?.let { Modifier.size(it) } ?: Modifier
+            icon?.let {
                 OceanIcon(
-                    iconType = icon,
-                    modifier = iconModifier,
-                    tint = if (enabled) iconTint else OceanColors.interfaceDarkUp
+                    iconType = it.icon,
+                    modifier = it.size?.let { size -> Modifier.size(size) } ?: Modifier,
+                    tint = it.tint
                 )
             }
 
@@ -73,9 +61,9 @@ fun OceanTextListReadOnly(
                 enabled = enabled
             )
 
-            if (showIndicator && indicator != null && !isLoading) {
+            tag?.takeIf { !isLoading }?.let {
                 OceanTag(
-                    style = indicator,
+                    style = it,
                     enabled = enabled
                 )
             }
@@ -114,29 +102,30 @@ fun OceanTextListReadOnlyPreview() = OceanTheme {
             )
         )
 
-        // highlight + tag indicator
+        // highlight + tag
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Inverted(
                 title = "Title",
                 description = "Description",
                 descriptionStyle = OceanTextStyle.lead
             ),
-            showIndicator = true,
-            indicator = OceanTagStyle.Highlight(
+            tag = OceanTagStyle.Highlight(
                 label = "Novo",
                 type = OceanTagType.Highlight,
                 layout = OceanTagLayout.Small()
             )
         )
 
-        // default with icon + divider
+        // default with leading icon + divider
         OceanTextListReadOnly(
             contentListStyle = ContentListStyle.Default(
                 title = "Title",
                 description = "Description"
             ),
-            showIcon = true,
-            icon = OceanIcons.PLACEHOLDER_SOLID,
+            icon = OceanIconModel(
+                icon = OceanIcons.PLACEHOLDER_SOLID,
+                tint = OceanColors.interfaceDarkDown
+            ),
             showDivider = true
         )
 

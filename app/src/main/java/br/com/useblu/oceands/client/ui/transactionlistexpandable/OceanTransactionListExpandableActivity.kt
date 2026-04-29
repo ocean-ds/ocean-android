@@ -22,9 +22,9 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
 private const val ADDITIONAL_DATA = "Additional data"
-private const val BLU_ISSUER = BLU_ISSUER
-private const val CANCEL_LABEL = CANCEL_LABEL
-private const val CANCEL_DATE = CANCEL_DATE
+private const val BLU_ISSUER = "Boleto de Blu Instituição de Pagamentos LTDA"
+private const val CANCEL_LABEL = "Cancelamento de retenção"
+private const val CANCEL_DATE = "Retenção lançada em 14/01/2026"
 
 class OceanTransactionListExpandableActivity : AppCompatActivity() {
 

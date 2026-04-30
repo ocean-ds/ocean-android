@@ -23,6 +23,7 @@ import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPad
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.OceanCurrencyPinPadHandler
+import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.OceanPinPadPreSelectionInputMode
 import br.com.useblu.oceands.components.compose.pinpad.handlers.installments.OceanInstallmentsPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.handlers.installments.models.OceanInstallmentsPinPadTextSetup
 import br.com.useblu.oceands.components.compose.pinpad.handlers.password.OceanPasswordPinPadHandler
@@ -60,6 +61,39 @@ private fun PinPadExample(toast: OceanToast) {
                                 maxValue = 100000.0,
                                 testValue = 0.03
                             )
+                            handler = currencyHandler
+                            OceanPinPad(
+                                handler = currencyHandler,
+                                isEnabled = isEnabled,
+                                isLoading = isLoading
+                            )
+                        }
+
+                        PinPadKnownType.CurrencyEditClearOnFirst -> {
+                            val currencyHandler = remember {
+                                OceanCurrencyPinPadHandler(
+                                    initialValue = 600.52,
+                                    minValue = 1.0,
+                                    maxValue = 100000.0
+                                )
+                            }
+                            handler = currencyHandler
+                            OceanPinPad(
+                                handler = currencyHandler,
+                                isEnabled = isEnabled,
+                                isLoading = isLoading
+                            )
+                        }
+
+                        PinPadKnownType.CurrencyEditInPlace -> {
+                            val currencyHandler = remember {
+                                OceanCurrencyPinPadHandler(
+                                    initialValue = 600.52,
+                                    minValue = 1.0,
+                                    maxValue = 100000.0,
+                                    preSelectionInputMode = OceanPinPadPreSelectionInputMode.EditInPlace
+                                )
+                            }
                             handler = currencyHandler
                             OceanPinPad(
                                 handler = currencyHandler,
@@ -169,6 +203,8 @@ private fun PinPadExample(toast: OceanToast) {
 
 private enum class PinPadKnownType {
     Currency,
+    CurrencyEditClearOnFirst,
+    CurrencyEditInPlace,
     Password,
 
     Installments

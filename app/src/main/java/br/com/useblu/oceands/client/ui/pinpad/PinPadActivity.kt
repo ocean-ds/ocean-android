@@ -24,8 +24,8 @@ import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPad
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadHandler
+import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadPreSelectionInputMode
 import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.OceanCurrencyPinPadHandler
-import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.OceanPinPadPreSelectionInputMode
 import br.com.useblu.oceands.components.compose.pinpad.handlers.installments.OceanInstallmentsPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.handlers.installments.models.OceanInstallmentsPinPadTextSetup
 import br.com.useblu.oceands.components.compose.pinpad.handlers.password.OceanPasswordPinPadHandler

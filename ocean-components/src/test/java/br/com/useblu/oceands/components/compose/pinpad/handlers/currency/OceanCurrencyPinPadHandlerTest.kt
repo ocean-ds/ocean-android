@@ -1,7 +1,10 @@
 package br.com.useblu.oceands.components.compose.pinpad.handlers.currency
 
+import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadPreSelectionInputMode
+import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.models.OceanCurrencyPinPadError
 import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.models.OceanCurrencyPinPadResult
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class OceanCurrencyPinPadHandlerTest {
@@ -35,6 +38,36 @@ class OceanCurrencyPinPadHandlerTest {
         val result = handler.getResult() as OceanCurrencyPinPadResult.Success
         // 600 cents -> 600 * 10 + 5 = 6005 cents = R$ 60,05.
         assertEquals(60.05, result.value, 0.0001)
+    }
+
+    @Test
+    fun `typing 0 is a valid input — not Empty`() {
+        val handler = OceanCurrencyPinPadHandler()
+
+        handler.newDigit("0")
+
+        val result = handler.getResult()
+        assertTrue("Expected Success but got $result", result is OceanCurrencyPinPadResult.Success)
+        assertEquals(0.0, (result as OceanCurrencyPinPadResult.Success).value, 0.0001)
+    }
+
+    @Test
+    fun `no interaction returns Empty`() {
+        val handler = OceanCurrencyPinPadHandler()
+
+        val result = handler.getResult() as OceanCurrencyPinPadResult.Error
+        assertEquals(OceanCurrencyPinPadError.Empty, result.type)
+    }
+
+    @Test
+    fun `clear after typing returns Empty until next digit`() {
+        val handler = OceanCurrencyPinPadHandler()
+
+        handler.newDigit("5")
+        handler.clear()
+
+        val result = handler.getResult() as OceanCurrencyPinPadResult.Error
+        assertEquals(OceanCurrencyPinPadError.Empty, result.type)
     }
 
     @Test

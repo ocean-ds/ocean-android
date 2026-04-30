@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadHandler
+import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadPreSelectionInputMode
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadUIState
 import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.models.OceanCurrencyPinPadError
 import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.models.OceanCurrencyPinPadResult
@@ -22,6 +23,7 @@ class OceanCurrencyPinPadHandler(
         OceanPinPadPreSelectionInputMode.ClearOnFirstInput()
 ) : OceanPinPadHandler<OceanCurrencyPinPadResult> {
     private var currentValue: Long = initialValue?.let { valueToInput(it) } ?: 0L
+    private var hasContent: Boolean = initialValue != null
     private val currentMinValue: Long? = minValue?.let { valueToInput(it) }
     private val currentMaxValue: Long? = maxValue?.let { valueToInput(it) }
     private val currentTestValue: Long? = testValue?.let { valueToInput(it) }
@@ -39,25 +41,27 @@ class OceanCurrencyPinPadHandler(
 
     override fun newDigit(digit: String) {
         val newLastDigit = digit.toLong()
-        val baseValue = preSelectionInputMode.filter(currentValue)
+        val baseValue = if (preSelectionInputMode.shouldClearPreSelection()) 0L else currentValue
         try {
             val newValue = Math.addExact(
                 Math.multiplyExact(baseValue, 10L),
                 newLastDigit
             )
             currentValue = newValue
+            hasContent = true
         } catch (e: Exception) { /* no-op */ }
         updateFormattedValue()
     }
 
     override fun deleteLast() {
-        val baseValue = preSelectionInputMode.filter(currentValue)
+        val baseValue = if (preSelectionInputMode.shouldClearPreSelection()) 0L else currentValue
         currentValue = Math.floorDiv(baseValue, 10L)
         updateFormattedValue()
     }
 
     override fun clear() {
         currentValue = 0L
+        hasContent = false
         currentError = null
         uiState = uiState.copy(
             inputValue = ""
@@ -68,7 +72,7 @@ class OceanCurrencyPinPadHandler(
         if (currentTestValue != null && currentValue == currentTestValue) return getSuccess()
 
         val errorType = when {
-            currentValue == 0L ->
+            !hasContent ->
                 OceanCurrencyPinPadResult.Error(type = OceanCurrencyPinPadError.Empty)
             currentMinValue != null && currentValue < currentMinValue ->
                 OceanCurrencyPinPadResult.Error(type = OceanCurrencyPinPadError.Min)

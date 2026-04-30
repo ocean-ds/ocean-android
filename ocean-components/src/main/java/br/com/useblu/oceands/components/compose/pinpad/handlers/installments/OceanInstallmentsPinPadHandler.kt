@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadHandler
+import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadPreSelectionInputMode
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadUIState
 import br.com.useblu.oceands.components.compose.pinpad.handlers.installments.models.OceanInstallmentsPinPadError
 import br.com.useblu.oceands.components.compose.pinpad.handlers.installments.models.OceanInstallmentsPinPadResult
@@ -15,7 +16,9 @@ import kotlin.math.pow
 class OceanInstallmentsPinPadHandler(
     private var maxInstallments: Int = 1,
     private var selectedInstallment: Int? = null,
-    private val textSetup: OceanInstallmentsPinPadTextSetup
+    private val textSetup: OceanInstallmentsPinPadTextSetup,
+    private val preSelectionInputMode: OceanPinPadPreSelectionInputMode =
+        OceanPinPadPreSelectionInputMode.ClearOnFirstInput()
 ) : OceanPinPadHandler<OceanInstallmentsPinPadResult> {
     private val maxDigitsValue = 10.toDouble().pow(maxInstallments.toString().length).toInt()
     private var currentError: OceanInstallmentsPinPadError? = null
@@ -37,13 +40,17 @@ class OceanInstallmentsPinPadHandler(
 
     override fun newDigit(digit: String) {
         val newInputDigit = digit.toInt()
-        val newValue = (selectedInstallment ?: 0) * 10 + newInputDigit
+        val baseValue =
+            if (preSelectionInputMode.shouldClearPreSelection()) 0 else (selectedInstallment ?: 0)
+        val newValue = baseValue * 10 + newInputDigit
         selectedInstallment = if (newValue < maxDigitsValue) newValue else selectedInstallment
         updateFormattedValue()
     }
 
     override fun deleteLast() {
-        selectedInstallment = selectedInstallment?.div(10)
+        val baseValue =
+            if (preSelectionInputMode.shouldClearPreSelection()) null else selectedInstallment
+        selectedInstallment = baseValue?.div(10)
         updateFormattedValue()
     }
 

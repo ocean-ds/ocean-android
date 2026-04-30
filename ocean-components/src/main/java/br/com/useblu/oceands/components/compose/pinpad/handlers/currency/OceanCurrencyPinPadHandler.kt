@@ -17,7 +17,9 @@ class OceanCurrencyPinPadHandler(
     minValue: Double? = null,
     maxValue: Double? = null,
     testValue: Double? = null,
-    private val errorSetup: OceanPinPadCurrencyErrorSetup = OceanPinPadCurrencyErrorSetup.Default
+    private val errorSetup: OceanPinPadCurrencyErrorSetup = OceanPinPadCurrencyErrorSetup.Default,
+    private val preSelectionInputMode: OceanPinPadPreSelectionInputMode =
+        OceanPinPadPreSelectionInputMode.ClearOnFirstInput()
 ) : OceanPinPadHandler<OceanCurrencyPinPadResult> {
     private var currentValue: Long = initialValue?.let { valueToInput(it) } ?: 0L
     private val currentMinValue: Long? = minValue?.let { valueToInput(it) }
@@ -37,9 +39,10 @@ class OceanCurrencyPinPadHandler(
 
     override fun newDigit(digit: String) {
         val newLastDigit = digit.toLong()
+        val baseValue = preSelectionInputMode.filter(currentValue)
         try {
             val newValue = Math.addExact(
-                Math.multiplyExact(currentValue, 10L),
+                Math.multiplyExact(baseValue, 10L),
                 newLastDigit
             )
             currentValue = newValue
@@ -48,7 +51,8 @@ class OceanCurrencyPinPadHandler(
     }
 
     override fun deleteLast() {
-        currentValue = Math.floorDiv(currentValue, 10L)
+        val baseValue = preSelectionInputMode.filter(currentValue)
+        currentValue = Math.floorDiv(baseValue, 10L)
         updateFormattedValue()
     }
 

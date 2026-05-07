@@ -9,8 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.useblu.oceands.client.R
 import br.com.useblu.oceands.client.databinding.ActivityTransactionListItemBinding
-import br.com.useblu.oceands.components.compose.list.OceanTransactionListExpandable
-import br.com.useblu.oceands.components.compose.list.OceanTransactionListExpandableItem
 import br.com.useblu.oceands.components.compose.list.OceanTransactionListItem
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.OceanTransactionListUIModel
@@ -127,55 +125,6 @@ private fun ExtractScreenPreview() {
             isInverted = true,
             showDivider = false,
             onClick = {}
-        )
-
-        OceanTransactionListExpandable(
-            parent = OceanTransactionListExpandableItem(
-                primaryLabel = "Vendas do dia",
-                secondaryLabel = "Consolidado",
-                primaryValue = 1280.50
-            ),
-            itemsIcon = OceanIcons.LOCK_OPEN_SOLID,
-            items = listOf(
-                OceanTransactionListExpandableItem(
-                    primaryLabel = "Crédito à vista",
-                    secondaryLabel = "Visa **** 1234",
-                    primaryValue = 480.00
-                ),
-                OceanTransactionListExpandableItem(
-                    primaryLabel = "Crédito parcelado",
-                    secondaryLabel = "Mastercard **** 5678",
-                    primaryValue = 800.50
-                )
-            ),
-            footerText = "Fim das vendas do dia",
-            startExpanded = true
-        )
-
-        OceanTransactionListExpandable(
-            parent = OceanTransactionListExpandableItem(
-                primaryLabel = "Vendas do dia",
-                secondaryLabel = "Consolidado",
-                primaryValue = 1280.50,
-                isInverted = true
-            ),
-            itemsIcon = OceanIcons.LOCK_OPEN_SOLID,
-            items = listOf(
-                OceanTransactionListExpandableItem(
-                    primaryLabel = "Crédito à vista",
-                    secondaryLabel = "Visa **** 1234",
-                    primaryValue = 480.00,
-                    isInverted = true
-                ),
-                OceanTransactionListExpandableItem(
-                    primaryLabel = "Crédito parcelado",
-                    secondaryLabel = "Mastercard **** 5678",
-                    primaryValue = 800.50,
-                    isInverted = true
-                )
-            ),
-            footerText = "Fim das vendas do dia",
-            startExpanded = true
         )
     }
 }

@@ -45,6 +45,7 @@ data class OceanTransactionListExpandableItem(
     val tagTitle: String = "",
     val tagType: OceanTagType = OceanTagType.Warning,
     val time: String = "",
+    val isInverted: Boolean = false,
     val onClick: () -> Unit = { }
 )
 
@@ -69,6 +70,7 @@ fun OceanParentTransactionListExpandable(
         time = item.time,
         showDivider = false,
         trailingIcon = if (isExpanded) OceanIcons.CHEVRON_UP_SOLID else OceanIcons.CHEVRON_DOWN_SOLID,
+        isInverted = item.isInverted,
         onClick = onClick
     )
 }
@@ -97,6 +99,7 @@ fun OceanChildTransactionListExpandable(
         secondaryLabelStyle = OceanTextStyle.description,
         primaryValueStyle = OceanTextStyle.heading5,
         primaryValueFormattedColor = if ((item.primaryValue ?: 0.0) <= 0.0) OceanColors.interfaceDarkDown else null,
+        isInverted = item.isInverted,
         onClick = item.onClick
     )
 }
@@ -316,6 +319,32 @@ fun OceanTransactionListExpandablePreview() {
                 )
             ),
             footerText = "Fim dos cancelamentos das retenções",
+            startExpanded = true
+        )
+
+        OceanTransactionListExpandable(
+            parent = OceanTransactionListExpandableItem(
+                primaryLabel = "Vendas do dia",
+                secondaryLabel = "Consolidado",
+                primaryValue = 1280.50,
+                isInverted = true
+            ),
+            itemsIcon = OceanIcons.LOCK_OPEN_SOLID,
+            items = listOf(
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Crédito à vista",
+                    secondaryLabel = "Visa **** 1234",
+                    primaryValue = 480.00,
+                    isInverted = true
+                ),
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Crédito parcelado",
+                    secondaryLabel = "Mastercard **** 5678",
+                    primaryValue = 800.50,
+                    isInverted = true
+                )
+            ),
+            footerText = "Fim das vendas do dia",
             startExpanded = true
         )
     }

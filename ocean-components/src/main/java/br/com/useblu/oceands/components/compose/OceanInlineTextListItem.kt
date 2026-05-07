@@ -169,7 +169,10 @@ fun OceanInlineTextListItem(
     ) {
         Row(
             modifier = Modifier
-                .padding(OceanSpacing.xs),
+                .padding(
+                    horizontal = OceanSpacing.xs,
+                    vertical = OceanSpacing.xxs
+                ),
             verticalAlignment = Alignment.CenterVertically
         ) {
             OceanInlineTextListItemTitle(

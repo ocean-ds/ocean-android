@@ -11,8 +11,8 @@ enum class OceanInlineTextListItemSize {
     @Composable
     fun getTitleStyle(): TextStyle {
         return when (this) {
-            DEFAULT -> OceanTextStyle.description
-            SMALL -> OceanTextStyle.captionBold
+            DEFAULT -> OceanTextStyle.paragraph
+            SMALL -> OceanTextStyle.description
         }
     }
 

@@ -38,6 +38,8 @@ import br.com.useblu.oceands.components.compose.cardlistitem.style.DefaultCardLi
 import br.com.useblu.oceands.components.compose.cardlistitem.style.HighlightedCardListItem
 import br.com.useblu.oceands.components.compose.cardlistitem.type.LeadingDefaultTypeCardListItem
 import br.com.useblu.oceands.components.compose.cardlistitem.type.TrailingSelectableCardListItem
+import br.com.useblu.oceands.components.compose.cornertag.OceanCornerTagColor
+import br.com.useblu.oceands.components.compose.cornertag.OceanCornerTagStyle
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -62,6 +64,7 @@ fun OceanCardListItem(
     tagAlignment: OceanCardListItemTagAlignment = OceanCardListItemTagAlignment.START,
     type: OceanCardListItemType = OceanCardListItemType.Default(),
     style: OceanCardListItemStyle = OceanCardListItemStyle.Default,
+    cornerTag: OceanCornerTagStyle? = null,
     disabled: Boolean = false,
     isSelected: Boolean = false,
     showChevron: Boolean = false,
@@ -99,6 +102,7 @@ fun OceanCardListItem(
                 tagAlignment = tagAlignment,
                 brands = brands,
                 type = type,
+                cornerTag = cornerTag,
                 disabled = disabled,
                 isSelected = isSelected,
                 showChevron = showChevron,
@@ -118,6 +122,7 @@ fun OceanCardListItem(
                 brands = brands,
                 type = type,
                 style = style,
+                cornerTag = cornerTag,
                 disabled = disabled,
                 isSelected = isSelected,
                 showChevron = showChevron,
@@ -589,6 +594,51 @@ fun OceanCardListItemPreview() {
                     "getnet"
                 ),
                 disabled = true
+            )
+
+            var cornerTagRadio by remember { mutableStateOf(false) }
+            OceanCardListItem(
+                title = "Plano Premium",
+                description = "R$ 49,90/mês",
+                cornerTag = OceanCornerTagStyle(label = "Recomendado"),
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
+                    didUpdate = { cornerTagRadio = it }
+                ),
+                isSelected = cornerTagRadio
+            )
+
+            var cornerTagComplementary by remember { mutableStateOf(false) }
+            OceanCardListItem(
+                title = "Plano Plus",
+                description = "Corner Tag complementaryPure + Checkbox + Tag inline",
+                tagStyle = OceanTagStyle.Default(
+                    label = "Novo",
+                    layout = OceanTagLayout.Small(),
+                    type = OceanTagType.Positive
+                ),
+                cornerTag = OceanCornerTagStyle(
+                    label = "Em breve",
+                    color = OceanCornerTagColor.ComplementaryPure
+                ),
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Checkbox,
+                    didUpdate = { cornerTagComplementary = it }
+                ),
+                isSelected = cornerTagComplementary
+            )
+
+            OceanCardListItem(
+                title = "Corner Tag + Highlighted",
+                description = "Coexistência com bottom highlight",
+                cornerTag = OceanCornerTagStyle(label = "Mais vendido"),
+                style = OceanCardListItemStyle.Highlighted(
+                    caption = "Bottom highlight",
+                    backgroundColor = OceanColors.statusPositiveUp,
+                    icon = OceanIcons.SPARKLES_SOLID,
+                    iconColor = OceanColors.statusPositiveDeep
+                ),
+                onClick = {}
             )
         }
     }

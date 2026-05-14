@@ -32,6 +32,7 @@ import br.com.useblu.oceands.components.compose.cardlistitem.OceanCardListItemTa
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
+import br.com.useblu.oceands.components.compose.cornertag.OceanCornerTagStyle
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -51,6 +52,7 @@ internal fun HighlightedCardListItem(
     brands: List<String>? = null,
     type: OceanCardListItemType,
     style: OceanCardListItemStyle.Highlighted,
+    cornerTag: OceanCornerTagStyle? = null,
     disabled: Boolean = false,
     isSelected: Boolean = false,
     showChevron: Boolean = false,
@@ -94,6 +96,7 @@ internal fun HighlightedCardListItem(
             type = type,
             disabled = disabled,
             isSelected = isSelected,
+            cornerTag = cornerTag,
             onClick = onClick,
             targetBorderColor = borderColor,
             onDisabledClick = onDisabledClick

@@ -8,6 +8,7 @@ import br.com.useblu.oceands.components.compose.cardlistitem.OceanCardListItemTa
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemContentStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
+import br.com.useblu.oceands.components.compose.cornertag.OceanCornerTagStyle
 
 @Composable
 internal fun DefaultCardListItem(
@@ -20,6 +21,7 @@ internal fun DefaultCardListItem(
     tagAlignment: OceanCardListItemTagAlignment = OceanCardListItemTagAlignment.START,
     brands: List<String>? = null,
     type: OceanCardListItemType = OceanCardListItemType.Default(),
+    cornerTag: OceanCornerTagStyle? = null,
     disabled: Boolean = false,
     isSelected: Boolean = false,
     showChevron: Boolean = false,
@@ -31,6 +33,7 @@ internal fun DefaultCardListItem(
         type = type,
         disabled = disabled,
         isSelected = isSelected,
+        cornerTag = cornerTag,
         onClick = onClick,
         onDisabledClick = onDisabledClick
     ) {

@@ -5,15 +5,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.components.compose.OceanTag
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
-import br.com.useblu.oceands.components.compose.cornertag.OceanCornerTag
-import br.com.useblu.oceands.components.compose.cornertag.OceanCornerTagStyle
 import br.com.useblu.oceands.extensions.compose.disabledOverlay
+import br.com.useblu.oceands.model.compose.OceanCardCornerTag
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 
 @Composable
@@ -22,7 +21,7 @@ internal fun BaseCardListItem(
     type: OceanCardListItemType,
     disabled: Boolean,
     isSelected: Boolean,
-    cornerTag: OceanCornerTagStyle? = null,
+    cornerTag: OceanCardCornerTag? = null,
     onClick: (() -> Unit)? = null,
     onDisabledClick: (() -> Unit)? = null,
     targetBorderColor: Color? = null,
@@ -83,17 +82,16 @@ internal fun BaseCardListItem(
 
 @Composable
 private fun CardContentWithCornerTag(
-    cornerTag: OceanCornerTagStyle?,
+    cornerTag: OceanCardCornerTag?,
     content: @Composable () -> Unit
 ) {
     Box {
         content()
 
         if (cornerTag != null) {
-            OceanCornerTag(
-                label = cornerTag.label,
-                color = cornerTag.color,
-                modifier = Modifier.align(Alignment.TopEnd)
+            OceanTag(
+                style = cornerTag.tag,
+                modifier = Modifier.align(cornerTag.alignment)
             )
         }
     }

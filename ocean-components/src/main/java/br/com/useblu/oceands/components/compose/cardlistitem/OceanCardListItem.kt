@@ -38,8 +38,7 @@ import br.com.useblu.oceands.components.compose.cardlistitem.style.DefaultCardLi
 import br.com.useblu.oceands.components.compose.cardlistitem.style.HighlightedCardListItem
 import br.com.useblu.oceands.components.compose.cardlistitem.type.LeadingDefaultTypeCardListItem
 import br.com.useblu.oceands.components.compose.cardlistitem.type.TrailingSelectableCardListItem
-import br.com.useblu.oceands.components.compose.cornertag.OceanCornerTagColor
-import br.com.useblu.oceands.components.compose.cornertag.OceanCornerTagStyle
+import br.com.useblu.oceands.model.compose.OceanCardCornerTag
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -64,7 +63,7 @@ fun OceanCardListItem(
     tagAlignment: OceanCardListItemTagAlignment = OceanCardListItemTagAlignment.START,
     type: OceanCardListItemType = OceanCardListItemType.Default(),
     style: OceanCardListItemStyle = OceanCardListItemStyle.Default,
-    cornerTag: OceanCornerTagStyle? = null,
+    cornerTag: OceanCardCornerTag? = null,
     disabled: Boolean = false,
     isSelected: Boolean = false,
     showChevron: Boolean = false,
@@ -600,7 +599,13 @@ fun OceanCardListItemPreview() {
             OceanCardListItem(
                 title = "Plano Premium",
                 description = "R$ 49,90/mês",
-                cornerTag = OceanCornerTagStyle(label = "Recomendado"),
+                cornerTag = OceanCardCornerTag(
+                    tag = OceanTagStyle.Default(
+                        label = "Recomendado",
+                        layout = OceanTagLayout.Corner(),
+                        type = OceanTagType.Highlight
+                    )
+                ),
                 type = OceanCardListItemType.Selectable(
                     selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
                     didUpdate = { cornerTagRadio = it }
@@ -617,9 +622,12 @@ fun OceanCardListItemPreview() {
                     layout = OceanTagLayout.Small(),
                     type = OceanTagType.Positive
                 ),
-                cornerTag = OceanCornerTagStyle(
-                    label = "Em breve",
-                    color = OceanCornerTagColor.ComplementaryPure
+                cornerTag = OceanCardCornerTag(
+                    tag = OceanTagStyle.Default(
+                        label = "Em breve",
+                        layout = OceanTagLayout.Corner(),
+                        type = OceanTagType.HighlightComplementary
+                    )
                 ),
                 type = OceanCardListItemType.Selectable(
                     selectionType = OceanCardListItemType.Selectable.SelectionType.Checkbox,
@@ -631,7 +639,13 @@ fun OceanCardListItemPreview() {
             OceanCardListItem(
                 title = "Corner Tag + Highlighted",
                 description = "Coexistência com bottom highlight",
-                cornerTag = OceanCornerTagStyle(label = "Mais vendido"),
+                cornerTag = OceanCardCornerTag(
+                    tag = OceanTagStyle.Default(
+                        label = "Mais vendido",
+                        layout = OceanTagLayout.Corner(),
+                        type = OceanTagType.Highlight
+                    )
+                ),
                 style = OceanCardListItemStyle.Highlighted(
                     caption = "Bottom highlight",
                     backgroundColor = OceanColors.statusPositiveUp,

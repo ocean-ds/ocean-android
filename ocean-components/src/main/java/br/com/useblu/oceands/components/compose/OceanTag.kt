@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
@@ -283,6 +284,45 @@ private fun DefaultTag(
             layout = layout,
             enabled = enabled
         )
+
+        is OceanTagLayout.Corner -> DefaultCornerTag(
+            modifier = modifier,
+            style = style,
+            layout = layout,
+            enabled = enabled
+        )
+    }
+}
+
+@Composable
+private fun DefaultCornerTag(
+    modifier: Modifier,
+    style: OceanTagStyle.Default,
+    layout: OceanTagLayout.Corner,
+    enabled: Boolean
+) {
+    val textColor = getTextColor(
+        type = if (enabled) style.type else OceanTagType.Neutral
+    )
+    val backgroundColor = getBackgroundColor(
+        type = if (enabled) style.type else OceanTagType.Neutral
+    )
+
+    Row(
+        modifier = modifier
+            .borderBackground(
+                color = backgroundColor,
+                borderRadius = OceanBorderRadius.SM(corners = setOf(OceanBorderRadius.Corners.BottomStart))
+            )
+            .padding(horizontal = OceanSpacing.xxs, vertical = OceanSpacing.xxxs),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        TagText(
+            label = style.label,
+            color = textColor,
+            fallbackFontSize = layout.fontSize,
+            textStyleOverride = style.textStyle
+        )
     }
 }
 
@@ -320,10 +360,11 @@ private fun DefaultMediumTag(
             )
         }
 
-        OceanText(
-            text = style.label,
+        TagText(
+            label = style.label,
             color = textColor,
-            fontSize = layout.fontSize
+            fallbackFontSize = layout.fontSize,
+            textStyleOverride = style.textStyle
         )
     }
 }
@@ -362,10 +403,33 @@ private fun DefaultSmallTag(
             )
         }
 
-        OceanText(
-            text = style.label,
+        TagText(
+            label = style.label,
             color = textColor,
-            fontSize = layout.fontSize
+            fallbackFontSize = layout.fontSize,
+            textStyleOverride = style.textStyle
+        )
+    }
+}
+
+@Composable
+private fun TagText(
+    label: String,
+    color: Color,
+    fallbackFontSize: TextUnit,
+    textStyleOverride: TextStyle?
+) {
+    if (textStyleOverride != null) {
+        OceanText(
+            text = label,
+            color = color,
+            style = textStyleOverride
+        )
+    } else {
+        OceanText(
+            text = label,
+            color = color,
+            fontSize = fallbackFontSize
         )
     }
 }
@@ -448,6 +512,10 @@ fun getBackgroundColor(type: OceanTagType): Color {
         OceanTagType.Highlight -> {
             OceanColors.brandPrimaryDown
         }
+
+        OceanTagType.HighlightComplementary -> {
+            OceanColors.complementaryPure
+        }
     }
 }
 
@@ -478,7 +546,9 @@ fun getTextColor(type: OceanTagType): Color {
             OceanColors.statusWarningDeep
         }
 
-        OceanTagType.Important, OceanTagType.Highlight -> {
+        OceanTagType.Important,
+        OceanTagType.Highlight,
+        OceanTagType.HighlightComplementary -> {
             OceanColors.interfaceLightPure
         }
     }
@@ -489,7 +559,13 @@ sealed interface OceanTagStyle {
     data class Default(
         val label: String,
         val layout: OceanTagLayout,
-        val type: OceanTagType = OceanTagType.Warning
+        val type: OceanTagType = OceanTagType.Warning,
+        /**
+         * Overrides the default text style for this Tag. When `null`, the
+         * layout's `fontSize` and the platform default `OceanText` typography
+         * are applied. When set, the provided style takes precedence.
+         */
+        val textStyle: TextStyle? = null
     ) : OceanTagStyle
 
     data class Highlight(
@@ -509,6 +585,15 @@ sealed interface OceanTagLayout {
     data class Small(
         val icon: OceanIcons? = null,
         val height: Dp = 16.dp,
+        val fontSize: TextUnit = 10.sp
+    ) : OceanTagLayout
+
+    /**
+     * Used for the Highlight Corner Tag overlay — Nunito Sans ExtraBold 10sp,
+     * `OceanBorderRadius.SM` only on the bottom-start corner. Height is dynamic
+     * (driven by vertical padding) per Figma spec.
+     */
+    data class Corner(
         val fontSize: TextUnit = 10.sp
     ) : OceanTagLayout
 }

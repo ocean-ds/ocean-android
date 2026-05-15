@@ -1,15 +1,18 @@
 package br.com.useblu.oceands.components.compose.cardlistitem.style
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.components.compose.OceanTag
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
 import br.com.useblu.oceands.extensions.compose.disabledOverlay
+import br.com.useblu.oceands.model.compose.OceanCardCornerTag
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 
 @Composable
@@ -18,6 +21,7 @@ internal fun BaseCardListItem(
     type: OceanCardListItemType,
     disabled: Boolean,
     isSelected: Boolean,
+    cornerTag: OceanCardCornerTag? = null,
     onClick: (() -> Unit)? = null,
     onDisabledClick: (() -> Unit)? = null,
     targetBorderColor: Color? = null,
@@ -62,7 +66,7 @@ internal fun BaseCardListItem(
                 }
             }
         ) {
-            content()
+            CardContentWithCornerTag(cornerTag = cornerTag, content = content)
         }
     } else {
         Card(
@@ -71,7 +75,24 @@ internal fun BaseCardListItem(
             shape = borderRadius.shape(),
             border = BorderStroke(1.dp, borderColor)
         ) {
-            content()
+            CardContentWithCornerTag(cornerTag = cornerTag, content = content)
+        }
+    }
+}
+
+@Composable
+private fun CardContentWithCornerTag(
+    cornerTag: OceanCardCornerTag?,
+    content: @Composable () -> Unit
+) {
+    Box {
+        content()
+
+        if (cornerTag != null) {
+            OceanTag(
+                style = cornerTag.tag,
+                modifier = Modifier.align(cornerTag.alignment)
+            )
         }
     }
 }

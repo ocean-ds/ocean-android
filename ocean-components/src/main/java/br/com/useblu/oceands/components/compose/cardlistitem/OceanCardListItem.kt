@@ -42,6 +42,9 @@ import br.com.useblu.oceands.model.compose.OceanCardCornerTag
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.utils.vibrator.rememberVibrator
@@ -595,6 +598,11 @@ fun OceanCardListItemPreview() {
                 disabled = true
             )
 
+            val cornerTagTextStyle = TextStyle(
+                fontFamily = OceanFontFamily.BaseExtraBold,
+                fontSize = 10.sp
+            )
+
             var cornerTagRadio by remember { mutableStateOf(false) }
             OceanCardListItem(
                 title = "Plano Premium",
@@ -603,7 +611,8 @@ fun OceanCardListItemPreview() {
                     tag = OceanTagStyle.Default(
                         label = "Recomendado",
                         layout = OceanTagLayout.Corner(),
-                        type = OceanTagType.Highlight
+                        type = OceanTagType.Highlight,
+                        textStyle = cornerTagTextStyle
                     )
                 ),
                 type = OceanCardListItemType.Selectable(
@@ -626,7 +635,8 @@ fun OceanCardListItemPreview() {
                     tag = OceanTagStyle.Default(
                         label = "Em breve",
                         layout = OceanTagLayout.Corner(),
-                        type = OceanTagType.HighlightComplementary
+                        type = OceanTagType.HighlightComplementary,
+                        textStyle = cornerTagTextStyle
                     )
                 ),
                 type = OceanCardListItemType.Selectable(
@@ -643,7 +653,8 @@ fun OceanCardListItemPreview() {
                     tag = OceanTagStyle.Default(
                         label = "Mais vendido",
                         layout = OceanTagLayout.Corner(),
-                        type = OceanTagType.Highlight
+                        type = OceanTagType.Highlight,
+                        textStyle = cornerTagTextStyle
                     )
                 ),
                 style = OceanCardListItemStyle.Highlighted(

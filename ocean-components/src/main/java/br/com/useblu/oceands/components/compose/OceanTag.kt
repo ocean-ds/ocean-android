@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
@@ -316,10 +317,11 @@ private fun DefaultCornerTag(
             .padding(horizontal = OceanSpacing.xxs, vertical = OceanSpacing.xxxs),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        OceanText(
-            text = style.label,
+        TagText(
+            label = style.label,
             color = textColor,
-            fontSize = layout.fontSize
+            fallbackFontSize = layout.fontSize,
+            textStyleOverride = style.textStyle
         )
     }
 }
@@ -358,10 +360,11 @@ private fun DefaultMediumTag(
             )
         }
 
-        OceanText(
-            text = style.label,
+        TagText(
+            label = style.label,
             color = textColor,
-            fontSize = layout.fontSize
+            fallbackFontSize = layout.fontSize,
+            textStyleOverride = style.textStyle
         )
     }
 }
@@ -400,10 +403,33 @@ private fun DefaultSmallTag(
             )
         }
 
-        OceanText(
-            text = style.label,
+        TagText(
+            label = style.label,
             color = textColor,
-            fontSize = layout.fontSize
+            fallbackFontSize = layout.fontSize,
+            textStyleOverride = style.textStyle
+        )
+    }
+}
+
+@Composable
+private fun TagText(
+    label: String,
+    color: Color,
+    fallbackFontSize: TextUnit,
+    textStyleOverride: TextStyle?
+) {
+    if (textStyleOverride != null) {
+        OceanText(
+            text = label,
+            color = color,
+            style = textStyleOverride
+        )
+    } else {
+        OceanText(
+            text = label,
+            color = color,
+            fontSize = fallbackFontSize
         )
     }
 }
@@ -533,7 +559,13 @@ sealed interface OceanTagStyle {
     data class Default(
         val label: String,
         val layout: OceanTagLayout,
-        val type: OceanTagType = OceanTagType.Warning
+        val type: OceanTagType = OceanTagType.Warning,
+        /**
+         * Overrides the default text style for this Tag. When `null`, the
+         * layout's `fontSize` and the platform default `OceanText` typography
+         * are applied. When set, the provided style takes precedence.
+         */
+        val textStyle: TextStyle? = null
     ) : OceanTagStyle
 
     data class Highlight(

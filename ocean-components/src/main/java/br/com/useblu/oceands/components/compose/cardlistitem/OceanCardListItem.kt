@@ -19,8 +19,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanTag
 import br.com.useblu.oceands.components.compose.OceanTagLayout
@@ -38,13 +40,11 @@ import br.com.useblu.oceands.components.compose.cardlistitem.style.DefaultCardLi
 import br.com.useblu.oceands.components.compose.cardlistitem.style.HighlightedCardListItem
 import br.com.useblu.oceands.components.compose.cardlistitem.type.LeadingDefaultTypeCardListItem
 import br.com.useblu.oceands.components.compose.cardlistitem.type.TrailingSelectableCardListItem
-import br.com.useblu.oceands.model.compose.OceanCardCornerTag
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.model.compose.OceanCardCornerTag
 import br.com.useblu.oceands.ui.compose.OceanColors
-import br.com.useblu.oceands.ui.compose.OceanSpacing
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.utils.vibrator.rememberVibrator

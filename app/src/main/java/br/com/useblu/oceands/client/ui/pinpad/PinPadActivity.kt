@@ -3,11 +3,13 @@ package br.com.useblu.oceands.client.ui.pinpad
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,6 +24,7 @@ import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPad
 import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadHandler
+import br.com.useblu.oceands.components.compose.pinpad.OceanPinPadPreSelectionInputMode
 import br.com.useblu.oceands.components.compose.pinpad.handlers.currency.OceanCurrencyPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.handlers.installments.OceanInstallmentsPinPadHandler
 import br.com.useblu.oceands.components.compose.pinpad.handlers.installments.models.OceanInstallmentsPinPadTextSetup
@@ -60,6 +63,39 @@ private fun PinPadExample(toast: OceanToast) {
                                 maxValue = 100000.0,
                                 testValue = 0.03
                             )
+                            handler = currencyHandler
+                            OceanPinPad(
+                                handler = currencyHandler,
+                                isEnabled = isEnabled,
+                                isLoading = isLoading
+                            )
+                        }
+
+                        PinPadKnownType.CurrencyEditClearOnFirst -> {
+                            val currencyHandler = remember {
+                                OceanCurrencyPinPadHandler(
+                                    initialValue = 600.52,
+                                    minValue = 1.0,
+                                    maxValue = 100000.0
+                                )
+                            }
+                            handler = currencyHandler
+                            OceanPinPad(
+                                handler = currencyHandler,
+                                isEnabled = isEnabled,
+                                isLoading = isLoading
+                            )
+                        }
+
+                        PinPadKnownType.CurrencyEditInPlace -> {
+                            val currencyHandler = remember {
+                                OceanCurrencyPinPadHandler(
+                                    initialValue = 600.52,
+                                    minValue = 1.0,
+                                    maxValue = 100000.0,
+                                    preSelectionInputMode = OceanPinPadPreSelectionInputMode.EditInPlace
+                                )
+                            }
                             handler = currencyHandler
                             OceanPinPad(
                                 handler = currencyHandler,
@@ -146,14 +182,14 @@ private fun PinPadExample(toast: OceanToast) {
                     }
 
                     Row(
-                        modifier = Modifier
+                        modifier =
+                        Modifier
+                            .horizontalScroll(rememberScrollState())
                             .padding(OceanSpacing.xs),
                         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
                     ) {
                         PinPadKnownType.entries.forEach {
                             OceanButton(
-                                modifier = Modifier
-                                    .weight(1f),
                                 text = it.name,
                                 buttonStyle = OceanButtonStyle.PrimarySmall,
                                 onClick = { selectedType = it }
@@ -169,6 +205,8 @@ private fun PinPadExample(toast: OceanToast) {
 
 private enum class PinPadKnownType {
     Currency,
+    CurrencyEditClearOnFirst,
+    CurrencyEditInPlace,
     Password,
 
     Installments

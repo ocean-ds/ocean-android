@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -21,8 +22,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanDivider
 import br.com.useblu.oceands.components.compose.OceanIcon
@@ -98,11 +101,14 @@ fun OceanChildTransactionListExpandable(
     )
 }
 
+@Suppress("LongParameterList", "kotlin:S107")
 @Composable
 fun OceanTransactionListExpandable(
     parent: OceanTransactionListExpandableItem,
     modifier: Modifier = Modifier,
     itemsIcon: OceanIcons? = null,
+    itemsIconSize: Dp? = null,
+    itemsIconTint: Color? = null,
     items: List<OceanTransactionListExpandableItem> = emptyList(),
     footerText: String = "",
     showDivider: Boolean = true,
@@ -148,9 +154,16 @@ fun OceanTransactionListExpandable(
 
                                 OceanIcon(
                                     iconType = it,
-                                    tint = OceanColors.interfaceDarkUp,
+                                    tint = itemsIconTint ?: OceanColors.interfaceDarkUp,
                                     modifier = Modifier
                                         .padding(vertical = OceanSpacing.xxxs)
+                                        .then(
+                                            if (itemsIconSize != null) {
+                                                Modifier.size(itemsIconSize)
+                                            } else {
+                                                Modifier
+                                            }
+                                        )
                                 )
 
                                 if (!isLast) {

@@ -12,7 +12,8 @@ enum class OceanTagType {
     Warning,
     Complementary,
     Important,
-    Highlight;
+    Highlight,
+    HighlightComplementary;
 
     companion object {
         fun fromString(tagType: String): OceanTagType {
@@ -25,6 +26,7 @@ enum class OceanTagType {
                 "complementary" -> Complementary
                 "important" -> Important
                 "highlight" -> Highlight
+                "highlightcomplementary" -> HighlightComplementary
                 else -> Neutral
             }
         }

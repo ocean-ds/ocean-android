@@ -78,40 +78,13 @@ fun OceanCardGroup(
         border = BorderStroke(1.dp, OceanColors.interfaceLightDown),
         onClick = { /* No-op */ }
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = OceanSpacing.xs)
-        ) {
-            if (title.isNotBlank() || description.isNotBlank() || tag != null) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = OceanSpacing.xs)
-                        .padding(bottom = OceanSpacing.xxxs)
-                ) {
-                    ContentDefault(
-                        title = title,
-                        subtitle = description
-                    )
+        OceanSpacing.StackXS()
 
-                    Spacer(modifier = Modifier.weight(1f))
-
-                    if (tag != null && tag.text.isNotEmpty()) {
-                        OceanTag(
-                            modifier = Modifier
-                                .padding(top = OceanSpacing.xxs),
-                            style = OceanTagStyle.Default(
-                                label = tag.text,
-                                layout = OceanTagLayout.Medium(),
-                                type = tag.type
-                            )
-                        )
-                    }
-                }
-            }
-        }
+        Header(
+            title = title,
+            description = description,
+            tag = tag
+        )
 
         content()
 
@@ -283,6 +256,45 @@ fun OceanCardGroup(
                     fontFamily = OceanFontFamily.BaseBold,
                     modifier = Modifier
                         .align(Alignment.Center)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun Header(
+    title: String,
+    description: String,
+    tag: OceanTagModel?
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        if (title.isNotBlank() || description.isNotBlank() || tag != null) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = OceanSpacing.xs)
+                    .padding(bottom = OceanSpacing.xxxs)
+            ) {
+                ContentDefault(
+                    title = title,
+                    subtitle = description
+                )
+
+                if (tag == null || tag.text.isEmpty()) return
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                OceanTag(
+                    style = OceanTagStyle.Default(
+                        label = tag.text,
+                        layout = OceanTagLayout.Medium(),
+                        type = tag.type
+                    )
                 )
             }
         }

@@ -78,17 +78,18 @@ fun OceanCardGroup(
         border = BorderStroke(1.dp, OceanColors.interfaceLightDown),
         onClick = { /* No-op */ }
     ) {
-        if (title.isNotBlank()) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = OceanSpacing.xs)
-                    .padding(horizontal = OceanSpacing.xs)
-                    .padding(bottom = OceanSpacing.xxxs)
-            ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = OceanSpacing.xs)
+        ) {
+            if (title.isNotBlank() || description.isNotBlank() || tag != null) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = OceanSpacing.xs)
+                        .padding(bottom = OceanSpacing.xxxs)
                 ) {
                     ContentDefault(
                         title = title,

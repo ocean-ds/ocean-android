@@ -78,8 +78,6 @@ fun OceanCardGroup(
         border = BorderStroke(1.dp, OceanColors.interfaceLightDown),
         onClick = { /* No-op */ }
     ) {
-        OceanSpacing.StackXS()
-
         Header(
             title = title,
             description = description,
@@ -268,35 +266,35 @@ private fun Header(
     description: String,
     tag: OceanTagModel?
 ) {
+    if (title.isBlank() && description.isBlank() && tag == null) return
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(top = OceanSpacing.xs)
     ) {
-        if (title.isNotBlank() || description.isNotBlank() || tag != null) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = OceanSpacing.xs)
-                    .padding(bottom = OceanSpacing.xxxs)
-            ) {
-                ContentDefault(
-                    title = title,
-                    subtitle = description
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = OceanSpacing.xs)
+                .padding(bottom = OceanSpacing.xxxs)
+        ) {
+            ContentDefault(
+                title = title,
+                subtitle = description
+            )
+
+            if (tag == null || tag.text.isEmpty()) return
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            OceanTag(
+                style = OceanTagStyle.Default(
+                    label = tag.text,
+                    layout = OceanTagLayout.Medium(),
+                    type = tag.type
                 )
-
-                if (tag == null || tag.text.isEmpty()) return
-
-                Spacer(modifier = Modifier.weight(1f))
-
-                OceanTag(
-                    style = OceanTagStyle.Default(
-                        label = tag.text,
-                        layout = OceanTagLayout.Medium(),
-                        type = tag.type
-                    )
-                )
-            }
+            )
         }
     }
 }

@@ -86,7 +86,6 @@
                     app:layout_constraintEnd_toStartOf="@id/layout_action_header"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:ocean_visible_or_gone="@{headerTitle != null &amp;&amp; !headerTitle.isEmpty()}"
                     tools:text="Header" />
 
                 <TextView
@@ -102,7 +101,6 @@
                     app:layout_constraintEnd_toStartOf="@id/layout_action_header"
                     app:layout_constraintStart_toStartOf="@id/text_header"
                     app:layout_constraintTop_toBottomOf="@id/text_header"
-                    app:layout_goneMarginTop="0dp"
                     tools:text="Subtitle"
                     app:ocean_visible_or_gone="@{headerSubtitle != null}"/>
 
@@ -130,8 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/text_view_subtitle"
-                    android:layout_marginTop="16dp"
-                    app:layout_goneMarginTop="0dp"/>
+                    android:layout_marginTop="16dp"/>
 
                 <include
                     android:id="@+id/group_cta"

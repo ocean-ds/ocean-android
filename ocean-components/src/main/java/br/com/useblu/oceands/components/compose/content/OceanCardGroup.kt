@@ -53,7 +53,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Composable
 fun OceanCardGroup(
     modifier: Modifier = Modifier,
-    title: String,
+    title: String = "",
     description: String = "",
     tag: OceanTagModel? = null,
     backgroundColor: Color = OceanColors.interfaceLightPure,
@@ -78,34 +78,36 @@ fun OceanCardGroup(
         border = BorderStroke(1.dp, OceanColors.interfaceLightDown),
         onClick = { /* No-op */ }
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = OceanSpacing.xs)
-                .padding(horizontal = OceanSpacing.xs)
-                .padding(bottom = OceanSpacing.xxxs)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
+        if (title.isNotBlank()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = OceanSpacing.xs)
+                    .padding(horizontal = OceanSpacing.xs)
+                    .padding(bottom = OceanSpacing.xxxs)
             ) {
-                ContentDefault(
-                    title = title,
-                    subtitle = description
-                )
-
-                Spacer(modifier = Modifier.weight(1f))
-
-                if (tag != null && tag.text.isNotEmpty()) {
-                    OceanTag(
-                        modifier = Modifier
-                            .padding(top = OceanSpacing.xxs),
-                        style = OceanTagStyle.Default(
-                            label = tag.text,
-                            layout = OceanTagLayout.Medium(),
-                            type = tag.type
-                        )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    ContentDefault(
+                        title = title,
+                        subtitle = description
                     )
+
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    if (tag != null && tag.text.isNotEmpty()) {
+                        OceanTag(
+                            modifier = Modifier
+                                .padding(top = OceanSpacing.xxs),
+                            style = OceanTagStyle.Default(
+                                label = tag.text,
+                                layout = OceanTagLayout.Medium(),
+                                type = tag.type
+                            )
+                        )
+                    }
                 }
             }
         }
@@ -556,6 +558,16 @@ fun OceanCardGroupPreview() {
                 showProgress = false,
                 modifier = Modifier.padding(16.dp)
             )
+
+            OceanCardGroup(
+                modifier = Modifier.padding(OceanSpacing.xs)
+            ) {
+                OceanTextListItem(
+                    title = "Sem título — conteúdo vai ao topo",
+                    description = "R$ 1.234,56",
+                    showDivider = false
+                )
+            }
         }
     }
 }

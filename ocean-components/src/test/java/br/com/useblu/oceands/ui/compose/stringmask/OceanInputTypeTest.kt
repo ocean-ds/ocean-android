@@ -4,13 +4,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-/**
- * Pure unit tests for [OceanInputType] sanitisation and keyboard configuration.
- *
- * Focuses on CNPJ alphanumeric support introduced for Receita Federal NT 49/2024:
- * [A-Z] is preserved (and upper-cased) in positions 1..12, separators dropped,
- * keyboard switches from `Number` to `Ascii` so the user can actually type letters.
- */
 class OceanInputTypeTest {
     // region sanitizeWithAlphanumeric (shared helper) ---------------------------------------
 

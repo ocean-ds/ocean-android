@@ -34,11 +34,6 @@ sealed interface OceanInputType {
         return getMaxLength()?.let { digitsText.take(it) } ?: digitsText
     }
 
-    /**
-     * Keep letters `[A-Z]` and digits `[0-9]` (upper-cases letters), drop everything else.
-     * Used by inputs that must support alphanumeric content — notably CNPJ after
-     * Receita Federal NT 49/2024.
-     */
     fun sanitizeWithAlphanumeric(text: String): String {
         val alphanumeric = text.uppercase().filter { it.isDigit() || it in 'A'..'Z' }
         return getMaxLength()?.let { alphanumeric.take(it) } ?: alphanumeric
@@ -231,10 +226,6 @@ sealed interface OceanInputType {
 
         override fun getMaxLength() = CNPJ_DIGITS.count { it == '#' }
 
-        // Ascii keyboard so the user can type letters [A-Z] required by the alphanumeric
-        // CNPJ format from Receita Federal NT 49/2024 (positions 1..12 are [A-Z0-9]).
-        // On POS hosts that disable the numeric virtual keyboard, the ASCII keyboard still
-        // opens normally because only KeyboardType.Number is in `disabledKeyboards`.
         override fun getKeyboardType() = KeyboardType.Ascii
 
         override fun transformForInput(text: String) = sanitizeWithAlphanumeric(text)
@@ -254,8 +245,6 @@ sealed interface OceanInputType {
 
         override fun getMaxLength() = CNPJ_DIGITS.count { it == '#' }
 
-        // Ascii keyboard because once the input grows past 11 chars (or the user types a letter)
-        // the value is interpreted as an alphanumeric CNPJ.
         override fun getKeyboardType() = KeyboardType.Ascii
 
         private fun isCnpj(currentValue: String): Boolean =
@@ -265,8 +254,6 @@ sealed interface OceanInputType {
             return if (isCnpj(currentValue)) CNPJ_DIGITS else CPF_DIGITS
         }
 
-        // Strategy: while the value fits CPF length and has no letters, sanitise as digits-only.
-        // As soon as a letter is typed or length exceeds 11, sanitise as alphanumeric.
         private fun sanitize(text: String): String {
             val hasLetters = text.any { it.uppercaseChar() in 'A'..'Z' }
             val digitsOnly = text.filter { it.isDigit() }

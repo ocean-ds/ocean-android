@@ -34,6 +34,11 @@ sealed interface OceanInputType {
         return getMaxLength()?.let { digitsText.take(it) } ?: digitsText
     }
 
+    fun sanitizeWithAlphanumeric(text: String): String {
+        val alphanumeric = text.uppercase().filter { it.isDigit() || it in 'A'..'Z' }
+        return getMaxLength()?.let { alphanumeric.take(it) } ?: alphanumeric
+    }
+
     fun usePhysicalKeyboardOnly(): Boolean {
         return OceanDS.disabledKeyboards.contains(getKeyboardType())
     }
@@ -221,10 +226,10 @@ sealed interface OceanInputType {
 
         override fun getMaxLength() = CNPJ_DIGITS.count { it == '#' }
 
-        override fun getKeyboardType() = KeyboardType.Number
+        override fun getKeyboardType() = KeyboardType.Ascii
 
-        override fun transformForInput(text: String) = sanitizeWithDigits(text)
-        override fun transformForOutput(text: String) = sanitizeWithDigits(text)
+        override fun transformForInput(text: String) = sanitizeWithAlphanumeric(text)
+        override fun transformForOutput(text: String) = sanitizeWithAlphanumeric(text)
 
         override fun getVisualTransformation(): VisualTransformation {
             return StaticMaskVisualTransformation {
@@ -236,17 +241,31 @@ sealed interface OceanInputType {
     data object CpfCnpj : OceanInputType {
         private const val CPF_DIGITS = "###.###.###-##"
         private const val CNPJ_DIGITS = "##.###.###/####-##"
+        private const val CPF_LENGTH = 11
 
         override fun getMaxLength() = CNPJ_DIGITS.count { it == '#' }
 
-        override fun getKeyboardType() = KeyboardType.Number
+        override fun getKeyboardType() = KeyboardType.Ascii
+
+        private fun isCnpj(currentValue: String): Boolean =
+            currentValue.length > CPF_LENGTH || currentValue.any { it in 'A'..'Z' }
 
         private fun getMask(currentValue: String): String {
-            return if (currentValue.length > 11) CNPJ_DIGITS else CPF_DIGITS
+            return if (isCnpj(currentValue)) CNPJ_DIGITS else CPF_DIGITS
         }
 
-        override fun transformForInput(text: String) = sanitizeWithDigits(text)
-        override fun transformForOutput(text: String) = sanitizeWithDigits(text)
+        private fun sanitize(text: String): String {
+            val hasLetters = text.any { it.uppercaseChar() in 'A'..'Z' }
+            val digitsOnly = text.filter { it.isDigit() }
+            return if (hasLetters || digitsOnly.length > CPF_LENGTH) {
+                sanitizeWithAlphanumeric(text)
+            } else {
+                getMaxLength()?.let { digitsOnly.take(it) } ?: digitsOnly
+            }
+        }
+
+        override fun transformForInput(text: String) = sanitize(text)
+        override fun transformForOutput(text: String) = sanitize(text)
 
         override fun getVisualTransformation(): VisualTransformation {
             return StaticMaskVisualTransformation(::getMask)

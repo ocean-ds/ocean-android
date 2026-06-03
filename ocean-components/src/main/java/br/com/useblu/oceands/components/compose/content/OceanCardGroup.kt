@@ -53,7 +53,7 @@ import br.com.useblu.oceands.utils.OceanIcons
 @Composable
 fun OceanCardGroup(
     modifier: Modifier = Modifier,
-    title: String,
+    title: String = "",
     description: String = "",
     tag: OceanTagModel? = null,
     backgroundColor: Color = OceanColors.interfaceLightPure,
@@ -78,37 +78,11 @@ fun OceanCardGroup(
         border = BorderStroke(1.dp, OceanColors.interfaceLightDown),
         onClick = { /* No-op */ }
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = OceanSpacing.xs)
-                .padding(horizontal = OceanSpacing.xs)
-                .padding(bottom = OceanSpacing.xxxs)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                ContentDefault(
-                    title = title,
-                    subtitle = description
-                )
-
-                Spacer(modifier = Modifier.weight(1f))
-
-                if (tag != null && tag.text.isNotEmpty()) {
-                    OceanTag(
-                        modifier = Modifier
-                            .padding(top = OceanSpacing.xxs),
-                        style = OceanTagStyle.Default(
-                            label = tag.text,
-                            layout = OceanTagLayout.Medium(),
-                            type = tag.type
-                        )
-                    )
-                }
-            }
-        }
+        Header(
+            title = title,
+            description = description,
+            tag = tag
+        )
 
         content()
 
@@ -282,6 +256,45 @@ fun OceanCardGroup(
                         .align(Alignment.Center)
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun Header(
+    title: String,
+    description: String,
+    tag: OceanTagModel?
+) {
+    if (title.isBlank() && description.isBlank() && tag == null) return
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = OceanSpacing.xs)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = OceanSpacing.xs)
+                .padding(bottom = OceanSpacing.xxxs)
+        ) {
+            ContentDefault(
+                title = title,
+                subtitle = description
+            )
+
+            if (tag == null || tag.text.isEmpty()) return
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            OceanTag(
+                style = OceanTagStyle.Default(
+                    label = tag.text,
+                    layout = OceanTagLayout.Medium(),
+                    type = tag.type
+                )
+            )
         }
     }
 }
@@ -556,6 +569,16 @@ fun OceanCardGroupPreview() {
                 showProgress = false,
                 modifier = Modifier.padding(16.dp)
             )
+
+            OceanCardGroup(
+                modifier = Modifier.padding(OceanSpacing.xs)
+            ) {
+                OceanTextListItem(
+                    title = "Sem título — conteúdo vai ao topo",
+                    description = "R$ 1.234,56",
+                    showDivider = false
+                )
+            }
         }
     }
 }

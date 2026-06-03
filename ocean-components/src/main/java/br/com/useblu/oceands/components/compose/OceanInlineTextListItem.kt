@@ -73,6 +73,15 @@ fun OceanInlineTextListItemPreview() {
             )
             OceanInlineTextListItem(
                 item = OceanInlineTextList(
+                    label = "Label strikethroughColor",
+                    value = "Value",
+                    newValue = "New Value",
+                    color = "colorStatusPositiveDeep",
+                    strikethroughColor = "colorInterfaceDarkUp"
+                )
+            )
+            OceanInlineTextListItem(
+                item = OceanInlineTextList(
                     label = "Label bold",
                     value = "Value bold",
                     color = "colorInterfaceDarkPure",
@@ -247,7 +256,11 @@ fun OceanInlineTextListItem(
 
                 val textColor = if (item.newValue.isNullOrBlank() || item.value.isNullOrBlank()) {
                     OceanColors.fromString(color = item.color ?: "")
-                } else OceanColors.interfaceDarkDown
+                } else {
+                    item.strikethroughColor
+                        ?.let { OceanColors.fromString(color = it) }
+                        ?: OceanColors.interfaceDarkDown
+                }
 
                 val valueStyle = if (item.isBold == true) {
                     OceanTextStyle.paragraph.copy(

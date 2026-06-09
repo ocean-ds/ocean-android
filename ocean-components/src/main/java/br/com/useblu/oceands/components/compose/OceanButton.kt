@@ -39,6 +39,7 @@ fun PreviewButtonInteractive() {
     var showIcon by remember { mutableStateOf(true) }
     var isDisabled by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(false) }
+    var hasHorizontalPadding by remember { mutableStateOf(true) }
     var selectedSize by remember { mutableStateOf("Medium") }
     var selectedVariant by remember { mutableStateOf("Primary") }
 
@@ -132,6 +133,7 @@ fun PreviewButtonInteractive() {
                 disabled = isDisabled,
                 modifier = Modifier,
                 buttonStyle = selectedStyle,
+                hasHorizontalPadding = hasHorizontalPadding,
                 onClick = { }
             )
 
@@ -224,9 +226,67 @@ fun PreviewButtonInteractive() {
                     onClick = { isLoading = !isLoading }
                 )
             }
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OceanButton(
+                    text = if (hasHorizontalPadding) {
+                        "Remover Padding Horizontal"
+                    } else {
+                        "Restaurar Padding Horizontal"
+                    },
+                    buttonStyle = OceanButtonStyle.TertiarySmall,
+                    onClick = { hasHorizontalPadding = !hasHorizontalPadding }
+                )
+            }
         }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewButtonHasHorizontalPadding() {
+    OceanTheme {
+        Column(
+            modifier = Modifier
+                .background(color = OceanColors.interfaceLightPure)
+                .padding(OceanSpacing.md)
+        ) {
+            OceanText(
+                text = "Conteúdo de referência",
+                fontSize = OceanFontSize.xs,
+                fontFamily = OceanFontFamily.BaseBold
+            )
+
+            OceanSpacing.StackXS()
+
+            OceanText(
+                text = "hasHorizontalPadding = true (padrão)",
+                fontSize = OceanFontSize.xxxs
+            )
+            OceanButton(
+                text = "Ver detalhes",
+                buttonStyle = OceanButtonStyle.TertiarySmall,
+                onClick = { }
+            )
+
+            OceanSpacing.StackSM()
+
+            OceanText(
+                text = "hasHorizontalPadding = false",
+                fontSize = OceanFontSize.xxxs
+            )
+            OceanButton(
+                text = "Ver detalhes",
+                buttonStyle = OceanButtonStyle.TertiarySmall,
+                hasHorizontalPadding = false,
+                onClick = { }
+            )
+        }
+    }
+}
+
 enum class Orientation {
     Horizontal,
     Vertical
@@ -238,7 +298,8 @@ data class OceanButtonModel(
     val buttonStyle: OceanButtonStyle,
     val showProgress: Boolean = false,
     val icon: OceanIcons? = null,
-    val disabled: Boolean = false
+    val disabled: Boolean = false,
+    val hasHorizontalPadding: Boolean = true
 )
 
 @Composable
@@ -253,7 +314,8 @@ fun OceanButton(
         modifier = modifier,
         showProgress = button.showProgress,
         icon = button.icon,
-        disabled = button.disabled
+        disabled = button.disabled,
+        hasHorizontalPadding = button.hasHorizontalPadding
     )
 }
 
@@ -265,7 +327,8 @@ fun OceanButton(
     modifier: Modifier = Modifier,
     showProgress: Boolean = false,
     icon: OceanIcons? = null,
-    disabled: Boolean = false
+    disabled: Boolean = false,
+    hasHorizontalPadding: Boolean = true
 ) {
     Button(
         onClick = { if (!showProgress) onClick.invoke() },
@@ -275,7 +338,7 @@ fun OceanButton(
         shape = OceanBorderRadius.Circle.allCorners.shape(),
         enabled = !disabled,
         contentPadding = PaddingValues(
-            horizontal = buttonStyle.getHorizontalPadding()
+            horizontal = if (hasHorizontalPadding) buttonStyle.getHorizontalPadding() else 0.dp
         )
     ) {
         if (!showProgress) {

@@ -243,6 +243,50 @@ fun PreviewButtonInteractive() {
         }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewButtonRemoveHorizontalPadding() {
+    OceanTheme {
+        Column(
+            modifier = Modifier
+                .background(color = OceanColors.interfaceLightPure)
+                .padding(OceanSpacing.md)
+        ) {
+            OceanText(
+                text = "Conteúdo de referência",
+                fontSize = OceanFontSize.xs,
+                fontFamily = OceanFontFamily.BaseBold
+            )
+
+            OceanSpacing.StackXS()
+
+            OceanText(
+                text = "removeHorizontalPadding = false (padrão)",
+                fontSize = OceanFontSize.xxxs
+            )
+            OceanButton(
+                text = "Ver detalhes",
+                buttonStyle = OceanButtonStyle.TertiarySmall,
+                onClick = { }
+            )
+
+            OceanSpacing.StackSM()
+
+            OceanText(
+                text = "removeHorizontalPadding = true",
+                fontSize = OceanFontSize.xxxs
+            )
+            OceanButton(
+                text = "Ver detalhes",
+                buttonStyle = OceanButtonStyle.TertiarySmall,
+                removeHorizontalPadding = true,
+                onClick = { }
+            )
+        }
+    }
+}
+
 enum class Orientation {
     Horizontal,
     Vertical

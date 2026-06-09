@@ -39,6 +39,7 @@ fun PreviewButtonInteractive() {
     var showIcon by remember { mutableStateOf(true) }
     var isDisabled by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(false) }
+    var removeHorizontalPadding by remember { mutableStateOf(false) }
     var selectedSize by remember { mutableStateOf("Medium") }
     var selectedVariant by remember { mutableStateOf("Primary") }
 
@@ -132,6 +133,7 @@ fun PreviewButtonInteractive() {
                 disabled = isDisabled,
                 modifier = Modifier,
                 buttonStyle = selectedStyle,
+                removeHorizontalPadding = removeHorizontalPadding,
                 onClick = { }
             )
 
@@ -224,6 +226,20 @@ fun PreviewButtonInteractive() {
                     onClick = { isLoading = !isLoading }
                 )
             }
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OceanButton(
+                    text = if (removeHorizontalPadding) {
+                        "Restaurar Padding Horizontal"
+                    } else {
+                        "Remover Padding Horizontal"
+                    },
+                    buttonStyle = OceanButtonStyle.TertiarySmall,
+                    onClick = { removeHorizontalPadding = !removeHorizontalPadding }
+                )
+            }
         }
     }
 }
@@ -238,7 +254,8 @@ data class OceanButtonModel(
     val buttonStyle: OceanButtonStyle,
     val showProgress: Boolean = false,
     val icon: OceanIcons? = null,
-    val disabled: Boolean = false
+    val disabled: Boolean = false,
+    val removeHorizontalPadding: Boolean = false
 )
 
 @Composable
@@ -253,7 +270,8 @@ fun OceanButton(
         modifier = modifier,
         showProgress = button.showProgress,
         icon = button.icon,
-        disabled = button.disabled
+        disabled = button.disabled,
+        removeHorizontalPadding = button.removeHorizontalPadding
     )
 }
 
@@ -265,7 +283,8 @@ fun OceanButton(
     modifier: Modifier = Modifier,
     showProgress: Boolean = false,
     icon: OceanIcons? = null,
-    disabled: Boolean = false
+    disabled: Boolean = false,
+    removeHorizontalPadding: Boolean = false
 ) {
     Button(
         onClick = { if (!showProgress) onClick.invoke() },
@@ -275,7 +294,7 @@ fun OceanButton(
         shape = OceanBorderRadius.Circle.allCorners.shape(),
         enabled = !disabled,
         contentPadding = PaddingValues(
-            horizontal = buttonStyle.getHorizontalPadding()
+            horizontal = if (removeHorizontalPadding) 0.dp else buttonStyle.getHorizontalPadding()
         )
     ) {
         if (!showProgress) {

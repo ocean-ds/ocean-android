@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.components.compose.OceanButton
@@ -107,7 +109,8 @@ private fun OceanBannerLarge(
         ctaIsEnabled = ctaIsEnabled,
         secondaryCtaTitle = secondaryCtaTitle,
         onSecondaryCtaClick = onSecondaryCtaClick,
-        secondaryCtaIsEnabled = secondaryCtaIsEnabled
+        secondaryCtaIsEnabled = secondaryCtaIsEnabled,
+        textToButtonSpacing = OceanSpacing.sm
     )
 }
 
@@ -140,7 +143,8 @@ private fun OceanBannerSmall(
         ctaIsEnabled = ctaIsEnabled,
         secondaryCtaTitle = secondaryCtaTitle,
         onSecondaryCtaClick = onSecondaryCtaClick,
-        secondaryCtaIsEnabled = secondaryCtaIsEnabled
+        secondaryCtaIsEnabled = secondaryCtaIsEnabled,
+        textToButtonSpacing = OceanSpacing.xxsExtra
     )
 
     image?.View(
@@ -161,7 +165,8 @@ private fun OceanBannerInfoContent(
     ctaIsEnabled: Boolean,
     secondaryCtaTitle: String = "",
     onSecondaryCtaClick: () -> Unit = { /* No-op */ },
-    secondaryCtaIsEnabled: Boolean = true
+    secondaryCtaIsEnabled: Boolean = true,
+    textToButtonSpacing: Dp
 ) = Column(
     modifier = modifier
         .padding(OceanSpacing.xs)
@@ -179,31 +184,31 @@ private fun OceanBannerInfoContent(
         text = description,
         style = OceanTextStyle.caption.copy(
             color = style.getDescriptionColor()
-        ),
-        modifier = Modifier
-            .padding(top = OceanSpacing.xxxs)
+        )
     )
 
-    if (ctaTitle.isNotEmpty()) {
-        OceanSpacing.StackXXSExtra()
-
-        OceanButton(
-            text = ctaTitle,
-            onClick = onCtaClick,
-            buttonStyle = style.getButtonStyle(),
-            disabled = !ctaIsEnabled
-        )
-    }
-
-    if (secondaryCtaTitle.isNotEmpty()) {
-        OceanSpacing.StackXXXS()
-
-        OceanButton(
-            text = secondaryCtaTitle,
-            onClick = onSecondaryCtaClick,
-            buttonStyle = style.getSecondaryButtonStyle(),
-            disabled = !secondaryCtaIsEnabled
-        )
+    if (ctaTitle.isNotEmpty() || secondaryCtaTitle.isNotEmpty()) {
+        Spacer(modifier = Modifier.height(textToButtonSpacing))
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
+        ) {
+            if (ctaTitle.isNotEmpty()) {
+                OceanButton(
+                    text = ctaTitle,
+                    onClick = onCtaClick,
+                    buttonStyle = style.getButtonStyle(),
+                    disabled = !ctaIsEnabled
+                )
+            }
+            if (secondaryCtaTitle.isNotEmpty()) {
+                OceanButton(
+                    text = secondaryCtaTitle,
+                    onClick = onSecondaryCtaClick,
+                    buttonStyle = style.getSecondaryButtonStyle(),
+                    disabled = !secondaryCtaIsEnabled
+                )
+            }
+        }
     }
 }
 

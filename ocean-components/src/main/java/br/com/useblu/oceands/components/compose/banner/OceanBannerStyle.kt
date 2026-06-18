@@ -24,23 +24,23 @@ sealed interface OceanBannerStyle {
             Neutral -> OceanColors.interfaceLightUp
             Brand, Emphasys -> OceanColors.brandPrimaryPure
             Warning -> OceanColors.statusWarningUp
-            Negative -> OceanColors.statusNegativePure
+            Negative -> OceanColors.statusNegativeUp
             is Custom -> backgroundColor
         }
 
     @Composable
     fun getTitleColor(): Color =
         when (this) {
-            Neutral, Warning -> OceanColors.interfaceDarkDeep
-            Brand, Emphasys, Negative -> OceanColors.interfaceLightPure
+            Neutral, Warning, Negative -> OceanColors.interfaceDarkDeep
+            Brand, Emphasys -> OceanColors.interfaceLightPure
             is Custom -> titleColor
         }
 
     @Composable
     fun getDescriptionColor(): Color =
         when (this) {
-            Neutral, Warning -> OceanColors.interfaceDarkDown
-            Brand, Emphasys, Negative -> OceanColors.interfaceLightUp
+            Neutral, Warning, Negative -> OceanColors.interfaceDarkDown
+            Brand, Emphasys -> OceanColors.interfaceLightUp
             is Custom -> descriptionColor
         }
 
@@ -49,7 +49,7 @@ sealed interface OceanBannerStyle {
             Neutral -> OceanButtonStyle.PrimarySmall
             Brand, Emphasys -> OceanButtonStyle.SecondarySmall
             Warning -> OceanButtonStyle.PrimaryWarningSmall
-            Negative -> OceanButtonStyle.PrimaryInverseSmall
+            Negative -> OceanButtonStyle.PrimaryCriticalSmall
             is Custom -> customButtonStyle
         }
 

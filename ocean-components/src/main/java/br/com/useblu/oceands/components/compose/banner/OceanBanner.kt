@@ -21,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
@@ -147,7 +146,7 @@ private fun OceanBannerSmall(
     image?.View(
         modifier = Modifier
             .height(heightDp)
-            .widthIn(max = with(LocalConfiguration.current) { screenWidthDp.dp * 0.25f })
+            .widthIn(max = 82.dp)
     )
 }
 

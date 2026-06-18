@@ -55,10 +55,10 @@ sealed interface OceanBannerStyle {
 
     fun getSecondaryButtonStyle(): OceanButtonStyle =
         when (this) {
-            Neutral -> OceanButtonStyle.SecondarySmall
+            Neutral -> OceanButtonStyle.TertiarySmall
             Brand, Emphasys -> OceanButtonStyle.PrimaryInverseSmall
-            Warning -> OceanButtonStyle.SecondaryWarningSmall
-            Negative -> OceanButtonStyle.SecondaryCriticalSmall
+            Warning -> OceanButtonStyle.TertiaryWarningSmall
+            Negative -> OceanButtonStyle.TertiaryCriticalSmall
             is Custom -> customButtonStyle
         }
 }

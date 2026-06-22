@@ -7,15 +7,10 @@ name: Banner Storybook Gallery
 #   - Settings > Pages > Source = "GitHub Actions"
 #   - (ocean-ios é público; se virar privado, configurar token de checkout cross-repo)
 
+# Pipeline de publicação (não é gate de PR): rode manualmente em Actions > Run workflow,
+# após habilitar Settings > Pages > Source = GitHub Actions.
 on:
   workflow_dispatch:
-  push:
-    branches: [feat/ocean-banner-storybook]
-    paths:
-      - 'ocean-components/src/main/java/br/com/useblu/oceands/components/compose/banner/**'
-      - 'ocean-components/src/test/java/br/com/useblu/oceands/snapshot/**'
-      - 'gallery/**'
-      - '.github/workflows/banner-gallery.yml'
 
 # Permissão padrão mínima (somente leitura); as permissões de escrita ficam no job que precisa.
 permissions:

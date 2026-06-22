@@ -33,6 +33,7 @@ import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
@@ -182,7 +183,8 @@ private fun OceanBannerInfoContent(
 
     OceanTextNotBlank(
         text = description,
-        style = OceanTextStyle.caption.copy(
+        style = OceanTextStyle.description.copy(
+            fontFamily = OceanFontFamily.BaseMedium,
             color = style.getDescriptionColor()
         )
     )

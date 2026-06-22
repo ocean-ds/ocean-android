@@ -18,14 +18,14 @@ import br.com.useblu.oceands.components.compose.banner.OceanBanner
 import br.com.useblu.oceands.components.compose.banner.OceanBannerKind
 import br.com.useblu.oceands.components.compose.banner.OceanBannerStyle
 import br.com.useblu.oceands.utils.image.OceanImageProxy
+import java.io.File
+import java.io.FileOutputStream
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
-import java.io.File
-import java.io.FileOutputStream
 
 /**
  * Gera os snapshots PNG do componente REAL [OceanBanner] para a galeria web (Storybook
@@ -99,7 +99,7 @@ data class BannerCase(
     val image: String,
     val buttons: String
 ) {
-    val key: String get() = "banner__${size}__${type}__${image}__${buttons}"
+    val key: String get() = "banner__${size}__${type}__${image}__$buttons"
 
     override fun toString(): String = key
 

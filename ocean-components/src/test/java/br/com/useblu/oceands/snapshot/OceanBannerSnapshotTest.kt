@@ -20,6 +20,7 @@ import br.com.useblu.oceands.components.compose.banner.OceanBannerStyle
 import br.com.useblu.oceands.utils.image.OceanImageProxy
 import java.io.File
 import java.io.FileOutputStream
+import org.junit.Assume
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -47,6 +48,14 @@ class OceanBannerSnapshotTest(private val case: BannerCase) {
 
     @Test
     fun snapshot() {
+        // Gerador de snapshots para a galeria — inerte no CI padrão.
+        // A galeria (workflow_dispatch) roda com BANNER_SNAPSHOT_GENERATE=true.
+        Assume.assumeTrue(
+            "Gerador de snapshots desabilitado; defina BANNER_SNAPSHOT_GENERATE=true para gerar",
+            System.getenv("BANNER_SNAPSHOT_GENERATE") == "true"
+        )
+        compose.mainClock.autoAdvance = false
+
         compose.setContent {
             OceanTheme {
                 Box(

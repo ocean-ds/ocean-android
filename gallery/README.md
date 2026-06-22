@@ -46,7 +46,8 @@ São 2×4×2×3 = **48 combinações** por plataforma. As listas em `OceanBanner
 
 ```bash
 # Android → ocean-android/ocean-components/build/outputs/banner-snapshots/*.png
-./gradlew :ocean-components:testDebugUnitTest --tests "br.com.useblu.oceands.snapshot.OceanBannerSnapshotTest"
+# (o gerador só roda com a env var; sem ela é skipado, pra não pesar no CI padrão)
+BANNER_SNAPSHOT_GENERATE=true ./gradlew :ocean-components:testDebugUnitTest --tests "br.com.useblu.oceands.snapshot.OceanBannerSnapshotTest"
 cp ocean-components/build/outputs/banner-snapshots/*.png gallery/images/android/
 
 # iOS → ocean-ios/OceanDesignSystemTests/__BannerSnapshots__/*.png

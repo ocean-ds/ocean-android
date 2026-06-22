@@ -1,0 +1,95 @@
+name: Banner Storybook Gallery
+
+# Gera os snapshots do componente REAL (iOS + Android) e publica a galeria web no
+# GitHub Pages. Ninguém precisa rodar Xcode/Android Studio para visualizar — basta abrir o link.
+#
+# Pré-requisitos no repositório:
+#   - Settings > Pages > Source = "GitHub Actions"
+#   - (ocean-ios é público; se virar privado, configurar token de checkout cross-repo)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/ocean-banner-component]
+    paths:
+      - 'ocean-components/src/main/java/br/com/useblu/oceands/components/compose/banner/**'
+      - 'ocean-components/src/test/java/br/com/useblu/oceands/snapshot/**'
+      - 'gallery/**'
+      - '.github/workflows/banner-gallery.yml'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: banner-gallery
+  cancel-in-progress: true
+
+jobs:
+  android-snapshots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - name: Render Banner snapshots (Robolectric)
+        run: ./gradlew :ocean-components:testDebugUnitTest --tests "br.com.useblu.oceands.snapshot.OceanBannerSnapshotTest"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-snapshots
+          path: ocean-components/build/outputs/banner-snapshots/*.png
+          if-no-files-found: error
+
+  ios-snapshots:
+    runs-on: macos-14
+    steps:
+      - name: Checkout ocean-ios
+        uses: actions/checkout@v4
+        with:
+          repository: ocean-ds/ocean-ios
+          ref: feat/ocean-banner-component
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode.app
+      - name: Render Banner snapshots (XCTest)
+        run: |
+          xcodebuild test \
+            -project OceanDesignSystem.xcodeproj \
+            -scheme OceanDesignSystem \
+            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            -only-testing:OceanDesignSystemTests/BannerSnapshotTests \
+            CODE_SIGNING_ALLOWED=NO | xcpretty || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ios-snapshots
+          path: OceanDesignSystemTests/__BannerSnapshots__/*.png
+          if-no-files-found: error
+
+  publish:
+    needs: [android-snapshots, ios-snapshots]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Android snapshots
+        uses: actions/download-artifact@v4
+        with:
+          name: android-snapshots
+          path: gallery/images/android
+      - name: Download iOS snapshots
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-snapshots
+          path: gallery/images/ios
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: gallery
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

@@ -86,6 +86,7 @@
         <activity android:name=".ui.cardbalance.CardBalanceActivity" />
         <activity android:name=".ui.cardoption.CardOptionActivity" />
         <activity android:name=".ui.banner.BannerActivity" />
+        <activity android:name=".storybook.StorybookActivity" />
     </application>
 
 </manifest>

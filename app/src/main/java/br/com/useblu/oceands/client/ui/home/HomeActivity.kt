@@ -37,6 +37,7 @@ import br.com.useblu.oceands.client.ui.badges.BadgesActivity
 import br.com.useblu.oceands.client.ui.balance.BalanceActivity
 import br.com.useblu.oceands.client.ui.banner.BannerActivity
 import br.com.useblu.oceands.client.ui.blubalance.BluBalanceActivity
+import br.com.useblu.oceands.client.storybook.StorybookActivity
 import br.com.useblu.oceands.client.ui.bottomnavigation.BottomNavigationActivity
 import br.com.useblu.oceands.client.ui.buttons.ButtonsActivity
 import br.com.useblu.oceands.client.ui.cardbalance.CardBalanceActivity
@@ -168,6 +169,7 @@ class HomeActivity : AppCompatActivity() {
                     LazyColumn(
                         modifier = Modifier.padding(it)
                     ) {
+                        textAction(text = "🎨 Storybook", onClick = { onClickStorybook() })
                         textAction(text = "Accordion", onClick = { onClickAccordion() })
                         textAction(text = "Alerts", onClick = { onClickAlert() })
                         textAction(text = "Badges", onClick = { onClickBadges() })
@@ -328,6 +330,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onClickBanner() {
         val intent = Intent(this, BannerActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun onClickStorybook() {
+        val intent = Intent(this, StorybookActivity::class.java)
         startActivity(intent)
     }
 

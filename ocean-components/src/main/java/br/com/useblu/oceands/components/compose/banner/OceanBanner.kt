@@ -4,15 +4,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -20,8 +23,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -34,6 +39,7 @@ import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
@@ -151,7 +157,7 @@ private fun OceanBannerSmall(
     image?.View(
         modifier = Modifier
             .height(heightDp)
-            .widthIn(max = 82.dp)
+            .width(82.dp)
     )
 }
 
@@ -175,7 +181,8 @@ private fun OceanBannerInfoContent(
     OceanText(
         text = title,
         style = OceanTextStyle.heading4.copy(
-            color = style.getTitleColor()
+            color = style.getTitleColor(),
+            lineHeight = OceanFontSize.xs * 1.24f
         )
     )
 
@@ -185,7 +192,8 @@ private fun OceanBannerInfoContent(
         text = description,
         style = OceanTextStyle.description.copy(
             fontFamily = OceanFontFamily.BaseMedium,
-            color = style.getDescriptionColor()
+            color = style.getDescriptionColor(),
+            lineHeight = OceanFontSize.xxs * 1.5f
         )
     )
 
@@ -203,12 +211,35 @@ private fun OceanBannerInfoContent(
                 )
             }
             if (secondaryCtaTitle.isNotEmpty()) {
-                OceanButton(
-                    text = secondaryCtaTitle,
-                    onClick = onSecondaryCtaClick,
-                    buttonStyle = style.getSecondaryButtonStyle(),
-                    disabled = !secondaryCtaIsEnabled
-                )
+                val isEmphasys = style is OceanBannerStyle.Emphasys || style is OceanBannerStyle.Brand
+                if (isEmphasys) {
+                    // Tertiary com colorInterfaceLightPure — escopo exclusivo do Emphasys/Brand
+                    Button(
+                        onClick = onSecondaryCtaClick,
+                        enabled = secondaryCtaIsEnabled,
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.Transparent,
+                            contentColor = OceanColors.interfaceLightPure
+                        ),
+                        contentPadding = PaddingValues(0.dp),
+                        shape = OceanBorderRadius.Circle.allCorners.shape(),
+                        elevation = ButtonDefaults.buttonElevation(0.dp)
+                    ) {
+                        OceanText(
+                            text = secondaryCtaTitle,
+                            fontSize = OceanFontSize.xxs,
+                            fontFamily = OceanFontFamily.BaseBold,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                } else {
+                    OceanButton(
+                        text = secondaryCtaTitle,
+                        onClick = onSecondaryCtaClick,
+                        buttonStyle = style.getSecondaryButtonStyle(),
+                        disabled = !secondaryCtaIsEnabled
+                    )
+                }
             }
         }
     }

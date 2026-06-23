@@ -65,15 +65,15 @@ jobs:
       - name: Render Banner snapshots (Swift Package test)
         working-directory: ocean-ios
         run: |
-          echo "Schemes disponíveis:"; xcodebuild -list || true
-          SCHEME=$(xcodebuild -list -json 2>/dev/null | python3 -c "import sys,json; d=json.load(sys.stdin); s=(d.get('workspace') or d.get('project') or {}).get('schemes',[]); c=[n for n in s if n.endswith('-Package')] or [n for n in s if 'BannerSnapshot' in n] or [n for n in s if n=='OceanComponents'] or s; print(c[0] if c else '')")
-          echo "Scheme escolhido: $SCHEME"
+          # Esconde o .xcodeproj para o xcodebuild operar sobre o Swift Package (e não o app)
+          mv OceanDesignSystem.xcodeproj ../OceanDesignSystem.xcodeproj.hidden
+          echo "Schemes do package:"; xcodebuild -list || true
           DEST_ID=$(xcrun simctl list devices available | grep -E "iPhone" | head -1 | grep -oE "[0-9A-Fa-f-]{36}")
           echo "Simulador: $DEST_ID"
+          # OceanComponents é o scheme do produto do package; o test action inclui OceanBannerSnapshotTests
           xcodebuild test \
-            -scheme "$SCHEME" \
+            -scheme OceanComponents \
             -destination "id=$DEST_ID" \
-            -only-testing:OceanBannerSnapshotTests \
             CODE_SIGNING_ALLOWED=NO
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:

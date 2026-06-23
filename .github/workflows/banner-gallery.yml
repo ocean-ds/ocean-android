@@ -62,34 +62,30 @@ jobs:
           XC=$(ls -d /Applications/Xcode_16*.app 2>/dev/null | sort -V | tail -1)
           sudo xcode-select -switch "${XC:-/Applications/Xcode.app}"
           xcodebuild -version
-      - name: Render Banner snapshots (XCTest)
+      - name: Render Banner snapshots (Swift Package test)
+        working-directory: ocean-ios
         run: |
+          echo "Schemes disponíveis:"; xcodebuild -list || true
+          SCHEME=$(xcodebuild -list -json 2>/dev/null | python3 -c "import sys,json; d=json.load(sys.stdin); s=(d.get('workspace') or d.get('project') or {}).get('schemes',[]); c=[n for n in s if n.endswith('-Package')] or [n for n in s if 'BannerSnapshot' in n] or [n for n in s if n=='OceanComponents'] or s; print(c[0] if c else '')")
+          echo "Scheme escolhido: $SCHEME"
           DEST_ID=$(xcrun simctl list devices available | grep -E "iPhone" | head -1 | grep -oE "[0-9A-Fa-f-]{36}")
           echo "Simulador: $DEST_ID"
           xcodebuild test \
-            -project ocean-ios/OceanDesignSystem.xcodeproj \
-            -scheme OceanDesignSystem \
+            -scheme "$SCHEME" \
             -destination "id=$DEST_ID" \
-            -only-testing:OceanDesignSystemTests/BannerSnapshotTests \
+            -only-testing:OceanBannerSnapshotTests \
             CODE_SIGNING_ALLOWED=NO
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: ios-snapshots
-          path: ocean-ios/OceanDesignSystemTests/__BannerSnapshots__/*.png
+          path: ocean-ios/Tests/OceanBannerSnapshotTests/__BannerSnapshots__/*.png
           if-no-files-found: error
 
-  publish:
+  gallery:
     needs: [android-snapshots, ios-snapshots]
-    # Publica mesmo que um dos jobs de snapshot falhe (mostra o que conseguiu gerar).
+    # Monta a galeria mesmo que um dos jobs de snapshot falhe (publica o que conseguiu gerar).
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Download Android snapshots
@@ -104,12 +100,11 @@ jobs:
         with:
           name: ios-snapshots
           path: gallery/images/ios
-      # Pages precisa estar habilitado em Settings > Pages > Source: GitHub Actions
-      # (o token do CI não tem permissão para habilitar nesta org).
-      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
-      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+      # Sem GitHub Pages (token do CI não habilita nesta org): a galeria sai como artifact.
+      # Baixe "banner-gallery" no run, descompacte e abra gallery/index.html no navegador.
+      - name: Upload gallery (download e abra index.html)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
+          name: banner-gallery
           path: gallery
-      - name: Deploy to GitHub Pages
-        id: deploy
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+          if-no-files-found: error

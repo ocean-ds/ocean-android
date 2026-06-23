@@ -70,9 +70,9 @@ jobs:
           echo "Schemes do package:"; xcodebuild -list || true
           DEST_ID=$(xcrun simctl list devices available | grep -E "iPhone" | head -1 | grep -oE "[0-9A-Fa-f-]{36}")
           echo "Simulador: $DEST_ID"
-          # OceanComponents é o scheme do produto do package; o test action inclui OceanBannerSnapshotTests
+          # Ocean-Package é o scheme agregado do package (tem test action com OceanBannerSnapshotTests)
           xcodebuild test \
-            -scheme OceanComponents \
+            -scheme Ocean-Package \
             -destination "id=$DEST_ID" \
             CODE_SIGNING_ALLOWED=NO
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

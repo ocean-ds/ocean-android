@@ -1,16 +1,10 @@
 package br.com.useblu.oceands.snapshot
 
-import android.graphics.Bitmap
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asAndroidBitmap
-import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.test.captureToImage
-import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.components.compose.OceanTheme
@@ -18,10 +12,9 @@ import br.com.useblu.oceands.components.compose.banner.OceanBanner
 import br.com.useblu.oceands.components.compose.banner.OceanBannerKind
 import br.com.useblu.oceands.components.compose.banner.OceanBannerStyle
 import br.com.useblu.oceands.utils.image.OceanImageProxy
+import com.github.takahirom.roborazzi.captureRoboImage
 import java.io.File
-import java.io.FileOutputStream
 import org.junit.Assume
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
@@ -32,10 +25,11 @@ import org.robolectric.annotation.GraphicsMode
  * Gera os snapshots PNG do componente REAL [OceanBanner] para a galeria web (Storybook
  * via WebView). Não é teste de regressão — é o gerador de imagens consumido pelo CI.
  *
- * Renderiza o componente de verdade via Robolectric + GraphicsMode.NATIVE, então quaisquer
- * divergências reais de render aparecem nas imagens (ao contrário de uma maquete HTML).
+ * Usa Roborazzi (Robolectric + GraphicsMode.NATIVE) para renderizar o componente de verdade,
+ * então quaisquer divergências reais de render aparecem nas imagens.
  *
- * Saída: `build/outputs/banner-snapshots/<key>.png` (um arquivo por combinação da matriz).
+ * Inerte no CI padrão (Assume) — só roda com BANNER_SNAPSHOT_GENERATE=true.
+ * Saída: `build/outputs/banner-snapshots/<key>.png`.
  * Chave compartilhada com o iOS: `banner__{size}__{type}__{image}__{buttons}`.
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
@@ -43,26 +37,25 @@ import org.robolectric.annotation.GraphicsMode
 @Config(qualifiers = "w360dp-h920dp-xhdpi")
 class OceanBannerSnapshotTest(private val case: BannerCase) {
 
-    @get:Rule
-    val compose = createComposeRule()
-
     @Test
     fun snapshot() {
-        // Gerador de snapshots para a galeria — inerte no CI padrão.
-        // A galeria (workflow_dispatch) roda com BANNER_SNAPSHOT_GENERATE=true.
         Assume.assumeTrue(
             "Gerador de snapshots desabilitado; defina BANNER_SNAPSHOT_GENERATE=true para gerar",
             System.getenv("BANNER_SNAPSHOT_GENERATE") == "true"
         )
-        compose.mainClock.autoAdvance = false
 
-        compose.setContent {
+        val dir = File(
+            System.getProperty("banner.snapshot.outDir")
+                ?: "build/outputs/banner-snapshots"
+        )
+        dir.mkdirs()
+
+        captureRoboImage(File(dir, "${case.key}.png").path) {
             OceanTheme {
                 Box(
                     modifier = Modifier
                         .width(343.dp)
                         .wrapContentHeight()
-                        .testTag(TAG)
                 ) {
                     OceanBanner(
                         modifier = Modifier.fillMaxWidth(),
@@ -78,20 +71,9 @@ class OceanBannerSnapshotTest(private val case: BannerCase) {
                 }
             }
         }
-
-        val bitmap = compose.onNodeWithTag(TAG).captureToImage().asAndroidBitmap()
-        val dir = File(
-            System.getProperty("banner.snapshot.outDir")
-                ?: "build/outputs/banner-snapshots"
-        )
-        dir.mkdirs()
-        FileOutputStream(File(dir, "${case.key}.png")).use { out ->
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
-        }
     }
 
     companion object {
-        private const val TAG = "banner"
         private const val TITLE = "Banner Title"
         private const val DESCRIPTION = "This is a description for the banner component."
 

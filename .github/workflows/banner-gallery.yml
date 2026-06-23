@@ -48,21 +48,26 @@ jobs:
           if-no-files-found: error
 
   ios-snapshots:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout ocean-ios
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           repository: ocean-ds/ocean-ios
-          ref: feat/ocean-banner-component
-      - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode.app
+          ref: feat/ocean-banner-storybook
+      - name: Select Xcode 16+
+        run: |
+          XC=$(ls -d /Applications/Xcode_16*.app 2>/dev/null | sort -V | tail -1)
+          sudo xcode-select -switch "${XC:-/Applications/Xcode.app}"
+          xcodebuild -version
       - name: Render Banner snapshots (XCTest)
         run: |
+          DEST_ID=$(xcrun simctl list devices available | grep -E "iPhone" | head -1 | grep -oE "[0-9A-Fa-f-]{36}")
+          echo "Simulador: $DEST_ID"
           xcodebuild test \
             -project OceanDesignSystem.xcodeproj \
             -scheme OceanDesignSystem \
-            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            -destination "id=$DEST_ID" \
             -only-testing:OceanDesignSystemTests/BannerSnapshotTests \
             CODE_SIGNING_ALLOWED=NO
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

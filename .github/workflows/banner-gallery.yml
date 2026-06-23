@@ -55,6 +55,8 @@ jobs:
         with:
           repository: ocean-ds/ocean-ios
           ref: feat/ocean-banner-storybook
+          # pasta "ocean-ios" para casar com o relativePath "../ocean-ios" do pacote local no .xcodeproj
+          path: ocean-ios
       - name: Select Xcode 16+
         run: |
           XC=$(ls -d /Applications/Xcode_16*.app 2>/dev/null | sort -V | tail -1)
@@ -65,7 +67,7 @@ jobs:
           DEST_ID=$(xcrun simctl list devices available | grep -E "iPhone" | head -1 | grep -oE "[0-9A-Fa-f-]{36}")
           echo "Simulador: $DEST_ID"
           xcodebuild test \
-            -project OceanDesignSystem.xcodeproj \
+            -project ocean-ios/OceanDesignSystem.xcodeproj \
             -scheme OceanDesignSystem \
             -destination "id=$DEST_ID" \
             -only-testing:OceanDesignSystemTests/BannerSnapshotTests \
@@ -73,7 +75,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: ios-snapshots
-          path: OceanDesignSystemTests/__BannerSnapshots__/*.png
+          path: ocean-ios/OceanDesignSystemTests/__BannerSnapshots__/*.png
           if-no-files-found: error
 
   publish:

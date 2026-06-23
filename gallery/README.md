@@ -33,14 +33,19 @@ São 2×4×2×3 = **48 combinações** por plataforma. As listas em `OceanBanner
 (`buildBannerMatrix`) e `BannerSnapshotTests.swift` (`BannerSnapshotMatrix`) **devem ficar em sincronia**.
 `title`/`description` são fixos (presets) — texto livre só num render ao vivo.
 
-## Publicar (CI)
+## Ver a galeria (CI → artifact baixável, sem admin/Pages)
 
-1. Em **Settings > Pages**, selecione **Source: GitHub Actions** (uma vez).
-2. Rode o workflow **Banner Storybook Gallery** (`Actions` > Run workflow), ou faça push nas paths monitoradas.
-3. Ao fim, o link do Pages aparece no job `publish` (`environment: github-pages`).
+O GitHub Pages exige admin do repo (token do CI não habilita nesta org), então a galeria
+sai como **artifact**:
 
-> O job iOS roda em runner macOS e faz checkout do `ocean-ds/ocean-ios` na branch `feat/ocean-banner-component`.
-> Ajuste a `ref` quando o Banner for mergeado em `main`/`develop`.
+1. Push nas paths monitoradas (ou `Actions` > Run workflow) dispara **Banner Storybook Gallery**.
+2. Ao fim do run, em **Artifacts**, baixe **`banner-gallery`**.
+3. Descompacte e abra **`gallery/index.html`** no navegador. Mexa nos knobs — cada combinação
+   mostra o PNG real de iOS e Android lado a lado.
+
+> O job iOS roda em runner macOS, faz checkout do `ocean-ds/ocean-ios` (branch `feat/ocean-banner-storybook`,
+> em pasta `ocean-ios`) e roda o test target do Swift Package via `xcodebuild test -scheme Ocean-Package`.
+> Se um dia houver admin, dá pra trocar o passo de artifact por deploy no GitHub Pages.
 
 ## Gerar localmente (quem tem o toolchain)
 

@@ -1,9 +1,10 @@
 package br.com.useblu.oceands.snapshot
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
@@ -11,6 +12,8 @@ import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.components.compose.banner.OceanBanner
 import br.com.useblu.oceands.components.compose.banner.OceanBannerKind
 import br.com.useblu.oceands.components.compose.banner.OceanBannerStyle
+import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.image.OceanImageProxy
 import com.github.takahirom.roborazzi.captureRoboImage
 import java.io.File
@@ -54,8 +57,9 @@ class OceanBannerSnapshotTest(private val case: BannerCase) {
             OceanTheme {
                 Box(
                     modifier = Modifier
-                        .width(343.dp)
-                        .wrapContentHeight()
+                        .width(360.dp)
+                        .background(OceanColors.interfaceLightUp)
+                        .padding(OceanSpacing.xs)
                 ) {
                     OceanBanner(
                         modifier = Modifier.fillMaxWidth(),

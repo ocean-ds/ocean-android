@@ -91,6 +91,18 @@ fun OceanInlineTextListItemPreview() {
             )
             OceanInlineTextListItem(
                 item = OceanInlineTextList(
+                    label = "Label bold com newValue",
+                    value = "Value",
+                    newValue = "New Value",
+                    color = "colorStatusPositiveDeep",
+                    isBold = true
+                )
+            )
+            OceanInlineTextListItem(
+                item = OceanInlineTextList(isDivider = true)
+            )
+            OceanInlineTextListItem(
+                item = OceanInlineTextList(
                     label = "Label",
                     value = "Value",
                     color = "colorStatusNeutralDeep",
@@ -212,6 +224,11 @@ fun OceanInlineTextListItem(
         return
     }
 
+    if (item.isDivider) {
+        OceanDivider(modifier = modifier)
+        return
+    }
+
     Column(
         modifier = modifier
     ) {
@@ -262,7 +279,9 @@ fun OceanInlineTextListItem(
                         ?: OceanColors.interfaceDarkDown
                 }
 
-                val valueStyle = if (item.isBold == true) {
+                // Bold só no valor "ativo": quando há newValue, o `value` fica
+                // riscado e não deve ser bold (o bold vai para o newValue abaixo).
+                val valueStyle = if (item.isBold == true && item.newValue.isNullOrBlank()) {
                     OceanTextStyle.paragraph.copy(
                         fontFamily = OceanFontFamily.BaseBold
                     )
@@ -284,10 +303,16 @@ fun OceanInlineTextListItem(
                     val color = item.color?.let {
                         OceanColors.fromString(color = it)
                     }
+                    // newValue é o valor "ativo": pode ser bold quando isBold=true.
+                    val newValueStyle = if (item.isBold == true) {
+                        OceanTextStyle.paragraph.copy(
+                            fontFamily = OceanFontFamily.BaseBold
+                        )
+                    } else OceanTextStyle.paragraph
                     OceanText(
                         text = item.newValue,
                         color = color ?: Color.Unspecified,
-                        style = OceanTextStyle.paragraph,
+                        style = newValueStyle,
                         modifier = Modifier.padding(start = OceanSpacing.xxxs)
                     )
                 }

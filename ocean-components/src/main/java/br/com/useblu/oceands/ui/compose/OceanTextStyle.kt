@@ -7,8 +7,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -16,34 +17,50 @@ import androidx.compose.ui.unit.sp
 
 object OceanTextStyle {
 
+    // Necessário para que o `lineHeight` declarado bata com o "line-height" do Figma:
+    // remove o font padding legado e centraliza a folga da linha (OQ-03 / §3.1 do spec MR-492).
+    private val noFontPadding = PlatformTextStyle(includeFontPadding = false)
+    private val centeredLineHeight = LineHeightStyle(
+        alignment = LineHeightStyle.Alignment.Center,
+        trim = LineHeightStyle.Trim.None
+    )
+
     private val heading @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkDeep,
-        fontFamily = OceanFontFamily.BaseExtraBold
+        fontFamily = OceanFontFamily.BaseExtraBold,
+        platformStyle = noFontPadding,
+        lineHeightStyle = centeredLineHeight
     )
 
     private val subtitle @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkDown,
-        fontFamily = OceanFontFamily.BaseRegular
+        fontFamily = OceanFontFamily.BaseRegular,
+        platformStyle = noFontPadding,
+        lineHeightStyle = centeredLineHeight
     )
 
-    val eyebrow @Composable get() = TextStyle(
+    private val body @Composable get() = TextStyle(
         color = OceanColors.interfaceDarkDown,
         fontFamily = OceanFontFamily.BaseRegular,
-        fontWeight = FontWeight(700),
+        platformStyle = noFontPadding,
+        lineHeightStyle = centeredLineHeight
+    )
+
+    val eyebrow @Composable get() = body.copy(
+        fontFamily = OceanFontFamily.BaseBold,
         fontSize = OceanFontSize.xxxs,
-        letterSpacing = 2.16.sp
+        letterSpacing = 2.16.sp,
+        lineHeight = OceanFontSize.xxxs * 1.5f
     )
 
-    val paragraph @Composable get() = TextStyle(
-        color = OceanColors.interfaceDarkDown,
-        fontFamily = OceanFontFamily.BaseRegular,
-        fontSize = OceanFontSize.xs
+    val paragraph @Composable get() = body.copy(
+        fontSize = OceanFontSize.xs,
+        lineHeight = OceanFontSize.xs * 1.5f
     )
 
-    val description @Composable get() = TextStyle(
-        color = OceanColors.interfaceDarkDown,
-        fontFamily = OceanFontFamily.BaseRegular,
-        fontSize = OceanFontSize.xxs
+    val description @Composable get() = body.copy(
+        fontSize = OceanFontSize.xxs,
+        lineHeight = OceanFontSize.xxs * 1.5f
     )
 
     val descriptionStrike @Composable get() = TextStyle(
@@ -65,39 +82,42 @@ object OceanTextStyle {
         fontSize = OceanFontSize.xxxs
     )
 
-    val caption @Composable get() = TextStyle(
-        color = OceanColors.interfaceDarkDown,
-        fontFamily = OceanFontFamily.BaseRegular,
-        fontSize = OceanFontSize.xxxs
+    val caption @Composable get() = body.copy(
+        fontSize = OceanFontSize.xxxs,
+        lineHeight = OceanFontSize.xxxs * 1.5f
     )
 
-    val captionBold @Composable get() = TextStyle(
-        color = OceanColors.interfaceDarkDown,
+    val captionBold @Composable get() = body.copy(
         fontFamily = OceanFontFamily.BaseMedium,
-        fontSize = OceanFontSize.xxxs
+        fontSize = OceanFontSize.xxxs,
+        lineHeight = OceanFontSize.xxxs * 1.5f
     )
 
-    val lead @Composable get() = TextStyle(
+    val lead @Composable get() = body.copy(
         color = OceanColors.interfaceDarkDeep,
         fontFamily = OceanFontFamily.BaseBold,
-        fontSize = OceanFontSize.sm
+        fontSize = OceanFontSize.sm,
+        lineHeight = OceanFontSize.sm * 1.5f
     )
 
     val heading1 @Composable get() = heading.copy(
-        fontSize = OceanFontSize.lg
+        fontSize = OceanFontSize.lg,
+        lineHeight = OceanFontSize.lg * 1.24f
     )
 
     val heading2 @Composable get() = heading.copy(
-        fontSize = OceanFontSize.md
+        fontSize = OceanFontSize.md,
+        lineHeight = OceanFontSize.md * 1.24f
     )
 
     val heading3 @Composable get() = heading.copy(
-        fontSize = OceanFontSize.sm
+        fontSize = OceanFontSize.sm,
+        lineHeight = OceanFontSize.sm * 1.24f
     )
 
     val heading4 @Composable get() = heading.copy(
         fontSize = OceanFontSize.xs,
-        fontFamily = OceanFontFamily.BaseBold
+        lineHeight = OceanFontSize.xs * 1.32f
     )
 
     val heading4Strike @Composable get() = heading.copy(
@@ -107,15 +127,18 @@ object OceanTextStyle {
     )
 
     val heading5 @Composable get() = heading4.copy(
-        fontSize = OceanFontSize.xxs
+        fontSize = OceanFontSize.xxs,
+        lineHeight = OceanFontSize.xxs * 1.32f
     )
 
     val subtitle1 @Composable get() = subtitle.copy(
-        fontSize = OceanFontSize.md
+        fontSize = OceanFontSize.sm,
+        lineHeight = OceanFontSize.sm * 1.32f
     )
 
     val subtitle2 @Composable get() = subtitle.copy(
-        fontSize = OceanFontSize.sm
+        fontSize = OceanFontSize.xs,
+        lineHeight = OceanFontSize.xs * 1.32f
     )
 
     val display @Composable get() = TextStyle(

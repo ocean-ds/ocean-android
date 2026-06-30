@@ -33,6 +33,7 @@ import androidx.compose.ui.zIndex
 import br.com.useblu.oceands.components.compose.OceanBadge
 import br.com.useblu.oceands.components.compose.OceanBadgeSize
 import br.com.useblu.oceands.components.compose.OceanDivider
+import br.com.useblu.oceands.components.compose.OceanEyebrow
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTextNotBlank
@@ -452,10 +453,9 @@ internal fun BadgesContent(
                         modifier = finalBoxModifier,
                         contentAlignment = Alignment.Center
                     ) {
-                        OceanText(
-                            text = acquirer.take(1).uppercase(),
-                            color = style.fallbackTextColor,
-                            style = OceanTextStyle.eyebrow
+                        OceanEyebrow(
+                            text = acquirer.take(1),
+                            textColor = style.fallbackTextColor
                         )
                     }
                 }

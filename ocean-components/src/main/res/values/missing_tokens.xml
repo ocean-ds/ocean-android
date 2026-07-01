@@ -21,6 +21,10 @@
 
     <dimen name="ocean_line_height_tight_android" category="font-line-height">0.9</dimen>
     <dimen name="ocean_line_height_medium_android" category="font-line-height">0.92</dimen>
+    <!-- Calibrado para reproduzir o line-height 132% (loose) do Figma via lineSpacingMultiplier.
+         Valor inicial por interpolação entre medium_android (124%) e comfy_android (150%);
+         valor final a confirmar no smoke visual T6 (spec MR-492). -->
+    <dimen name="ocean_line_height_loose_android" category="font-line-height">0.95</dimen>
     <dimen name="ocean_line_height_comfy_android" category="font-line-height">1.0</dimen>
 
     <dimen name="shadow_level_1">1dp</dimen>

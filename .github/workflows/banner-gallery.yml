@@ -1,0 +1,110 @@
+name: Banner Storybook Gallery
+
+# Gera os snapshots do componente REAL (iOS + Android) e publica a galeria web no
+# GitHub Pages. Ninguém precisa rodar Xcode/Android Studio para visualizar — basta abrir o link.
+#
+# Pré-requisitos no repositório:
+#   - Settings > Pages > Source = "GitHub Actions"
+#   - (ocean-ios é público; se virar privado, configurar token de checkout cross-repo)
+
+# Pipeline de publicação da galeria. Requer: Settings > Pages > Source = "GitHub Actions".
+# Roda manualmente (Run workflow) ou a cada push nesta branch que toque os caminhos abaixo.
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/ocean-banner-storybook]
+    paths:
+      - 'ocean-components/src/main/java/br/com/useblu/oceands/components/compose/banner/**'
+      - 'ocean-components/src/test/java/br/com/useblu/oceands/snapshot/**'
+      - 'gallery/**'
+      - '.github/workflows/banner-gallery.yml'
+
+# Permissão padrão mínima (somente leitura); as permissões de escrita ficam no job que precisa.
+permissions:
+  contents: read
+
+concurrency:
+  group: banner-gallery
+  cancel-in-progress: true
+
+jobs:
+  android-snapshots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3
+      - name: Render Banner snapshots (Robolectric)
+        env:
+          BANNER_SNAPSHOT_GENERATE: "true"
+        run: ./gradlew :ocean-components:testDebugUnitTest --tests "br.com.useblu.oceands.snapshot.OceanBannerSnapshotTest"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: android-snapshots
+          path: ocean-components/build/outputs/banner-snapshots/*.png
+          if-no-files-found: error
+
+  ios-snapshots:
+    runs-on: macos-15
+    steps:
+      - name: Checkout ocean-ios
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          repository: ocean-ds/ocean-ios
+          ref: feat/ocean-banner-storybook
+          # pasta "ocean-ios" para casar com o relativePath "../ocean-ios" do pacote local no .xcodeproj
+          path: ocean-ios
+      - name: Select Xcode 16+
+        run: |
+          XC=$(ls -d /Applications/Xcode_16*.app 2>/dev/null | sort -V | tail -1)
+          sudo xcode-select -switch "${XC:-/Applications/Xcode.app}"
+          xcodebuild -version
+      - name: Render Banner snapshots (Swift Package test)
+        working-directory: ocean-ios
+        run: |
+          # Esconde o .xcodeproj para o xcodebuild operar sobre o Swift Package (e não o app)
+          mv OceanDesignSystem.xcodeproj ../OceanDesignSystem.xcodeproj.hidden
+          echo "Schemes do package:"; xcodebuild -list || true
+          DEST_ID=$(xcrun simctl list devices available | grep -E "iPhone" | head -1 | grep -oE "[0-9A-Fa-f-]{36}")
+          echo "Simulador: $DEST_ID"
+          # Ocean-Package é o scheme agregado do package (tem test action com OceanBannerSnapshotTests)
+          xcodebuild test \
+            -scheme Ocean-Package \
+            -destination "id=$DEST_ID" \
+            CODE_SIGNING_ALLOWED=NO
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: ios-snapshots
+          path: ocean-ios/Tests/OceanBannerSnapshotTests/__BannerSnapshots__/*.png
+          if-no-files-found: error
+
+  gallery:
+    needs: [android-snapshots, ios-snapshots]
+    # Monta a galeria mesmo que um dos jobs de snapshot falhe (publica o que conseguiu gerar).
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Download Android snapshots
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: android-snapshots
+          path: gallery/images/android
+      - name: Download iOS snapshots
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: ios-snapshots
+          path: gallery/images/ios
+      # Sem GitHub Pages (token do CI não habilita nesta org): a galeria sai como artifact.
+      # Baixe "banner-gallery" no run, descompacte e abra gallery/index.html no navegador.
+      - name: Upload gallery (download e abra index.html)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: banner-gallery
+          path: gallery
+          if-no-files-found: error

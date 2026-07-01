@@ -191,9 +191,7 @@ private fun OceanBannerInfoContent(
     OceanTextNotBlank(
         text = description,
         style = OceanTextStyle.description.copy(
-            fontFamily = OceanFontFamily.BaseMedium,
-            color = style.getDescriptionColor(),
-            lineHeight = OceanFontSize.xxs * 1.5f
+            color = style.getDescriptionColor()
         )
     )
 
@@ -203,12 +201,38 @@ private fun OceanBannerInfoContent(
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
         ) {
             if (ctaTitle.isNotEmpty()) {
-                OceanButton(
-                    text = ctaTitle,
-                    onClick = onCtaClick,
-                    buttonStyle = style.getButtonStyle(),
-                    disabled = !ctaIsEnabled
-                )
+                val isEmphasys = style is OceanBannerStyle.Emphasys || style is OceanBannerStyle.Brand
+                if (isEmphasys) {
+                    // Primary branco sólido — interfaceLightPure + brandPrimaryPure text
+                    Button(
+                        onClick = onCtaClick,
+                        enabled = ctaIsEnabled,
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = OceanColors.interfaceLightPure,
+                            contentColor = OceanColors.brandPrimaryPure,
+                            disabledContainerColor = OceanColors.interfaceLightDown,
+                            disabledContentColor = OceanColors.interfaceDarkUp
+                        ),
+                        contentPadding = PaddingValues(horizontal = OceanSpacing.xs, vertical = 0.dp),
+                        shape = OceanBorderRadius.Circle.allCorners.shape(),
+                        elevation = ButtonDefaults.buttonElevation(0.dp),
+                        modifier = Modifier.height(32.dp)
+                    ) {
+                        OceanText(
+                            text = ctaTitle,
+                            fontSize = OceanFontSize.xs,
+                            fontFamily = OceanFontFamily.BaseBold,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                } else {
+                    OceanButton(
+                        text = ctaTitle,
+                        onClick = onCtaClick,
+                        buttonStyle = style.getButtonStyle(),
+                        disabled = !ctaIsEnabled
+                    )
+                }
             }
             if (secondaryCtaTitle.isNotEmpty()) {
                 val isEmphasys = style is OceanBannerStyle.Emphasys || style is OceanBannerStyle.Brand

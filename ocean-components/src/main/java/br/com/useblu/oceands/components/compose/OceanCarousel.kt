@@ -86,15 +86,13 @@ fun OceanCarousel(
         pageCount = { items.size }
     )
 
-    LaunchedEffect(key1 = autoCycle) {
-        if (autoCycle) {
+    LaunchedEffect(key1 = autoCycle, key2 = items) {
+        if (autoCycle && items.isNotEmpty()) {
             while (true) {
-                runCatching {
-                    delay(autoCycleTime)
-                    pagerState.animateScrollToPage(
-                        page = (pagerState.currentPage + 1) % items.size
-                    )
-                }
+                delay(autoCycleTime)
+                pagerState.animateScrollToPage(
+                    page = (pagerState.currentPage + 1) % items.size
+                )
             }
         }
     }

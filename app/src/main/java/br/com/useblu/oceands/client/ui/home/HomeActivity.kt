@@ -31,6 +31,7 @@ import androidx.lifecycle.lifecycleScope
 import br.com.useblu.oceands.adapter.OceanBottomListSheetAdapter
 import br.com.useblu.oceands.adapter.OceanUnorderedListAdapter
 import br.com.useblu.oceands.client.R
+import br.com.useblu.oceands.client.storybook.StorybookActivity
 import br.com.useblu.oceands.client.ui.accordion.AccordionActivity
 import br.com.useblu.oceands.client.ui.alert.AlertActivity
 import br.com.useblu.oceands.client.ui.badges.BadgesActivity
@@ -168,6 +169,7 @@ class HomeActivity : AppCompatActivity() {
                     LazyColumn(
                         modifier = Modifier.padding(it)
                     ) {
+                        textAction(text = "🎨 Storybook", onClick = { onClickStorybook() })
                         textAction(text = "Accordion", onClick = { onClickAccordion() })
                         textAction(text = "Alerts", onClick = { onClickAlert() })
                         textAction(text = "Badges", onClick = { onClickBadges() })
@@ -328,6 +330,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onClickBanner() {
         val intent = Intent(this, BannerActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun onClickStorybook() {
+        val intent = Intent(this, StorybookActivity::class.java)
         startActivity(intent)
     }
 

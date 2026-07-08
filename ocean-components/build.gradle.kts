@@ -123,6 +123,15 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)
+    testImplementation(libs.roborazzi)
+    testImplementation(libs.roborazzi.compose)
+}
+
+// Roborazzi grava os PNGs (modo record) apenas ao gerar a galeria.
+tasks.withType<Test>().configureEach {
+    if (System.getenv("BANNER_SNAPSHOT_GENERATE") == "true") {
+        systemProperty("roborazzi.test.record", "true")
+    }
 }
 
 baselineProfile {

@@ -12,11 +12,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import br.com.useblu.oceands.model.OceanInlineTextList
+import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
+
+enum class OceanTransactionFooterVariant {
+    Default,
+    Highlight
+}
 
 @Composable
 fun OceanTransactionFooter(
@@ -26,11 +33,23 @@ fun OceanTransactionFooter(
     secondButton: OceanButtonModel? = null,
     entriesSpacing: Dp = OceanSpacing.xxs,
     buttonsOrientation: Orientation = Orientation.Vertical,
-    caption: String = ""
+    caption: String = "",
+    variant: OceanTransactionFooterVariant = OceanTransactionFooterVariant.Default
 ) {
+    val backgroundModifier = when (variant) {
+        OceanTransactionFooterVariant.Default ->
+            Modifier.background(OceanColors.interfaceLightPure)
+
+        OceanTransactionFooterVariant.Highlight ->
+            Modifier.borderBackground(
+                color = OceanColors.interfaceLightUp,
+                borderRadius = OceanBorderRadius.LG.topCorners
+            )
+    }
+
     Column(
         modifier = modifier
-            .background(OceanColors.interfaceLightPure)
+            .then(backgroundModifier)
             .padding(OceanSpacing.xs),
         verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
     ) {
@@ -155,6 +174,44 @@ private fun OceanTransactionFooterPreview() {
             ),
             buttonsOrientation = Orientation.Vertical,
             caption = "Lorem ipsum dolor sit amet, consectetur adipis"
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun OceanTransactionFooterHighlightPreview() {
+    val entries = listOf(
+        OceanInlineTextList(
+            label = "Você vai economizar",
+            value = "R$ 40,00",
+            color = "colorStatusPositiveDeep",
+            icon = "tagsolid"
+        ),
+        OceanInlineTextList(
+            label = "Custo de antecipação",
+            value = "3,99%",
+            newValue = "Grátis",
+            color = "colorStatusPositiveDeep"
+        ),
+        OceanInlineTextList(
+            label = "Pagando",
+            value = "R$ 41.256,25",
+            color = "colorInterfaceDarkPure",
+            isBold = true
+        )
+    )
+
+    OceanTheme {
+        OceanTransactionFooter(
+            entries = entries,
+            firstButton = OceanButtonModel(
+                text = "Confirmar pagamento",
+                onClick = {},
+                buttonStyle = OceanButtonStyle.PrimaryMedium
+            ),
+            caption = "O valor pode variar conforme a data de compensação.",
+            variant = OceanTransactionFooterVariant.Highlight
         )
     }
 }

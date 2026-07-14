@@ -36,7 +36,9 @@ fun OceanTransactionFooter(
     entriesSpacing: Dp = OceanSpacing.xxs,
     buttonsOrientation: Orientation = Orientation.Vertical,
     caption: String = "",
-    variant: OceanTransactionFooterVariant = OceanTransactionFooterVariant.Default
+    variant: OceanTransactionFooterVariant = OceanTransactionFooterVariant.Default,
+    sectionTitle: String = "",
+    showBottomDivider: Boolean = false
 ) {
     val backgroundModifier = when (variant) {
         OceanTransactionFooterVariant.Default ->
@@ -76,7 +78,18 @@ fun OceanTransactionFooter(
             verticalArrangement = Arrangement.spacedBy(entriesSpacing),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            entries.forEach { item ->
+            OceanTextNotBlank(
+                text = sectionTitle,
+                modifier = Modifier.fillMaxWidth(),
+                color = OceanColors.interfaceDarkUp,
+                style = OceanTextStyle.heading5
+            )
+            entries.forEachIndexed { index, item ->
+                if (showBottomDivider && index == entries.lastIndex && index > 0) {
+                    OceanDivider(
+                        modifier = Modifier.padding(vertical = OceanSpacing.xxxs)
+                    )
+                }
                 OceanInlineTextListItem(
                     item = item
                 )
@@ -161,7 +174,9 @@ private fun OceanTransactionFooterPreview() {
                 onClick = {},
                 buttonStyle = OceanButtonStyle.PrimaryMedium
             ),
-            variant = OceanTransactionFooterVariant.Default
+            variant = OceanTransactionFooterVariant.Default,
+            sectionTitle = "Title",
+            showBottomDivider = true
         )
     }
 }
@@ -196,7 +211,9 @@ private fun OceanTransactionFooterHighlightPreview() {
                 onClick = {},
                 buttonStyle = OceanButtonStyle.PrimaryMedium
             ),
-            variant = OceanTransactionFooterVariant.Highlight
+            variant = OceanTransactionFooterVariant.Highlight,
+            sectionTitle = "Title",
+            showBottomDivider = true
         )
     }
 }

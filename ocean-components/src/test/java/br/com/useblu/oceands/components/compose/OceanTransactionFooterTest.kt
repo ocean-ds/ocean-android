@@ -56,4 +56,23 @@ class OceanTransactionFooterTest {
         composeTestRule.onNodeWithText("Continuar").assertIsDisplayed()
         composeTestRule.onNodeWithText("Pagando").assertIsDisplayed()
     }
+
+    @Test
+    fun whenSectionTitleAndBottomDivider_rendersHeaderAndEntries() {
+        composeTestRule.setContent {
+            OceanTransactionFooter(
+                entries = listOf(
+                    OceanInlineTextList(label = "Subtotal", value = "R$ 40,00"),
+                    OceanInlineTextList(label = "Total", value = "R$ 42,00", isBold = true)
+                ),
+                firstButton = firstButton,
+                sectionTitle = "Resumo",
+                showBottomDivider = true
+            )
+        }
+
+        composeTestRule.onNodeWithText("Resumo").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Subtotal").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Total").assertIsDisplayed()
+    }
 }

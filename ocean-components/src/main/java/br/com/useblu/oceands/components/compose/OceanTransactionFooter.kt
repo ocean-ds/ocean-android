@@ -9,8 +9,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanInlineTextList
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -18,7 +21,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
-import br.com.useblu.oceands.utils.OceanIcons
 
 enum class OceanTransactionFooterVariant {
     Default,
@@ -47,9 +49,26 @@ fun OceanTransactionFooter(
             )
     }
 
+    // Divisor de topo da variante Default (Figma) — desenhado no topo, edge-to-edge,
+    // sem alterar o padding do conteúdo. A Highlight arredonda o topo e não tem divisor.
+    val dividerColor = OceanColors.interfaceLightDown
+    val topDividerModifier = if (variant == OceanTransactionFooterVariant.Default) {
+        Modifier.drawBehind {
+            drawLine(
+                color = dividerColor,
+                start = Offset(0f, 0f),
+                end = Offset(size.width, 0f),
+                strokeWidth = 1.dp.toPx()
+            )
+        }
+    } else {
+        Modifier
+    }
+
     Column(
         modifier = modifier
             .then(backgroundModifier)
+            .then(topDividerModifier)
             .padding(OceanSpacing.xs),
         verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
     ) {
@@ -117,86 +136,18 @@ fun OceanTransactionFooter(
 private fun OceanTransactionFooterPreview() {
     val entries = listOf(
         OceanInlineTextList(
-            label = "Label1",
-            value = "R$ 40,00",
-            newValue = "Zero",
-            color = "colorStatusPositiveDeep",
-            icon = "tagsolid"
-        ),
-        OceanInlineTextList(
-            label = "Label1 - teste",
-            value = "R$ 40,00",
-            newValue = "",
-            color = "colorStatusPositiveDeep"
-        ),
-        OceanInlineTextList(
-            label = "Label2",
-            value = "R$ 40,00",
+            label = "Title",
+            value = "Description",
             color = "colorInterfaceDarkDown"
-
         ),
         OceanInlineTextList(
-            label = "Label3",
-            value = "Calculada no dia",
-            color = "colorStatusNeutralDeep"
-
+            label = "Title",
+            value = "Description",
+            color = "colorInterfaceDarkDown"
         ),
         OceanInlineTextList(
-            label = "Label4",
-            value = "R$ 10,00",
-            tooltip = "tooltip",
-            color = "colorStatusPositiveDeep",
-            icon = "tagsolid"
-
-        ),
-        OceanInlineTextList(
-            label = "Label5",
-            value = "R$ 40,00",
-            color = "colorInterfaceDarkPure",
-            isBold = true,
-            icon = OceanIcons.BRIEFCASE_OUTLINE.token
-
-        )
-    )
-
-    OceanTheme {
-        OceanTransactionFooter(
-            entries = entries,
-            firstButton = OceanButtonModel(
-                text = "Avançar",
-                onClick = {},
-                buttonStyle = OceanButtonStyle.PrimaryMedium
-            ),
-            secondButton = OceanButtonModel(
-                text = "Voltar",
-                onClick = {},
-                buttonStyle = OceanButtonStyle.SecondaryMedium
-            ),
-            buttonsOrientation = Orientation.Vertical,
-            caption = "Lorem ipsum dolor sit amet, consectetur adipis"
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun OceanTransactionFooterHighlightPreview() {
-    val entries = listOf(
-        OceanInlineTextList(
-            label = "Você vai economizar",
-            value = "R$ 40,00",
-            color = "colorStatusPositiveDeep",
-            icon = "tagsolid"
-        ),
-        OceanInlineTextList(
-            label = "Custo de antecipação",
-            value = "3,99%",
-            newValue = "Grátis",
-            color = "colorStatusPositiveDeep"
-        ),
-        OceanInlineTextList(
-            label = "Pagando",
-            value = "R$ 41.256,25",
+            label = "Title",
+            value = "Description",
             color = "colorInterfaceDarkPure",
             isBold = true
         )
@@ -206,11 +157,45 @@ private fun OceanTransactionFooterHighlightPreview() {
         OceanTransactionFooter(
             entries = entries,
             firstButton = OceanButtonModel(
-                text = "Confirmar pagamento",
+                text = "Label",
                 onClick = {},
                 buttonStyle = OceanButtonStyle.PrimaryMedium
             ),
-            caption = "O valor pode variar conforme a data de compensação.",
+            variant = OceanTransactionFooterVariant.Default
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun OceanTransactionFooterHighlightPreview() {
+    val entries = listOf(
+        OceanInlineTextList(
+            label = "Title",
+            value = "Description",
+            color = "colorInterfaceDarkDown"
+        ),
+        OceanInlineTextList(
+            label = "Title",
+            value = "Description",
+            color = "colorInterfaceDarkDown"
+        ),
+        OceanInlineTextList(
+            label = "Title",
+            value = "Description",
+            color = "colorInterfaceDarkPure",
+            isBold = true
+        )
+    )
+
+    OceanTheme {
+        OceanTransactionFooter(
+            entries = entries,
+            firstButton = OceanButtonModel(
+                text = "Label",
+                onClick = {},
+                buttonStyle = OceanButtonStyle.PrimaryMedium
+            ),
             variant = OceanTransactionFooterVariant.Highlight
         )
     }

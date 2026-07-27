@@ -49,9 +49,17 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.utils.vibrator.rememberVibrator
 
+/**
+ * Where the tag is positioned relative to the card text.
+ *
+ * [START] and [END] keep the tag on the same line as the title; [ABOVE] and [BELOW] stack it
+ * inside the content block, never in the control slot (radio/checkbox/chevron).
+ */
 enum class OceanCardListItemTagAlignment {
     START,
-    END
+    END,
+    ABOVE,
+    BELOW
 }
 
 @Composable
@@ -239,6 +247,12 @@ private fun CenterContent(
     Column(
         modifier = modifier
     ) {
+        if (tagStyle != null && tagAlignment == OceanCardListItemTagAlignment.ABOVE) {
+            OceanTag(style = tagStyle)
+
+            OceanSpacing.StackXXS()
+        }
+
         when (tagAlignment) {
             OceanCardListItemTagAlignment.START -> {
                 Row(
@@ -266,6 +280,16 @@ private fun CenterContent(
                     )
                 }
             }
+            OceanCardListItemTagAlignment.ABOVE,
+            OceanCardListItemTagAlignment.BELOW -> {
+                // The tag is emitted outside the title line, above or below the text block.
+                TitleWithTag(
+                    title = title,
+                    contentStyle = contentStyle,
+                    tagStyle = null,
+                    disabled = disabled
+                )
+            }
         }
 
         if (description.isNotBlank()) {
@@ -284,6 +308,12 @@ private fun CenterContent(
                 style = OceanTextStyle.captionBold,
                 color = if (disabled) OceanColors.interfaceDarkUp else Color.Unspecified
             )
+        }
+
+        if (tagStyle != null && tagAlignment == OceanCardListItemTagAlignment.BELOW) {
+            OceanSpacing.StackXXS()
+
+            OceanTag(style = tagStyle)
         }
     }
 }
@@ -664,6 +694,75 @@ fun OceanCardListItemPreview() {
                     iconColor = OceanColors.statusPositiveDeep
                 ),
                 onClick = {}
+            )
+        }
+    }
+}
+
+/**
+ * As quatro posições de tag lado a lado (MR-554). START e END são o comportamento atual;
+ * ABOVE e BELOW empilham dentro do bloco de conteúdo, com 8dp de respiro.
+ */
+@Preview(showBackground = true, heightDp = 640)
+@Composable
+fun OceanCardListItemTagPositionPreview() {
+    val tag = OceanTagStyle.Default(
+        label = "3x sem acréscimo",
+        layout = OceanTagLayout.Medium(),
+        type = OceanTagType.Positive
+    )
+
+    OceanTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(OceanColors.interfaceLightPure)
+                .padding(OceanSpacing.xs),
+            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
+        ) {
+            OceanCardListItem(
+                title = "START (default)",
+                description = "Pague em até 3x",
+                caption = "Caption",
+                tagStyle = tag,
+                tagAlignment = OceanCardListItemTagAlignment.START
+            )
+
+            OceanCardListItem(
+                title = "END",
+                description = "Pague em até 3x",
+                caption = "Caption",
+                tagStyle = tag,
+                tagAlignment = OceanCardListItemTagAlignment.END
+            )
+
+            OceanCardListItem(
+                title = "ABOVE",
+                description = "Pague em até 3x",
+                caption = "Caption",
+                tagStyle = tag,
+                tagAlignment = OceanCardListItemTagAlignment.ABOVE
+            )
+
+            OceanCardListItem(
+                title = "BELOW",
+                description = "Pague em até 3x",
+                caption = "Caption",
+                tagStyle = tag,
+                tagAlignment = OceanCardListItemTagAlignment.BELOW
+            )
+
+            OceanCardListItem(
+                title = "ABOVE + radio (caso MR-523)",
+                description = "Pague em até 3x",
+                caption = "Caption",
+                tagStyle = tag,
+                tagAlignment = OceanCardListItemTagAlignment.ABOVE,
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
+                    didUpdate = {}
+                ),
+                isSelected = true
             )
         }
     }

@@ -13,8 +13,8 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 /**
- * Cobre a prop [OceanCardListItemTagAlignment] — em especial os valores ABOVE e BELOW
- * acrescentados pelo MR-554, e a não-regressão dos valores preexistentes (RN-01).
+ * Covers the [OceanCardListItemTagAlignment] prop — especially the ABOVE and BELOW values
+ * added by MR-554, and the non-regression of the pre-existing values (RN-01).
  */
 @RunWith(RobolectricTestRunner::class)
 class OceanCardListItemTagAlignmentTest {
@@ -29,7 +29,7 @@ class OceanCardListItemTagAlignmentTest {
         type = OceanTagType.Positive
     )
 
-    // CT-16 — não-regressão: os valores preexistentes seguem renderizando a tag
+    // CT-16 — non-regression: the pre-existing values keep rendering the tag
 
     @Test
     fun rendersTagWhenAlignmentIsOmitted() {

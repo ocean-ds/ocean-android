@@ -50,10 +50,10 @@ import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.utils.vibrator.rememberVibrator
 
 /**
- * Onde a tag é posicionada em relação ao texto do card.
+ * Where the tag is positioned relative to the card text.
  *
- * [START] e [END] mantêm a tag na mesma linha do título; [ABOVE] e [BELOW] a empilham
- * dentro do bloco de conteúdo, nunca no slot do controle (radio/checkbox/chevron).
+ * [START] and [END] keep the tag on the same line as the title; [ABOVE] and [BELOW] stack it
+ * inside the content block, never in the control slot (radio/checkbox/chevron).
  */
 enum class OceanCardListItemTagAlignment {
     START,
@@ -282,7 +282,7 @@ private fun CenterContent(
             }
             OceanCardListItemTagAlignment.ABOVE,
             OceanCardListItemTagAlignment.BELOW -> {
-                // A tag é emitida fora da linha do título, acima ou abaixo do bloco de texto.
+                // The tag is emitted outside the title line, above or below the text block.
                 TitleWithTag(
                     title = title,
                     contentStyle = contentStyle,

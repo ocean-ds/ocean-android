@@ -49,9 +49,17 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.utils.vibrator.rememberVibrator
 
+/**
+ * Onde a tag é posicionada em relação ao texto do card.
+ *
+ * [START] e [END] mantêm a tag na mesma linha do título; [ABOVE] e [BELOW] a empilham
+ * dentro do bloco de conteúdo, nunca no slot do controle (radio/checkbox/chevron).
+ */
 enum class OceanCardListItemTagAlignment {
     START,
-    END
+    END,
+    ABOVE,
+    BELOW
 }
 
 @Composable
@@ -239,6 +247,12 @@ private fun CenterContent(
     Column(
         modifier = modifier
     ) {
+        if (tagStyle != null && tagAlignment == OceanCardListItemTagAlignment.ABOVE) {
+            OceanTag(style = tagStyle)
+
+            OceanSpacing.StackXXS()
+        }
+
         when (tagAlignment) {
             OceanCardListItemTagAlignment.START -> {
                 Row(
@@ -266,6 +280,16 @@ private fun CenterContent(
                     )
                 }
             }
+            OceanCardListItemTagAlignment.ABOVE,
+            OceanCardListItemTagAlignment.BELOW -> {
+                // A tag é emitida fora da linha do título, acima ou abaixo do bloco de texto.
+                TitleWithTag(
+                    title = title,
+                    contentStyle = contentStyle,
+                    tagStyle = null,
+                    disabled = disabled
+                )
+            }
         }
 
         if (description.isNotBlank()) {
@@ -284,6 +308,12 @@ private fun CenterContent(
                 style = OceanTextStyle.captionBold,
                 color = if (disabled) OceanColors.interfaceDarkUp else Color.Unspecified
             )
+        }
+
+        if (tagStyle != null && tagAlignment == OceanCardListItemTagAlignment.BELOW) {
+            OceanSpacing.StackXXS()
+
+            OceanTag(style = tagStyle)
         }
     }
 }
@@ -411,6 +441,45 @@ fun OceanCardListItemPreview() {
                     type = OceanTagType.Positive
                 ),
                 tagAlignment = OceanCardListItemTagAlignment.END
+            )
+
+            OceanCardListItem(
+                title = "Title with Tag Above",
+                description = "Description",
+                caption = "Caption",
+                tagStyle = OceanTagStyle.Default(
+                    label = "3x sem acréscimo",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Positive
+                ),
+                tagAlignment = OceanCardListItemTagAlignment.ABOVE
+            )
+
+            OceanCardListItem(
+                title = "Title with Tag Below",
+                description = "Description",
+                caption = "Caption",
+                tagStyle = OceanTagStyle.Default(
+                    label = "3x sem acréscimo",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Positive
+                ),
+                tagAlignment = OceanCardListItemTagAlignment.BELOW
+            )
+
+            OceanCardListItem(
+                title = "Selectable with Tag Above",
+                description = "Description",
+                tagStyle = OceanTagStyle.Default(
+                    label = "3x sem acréscimo",
+                    layout = OceanTagLayout.Medium(),
+                    type = OceanTagType.Positive
+                ),
+                tagAlignment = OceanCardListItemTagAlignment.ABOVE,
+                type = OceanCardListItemType.Selectable(
+                    selectionType = OceanCardListItemType.Selectable.SelectionType.Radiobutton,
+                    didUpdate = {}
+                )
             )
 
             OceanCardListItem(

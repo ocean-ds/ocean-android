@@ -145,6 +145,42 @@ fun OceanStatusListItemPreview() {
                     println("click container")
                 }
             )
+
+            OceanStatusListItem(
+                title = "Title",
+                description = "Description",
+                caption = "Caption",
+                leadingIcon = OceanIcons.PAGBLU_OUTLINE,
+                onClick = {
+                    println("click container")
+                }
+            )
+
+            OceanStatusListItem(
+                title = "Title",
+                description = "Description",
+                leadingIcon = OceanIcons.DOCUMENT_TEXT_OUTLINE,
+                tagLabel = "Tag",
+                tagType = OceanTagType.Warning,
+                tagPosition = OceanStatusListItemTagPosition.RIGHT,
+                rightIconType = OceanStatusListItemRightIconType.CONTEXT_MENU,
+                onClick = {
+                    println("click container")
+                },
+                onClickRightIcon = {
+                    println("click right icon")
+                }
+            )
+
+            OceanStatusListItem(
+                title = "Title",
+                description = "Description",
+                leadingIcon = OceanIcons.PAGBLU_OUTLINE,
+                isInactive = true,
+                onClick = {
+                    println("click container")
+                }
+            )
         }
     }
 }
@@ -165,6 +201,7 @@ fun OceanStatusListItem(
     badgeType: OceanBadgeType? = null,
     isReadOnly: Boolean = false,
     isInactive: Boolean = false,
+    leadingIcon: OceanIcons? = null,
     rightIconType: OceanStatusListItemRightIconType = OceanStatusListItemRightIconType.CHEVRON,
     onClick: (() -> Unit)? = null,
     onClickRightIcon: (() -> Unit)? = null
@@ -180,6 +217,16 @@ fun OceanStatusListItem(
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        if (leadingIcon != null) {
+            OceanIcon(
+                iconType = leadingIcon,
+                modifier = Modifier.size(24.dp),
+                tint = if (isInactive) OceanColors.interfaceDarkUp else OceanColors.brandPrimaryDown
+            )
+
+            OceanSpacing.StackXXSExtra()
+        }
+
         Column(
             modifier = Modifier.weight(1f)
         ) {

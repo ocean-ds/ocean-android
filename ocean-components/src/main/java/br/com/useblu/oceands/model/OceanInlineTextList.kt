@@ -9,5 +9,6 @@ data class OceanInlineTextList(
     val icon: String? = null,
     val isBold: Boolean? = false,
     val isStrike: Boolean? = !newValue.isNullOrBlank(),
-    val strikethroughColor: String? = null
+    val strikethroughColor: String? = null,
+    val isDivider: Boolean = false
 )

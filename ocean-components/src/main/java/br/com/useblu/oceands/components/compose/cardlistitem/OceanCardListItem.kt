@@ -54,10 +54,13 @@ import br.com.useblu.oceands.utils.vibrator.rememberVibrator
  *
  * [START] and [END] keep the tag on the same line as the title; [ABOVE] and [BELOW] stack it
  * inside the content block, never in the control slot (radio/checkbox/chevron).
+ * [END_CENTER] takes the tag out of the title line and centers it vertically against the whole
+ * text block, so it does not compete for width with a long title.
  */
 enum class OceanCardListItemTagAlignment {
     START,
     END,
+    END_CENTER,
     ABOVE,
     BELOW
 }
@@ -186,7 +189,8 @@ internal fun ContentCardListItem(
     showChevron: Boolean = false
 ) {
     val hasSelectableType = type is OceanCardListItemType.Selectable
-    val isTagAlignedEndWithSelectable = tagAlignment == OceanCardListItemTagAlignment.END && hasSelectableType
+    val isTagOutsideTextBlock = tagAlignment == OceanCardListItemTagAlignment.END_CENTER ||
+        (tagAlignment == OceanCardListItemTagAlignment.END && hasSelectableType)
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -205,12 +209,16 @@ internal fun ContentCardListItem(
             description = description,
             caption = caption,
             contentStyle = contentStyle,
-            tagStyle = if (isTagAlignedEndWithSelectable) null else tagStyle,
+            tagStyle = if (isTagOutsideTextBlock) null else tagStyle,
             tagAlignment = tagAlignment,
             disabled = disabled
         )
 
-        if (isTagAlignedEndWithSelectable && tagStyle != null) {
+        if (isTagOutsideTextBlock && tagStyle != null) {
+            if (tagAlignment == OceanCardListItemTagAlignment.END_CENTER) {
+                OceanSpacing.StackXXS()
+            }
+
             OceanTag(
                 style = tagStyle
             )
@@ -280,9 +288,10 @@ private fun CenterContent(
                     )
                 }
             }
+            OceanCardListItemTagAlignment.END_CENTER,
             OceanCardListItemTagAlignment.ABOVE,
             OceanCardListItemTagAlignment.BELOW -> {
-                // The tag is emitted outside the title line, above or below the text block.
+                // The tag is emitted outside the title line — above, below, or beside the block.
                 TitleWithTag(
                     title = title,
                     contentStyle = contentStyle,
@@ -734,6 +743,23 @@ fun OceanCardListItemTagPositionPreview() {
                 caption = "Caption",
                 tagStyle = tag,
                 tagAlignment = OceanCardListItemTagAlignment.END
+            )
+
+            OceanCardListItem(
+                title = "END_CENTER",
+                description = "Pague em até 3x",
+                caption = "Caption",
+                tagStyle = tag,
+                tagAlignment = OceanCardListItemTagAlignment.END_CENTER,
+                showChevron = true
+            )
+
+            OceanCardListItem(
+                title = "END_CENTER com título longo que ocupa mais de uma linha",
+                description = "Pague em até 3x",
+                tagStyle = tag,
+                tagAlignment = OceanCardListItemTagAlignment.END_CENTER,
+                showChevron = true
             )
 
             OceanCardListItem(

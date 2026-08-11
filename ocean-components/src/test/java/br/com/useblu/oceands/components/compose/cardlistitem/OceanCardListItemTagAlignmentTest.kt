@@ -1,12 +1,14 @@
 package br.com.useblu.oceands.components.compose.cardlistitem
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.getBoundsInRoot
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import br.com.useblu.oceands.components.compose.OceanTagLayout
 import br.com.useblu.oceands.components.compose.OceanTagStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
 import br.com.useblu.oceands.model.OceanTagType
+import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -68,6 +70,73 @@ class OceanCardListItemTagAlignmentTest {
             )
         }
 
+        composeTestRule.onNodeWithText(tagLabel).assertIsDisplayed()
+    }
+
+    @Test
+    fun rendersTagWithEndCenterAlignment() {
+        composeTestRule.setContent {
+            OceanCardListItem(
+                title = "Title",
+                description = "Description",
+                caption = "Caption",
+                tagStyle = tagStyle,
+                tagAlignment = OceanCardListItemTagAlignment.END_CENTER,
+                showChevron = true
+            )
+        }
+
+        composeTestRule.onNodeWithText(tagLabel).assertIsDisplayed()
+        composeTestRule.onNodeWithText("Title").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Description").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Caption").assertIsDisplayed()
+
+        val titleBounds = composeTestRule.onNodeWithText("Title").getBoundsInRoot()
+        val captionBounds = composeTestRule.onNodeWithText("Caption").getBoundsInRoot()
+        val tagBounds = composeTestRule.onNodeWithText(tagLabel).getBoundsInRoot()
+        val tagCenterY = (tagBounds.top + tagBounds.bottom) / 2f
+
+        Assert.assertTrue(tagCenterY > (titleBounds.top + titleBounds.bottom) / 2f)
+        Assert.assertTrue(tagCenterY < (captionBounds.top + captionBounds.bottom) / 2f)
+    }
+
+    @Test
+    fun rendersTagOnTitleLineWithEndAlignment() {
+        composeTestRule.setContent {
+            OceanCardListItem(
+                title = "Title",
+                description = "Description",
+                caption = "Caption",
+                tagStyle = tagStyle,
+                tagAlignment = OceanCardListItemTagAlignment.END
+            )
+        }
+
+        val titleBounds = composeTestRule.onNodeWithText("Title").getBoundsInRoot()
+        val tagBounds = composeTestRule.onNodeWithText(tagLabel).getBoundsInRoot()
+
+        Assert.assertEquals(
+            (titleBounds.top + titleBounds.bottom).value / 2f,
+            (tagBounds.top + tagBounds.bottom).value / 2f,
+            0.5f
+        )
+    }
+
+    @Test
+    fun rendersTagWithEndCenterAlignmentWhenTitleIsLong() {
+        val longTitle = "Ana Sócia Administradora QSA do grupo econômico"
+
+        composeTestRule.setContent {
+            OceanCardListItem(
+                title = longTitle,
+                description = "Description",
+                tagStyle = tagStyle,
+                tagAlignment = OceanCardListItemTagAlignment.END_CENTER,
+                showChevron = true
+            )
+        }
+
+        composeTestRule.onNodeWithText(longTitle).assertIsDisplayed()
         composeTestRule.onNodeWithText(tagLabel).assertIsDisplayed()
     }
 

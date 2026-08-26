@@ -14,9 +14,10 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 /**
- * Covers the [OceanShortcut] `blocked` contract: it draws the lock and keeps the item
- * clickable, because the click is what opens the explanation of why the function is
- * restricted. `disabled` is the inert state, and stays inert.
+ * Covers the [OceanShortcut] `blocked` contract: it draws the lock, stays inert by default
+ * (backwards compatibility) and only becomes clickable with `forceEnableActionWhenBlocked` —
+ * the case where the click is what opens the explanation of why the function is restricted.
+ * `disabled` is the inert state and has no opt-in: it stays inert in every combination.
  */
 @RunWith(RobolectricTestRunner::class)
 class OceanShortcutBlockedTest {
@@ -24,7 +25,7 @@ class OceanShortcutBlockedTest {
     @get:Rule val composeTestRule = createComposeRule()
 
     @Test
-    fun blockedShortcutDeliversTheClick() {
+    fun blockedShortcutDoesNotDeliverTheClickByDefault() {
         var clicks = 0
 
         composeTestRule.setContent {
@@ -39,7 +40,47 @@ class OceanShortcutBlockedTest {
         composeTestRule.onNodeWithText("Antecipar vendas").assertIsDisplayed()
         composeTestRule.onNodeWithText("Antecipar vendas").performClick()
 
+        assertEquals(0, clicks)
+    }
+
+    @Test
+    fun blockedShortcutDeliversTheClickWithTheOptIn() {
+        var clicks = 0
+
+        composeTestRule.setContent {
+            OceanShortcut(
+                label = "Antecipar vendas",
+                icon = OceanIcons.PLACEHOLDER_OUTLINE,
+                blocked = true,
+                forceEnableActionWhenBlocked = true,
+                action = { clicks++ }
+            )
+        }
+
+        composeTestRule.onNodeWithText("Antecipar vendas").performClick()
+
         assertEquals(1, clicks)
+    }
+
+    // `disabled` não tem opt-in: item inerte continua inerte mesmo com a chave ligada.
+    @Test
+    fun disabledShortcutStaysInertEvenWithTheOptIn() {
+        var clicks = 0
+
+        composeTestRule.setContent {
+            OceanShortcut(
+                label = "Antecipar vendas",
+                icon = OceanIcons.PLACEHOLDER_OUTLINE,
+                blocked = true,
+                disabled = true,
+                forceEnableActionWhenBlocked = true,
+                action = { clicks++ }
+            )
+        }
+
+        composeTestRule.onNodeWithText("Antecipar vendas").performClick()
+
+        assertEquals(0, clicks)
     }
 
     @Test

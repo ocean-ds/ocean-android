@@ -178,7 +178,8 @@ fun OceanShortcut(
         action = model.action,
         layout = model.layout,
         blocked = model.blocked,
-        disabled = model.disabled
+        disabled = model.disabled,
+        forceEnableActionWhenBlocked = model.forceEnableActionWhenBlocked
     )
 }
 
@@ -226,7 +227,8 @@ fun OceanShortcut(
     action: (() -> Unit)? = null,
     layout: OceanShortcutLayout = OceanShortcutLayout.TinyVertical,
     blocked: Boolean = false,
-    disabled: Boolean = false
+    disabled: Boolean = false,
+    forceEnableActionWhenBlocked: Boolean = false
 ) {
     val backgroundColor = if (disabled) {
         OceanColors.interfaceLightDown
@@ -255,10 +257,11 @@ fun OceanShortcut(
             containerColor = backgroundColor,
             disabledContainerColor = backgroundColor
         ),
-        // `blocked` desenha o cadeado e NADA MAIS: função restrita tem de continuar
-        // clicável, porque o clique é o que abre a explicação do motivo. Item inerte é
-        // `disabled`, e esse segue sem clique.
-        enabled = !disabled && action != null,
+        // `blocked` desenha o cadeado e, por retrocompatibilidade, segue sem clique.
+        // `forceEnableActionWhenBlocked` (default false) libera o clique no item restrito —
+        // é o caso em que o clique é o que abre a explicação do motivo. `disabled` é o
+        // estado inerte e não tem opt-in: continua sem clique em qualquer combinação.
+        enabled = !disabled && action != null && (!blocked || forceEnableActionWhenBlocked),
         onClick = {
             action?.invoke()
         }
@@ -421,5 +424,11 @@ data class OceanShortcutModel(
     val action: (() -> Unit)? = null,
     val layout: OceanShortcutLayout = OceanShortcutLayout.TinyVertical,
     val blocked: Boolean = false,
-    val disabled: Boolean = false
+    val disabled: Boolean = false,
+    /**
+     * Deixa o item clicável mesmo com [blocked]. Nasce `false`, então nada muda para quem já usa o
+     * componente. Ligue quando o clique for a resposta ao cadeado — um item que avisa que a função
+     * está restrita e não deixa o cliente descobrir por quê é um beco sem saída.
+     */
+    val forceEnableActionWhenBlocked: Boolean = false
 )

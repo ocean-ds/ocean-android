@@ -275,8 +275,12 @@ fun OceanShortcut(
                 )
             }
 
+            // O canto de cima é do cadeado quando a função está restrita: ele explica o
+            // estado do item, e oferta ou contagem não servem para nada se a função não
+            // abre. Mesma precedência do Ocean web, onde `blocked` suprime tag e badge.
+            // A tag centralizada não divide slot com o cadeado, então continua aparecendo.
             when {
-                tag != null -> {
+                tag != null && !(blocked && tag.position == OceanShortcutTag.Position.Top) -> {
                     OceanTag(
                         style = OceanTagStyle.Default(
                             label = tag.text,
@@ -287,7 +291,7 @@ fun OceanShortcut(
                     )
                 }
 
-                badge != null -> {
+                badge != null && !blocked -> {
                     Box(
                         modifier = Modifier
                             .padding(top = OceanSpacing.xxs, end = OceanSpacing.xxs)

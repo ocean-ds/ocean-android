@@ -255,7 +255,10 @@ fun OceanShortcut(
             containerColor = backgroundColor,
             disabledContainerColor = backgroundColor
         ),
-        enabled = !disabled && !blocked && action != null,
+        // `blocked` desenha o cadeado e NADA MAIS: função restrita tem de continuar
+        // clicável, porque o clique é o que abre a explicação do motivo. Item inerte é
+        // `disabled`, e esse segue sem clique.
+        enabled = !disabled && action != null,
         onClick = {
             action?.invoke()
         }

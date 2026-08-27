@@ -129,7 +129,7 @@ class OceanShortcutBlockedTest {
             OceanShortcut(
                 label = "Antecipar vendas",
                 icon = OceanIcons.PLACEHOLDER_OUTLINE,
-                tag = OceanShortcutTag(text = "Oferta", type = OceanTagType.IMPORTANT),
+                tag = OceanShortcutTag(text = "Oferta", type = OceanTagType.Important),
                 blocked = true
             )
         }
@@ -161,7 +161,7 @@ class OceanShortcutBlockedTest {
                 icon = OceanIcons.PLACEHOLDER_OUTLINE,
                 tag = OceanShortcutTag(
                     text = "Oferta",
-                    type = OceanTagType.IMPORTANT,
+                    type = OceanTagType.Important,
                     position = OceanShortcutTag.Position.Center
                 ),
                 blocked = true
@@ -177,7 +177,7 @@ class OceanShortcutBlockedTest {
             OceanShortcut(
                 label = "Antecipar vendas",
                 icon = OceanIcons.PLACEHOLDER_OUTLINE,
-                tag = OceanShortcutTag(text = "Oferta", type = OceanTagType.IMPORTANT)
+                tag = OceanShortcutTag(text = "Oferta", type = OceanTagType.Important)
             )
         }
 

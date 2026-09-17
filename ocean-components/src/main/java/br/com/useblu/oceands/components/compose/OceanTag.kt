@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
@@ -20,6 +21,7 @@ import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
@@ -83,6 +85,20 @@ fun OceanTagPreviewV2() {
                     label = "Label",
                     layout = OceanTagLayout.Medium(),
                     type = OceanTagType.NeutralPrimary
+                )
+            )
+
+            OceanTag(
+                style = OceanTagStyle.Highlight(
+                    label = "Label",
+                    type = OceanTagType.Important
+                )
+            )
+
+            OceanTag(
+                style = OceanTagStyle.Highlight(
+                    label = "Label",
+                    type = OceanTagType.Highlight
                 )
             )
         }
@@ -439,6 +455,47 @@ private fun HighlightTag(
     modifier: Modifier,
     style: OceanTagStyle.Highlight
 ) {
+    when (val layout = style.layout) {
+        is OceanTagLayout.Medium -> HighlightPillTag(
+            modifier = modifier,
+            style = style,
+            height = layout.height,
+            horizontalPadding = OceanSpacing.xxs,
+            fontSize = layout.fontSize,
+            fontFamily = OceanFontFamily.BaseMedium
+        )
+
+        is OceanTagLayout.Small -> HighlightPillTag(
+            modifier = modifier,
+            style = style,
+            height = layout.height,
+            horizontalPadding = OceanSpacing.xxxs,
+            fontSize = layout.fontSize,
+            fontFamily = OceanFontFamily.BaseBold
+        )
+
+        is OceanTagLayout.Corner -> DefaultCornerTag(
+            modifier = modifier,
+            style = OceanTagStyle.Default(
+                label = style.label,
+                layout = layout,
+                type = style.type
+            ),
+            layout = layout,
+            enabled = true
+        )
+    }
+}
+
+@Composable
+private fun HighlightPillTag(
+    modifier: Modifier,
+    style: OceanTagStyle.Highlight,
+    height: Dp,
+    horizontalPadding: Dp,
+    fontSize: TextUnit,
+    fontFamily: FontFamily
+) {
     val textColor = getTextColor(type = style.type)
     val backgroundColor = getBackgroundColor(type = style.type)
 
@@ -448,14 +505,15 @@ private fun HighlightTag(
                 color = backgroundColor,
                 borderRadius = OceanBorderRadius.LG.allCorners
             )
-            .height(style.layout.height)
-            .padding(horizontal = OceanSpacing.xxxs),
+            .height(height)
+            .padding(horizontal = horizontalPadding),
         verticalAlignment = Alignment.CenterVertically
     ) {
         OceanText(
             text = style.label,
             color = textColor,
-            fontSize = style.layout.fontSize
+            fontSize = fontSize,
+            fontFamily = fontFamily
         )
     }
 }
@@ -510,7 +568,7 @@ fun getBackgroundColor(type: OceanTagType): Color {
         }
 
         OceanTagType.Highlight -> {
-            OceanColors.brandPrimaryDown
+            OceanColors.brandPrimaryPure
         }
 
         OceanTagType.HighlightComplementary -> {
@@ -568,10 +626,14 @@ sealed interface OceanTagStyle {
         val textStyle: TextStyle? = null
     ) : OceanTagStyle
 
+    /**
+     * Typography follows [layout] only — a Highlight and a Default tag with the
+     * same layout render the same text size and weight.
+     */
     data class Highlight(
         val label: String,
         val type: OceanTagType = OceanTagType.Warning,
-        val layout: OceanTagLayout.Small
+        val layout: OceanTagLayout = OceanTagLayout.Medium()
     ) : OceanTagStyle
 }
 

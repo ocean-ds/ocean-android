@@ -380,6 +380,7 @@ private fun DefaultMediumTag(
             label = style.label,
             color = textColor,
             fallbackFontSize = layout.fontSize,
+            fallbackFontFamily = OceanFontFamily.BaseMedium,
             textStyleOverride = style.textStyle
         )
     }
@@ -423,6 +424,7 @@ private fun DefaultSmallTag(
             label = style.label,
             color = textColor,
             fallbackFontSize = layout.fontSize,
+            fallbackFontFamily = OceanFontFamily.BaseBold,
             textStyleOverride = style.textStyle
         )
     }
@@ -433,7 +435,8 @@ private fun TagText(
     label: String,
     color: Color,
     fallbackFontSize: TextUnit,
-    textStyleOverride: TextStyle?
+    textStyleOverride: TextStyle?,
+    fallbackFontFamily: FontFamily? = null
 ) {
     if (textStyleOverride != null) {
         OceanText(
@@ -445,7 +448,8 @@ private fun TagText(
         OceanText(
             text = label,
             color = color,
-            fontSize = fallbackFontSize
+            fontSize = fallbackFontSize,
+            fontFamily = fallbackFontFamily
         )
     }
 }
@@ -509,11 +513,12 @@ private fun HighlightPillTag(
             .padding(horizontal = horizontalPadding),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        OceanText(
-            text = style.label,
+        TagText(
+            label = style.label,
             color = textColor,
-            fontSize = fontSize,
-            fontFamily = fontFamily
+            fallbackFontSize = fontSize,
+            fallbackFontFamily = fontFamily,
+            textStyleOverride = null
         )
     }
 }

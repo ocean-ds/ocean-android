@@ -442,14 +442,18 @@ private fun TagText(
         OceanText(
             text = label,
             color = color,
-            style = textStyleOverride
+            style = textStyleOverride,
+            softWrap = false,
+            maxLines = 1
         )
     } else {
         OceanText(
             text = label,
             color = color,
             fontSize = fallbackFontSize,
-            fontFamily = fallbackFontFamily
+            fontFamily = fallbackFontFamily,
+            softWrap = false,
+            maxLines = 1
         )
     }
 }

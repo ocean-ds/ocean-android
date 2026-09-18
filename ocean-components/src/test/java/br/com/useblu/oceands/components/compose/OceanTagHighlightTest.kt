@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.width
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertHeightIsEqualTo
@@ -74,6 +75,22 @@ class OceanTagHighlightTest {
         }
 
         composeTestRule.onNodeWithTag("highlight").assertHeightIsEqualTo(16.dp)
+    }
+
+    @Test
+    fun highlightLongLabelStaysOnOneLine() {
+        composeTestRule.setContent {
+            Box(modifier = Modifier.width(80.dp).testTag("narrow")) {
+                OceanTag(
+                    style = OceanTagStyle.Highlight(
+                        label = "Possível bloqueio de vendas",
+                        type = OceanTagType.Highlight
+                    )
+                )
+            }
+        }
+
+        composeTestRule.onNodeWithTag("narrow").assertHeightIsEqualTo(20.dp)
     }
 
     @Test

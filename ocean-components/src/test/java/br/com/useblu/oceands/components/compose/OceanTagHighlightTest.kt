@@ -94,18 +94,18 @@ class OceanTagHighlightTest {
     }
 
     @Test
-    fun highlightNeutralUsesBrandPrimaryPure() {
-        var neutralMatchesPure = false
+    fun highlightNeutralUsesBrandPrimaryDown() {
+        var neutralMatchesDown = false
         var importantMatchesCoral = false
 
         composeTestRule.setContent {
-            neutralMatchesPure =
-                getBackgroundColor(OceanTagType.Highlight) == OceanColors.brandPrimaryPure
+            neutralMatchesDown =
+                getBackgroundColor(OceanTagType.Highlight) == OceanColors.brandPrimaryDown
             importantMatchesCoral =
                 getBackgroundColor(OceanTagType.Important) == OceanColors.highlightPure
         }
 
-        assertTrue(neutralMatchesPure)
+        assertTrue(neutralMatchesDown)
         assertTrue(importantMatchesCoral)
     }
 }

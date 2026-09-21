@@ -577,7 +577,7 @@ fun getBackgroundColor(type: OceanTagType): Color {
         }
 
         OceanTagType.Highlight -> {
-            OceanColors.brandPrimaryPure
+            OceanColors.brandPrimaryDown
         }
 
         OceanTagType.HighlightComplementary -> {

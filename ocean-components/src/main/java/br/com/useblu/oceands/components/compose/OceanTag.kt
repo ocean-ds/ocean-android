@@ -470,7 +470,7 @@ private fun HighlightTag(
             height = layout.height,
             horizontalPadding = OceanSpacing.xxs,
             fontSize = layout.fontSize,
-            fontFamily = OceanFontFamily.BaseMedium
+            fontFamily = OceanFontFamily.BaseBold
         )
 
         is OceanTagLayout.Small -> HighlightPillTag(
@@ -598,7 +598,7 @@ fun getTextColor(type: OceanTagType): Color {
         }
 
         OceanTagType.Complementary -> {
-            OceanColors.complementaryPure
+            OceanColors.complementaryDeep
         }
 
         OceanTagType.Negative -> {
@@ -636,8 +636,8 @@ sealed interface OceanTagStyle {
     ) : OceanTagStyle
 
     /**
-     * Typography follows [layout] only — a Highlight and a Default tag with the
-     * same layout render the same text size and weight.
+     * Text size follows [layout]; the weight is always Bold (700), which is what
+     * sets a Highlight apart from a Default tag of the same layout.
      */
     data class Highlight(
         val label: String,

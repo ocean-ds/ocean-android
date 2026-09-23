@@ -108,4 +108,27 @@ class OceanTagHighlightTest {
         assertTrue(neutralMatchesDown)
         assertTrue(importantMatchesCoral)
     }
+
+    @Test
+    fun complementaryTextUsesComplementaryDeep() {
+        var textMatchesDeep = false
+        var backgroundKeepsPureTint = false
+
+        composeTestRule.setContent {
+            textMatchesDeep =
+                getTextColor(OceanTagType.Complementary) == OceanColors.complementaryDeep
+            val expectedBackground = OceanColors.complementaryPure.copy(alpha = 0.08f)
+            backgroundKeepsPureTint =
+                getBackgroundColor(OceanTagType.Complementary) == expectedBackground
+        }
+
+        assertTrue(textMatchesDeep)
+        assertTrue(backgroundKeepsPureTint)
+    }
+
+    @Test
+    fun complementaryIsParsedFromPayloadToken() {
+        assertEquals(OceanTagType.Complementary, OceanTagType.fromString("complementary"))
+        assertEquals(OceanTagType.NeutralPrimary, OceanTagType.fromString("neutral-02"))
+    }
 }

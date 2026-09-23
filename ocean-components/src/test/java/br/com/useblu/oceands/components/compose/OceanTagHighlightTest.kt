@@ -117,9 +117,9 @@ class OceanTagHighlightTest {
         composeTestRule.setContent {
             textMatchesDeep =
                 getTextColor(OceanTagType.Complementary) == OceanColors.complementaryDeep
+            val expectedBackground = OceanColors.complementaryPure.copy(alpha = 0.08f)
             backgroundKeepsPureTint =
-                getBackgroundColor(OceanTagType.Complementary) ==
-                    OceanColors.complementaryPure.copy(alpha = 0.08f)
+                getBackgroundColor(OceanTagType.Complementary) == expectedBackground
         }
 
         assertTrue(textMatchesDeep)

@@ -424,7 +424,7 @@ private fun DefaultSmallTag(
             label = style.label,
             color = textColor,
             fallbackFontSize = layout.fontSize,
-            fallbackFontFamily = OceanFontFamily.BaseExtraBold,
+            fallbackFontFamily = OceanFontFamily.BaseBold,
             textStyleOverride = style.textStyle
         )
     }

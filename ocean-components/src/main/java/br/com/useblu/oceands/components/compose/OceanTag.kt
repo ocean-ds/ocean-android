@@ -470,7 +470,7 @@ private fun HighlightTag(
             height = layout.height,
             horizontalPadding = OceanSpacing.xxs,
             fontSize = layout.fontSize,
-            fontFamily = OceanFontFamily.BaseBold
+            fontFamily = OceanFontFamily.BaseExtraBold
         )
 
         is OceanTagLayout.Small -> HighlightPillTag(
@@ -479,7 +479,7 @@ private fun HighlightTag(
             height = layout.height,
             horizontalPadding = OceanSpacing.xxxs,
             fontSize = layout.fontSize,
-            fontFamily = OceanFontFamily.BaseBold
+            fontFamily = OceanFontFamily.BaseExtraBold
         )
 
         is OceanTagLayout.Corner -> DefaultCornerTag(
@@ -636,7 +636,7 @@ sealed interface OceanTagStyle {
     ) : OceanTagStyle
 
     /**
-     * Text size follows [layout]; the weight is always Bold (700), which is what
+     * Text size follows [layout]; the weight is always ExtraBold (800), which is what
      * sets a Highlight apart from a Default tag of the same layout.
      */
     data class Highlight(

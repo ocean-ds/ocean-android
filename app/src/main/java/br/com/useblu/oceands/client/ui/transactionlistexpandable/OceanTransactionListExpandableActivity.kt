@@ -181,6 +181,57 @@ private fun TransactionListExpandableSamples() {
         )
 
         OceanSpacing.StackMD()
+
+        OceanText(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = OceanSpacing.xs),
+            text = "Inverted (parent + children)",
+            style = OceanTextStyle.heading5,
+            color = OceanColors.interfaceDarkDeep
+        )
+
+        OceanSpacing.StackXXS()
+
+        OceanText(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = OceanSpacing.xs),
+            text = "primaryLabel em description + interfaceDarkDown · " +
+                "secondaryLabel em paragraph + interfaceDarkDeep",
+            style = OceanTextStyle.caption,
+            color = OceanColors.interfaceDarkDown
+        )
+
+        OceanSpacing.StackXS()
+
+        OceanTransactionListExpandable(
+            parent = OceanTransactionListExpandableItem(
+                primaryLabel = "Vendas do dia",
+                secondaryLabel = "Consolidado",
+                primaryValue = 1280.50,
+                isInverted = true
+            ),
+            itemsIcon = OceanIcons.LOCK_OPEN_SOLID,
+            items = listOf(
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Crédito à vista",
+                    secondaryLabel = "Visa **** 1234",
+                    primaryValue = 480.00,
+                    isInverted = true
+                ),
+                OceanTransactionListExpandableItem(
+                    primaryLabel = "Crédito parcelado",
+                    secondaryLabel = "Mastercard **** 5678",
+                    primaryValue = 800.50,
+                    isInverted = true
+                )
+            ),
+            footerText = "Fim das vendas do dia",
+            startExpanded = true
+        )
+
+        OceanSpacing.StackMD()
     }
 }
 

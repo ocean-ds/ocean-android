@@ -8,6 +8,8 @@ data class OceanHeaderAppModel(
     val clientName: String = "",
     val formattedCnpj: String = "",
     val onClickTitle: () -> Unit = {},
+    val showTitleBadge: Boolean = false,
+    val titleBadgeContentDescription: String = "",
     val bluPlusValue: Int = 0,
     val onClickBluPlus: () -> Unit = {},
     val onClickMenu: () -> Unit = {},

@@ -19,7 +19,7 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 
 /**
  * Child Transaction List Read Only (Figma `26758-376`, MR-615): child item with the timeline and
- * no action. Use `size = Sm` on [content] and [amount] for the Figma child layout.
+ * no action. [content] and [amount] default to `size = Sm` (Figma child layout); pass `Md` to override.
  *
  * @param position where the item sits in its group: draws the timeline above/below the icon.
  */
@@ -45,7 +45,7 @@ fun OceanChildTransactionListReadOnly(
 /**
  * Child Transaction List Action (Figma `24323-3663`, MR-615): child item with the timeline and a
  * chevron; pressed/hovered shows the `Interface/Light/Up` highlight. Disabled and loading items
- * do not call [onClick].
+ * do not call [onClick]. [content] and [amount] default to `size = Sm`; pass `Md` to override.
  */
 @Suppress("LongParameterList")
 @Composable
@@ -89,8 +89,8 @@ private fun OceanChildTransactionListPreview() {
     Column {
         OceanTransactionListPosition.entries.forEach { position ->
             OceanChildTransactionListAction(
-                content = TransactionListPreviewData.contentSm,
-                amount = TransactionListPreviewData.amountSm,
+                content = TransactionListPreviewData.content,
+                amount = TransactionListPreviewData.amount,
                 icon = TransactionListPreviewData.childIcon,
                 position = position,
                 onClick = {}
@@ -98,8 +98,8 @@ private fun OceanChildTransactionListPreview() {
         }
         OceanTransactionListPosition.entries.forEach { position ->
             OceanChildTransactionListReadOnly(
-                content = TransactionListPreviewData.contentSm,
-                amount = TransactionListPreviewData.amountSm,
+                content = TransactionListPreviewData.content,
+                amount = TransactionListPreviewData.amount,
                 icon = TransactionListPreviewData.childIcon,
                 position = position,
                 state = OceanTransactionListState.Disabled

@@ -675,7 +675,7 @@ private fun AmountContentList(
     enabled: Boolean
 ) {
     val inactive = !enabled || style.type == AmountType.Inactive
-    val isMd = style.size == ContentListSize.Md
+    val isMd = (style.size ?: ContentListSize.Md) == ContentListSize.Md
     val baseStyle = if (isMd) OceanTextStyle.paragraph else OceanTextStyle.description
     val amountColor = when {
         inactive -> OceanColors.interfaceDarkUp
@@ -862,7 +862,8 @@ sealed interface ContentListStyle {
     data class Amount(
         val amount: String,
         val type: AmountType = AmountType.Default,
-        val size: ContentListSize = ContentListSize.Md,
+        /** `null` = Md, except in the child items, where `null` = Sm (Figma `_Child Transaction List`). */
+        val size: ContentListSize? = null,
         val strikethroughAmount: String = "",
         val tag: OceanTagModel? = null,
         val additionalData: String = ""
@@ -873,12 +874,12 @@ sealed interface ContentListStyle {
  * Opts a content block into the Figma tokens (MR-615) when it still uses the legacy layout:
  * the Transaction List family always renders the tokens, while the sibling lists keep theirs.
  */
-internal fun ContentListStyle.withTokens(): ContentListStyle = when (this) {
-    is ContentListStyle.Default -> if (size == null) copy(size = ContentListSize.Md) else this
-    is ContentListStyle.Inverted -> if (size == null) copy(size = ContentListSize.Md) else this
-    is ContentListStyle.Strikethrough -> if (size == null) copy(size = ContentListSize.Md) else this
-    is ContentListStyle.Transaction,
-    is ContentListStyle.Amount -> this
+internal fun ContentListStyle.withTokens(defaultSize: ContentListSize = ContentListSize.Md): ContentListStyle = when (this) {
+    is ContentListStyle.Default -> if (size == null) copy(size = defaultSize) else this
+    is ContentListStyle.Inverted -> if (size == null) copy(size = defaultSize) else this
+    is ContentListStyle.Strikethrough -> if (size == null) copy(size = defaultSize) else this
+    is ContentListStyle.Amount -> if (size == null) copy(size = defaultSize) else this
+    is ContentListStyle.Transaction -> this
 }
 
 /** Figma `Size` of the content blocks: Md (default) or Sm (the former Child). */

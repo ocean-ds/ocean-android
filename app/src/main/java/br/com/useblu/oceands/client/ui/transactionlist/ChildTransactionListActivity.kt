@@ -11,7 +11,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.useblu.oceands.components.compose.ContentListSize
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.transactionlist.OceanChildTransactionListAction
 import br.com.useblu.oceands.components.compose.transactionlist.OceanChildTransactionListReadOnly
@@ -50,8 +49,8 @@ private fun ChildTransactionListActionSamples() = SamplesScreen {
         SampleSection("Position: standalone/first/middle/last · $state")
         OceanTransactionListPosition.entries.forEach { position ->
             OceanChildTransactionListAction(
-                content = TransactionListSamples.content(ContentListSize.Sm),
-                amount = TransactionListSamples.amount(ContentListSize.Sm),
+                content = TransactionListSamples.content(),
+                amount = TransactionListSamples.amount(),
                 icon = TransactionListSamples.childIcon,
                 position = position,
                 state = state,
@@ -68,8 +67,8 @@ private fun ChildTransactionListReadOnlySamples() = SamplesScreen {
         SampleSection("Position: standalone/first/middle/last · $state")
         OceanTransactionListPosition.entries.forEach { position ->
             OceanChildTransactionListReadOnly(
-                content = TransactionListSamples.content(ContentListSize.Sm),
-                amount = TransactionListSamples.amount(ContentListSize.Sm),
+                content = TransactionListSamples.content(),
+                amount = TransactionListSamples.amount(),
                 icon = TransactionListSamples.childIcon,
                 position = position,
                 state = state

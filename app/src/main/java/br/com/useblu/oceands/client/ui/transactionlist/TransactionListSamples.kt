@@ -22,7 +22,7 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
 internal object TransactionListSamples {
-    fun content(size: ContentListSize = ContentListSize.Md) = ContentListStyle.Inverted(
+    fun content(size: ContentListSize? = null) = ContentListStyle.Inverted(
         title = "Title",
         description = "Description",
         caption = "Caption",
@@ -30,7 +30,7 @@ internal object TransactionListSamples {
     )
 
     fun amount(
-        size: ContentListSize = ContentListSize.Md,
+        size: ContentListSize? = null,
         type: AmountType = AmountType.Default,
         amount: String = "R$ 0,00",
         strikethrough: String = ""

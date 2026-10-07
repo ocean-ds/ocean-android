@@ -1,9 +1,13 @@
 package br.com.useblu.oceands.components.compose.transactionlist
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.components.compose.ContentListSize
+import br.com.useblu.oceands.components.compose.ContentListStyle
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -95,6 +99,40 @@ class OceanChildTransactionListTest {
 
         composeTestRule.onNodeWithText("Description").performClick()
         assertEquals(0, clicks)
+    }
+
+    @Test
+    fun childrenDefaultToSmContentAndAmount() {
+        composeTestRule.setContent {
+            Column {
+                OceanChildTransactionListReadOnly(content = Samples.content, amount = Samples.amount.copy(amount = "R$ 1,00"))
+                OceanChildTransactionListAction(
+                    content = ContentListStyle.Inverted(title = "Action title", description = "Action description"),
+                    amount = Samples.amount.copy(amount = "R$ 2,00"),
+                    onClick = {}
+                )
+            }
+        }
+
+        assertEquals(12.sp, composeTestRule.onNodeWithText("Title", useUnmergedTree = true).textStyle().fontSize)
+        assertEquals(14.sp, composeTestRule.onNodeWithText("Description", useUnmergedTree = true).textStyle().fontSize)
+        assertEquals(14.sp, composeTestRule.onNodeWithText("R$ 1,00", useUnmergedTree = true).textStyle().fontSize)
+        assertEquals(12.sp, composeTestRule.onNodeWithText("Action title", useUnmergedTree = true).textStyle().fontSize)
+        assertEquals(14.sp, composeTestRule.onNodeWithText("R$ 2,00", useUnmergedTree = true).textStyle().fontSize)
+    }
+
+    @Test
+    fun childrenKeepAnExplicitMdSize() {
+        composeTestRule.setContent {
+            OceanChildTransactionListReadOnly(
+                content = Samples.content.copy(size = ContentListSize.Md),
+                amount = Samples.amount.copy(size = ContentListSize.Md)
+            )
+        }
+
+        assertEquals(14.sp, composeTestRule.onNodeWithText("Title", useUnmergedTree = true).textStyle().fontSize)
+        assertEquals(16.sp, composeTestRule.onNodeWithText("Description", useUnmergedTree = true).textStyle().fontSize)
+        assertEquals(16.sp, composeTestRule.onNodeWithText("R$ 0,00", useUnmergedTree = true).textStyle().fontSize)
     }
 
     @Test

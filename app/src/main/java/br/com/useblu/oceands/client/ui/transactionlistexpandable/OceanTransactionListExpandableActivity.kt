@@ -14,7 +14,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.client.ui.transactionlist.SampleSection
 import br.com.useblu.oceands.client.ui.transactionlist.TransactionListSamples
-import br.com.useblu.oceands.components.compose.ContentListSize
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.list.OceanTransactionListExpandable
 import br.com.useblu.oceands.components.compose.list.OceanTransactionListExpandableItem
@@ -202,8 +201,8 @@ private fun TransactionListExpandableSamplesPreview() {
 private fun FamilyExpandableSamples() {
     val children = List(3) {
         OceanTransactionListChildItem(
-            content = TransactionListSamples.content(ContentListSize.Sm),
-            amount = TransactionListSamples.amount(ContentListSize.Sm),
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
             icon = TransactionListSamples.childIcon,
             onClick = {}
         )

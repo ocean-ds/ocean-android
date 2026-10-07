@@ -13,15 +13,11 @@ internal object TransactionListPreviewData {
         caption = "Caption"
     )
 
-    val contentSm = content.copy(size = br.com.useblu.oceands.components.compose.ContentListSize.Sm)
-
     val amount = ContentListStyle.Amount(
         amount = "R$ 0,00",
         tag = OceanTagModel(type = OceanTagType.Positive, text = "Label"),
         additionalData = "Additional data"
     )
-
-    val amountSm = amount.copy(size = br.com.useblu.oceands.components.compose.ContentListSize.Sm)
 
     val icon = OceanIconModel(icon = OceanIcons.PLACEHOLDER_OUTLINE)
 

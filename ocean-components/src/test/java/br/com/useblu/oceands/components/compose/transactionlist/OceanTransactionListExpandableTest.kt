@@ -5,7 +5,6 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import br.com.useblu.oceands.components.compose.ContentListSize
 import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.list.OceanTransactionListExpandable
 import org.junit.Assert.assertEquals
@@ -22,8 +21,8 @@ class OceanTransactionListExpandableTest {
 
     private val children = listOf("Child 1", "Child 2", "Child 3").map {
         OceanTransactionListChildItem(
-            content = ContentListStyle.Inverted(title = it, description = "Child description", size = ContentListSize.Sm),
-            amount = Samples.amount.copy(size = ContentListSize.Sm),
+            content = ContentListStyle.Inverted(title = it, description = "Child description"),
+            amount = Samples.amount,
             icon = Samples.icon
         )
     }

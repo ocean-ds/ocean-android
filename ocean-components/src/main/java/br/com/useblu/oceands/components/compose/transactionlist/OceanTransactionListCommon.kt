@@ -28,6 +28,7 @@ import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.components.compose.ContentListSize
 import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.OceanContentList
 import br.com.useblu.oceands.components.compose.OceanDivider
@@ -64,7 +65,8 @@ internal fun TransactionListContent(
     modifier: Modifier = Modifier,
     content: ContentListStyle,
     amount: ContentListStyle.Amount?,
-    enabled: Boolean
+    enabled: Boolean,
+    defaultSize: ContentListSize = ContentListSize.Md
 ) {
     Row(
         modifier = modifier,
@@ -73,12 +75,12 @@ internal fun TransactionListContent(
     ) {
         OceanContentList(
             modifier = Modifier.weight(1f),
-            style = content.withTokens(),
+            style = content.withTokens(defaultSize),
             enabled = enabled
         )
         amount?.let {
             OceanContentList(
-                style = it,
+                style = it.withTokens(defaultSize),
                 enabled = enabled
             )
         }
@@ -233,7 +235,8 @@ internal fun ChildTransactionListRow(
                 .padding(vertical = OceanSpacing.xxsExtra),
             content = content,
             amount = amount,
-            enabled = enabled
+            enabled = enabled,
+            defaultSize = ContentListSize.Sm
         )
 
         trailing?.invoke(this)

@@ -25,7 +25,7 @@ fun setOceanTagIcon(imageView: ImageView, type: OceanTagType?, icon: Drawable?) 
         OceanTagType.Complementary -> {
             imageView.isVisible = false
             iconDrawable = null
-            color = R.color.ocean_color_complementary_pure
+            color = R.color.ocean_color_complementary_deep
         }
         OceanTagType.Negative -> {
             iconDrawable = icon ?: ContextCompat.getDrawable(
@@ -80,7 +80,7 @@ fun setOceanTagBackground(layout: LinearLayout, type: OceanTagType?) {
         }
         OceanTagType.Complementary -> {
             background = R.drawable.ocean_tag_neutral_2_background
-            textColor = R.color.ocean_color_complementary_pure
+            textColor = R.color.ocean_color_complementary_deep
         }
         OceanTagType.Negative -> {
             background = R.drawable.ocean_tag_negative_background
@@ -111,7 +111,7 @@ fun setOceanTagTextColor(textView: TextView, type: OceanTagType?) {
             textColor = R.color.ocean_color_interface_dark_up
         }
         OceanTagType.Complementary -> {
-            textColor = R.color.ocean_color_complementary_pure
+            textColor = R.color.ocean_color_complementary_deep
         }
         OceanTagType.Negative -> {
             textColor = R.color.ocean_color_status_negative_pure

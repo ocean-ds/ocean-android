@@ -85,11 +85,15 @@ fun OceanFilterBar(
     Column(
         modifier = modifier
             .background(color = colorResource(R.color.ocean_color_interface_light_pure))
-            .padding(OceanSpacing.xs)
+            .padding(vertical = OceanSpacing.xs)
     ) {
         Row(
             modifier = Modifier
                 .horizontalScroll(rememberScrollState())
+                // Depois do horizontalScroll: o padding entra no conteúdo rolável e rola junto
+                // dele. O clip do scroll passa a ser a borda real do container, e os 16dp viram
+                // respiro nas pontas do conteúdo em vez de moldura fixa do viewport.
+                .padding(horizontal = OceanSpacing.xs)
                 .height(32.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),

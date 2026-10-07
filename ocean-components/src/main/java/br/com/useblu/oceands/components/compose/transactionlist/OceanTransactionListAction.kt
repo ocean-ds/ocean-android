@@ -15,12 +15,19 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.model.compose.OceanIconModel
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 /**
- * Transaction List Action (Figma `24289-64384`, Type Chevron, MR-615): the whole item is the
- * touch target; pressed/hovered shows the `Interface/Light/Up` highlight. Disabled and loading
- * items do not call [onClick].
+ * Transaction List Action (Figma `24289-64384`, MR-615): the whole item is the touch target;
+ * pressed/hovered shows the `Interface/Light/Up` highlight. Disabled and loading items do not
+ * call [onClick] nor [onMenuClick].
+ *
+ * @param type [OceanTransactionListActionType.Chevron] (default) or
+ * [OceanTransactionListActionType.Menu]; Swipe is not offered on Android.
+ * @param menuActive Menu only: the options are open (Figma State Active). The screen owns it.
+ * @param onMenuClick Menu only: tap on the kebab; open the options in an Ocean bottom sheet.
  */
+@Suppress("LongParameterList")
 @Composable
 fun OceanTransactionListAction(
     content: ContentListStyle,
@@ -29,7 +36,10 @@ fun OceanTransactionListAction(
     amount: ContentListStyle.Amount? = null,
     state: OceanTransactionListState = OceanTransactionListState.Default,
     icon: OceanIconModel? = null,
-    showDivider: Boolean = true
+    showDivider: Boolean = true,
+    type: OceanTransactionListActionType = OceanTransactionListActionType.Chevron,
+    menuActive: Boolean = false,
+    onMenuClick: () -> Unit = {}
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -53,7 +63,17 @@ fun OceanTransactionListAction(
             amount = amount,
             icon = icon,
             state = state,
-            trailing = { TrailingChevron(enabled = enabled) }
+            endPadding = if (type == OceanTransactionListActionType.Menu) OceanSpacing.xxs else OceanSpacing.xs,
+            trailing = {
+                when (type) {
+                    OceanTransactionListActionType.Chevron -> TrailingChevron(enabled = enabled)
+                    OceanTransactionListActionType.Menu -> TrailingMenu(
+                        enabled = enabled,
+                        active = menuActive,
+                        onClick = onMenuClick
+                    )
+                }
+            }
         )
 
         if (showDivider) {
@@ -75,5 +95,13 @@ private fun OceanTransactionListActionPreview() {
                 onClick = {}
             )
         }
+        OceanTransactionListAction(
+            content = TransactionListPreviewData.content,
+            amount = TransactionListPreviewData.amount,
+            icon = TransactionListPreviewData.icon,
+            type = OceanTransactionListActionType.Menu,
+            menuActive = true,
+            onClick = {}
+        )
     }
 }

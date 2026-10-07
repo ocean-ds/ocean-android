@@ -32,6 +32,21 @@ enum class OceanTransactionListPosition {
     }
 }
 
+/**
+ * Figma `Type` of the Transaction List Action supported on Android. `Swipe` is a platform
+ * difference and is not offered.
+ */
+enum class OceanTransactionListActionType {
+    /** Chevron trailing; the whole item calls `onClick` (default). */
+    Chevron,
+
+    /**
+     * Kebab (`dotsVertical`) trailing in a 32dp round touch area; tapping it calls `onMenuClick`
+     * and the screen shows the options in an Ocean bottom sheet. `menuActive` marks the open state.
+     */
+    Menu
+}
+
 /** Figma `Controller type` of the Transaction List Selectable. */
 enum class OceanTransactionListController {
     Checkbox,

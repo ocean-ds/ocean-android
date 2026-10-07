@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.components.compose.transactionlist
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,12 +15,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.ContentListStyle
@@ -42,6 +48,7 @@ internal object TransactionListTestTags {
     const val LINE_ABOVE = "transaction_list_line_above"
     const val LINE_BELOW = "transaction_list_line_below"
     const val CONTROL = "transaction_list_control"
+    const val MENU = "transaction_list_menu"
 }
 
 private val LEADING_ICON_SIZE = 24.dp
@@ -291,6 +298,7 @@ internal fun TransactionListMainRow(
     icon: OceanIconModel?,
     state: OceanTransactionListState,
     trailingGap: Dp = 12.dp,
+    endPadding: Dp = OceanSpacing.xs,
     trailing: (@Composable () -> Unit)? = null
 ) {
     val enabled = state != OceanTransactionListState.Disabled
@@ -299,7 +307,12 @@ internal fun TransactionListMainRow(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(OceanSpacing.xs),
+            .padding(
+                start = OceanSpacing.xs,
+                top = OceanSpacing.xs,
+                bottom = OceanSpacing.xs,
+                end = endPadding
+            ),
         verticalAlignment = Alignment.CenterVertically
     ) {
         if (icon != null) {
@@ -322,5 +335,44 @@ internal fun TransactionListMainRow(
             Spacer(modifier = Modifier.width(trailingGap))
             trailing()
         }
+    }
+}
+
+/**
+ * Kebab of the Menu type (Figma `_Contextual Menu`): `dotsVertical` 20dp centred in a 32dp round
+ * touch area. Active (menu open) fills the area with `Interface/Light/Up` and tints the icon
+ * `Brand/Primary/Pure`; disabled tints it `Interface/Light/Deep`.
+ */
+@Composable
+internal fun TrailingMenu(
+    enabled: Boolean,
+    active: Boolean,
+    onClick: () -> Unit
+) {
+    val showActive = enabled && active
+    Box(
+        modifier = Modifier
+            .size(32.dp)
+            .clip(CircleShape)
+            .background(if (showActive) OceanColors.interfaceLightUp else Color.Transparent)
+            .clickable(
+                enabled = enabled,
+                role = Role.Button,
+                onClickLabel = "menu",
+                onClick = onClick
+            )
+            .semantics { selected = showActive }
+            .testTag(TransactionListTestTags.MENU),
+        contentAlignment = Alignment.Center
+    ) {
+        OceanIcon(
+            iconType = OceanIcons.DOTS_VERTICAL_SOLID,
+            modifier = Modifier.size(20.dp),
+            tint = when {
+                !enabled -> OceanColors.interfaceLightDeep
+                showActive -> OceanColors.brandPrimaryPure
+                else -> OceanColors.interfaceDarkUp
+            }
+        )
     }
 }

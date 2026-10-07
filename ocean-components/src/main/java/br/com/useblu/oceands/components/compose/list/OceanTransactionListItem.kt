@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package br.com.useblu.oceands.components.compose.list
 
 import androidx.compose.foundation.Image
@@ -55,6 +57,16 @@ import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.FormatTypes
 import br.com.useblu.oceands.utils.OceanIcons
 
+internal const val TRANSACTION_LIST_ITEM_DEPRECATION =
+    "Substituído pela família Transaction List (MR-615): use OceanTransactionListReadOnly, " +
+        "OceanTransactionListAction, OceanTransactionListSelectable, OceanTransactionListExpandable(content = ...) " +
+        "ou OceanChildTransactionListAction/OceanChildTransactionListReadOnly " +
+        "(pacote br.com.useblu.oceands.components.compose.transactionlist)."
+
+@Deprecated(
+    message = TRANSACTION_LIST_ITEM_DEPRECATION,
+    level = DeprecationLevel.WARNING
+)
 sealed interface TransactionListItemStyle {
 
     val contentInfo: ContentListStyle
@@ -84,6 +96,10 @@ sealed interface TransactionListItemStyle {
     }
 }
 
+@Deprecated(
+    message = TRANSACTION_LIST_ITEM_DEPRECATION,
+    level = DeprecationLevel.WARNING
+)
 @Composable
 fun OceanTransactionListItem(
     modifier: Modifier = Modifier,
@@ -328,6 +344,10 @@ fun OceanTransactionListItem(
     }
 }
 
+@Deprecated(
+    message = TRANSACTION_LIST_ITEM_DEPRECATION,
+    level = DeprecationLevel.WARNING
+)
 @Composable
 fun OceanTransactionListItem(
     modifier: Modifier = Modifier,
@@ -428,6 +448,10 @@ private fun DefaultTransactionListItem(
     }
 }
 
+@Deprecated(
+    message = TRANSACTION_LIST_ITEM_DEPRECATION,
+    level = DeprecationLevel.WARNING
+)
 @Composable
 fun SelectableTransactionListItem(
     modifier: Modifier,
@@ -554,6 +578,10 @@ private fun OceanTransactionListItem(
     }
 }
 
+@Deprecated(
+    message = TRANSACTION_LIST_ITEM_DEPRECATION,
+    level = DeprecationLevel.WARNING
+)
 @Composable
 fun OceanTransactionListItemSkeleton() {
     Column {

@@ -12,12 +12,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanTagType
+import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
@@ -286,6 +289,12 @@ fun OceanContentList(
             style = style,
             enabled = enabled
         )
+
+        is ContentListStyle.Amount -> AmountContentList(
+            modifier = modifier,
+            style = style,
+            enabled = enabled
+        )
     }
 }
 
@@ -332,6 +341,22 @@ private fun DefaultContentList(
     style: ContentListStyle.Default,
     enabled: Boolean = true
 ) {
+    if (!style.usesLegacyLayout()) {
+        TokenContentList(
+            modifier = modifier,
+            title = style.title,
+            titleStyle = style.titleStyle,
+            description = style.description,
+            descriptionStyle = style.descriptionStyle,
+            caption = style.caption,
+            captionStyle = style.captionStyle,
+            inverted = false,
+            size = style.size ?: ContentListSize.Md,
+            type = if (enabled) style.type ?: ContentListType.Default else ContentListType.Inactive
+        )
+        return
+    }
+
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
@@ -372,6 +397,23 @@ private fun InvertedContentList(
     style: ContentListStyle.Inverted,
     enabled: Boolean = true
 ) {
+    if (!style.usesLegacyLayout()) {
+        TokenContentList(
+            modifier = modifier,
+            title = style.title,
+            titleStyle = style.titleStyle,
+            description = style.description,
+            descriptionStyle = style.descriptionStyle,
+            caption = style.caption,
+            captionStyle = style.captionStyle,
+            inverted = true,
+            size = style.size ?: ContentListSize.Md,
+            type = if (enabled) style.type ?: ContentListType.Default else ContentListType.Inactive,
+            descriptionUnchanged = style.unchanged
+        )
+        return
+    }
+
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
@@ -411,6 +453,16 @@ private fun StrikethroughContentList(
     style: ContentListStyle.Strikethrough,
     enabled: Boolean = true
 ) {
+    style.size?.let { size ->
+        TokenStrikethroughContentList(
+            modifier = modifier,
+            style = style,
+            size = size,
+            enabled = enabled
+        )
+        return
+    }
+
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
@@ -500,6 +552,236 @@ private fun TransactionContentList(
     }
 }
 
+/**
+ * Renders the Figma `_Content List / Default` tokens (MR-615) for every `size`/`type`
+ * combination that is not the legacy Md + Default layout.
+ */
+@Composable
+private fun TokenContentList(
+    modifier: Modifier,
+    title: String,
+    titleStyle: TextStyle?,
+    description: String,
+    descriptionStyle: TextStyle?,
+    caption: String,
+    captionStyle: TextStyle?,
+    inverted: Boolean,
+    size: ContentListSize,
+    type: ContentListType,
+    descriptionUnchanged: Boolean = false
+) {
+    val inactive = type == ContentListType.Inactive
+    val emphasis = contentEmphasisStyle(size = size, type = type)
+    val support = contentSupportStyle(size = size, inverted = inverted, inactive = inactive)
+
+    val resolvedTitleStyle = titleStyle?.let { configTextStyle(it, !inactive) }
+        ?: if (inverted) support else emphasis
+    val resolvedDescriptionStyle = descriptionStyle?.let { configTextStyle(it, !inactive) }
+        ?: if (inverted) emphasis else support
+
+    Column(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        OceanText(
+            text = title,
+            style = resolvedTitleStyle
+        )
+
+        if (description.isNotBlank()) {
+            OceanText(
+                text = description,
+                style = configTextStyle(
+                    originalStyle = resolvedDescriptionStyle,
+                    isEnabled = !descriptionUnchanged
+                )
+            )
+        }
+
+        if (caption.isNotBlank()) {
+            OceanSpacing.StackXXXS()
+            OceanText(
+                text = caption,
+                style = configTextStyle(
+                    captionStyle ?: OceanTextStyle.captionBold,
+                    !inactive
+                )
+            )
+        }
+    }
+}
+
+@Composable
+private fun TokenStrikethroughContentList(
+    modifier: Modifier,
+    style: ContentListStyle.Strikethrough,
+    size: ContentListSize,
+    enabled: Boolean
+) {
+    val isMd = size == ContentListSize.Md
+    Column(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        OceanText(
+            text = style.title,
+            style = configTextStyle(
+                style.titleStyle ?: if (isMd) OceanTextStyle.description else OceanTextStyle.captionBold,
+                enabled
+            )
+        )
+
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
+        ) {
+            val baseStyle = style.descriptionStyle
+                ?: if (isMd) OceanTextStyle.paragraph else OceanTextStyle.description
+            OceanText(
+                text = style.description,
+                style = baseStyle.copy(color = OceanColors.interfaceDarkUp),
+                textDecoration = if (style.newValue.isNotBlank()) TextDecoration.LineThrough else null
+            )
+
+            if (style.newValue.isNotBlank()) {
+                OceanText(
+                    text = style.newValue,
+                    style = configTextStyle(
+                        baseStyle.copy(color = OceanColors.statusPositiveDeep),
+                        enabled
+                    )
+                )
+            }
+        }
+
+        if (style.caption.isNotBlank()) {
+            OceanSpacing.StackXXXS()
+            OceanText(
+                text = style.caption,
+                style = configTextStyle(
+                    style.captionStyle ?: OceanTextStyle.captionBold,
+                    enabled
+                )
+            )
+        }
+    }
+}
+
+/**
+ * Figma `_Content List / Amount` (MR-615): value, optional strikethrough value, Tag and
+ * additional data, aligned to the end. The Tag layout follows [ContentListStyle.Amount.size].
+ */
+@Composable
+private fun AmountContentList(
+    modifier: Modifier,
+    style: ContentListStyle.Amount,
+    enabled: Boolean
+) {
+    val inactive = !enabled || style.type == AmountType.Inactive
+    val isMd = style.size == ContentListSize.Md
+    val baseStyle = if (isMd) OceanTextStyle.paragraph else OceanTextStyle.description
+    val amountColor = when {
+        inactive -> OceanColors.interfaceDarkUp
+        style.type == AmountType.Positive || style.type == AmountType.Strikethrough ->
+            OceanColors.statusPositiveDeep
+
+        else -> OceanColors.interfaceDarkDeep
+    }
+    val amountText = if (style.type == AmountType.Negative) "- ${style.amount}" else style.amount
+    val showStrikethrough = style.strikethroughAmount.isNotBlank() &&
+        (style.type == AmountType.Strikethrough || style.type == AmountType.StrikethroughNeutral)
+
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.End,
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
+    ) {
+        Column(horizontalAlignment = Alignment.End) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
+            ) {
+                if (showStrikethrough) {
+                    OceanText(
+                        modifier = Modifier.alignByBaseline(),
+                        text = style.strikethroughAmount,
+                        style = baseStyle.copy(color = OceanColors.interfaceDarkUp),
+                        textDecoration = TextDecoration.LineThrough,
+                        maxLines = 1
+                    )
+                }
+
+                OceanText(
+                    modifier = Modifier.alignByBaseline(),
+                    text = amountText,
+                    style = baseStyle.copy(
+                        color = amountColor,
+                        fontFamily = OceanFontFamily.BaseMedium
+                    ),
+                    textAlign = TextAlign.End,
+                    maxLines = 1
+                )
+            }
+
+            style.tag?.let {
+                OceanTag(
+                    style = OceanTagStyle.Default(
+                        label = it.text,
+                        layout = if (isMd) OceanTagLayout.Medium() else OceanTagLayout.Small(),
+                        type = it.type
+                    ),
+                    enabled = !inactive
+                )
+            }
+        }
+
+        if (style.additionalData.isNotBlank()) {
+            OceanText(
+                text = style.additionalData,
+                style = configTextStyle(OceanTextStyle.captionBold, !inactive),
+                textAlign = TextAlign.End
+            )
+        }
+    }
+}
+
+@Composable
+private fun contentEmphasisStyle(
+    size: ContentListSize,
+    type: ContentListType
+): TextStyle {
+    val isMd = size == ContentListSize.Md
+    val base = when {
+        type == ContentListType.HighlightLead && isMd -> OceanTextStyle.lead
+        type == ContentListType.HighlightLead -> OceanTextStyle.paragraph
+        isMd -> OceanTextStyle.paragraph
+        else -> OceanTextStyle.description
+    }
+    val color = when (type) {
+        ContentListType.Inactive -> OceanColors.interfaceDarkUp
+        ContentListType.Positive -> OceanColors.statusPositiveDeep
+        ContentListType.Warning -> OceanColors.statusWarningDeep
+        else -> OceanColors.interfaceDarkDeep
+    }
+    return if (type == ContentListType.Highlight) {
+        base.copy(color = color, fontFamily = OceanFontFamily.BaseBold)
+    } else {
+        base.copy(color = color)
+    }
+}
+
+@Composable
+private fun contentSupportStyle(
+    size: ContentListSize,
+    inverted: Boolean,
+    inactive: Boolean
+): TextStyle {
+    val base = when {
+        size == ContentListSize.Md -> OceanTextStyle.description
+        inverted -> OceanTextStyle.captionBold
+        else -> OceanTextStyle.caption
+    }
+    return base.copy(
+        color = if (inactive) OceanColors.interfaceDarkUp else OceanColors.interfaceDarkDown
+    )
+}
+
 @Composable
 private fun configTextStyle(
     originalStyle: TextStyle,
@@ -527,8 +809,14 @@ sealed interface ContentListStyle {
         val description: String = "",
         val descriptionStyle: TextStyle? = null,
         val caption: String = "",
-        val captionStyle: TextStyle? = null
-    ) : ContentListStyle
+        val captionStyle: TextStyle? = null,
+        /** `null` keeps the legacy layout; any value renders the Figma tokens (MR-615). */
+        val size: ContentListSize? = null,
+        /** `null` keeps the legacy layout; any value renders the Figma tokens (MR-615). */
+        val type: ContentListType? = null
+    ) : ContentListStyle {
+        internal fun usesLegacyLayout() = size == null && type == null
+    }
 
     data class Inverted(
         val title: String,
@@ -537,8 +825,14 @@ sealed interface ContentListStyle {
         val descriptionStyle: TextStyle? = null,
         val caption: String = "",
         val captionStyle: TextStyle? = null,
-        val unchanged: Boolean = false
-    ) : ContentListStyle
+        val unchanged: Boolean = false,
+        /** `null` keeps the legacy layout; any value renders the Figma tokens (MR-615). */
+        val size: ContentListSize? = null,
+        /** `null` keeps the legacy layout; any value renders the Figma tokens (MR-615). */
+        val type: ContentListType? = null
+    ) : ContentListStyle {
+        internal fun usesLegacyLayout() = size == null && type == null
+    }
 
     data class Strikethrough(
         val title: String,
@@ -547,7 +841,9 @@ sealed interface ContentListStyle {
         val descriptionStyle: TextStyle? = null,
         val caption: String = "",
         val captionStyle: TextStyle? = null,
-        val newValue: String = ""
+        val newValue: String = "",
+        /** `null` keeps the legacy layout; any value renders the Figma tokens (MR-615). */
+        val size: ContentListSize? = null
     ) : ContentListStyle
 
     data class Transaction(
@@ -557,6 +853,58 @@ sealed interface ContentListStyle {
         val captionStyle: TextStyle? = null,
         val type: TransactionType = TransactionType.DEFAULT
     ) : ContentListStyle
+
+    /**
+     * Figma `_Content List / Amount` (MR-615). [strikethroughAmount] is shown struck through
+     * before [amount] when [type] is [AmountType.Strikethrough] or [AmountType.StrikethroughNeutral].
+     * The Tag is Medium for [ContentListSize.Md] and Small for [ContentListSize.Sm].
+     */
+    data class Amount(
+        val amount: String,
+        val type: AmountType = AmountType.Default,
+        val size: ContentListSize = ContentListSize.Md,
+        val strikethroughAmount: String = "",
+        val tag: OceanTagModel? = null,
+        val additionalData: String = ""
+    ) : ContentListStyle
+}
+
+/**
+ * Opts a content block into the Figma tokens (MR-615) when it still uses the legacy layout:
+ * the Transaction List family always renders the tokens, while the sibling lists keep theirs.
+ */
+internal fun ContentListStyle.withTokens(): ContentListStyle = when (this) {
+    is ContentListStyle.Default -> if (size == null) copy(size = ContentListSize.Md) else this
+    is ContentListStyle.Inverted -> if (size == null) copy(size = ContentListSize.Md) else this
+    is ContentListStyle.Strikethrough -> if (size == null) copy(size = ContentListSize.Md) else this
+    is ContentListStyle.Transaction,
+    is ContentListStyle.Amount -> this
+}
+
+/** Figma `Size` of the content blocks: Md (default) or Sm (the former Child). */
+enum class ContentListSize {
+    Md,
+    Sm
+}
+
+/** Figma `Type` of `_Content List / Default`. */
+enum class ContentListType {
+    Default,
+    Inactive,
+    Positive,
+    Warning,
+    Highlight,
+    HighlightLead
+}
+
+/** Figma `Type` of `_Content List / Amount`. */
+enum class AmountType {
+    Default,
+    Positive,
+    Negative,
+    Inactive,
+    Strikethrough,
+    StrikethroughNeutral
 }
 
 enum class TransactionType {

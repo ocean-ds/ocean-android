@@ -21,36 +21,21 @@ class TransactionListSelectableActivity : AppCompatActivity() {
     }
 }
 
+/**
+ * Every Figma `State` of the Transaction List Selectable (24320-5708, Platform App) for each
+ * `Controller type`: Default, Hover (mouse pointer over the item), Indeterminate (Checkbox only),
+ * Selected, Disabled, Disabled Selected, Error and Loading.
+ */
 @Preview
 @Composable
 private fun TransactionListSelectableSamples() = SamplesScreen {
-    SampleSection("Checkbox")
-    var first by remember { mutableStateOf(false) }
-    var second by remember { mutableStateOf(true) }
-    var indeterminate by remember { mutableStateOf(true) }
-    OceanTransactionListSelectable(
-        content = TransactionListSamples.content(),
-        amount = TransactionListSamples.amount(),
-        selected = first,
-        onSelectedChange = { first = it }
-    )
-    OceanTransactionListSelectable(
-        content = TransactionListSamples.content(),
-        amount = TransactionListSamples.amount(),
-        selected = second,
-        onSelectedChange = { second = it }
-    )
-    OceanTransactionListSelectable(
-        content = TransactionListSamples.content(),
-        amount = TransactionListSamples.amount(),
-        selected = !indeterminate,
-        indeterminate = indeterminate,
-        onSelectedChange = { indeterminate = false }
-    )
+    OceanTransactionListController.entries.forEach { controller ->
+        SelectableStates(controller)
+    }
 
-    SampleSection("Radio")
+    SampleSection("Radio · grupo de opção única")
     var option by remember { mutableIntStateOf(0) }
-    repeat(2) { index ->
+    repeat(3) { index ->
         OceanTransactionListSelectable(
             content = TransactionListSamples.content(),
             amount = TransactionListSamples.amount(),
@@ -59,36 +44,88 @@ private fun TransactionListSelectableSamples() = SamplesScreen {
             onSelectedChange = { option = index }
         )
     }
+}
 
-    SampleSection("Disabled, error and loading")
-    OceanTransactionListController.entries.forEach { controller ->
-        OceanTransactionListSelectable(
-            content = TransactionListSamples.content(),
-            amount = TransactionListSamples.amount(),
-            controller = controller,
-            selected = false,
-            state = OceanTransactionListState.Disabled,
-            onSelectedChange = {}
-        )
-        OceanTransactionListSelectable(
-            content = TransactionListSamples.content(),
-            amount = TransactionListSamples.amount(),
-            controller = controller,
-            selected = true,
-            state = OceanTransactionListState.Disabled,
-            onSelectedChange = {}
-        )
-        OceanTransactionListSelectable(
-            content = TransactionListSamples.content(),
-            amount = TransactionListSamples.amount(),
-            controller = controller,
-            selected = false,
-            showError = true,
-            onSelectedChange = {}
-        )
-    }
+@Composable
+private fun SelectableStates(controller: OceanTransactionListController) {
+    val name = controller.name
+
+    SampleSection("$name · Default / Hover (toque para marcar)")
+    var interactive by remember { mutableStateOf(false) }
     OceanTransactionListSelectable(
         content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(),
+        controller = controller,
+        selected = interactive,
+        onSelectedChange = { interactive = it }
+    )
+
+    if (controller == OceanTransactionListController.Checkbox) {
+        SampleSection("$name · Indeterminate")
+        var indeterminate by remember { mutableStateOf(true) }
+        var afterIndeterminate by remember { mutableStateOf(false) }
+        OceanTransactionListSelectable(
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
+            controller = controller,
+            selected = afterIndeterminate,
+            indeterminate = indeterminate,
+            onSelectedChange = {
+                indeterminate = false
+                afterIndeterminate = it
+            }
+        )
+    }
+
+    SampleSection("$name · Selected")
+    OceanTransactionListSelectable(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(),
+        controller = controller,
+        selected = true,
+        onSelectedChange = {}
+    )
+
+    SampleSection("$name · Disabled")
+    OceanTransactionListSelectable(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(),
+        controller = controller,
+        selected = false,
+        state = OceanTransactionListState.Disabled,
+        onSelectedChange = {}
+    )
+
+    SampleSection("$name · Disabled Selected")
+    OceanTransactionListSelectable(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(),
+        controller = controller,
+        selected = true,
+        state = OceanTransactionListState.Disabled,
+        onSelectedChange = {}
+    )
+
+    SampleSection("$name · Error")
+    var error by remember { mutableStateOf(true) }
+    var errorSelected by remember { mutableStateOf(false) }
+    OceanTransactionListSelectable(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(),
+        controller = controller,
+        selected = errorSelected,
+        showError = error,
+        onSelectedChange = {
+            errorSelected = it
+            error = false
+        }
+    )
+
+    SampleSection("$name · Loading")
+    OceanTransactionListSelectable(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(),
+        controller = controller,
         selected = false,
         state = OceanTransactionListState.Loading,
         onSelectedChange = {}

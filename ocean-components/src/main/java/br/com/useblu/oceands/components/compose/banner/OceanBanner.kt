@@ -4,18 +4,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -23,13 +19,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanText
@@ -81,6 +74,7 @@ fun OceanBanner(
         is OceanBannerKind.Small -> OceanBannerSmall(
             style = style,
             image = kind.image,
+            imageSize = kind.imageSize,
             title = title,
             description = description,
             ctaTitle = ctaTitle,
@@ -124,6 +118,7 @@ private fun OceanBannerLarge(
 @Composable
 private fun OceanBannerSmall(
     image: OceanImageProxy?,
+    imageSize: OceanBannerImageSize,
     style: OceanBannerStyle,
     title: String,
     description: String,
@@ -157,7 +152,7 @@ private fun OceanBannerSmall(
     image?.View(
         modifier = Modifier
             .height(heightDp)
-            .width(82.dp)
+            .then(imageSize.widthModifier())
     )
 }
 
@@ -211,35 +206,12 @@ private fun OceanBannerInfoContent(
                 )
             }
             if (secondaryCtaTitle.isNotEmpty()) {
-                val isEmphasys = style is OceanBannerStyle.Emphasys || style is OceanBannerStyle.Brand
-                if (isEmphasys) {
-                    // Tertiary com colorInterfaceLightPure — escopo exclusivo do Emphasys/Brand
-                    Button(
-                        onClick = onSecondaryCtaClick,
-                        enabled = secondaryCtaIsEnabled,
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.Transparent,
-                            contentColor = OceanColors.interfaceLightPure
-                        ),
-                        contentPadding = PaddingValues(0.dp),
-                        shape = OceanBorderRadius.Circle.allCorners.shape(),
-                        elevation = ButtonDefaults.buttonElevation(0.dp)
-                    ) {
-                        OceanText(
-                            text = secondaryCtaTitle,
-                            fontSize = OceanFontSize.xxs,
-                            fontFamily = OceanFontFamily.BaseBold,
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                } else {
-                    OceanButton(
-                        text = secondaryCtaTitle,
-                        onClick = onSecondaryCtaClick,
-                        buttonStyle = style.getSecondaryButtonStyle(),
-                        disabled = !secondaryCtaIsEnabled
-                    )
-                }
+                OceanButton(
+                    text = secondaryCtaTitle,
+                    onClick = onSecondaryCtaClick,
+                    buttonStyle = style.getSecondaryButtonStyle(),
+                    disabled = !secondaryCtaIsEnabled
+                )
             }
         }
     }
@@ -349,6 +321,37 @@ fun OceanBannerPreview() {
                 kind = OceanBannerKind.Small(),
                 title = "Oferta especial para você",
                 description = "Aproveite condições exclusivas disponíveis apenas hoje.",
+                ctaTitle = "Saiba mais",
+                onCtaClick = {}
+            )
+
+            // Emphasys with two CTAs (secondary = TertiaryInverse)
+            OceanBanner(
+                modifier = Modifier,
+                style = OceanBannerStyle.Emphasys,
+                kind = OceanBannerKind.Small(),
+                title = "Oferta especial para você",
+                description = "Aproveite condições exclusivas disponíveis apenas hoje.",
+                ctaTitle = "Saiba mais",
+                onCtaClick = {},
+                secondaryCtaTitle = "Agora não",
+                onSecondaryCtaClick = {}
+            )
+
+            // Small with fixed image width (spec: 82dp) — opt-in via imageSize
+            OceanBanner(
+                modifier = Modifier,
+                style = OceanBannerStyle.Brand,
+                kind = OceanBannerKind.Small(
+                    image = OceanImageProxy.Resource(
+                        resId = R.drawable.image_blocked,
+                        contentScale = ContentScale.FillHeight,
+                        alignment = Alignment.Center
+                    ),
+                    imageSize = OceanBannerImageSize.Fixed()
+                ),
+                title = "Imagem com 82dp",
+                description = "OceanBannerImageSize.Fixed() aplica a largura da spec; o padrão segue 25% da tela.",
                 ctaTitle = "Saiba mais",
                 onCtaClick = {}
             )

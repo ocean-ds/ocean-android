@@ -50,6 +50,10 @@ sealed class OceanButtonStyle(
     data object TertiaryWarningSmall : OceanButtonStyle(small, tertiaryWarningColors)
     data object TertiaryWarningMedium : OceanButtonStyle(medium, tertiaryWarningColors)
     data object TertiaryWarningLarge : OceanButtonStyle(large, tertiaryWarningColors)
+
+    data object TertiaryInverseSmall : OceanButtonStyle(small, tertiaryInverseColors)
+    data object TertiaryInverseMedium : OceanButtonStyle(medium, tertiaryInverseColors)
+    data object TertiaryInverseLarge : OceanButtonStyle(large, tertiaryInverseColors)
 }
 
 private interface ButtonSizes {
@@ -147,4 +151,11 @@ private val tertiaryWarningColors = object : IButtonColors {
 
     @Composable
     override fun getLoadingColor() = OceanColors.statusWarningDeep
+}
+private val tertiaryInverseColors = object : IButtonColors {
+    @Composable
+    override fun getColors() = OceanButtonColors.tertiaryInverse
+
+    @Composable
+    override fun getLoadingColor() = OceanColors.interfaceLightPure
 }

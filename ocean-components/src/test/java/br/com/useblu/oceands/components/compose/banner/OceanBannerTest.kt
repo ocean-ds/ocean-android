@@ -3,24 +3,32 @@ package br.com.useblu.oceands.components.compose.banner
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertWidthIsEqualTo
+import androidx.compose.ui.test.getBoundsInRoot
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.R
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
+import br.com.useblu.oceands.utils.image.OceanImageProxy
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.GraphicsMode
 
 /**
  * Covers the two review points of the Banner spec alignment:
@@ -29,6 +37,7 @@ import org.robolectric.RobolectricTestRunner
  * (TertiaryInverse) instead of a hand-built button.
  */
 @RunWith(RobolectricTestRunner::class)
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
 class OceanBannerTest {
 
     @get:Rule val composeTestRule = createComposeRule()
@@ -100,6 +109,84 @@ class OceanBannerTest {
         assertEquals(1, clicks)
     }
 
+    @Test
+    fun longCtasWrapToNextLineInNarrowSmallBannerWithImage() {
+        composeTestRule.setContent {
+            NarrowBanner(
+                kind = OceanBannerKind.Small(image = testImage()),
+                ctaTitle = LONG_PRIMARY,
+                secondaryCtaTitle = LONG_SECONDARY
+            )
+        }
+
+        assertSecondaryWrappedBelowPrimary(LONG_PRIMARY, LONG_SECONDARY)
+    }
+
+    @Test
+    fun longCtasWrapToNextLineInNarrowLargeBanner() {
+        composeTestRule.setContent {
+            NarrowBanner(
+                kind = OceanBannerKind.Large(),
+                ctaTitle = LONG_PRIMARY,
+                secondaryCtaTitle = LONG_SECONDARY
+            )
+        }
+
+        assertSecondaryWrappedBelowPrimary(LONG_PRIMARY, LONG_SECONDARY)
+    }
+
+    @Test
+    fun shortCtasStaySideBySideLeftAligned() {
+        composeTestRule.setContent {
+            NarrowBanner(
+                kind = OceanBannerKind.Large(),
+                ctaTitle = "Saiba mais",
+                secondaryCtaTitle = "Agora não"
+            )
+        }
+
+        val primary = composeTestRule.onNodeWithText("Saiba mais").assertIsDisplayed().getBoundsInRoot()
+        val secondary = composeTestRule.onNodeWithText("Agora não").assertIsDisplayed().getBoundsInRoot()
+
+        assertEquals(primary.top, secondary.top)
+        assertTrue("secondary should sit right of primary", secondary.left > primary.right)
+    }
+
+    private fun assertSecondaryWrappedBelowPrimary(primaryText: String, secondaryText: String) {
+        val primary = composeTestRule.onNodeWithText(primaryText).assertIsDisplayed().getBoundsInRoot()
+        val secondary = composeTestRule.onNodeWithText(secondaryText).assertIsDisplayed().getBoundsInRoot()
+
+        assertTrue("secondary CTA should wrap below the primary: primary=$primary secondary=$secondary", secondary.top >= primary.bottom)
+        assertEquals(primary.left, secondary.left)
+    }
+
+    @Composable
+    private fun NarrowBanner(
+        kind: OceanBannerKind,
+        ctaTitle: String,
+        secondaryCtaTitle: String
+    ) {
+        Box(modifier = Modifier.width(NARROW_WIDTH)) {
+            OceanBanner(
+                modifier = Modifier,
+                style = OceanBannerStyle.Emphasys,
+                kind = kind,
+                title = "Título",
+                description = "Descrição",
+                ctaTitle = ctaTitle,
+                onCtaClick = {},
+                secondaryCtaTitle = secondaryCtaTitle,
+                onSecondaryCtaClick = {}
+            )
+        }
+    }
+
+    private fun testImage() = OceanImageProxy.Resource(
+        resId = R.drawable.image_blocked,
+        contentScale = ContentScale.FillHeight,
+        alignment = Alignment.Center
+    )
+
     @Composable
     private fun ImageSizeProbe(size: OceanBannerImageSize) {
         Box(
@@ -113,5 +200,8 @@ class OceanBannerTest {
 
     private companion object {
         const val PROBE_TAG = "image-size-probe"
+        const val LONG_PRIMARY = "Adicionar saldo agora"
+        const val LONG_SECONDARY = "Cancelar operação"
+        val NARROW_WIDTH = 320.dp
     }
 }

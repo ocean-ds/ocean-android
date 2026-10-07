@@ -4,11 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -23,6 +25,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanText
@@ -194,8 +197,9 @@ private fun OceanBannerInfoContent(
 
     if (ctaTitle.isNotEmpty() || secondaryCtaTitle.isNotEmpty()) {
         Spacer(modifier = Modifier.height(textToButtonSpacing))
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
+        FlowRow(
+            horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xs),
+            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xs)
         ) {
             if (ctaTitle.isNotEmpty()) {
                 OceanButton(
@@ -355,6 +359,41 @@ fun OceanBannerPreview() {
                 ctaTitle = "Saiba mais",
                 onCtaClick = {}
             )
+
+            // Narrow banner + long CTAs: the secondary wraps to the next line (FlowRow)
+            Box(modifier = Modifier.width(320.dp)) {
+                OceanBanner(
+                    modifier = Modifier,
+                    style = OceanBannerStyle.Neutral,
+                    kind = OceanBannerKind.Small(
+                        image = OceanImageProxy.Resource(
+                            resId = R.drawable.image_blocked,
+                            contentScale = ContentScale.FillHeight,
+                            alignment = Alignment.Center
+                        )
+                    ),
+                    title = "CTAs longas em banner estreito",
+                    description = "A segunda ação quebra para a linha de baixo quando não cabe.",
+                    ctaTitle = "Adicionar saldo agora",
+                    onCtaClick = {},
+                    secondaryCtaTitle = "Cancelar operação",
+                    onSecondaryCtaClick = {}
+                )
+            }
+
+            Box(modifier = Modifier.width(320.dp)) {
+                OceanBanner(
+                    modifier = Modifier,
+                    style = OceanBannerStyle.Emphasys,
+                    kind = OceanBannerKind.Large(),
+                    title = "CTAs longas em banner estreito (Large)",
+                    description = "Mesmo comportamento no Large, com o botão secundário TertiaryInverse.",
+                    ctaTitle = "Quero antecipar meus recebíveis",
+                    onCtaClick = {},
+                    secondaryCtaTitle = "Ver condições completas",
+                    onSecondaryCtaClick = {}
+                )
+            }
 
             // Large without image
             OceanBanner(

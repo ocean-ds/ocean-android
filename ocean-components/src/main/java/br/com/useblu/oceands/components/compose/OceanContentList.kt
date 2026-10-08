@@ -699,7 +699,6 @@ private fun AmountContentList(
             ) {
                 if (showStrikethrough) {
                     OceanText(
-                        modifier = Modifier.alignByBaseline(),
                         text = style.strikethroughAmount,
                         style = baseStyle.copy(color = OceanColors.interfaceDarkUp),
                         textDecoration = TextDecoration.LineThrough,
@@ -708,7 +707,6 @@ private fun AmountContentList(
                 }
 
                 OceanText(
-                    modifier = Modifier.alignByBaseline(),
                     text = amountText,
                     style = baseStyle.copy(
                         color = amountColor,

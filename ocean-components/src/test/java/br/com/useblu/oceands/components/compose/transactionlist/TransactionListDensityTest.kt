@@ -12,6 +12,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.height
+import br.com.useblu.oceands.components.compose.ContentListSize
 import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.list.OceanTransactionListExpandable
 import org.junit.Assert.assertEquals
@@ -120,4 +121,76 @@ class TransactionListDensityTest {
             )
         }
     }
+
+    private fun height(item: @Composable () -> Unit): Float {
+        composeTestRule.setContent {
+            Column(Modifier.width(360.dp)) { Box(Modifier.testTag("row")) { item() } }
+        }
+        return composeTestRule.onNodeWithTag("row").getUnclippedBoundsInRoot().height.value
+    }
+
+    private val smContent = ContentListStyle.Default(
+        title = "Title",
+        description = "Description",
+        caption = "Caption",
+        size = ContentListSize.Sm
+    )
+
+    // Figma 26804-18127 / 26559-4450: Sm content + Sm amount (Small tag) + 1px divider. Exact: the
+    // text heights (lineHeight 1.5, no font padding) already match Figma in Robolectric.
+    @Test
+    fun defaultRowMatchesFigma94dp() = assertEquals(
+        94f,
+        height {
+            OceanTransactionListReadOnly(
+                content = smContent,
+                amount = Samples.amount.copy(size = ContentListSize.Sm),
+                icon = Samples.icon
+            )
+        },
+        0f
+    )
+
+    @Test
+    fun compactRowMatchesFigma78dp() = assertEquals(
+        78f,
+        height {
+            OceanTransactionListReadOnly(
+                content = smContent,
+                amount = Samples.amount.copy(size = ContentListSize.Sm),
+                icon = Samples.icon,
+                density = TransactionListDensity.Compact
+            )
+        },
+        0f
+    )
+
+    // Figma 26559-4483 (State=Disabled, Md content + Md amount with Medium tag): 100dp.
+    @Test
+    fun mdRowMatchesFigma100dp() = assertEquals(
+        100f,
+        height {
+            OceanTransactionListReadOnly(
+                content = Samples.content,
+                amount = Samples.amount,
+                icon = Samples.icon,
+                state = OceanTransactionListState.Disabled
+            )
+        },
+        0f
+    )
+
+    // Figma 26559-4474 (State=Loading): 73dp.
+    @Test
+    fun loadingRowMatchesFigma73dp() = assertEquals(
+        73f,
+        height {
+            OceanTransactionListReadOnly(
+                content = Samples.content,
+                icon = Samples.icon,
+                state = OceanTransactionListState.Loading
+            )
+        },
+        0f
+    )
 }

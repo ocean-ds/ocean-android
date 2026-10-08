@@ -17,6 +17,8 @@ import br.com.useblu.oceands.ui.compose.OceanColors
  * @param amount the `_Content List / Amount` block, sized independently of [content].
  * @param iconColor color of the leading [icon] from the closed set; disabled always uses
  *   `Interface/Light/Deep`. The `tint` of [OceanIconModel] is ignored.
+ * @param density [TransactionListDensity.Compact] sets top and bottom padding to 8dp (skeleton
+ *   included); [TransactionListDensity.Default] keeps the component's own padding.
  */
 @Composable
 fun OceanTransactionListReadOnly(
@@ -26,7 +28,8 @@ fun OceanTransactionListReadOnly(
     state: OceanTransactionListState = OceanTransactionListState.Default,
     icon: OceanIconModel? = null,
     showDivider: Boolean = true,
-    iconColor: TransactionListIconColor = TransactionListIconColor.Default
+    iconColor: TransactionListIconColor = TransactionListIconColor.Default,
+    density: TransactionListDensity = TransactionListDensity.Default
 ) {
     Column(modifier = Modifier.background(OceanColors.interfaceLightPure).then(modifier)) {
         TransactionListMainRow(
@@ -34,7 +37,8 @@ fun OceanTransactionListReadOnly(
             amount = amount,
             icon = icon,
             state = state,
-            iconColor = iconColor
+            iconColor = iconColor,
+            density = density
         )
 
         if (showDivider) {

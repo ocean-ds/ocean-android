@@ -11,8 +11,12 @@ import br.com.useblu.oceands.components.compose.AmountType
 import br.com.useblu.oceands.components.compose.ContentListSize
 import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.ContentListType
+import br.com.useblu.oceands.components.compose.transactionlist.OceanChildTransactionListReadOnly
+import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListAction
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListReadOnly
+import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListSelectable
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListState
+import br.com.useblu.oceands.components.compose.transactionlist.TransactionListDensity
 import br.com.useblu.oceands.components.compose.transactionlist.TransactionListIconColor
 import br.com.useblu.oceands.ui.compose.OceanColors
 
@@ -68,6 +72,42 @@ private fun TransactionListReadOnlySamples() = SamplesScreen {
         iconColor = TransactionListIconColor.OnColor,
         showDivider = false
     )
+
+    TransactionListDensity.entries.forEach { density ->
+        SampleSection("Density: ${density.name}")
+        OceanTransactionListReadOnly(
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
+            icon = TransactionListSamples.icon,
+            density = density
+        )
+        OceanTransactionListAction(
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
+            icon = TransactionListSamples.icon,
+            density = density,
+            onClick = {}
+        )
+        OceanTransactionListSelectable(
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
+            selected = false,
+            onSelectedChange = {},
+            density = density
+        )
+        OceanChildTransactionListReadOnly(
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
+            icon = TransactionListSamples.childIcon,
+            density = density
+        )
+        OceanTransactionListReadOnly(
+            content = TransactionListSamples.content(),
+            icon = TransactionListSamples.icon,
+            state = OceanTransactionListState.Loading,
+            density = density
+        )
+    }
 
     SampleSection("Sizes")
     OceanTransactionListReadOnly(

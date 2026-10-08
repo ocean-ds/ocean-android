@@ -44,6 +44,7 @@ import br.com.useblu.oceands.components.compose.transactionlist.OceanTransaction
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListPosition
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListState
 import br.com.useblu.oceands.components.compose.transactionlist.TrailingChevron
+import br.com.useblu.oceands.components.compose.transactionlist.TransactionListDensity
 import br.com.useblu.oceands.components.compose.transactionlist.TransactionListIconColor
 import br.com.useblu.oceands.components.compose.transactionlist.TransactionListMainRow
 import br.com.useblu.oceands.model.OceanTagType
@@ -233,6 +234,8 @@ fun OceanTransactionListExpandable(
  *
  * @param footer slot for the footer; when `null`, [footerText] is shown centered in `caption`.
  * @param onExpandedChange called with the new state on every toggle.
+ * @param density applies to the parent and to the children: [TransactionListDensity.Compact] sets
+ *   top and bottom padding to 8dp (skeleton included).
  * @param iconColor color of the parent's leading [icon] (children use their own
  *   [OceanTransactionListChildItem.iconColor], `Interface/Light/Down` by default); disabled always uses `Interface/Light/Deep` and the
  *   `tint` of [OceanIconModel] is ignored.
@@ -251,7 +254,8 @@ fun OceanTransactionListExpandable(
     showDivider: Boolean = true,
     startExpanded: Boolean = false,
     onExpandedChange: (Boolean) -> Unit = {},
-    iconColor: TransactionListIconColor = TransactionListIconColor.Default
+    iconColor: TransactionListIconColor = TransactionListIconColor.Default,
+    density: TransactionListDensity = TransactionListDensity.Default
 ) {
     var isExpanded by rememberSaveable { mutableStateOf(startExpanded) }
     val interactionSource = remember { MutableInteractionSource() }
@@ -289,7 +293,8 @@ fun OceanTransactionListExpandable(
                 icon = icon,
                 state = state,
                 isExpanded = isExpanded,
-                iconColor = iconColor
+                iconColor = iconColor,
+                density = density
             )
         }
 
@@ -308,6 +313,7 @@ fun OceanTransactionListExpandable(
                             amount = item.amount,
                             icon = item.icon,
                             iconColor = item.iconColor,
+                            density = density,
                             position = position,
                             state = if (enabled) item.state else OceanTransactionListState.Disabled,
                             onClick = onClick
@@ -318,6 +324,7 @@ fun OceanTransactionListExpandable(
                             amount = item.amount,
                             icon = item.icon,
                             iconColor = item.iconColor,
+                            density = density,
                             position = position,
                             state = if (enabled) item.state else OceanTransactionListState.Disabled
                         )
@@ -355,7 +362,8 @@ private fun OceanTransactionListParentRow(
     icon: OceanIconModel?,
     state: OceanTransactionListState,
     isExpanded: Boolean,
-    iconColor: TransactionListIconColor
+    iconColor: TransactionListIconColor,
+    density: TransactionListDensity
 ) {
     TransactionListMainRow(
         content = content,
@@ -363,6 +371,7 @@ private fun OceanTransactionListParentRow(
         icon = icon,
         state = state,
         iconColor = iconColor,
+        density = density,
         trailing = {
             TrailingChevron(
                 enabled = state == OceanTransactionListState.Default,

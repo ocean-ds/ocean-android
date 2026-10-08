@@ -203,15 +203,20 @@ internal fun ChildTransactionListRow(
     position: OceanTransactionListPosition,
     state: OceanTransactionListState,
     iconColor: TransactionListIconColor? = null,
+    density: TransactionListDensity = TransactionListDensity.Default,
     trailing: (@Composable RowScope.() -> Unit)? = null
 ) {
     val enabled = state != OceanTransactionListState.Disabled
+    val compact = density == TransactionListDensity.Compact
 
     if (state == OceanTransactionListState.Loading) {
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(OceanSpacing.xs),
+                .padding(
+                    horizontal = OceanSpacing.xs,
+                    vertical = if (compact) OceanSpacing.xxs else OceanSpacing.xs
+                ),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxsExtra)
         ) {
@@ -238,7 +243,7 @@ internal fun ChildTransactionListRow(
         TransactionListContent(
             modifier = Modifier
                 .weight(1f)
-                .padding(vertical = OceanSpacing.xxsExtra),
+                .padding(vertical = if (compact) OceanSpacing.xxs else OceanSpacing.xxsExtra),
             content = content,
             amount = amount,
             enabled = enabled,
@@ -314,20 +319,22 @@ internal fun TransactionListMainRow(
     icon: OceanIconModel?,
     state: OceanTransactionListState,
     iconColor: TransactionListIconColor = TransactionListIconColor.Default,
+    density: TransactionListDensity = TransactionListDensity.Default,
     trailingGap: Dp = 12.dp,
     endPadding: Dp = OceanSpacing.xs,
     trailing: (@Composable () -> Unit)? = null
 ) {
     val enabled = state != OceanTransactionListState.Disabled
     val isLoading = state == OceanTransactionListState.Loading
+    val vertical = if (density == TransactionListDensity.Compact) OceanSpacing.xxs else OceanSpacing.xs
 
     Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(
                 start = OceanSpacing.xs,
-                top = OceanSpacing.xs,
-                bottom = OceanSpacing.xs,
+                top = vertical,
+                bottom = vertical,
                 end = endPadding
             ),
         verticalAlignment = Alignment.CenterVertically

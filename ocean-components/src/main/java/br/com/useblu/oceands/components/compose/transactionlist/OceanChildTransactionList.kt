@@ -25,6 +25,8 @@ import br.com.useblu.oceands.ui.compose.OceanColors
  * @param iconColor color of the leading [icon] from the closed set; when `null` (default) the
  *   child icon uses `Interface/Light/Down`. Disabled always uses `Interface/Light/Deep`. The `tint`
  *   of [OceanIconModel] is ignored.
+ * @param density [TransactionListDensity.Compact] sets top and bottom padding to 8dp (skeleton
+ *   included); [TransactionListDensity.Default] keeps 12dp around the content.
  */
 @Composable
 fun OceanChildTransactionListReadOnly(
@@ -34,7 +36,8 @@ fun OceanChildTransactionListReadOnly(
     position: OceanTransactionListPosition = OceanTransactionListPosition.Standalone,
     state: OceanTransactionListState = OceanTransactionListState.Default,
     icon: OceanIconModel? = null,
-    iconColor: TransactionListIconColor? = null
+    iconColor: TransactionListIconColor? = null,
+    density: TransactionListDensity = TransactionListDensity.Default
 ) {
     ChildTransactionListRow(
         modifier = Modifier.background(OceanColors.interfaceLightPure).then(modifier),
@@ -43,7 +46,8 @@ fun OceanChildTransactionListReadOnly(
         icon = icon,
         position = position,
         state = state,
-        iconColor = iconColor
+        iconColor = iconColor,
+        density = density
     )
 }
 
@@ -55,6 +59,8 @@ fun OceanChildTransactionListReadOnly(
  * @param iconColor color of the leading [icon] from the closed set; when `null` (default) the
  *   child icon uses `Interface/Light/Down`. Disabled always uses `Interface/Light/Deep`. The `tint`
  *   of [OceanIconModel] is ignored.
+ * @param density [TransactionListDensity.Compact] sets top and bottom padding to 8dp (skeleton
+ *   included); [TransactionListDensity.Default] keeps 12dp around the content.
  */
 @Suppress("LongParameterList")
 @Composable
@@ -66,7 +72,8 @@ fun OceanChildTransactionListAction(
     position: OceanTransactionListPosition = OceanTransactionListPosition.Standalone,
     state: OceanTransactionListState = OceanTransactionListState.Default,
     icon: OceanIconModel? = null,
-    iconColor: TransactionListIconColor? = null
+    iconColor: TransactionListIconColor? = null,
+    density: TransactionListDensity = TransactionListDensity.Default
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -92,6 +99,7 @@ fun OceanChildTransactionListAction(
         position = position,
         state = state,
         iconColor = iconColor,
+        density = density,
         trailing = { TrailingChevron(enabled = enabled) }
     )
 }

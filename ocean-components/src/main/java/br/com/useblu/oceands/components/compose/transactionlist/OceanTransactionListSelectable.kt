@@ -34,6 +34,8 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
  * only selects (always `true`), like the Ocean radio.
  * @param indeterminate shows the checkbox indeterminate mark (Checkbox only).
  * @param showError shows the controller error border.
+ * @param density [TransactionListDensity.Compact] sets top and bottom padding to 8dp (skeleton
+ *   included); [TransactionListDensity.Default] keeps the component's own padding.
  */
 @Suppress("LongParameterList")
 @Composable
@@ -47,7 +49,8 @@ fun OceanTransactionListSelectable(
     state: OceanTransactionListState = OceanTransactionListState.Default,
     indeterminate: Boolean = false,
     showError: Boolean = false,
-    showDivider: Boolean = true
+    showDivider: Boolean = true,
+    density: TransactionListDensity = TransactionListDensity.Default
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isHovered by interactionSource.collectIsHoveredAsState()
@@ -80,6 +83,7 @@ fun OceanTransactionListSelectable(
             amount = amount,
             icon = null,
             state = state,
+            density = density,
             trailingGap = OceanSpacing.xs,
             trailing = {
                 Controller(

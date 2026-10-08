@@ -74,6 +74,21 @@ enum class TransactionListIconColor {
         }
 }
 
+/**
+ * Vertical density of the Transaction List family (operator decision 08/10/2026). Only the top
+ * and bottom padding change; the horizontal padding stays the same.
+ */
+enum class TransactionListDensity {
+    /** Each component's own vertical padding: 16dp on top-level rows, 12dp around the children's content. */
+    Default,
+
+    /**
+     * 8dp (`OceanSpacing.xxs`) on top and bottom for every component (Figma 26804-18127); the
+     * skeleton's Main padding follows (16 → 8).
+     */
+    Compact
+}
+
 /** Figma `Controller type` of the Transaction List Selectable. */
 enum class OceanTransactionListController {
     Checkbox,

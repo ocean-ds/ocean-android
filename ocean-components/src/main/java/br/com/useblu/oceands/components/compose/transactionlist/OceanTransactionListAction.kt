@@ -29,6 +29,8 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
  * @param onMenuClick Menu only: tap on the kebab; open the options in an Ocean bottom sheet.
  * @param iconColor color of the leading [icon] from the closed set; disabled always uses
  *   `Interface/Light/Deep`. The `tint` of [OceanIconModel] is ignored.
+ * @param density [TransactionListDensity.Compact] sets top and bottom padding to 8dp (skeleton
+ *   included); [TransactionListDensity.Default] keeps the component's own padding.
  */
 @Suppress("LongParameterList")
 @Composable
@@ -43,7 +45,8 @@ fun OceanTransactionListAction(
     type: OceanTransactionListActionType = OceanTransactionListActionType.Chevron,
     menuActive: Boolean = false,
     onMenuClick: () -> Unit = {},
-    iconColor: TransactionListIconColor = TransactionListIconColor.Default
+    iconColor: TransactionListIconColor = TransactionListIconColor.Default,
+    density: TransactionListDensity = TransactionListDensity.Default
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -70,6 +73,7 @@ fun OceanTransactionListAction(
             icon = icon,
             state = state,
             iconColor = iconColor,
+            density = density,
             endPadding = if (type == OceanTransactionListActionType.Menu) OceanSpacing.xxs else OceanSpacing.xs,
             trailing = {
                 when (type) {

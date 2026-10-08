@@ -52,7 +52,8 @@ enum class OceanTransactionListActionType {
 
 /**
  * Closed set of colors for the leading icon of the Transaction List family (operator decision
- * 08/10/2026). A disabled item always uses `Interface/Light/Deep`, whatever the choice; the
+ * 08/10/2026). Top-level rows default to [Default]; child items default to `Interface/Light/Down`
+ * unless a value is passed. A disabled item always uses `Interface/Light/Deep`, whatever the choice; the
  * `tint` of [OceanIconModel] is ignored by the family.
  */
 enum class TransactionListIconColor {
@@ -91,5 +92,6 @@ data class OceanTransactionListChildItem(
     val icon: OceanIconModel? = null,
     val state: OceanTransactionListState = OceanTransactionListState.Default,
     val onClick: (() -> Unit)? = null,
-    val iconColor: TransactionListIconColor = TransactionListIconColor.Default
+    /** `null` = `Interface/Light/Down` (child default); any value overrides it. */
+    val iconColor: TransactionListIconColor? = null
 )

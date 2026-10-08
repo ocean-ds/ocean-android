@@ -11,11 +11,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.transactionlist.OceanChildTransactionListAction
 import br.com.useblu.oceands.components.compose.transactionlist.OceanChildTransactionListReadOnly
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListPosition
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListState
+import br.com.useblu.oceands.components.compose.transactionlist.TransactionListIconColor
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 
@@ -63,6 +65,21 @@ private fun ChildTransactionListActionSamples() = SamplesScreen {
 @Preview
 @Composable
 private fun ChildTransactionListReadOnlySamples() = SamplesScreen {
+    SampleSection("Icon color: padrão (Interface/Light/Down), Default, OnColor, Highlight")
+    OceanChildTransactionListReadOnly(
+        content = ContentListStyle.Inverted(title = "iconColor", description = "padrão (null)"),
+        amount = TransactionListSamples.amount(),
+        icon = TransactionListSamples.childIcon
+    )
+    TransactionListIconColor.entries.forEach { color ->
+        OceanChildTransactionListReadOnly(
+            content = ContentListStyle.Inverted(title = "iconColor", description = color.name),
+            amount = TransactionListSamples.amount(),
+            icon = TransactionListSamples.childIcon,
+            iconColor = color
+        )
+    }
+
     OceanTransactionListState.entries.forEach { state ->
         SampleSection("Position: standalone/first/middle/last · $state")
         OceanTransactionListPosition.entries.forEach { position ->

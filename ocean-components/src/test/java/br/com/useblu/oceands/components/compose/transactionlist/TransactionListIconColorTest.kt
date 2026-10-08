@@ -40,6 +40,7 @@ class TransactionListIconColorTest {
     private var darkDown = Color.Unspecified
     private var primaryDown = Color.Unspecified
     private var lightDeep = Color.Unspecified
+    private var lightDown = Color.Unspecified
 
     private fun render(content: @Composable () -> Unit) {
         composeTestRule.setContent {
@@ -47,6 +48,7 @@ class TransactionListIconColorTest {
             darkDown = OceanColors.interfaceDarkDown
             primaryDown = OceanColors.brandPrimaryDown
             lightDeep = OceanColors.interfaceLightDeep
+            lightDown = OceanColors.interfaceLightDown
             Column(Modifier.width(360.dp)) { content() }
         }
     }
@@ -139,6 +141,54 @@ class TransactionListIconColorTest {
             )
         }
         assertEquals(primaryDown.toArgb(), iconColor())
+    }
+
+    @Test
+    fun childReadOnlyDefaultsToInterfaceLightDown() {
+        render { OceanChildTransactionListReadOnly(content = Samples.content, icon = solidIcon) }
+        assertEquals(lightDown.toArgb(), iconColor())
+    }
+
+    @Test
+    fun childActionDefaultsToInterfaceLightDown() {
+        render { OceanChildTransactionListAction(content = Samples.content, icon = solidIcon, onClick = {}) }
+        assertEquals(lightDown.toArgb(), iconColor())
+    }
+
+    @Test
+    fun childWithExplicitDefaultUsesInterfaceDarkUp() {
+        render {
+            OceanChildTransactionListReadOnly(
+                content = Samples.content,
+                icon = solidIcon,
+                iconColor = TransactionListIconColor.Default
+            )
+        }
+        assertEquals(darkUp.toArgb(), iconColor())
+    }
+
+    @Test
+    fun disabledChildWithoutColorStillForcesInterfaceLightDeep() {
+        render {
+            OceanChildTransactionListReadOnly(
+                content = Samples.content,
+                icon = solidIcon,
+                state = OceanTransactionListState.Disabled
+            )
+        }
+        assertEquals(lightDeep.toArgb(), iconColor())
+    }
+
+    @Test
+    fun expandableChildDefaultsToInterfaceLightDown() {
+        render {
+            OceanTransactionListExpandable(
+                content = ContentListStyle.Inverted(title = "Parent", description = "Parent description"),
+                items = listOf(OceanTransactionListChildItem(content = Samples.content, icon = solidIcon)),
+                startExpanded = true
+            )
+        }
+        assertEquals(lightDown.toArgb(), iconColor())
     }
 
     @Test

@@ -234,7 +234,7 @@ fun OceanTransactionListExpandable(
  * @param footer slot for the footer; when `null`, [footerText] is shown centered in `caption`.
  * @param onExpandedChange called with the new state on every toggle.
  * @param iconColor color of the parent's leading [icon] (children use their own
- *   [OceanTransactionListChildItem.iconColor]); disabled always uses `Interface/Light/Deep` and the
+ *   [OceanTransactionListChildItem.iconColor], `Interface/Light/Down` by default); disabled always uses `Interface/Light/Deep` and the
  *   `tint` of [OceanIconModel] is ignored.
  */
 @Suppress("LongParameterList", "kotlin:S107")

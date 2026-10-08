@@ -22,8 +22,9 @@ import br.com.useblu.oceands.ui.compose.OceanColors
  * no action. [content] and [amount] default to `size = Sm` (Figma child layout); pass `Md` to override.
  *
  * @param position where the item sits in its group: draws the timeline above/below the icon.
- * @param iconColor color of the leading [icon] from the closed set; disabled always uses
- *   `Interface/Light/Deep`. The `tint` of [OceanIconModel] is ignored.
+ * @param iconColor color of the leading [icon] from the closed set; when `null` (default) the
+ *   child icon uses `Interface/Light/Down`. Disabled always uses `Interface/Light/Deep`. The `tint`
+ *   of [OceanIconModel] is ignored.
  */
 @Composable
 fun OceanChildTransactionListReadOnly(
@@ -33,7 +34,7 @@ fun OceanChildTransactionListReadOnly(
     position: OceanTransactionListPosition = OceanTransactionListPosition.Standalone,
     state: OceanTransactionListState = OceanTransactionListState.Default,
     icon: OceanIconModel? = null,
-    iconColor: TransactionListIconColor = TransactionListIconColor.Default
+    iconColor: TransactionListIconColor? = null
 ) {
     ChildTransactionListRow(
         modifier = Modifier.background(OceanColors.interfaceLightPure).then(modifier),
@@ -51,8 +52,9 @@ fun OceanChildTransactionListReadOnly(
  * chevron; pressed/hovered shows the `Interface/Light/Up` highlight. Disabled and loading items
  * do not call [onClick]. [content] and [amount] default to `size = Sm`; pass `Md` to override.
  *
- * @param iconColor color of the leading [icon] from the closed set; disabled always uses
- *   `Interface/Light/Deep`. The `tint` of [OceanIconModel] is ignored.
+ * @param iconColor color of the leading [icon] from the closed set; when `null` (default) the
+ *   child icon uses `Interface/Light/Down`. Disabled always uses `Interface/Light/Deep`. The `tint`
+ *   of [OceanIconModel] is ignored.
  */
 @Suppress("LongParameterList")
 @Composable
@@ -64,7 +66,7 @@ fun OceanChildTransactionListAction(
     position: OceanTransactionListPosition = OceanTransactionListPosition.Standalone,
     state: OceanTransactionListState = OceanTransactionListState.Default,
     icon: OceanIconModel? = null,
-    iconColor: TransactionListIconColor = TransactionListIconColor.Default
+    iconColor: TransactionListIconColor? = null
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()

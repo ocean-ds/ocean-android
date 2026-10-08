@@ -144,7 +144,7 @@ private fun SkeletonBar(modifier: Modifier, brush: androidx.compose.ui.graphics.
 internal fun LeadingIcon(
     icon: OceanIconModel,
     enabled: Boolean,
-    iconColor: TransactionListIconColor,
+    color: Color,
     defaultSize: Dp = LEADING_ICON_SIZE
 ) {
     // OceanIconModel.tint is ignored on purpose: the family only takes the closed set of colors.
@@ -153,7 +153,7 @@ internal fun LeadingIcon(
         modifier = Modifier
             .size(icon.size ?: defaultSize)
             .testTag(TransactionListTestTags.LEADING_ICON),
-        tint = if (enabled) iconColor.color else OceanColors.interfaceLightDeep
+        tint = if (enabled) color else OceanColors.interfaceLightDeep
     )
 }
 
@@ -202,7 +202,7 @@ internal fun ChildTransactionListRow(
     icon: OceanIconModel?,
     position: OceanTransactionListPosition,
     state: OceanTransactionListState,
-    iconColor: TransactionListIconColor = TransactionListIconColor.Default,
+    iconColor: TransactionListIconColor? = null,
     trailing: (@Composable RowScope.() -> Unit)? = null
 ) {
     val enabled = state != OceanTransactionListState.Disabled
@@ -254,7 +254,7 @@ private fun Timeline(
     icon: OceanIconModel?,
     position: OceanTransactionListPosition,
     enabled: Boolean,
-    iconColor: TransactionListIconColor
+    iconColor: TransactionListIconColor?
 ) {
     Column(
         modifier = Modifier
@@ -268,7 +268,13 @@ private fun Timeline(
         )
         icon?.let {
             Box(modifier = Modifier.padding(OceanSpacing.xxxs)) {
-                LeadingIcon(icon = it, enabled = enabled, iconColor = iconColor, defaultSize = CHILD_ICON_SIZE)
+                LeadingIcon(
+                    icon = it,
+                    enabled = enabled,
+                    // Children default to Interface/Light/Down; an explicit color overrides it.
+                    color = iconColor?.color ?: OceanColors.interfaceLightDown,
+                    defaultSize = CHILD_ICON_SIZE
+                )
             }
         }
         TimelineLine(
@@ -327,7 +333,7 @@ internal fun TransactionListMainRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         if (icon != null) {
-            if (isLoading) LeadingIconSkeleton() else LeadingIcon(icon = icon, enabled = enabled, iconColor = iconColor)
+            if (isLoading) LeadingIconSkeleton() else LeadingIcon(icon = icon, enabled = enabled, color = iconColor.color)
             Spacer(modifier = Modifier.width(OceanSpacing.xxsExtra))
         }
 

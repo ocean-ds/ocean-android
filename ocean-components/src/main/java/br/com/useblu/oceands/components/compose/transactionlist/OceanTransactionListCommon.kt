@@ -21,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.selected
@@ -50,6 +49,7 @@ internal object TransactionListTestTags {
     const val LINE_BELOW = "transaction_list_line_below"
     const val CONTROL = "transaction_list_control"
     const val MENU = "transaction_list_menu"
+    const val LEADING_ICON = "transaction_list_leading_icon"
 }
 
 private val LEADING_ICON_SIZE = 24.dp
@@ -144,14 +144,16 @@ private fun SkeletonBar(modifier: Modifier, brush: androidx.compose.ui.graphics.
 internal fun LeadingIcon(
     icon: OceanIconModel,
     enabled: Boolean,
+    iconColor: TransactionListIconColor,
     defaultSize: Dp = LEADING_ICON_SIZE
 ) {
+    // OceanIconModel.tint is ignored on purpose: the family only takes the closed set of colors.
     OceanIcon(
         iconType = icon.icon,
-        modifier = Modifier.size(icon.size ?: defaultSize),
-        tint = icon.tint.takeOrElse {
-            if (enabled) OceanColors.interfaceDarkUp else OceanColors.interfaceLightDeep
-        }
+        modifier = Modifier
+            .size(icon.size ?: defaultSize)
+            .testTag(TransactionListTestTags.LEADING_ICON),
+        tint = if (enabled) iconColor.color else OceanColors.interfaceLightDeep
     )
 }
 
@@ -180,10 +182,13 @@ internal fun TransactionListDivider() {
     )
 }
 
-/** Background of the pressed/hovered state: `Interface/Light/Up`. */
+/**
+ * Overlay of the pressed/hovered state: `Interface/Light/Up`. Transparent at rest, so a background
+ * set by the screen through `modifier` (e.g. a `Status/Warning/Up` hero) shows through.
+ */
 @Composable
 internal fun highlightBackground(highlighted: Boolean): Color =
-    if (highlighted) OceanColors.interfaceLightUp else OceanColors.interfaceLightPure
+    if (highlighted) OceanColors.interfaceLightUp else Color.Transparent
 
 /**
  * Row of the child items: 16dp horizontal padding, timeline column (24dp) with the icon,
@@ -197,6 +202,7 @@ internal fun ChildTransactionListRow(
     icon: OceanIconModel?,
     position: OceanTransactionListPosition,
     state: OceanTransactionListState,
+    iconColor: TransactionListIconColor = TransactionListIconColor.Default,
     trailing: (@Composable RowScope.() -> Unit)? = null
 ) {
     val enabled = state != OceanTransactionListState.Disabled
@@ -227,7 +233,7 @@ internal fun ChildTransactionListRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxsExtra)
     ) {
-        Timeline(icon = icon, position = position, enabled = enabled)
+        Timeline(icon = icon, position = position, enabled = enabled, iconColor = iconColor)
 
         TransactionListContent(
             modifier = Modifier
@@ -247,7 +253,8 @@ internal fun ChildTransactionListRow(
 private fun Timeline(
     icon: OceanIconModel?,
     position: OceanTransactionListPosition,
-    enabled: Boolean
+    enabled: Boolean,
+    iconColor: TransactionListIconColor
 ) {
     Column(
         modifier = Modifier
@@ -261,7 +268,7 @@ private fun Timeline(
         )
         icon?.let {
             Box(modifier = Modifier.padding(OceanSpacing.xxxs)) {
-                LeadingIcon(icon = it, enabled = enabled, defaultSize = CHILD_ICON_SIZE)
+                LeadingIcon(icon = it, enabled = enabled, iconColor = iconColor, defaultSize = CHILD_ICON_SIZE)
             }
         }
         TimelineLine(
@@ -300,6 +307,7 @@ internal fun TransactionListMainRow(
     amount: ContentListStyle.Amount?,
     icon: OceanIconModel?,
     state: OceanTransactionListState,
+    iconColor: TransactionListIconColor = TransactionListIconColor.Default,
     trailingGap: Dp = 12.dp,
     endPadding: Dp = OceanSpacing.xs,
     trailing: (@Composable () -> Unit)? = null
@@ -319,7 +327,7 @@ internal fun TransactionListMainRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         if (icon != null) {
-            if (isLoading) LeadingIconSkeleton() else LeadingIcon(icon = icon, enabled = enabled)
+            if (isLoading) LeadingIconSkeleton() else LeadingIcon(icon = icon, enabled = enabled, iconColor = iconColor)
             Spacer(modifier = Modifier.width(OceanSpacing.xxsExtra))
         }
 

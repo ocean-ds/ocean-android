@@ -1,8 +1,11 @@
 package br.com.useblu.oceands.components.compose.transactionlist
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.graphics.Color
 import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.model.compose.OceanIconModel
+import br.com.useblu.oceands.ui.compose.OceanColors
 
 /** Figma `State` shared by the Transaction List family (MR-615). */
 enum class OceanTransactionListState {
@@ -47,6 +50,29 @@ enum class OceanTransactionListActionType {
     Menu
 }
 
+/**
+ * Closed set of colors for the leading icon of the Transaction List family (operator decision
+ * 08/10/2026). A disabled item always uses `Interface/Light/Deep`, whatever the choice; the
+ * `tint` of [OceanIconModel] is ignored by the family.
+ */
+enum class TransactionListIconColor {
+    /** `Interface/Dark/Up` — item on a white background (default). */
+    Default,
+
+    /** `Interface/Dark/Down` — item on a colored background (e.g. `Status/Warning/Up` heroes). */
+    OnColor,
+
+    /** `Brand/Primary/Down` — more emphasis. */
+    Highlight;
+
+    internal val color: Color
+        @Composable get() = when (this) {
+            Default -> OceanColors.interfaceDarkUp
+            OnColor -> OceanColors.interfaceDarkDown
+            Highlight -> OceanColors.brandPrimaryDown
+        }
+}
+
 /** Figma `Controller type` of the Transaction List Selectable. */
 enum class OceanTransactionListController {
     Checkbox,
@@ -64,5 +90,6 @@ data class OceanTransactionListChildItem(
     val amount: ContentListStyle.Amount? = null,
     val icon: OceanIconModel? = null,
     val state: OceanTransactionListState = OceanTransactionListState.Default,
-    val onClick: (() -> Unit)? = null
+    val onClick: (() -> Unit)? = null,
+    val iconColor: TransactionListIconColor = TransactionListIconColor.Default
 )

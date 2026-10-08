@@ -3,7 +3,9 @@ package br.com.useblu.oceands.client.ui.transactionlist
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.useblu.oceands.components.compose.AmountType
 import br.com.useblu.oceands.components.compose.ContentListSize
@@ -11,6 +13,8 @@ import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.ContentListType
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListReadOnly
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListState
+import br.com.useblu.oceands.components.compose.transactionlist.TransactionListIconColor
+import br.com.useblu.oceands.ui.compose.OceanColors
 
 class TransactionListReadOnlyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +35,39 @@ private fun TransactionListReadOnlySamples() = SamplesScreen {
             state = state
         )
     }
+
+    SampleSection("Icon colors (Default, OnColor, Highlight, disabled)")
+    TransactionListIconColor.entries.forEach { color ->
+        OceanTransactionListReadOnly(
+            content = ContentListStyle.Inverted(title = "iconColor", description = color.name),
+            amount = TransactionListSamples.amount(),
+            icon = TransactionListSamples.icon,
+            iconColor = color
+        )
+    }
+    OceanTransactionListReadOnly(
+        content = ContentListStyle.Inverted(title = "iconColor", description = "Highlight · Disabled"),
+        amount = TransactionListSamples.amount(),
+        icon = TransactionListSamples.icon,
+        iconColor = TransactionListIconColor.Highlight,
+        state = OceanTransactionListState.Disabled
+    )
+    OceanTransactionListReadOnly(
+        modifier = Modifier.background(OceanColors.statusWarningUp),
+        content = ContentListStyle.Inverted(title = "iconColor", description = "OnColor em Status/Warning/Up"),
+        amount = TransactionListSamples.amount(),
+        icon = TransactionListSamples.icon,
+        iconColor = TransactionListIconColor.OnColor,
+        showDivider = false
+    )
+    OceanTransactionListReadOnly(
+        modifier = Modifier.background(OceanColors.statusNegativeUp),
+        content = ContentListStyle.Inverted(title = "iconColor", description = "OnColor em Status/Negative/Up"),
+        amount = TransactionListSamples.amount(),
+        icon = TransactionListSamples.icon,
+        iconColor = TransactionListIconColor.OnColor,
+        showDivider = false
+    )
 
     SampleSection("Sizes")
     OceanTransactionListReadOnly(

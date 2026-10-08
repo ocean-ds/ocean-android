@@ -15,6 +15,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.model.compose.OceanIconModel
+import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 /**
@@ -26,6 +27,8 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
  * [OceanTransactionListActionType.Menu]; Swipe is not offered on Android.
  * @param menuActive Menu only: the options are open (Figma State Active). The screen owns it.
  * @param onMenuClick Menu only: tap on the kebab; open the options in an Ocean bottom sheet.
+ * @param iconColor color of the leading [icon] from the closed set; disabled always uses
+ *   `Interface/Light/Deep`. The `tint` of [OceanIconModel] is ignored.
  */
 @Suppress("LongParameterList")
 @Composable
@@ -39,7 +42,8 @@ fun OceanTransactionListAction(
     showDivider: Boolean = true,
     type: OceanTransactionListActionType = OceanTransactionListActionType.Chevron,
     menuActive: Boolean = false,
-    onMenuClick: () -> Unit = {}
+    onMenuClick: () -> Unit = {},
+    iconColor: TransactionListIconColor = TransactionListIconColor.Default
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -47,7 +51,9 @@ fun OceanTransactionListAction(
     val enabled = state == OceanTransactionListState.Default
 
     Column(
-        modifier = modifier
+        modifier = Modifier
+            .background(OceanColors.interfaceLightPure)
+            .then(modifier)
             .background(highlightBackground(enabled && (isPressed || isHovered)))
             .hoverable(interactionSource = interactionSource, enabled = enabled)
             .clickable(
@@ -63,6 +69,7 @@ fun OceanTransactionListAction(
             amount = amount,
             icon = icon,
             state = state,
+            iconColor = iconColor,
             endPadding = if (type == OceanTransactionListActionType.Menu) OceanSpacing.xxs else OceanSpacing.xs,
             trailing = {
                 when (type) {

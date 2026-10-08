@@ -44,6 +44,7 @@ import br.com.useblu.oceands.components.compose.transactionlist.OceanTransaction
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListPosition
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListState
 import br.com.useblu.oceands.components.compose.transactionlist.TrailingChevron
+import br.com.useblu.oceands.components.compose.transactionlist.TransactionListIconColor
 import br.com.useblu.oceands.components.compose.transactionlist.TransactionListMainRow
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.compose.OceanIconModel
@@ -232,6 +233,9 @@ fun OceanTransactionListExpandable(
  *
  * @param footer slot for the footer; when `null`, [footerText] is shown centered in `caption`.
  * @param onExpandedChange called with the new state on every toggle.
+ * @param iconColor color of the parent's leading [icon] (children use their own
+ *   [OceanTransactionListChildItem.iconColor]); disabled always uses `Interface/Light/Deep` and the
+ *   `tint` of [OceanIconModel] is ignored.
  */
 @Suppress("LongParameterList", "kotlin:S107")
 @Composable
@@ -246,7 +250,8 @@ fun OceanTransactionListExpandable(
     footer: (@Composable () -> Unit)? = null,
     showDivider: Boolean = true,
     startExpanded: Boolean = false,
-    onExpandedChange: (Boolean) -> Unit = {}
+    onExpandedChange: (Boolean) -> Unit = {},
+    iconColor: TransactionListIconColor = TransactionListIconColor.Default
 ) {
     var isExpanded by rememberSaveable { mutableStateOf(startExpanded) }
     val interactionSource = remember { MutableInteractionSource() }
@@ -255,14 +260,14 @@ fun OceanTransactionListExpandable(
     val enabled = state == OceanTransactionListState.Default
     val showChildren = isExpanded && state != OceanTransactionListState.Loading
 
-    Column(modifier = modifier.background(OceanColors.interfaceLightPure)) {
+    Column(modifier = Modifier.background(OceanColors.interfaceLightPure).then(modifier)) {
         Box(
             modifier = Modifier
                 .background(
                     if (enabled && (isPressed || isHovered)) {
                         OceanColors.interfaceLightUp
                     } else {
-                        OceanColors.interfaceLightPure
+                        Color.Transparent
                     }
                 )
                 .hoverable(interactionSource = interactionSource, enabled = enabled)
@@ -283,7 +288,8 @@ fun OceanTransactionListExpandable(
                 amount = amount,
                 icon = icon,
                 state = state,
-                isExpanded = isExpanded
+                isExpanded = isExpanded,
+                iconColor = iconColor
             )
         }
 
@@ -301,6 +307,7 @@ fun OceanTransactionListExpandable(
                             content = item.content,
                             amount = item.amount,
                             icon = item.icon,
+                            iconColor = item.iconColor,
                             position = position,
                             state = if (enabled) item.state else OceanTransactionListState.Disabled,
                             onClick = onClick
@@ -310,6 +317,7 @@ fun OceanTransactionListExpandable(
                             content = item.content,
                             amount = item.amount,
                             icon = item.icon,
+                            iconColor = item.iconColor,
                             position = position,
                             state = if (enabled) item.state else OceanTransactionListState.Disabled
                         )
@@ -346,13 +354,15 @@ private fun OceanTransactionListParentRow(
     amount: ContentListStyle.Amount?,
     icon: OceanIconModel?,
     state: OceanTransactionListState,
-    isExpanded: Boolean
+    isExpanded: Boolean,
+    iconColor: TransactionListIconColor
 ) {
     TransactionListMainRow(
         content = content,
         amount = amount,
         icon = icon,
         state = state,
+        iconColor = iconColor,
         trailing = {
             TrailingChevron(
                 enabled = state == OceanTransactionListState.Default,

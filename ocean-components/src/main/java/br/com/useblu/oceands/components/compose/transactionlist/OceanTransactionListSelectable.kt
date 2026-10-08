@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.input.OceanSelectableBox
 import br.com.useblu.oceands.components.compose.input.OceanSelectableRadio
+import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 /**
@@ -57,7 +58,9 @@ fun OceanTransactionListSelectable(
     }
 
     Column(
-        modifier = modifier
+        modifier = Modifier
+            .background(OceanColors.interfaceLightPure)
+            .then(modifier)
             .background(highlightBackground(enabled && isHovered))
             .hoverable(interactionSource = interactionSource, enabled = enabled)
             .clickable(

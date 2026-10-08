@@ -15,6 +15,8 @@ import br.com.useblu.oceands.ui.compose.OceanColors
  * @param content the `_Content List / Default` block (use [ContentListStyle.Default] or
  * [ContentListStyle.Inverted] with `size`/`type`).
  * @param amount the `_Content List / Amount` block, sized independently of [content].
+ * @param iconColor color of the leading [icon] from the closed set; disabled always uses
+ *   `Interface/Light/Deep`. The `tint` of [OceanIconModel] is ignored.
  */
 @Composable
 fun OceanTransactionListReadOnly(
@@ -23,14 +25,16 @@ fun OceanTransactionListReadOnly(
     amount: ContentListStyle.Amount? = null,
     state: OceanTransactionListState = OceanTransactionListState.Default,
     icon: OceanIconModel? = null,
-    showDivider: Boolean = true
+    showDivider: Boolean = true,
+    iconColor: TransactionListIconColor = TransactionListIconColor.Default
 ) {
-    Column(modifier = modifier.background(OceanColors.interfaceLightPure)) {
+    Column(modifier = Modifier.background(OceanColors.interfaceLightPure).then(modifier)) {
         TransactionListMainRow(
             content = content,
             amount = amount,
             icon = icon,
-            state = state
+            state = state,
+            iconColor = iconColor
         )
 
         if (showDivider) {

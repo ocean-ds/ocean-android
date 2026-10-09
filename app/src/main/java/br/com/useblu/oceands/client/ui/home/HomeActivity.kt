@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.client.ui.home
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -88,6 +89,11 @@ import br.com.useblu.oceands.client.ui.textlistreadonly.TextListReadOnlyActivity
 import br.com.useblu.oceands.client.ui.tokeninput.TokenInputActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivity
+import br.com.useblu.oceands.client.ui.transactionlist.ChildTransactionListActionActivity
+import br.com.useblu.oceands.client.ui.transactionlist.ChildTransactionListReadOnlyActivity
+import br.com.useblu.oceands.client.ui.transactionlist.TransactionListActionActivity
+import br.com.useblu.oceands.client.ui.transactionlist.TransactionListReadOnlyActivity
+import br.com.useblu.oceands.client.ui.transactionlist.TransactionListSelectableActivity
 import br.com.useblu.oceands.client.ui.transactionlistexpandable.OceanTransactionListExpandableActivity
 import br.com.useblu.oceands.client.ui.transactionlistitem.TransactionListItemActivity
 import br.com.useblu.oceands.client.ui.typography.TypographyActivity
@@ -250,6 +256,11 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Transaction Footer", onClick = { transactionFooter() })
                         textAction(text = "Transaction List", onClick = { transactionListClick() })
                         textAction(text = "Transaction List Expandable", onClick = { transactionListExpandableClick() })
+                        textAction(text = "Transaction List Read Only", onClick = { open<TransactionListReadOnlyActivity>() })
+                        textAction(text = "Transaction List Action", onClick = { open<TransactionListActionActivity>() })
+                        textAction(text = "Transaction List Selectable", onClick = { open<TransactionListSelectableActivity>() })
+                        textAction(text = "Child Transaction List Action", onClick = { open<ChildTransactionListActionActivity>() })
+                        textAction(text = "Child Transaction List Read Only", onClick = { open<ChildTransactionListReadOnlyActivity>() })
                         textAction(text = "Typography", onClick = { onClickTypography() })
                         textAction(text = "Unordered List Item", onClick = { onClickUnorderedListItem() })
                     }
@@ -351,6 +362,10 @@ class HomeActivity : AppCompatActivity() {
     private fun transactionListClick() {
         val intent = Intent(this, TransactionListItemActivity::class.java)
         startActivity(intent)
+    }
+
+    private inline fun <reified T : Activity> open() {
+        startActivity(Intent(this, T::class.java))
     }
 
     private fun transactionListExpandableClick() {

@@ -12,9 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.client.ui.transactionlist.SampleSection
+import br.com.useblu.oceands.client.ui.transactionlist.TransactionListSamples
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.list.OceanTransactionListExpandable
 import br.com.useblu.oceands.components.compose.list.OceanTransactionListExpandableItem
+import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListChildItem
+import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListState
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -47,6 +51,8 @@ private fun TransactionListExpandableSamples() {
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
     ) {
+        FamilyExpandableSamples()
+
         OceanSpacing.StackMD()
 
         OceanTransactionListExpandable(
@@ -188,4 +194,49 @@ private fun TransactionListExpandableSamples() {
 @Composable
 private fun TransactionListExpandableSamplesPreview() {
     TransactionListExpandableSamples()
+}
+
+/** MR-615 family API: parent + child items with timeline and footer (Figma 24289-64430). */
+@Composable
+private fun FamilyExpandableSamples() {
+    val children = List(3) {
+        OceanTransactionListChildItem(
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
+            icon = TransactionListSamples.childIcon,
+            onClick = {}
+        )
+    }
+
+    SampleSection("Família Transaction List (MR-615)")
+    OceanTransactionListExpandable(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(),
+        icon = TransactionListSamples.icon,
+        items = children,
+        footerText = "Additional information"
+    )
+    OceanTransactionListExpandable(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(),
+        icon = TransactionListSamples.icon,
+        items = children.map { it.copy(onClick = null) },
+        footerText = "Additional information",
+        startExpanded = true
+    )
+    OceanTransactionListExpandable(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(),
+        icon = TransactionListSamples.icon,
+        items = children,
+        footerText = "Additional information",
+        state = OceanTransactionListState.Disabled
+    )
+    OceanTransactionListExpandable(
+        content = TransactionListSamples.content(),
+        icon = TransactionListSamples.icon,
+        state = OceanTransactionListState.Loading
+    )
+
+    SampleSection("Legado")
 }

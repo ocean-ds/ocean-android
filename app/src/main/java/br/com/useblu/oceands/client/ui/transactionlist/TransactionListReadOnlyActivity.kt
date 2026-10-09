@@ -1,0 +1,212 @@
+package br.com.useblu.oceands.client.ui.transactionlist
+
+import android.os.Bundle
+import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.background
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import br.com.useblu.oceands.components.compose.AmountType
+import br.com.useblu.oceands.components.compose.ContentListSize
+import br.com.useblu.oceands.components.compose.ContentListStyle
+import br.com.useblu.oceands.components.compose.ContentListType
+import br.com.useblu.oceands.components.compose.transactionlist.OceanChildTransactionListAction
+import br.com.useblu.oceands.components.compose.transactionlist.OceanChildTransactionListReadOnly
+import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListAction
+import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListReadOnly
+import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListSelectable
+import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListState
+import br.com.useblu.oceands.components.compose.transactionlist.TransactionListDensity
+import br.com.useblu.oceands.components.compose.transactionlist.TransactionListIconColor
+import br.com.useblu.oceands.ui.compose.OceanColors
+
+class TransactionListReadOnlyActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent { TransactionListReadOnlySamples() }
+    }
+}
+
+@Preview
+@Composable
+private fun TransactionListReadOnlySamples() = SamplesScreen {
+    SampleSection("Long text")
+    OceanTransactionListReadOnly(
+        content = TransactionListSamples.longContent(),
+        amount = TransactionListSamples.longAmount(),
+        icon = TransactionListSamples.icon
+    )
+    OceanTransactionListAction(
+        content = TransactionListSamples.longContent(),
+        amount = TransactionListSamples.longAmount(),
+        icon = TransactionListSamples.icon,
+        onClick = {}
+    )
+    OceanTransactionListSelectable(
+        content = TransactionListSamples.longContent(),
+        amount = TransactionListSamples.longAmount(),
+        selected = false,
+        onSelectedChange = {}
+    )
+    OceanChildTransactionListReadOnly(
+        content = TransactionListSamples.longContent(),
+        amount = TransactionListSamples.longAmount(),
+        icon = TransactionListSamples.childIcon
+    )
+    OceanChildTransactionListAction(
+        content = TransactionListSamples.longContent(),
+        amount = TransactionListSamples.longAmount(),
+        icon = TransactionListSamples.childIcon,
+        onClick = {}
+    )
+
+    SampleSection("States")
+    OceanTransactionListState.entries.forEach { state ->
+        OceanTransactionListReadOnly(
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
+            icon = TransactionListSamples.icon,
+            state = state
+        )
+    }
+
+    SampleSection("Icon colors (Default, OnColor, Highlight, disabled)")
+    TransactionListIconColor.entries.forEach { color ->
+        OceanTransactionListReadOnly(
+            content = ContentListStyle.Inverted(title = "iconColor", description = color.name),
+            amount = TransactionListSamples.amount(),
+            icon = TransactionListSamples.icon,
+            iconColor = color
+        )
+    }
+    OceanTransactionListReadOnly(
+        content = ContentListStyle.Inverted(title = "iconColor", description = "Highlight · Disabled"),
+        amount = TransactionListSamples.amount(),
+        icon = TransactionListSamples.icon,
+        iconColor = TransactionListIconColor.Highlight,
+        state = OceanTransactionListState.Disabled
+    )
+    OceanTransactionListReadOnly(
+        modifier = Modifier.background(OceanColors.statusWarningUp),
+        content = ContentListStyle.Inverted(title = "iconColor", description = "OnColor em Status/Warning/Up"),
+        amount = TransactionListSamples.amount(),
+        icon = TransactionListSamples.icon,
+        iconColor = TransactionListIconColor.OnColor,
+        showDivider = false
+    )
+    OceanTransactionListReadOnly(
+        modifier = Modifier.background(OceanColors.statusNegativeUp),
+        content = ContentListStyle.Inverted(title = "iconColor", description = "OnColor em Status/Negative/Up"),
+        amount = TransactionListSamples.amount(),
+        icon = TransactionListSamples.icon,
+        iconColor = TransactionListIconColor.OnColor,
+        showDivider = false
+    )
+
+    TransactionListDensity.entries.forEach { density ->
+        SampleSection("Density: ${density.name}")
+        OceanTransactionListReadOnly(
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
+            icon = TransactionListSamples.icon,
+            density = density
+        )
+        OceanTransactionListAction(
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
+            icon = TransactionListSamples.icon,
+            density = density,
+            onClick = {}
+        )
+        OceanTransactionListSelectable(
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
+            selected = false,
+            onSelectedChange = {},
+            density = density
+        )
+        OceanChildTransactionListReadOnly(
+            content = TransactionListSamples.content(),
+            amount = TransactionListSamples.amount(),
+            icon = TransactionListSamples.childIcon,
+            density = density
+        )
+        OceanTransactionListReadOnly(
+            content = TransactionListSamples.content(),
+            icon = TransactionListSamples.icon,
+            state = OceanTransactionListState.Loading,
+            density = density
+        )
+    }
+
+    SampleSection("Sizes")
+    OceanTransactionListReadOnly(
+        content = TransactionListSamples.content(ContentListSize.Sm),
+        amount = TransactionListSamples.amount(ContentListSize.Md),
+        icon = TransactionListSamples.icon
+    )
+    OceanTransactionListReadOnly(
+        content = TransactionListSamples.content(ContentListSize.Md),
+        amount = TransactionListSamples.amount(ContentListSize.Sm),
+        icon = TransactionListSamples.icon
+    )
+    OceanTransactionListReadOnly(
+        content = TransactionListSamples.content(ContentListSize.Sm),
+        amount = TransactionListSamples.amount(ContentListSize.Sm),
+        icon = TransactionListSamples.icon
+    )
+
+    SampleSection("Amount types")
+    OceanTransactionListReadOnly(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(type = AmountType.Positive)
+    )
+    OceanTransactionListReadOnly(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(type = AmountType.Negative)
+    )
+    OceanTransactionListReadOnly(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(type = AmountType.Inactive)
+    )
+    OceanTransactionListReadOnly(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(
+            type = AmountType.Strikethrough,
+            amount = "Grátis",
+            strikethrough = "3,99%"
+        )
+    )
+    OceanTransactionListReadOnly(
+        content = TransactionListSamples.content(),
+        amount = TransactionListSamples.amount(
+            type = AmountType.StrikethroughNeutral,
+            amount = "R$ 90,00",
+            strikethrough = "R$ 100,00"
+        )
+    )
+
+    SampleSection("Content types")
+    ContentListType.entries.forEach { type ->
+        OceanTransactionListReadOnly(
+            content = ContentListStyle.Inverted(
+                title = type.name,
+                description = "Description",
+                caption = "Caption",
+                type = type
+            ),
+            amount = TransactionListSamples.amount()
+        )
+    }
+    OceanTransactionListReadOnly(
+        content = ContentListStyle.Strikethrough(
+            title = "Strikethrough",
+            description = "Strikethrough",
+            newValue = "Description",
+            caption = "Caption",
+            size = ContentListSize.Md
+        ),
+        amount = TransactionListSamples.amount()
+    )
+}

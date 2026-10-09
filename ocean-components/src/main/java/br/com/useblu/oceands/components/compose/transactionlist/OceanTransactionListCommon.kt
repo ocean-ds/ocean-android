@@ -17,14 +17,23 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.IntrinsicMeasurable
+import androidx.compose.ui.layout.IntrinsicMeasureScope
+import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.Measurable
+import androidx.compose.ui.layout.MeasurePolicy
+import androidx.compose.ui.layout.MeasureResult
+import androidx.compose.ui.layout.MeasureScope
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.ContentListSize
@@ -50,6 +59,7 @@ internal object TransactionListTestTags {
     const val CONTROL = "transaction_list_control"
     const val MENU = "transaction_list_menu"
     const val LEADING_ICON = "transaction_list_leading_icon"
+    const val AMOUNT = "transaction_list_amount"
 }
 
 private val LEADING_ICON_SIZE = 24.dp
@@ -59,7 +69,17 @@ private val TITLE_SKELETON_WIDTH = 96.dp
 private val SKELETON_HEIGHT = 16.dp
 private val TIMELINE_WIDTH = 1.dp
 
-/** Content block + Amount block, gap 8 (Figma `Content`). */
+/** The Amount block takes at most half of the row (overflow rule shared with ocean-web). */
+internal const val AMOUNT_MAX_WIDTH_FRACTION = 0.5f
+
+/**
+ * Content block + Amount block, gap 8 (Figma `Content`).
+ *
+ * Overflow rule (same as ocean-web): the Content is never squeezed — it takes all the width the
+ * Amount leaves (weight 1, fill) — and the Amount is limited to [AMOUNT_MAX_WIDTH_FRACTION] of the
+ * row, so a long Tag ends in an ellipsis instead of pushing the Content. A custom layout instead of
+ * `BoxWithConstraints` because the child rows measure intrinsic heights (`IntrinsicSize.Min`).
+ */
 @Composable
 internal fun TransactionListContent(
     modifier: Modifier = Modifier,
@@ -68,23 +88,107 @@ internal fun TransactionListContent(
     enabled: Boolean,
     defaultSize: ContentListSize = ContentListSize.Md
 ) {
-    Row(
+    val gap = OceanSpacing.xxs
+    val measurePolicy = remember(gap) { ContentAmountMeasurePolicy(gap) }
+    Layout(
         modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
-    ) {
-        OceanContentList(
-            modifier = Modifier.weight(1f),
-            style = content.withTokens(defaultSize),
-            enabled = enabled
-        )
-        amount?.let {
+        measurePolicy = measurePolicy,
+        content = {
             OceanContentList(
-                style = it.withTokens(defaultSize),
+                style = content.withTokens(defaultSize),
                 enabled = enabled
             )
+            amount?.let {
+                OceanContentList(
+                    modifier = Modifier.testTag(TransactionListTestTags.AMOUNT),
+                    style = it.withTokens(defaultSize),
+                    enabled = enabled
+                )
+            }
+        }
+    )
+}
+
+/**
+ * Children: Content, then the optional Amount. The Amount is measured first, capped at [AMOUNT_MAX_WIDTH_FRACTION] of the width; the Content gets exactly the
+ * rest (the `weight(1f, fill = true)` of a Row). Both centred vertically. The intrinsics follow the
+ * same split, so `IntrinsicSize.Min` in the child rows gives the real height.
+ */
+private class ContentAmountMeasurePolicy(private val gap: Dp) : MeasurePolicy {
+
+    override fun MeasureScope.measure(measurables: List<Measurable>, constraints: Constraints): MeasureResult {
+        val contentMeasurable = measurables.first()
+        val amountMeasurable = measurables.getOrNull(1)
+        val gapPx = if (amountMeasurable != null) gap.roundToPx() else 0
+        val loose = constraints.copy(minWidth = 0, minHeight = 0)
+        val bounded = constraints.hasBoundedWidth
+
+        val amountPlaceable = amountMeasurable?.measure(
+            if (bounded) loose.copy(maxWidth = amountMaxWidth(constraints.maxWidth)) else loose
+        )
+        val amountWidth = amountPlaceable?.width ?: 0
+        val contentWidth = (constraints.maxWidth - amountWidth - gapPx).coerceAtLeast(0)
+        val contentPlaceable = contentMeasurable.measure(
+            if (bounded) loose.copy(minWidth = contentWidth, maxWidth = contentWidth) else loose
+        )
+
+        val width = if (bounded) {
+            constraints.maxWidth
+        } else {
+            (contentPlaceable.width + gapPx + amountWidth).coerceAtLeast(constraints.minWidth)
+        }
+        val height = maxOf(contentPlaceable.height, amountPlaceable?.height ?: 0)
+            .coerceIn(constraints.minHeight, constraints.maxHeight)
+
+        return layout(width, height) {
+            contentPlaceable.placeRelative(0, (height - contentPlaceable.height) / 2)
+            amountPlaceable?.placeRelative(width - amountWidth, (height - amountPlaceable.height) / 2)
         }
     }
+
+    override fun IntrinsicMeasureScope.minIntrinsicHeight(
+        measurables: List<IntrinsicMeasurable>,
+        width: Int
+    ): Int = intrinsicHeight(measurables, width) { m, w -> m.minIntrinsicHeight(w) }
+
+    override fun IntrinsicMeasureScope.maxIntrinsicHeight(
+        measurables: List<IntrinsicMeasurable>,
+        width: Int
+    ): Int = intrinsicHeight(measurables, width) { m, w -> m.maxIntrinsicHeight(w) }
+
+    override fun IntrinsicMeasureScope.minIntrinsicWidth(
+        measurables: List<IntrinsicMeasurable>,
+        height: Int
+    ): Int = intrinsicWidth(measurables) { it.minIntrinsicWidth(height) }
+
+    override fun IntrinsicMeasureScope.maxIntrinsicWidth(
+        measurables: List<IntrinsicMeasurable>,
+        height: Int
+    ): Int = intrinsicWidth(measurables) { it.maxIntrinsicWidth(height) }
+
+    private fun IntrinsicMeasureScope.intrinsicHeight(
+        measurables: List<IntrinsicMeasurable>,
+        width: Int,
+        heightOf: (IntrinsicMeasurable, Int) -> Int
+    ): Int {
+        val content = measurables.first()
+        val amount = measurables.getOrNull(1)
+            ?: return heightOf(content, width)
+        if (width == Constraints.Infinity) return maxOf(heightOf(content, width), heightOf(amount, width))
+        val amountWidth = minOf(amount.maxIntrinsicWidth(Constraints.Infinity), amountMaxWidth(width))
+        val contentWidth = (width - amountWidth - gap.roundToPx()).coerceAtLeast(0)
+        return maxOf(heightOf(content, contentWidth), heightOf(amount, amountWidth))
+    }
+
+    private fun IntrinsicMeasureScope.intrinsicWidth(
+        measurables: List<IntrinsicMeasurable>,
+        widthOf: (IntrinsicMeasurable) -> Int
+    ): Int {
+        val gapPx = if (measurables.size > 1) gap.roundToPx() else 0
+        return measurables.sumOf(widthOf) + gapPx
+    }
+
+    private fun amountMaxWidth(width: Int) = (width * AMOUNT_MAX_WIDTH_FRACTION).toInt()
 }
 
 /** Loading skeleton of the Content: two lines on the start, two 86dp bars on the end. */

@@ -43,6 +43,21 @@ internal object TransactionListSamples {
         additionalData = "Additional data"
     )
 
+    /** Long texts: content up to 2 lines + ellipsis, one-line Tag with ellipsis, full value. */
+    fun longContent(size: ContentListSize? = null) = ContentListStyle.Inverted(
+        title = "Bank transfer",
+        description = "Seashell Corporation Wholesale and Distribution Ltda",
+        caption = "Order #7182, invoice 4821, scheduled for Oct 15",
+        size = size
+    )
+
+    fun longAmount(size: ContentListSize? = null) = ContentListStyle.Amount(
+        amount = "R$ 1.314,28",
+        size = size,
+        tag = OceanTagModel(type = OceanTagType.Warning, text = "Payment scheduled for Oct 15 by bank transfer"),
+        additionalData = "Transfer to Seashell Corporation, account 4821"
+    )
+
     val icon = OceanIconModel(icon = OceanIcons.PLACEHOLDER_OUTLINE)
     val childIcon = OceanIconModel(icon = OceanIcons.PLACEHOLDER_SOLID)
 }

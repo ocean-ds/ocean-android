@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanTagType
@@ -584,7 +586,9 @@ private fun TokenContentList(
     ) {
         OceanText(
             text = title,
-            style = resolvedTitleStyle
+            style = resolvedTitleStyle,
+            maxLines = CONTENT_MAX_LINES,
+            overflow = TextOverflow.Ellipsis
         )
 
         if (description.isNotBlank()) {
@@ -593,7 +597,9 @@ private fun TokenContentList(
                 style = configTextStyle(
                     originalStyle = resolvedDescriptionStyle,
                     isEnabled = !descriptionUnchanged
-                )
+                ),
+                maxLines = CONTENT_MAX_LINES,
+                overflow = TextOverflow.Ellipsis
             )
         }
 
@@ -604,7 +610,9 @@ private fun TokenContentList(
                 style = configTextStyle(
                     captionStyle ?: OceanTextStyle.captionBold,
                     !inactive
-                )
+                ),
+                maxLines = CONTENT_MAX_LINES,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
@@ -626,7 +634,9 @@ private fun TokenStrikethroughContentList(
             style = configTextStyle(
                 style.titleStyle ?: if (isMd) OceanTextStyle.description else OceanTextStyle.captionBold,
                 enabled
-            )
+            ),
+            maxLines = CONTENT_MAX_LINES,
+            overflow = TextOverflow.Ellipsis
         )
 
         Row(
@@ -637,7 +647,9 @@ private fun TokenStrikethroughContentList(
             OceanText(
                 text = style.description,
                 style = baseStyle.copy(color = OceanColors.interfaceDarkUp),
-                textDecoration = if (style.newValue.isNotBlank()) TextDecoration.LineThrough else null
+                textDecoration = if (style.newValue.isNotBlank()) TextDecoration.LineThrough else null,
+                maxLines = CONTENT_MAX_LINES,
+                overflow = TextOverflow.Ellipsis
             )
 
             if (style.newValue.isNotBlank()) {
@@ -646,7 +658,9 @@ private fun TokenStrikethroughContentList(
                     style = configTextStyle(
                         baseStyle.copy(color = OceanColors.statusPositiveDeep),
                         enabled
-                    )
+                    ),
+                    maxLines = CONTENT_MAX_LINES,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
@@ -658,15 +672,23 @@ private fun TokenStrikethroughContentList(
                 style = configTextStyle(
                     style.captionStyle ?: OceanTextStyle.captionBold,
                     enabled
-                )
+                ),
+                maxLines = CONTENT_MAX_LINES,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
 }
 
+/** Up to two lines, then an ellipsis: title, description, caption and additional data (MR-615). */
+internal const val CONTENT_MAX_LINES = 2
+
 /**
  * Figma `_Content List / Amount` (MR-615): value, optional strikethrough value, Tag and
  * additional data, aligned to the end. The Tag layout follows [ContentListStyle.Amount.size].
+ *
+ * Overflow rule (same as ocean-web): the value is one line and never wraps nor truncates, the Tag
+ * is one line ending in an ellipsis and the additional data goes up to two lines.
  */
 @Composable
 private fun AmountContentList(
@@ -707,18 +729,21 @@ private fun AmountContentList(
                 }
 
                 OceanText(
+                    // Unbounded: the value keeps its intrinsic width even if the block is narrower.
+                    modifier = Modifier.wrapContentWidth(align = Alignment.End, unbounded = true),
                     text = amountText,
                     style = baseStyle.copy(
                         color = amountColor,
                         fontFamily = OceanFontFamily.BaseMedium
                     ),
                     textAlign = TextAlign.End,
+                    softWrap = false,
                     maxLines = 1
                 )
             }
 
             style.tag?.let {
-                OceanTag(
+                OceanTagEllipsized(
                     style = OceanTagStyle.Default(
                         label = it.text,
                         layout = if (isMd) OceanTagLayout.Medium() else OceanTagLayout.Small(),
@@ -733,7 +758,9 @@ private fun AmountContentList(
             OceanText(
                 text = style.additionalData,
                 style = configTextStyle(OceanTextStyle.captionBold, !inactive),
-                textAlign = TextAlign.End
+                textAlign = TextAlign.End,
+                maxLines = CONTENT_MAX_LINES,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }

@@ -10,8 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
@@ -279,33 +282,57 @@ fun OceanTag(
     )
 }
 
+/**
+ * Default Tag that ends with an ellipsis when its parent is narrower than the label, instead of
+ * clipping it at the edge (MR-615 overflow rule). The full label stays in the semantics
+ * (`contentDescription`), so TalkBack reads it whole.
+ */
+@Composable
+internal fun OceanTagEllipsized(
+    modifier: Modifier = Modifier,
+    style: OceanTagStyle.Default,
+    enabled: Boolean = true
+) {
+    DefaultTag(
+        modifier = modifier,
+        style = style,
+        layout = style.layout,
+        enabled = enabled,
+        ellipsize = true
+    )
+}
+
 @Composable
 private fun DefaultTag(
     modifier: Modifier,
     style: OceanTagStyle.Default,
     layout: OceanTagLayout,
-    enabled: Boolean
+    enabled: Boolean,
+    ellipsize: Boolean = false
 ) {
     when (layout) {
         is OceanTagLayout.Medium -> DefaultMediumTag(
             modifier = modifier,
             style = style,
             layout = layout,
-            enabled
+            enabled = enabled,
+            ellipsize = ellipsize
         )
 
         is OceanTagLayout.Small -> DefaultSmallTag(
             modifier = modifier,
             style = style,
             layout = layout,
-            enabled = enabled
+            enabled = enabled,
+            ellipsize = ellipsize
         )
 
         is OceanTagLayout.Corner -> DefaultCornerTag(
             modifier = modifier,
             style = style,
             layout = layout,
-            enabled = enabled
+            enabled = enabled,
+            ellipsize = ellipsize
         )
     }
 }
@@ -315,7 +342,8 @@ private fun DefaultCornerTag(
     modifier: Modifier,
     style: OceanTagStyle.Default,
     layout: OceanTagLayout.Corner,
-    enabled: Boolean
+    enabled: Boolean,
+    ellipsize: Boolean = false
 ) {
     val textColor = getTextColor(
         type = if (enabled) style.type else OceanTagType.Neutral
@@ -337,7 +365,8 @@ private fun DefaultCornerTag(
             label = style.label,
             color = textColor,
             fallbackFontSize = layout.fontSize,
-            textStyleOverride = style.textStyle
+            textStyleOverride = style.textStyle,
+            ellipsize = ellipsize
         )
     }
 }
@@ -347,7 +376,8 @@ private fun DefaultMediumTag(
     modifier: Modifier,
     style: OceanTagStyle.Default,
     layout: OceanTagLayout.Medium,
-    enabled: Boolean
+    enabled: Boolean,
+    ellipsize: Boolean = false
 ) {
     val textColor = getTextColor(
         type = if (enabled) style.type else OceanTagType.Neutral
@@ -381,7 +411,8 @@ private fun DefaultMediumTag(
             color = textColor,
             fallbackFontSize = layout.fontSize,
             fallbackFontFamily = OceanFontFamily.BaseMedium,
-            textStyleOverride = style.textStyle
+            textStyleOverride = style.textStyle,
+            ellipsize = ellipsize
         )
     }
 }
@@ -391,7 +422,8 @@ private fun DefaultSmallTag(
     modifier: Modifier,
     style: OceanTagStyle.Default,
     layout: OceanTagLayout.Small,
-    enabled: Boolean
+    enabled: Boolean,
+    ellipsize: Boolean = false
 ) {
     val textColor = getTextColor(
         type = if (enabled) style.type else OceanTagType.Neutral
@@ -425,7 +457,8 @@ private fun DefaultSmallTag(
             color = textColor,
             fallbackFontSize = layout.fontSize,
             fallbackFontFamily = OceanFontFamily.BaseBold,
-            textStyleOverride = style.textStyle
+            textStyleOverride = style.textStyle,
+            ellipsize = ellipsize
         )
     }
 }
@@ -436,22 +469,29 @@ private fun TagText(
     color: Color,
     fallbackFontSize: TextUnit,
     textStyleOverride: TextStyle?,
-    fallbackFontFamily: FontFamily? = null
+    fallbackFontFamily: FontFamily? = null,
+    ellipsize: Boolean = false
 ) {
+    val modifier = if (ellipsize) Modifier.semantics { contentDescription = label } else Modifier
+    val overflow = if (ellipsize) TextOverflow.Ellipsis else TextOverflow.Clip
     if (textStyleOverride != null) {
         OceanText(
+            modifier = modifier,
             text = label,
             color = color,
             style = textStyleOverride,
+            overflow = overflow,
             softWrap = false,
             maxLines = 1
         )
     } else {
         OceanText(
+            modifier = modifier,
             text = label,
             color = color,
             fontSize = fallbackFontSize,
             fontFamily = fallbackFontFamily,
+            overflow = overflow,
             softWrap = false,
             maxLines = 1
         )

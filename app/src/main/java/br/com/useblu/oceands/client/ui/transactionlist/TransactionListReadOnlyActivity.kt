@@ -11,6 +11,7 @@ import br.com.useblu.oceands.components.compose.AmountType
 import br.com.useblu.oceands.components.compose.ContentListSize
 import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.ContentListType
+import br.com.useblu.oceands.components.compose.transactionlist.OceanChildTransactionListAction
 import br.com.useblu.oceands.components.compose.transactionlist.OceanChildTransactionListReadOnly
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListAction
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListReadOnly
@@ -30,6 +31,36 @@ class TransactionListReadOnlyActivity : AppCompatActivity() {
 @Preview
 @Composable
 private fun TransactionListReadOnlySamples() = SamplesScreen {
+    SampleSection("Long text")
+    OceanTransactionListReadOnly(
+        content = TransactionListSamples.longContent(),
+        amount = TransactionListSamples.longAmount(),
+        icon = TransactionListSamples.icon
+    )
+    OceanTransactionListAction(
+        content = TransactionListSamples.longContent(),
+        amount = TransactionListSamples.longAmount(),
+        icon = TransactionListSamples.icon,
+        onClick = {}
+    )
+    OceanTransactionListSelectable(
+        content = TransactionListSamples.longContent(),
+        amount = TransactionListSamples.longAmount(),
+        selected = false,
+        onSelectedChange = {}
+    )
+    OceanChildTransactionListReadOnly(
+        content = TransactionListSamples.longContent(),
+        amount = TransactionListSamples.longAmount(),
+        icon = TransactionListSamples.childIcon
+    )
+    OceanChildTransactionListAction(
+        content = TransactionListSamples.longContent(),
+        amount = TransactionListSamples.longAmount(),
+        icon = TransactionListSamples.childIcon,
+        onClick = {}
+    )
+
     SampleSection("States")
     OceanTransactionListState.entries.forEach { state ->
         OceanTransactionListReadOnly(

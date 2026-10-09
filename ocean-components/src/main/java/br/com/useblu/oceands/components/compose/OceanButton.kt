@@ -1,6 +1,7 @@
 package br.com.useblu.oceands.components.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -107,6 +108,12 @@ fun PreviewButtonInteractive() {
                 "Large" -> OceanButtonStyle.TertiaryWarningLarge
                 else -> OceanButtonStyle.TertiaryWarningMedium
             }
+            "TertiaryInverse" -> when (selectedSize) {
+                "Small" -> OceanButtonStyle.TertiaryInverseSmall
+                "Medium" -> OceanButtonStyle.TertiaryInverseMedium
+                "Large" -> OceanButtonStyle.TertiaryInverseLarge
+                else -> OceanButtonStyle.TertiaryInverseMedium
+            }
             else -> OceanButtonStyle.PrimaryMedium
         }
     }
@@ -126,16 +133,26 @@ fun PreviewButtonInteractive() {
 
             OceanSpacing.StackXS()
 
-            OceanButton(
-                text = "Avançar",
-                showProgress = isLoading,
-                icon = icon,
-                disabled = isDisabled,
-                modifier = Modifier,
-                buttonStyle = selectedStyle,
-                hasHorizontalPadding = hasHorizontalPadding,
-                onClick = { }
-            )
+            val isInverse = selectedVariant == "TertiaryInverse"
+            Box(
+                modifier = Modifier
+                    .background(
+                        color = if (isInverse) OceanColors.brandPrimaryPure else OceanColors.interfaceLightPure,
+                        shape = OceanBorderRadius.SM.allCorners.shape()
+                    )
+                    .padding(if (isInverse) OceanSpacing.xs else 0.dp)
+            ) {
+                OceanButton(
+                    text = "Avançar",
+                    showProgress = isLoading,
+                    icon = icon,
+                    disabled = isDisabled,
+                    modifier = Modifier,
+                    buttonStyle = selectedStyle,
+                    hasHorizontalPadding = hasHorizontalPadding,
+                    onClick = { }
+                )
+            }
 
             OceanSpacing.StackMD()
 
@@ -179,7 +196,8 @@ fun PreviewButtonInteractive() {
                     "SecondaryWarning",
                     "Tertiary",
                     "TertiaryCritical",
-                    "TertiaryWarning"
+                    "TertiaryWarning",
+                    "TertiaryInverse"
                 ).forEach { variant ->
                     Row {
                         OceanButton(

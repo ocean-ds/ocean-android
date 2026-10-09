@@ -77,4 +77,11 @@ object OceanButtonColors {
         disabledContainerColor = Color.Transparent,
         disabledContentColor = colorResource(id = R.color.ocean_color_interface_dark_up)
     )
+
+    val tertiaryInverse @Composable get() = ButtonDefaults.buttonColors(
+        containerColor = Color.Transparent,
+        contentColor = colorResource(id = R.color.ocean_color_interface_light_pure),
+        disabledContainerColor = Color.Transparent,
+        disabledContentColor = colorResource(id = R.color.ocean_color_interface_light_down)
+    )
 }

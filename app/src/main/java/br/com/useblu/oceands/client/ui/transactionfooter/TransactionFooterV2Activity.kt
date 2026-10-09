@@ -78,7 +78,7 @@ class TransactionFooterV2Activity : AppCompatActivity() {
                         )
                     )
                     footerSection(
-                        "Max rows",
+                        "Many rows",
                         items = (1..7).map { index ->
                             OceanTransactionFooterItem(
                                 content = ContentListStyle.Default(title = "Linha $index"),

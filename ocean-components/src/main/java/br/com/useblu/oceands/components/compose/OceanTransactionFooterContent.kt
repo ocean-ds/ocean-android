@@ -53,7 +53,6 @@ fun OceanTransactionFooter(
     type: OceanTransactionFooterType = OceanTransactionFooterType.Default,
     notice: String? = null
 ) {
-    val visibleItems = items.take(5)
     val background = when (type) {
         OceanTransactionFooterType.Default -> OceanColors.interfaceLightPure
         OceanTransactionFooterType.Highlight -> OceanColors.interfaceLightUp
@@ -99,7 +98,7 @@ fun OceanTransactionFooter(
             Spacer(modifier = Modifier.height(OceanSpacing.xs))
         }
 
-        visibleItems.forEachIndexed { index, item ->
+        items.forEachIndexed { index, item ->
             OceanTransactionListReadOnly(
                 content = item.content,
                 amount = item.amount,
@@ -111,7 +110,7 @@ fun OceanTransactionFooter(
                 } else {
                     TransactionListDensity.Compact
                 },
-                showDivider = index == 0 && visibleItems.size > 1,
+                showDivider = index == 0 && items.size > 1,
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(background)

@@ -50,7 +50,7 @@ class OceanTransactionFooterTest {
     }
 
     @Test
-    fun dropsRowsAfterTheFirstFiveAndRendersNotice() {
+    fun rendersAllRowsAndNotice() {
         val items = (1..6).map { index ->
             OceanTransactionFooterItem(
                 content = ContentListStyle.Default(title = "Linha $index"),
@@ -72,8 +72,9 @@ class OceanTransactionFooterTest {
         }
 
         composeTestRule.onNodeWithText("Confira os valores").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Linha 5").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Linha 6").assertDoesNotExist()
+        (1..6).forEach { index ->
+            composeTestRule.onNodeWithText("Linha $index").assertIsDisplayed()
+        }
     }
 
     @Test

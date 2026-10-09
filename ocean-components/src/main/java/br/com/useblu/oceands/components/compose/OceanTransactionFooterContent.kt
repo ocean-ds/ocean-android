@@ -13,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListReadOnly
@@ -27,12 +26,12 @@ import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 
-enum class OceanTransactionFooterV2Type {
+enum class OceanTransactionFooterType {
     Default,
     Highlight
 }
 
-data class OceanTransactionFooterV2Item(
+data class OceanTransactionFooterItem(
     val content: ContentListStyle,
     val amount: ContentListStyle.Amount? = null,
     val icon: OceanIconModel? = null,
@@ -40,26 +39,26 @@ data class OceanTransactionFooterV2Item(
     val iconColor: TransactionListIconColor = TransactionListIconColor.Default
 )
 
-data class OceanTransactionFooterV2Total(
+data class OceanTransactionFooterTotal(
     val label: String,
     val value: String
 )
 
 @Composable
-fun OceanTransactionFooterV2(
-    items: List<OceanTransactionFooterV2Item>,
-    total: OceanTransactionFooterV2Total,
+fun OceanTransactionFooter(
+    items: List<OceanTransactionFooterItem>,
+    total: OceanTransactionFooterTotal,
     button: OceanButtonModel,
     modifier: Modifier = Modifier,
-    type: OceanTransactionFooterV2Type = OceanTransactionFooterV2Type.Default,
+    type: OceanTransactionFooterType = OceanTransactionFooterType.Default,
     notice: String? = null
 ) {
     val visibleItems = items.take(5)
     val background = when (type) {
-        OceanTransactionFooterV2Type.Default -> OceanColors.interfaceLightPure
-        OceanTransactionFooterV2Type.Highlight -> OceanColors.interfaceLightUp
+        OceanTransactionFooterType.Default -> OceanColors.interfaceLightPure
+        OceanTransactionFooterType.Highlight -> OceanColors.interfaceLightUp
     }
-    val shape = if (type == OceanTransactionFooterV2Type.Highlight) {
+    val shape = if (type == OceanTransactionFooterType.Highlight) {
         OceanBorderRadius.MD.topCorners.shape()
     } else {
         RectangleShape
@@ -71,7 +70,7 @@ fun OceanTransactionFooterV2(
             .clip(shape)
             .background(background)
     ) {
-        if (type == OceanTransactionFooterV2Type.Default) {
+        if (type == OceanTransactionFooterType.Default) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -84,12 +83,12 @@ fun OceanTransactionFooterV2(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xFFF2FCF5))
+                    .background(OceanColors.statusPositiveUp)
             ) {
                 Box(
                     modifier = Modifier
                         .matchParentSize()
-                        .background(Color(0xFF2DA94F).copy(alpha = 0.12f))
+                        .background(OceanColors.statusPositiveDeep.copy(alpha = 0.12f))
                 )
                 OceanText(
                     text = notice,

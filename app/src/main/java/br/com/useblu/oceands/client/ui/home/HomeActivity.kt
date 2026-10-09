@@ -255,7 +255,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Tooltip", onClick = { onClickTooltip(view) })
                         textAction(text = "TopBar", onClick = { topBarClick() })
                         textAction(text = "Transaction Footer", onClick = { transactionFooter() })
-                        textAction(text = "Transaction Footer V2", onClick = { transactionFooterV2() })
+                        textAction(text = "Transaction Footer 2.0", onClick = { transactionFooterV2() })
                         textAction(text = "Transaction List", onClick = { transactionListClick() })
                         textAction(text = "Transaction List Expandable", onClick = { transactionListExpandableClick() })
                         textAction(text = "Transaction List Read Only", onClick = { open<TransactionListReadOnlyActivity>() })

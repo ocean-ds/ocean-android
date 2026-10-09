@@ -17,10 +17,10 @@ import br.com.useblu.oceands.components.compose.ContentListStyle
 import br.com.useblu.oceands.components.compose.OceanButtonModel
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
-import br.com.useblu.oceands.components.compose.OceanTransactionFooterV2
-import br.com.useblu.oceands.components.compose.OceanTransactionFooterV2Item
-import br.com.useblu.oceands.components.compose.OceanTransactionFooterV2Total
-import br.com.useblu.oceands.components.compose.OceanTransactionFooterV2Type
+import br.com.useblu.oceands.components.compose.OceanTransactionFooter
+import br.com.useblu.oceands.components.compose.OceanTransactionFooterItem
+import br.com.useblu.oceands.components.compose.OceanTransactionFooterTotal
+import br.com.useblu.oceands.components.compose.OceanTransactionFooterType
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
@@ -31,7 +31,7 @@ class TransactionFooterV2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        title = "Transaction Footer V2"
+        title = "Transaction Footer 2.0"
         setContent {
             OceanTheme {
                 Column(
@@ -44,7 +44,7 @@ class TransactionFooterV2Activity : AppCompatActivity() {
                     footerSection("Default", items = defaultItems)
                     footerSection(
                         "Highlight",
-                        type = OceanTransactionFooterV2Type.Highlight,
+                        type = OceanTransactionFooterType.Highlight,
                         items = defaultItems
                     )
                     footerSection(
@@ -55,7 +55,7 @@ class TransactionFooterV2Activity : AppCompatActivity() {
                     footerSection(
                         "Rich rows",
                         items = listOf(
-                            OceanTransactionFooterV2Item(
+                            OceanTransactionFooterItem(
                                 content = ContentListStyle.Default(
                                     title = "Taxa",
                                     description = "Antecipação",
@@ -68,7 +68,7 @@ class TransactionFooterV2Activity : AppCompatActivity() {
                                     tag = OceanTagModel(OceanTagType.Positive, "Grátis")
                                 )
                             ),
-                            OceanTransactionFooterV2Item(
+                            OceanTransactionFooterItem(
                                 content = ContentListStyle.Default(
                                     title = "Desconto",
                                     description = "Benefício aplicado"
@@ -80,7 +80,7 @@ class TransactionFooterV2Activity : AppCompatActivity() {
                     footerSection(
                         "Max rows",
                         items = (1..7).map { index ->
-                            OceanTransactionFooterV2Item(
+                            OceanTransactionFooterItem(
                                 content = ContentListStyle.Default(title = "Linha $index"),
                                 amount = ContentListStyle.Amount(amount = "R$ $index,00")
                             )
@@ -94,9 +94,9 @@ class TransactionFooterV2Activity : AppCompatActivity() {
     @Composable
     private fun footerSection(
         title: String,
-        type: OceanTransactionFooterV2Type = OceanTransactionFooterV2Type.Default,
+        type: OceanTransactionFooterType = OceanTransactionFooterType.Default,
         notice: String? = null,
-        items: List<OceanTransactionFooterV2Item>
+        items: List<OceanTransactionFooterItem>
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
@@ -107,11 +107,11 @@ class TransactionFooterV2Activity : AppCompatActivity() {
                 modifier = Modifier.padding(horizontal = OceanSpacing.xs),
                 style = OceanTextStyle.eyebrow
             )
-            OceanTransactionFooterV2(
+            OceanTransactionFooter(
                 type = type,
                 notice = notice,
                 items = items,
-                total = OceanTransactionFooterV2Total("Total", "R$ 90,00"),
+                total = OceanTransactionFooterTotal("Total", "R$ 90,00"),
                 button = OceanButtonModel(
                     text = "Continuar",
                     onClick = {},
@@ -122,11 +122,11 @@ class TransactionFooterV2Activity : AppCompatActivity() {
     }
 
     private val defaultItems = listOf(
-        OceanTransactionFooterV2Item(
+        OceanTransactionFooterItem(
             content = ContentListStyle.Default(title = "Compra", description = "Loja"),
             amount = ContentListStyle.Amount(amount = "R$ 100,00")
         ),
-        OceanTransactionFooterV2Item(
+        OceanTransactionFooterItem(
             content = ContentListStyle.Default(title = "Desconto"),
             amount = ContentListStyle.Amount(amount = "R$ 10,00", type = AmountType.Positive)
         )

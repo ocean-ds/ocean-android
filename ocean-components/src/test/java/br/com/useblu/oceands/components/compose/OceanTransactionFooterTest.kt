@@ -1,5 +1,6 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -12,31 +13,31 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class OceanTransactionFooterV2Test {
+class OceanTransactionFooterTest {
 
     @get:Rule val composeTestRule = createComposeRule()
 
     @Test
     fun rendersFooterRowsTotalAndActionWithoutOptionalNotice() {
         composeTestRule.setContent {
-            OceanTransactionFooterV2(
+            OceanTransactionFooter(
                 items = listOf(
-                    OceanTransactionFooterV2Item(
+                    OceanTransactionFooterItem(
                         content = ContentListStyle.Default(title = "Compra"),
                         amount = ContentListStyle.Amount(amount = "R$ 10,00")
                     ),
-                    OceanTransactionFooterV2Item(
+                    OceanTransactionFooterItem(
                         content = ContentListStyle.Default(title = "Desconto"),
                         amount = ContentListStyle.Amount(amount = "R$ 2,00")
                     )
                 ),
-                total = OceanTransactionFooterV2Total("Total", "R$ 8,00"),
+                total = OceanTransactionFooterTotal("Total", "R$ 8,00"),
                 button = OceanButtonModel(
                     text = "Continuar",
                     onClick = {},
                     buttonStyle = OceanButtonStyle.PrimaryMedium
                 ),
-                type = OceanTransactionFooterV2Type.Highlight
+                type = OceanTransactionFooterType.Highlight
             )
         }
 
@@ -51,16 +52,16 @@ class OceanTransactionFooterV2Test {
     @Test
     fun dropsRowsAfterTheFirstFiveAndRendersNotice() {
         val items = (1..6).map { index ->
-            OceanTransactionFooterV2Item(
+            OceanTransactionFooterItem(
                 content = ContentListStyle.Default(title = "Linha $index"),
                 amount = ContentListStyle.Amount(amount = "R$ $index")
             )
         }
 
         composeTestRule.setContent {
-            OceanTransactionFooterV2(
+            OceanTransactionFooter(
                 items = items,
-                total = OceanTransactionFooterV2Total("Total", "R$ 15,00"),
+                total = OceanTransactionFooterTotal("Total", "R$ 15,00"),
                 button = OceanButtonModel(
                     text = "Continuar",
                     onClick = {},
@@ -80,9 +81,9 @@ class OceanTransactionFooterV2Test {
         var clicks = 0
 
         composeTestRule.setContent {
-            OceanTransactionFooterV2(
+            OceanTransactionFooter(
                 items = emptyList(),
-                total = OceanTransactionFooterV2Total("Total", "R$ 8,00"),
+                total = OceanTransactionFooterTotal("Total", "R$ 8,00"),
                 button = OceanButtonModel(
                     text = "Continuar",
                     onClick = { clicks++ },
@@ -94,5 +95,33 @@ class OceanTransactionFooterV2Test {
         composeTestRule.onNodeWithText("Continuar").performClick()
 
         assertEquals(1, clicks)
+    }
+
+    @Test
+    fun supportsLegacyAndTransactionFooterOverloads() {
+        composeTestRule.setContent {
+            Column {
+                OceanTransactionFooter(
+                    entries = emptyList(),
+                    firstButton = OceanButtonModel(
+                        text = "Legado",
+                        onClick = {},
+                        buttonStyle = OceanButtonStyle.PrimaryMedium
+                    )
+                )
+                OceanTransactionFooter(
+                    items = emptyList(),
+                    total = OceanTransactionFooterTotal("Total", "R$ 8,00"),
+                    button = OceanButtonModel(
+                        text = "Transaction 2.0",
+                        onClick = {},
+                        buttonStyle = OceanButtonStyle.PrimaryMedium
+                    )
+                )
+            }
+        }
+
+        composeTestRule.onNodeWithText("Legado").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Transaction 2.0").assertIsDisplayed()
     }
 }

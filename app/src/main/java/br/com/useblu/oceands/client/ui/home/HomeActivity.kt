@@ -89,6 +89,7 @@ import br.com.useblu.oceands.client.ui.textlistreadonly.TextListReadOnlyActivity
 import br.com.useblu.oceands.client.ui.tokeninput.TokenInputActivity
 import br.com.useblu.oceands.client.ui.toobar.TopbarActivity
 import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterActivity
+import br.com.useblu.oceands.client.ui.transactionfooter.TransactionFooterV2Activity
 import br.com.useblu.oceands.client.ui.transactionlist.ChildTransactionListActionActivity
 import br.com.useblu.oceands.client.ui.transactionlist.ChildTransactionListReadOnlyActivity
 import br.com.useblu.oceands.client.ui.transactionlist.TransactionListActionActivity
@@ -254,6 +255,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Tooltip", onClick = { onClickTooltip(view) })
                         textAction(text = "TopBar", onClick = { topBarClick() })
                         textAction(text = "Transaction Footer", onClick = { transactionFooter() })
+                        textAction(text = "Transaction Footer V2", onClick = { transactionFooterV2() })
                         textAction(text = "Transaction List", onClick = { transactionListClick() })
                         textAction(text = "Transaction List Expandable", onClick = { transactionListExpandableClick() })
                         textAction(text = "Transaction List Read Only", onClick = { open<TransactionListReadOnlyActivity>() })
@@ -515,6 +517,11 @@ class HomeActivity : AppCompatActivity() {
 
     private fun transactionFooter() {
         val intent = Intent(this, TransactionFooterActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun transactionFooterV2() {
+        val intent = Intent(this, TransactionFooterV2Activity::class.java)
         startActivity(intent)
     }
 

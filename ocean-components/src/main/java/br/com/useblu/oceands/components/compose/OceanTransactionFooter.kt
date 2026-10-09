@@ -19,6 +19,10 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Composable
+@Deprecated(
+    message = "Use OceanTransactionFooterV2",
+    replaceWith = ReplaceWith("OceanTransactionFooterV2")
+)
 fun OceanTransactionFooter(
     modifier: Modifier = Modifier,
     entries: List<OceanInlineTextList>,

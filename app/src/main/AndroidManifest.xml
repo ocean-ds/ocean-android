@@ -62,6 +62,7 @@
         <activity android:name=".ui.datepicker.DatePickerActivity" />
         <activity android:name=".ui.footer.FooterBluActivity" />
         <activity android:name=".ui.transactionfooter.TransactionFooterActivity" />
+        <activity android:name=".ui.transactionfooter.TransactionFooterV2Activity" />
         <activity android:name=".ui.descriptorlistitem.DescriptorListActivity" />
         <activity android:name=".ui.groupcta.GroupCTAActivity" />
         <activity android:name=".ui.headerapp.HeaderAppActivity" />

@@ -18,6 +18,7 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.utils.OceanIcons
 
+@Deprecated("Transaction Footer 1.0 — use the overload with total/mainItem/details")
 @Composable
 fun OceanTransactionFooter(
     modifier: Modifier = Modifier,

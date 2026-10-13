@@ -8,23 +8,24 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListReadOnly
-import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListState
-import br.com.useblu.oceands.components.compose.transactionlist.TransactionListDensity
-import br.com.useblu.oceands.components.compose.transactionlist.TransactionListIconColor
-import br.com.useblu.oceands.model.compose.OceanIconModel
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIcons
 
 enum class OceanTransactionFooterType {
     Default,
@@ -32,11 +33,14 @@ enum class OceanTransactionFooterType {
 }
 
 data class OceanTransactionFooterItem(
-    val content: ContentListStyle,
-    val amount: ContentListStyle.Amount? = null,
-    val icon: OceanIconModel? = null,
-    val state: OceanTransactionListState = OceanTransactionListState.Default,
-    val iconColor: TransactionListIconColor = TransactionListIconColor.Default
+    val label: String,
+    val value: String
+)
+
+data class OceanTransactionFooterNotice(
+    val description: String,
+    val title: String? = null,
+    val icon: OceanIcons? = OceanIcons.CHECK_CIRCLE_OUTLINE
 )
 
 data class OceanTransactionFooterTotal(
@@ -46,108 +50,254 @@ data class OceanTransactionFooterTotal(
 
 @Composable
 fun OceanTransactionFooter(
-    items: List<OceanTransactionFooterItem>,
     total: OceanTransactionFooterTotal,
     button: OceanButtonModel,
     modifier: Modifier = Modifier,
     type: OceanTransactionFooterType = OceanTransactionFooterType.Default,
-    notice: String? = null
+    notice: OceanTransactionFooterNotice? = null,
+    mainItem: OceanTransactionFooterItem? = null,
+    details: List<OceanTransactionFooterItem> = emptyList()
 ) {
-    val background = when (type) {
-        OceanTransactionFooterType.Default -> OceanColors.interfaceLightPure
-        OceanTransactionFooterType.Highlight -> OceanColors.interfaceLightUp
-    }
-    val shape = if (type == OceanTransactionFooterType.Highlight) {
-        OceanBorderRadius.MD.topCorners.shape()
-    } else {
-        RectangleShape
-    }
-
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(shape)
-            .background(background)
-    ) {
-        if (type == OceanTransactionFooterType.Default) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(1.dp)
-                    .background(OceanColors.interfaceLightDown)
-            )
+    Column(modifier = modifier.fillMaxWidth()) {
+        if (notice != null) {
+            footerNotice(notice, Modifier.zIndex(0f))
         }
 
-        if (notice != null) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(OceanColors.statusPositiveUp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .matchParentSize()
-                        .background(OceanColors.statusPositiveDeep.copy(alpha = 0.12f))
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .offset(y = if (notice == null) 0.dp else -OceanSpacing.xs)
+                .clip(
+                    if (type == OceanTransactionFooterType.Highlight) {
+                        OceanBorderRadius.MD.topCorners.shape()
+                    } else {
+                        androidx.compose.ui.graphics.RectangleShape
+                    }
                 )
-                OceanText(
-                    text = notice,
-                    modifier = Modifier.padding(OceanSpacing.xs),
-                    style = OceanTextStyle.paragraph
+                .background(
+                    if (type == OceanTransactionFooterType.Default) {
+                        OceanColors.interfaceLightPure
+                    } else {
+                        OceanColors.interfaceLightUp
+                    }
+                )
+                .testTag(FOOTER_BODY_TAG)
+                .zIndex(1f)
+        ) {
+            if (type == OceanTransactionFooterType.Default) {
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(1.dp)
+                        .background(OceanColors.interfaceLightDown)
+                        .testTag(FOOTER_TOP_BORDER_TAG)
                 )
             }
-            Spacer(modifier = Modifier.height(OceanSpacing.xs))
-        }
 
-        items.forEachIndexed { index, item ->
-            OceanTransactionListReadOnly(
-                content = item.content,
-                amount = item.amount,
-                icon = item.icon,
-                state = item.state,
-                iconColor = item.iconColor,
-                density = if (index == 0) {
-                    TransactionListDensity.Default
-                } else {
-                    TransactionListDensity.Compact
-                },
-                showDivider = index == 0 && items.size > 1,
+            if (mainItem != null) {
+                footerRow(mainItem, OceanSpacing.xs, Modifier.testTag(FOOTER_MAIN_ROW_TAG))
+            }
+
+            if (mainItem != null && details.isNotEmpty()) {
+                footerDivider()
+            }
+
+            if (details.isNotEmpty()) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = OceanSpacing.xxs)
+                ) {
+                    details.forEach { detail ->
+                        footerRow(detail, OceanSpacing.xxs, Modifier.testTag(FOOTER_DETAIL_ROW_TAG))
+                    }
+                }
+            }
+
+            if (mainItem != null || details.isNotEmpty()) {
+                footerDivider()
+            }
+
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(background)
+                    .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xs)
+                    .testTag(FOOTER_TOTAL_TAG),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OceanText(
+                    total.label,
+                    style = OceanTextStyle.paragraph.copy(
+                        fontSize = 16.sp,
+                        lineHeight = 24.sp,
+                        fontFamily = OceanFontFamily.BaseBold,
+                        color = OceanColors.interfaceDarkDeep
+                    )
+                )
+                Spacer(Modifier.weight(1f))
+                OceanText(
+                    total.value,
+                    style = OceanTextStyle.paragraph.copy(
+                        fontSize = 16.sp,
+                        lineHeight = 24.sp,
+                        fontFamily = OceanFontFamily.BaseBold,
+                        color = OceanColors.interfaceDarkDeep
+                    )
+                )
+            }
+
+            OceanButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = OceanSpacing.xs)
+                    .padding(bottom = OceanSpacing.xs),
+                button = button
             )
         }
+    }
+}
 
-        OceanDivider(
-            modifier = Modifier.padding(horizontal = OceanSpacing.xs)
+@Composable
+private fun footerNotice(
+    notice: OceanTransactionFooterNotice,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(OceanBorderRadius.MD.topCorners.shape())
+            .background(OceanColors.statusPositiveUp)
+            .testTag(FOOTER_NOTICE_TAG)
+    ) {
+        Box(
+            Modifier
+                .matchParentSize()
+                .background(OceanColors.statusPositiveDeep.copy(alpha = 0.12f))
         )
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xs),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+                .padding(
+                    top = OceanSpacing.xs,
+                    start = OceanSpacing.xs,
+                    end = OceanSpacing.xs,
+                    bottom = OceanSpacing.md
+                ),
+            horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
+            verticalAlignment = Alignment.Top
         ) {
-            OceanText(
-                text = total.label,
-                style = OceanTextStyle.paragraph
-            )
-            OceanText(
-                text = total.value,
-                style = OceanTextStyle.paragraph.copy(
-                    fontFamily = OceanFontFamily.BaseBold,
-                    color = OceanColors.interfaceDarkDeep
-                )
-            )
-        }
+            notice.icon?.let { icon ->
+                Box(Modifier.testTag(FOOTER_NOTICE_ICON_TAG)) {
+                    OceanIcon(
+                        iconType = icon,
+                        modifier = Modifier.size(24.dp),
+                        tint = OceanColors.statusPositiveDeep
+                    )
+                }
+            }
 
-        Spacer(modifier = Modifier.height(OceanSpacing.md))
-        OceanButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = OceanSpacing.xs),
-            button = button
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                notice.title?.let { title ->
+                    OceanText(
+                        text = title,
+                        modifier = Modifier.testTag(FOOTER_NOTICE_TITLE_TAG),
+                        style = OceanTextStyle.paragraph.copy(
+                            fontSize = 14.sp,
+                            lineHeight = 18.48.sp,
+                            fontFamily = OceanFontFamily.BaseExtraBold,
+                            color = OceanColors.interfaceDarkDeep
+                        )
+                    )
+                }
+                OceanText(
+                    text = notice.description,
+                    style = OceanTextStyle.caption.copy(
+                        fontSize = 12.sp,
+                        lineHeight = 18.sp,
+                        fontFamily = OceanFontFamily.BaseRegular,
+                        color = OceanColors.interfaceDarkDeep
+                    )
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun footerRow(
+    item: OceanTransactionFooterItem,
+    verticalPadding: androidx.compose.ui.unit.Dp,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = OceanSpacing.xs, vertical = verticalPadding),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        OceanText(
+            text = item.label,
+            modifier = Modifier.weight(1f),
+            style = OceanTextStyle.description.copy(
+                fontSize = 14.sp,
+                lineHeight = 21.sp,
+                fontFamily = OceanFontFamily.BaseRegular,
+                color = OceanColors.interfaceDarkDeep
+            )
         )
-        Spacer(modifier = Modifier.height(OceanSpacing.xs))
+        OceanText(
+            text = item.value,
+            style = OceanTextStyle.description.copy(
+                fontSize = 14.sp,
+                lineHeight = 21.sp,
+                fontFamily = OceanFontFamily.BaseMedium,
+                color = OceanColors.interfaceDarkDeep
+            )
+        )
+    }
+}
+
+@Composable
+private fun footerDivider() {
+    OceanDivider(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = OceanSpacing.xs)
+            .testTag(FOOTER_DIVIDER_TAG)
+    )
+}
+
+private const val FOOTER_BODY_TAG = "transaction-footer-body"
+private const val FOOTER_NOTICE_TAG = "transaction-footer-notice"
+private const val FOOTER_NOTICE_ICON_TAG = "transaction-footer-notice-icon"
+private const val FOOTER_NOTICE_TITLE_TAG = "transaction-footer-notice-title"
+private const val FOOTER_MAIN_ROW_TAG = "transaction-footer-main-row"
+private const val FOOTER_DETAIL_ROW_TAG = "transaction-footer-detail-row"
+private const val FOOTER_TOTAL_TAG = "transaction-footer-total"
+private const val FOOTER_DIVIDER_TAG = "transaction-footer-divider"
+private const val FOOTER_TOP_BORDER_TAG = "transaction-footer-top-border"
+
+@Preview(showBackground = true)
+@Composable
+private fun OceanTransactionFooterContentPreview() {
+    OceanTheme {
+        OceanTransactionFooter(
+            total = OceanTransactionFooterTotal("Total", "R$ 623,80"),
+            button = OceanButtonModel(
+                text = "Revisar pagamento",
+                onClick = {},
+                buttonStyle = br.com.useblu.oceands.ui.compose.OceanButtonStyle.PrimaryMedium
+            ),
+            type = OceanTransactionFooterType.Highlight,
+            notice = OceanTransactionFooterNotice(
+                title = "Economia de R$ 96,39",
+                description = "A economia será aplicada ao pagamento."
+            ),
+            mainItem = OceanTransactionFooterItem("Pedido", "R$ 623,80"),
+            details = listOf(OceanTransactionFooterItem("Pague em", "3x de R$ 207,93"))
+        )
     }
 }

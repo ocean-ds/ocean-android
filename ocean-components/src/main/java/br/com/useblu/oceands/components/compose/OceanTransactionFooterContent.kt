@@ -35,13 +35,14 @@ enum class OceanTransactionFooterType {
 
 data class OceanTransactionFooterItem(
     val label: String,
-    val value: String
+    val value: String,
+    val info: String? = null
 )
 
 data class OceanTransactionFooterNotice(
     val description: String,
     val title: String? = null,
-    val icon: OceanIcons? = OceanIcons.CHECK_CIRCLE_OUTLINE
+    val icon: OceanIcons? = OceanIcons.CHECK_CIRCLE_SOLID
 )
 
 data class OceanTransactionFooterTotal(
@@ -198,13 +199,13 @@ private fun footerNotice(
                     bottom = OceanSpacing.md
                 ),
             horizontalArrangement = Arrangement.spacedBy(OceanSpacing.xxs),
-            verticalAlignment = Alignment.Top
+            verticalAlignment = Alignment.CenterVertically
         ) {
             notice.icon?.let { icon ->
                 Box(Modifier.testTag(FOOTER_NOTICE_ICON_TAG)) {
                     OceanIcon(
                         iconType = icon,
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(20.dp),
                         tint = OceanColors.statusPositiveDeep
                     )
                 }
@@ -262,15 +263,29 @@ private fun footerRow(
                 color = OceanColors.interfaceDarkDeep
             )
         )
-        OceanText(
-            text = item.value,
-            style = OceanTextStyle.description.copy(
-                fontSize = 14.sp,
-                lineHeight = 21.sp,
-                fontFamily = OceanFontFamily.BaseMedium,
-                color = OceanColors.interfaceDarkDeep
+        Column(
+            horizontalAlignment = Alignment.End,
+            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
+        ) {
+            OceanText(
+                text = item.value,
+                style = OceanTextStyle.description.copy(
+                    fontSize = 14.sp,
+                    lineHeight = 21.sp,
+                    fontFamily = OceanFontFamily.BaseMedium,
+                    color = OceanColors.interfaceDarkDeep
+                )
             )
-        )
+            item.info?.let { info ->
+                OceanText(
+                    text = info,
+                    modifier = Modifier.testTag(FOOTER_ROW_INFO_TAG),
+                    style = OceanTextStyle.captionBold.copy(
+                        color = OceanColors.interfaceDarkDown
+                    )
+                )
+            }
+        }
     }
 }
 
@@ -294,25 +309,32 @@ private const val FOOTER_DETAIL_ROW_TAG = "transaction-footer-detail-row"
 private const val FOOTER_TOTAL_TAG = "transaction-footer-total"
 private const val FOOTER_DIVIDER_TAG = "transaction-footer-divider"
 private const val FOOTER_TOP_BORDER_TAG = "transaction-footer-top-border"
+private const val FOOTER_ROW_INFO_TAG = "transaction-footer-row-info"
 
 @Preview(showBackground = true)
 @Composable
 private fun OceanTransactionFooterContentPreview() {
     OceanTheme {
         OceanTransactionFooter(
-            total = OceanTransactionFooterTotal("Total", "R$ 623,80"),
+            total = OceanTransactionFooterTotal("Total", "R$ 1.250,00"),
             button = OceanButtonModel(
-                text = "Revisar pagamento",
+                text = "Continuar",
                 onClick = {},
                 buttonStyle = br.com.useblu.oceands.ui.compose.OceanButtonStyle.PrimaryMedium
             ),
             type = OceanTransactionFooterType.Highlight,
             notice = OceanTransactionFooterNotice(
-                title = "Economia de R$ 96,39",
-                description = "A economia será aplicada ao pagamento."
+                title = "Desconto aplicado",
+                description = "Texto de apoio do aviso."
             ),
-            mainItem = OceanTransactionFooterItem("Pedido", "R$ 623,80"),
-            details = listOf(OceanTransactionFooterItem("Pague em", "3x de R$ 207,93"))
+            mainItem = OceanTransactionFooterItem("Subtotal", "R$ 1.250,00"),
+            details = listOf(
+                OceanTransactionFooterItem(
+                    "Parcelamento",
+                    "5x de R$ 250,00",
+                    "sem acréscimo"
+                )
+            )
         )
     }
 }

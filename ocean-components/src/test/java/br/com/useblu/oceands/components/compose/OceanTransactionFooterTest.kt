@@ -65,9 +65,9 @@ class OceanTransactionFooterTest {
                 total = total,
                 button = button,
                 notice = OceanTransactionFooterNotice(
-                    description = "Economia aplicada",
-                    title = "Você economizou",
-                    icon = OceanIcons.CHECK_CIRCLE_OUTLINE
+                    description = "Texto de apoio do aviso.",
+                    title = "Desconto aplicado",
+                    icon = OceanIcons.CHECK_CIRCLE_SOLID
                 )
             )
         }
@@ -136,6 +136,33 @@ class OceanTransactionFooterTest {
             OceanTransactionFooter(total = total, button = button)
         }
         composeTestRule.onAllNodesWithTag("transaction-footer-divider").assertCountEquals(0)
+        composeTestRule.onNodeWithTag("transaction-footer-row-info").assertDoesNotExist()
+    }
+
+    @Test
+    fun rendersOptionalInfoForMainItemAndDetails() {
+        composeTestRule.setContent {
+            OceanTransactionFooter(
+                total = total,
+                button = button,
+                mainItem = OceanTransactionFooterItem(
+                    "Pedido",
+                    "R$ 10,00",
+                    "Pedido aprovado"
+                ),
+                details = listOf(
+                    OceanTransactionFooterItem(
+                        "Pague em",
+                        "3x de R$ 10,00",
+                        "sem acréscimo"
+                    )
+                )
+            )
+        }
+
+        composeTestRule.onAllNodesWithTag("transaction-footer-row-info").assertCountEquals(2)
+        composeTestRule.onNodeWithText("Pedido aprovado").assertIsDisplayed()
+        composeTestRule.onNodeWithText("sem acréscimo").assertIsDisplayed()
     }
 
     @Test

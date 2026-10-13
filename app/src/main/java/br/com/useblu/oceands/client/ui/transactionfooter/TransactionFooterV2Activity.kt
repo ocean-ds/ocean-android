@@ -50,7 +50,7 @@ class TransactionFooterV2Activity : AppCompatActivity() {
                         "Highlight with notice",
                         type = OceanTransactionFooterType.Highlight,
                         notice = OceanTransactionFooterNotice(
-                            description = "A economia será aplicada ao pagamento."
+                            description = "Texto de apoio do aviso."
                         ),
                         mainItem = order,
                         details = standardDetails
@@ -58,9 +58,9 @@ class TransactionFooterV2Activity : AppCompatActivity() {
                     footerSection(
                         "Notice with title and icon",
                         notice = OceanTransactionFooterNotice(
-                            description = "A economia será aplicada ao pagamento.",
-                            title = "Economia de R$ 96,39",
-                            icon = OceanIcons.CHECK_CIRCLE_OUTLINE
+                            description = "Texto de apoio do aviso.",
+                            title = "Desconto aplicado",
+                            icon = OceanIcons.CHECK_CIRCLE_SOLID
                         ),
                         mainItem = order,
                         details = standardDetails
@@ -68,6 +68,14 @@ class TransactionFooterV2Activity : AppCompatActivity() {
                     footerSection("Main item only", mainItem = order)
                     footerSection("Details only", details = standardDetails)
                     footerSection("Four details", details = fourDetails)
+                    footerSection(
+                        "Additional info",
+                        mainItem = OceanTransactionFooterItem(
+                            "Subtotal",
+                            "R$ 1.250,00",
+                            "sem acréscimo"
+                        )
+                    )
                 }
             }
         }
@@ -91,9 +99,9 @@ class TransactionFooterV2Activity : AppCompatActivity() {
                 style = OceanTextStyle.eyebrow
             )
             OceanTransactionFooter(
-                total = OceanTransactionFooterTotal("Total", "R$ 623,80"),
+                total = OceanTransactionFooterTotal("Total", "R$ 1.250,00"),
                 button = OceanButtonModel(
-                    text = "Revisar pagamento",
+                    text = "Continuar",
                     onClick = {},
                     buttonStyle = OceanButtonStyle.PrimaryMedium
                 ),
@@ -107,14 +115,22 @@ class TransactionFooterV2Activity : AppCompatActivity() {
     }
 
     private companion object {
-        val order = OceanTransactionFooterItem("Pedido", "R$ 623,80")
+        val order = OceanTransactionFooterItem("Subtotal", "R$ 1.250,00")
         val standardDetails = listOf(
-            OceanTransactionFooterItem("Pague em", "3x de R$ 207,93 sem acréscimo")
+            OceanTransactionFooterItem(
+                "Parcelamento",
+                "5x de R$ 250,00",
+                "sem acréscimo"
+            )
         )
         val fourDetails = listOf(
-            OceanTransactionFooterItem("Pague em", "3x de R$ 207,93 sem acréscimo"),
-            OceanTransactionFooterItem("Custo de antecipação", "R$ 96,39"),
-            OceanTransactionFooterItem("Vencimento", "10 de outubro"),
+            OceanTransactionFooterItem(
+                "Parcelamento",
+                "5x de R$ 250,00",
+                "sem acréscimo"
+            ),
+            OceanTransactionFooterItem("Taxa de serviço", "R$ 12,50"),
+            OceanTransactionFooterItem("Data de entrega", "15 de março"),
             OceanTransactionFooterItem("Forma de pagamento", "Cartão de crédito")
         )
     }

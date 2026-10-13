@@ -8,13 +8,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -58,15 +59,28 @@ fun OceanTransactionFooter(
     mainItem: OceanTransactionFooterItem? = null,
     details: List<OceanTransactionFooterItem> = emptyList()
 ) {
-    Column(modifier = modifier.fillMaxWidth()) {
+    val overlapDp = OceanSpacing.xs
+    val density = LocalDensity.current
+    val overlap = with(density) { overlapDp.roundToPx() }
+
+    Column(modifier = modifier.fillMaxWidth().testTag(FOOTER_ROOT_TAG)) {
         if (notice != null) {
-            footerNotice(notice, Modifier.zIndex(0f))
+            footerNotice(
+                notice,
+                Modifier
+                    .layout { measurable, constraints ->
+                        val placeable = measurable.measure(constraints)
+                        layout(placeable.width, placeable.height - overlap) {
+                            placeable.place(0, 0)
+                        }
+                    }
+                    .zIndex(0f)
+            )
         }
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .offset(y = if (notice == null) 0.dp else -OceanSpacing.xs)
                 .clip(
                     if (type == OceanTransactionFooterType.Highlight) {
                         OceanBorderRadius.MD.topCorners.shape()
@@ -271,6 +285,7 @@ private fun footerDivider() {
 }
 
 private const val FOOTER_BODY_TAG = "transaction-footer-body"
+private const val FOOTER_ROOT_TAG = "transaction-footer-root"
 private const val FOOTER_NOTICE_TAG = "transaction-footer-notice"
 private const val FOOTER_NOTICE_ICON_TAG = "transaction-footer-notice-icon"
 private const val FOOTER_NOTICE_TITLE_TAG = "transaction-footer-notice-title"

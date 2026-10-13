@@ -33,12 +33,19 @@ class OceanTransactionFooterTest {
 
         composeTestRule.onNodeWithTag("transaction-footer-notice").assertIsDisplayed()
         composeTestRule.onNodeWithTag("transaction-footer-body").assertIsDisplayed()
-        val noticeBottom = composeTestRule.onNodeWithTag("transaction-footer-notice")
-            .fetchSemanticsNode().boundsInRoot.bottom
-        val bodyTop = composeTestRule.onNodeWithTag("transaction-footer-body")
-            .fetchSemanticsNode().boundsInRoot.top
+        val rootBounds = composeTestRule.onNodeWithTag("transaction-footer-root")
+            .fetchSemanticsNode().boundsInRoot
+        val noticeBounds = composeTestRule.onNodeWithTag("transaction-footer-notice")
+            .fetchSemanticsNode().boundsInRoot
+        val bodyBounds = composeTestRule.onNodeWithTag("transaction-footer-body")
+            .fetchSemanticsNode().boundsInRoot
         val overlap = with(composeTestRule.density) { 16.dp.toPx() }
-        assertEquals(overlap, noticeBottom - bodyTop, 1f)
+        assertEquals(overlap, noticeBounds.bottom - bodyBounds.top, 1f)
+        assertEquals(
+            noticeBounds.height + bodyBounds.height - overlap,
+            rootBounds.height,
+            1f
+        )
     }
 
     @Test

@@ -1,23 +1,28 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
-    android:height="25dp"
+    android:height="24dp"
     android:viewportWidth="24"
-    android:viewportHeight="25">
-  <path
-      android:pathData="M8,2.5H6C5.448,2.5 5,2.948 5,3.5V21.5C5,22.052 5.448,22.5 6,22.5H13.5C16.538,22.5 19,20.038 19,17C19,14.688 17.5,13 15.454,11.857C16.974,11 18,9.37 18,7.5C18,4.739 15.761,2.5 13,2.5H7"
-      android:strokeLineJoin="bevel"
-      android:strokeWidth="2"
-      android:fillColor="#00000000"
-      android:strokeColor="#393B47"/>
-  <path
-      android:pathData="M11,10.5C12.105,10.5 13,9.605 13,8.5C13,7.395 12.105,6.5 11,6.5C9.895,6.5 9,7.395 9,8.5C9,9.605 9.895,10.5 11,10.5Z"
-      android:fillColor="#393B47"/>
-  <path
-      android:pathData="M11,18.5C12.105,18.5 13,17.605 13,16.5C13,15.395 12.105,14.5 11,14.5C9.895,14.5 9,15.395 9,16.5C9,17.605 9.895,18.5 11,18.5Z"
-      android:fillColor="#393B47"/>
-  <path
-      android:pathData="M11,8.5L11,16.5"
-      android:strokeWidth="2"
-      android:fillColor="#00000000"
-      android:strokeColor="#393B47"/>
+    android:viewportHeight="24">
+    <path
+        android:strokeColor="#FF393B47"
+        android:strokeWidth="2"
+        android:strokeLineJoin="bevel"
+        android:pathData="M8 2.5H6c-0.55 0-1 0.42-1 0.95v17.1c0 0.53 0.45 0.95 1 0.95h7.5c3.04 0 5.5-2.34 5.5-5.22 0-2.2-1.5-3.8-3.55-4.89C16.97 10.57 18 9.03 18 7.25c0-2.62-2.24-4.75-5-4.75H7"/>
+    <path
+        android:strokeColor="#FF393B47"
+        android:strokeWidth="2"
+        android:strokeMiterLimit="10"
+        android:pathData="M11 8v8"/>
+    <path
+        android:strokeColor="#FF393B47"
+        android:strokeWidth="1"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M11 8h0.01M11 16h0.01M12 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z m0 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+    <path
+        android:strokeColor="#FF393B47"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M11 8h0.01M11 16h0.01"/>
 </vector>

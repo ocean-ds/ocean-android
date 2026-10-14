@@ -73,7 +73,7 @@ private val TIMELINE_WIDTH = 1.dp
 internal const val AMOUNT_MAX_WIDTH_FRACTION = 0.5f
 
 /**
- * Content block + Amount block, gap 8 (Figma `Content`).
+ * Content block + Amount block, default gap 8 (Figma `Content`).
  *
  * Overflow rule (same as ocean-web): the Content is never squeezed — it takes all the width the
  * Amount leaves (weight 1, fill) — and the Amount is limited to [AMOUNT_MAX_WIDTH_FRACTION] of the
@@ -86,10 +86,10 @@ internal fun TransactionListContent(
     content: ContentListStyle,
     amount: ContentListStyle.Amount?,
     enabled: Boolean,
-    defaultSize: ContentListSize = ContentListSize.Md
+    defaultSize: ContentListSize = ContentListSize.Md,
+    contentAmountGap: Dp = OceanSpacing.xxs
 ) {
-    val gap = OceanSpacing.xxs
-    val measurePolicy = remember(gap) { ContentAmountMeasurePolicy(gap) }
+    val measurePolicy = remember(contentAmountGap) { ContentAmountMeasurePolicy(contentAmountGap) }
     Layout(
         modifier = modifier,
         measurePolicy = measurePolicy,
@@ -424,6 +424,7 @@ internal fun TransactionListMainRow(
     state: OceanTransactionListState,
     iconColor: TransactionListIconColor = TransactionListIconColor.Default,
     density: TransactionListDensity = TransactionListDensity.Default,
+    contentAmountGap: Dp = OceanSpacing.xxs,
     trailingGap: Dp = 12.dp,
     endPadding: Dp = OceanSpacing.xs,
     trailing: (@Composable () -> Unit)? = null
@@ -455,7 +456,8 @@ internal fun TransactionListMainRow(
                 modifier = Modifier.weight(1f),
                 content = content,
                 amount = amount,
-                enabled = enabled
+                enabled = enabled,
+                contentAmountGap = contentAmountGap
             )
         }
 

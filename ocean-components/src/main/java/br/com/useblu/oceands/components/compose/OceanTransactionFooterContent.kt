@@ -21,6 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import br.com.useblu.oceands.components.compose.transactionlist.OceanTransactionListState
+import br.com.useblu.oceands.components.compose.transactionlist.TransactionListDensity
+import br.com.useblu.oceands.components.compose.transactionlist.TransactionListMainRow
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -34,10 +37,15 @@ enum class OceanTransactionFooterType {
 }
 
 data class OceanTransactionFooterItem(
-    val label: String,
-    val value: String,
-    val info: String? = null
-)
+    val content: ContentListStyle,
+    val amount: ContentListStyle.Amount
+) {
+    @Deprecated("Use OceanTransactionFooterItem(content, amount)")
+    constructor(label: String, value: String, info: String? = null) : this(
+        ContentListStyle.Default(title = label),
+        ContentListStyle.Amount(amount = value, additionalData = info.orEmpty())
+    )
+}
 
 data class OceanTransactionFooterNotice(
     val description: String,
@@ -110,7 +118,11 @@ fun OceanTransactionFooter(
             }
 
             if (mainItem != null) {
-                footerRow(mainItem, OceanSpacing.xs, Modifier.testTag(FOOTER_MAIN_ROW_TAG))
+                footerRow(
+                    mainItem,
+                    TransactionListDensity.Default,
+                    Modifier.testTag(FOOTER_MAIN_ROW_TAG)
+                )
             }
 
             if (mainItem != null && details.isNotEmpty()) {
@@ -124,7 +136,11 @@ fun OceanTransactionFooter(
                         .padding(vertical = OceanSpacing.xxs)
                 ) {
                     details.forEach { detail ->
-                        footerRow(detail, OceanSpacing.xxs, Modifier.testTag(FOOTER_DETAIL_ROW_TAG))
+                        footerRow(
+                            detail,
+                            TransactionListDensity.Compact,
+                            Modifier.testTag(FOOTER_DETAIL_ROW_TAG)
+                        )
                     }
                 }
             }
@@ -246,49 +262,28 @@ private fun footerNotice(
 @Composable
 private fun footerRow(
     item: OceanTransactionFooterItem,
-    verticalPadding: androidx.compose.ui.unit.Dp,
+    density: TransactionListDensity,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = OceanSpacing.xs, vertical = verticalPadding),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        OceanText(
-            text = item.label,
-            modifier = Modifier.weight(1f),
-            style = OceanTextStyle.description.copy(
-                fontSize = 14.sp,
-                lineHeight = 21.sp,
-                fontFamily = OceanFontFamily.BaseRegular,
-                color = OceanColors.interfaceDarkDeep
-            )
-        )
-        Column(
-            horizontalAlignment = Alignment.End,
-            verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
-        ) {
-            OceanText(
-                text = item.value,
-                style = OceanTextStyle.description.copy(
-                    fontSize = 14.sp,
-                    lineHeight = 21.sp,
-                    fontFamily = OceanFontFamily.BaseMedium,
-                    color = OceanColors.interfaceDarkDeep
-                )
-            )
-            item.info?.let { info ->
-                OceanText(
-                    text = info,
-                    modifier = Modifier.testTag(FOOTER_ROW_INFO_TAG),
-                    style = OceanTextStyle.captionBold.copy(
-                        color = OceanColors.interfaceDarkDown
-                    )
-                )
-            }
-        }
+    val content = when (val style = item.content) {
+        is ContentListStyle.Default ->
+            style.copy(size = ContentListSize.Sm, type = style.type ?: ContentListType.Default)
+
+        is ContentListStyle.Inverted -> style.copy(size = ContentListSize.Sm)
+        is ContentListStyle.Strikethrough -> style.copy(size = ContentListSize.Sm)
+        is ContentListStyle.Amount -> style.copy(size = ContentListSize.Sm)
+        is ContentListStyle.Transaction -> style
     }
+
+    TransactionListMainRow(
+        modifier = modifier,
+        content = content,
+        amount = item.amount.copy(size = ContentListSize.Sm),
+        icon = null,
+        state = OceanTransactionListState.Default,
+        density = density,
+        contentAmountGap = OceanSpacing.xxsExtra
+    )
 }
 
 @Composable
@@ -312,7 +307,6 @@ private const val FOOTER_TOTAL_TAG = "transaction-footer-total"
 private const val FOOTER_ACTION_TAG = "transaction-footer-action"
 private const val FOOTER_DIVIDER_TAG = "transaction-footer-divider"
 private const val FOOTER_TOP_BORDER_TAG = "transaction-footer-top-border"
-private const val FOOTER_ROW_INFO_TAG = "transaction-footer-row-info"
 
 @Preview(showBackground = true)
 @Composable

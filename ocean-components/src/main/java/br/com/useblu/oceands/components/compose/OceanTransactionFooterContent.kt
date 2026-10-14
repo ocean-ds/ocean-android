@@ -136,8 +136,8 @@ fun OceanTransactionFooter(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xs)
-                    .testTag(FOOTER_TOTAL_TAG),
+                    .testTag(FOOTER_TOTAL_TAG)
+                    .padding(horizontal = OceanSpacing.xs, vertical = OceanSpacing.xs),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OceanText(
@@ -164,8 +164,10 @@ fun OceanTransactionFooter(
             OceanButton(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(top = OceanSpacing.xs)
                     .padding(horizontal = OceanSpacing.xs)
-                    .padding(bottom = OceanSpacing.xs),
+                    .padding(bottom = OceanSpacing.xs)
+                    .testTag(FOOTER_ACTION_TAG),
                 button = button
             )
         }
@@ -307,6 +309,7 @@ private const val FOOTER_NOTICE_TITLE_TAG = "transaction-footer-notice-title"
 private const val FOOTER_MAIN_ROW_TAG = "transaction-footer-main-row"
 private const val FOOTER_DETAIL_ROW_TAG = "transaction-footer-detail-row"
 private const val FOOTER_TOTAL_TAG = "transaction-footer-total"
+private const val FOOTER_ACTION_TAG = "transaction-footer-action"
 private const val FOOTER_DIVIDER_TAG = "transaction-footer-divider"
 private const val FOOTER_TOP_BORDER_TAG = "transaction-footer-top-border"
 private const val FOOTER_ROW_INFO_TAG = "transaction-footer-row-info"

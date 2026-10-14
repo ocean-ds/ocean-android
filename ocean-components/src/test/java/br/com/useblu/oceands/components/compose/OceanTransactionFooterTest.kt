@@ -140,6 +140,21 @@ class OceanTransactionFooterTest {
     }
 
     @Test
+    fun leavesSixteenDpBetweenTotalAndAction() {
+        composeTestRule.setContent {
+            OceanTransactionFooter(total = total, button = button)
+        }
+
+        val totalBottom = composeTestRule.onNodeWithTag("transaction-footer-total")
+            .fetchSemanticsNode().boundsInRoot.bottom
+        val actionTop = composeTestRule.onNodeWithTag("transaction-footer-action")
+            .fetchSemanticsNode().boundsInRoot.top
+        val actionSpacing = with(composeTestRule.density) { 16.dp.toPx() }
+
+        assertEquals(actionSpacing, actionTop - totalBottom, 1f)
+    }
+
+    @Test
     fun rendersOptionalInfoForMainItemAndDetails() {
         composeTestRule.setContent {
             OceanTransactionFooter(

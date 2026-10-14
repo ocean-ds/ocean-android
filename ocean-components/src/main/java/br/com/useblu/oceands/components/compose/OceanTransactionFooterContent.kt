@@ -323,12 +323,17 @@ private fun OceanTransactionFooterContentPreview() {
                 title = "Desconto aplicado",
                 description = "Texto de apoio do aviso."
             ),
-            mainItem = OceanTransactionFooterItem("Subtotal", "R$ 1.250,00"),
+            mainItem = OceanTransactionFooterItem(
+                content = ContentListStyle.Default(title = "Subtotal"),
+                amount = ContentListStyle.Amount(amount = "R$ 1.250,00")
+            ),
             details = listOf(
                 OceanTransactionFooterItem(
-                    "Parcelamento",
-                    "5x de R$ 250,00",
-                    "sem acréscimo"
+                    content = ContentListStyle.Default(title = "Parcelamento"),
+                    amount = ContentListStyle.Amount(
+                        amount = "5x de R$ 250,00",
+                        additionalData = "sem acréscimo"
+                    )
                 )
             )
         )

@@ -79,10 +79,10 @@ class TransactionFooterV2Activity : AppCompatActivity() {
                     footerSection("Four details", details = fourDetails)
                     footerSection(
                         "Additional info",
-                        mainItem = OceanTransactionFooterItem(
+                        mainItem = footerItem(
                             "Subtotal",
                             "R$ 1.250,00",
-                            "sem acréscimo"
+                            info = "sem acréscimo"
                         )
                     )
                 }
@@ -124,7 +124,9 @@ class TransactionFooterV2Activity : AppCompatActivity() {
     }
 
     private companion object {
-        val order = OceanTransactionFooterItem("Subtotal", "R$ 1.250,00")
+        private const val INSTALLMENT_VALUE = "5x de R$ 250,00"
+
+        val order = footerItem("Subtotal", "R$ 1.250,00")
         val amountVariants = listOf(
             footerItem("Taxa", "Grátis", type = AmountType.Strikethrough, strikethroughAmount = "3,99%"),
             footerItem("Ajuste", "R$ 0,00", type = AmountType.StrikethroughNeutral, strikethroughAmount = "R$ 1,00"),
@@ -132,7 +134,7 @@ class TransactionFooterV2Activity : AppCompatActivity() {
             footerItem("Tarifa de ajuste", "R$ 2,00", type = AmountType.Negative),
             footerItem("Taxa anterior", "R$ 2,00", type = AmountType.Inactive),
             footerItem("Desconto", "Grátis", tag = OceanTagModel(OceanTagType.Positive, "Aplicado")),
-            footerItem("Parcelamento", "5x de R$ 250,00", info = "sem acréscimo"),
+            footerItem("Parcelamento", INSTALLMENT_VALUE, info = "sem acréscimo"),
             footerItem(
                 "Compra",
                 "R$ 1.250,00",
@@ -140,21 +142,13 @@ class TransactionFooterV2Activity : AppCompatActivity() {
             )
         )
         val standardDetails = listOf(
-            OceanTransactionFooterItem(
-                "Parcelamento",
-                "5x de R$ 250,00",
-                "sem acréscimo"
-            )
+            footerItem("Parcelamento", INSTALLMENT_VALUE, info = "sem acréscimo")
         )
         val fourDetails = listOf(
-            OceanTransactionFooterItem(
-                "Parcelamento",
-                "5x de R$ 250,00",
-                "sem acréscimo"
-            ),
-            OceanTransactionFooterItem("Taxa de serviço", "R$ 12,50"),
-            OceanTransactionFooterItem("Data de entrega", "15 de março"),
-            OceanTransactionFooterItem("Forma de pagamento", "Cartão de crédito")
+            footerItem("Parcelamento", INSTALLMENT_VALUE, info = "sem acréscimo"),
+            footerItem("Taxa de serviço", "R$ 12,50"),
+            footerItem("Data de entrega", "15 de março"),
+            footerItem("Forma de pagamento", "Cartão de crédito")
         )
 
         private fun footerItem(

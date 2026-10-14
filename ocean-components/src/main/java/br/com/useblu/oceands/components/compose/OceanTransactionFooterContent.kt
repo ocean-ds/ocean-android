@@ -281,8 +281,7 @@ private fun footerRow(
         amount = item.amount.copy(size = ContentListSize.Sm),
         icon = null,
         state = OceanTransactionListState.Default,
-        density = density,
-        contentAmountGap = OceanSpacing.xxsExtra
+        density = density
     )
 }
 

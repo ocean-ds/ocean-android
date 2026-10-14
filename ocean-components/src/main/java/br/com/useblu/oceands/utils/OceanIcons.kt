@@ -2421,6 +2421,98 @@ enum class OceanIcons(val token: String, @DrawableRes val icon: Int) {
         token = "outflowoutline",
         icon = R.drawable.icon_outflow_outline
     ),
+    ANNOUNCEMENT_OUTLINE(
+        token = "announcementoutline",
+        icon = R.drawable.ocean_icon_announcement_outline
+    ),
+    BLU_ANALYSIS_OUTLINE(
+        token = "bluanalysisoutline",
+        icon = R.drawable.ocean_icon_blu_analisys_outline
+    ),
+    COINS_HAND_SOLID(
+        token = "coinshandsolid",
+        icon = R.drawable.ocean_icon_coins_hand_solid
+    ),
+    CREDIT_CARD_REFRESH_OUTLINE(
+        token = "creditcardrefreshoutline",
+        icon = R.drawable.ocean_icon_credit_card_refresh_outline
+    ),
+    FACEBOOK_OUTLINE(
+        token = "facebookoutline",
+        icon = R.drawable.ocean_icon_facebook_outline
+    ),
+    FACEBOOK_SOLID(
+        token = "facebooksolid",
+        icon = R.drawable.ocean_icon_facebook_solid
+    ),
+    FLAG_ALT_OUTLINE(
+        token = "flagaltoutline",
+        icon = R.drawable.ocean_icon_flag_alt_outline
+    ),
+    FLASH_OFF_SOLID(
+        token = "flashoffsolid",
+        icon = R.drawable.ocean_icon_flash_off_solid
+    ),
+    LIGHTHOUSE_SOLID(
+        token = "lighthousesolid",
+        icon = R.drawable.ocean_icon_lighthouse_solid
+    ),
+    LIMIT_OUTLINE(
+        token = "limitoutline",
+        icon = R.drawable.ocean_icon_limit_outline
+    ),
+    LINKEDIN_OUTLINE(
+        token = "linkedinoutline",
+        icon = R.drawable.ocean_icon_linkedin_outline
+    ),
+    LINKEDIN_SOLID(
+        token = "linkedinsolid",
+        icon = R.drawable.ocean_icon_linkedin_solid
+    ),
+    LOCK_TAX_OUTLINE(
+        token = "locktaxoutline",
+        icon = R.drawable.ocean_icon_lock_tax_outline
+    ),
+    MONEY_OUTLINE(
+        token = "moneyoutline",
+        icon = R.drawable.ocean_icon_money_outline
+    ),
+    PRESENTATION_QRCODE_OUTLINE(
+        token = "presentationqrcodeoutline",
+        icon = R.drawable.ocean_icon_presentation_qrcode_outline
+    ),
+    REFER_OUTLINE(
+        token = "referoutline",
+        icon = R.drawable.ocean_icon_refer_outline
+    ),
+    REFER_SOLID(
+        token = "refersolid",
+        icon = R.drawable.ocean_icon_refer_solid
+    ),
+    SALES_OUTLINE(
+        token = "salesoutline",
+        icon = R.drawable.ocean_icon_sales_outline
+    ),
+    SEND_OUTLINE(
+        token = "sendoutline",
+        icon = R.drawable.ocean_icon_send_outline
+    ),
+    SEND_SOLID(
+        token = "sendsolid",
+        icon = R.drawable.ocean_icon_send_solid
+    ),
+    SETTINGS_OUTLINE(
+        token = "settingsoutline",
+        icon = R.drawable.ocean_icon_settings_outline
+    ),
+    WALLET_OUTLINE(
+        token = "walletoutline",
+        icon = R.drawable.ocean_icon_wallet_outline
+    ),
+    ZERO_SOLID(
+        token = "zerosolid",
+        icon = R.drawable.ocean_icon_zero_solid
+    ),
     BLANK_ICON(
         token = "localblankicon",
         icon = R.drawable.local_blank_icon

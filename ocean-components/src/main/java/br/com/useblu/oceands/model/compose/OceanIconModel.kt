@@ -2,10 +2,10 @@ package br.com.useblu.oceands.model.compose
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
-import br.com.useblu.oceands.utils.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 
 data class OceanIconModel(
-    val icon: OceanIconType,
+    val icon: OceanIcons,
     val tint: Color = Color.Unspecified,
     val size: Dp? = null
 )

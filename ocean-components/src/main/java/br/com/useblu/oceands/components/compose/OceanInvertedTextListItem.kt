@@ -28,7 +28,6 @@ import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
-import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Deprecated(
@@ -65,7 +64,7 @@ sealed interface InvertedTextListType {
     data class Default(
         val description: String,
         val colorDescription: Color? = null,
-        val icon: OceanIconType? = null,
+        val icon: OceanIcons? = null,
         val colorIcon: Color? = null
     ) : InvertedTextListType {
         @Composable
@@ -102,7 +101,7 @@ sealed interface InvertedTextListType {
         }
     }
 
-    data class Positive(val description: String, val icon: OceanIconType? = null) :
+    data class Positive(val description: String, val icon: OceanIcons? = null) :
         InvertedTextListType {
         @Composable
         override fun TypeContent() {
@@ -127,7 +126,7 @@ sealed interface InvertedTextListType {
         }
     }
 
-    data class Warning(val description: String, val icon: OceanIconType? = null) :
+    data class Warning(val description: String, val icon: OceanIcons? = null) :
         InvertedTextListType {
         @Composable
         override fun TypeContent() {
@@ -155,7 +154,7 @@ sealed interface InvertedTextListType {
     data class Highlight(
         val description: String,
         val tagLabel: String = "",
-        val tagIcon: OceanIconType? = null,
+        val tagIcon: OceanIcons? = null,
         val tagType: OceanTagType = OceanTagType.Positive,
         val fontSize: TextUnit = TextUnit.Unspecified
     ) : InvertedTextListType {
@@ -666,7 +665,7 @@ sealed interface InvertedListItemStyle {
 
 sealed interface DescriptionStyle {
     data class Default(
-        val icon: OceanIconType = OceanIcons.UNDEFINED,
+        val icon: OceanIcons = OceanIcons.UNDEFINED,
         val color: Color = Color.Unspecified
     ) : DescriptionStyle
 }

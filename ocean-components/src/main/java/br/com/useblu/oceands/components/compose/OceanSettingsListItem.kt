@@ -22,7 +22,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
-import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview(
@@ -337,6 +336,6 @@ sealed interface SettingsListItemStyle {
 
     data class Blocked(
         val contentStyle: ContentListStyle,
-        val icon: OceanIconType = OceanIcons.LOCK_CLOSED_SOLID
+        val icon: OceanIcons = OceanIcons.LOCK_CLOSED_SOLID
     ) : SettingsListItemStyle
 }

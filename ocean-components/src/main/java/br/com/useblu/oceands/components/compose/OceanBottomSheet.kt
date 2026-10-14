@@ -39,7 +39,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
-import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
@@ -258,7 +257,7 @@ data class OceanBottomSheetModel(
 ) {
     data class Button(
         val text: String,
-        val icon: OceanIconType? = null,
+        val icon: OceanIcons? = null,
         val onClick: () -> Unit,
         val isDisabled: Boolean = false,
         val dismissOnButtonClick: Boolean = true

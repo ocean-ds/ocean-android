@@ -27,7 +27,6 @@ import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
-import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -201,14 +200,14 @@ fun OceanStatusListItem(
     captionColor: Color = Color.Unspecified,
     tagLabel: String = "",
     showTagIconDefault: Boolean = false,
-    tagIcon: OceanIconType? = null,
+    tagIcon: OceanIcons? = null,
     tagPosition: OceanStatusListItemTagPosition? = OceanStatusListItemTagPosition.BOTTOM,
     tagType: OceanTagType? = OceanTagType.Warning,
     badge: String = "",
     badgeType: OceanBadgeType? = null,
     isReadOnly: Boolean = false,
     isInactive: Boolean = false,
-    leadingIcon: OceanIconType? = null,
+    leadingIcon: OceanIcons? = null,
     rightIconType: OceanStatusListItemRightIconType = OceanStatusListItemRightIconType.CHEVRON,
     onClick: (() -> Unit)? = null,
     onClickRightIcon: (() -> Unit)? = null
@@ -343,7 +342,7 @@ fun OceanStatusListItem(
 private fun getTagIcon(
     showTagIconDefault: Boolean,
     tagType: OceanTagType,
-    tagIcon: OceanIconType?
+    tagIcon: OceanIcons?
 ) = if (showTagIconDefault) getIconDefault(tagType) else tagIcon
 
 enum class OceanStatusListItemTagPosition {

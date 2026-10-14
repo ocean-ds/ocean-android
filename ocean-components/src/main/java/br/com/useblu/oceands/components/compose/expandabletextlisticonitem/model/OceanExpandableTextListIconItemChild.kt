@@ -1,9 +1,9 @@
 package br.com.useblu.oceands.components.compose.expandabletextlisticonitem.model
 
-import br.com.useblu.oceands.utils.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 
 data class OceanExpandableTextListIconItemChild<ReferenceKey>(
-    val icon: OceanIconType?,
+    val icon: OceanIcons?,
     val showIconBackground: Boolean = false,
     val title: String,
     val description: String = "",

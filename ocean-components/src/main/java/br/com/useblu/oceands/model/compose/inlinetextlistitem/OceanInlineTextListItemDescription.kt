@@ -5,11 +5,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
-import br.com.useblu.oceands.utils.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 
 sealed interface OceanInlineTextListItemDescription {
     data class Default(
-        override val icon: OceanIconType? = null,
+        override val icon: OceanIcons? = null,
         override val text: String
     ) : OceanInlineTextListItemDescriptionGenericType {
         @Composable
@@ -17,7 +17,7 @@ sealed interface OceanInlineTextListItemDescription {
     }
 
     data class Inactive(
-        override val icon: OceanIconType? = null,
+        override val icon: OceanIcons? = null,
         override val text: String
     ) : OceanInlineTextListItemDescriptionGenericType {
         @Composable
@@ -25,7 +25,7 @@ sealed interface OceanInlineTextListItemDescription {
     }
 
     data class Positive(
-        override val icon: OceanIconType? = null,
+        override val icon: OceanIcons? = null,
         override val text: String
     ) : OceanInlineTextListItemDescriptionGenericType {
         @Composable
@@ -33,7 +33,7 @@ sealed interface OceanInlineTextListItemDescription {
     }
 
     data class Warning(
-        override val icon: OceanIconType? = null,
+        override val icon: OceanIcons? = null,
         override val text: String
     ) : OceanInlineTextListItemDescriptionGenericType {
         @Composable
@@ -41,7 +41,7 @@ sealed interface OceanInlineTextListItemDescription {
     }
 
     data class Highlight(
-        override val icon: OceanIconType? = null,
+        override val icon: OceanIcons? = null,
         override val text: String
     ) : OceanInlineTextListItemDescriptionGenericType {
         @Composable
@@ -65,7 +65,7 @@ sealed interface OceanInlineTextListItemDescription {
 }
 
 internal interface OceanInlineTextListItemDescriptionGenericType : OceanInlineTextListItemDescription {
-    val icon: OceanIconType?
+    val icon: OceanIcons?
     val text: String
     val fontWeight: FontWeight? get() = null
 

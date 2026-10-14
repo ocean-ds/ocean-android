@@ -22,7 +22,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
-import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Deprecated("Use OceanLink with style instead")
@@ -95,7 +94,7 @@ enum class OceanLinkIcon {
     CHEVRON,
     EXTERNAL;
 
-    fun getIcon(): OceanIconType? {
+    fun getIcon(): OceanIcons? {
         return when (this) {
             DEFAULT -> null
             CHEVRON -> OceanIcons.CHEVRON_RIGHT_SOLID
@@ -173,7 +172,7 @@ fun OceanLinkPreview() {
 private fun ShowLink(
     style: LinkStyle,
     color: Color,
-    icon: OceanIconType,
+    icon: OceanIcons,
     enabled: Boolean,
     invertedIcon: Boolean
 ) {
@@ -317,7 +316,7 @@ private fun LinkText(
     modifier: Modifier,
     text: String,
     style: TextStyle,
-    icon: OceanIconType,
+    icon: OceanIcons,
     iconSize: Dp,
     enabled: Boolean = true,
     invertedIcon: Boolean,
@@ -366,7 +365,7 @@ private fun LinkText(
 
 @Composable
 private fun LinkIcon(
-    iconType: OceanIconType,
+    iconType: OceanIcons,
     tint: Color = Color.Unspecified,
     iconSize: Dp
 ) {
@@ -383,7 +382,7 @@ private fun LinkIcon(
 data class LinkStyle(
     val text: String,
     val color: Color = Color.Unspecified,
-    val icon: OceanIconType = OceanIcons.UNDEFINED,
+    val icon: OceanIcons = OceanIcons.UNDEFINED,
     val type: LinkType = LinkType.Medium,
     val invertedIcon: Boolean = false
 )

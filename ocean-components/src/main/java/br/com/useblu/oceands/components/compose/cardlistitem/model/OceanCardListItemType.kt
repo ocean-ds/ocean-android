@@ -1,11 +1,11 @@
 package br.com.useblu.oceands.components.compose.cardlistitem.model
 
-import br.com.useblu.oceands.utils.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 
 sealed interface OceanCardListItemType {
     data class Default(
-        val leadingIconToken: OceanIconType? = null,
-        val trailingIconToken: OceanIconType? = null,
+        val leadingIconToken: OceanIcons? = null,
+        val trailingIconToken: OceanIcons? = null,
         val showIconBackground: Boolean = true
     ) : OceanCardListItemType
 

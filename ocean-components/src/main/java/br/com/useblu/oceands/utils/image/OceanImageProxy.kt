@@ -8,15 +8,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import br.com.useblu.oceands.components.compose.OceanIcon
-import br.com.useblu.oceands.utils.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
 
 sealed interface OceanImageProxy {
     data class Icon(
-        val icon: OceanIconType,
+        val icon: OceanIcons,
         val tint: Color = Color.Unspecified,
-        val fallbackIcon: OceanIconType? = null
+        val fallbackIcon: OceanIcons? = null
     ) : OceanImageProxy
     data class URL(
         val url: String,

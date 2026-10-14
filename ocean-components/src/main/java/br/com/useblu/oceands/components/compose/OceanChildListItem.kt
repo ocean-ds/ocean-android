@@ -23,7 +23,6 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
-import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview(
@@ -194,7 +193,7 @@ data object ChildScope {
 
 sealed interface ChildListItemStyle {
     data class Child(
-        val icon: OceanIconType,
+        val icon: OceanIcons,
         val description: String,
         val value: String,
         val type: TransactionType

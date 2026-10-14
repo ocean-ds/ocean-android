@@ -26,7 +26,6 @@ import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
-import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -58,7 +57,7 @@ fun CardCta(
     actionTitle: String,
     badgeText: String = "",
     badgeType: OceanBadgeType = OceanBadgeType.WARNING,
-    actionIcon: OceanIconType = OceanIcons.CHEVRON_RIGHT_SOLID,
+    actionIcon: OceanIcons = OceanIcons.CHEVRON_RIGHT_SOLID,
     backgroundColor: Color = OceanColors.interfaceLightPure,
     actionClick: (() -> Unit)? = null
 ) {

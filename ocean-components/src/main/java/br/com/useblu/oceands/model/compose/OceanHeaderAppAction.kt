@@ -1,10 +1,10 @@
 package br.com.useblu.oceands.model.compose
 
-import br.com.useblu.oceands.utils.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 
 data class OceanHeaderAppAction<IdentifiableKey>(
     val key: IdentifiableKey,
-    val icon: OceanIconType,
+    val icon: OceanIcons,
     val badgeCount: Int = 0,
     val action: (IdentifiableKey) -> Unit
 )

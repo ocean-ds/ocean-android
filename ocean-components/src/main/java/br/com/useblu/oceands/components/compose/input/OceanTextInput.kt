@@ -45,7 +45,6 @@ import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.ui.compose.stringmask.OceanInputType
-import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -213,8 +212,8 @@ fun OceanTextInput(
     enabled: Boolean = true,
     onTextChanged: (String) -> Unit,
     oceanInputType: OceanInputType = OceanInputType.DEFAULT,
-    leadingIcon: OceanIconType? = null,
-    trailingIcon: OceanIconType? = null,
+    leadingIcon: OceanIcons? = null,
+    trailingIcon: OceanIcons? = null,
     onClickTrailingIcon: (() -> Unit)? = null,
     isTextArea: Boolean = false,
     maxLength: Int? = null

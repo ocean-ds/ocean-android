@@ -3,7 +3,7 @@ package br.com.useblu.oceands.components.compose.cardlistitem.model
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import br.com.useblu.oceands.ui.compose.OceanColors
-import br.com.useblu.oceands.utils.OceanIconType
+import br.com.useblu.oceands.utils.OceanIcons
 
 sealed interface OceanCardListItemStyle {
     data object Default : OceanCardListItemStyle
@@ -11,7 +11,7 @@ sealed interface OceanCardListItemStyle {
     data class Highlighted(
         val caption: String,
         val backgroundColor: Color,
-        val icon: OceanIconType? = null,
+        val icon: OceanIcons? = null,
         val iconColor: Color? = null,
         val animation: Animation? = null
     ) : OceanCardListItemStyle {

@@ -48,7 +48,6 @@ import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
-import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 internal object TransactionListTestTags {
@@ -266,7 +265,7 @@ internal fun LeadingIcon(
 @Composable
 internal fun TrailingChevron(
     enabled: Boolean,
-    icon: OceanIconType = OceanIcons.CHEVRON_RIGHT_SOLID
+    icon: OceanIcons = OceanIcons.CHEVRON_RIGHT_SOLID
 ) {
     OceanIcon(
         iconType = icon,

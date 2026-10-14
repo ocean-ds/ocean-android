@@ -46,7 +46,6 @@ import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
-import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 val modelPreview = OceanHeaderAppModel(
@@ -234,7 +233,7 @@ fun MinimalHeader(
 
 @Composable
 private fun MinimalHeaderAction(
-    icon: OceanIconType,
+    icon: OceanIcons,
     badgeCount: Int,
     iconTint: Color,
     onClick: () -> Unit

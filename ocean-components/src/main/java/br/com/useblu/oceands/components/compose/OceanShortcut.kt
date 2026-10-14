@@ -27,6 +27,7 @@ import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -219,7 +220,7 @@ data class OceanShortcutTag(
 @Composable
 fun OceanShortcut(
     label: String,
-    icon: OceanIcons,
+    icon: OceanIconType,
     modifier: Modifier = Modifier,
     description: String = "",
     badge: OceanShortcutBadge? = null,
@@ -418,7 +419,7 @@ enum class OceanShortcutLayout {
 data class OceanShortcutModel(
     val label: String,
     val description: String = "",
-    val icon: OceanIcons,
+    val icon: OceanIconType,
     val badge: OceanShortcutBadge? = null,
     val tag: OceanShortcutTag? = null,
     val action: (() -> Unit)? = null,

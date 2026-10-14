@@ -25,6 +25,7 @@ import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
@@ -67,7 +68,7 @@ fun OceanCardCrossSell(
     modifier: Modifier = Modifier,
     imageUrl: String? = null,
     @DrawableRes imageResource: Int? = null,
-    actionIcon: OceanIcons = OceanIcons.CHEVRON_RIGHT_SOLID,
+    actionIcon: OceanIconType = OceanIcons.CHEVRON_RIGHT_SOLID,
     titleColor: Color = Color.Unspecified,
     descriptionColor: Color = Color.Unspecified,
     backgroundColor: Color = OceanColors.interfaceLightUp,

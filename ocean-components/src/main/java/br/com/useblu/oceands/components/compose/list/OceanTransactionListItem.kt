@@ -55,6 +55,7 @@ import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.FormatTypes
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 internal const val TRANSACTION_LIST_ITEM_DEPRECATION =
@@ -125,10 +126,10 @@ fun OceanTransactionListItem(
     valueIsStrike: Boolean = false,
     tagTitle: String = "",
     tagType: OceanTagType = OceanTagType.Warning,
-    tagIcon: OceanIcons? = null,
+    tagIcon: OceanIconType? = null,
     time: String = "",
-    icon: OceanIcons? = null,
-    trailingIcon: OceanIcons? = null,
+    icon: OceanIconType? = null,
+    trailingIcon: OceanIconType? = null,
     showDivider: Boolean = true,
     showCheckbox: Boolean = false,
     isCheckboxSelected: Boolean = false,

@@ -18,6 +18,7 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -142,7 +143,7 @@ fun OceanSnackBar(
 }
 
 sealed interface OceanSnackBarType {
-    fun getIcon(): OceanIcons {
+    fun getIcon(): OceanIconType {
         return when (this) {
             is Information -> OceanIcons.INFO_OUTLINE
             is Positive -> OceanIcons.CHECK_CIRCLE_OUTLINE

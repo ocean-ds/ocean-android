@@ -27,6 +27,7 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
@@ -569,7 +570,7 @@ private fun HighlightPillTag(
 
 fun getIconDefault(
     type: OceanTagType
-): OceanIcons? = when (type) {
+): OceanIconType? = when (type) {
     OceanTagType.Negative -> {
         OceanIcons.X_CIRCLE_SOLID
     }
@@ -688,13 +689,13 @@ sealed interface OceanTagStyle {
 
 sealed interface OceanTagLayout {
     data class Medium(
-        val icon: OceanIcons? = null,
+        val icon: OceanIconType? = null,
         val height: Dp = 20.dp,
         val fontSize: TextUnit = 12.sp
     ) : OceanTagLayout
 
     data class Small(
-        val icon: OceanIcons? = null,
+        val icon: OceanIconType? = null,
         val height: Dp = 16.dp,
         val fontSize: TextUnit = 10.sp
     ) : OceanTagLayout

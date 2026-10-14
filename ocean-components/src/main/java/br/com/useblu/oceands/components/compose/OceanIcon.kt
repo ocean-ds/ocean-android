@@ -9,6 +9,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview(showBackground = true)
@@ -23,10 +24,10 @@ fun OceanIconPreview() {
 
 @Composable
 fun OceanIcon(
-    iconType: OceanIcons,
+    iconType: OceanIconType,
     modifier: Modifier = Modifier,
     tint: Color = Color.Unspecified,
-    fallbackIcon: OceanIcons? = null
+    fallbackIcon: OceanIconType? = null
 ) {
     if (iconType != OceanIcons.UNDEFINED) {
         Icon(

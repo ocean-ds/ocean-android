@@ -52,6 +52,7 @@ import br.com.useblu.oceands.model.compose.OceanIconModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 data class OceanTransactionListExpandableItem(
@@ -126,7 +127,7 @@ fun OceanChildTransactionListExpandable(
 fun OceanTransactionListExpandable(
     parent: OceanTransactionListExpandableItem,
     modifier: Modifier = Modifier,
-    itemsIcon: OceanIcons? = null,
+    itemsIcon: OceanIconType? = null,
     itemsIconSize: Dp? = null,
     itemsIconTint: Color? = null,
     items: List<OceanTransactionListExpandableItem> = emptyList(),

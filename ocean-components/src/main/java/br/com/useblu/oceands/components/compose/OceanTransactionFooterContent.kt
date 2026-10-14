@@ -29,6 +29,7 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 enum class OceanTransactionFooterType {
@@ -50,7 +51,7 @@ data class OceanTransactionFooterItem(
 data class OceanTransactionFooterNotice(
     val description: String,
     val title: String? = null,
-    val icon: OceanIcons? = OceanIcons.CHECK_CIRCLE_SOLID
+    val icon: OceanIconType? = OceanIcons.CHECK_CIRCLE_SOLID
 )
 
 data class OceanTransactionFooterTotal(

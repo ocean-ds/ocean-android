@@ -35,6 +35,7 @@ import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview
@@ -148,7 +149,7 @@ fun PreviewOceanTopBarInverse() {
 @Composable
 fun OceanTopBarInverse(
     title: String,
-    icon: OceanIcons? = null,
+    icon: OceanIconType? = null,
     onClickIcon: () -> Unit,
     actions: @Composable () -> Unit,
     onClickToolbar: () -> Unit = {},
@@ -173,9 +174,9 @@ fun OceanTopBarInverse(
 @Composable
 fun OceanTopBarInverse(
     title: String,
-    icon: OceanIcons? = null,
+    icon: OceanIconType? = null,
     onClickIcon: () -> Unit,
-    menuIcon: OceanIcons? = null,
+    menuIcon: OceanIconType? = null,
     onClickMenuIcon: () -> Unit = {},
     onClickToolbar: () -> Unit = {},
     visibleShadow: Boolean = false,
@@ -200,11 +201,11 @@ fun OceanTopBarInverse(
 @Composable
 private fun TopBar(
     onClickToolbar: () -> Unit,
-    icon: OceanIcons?,
+    icon: OceanIconType?,
     iconInvisible: Boolean,
     onClickIcon: () -> Unit,
     title: String,
-    menuIcon: OceanIcons? = null,
+    menuIcon: OceanIconType? = null,
     onClickMenuIcon: (() -> Unit)? = null,
     actions: (@Composable () -> Unit)? = null,
     visibleShadow: Boolean,

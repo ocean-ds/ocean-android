@@ -3,6 +3,7 @@ package br.com.useblu.oceands.components.compose.expandabletextlisticonitem.mode
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 sealed interface OceanExpandableTextListIconItemChildType<ChildReferenceKey> {
@@ -11,7 +12,7 @@ sealed interface OceanExpandableTextListIconItemChildType<ChildReferenceKey> {
         val actionType: ActionType = ActionType.Custom()
     ) : OceanExpandableTextListIconItemChildType<ChildReferenceKey> {
 
-        override val actionIcon: OceanIcons? = when (actionType) {
+        override val actionIcon: OceanIconType? = when (actionType) {
             is ActionType.Edit -> OceanIcons.DOTS_VERTICAL_SOLID
             is ActionType.Custom -> actionType.icon
         }
@@ -20,7 +21,7 @@ sealed interface OceanExpandableTextListIconItemChildType<ChildReferenceKey> {
             data class Edit(val options: List<Option>, val onClick: (Int) -> Unit) : ActionType {
                 data class Option(val title: String, val color: Color? = null)
             }
-            data class Custom(val icon: OceanIcons? = null) : ActionType
+            data class Custom(val icon: OceanIconType? = null) : ActionType
         }
     }
 
@@ -29,8 +30,8 @@ sealed interface OceanExpandableTextListIconItemChildType<ChildReferenceKey> {
         val contentSize: Dp,
         val content: @Composable (ChildReferenceKey) -> Unit
     ) : OceanExpandableTextListIconItemChildType<ChildReferenceKey> {
-        override val actionIcon: OceanIcons? = null
+        override val actionIcon: OceanIconType? = null
     }
-    val actionIcon: OceanIcons?
+    val actionIcon: OceanIconType?
     val items: List<OceanExpandableTextListIconItemChild<ChildReferenceKey>>
 }

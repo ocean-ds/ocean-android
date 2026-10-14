@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import br.com.useblu.oceands.components.compose.cardlistitem.DeprecatedTransitionCardListItem
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
 import br.com.useblu.oceands.model.OceanTagType
-import br.com.useblu.oceands.utils.OceanIcons
+import br.com.useblu.oceands.utils.OceanIconType
 
 @Deprecated("Uses OceanCardListItem from components.compose.cardlistitem")
 @Composable
@@ -14,8 +14,8 @@ fun OceanCardListItem(
     modifier: Modifier = Modifier,
     description: String = "",
     caption: String = "",
-    leadingIconToken: OceanIcons? = null,
-    trailingIconToken: OceanIcons? = null,
+    leadingIconToken: OceanIconType? = null,
+    trailingIconToken: OceanIconType? = null,
     showIconBackground: Boolean = true,
     disabled: Boolean = false,
     tagLabel: String = "",

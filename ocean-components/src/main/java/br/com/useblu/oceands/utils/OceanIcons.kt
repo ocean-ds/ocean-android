@@ -3,7 +3,10 @@ package br.com.useblu.oceands.utils
 import androidx.annotation.DrawableRes
 import br.com.useblu.oceands.R
 
-enum class OceanIcons(val token: String, @DrawableRes val icon: Int) {
+enum class OceanIcons(
+    override val token: String,
+    @DrawableRes override val icon: Int
+) : OceanIconType {
     APPAREL_OUTLINE(
         token = "appareloutline",
         icon = R.drawable.ocean_icon_apparel_outline
@@ -2519,9 +2522,11 @@ enum class OceanIcons(val token: String, @DrawableRes val icon: Int) {
     );
 
     companion object {
-        fun fromToken(token: String): OceanIcons {
+        fun fromToken(token: String): OceanIconType {
             val newToken = token.trim().replace("-", "")
-            return entries.firstOrNull { it.token.equals(newToken, ignoreCase = true) } ?: UNDEFINED
+            return entries.firstOrNull { it.token.equals(newToken, ignoreCase = true) }
+                ?: OceanIconRegistry.provider?.invoke(newToken.lowercase())
+                ?: UNDEFINED
         }
     }
 }

@@ -40,6 +40,7 @@ import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 import br.com.useblu.oceands.utils.SwipeBox
 
@@ -146,7 +147,7 @@ fun OceanExpandableTextListIconItemPreview() {
 
 @Composable
 fun <ChildReferenceKey> OceanExpandableTextListIconItem(
-    icon: OceanIcons?,
+    icon: OceanIconType?,
     title: String,
     description: String = "",
     collapsed: Boolean = true,
@@ -184,7 +185,7 @@ fun <ChildReferenceKey> OceanExpandableTextListIconItem(
 @Composable
 private fun HeaderItem(
     modifier: Modifier = Modifier,
-    icon: OceanIcons?,
+    icon: OceanIconType?,
     title: String,
     description: String,
     showIconBackground: Boolean,
@@ -447,7 +448,7 @@ private fun <ChildReferenceKey> WithSwipeChildItem(
 
 @Composable
 fun <ChildReferenceKey> OceanExpandableTextListIconItem(
-    icon: OceanIcons?,
+    icon: OceanIconType?,
     title: String,
     description: String = "",
     collapsed: Boolean = true,

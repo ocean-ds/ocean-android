@@ -31,6 +31,7 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview()
@@ -315,7 +316,7 @@ data class OceanButtonModel(
     val onClick: () -> Unit,
     val buttonStyle: OceanButtonStyle,
     val showProgress: Boolean = false,
-    val icon: OceanIcons? = null,
+    val icon: OceanIconType? = null,
     val disabled: Boolean = false,
     val hasHorizontalPadding: Boolean = true
 )
@@ -344,7 +345,7 @@ fun OceanButton(
     buttonStyle: OceanButtonStyle,
     modifier: Modifier = Modifier,
     showProgress: Boolean = false,
-    icon: OceanIcons? = null,
+    icon: OceanIconType? = null,
     disabled: Boolean = false,
     hasHorizontalPadding: Boolean = true
 ) {

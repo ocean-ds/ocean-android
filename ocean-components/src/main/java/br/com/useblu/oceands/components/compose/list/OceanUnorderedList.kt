@@ -20,6 +20,7 @@ import br.com.useblu.oceands.model.compose.OceanUnorderedListItemModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview(showBackground = true)
@@ -95,7 +96,7 @@ fun OceanUnorderedListItem(
 fun OceanUnorderedListItem(
     title: String,
     description: String = "",
-    iconType: OceanIcons,
+    iconType: OceanIconType,
     style: TextStyle = OceanTextStyle.description,
     showIconBackground: Boolean = false,
     iconColor: Color? = null,

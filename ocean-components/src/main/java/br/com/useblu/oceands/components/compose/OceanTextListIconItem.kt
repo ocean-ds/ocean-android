@@ -26,6 +26,7 @@ import br.com.useblu.oceands.model.compose.OceanTextListIconItemModel
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
+import br.com.useblu.oceands.utils.OceanIconType
 import br.com.useblu.oceands.utils.OceanIcons
 
 @Preview(device = "spec:width=1120dp,height=550.9dp,dpi=440")
@@ -198,8 +199,8 @@ fun OceanTextListIconItem(
     isWarningCaption: Boolean = false,
     badgeText: String = "",
     badgeType: OceanBadgeType = OceanBadgeType.HIGHLIGHT,
-    leadingIcon: OceanIcons? = null,
-    trailingIcon: OceanIcons? = null,
+    leadingIcon: OceanIconType? = null,
+    trailingIcon: OceanIconType? = null,
     showIconBackground: Boolean = true,
     onClick: (() -> Unit)? = null
 ) {

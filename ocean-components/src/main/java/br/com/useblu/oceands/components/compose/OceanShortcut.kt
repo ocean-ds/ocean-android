@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanBadgeType
@@ -180,7 +181,9 @@ fun OceanShortcut(
         blocked = model.blocked,
         disabled = model.disabled,
         forceEnableActionWhenBlocked = model.forceEnableActionWhenBlocked,
-        customIcon = model.customIcon
+        customIcon = model.customIcon,
+        labelMaxLines = model.labelMaxLines,
+        descriptionMaxLines = model.descriptionMaxLines
     )
 }
 
@@ -230,7 +233,9 @@ fun OceanShortcut(
     blocked: Boolean = false,
     disabled: Boolean = false,
     forceEnableActionWhenBlocked: Boolean = false,
-    customIcon: (@Composable () -> Unit)? = null
+    customIcon: (@Composable () -> Unit)? = null,
+    labelMaxLines: Int = Int.MAX_VALUE,
+    descriptionMaxLines: Int = Int.MAX_VALUE
 ) {
     val backgroundColor = if (disabled) {
         OceanColors.interfaceLightDown
@@ -342,7 +347,9 @@ fun OceanShortcut(
                             modifier = Modifier.align(Alignment.BottomStart),
                             text = label,
                             style = OceanTextStyle.heading5,
-                            color = titleColor
+                            color = titleColor,
+                            maxLines = labelMaxLines,
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
                 }
@@ -357,7 +364,9 @@ fun OceanShortcut(
                     OceanText(
                         text = description,
                         style = OceanTextStyle.caption,
-                        color = descriptionColor
+                        color = descriptionColor,
+                        maxLines = descriptionMaxLines,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
             }
@@ -446,5 +455,12 @@ data class OceanShortcutModel(
      * Conteúdo Compose desenhado no lugar de [icon], no mesmo quadro de 24dp — slot para um avatar
      * de iniciais, por exemplo. Nasce `null`: [icon] continua sendo o desenho padrão.
      */
-    val customIcon: (@Composable () -> Unit)? = null
+    val customIcon: (@Composable () -> Unit)? = null,
+    /**
+     * Limite de linhas do rótulo e da descrição, com reticências ao estourar. Nascem sem limite
+     * (`Int.MAX_VALUE`, o comportamento de hoje); use `1` para cards de altura fixa, como o
+     * `Shortcut` do Ocean web faz.
+     */
+    val labelMaxLines: Int = Int.MAX_VALUE,
+    val descriptionMaxLines: Int = Int.MAX_VALUE
 )

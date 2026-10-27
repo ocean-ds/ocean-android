@@ -179,7 +179,8 @@ fun OceanShortcut(
         layout = model.layout,
         blocked = model.blocked,
         disabled = model.disabled,
-        forceEnableActionWhenBlocked = model.forceEnableActionWhenBlocked
+        forceEnableActionWhenBlocked = model.forceEnableActionWhenBlocked,
+        customIcon = model.customIcon
     )
 }
 
@@ -228,7 +229,8 @@ fun OceanShortcut(
     layout: OceanShortcutLayout = OceanShortcutLayout.TinyVertical,
     blocked: Boolean = false,
     disabled: Boolean = false,
-    forceEnableActionWhenBlocked: Boolean = false
+    forceEnableActionWhenBlocked: Boolean = false,
+    customIcon: (@Composable () -> Unit)? = null
 ) {
     val backgroundColor = if (disabled) {
         OceanColors.interfaceLightDown
@@ -316,11 +318,20 @@ fun OceanShortcut(
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 layout.GetTextIconLayout {
-                    OceanIcon(
-                        iconType = icon,
-                        tint = iconColor,
-                        modifier = Modifier.size(24.dp)
-                    )
+                    // `customIcon` (default null) ocupa o lugar do ícone do catálogo com o mesmo
+                    // tamanho — é o slot para um avatar de iniciais, por exemplo. Com null, nada
+                    // muda para quem já usa o componente: `icon` segue desenhado pelo OceanIcon.
+                    if (customIcon != null) {
+                        Box(modifier = Modifier.size(24.dp)) {
+                            customIcon()
+                        }
+                    } else {
+                        OceanIcon(
+                            iconType = icon,
+                            tint = iconColor,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
 
                     layout.GetSpacer()
 
@@ -430,5 +441,10 @@ data class OceanShortcutModel(
      * componente. Ligue quando o clique for a resposta ao cadeado — um item que avisa que a função
      * está restrita e não deixa o cliente descobrir por quê é um beco sem saída.
      */
-    val forceEnableActionWhenBlocked: Boolean = false
+    val forceEnableActionWhenBlocked: Boolean = false,
+    /**
+     * Conteúdo Compose desenhado no lugar de [icon], no mesmo quadro de 24dp — slot para um avatar
+     * de iniciais, por exemplo. Nasce `null`: [icon] continua sendo o desenho padrão.
+     */
+    val customIcon: (@Composable () -> Unit)? = null
 )

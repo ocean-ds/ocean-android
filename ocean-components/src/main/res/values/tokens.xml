@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+  <!-- PR-sonda do Ocean review (trava de tokens): não mergear -->
   <color name="ocean_color_brand_primary_pure" category="background-color">#0025E0</color>
   <color name="ocean_color_brand_primary_up" category="background-color">#B8C3FF</color>
   <color name="ocean_color_brand_primary_down" category="background-color">#5872F5</color>

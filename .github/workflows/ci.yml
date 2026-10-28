@@ -54,13 +54,22 @@ jobs:
 
   build:
     needs: changes
-    if: ${{ !cancelled() && needs.changes.outputs.run_full != 'false' }}
+    # Sempre roda e termina em success (check obrigatório): sem mudança no projeto, só registra o gate e sai.
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
+    env:
+      RUN_FULL: ${{ needs.changes.outputs.run_full }}
     steps:
+      - name: Change gate
+        if: env.RUN_FULL == 'false'
+        run: echo "Só arquivos skip-safe; build completo não necessário." >> "$GITHUB_STEP_SUMMARY"
+
       - name: Checkout the code
+        if: env.RUN_FULL != 'false'
         uses: actions/checkout@v4
 
       - name: Set up Java 21
+        if: env.RUN_FULL != 'false'
         uses: actions/setup-java@v4
         with:
           distribution: 'oracle'
@@ -68,6 +77,7 @@ jobs:
           cache: 'gradle'
 
       - name: Build the app
+        if: env.RUN_FULL != 'false'
         run: |
             ./gradlew ktlintCheck --continue
             ./gradlew build -x :baselineprofile:pixel7api30Setup -x :baselineprofile:pixel7api30NonMinifiedReleaseAndroidTest -x :baselineprofile:collectNonMinifiedReleaseBaselineProfile # build = assemble + test + lint

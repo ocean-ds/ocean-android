@@ -299,7 +299,6 @@ private fun SamplePreOceanBanner(
                 color = backgroundColor,
                 shape = if (isRoundedCorner) {
                     OceanBorderRadius.SM.allCorners.shape()
-                    OceanBorderRadius.SM.allCorners.shape()
                 } else {
                     RectangleShape
                 }

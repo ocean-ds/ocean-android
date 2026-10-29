@@ -57,6 +57,7 @@ import br.com.useblu.oceands.client.ui.datepicker.DatePickerActivity
 import br.com.useblu.oceands.client.ui.descriptorlistitem.DescriptorListActivity
 import br.com.useblu.oceands.client.ui.detailed.DetailedCardActivity
 import br.com.useblu.oceands.client.ui.donut.DonutActivity
+import br.com.useblu.oceands.client.ui.dropdownmenu.DropdownMenuActivity
 import br.com.useblu.oceands.client.ui.fileuploader.FileUploaderActivity
 import br.com.useblu.oceands.client.ui.filterbar.FilterBarActivity
 import br.com.useblu.oceands.client.ui.footer.FooterBluActivity
@@ -218,6 +219,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Descriptor List Item", onClick = { descriptorList() })
                         textAction(text = "Detailed Card", onClick = { detailedCardClick() })
                         textAction(text = "Donut", onClick = { donutView() })
+                        textAction(text = "Dropdown Menu", onClick = { open<DropdownMenuActivity>() })
                         textAction(text = "File Uploader", onClick = { goToFileUploader() })
                         textAction(text = "Filter Bar", onClick = { onClickFilterBar() })
                         textAction(text = "Footer Blu", onClick = { onFooterBlu() })

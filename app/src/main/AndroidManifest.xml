@@ -27,6 +27,7 @@
         <activity android:name=".ui.transactionlist.ChildTransactionListReadOnlyActivity" />
         <activity android:name=".ui.badges.BadgesActivity" />
         <activity android:name=".ui.tag.TagActivity" />
+        <activity android:name=".ui.dropdownmenu.DropdownMenuActivity" />
         <activity android:name=".ui.balance.BalanceActivity" />
         <activity android:name=".ui.shortcuts.ShortcutsActivity" />
         <activity android:name=".ui.carousel.CarouselActivity" />

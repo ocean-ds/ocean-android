@@ -37,7 +37,7 @@ fun OceanOrderedList(
 ) {
     LazyColumn(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
     ) {
         itemsIndexed(items) { index, item ->
             OceanOrderedListItem(item, index + 1)

@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanShimmering
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
 
 @Composable
@@ -22,12 +23,12 @@ fun OceanStatusListItemSkeleton(items: Int) {
         repeat(items) {
             Column(
                 modifier = Modifier
-                    .padding(bottom = 8.dp)
+                    .padding(bottom = OceanSpacing.xxs)
                     .background(OceanColors.interfaceLightPure)
-                    .padding(16.dp)
+                    .padding(OceanSpacing.xs)
             ) {
                 Row(
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    modifier = Modifier.padding(bottom = OceanSpacing.xxs)
                 ) {
                     Spacer(
                         modifier = Modifier

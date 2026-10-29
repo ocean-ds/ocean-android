@@ -41,7 +41,7 @@
                 android:id="@+id/icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="@dimen/ocean_spacing_inline_xxxs"
                 app:ocean_visible_or_gone="@{(information.length() > 0)}"
                 app:showTooltip="@{information}"
                 app:srcCompat="@drawable/ocean_icon_info_solid"

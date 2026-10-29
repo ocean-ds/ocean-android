@@ -105,7 +105,7 @@ fun OceanCarousel(
         HorizontalPager(
             state = pagerState,
             contentPadding = PaddingValues(horizontal = OceanSpacing.xs),
-            pageSpacing = 8.dp,
+            pageSpacing = OceanSpacing.xxs,
             modifier = Modifier.height(140.dp)
         ) { page ->
             if (LocalInspectionMode.current) {

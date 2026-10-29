@@ -424,7 +424,7 @@ internal fun TransactionListMainRow(
     state: OceanTransactionListState,
     iconColor: TransactionListIconColor = TransactionListIconColor.Default,
     density: TransactionListDensity = TransactionListDensity.Default,
-    trailingGap: Dp = 12.dp,
+    trailingGap: Dp = OceanSpacing.xxsExtra,
     endPadding: Dp = OceanSpacing.xs,
     trailing: (@Composable () -> Unit)? = null
 ) {

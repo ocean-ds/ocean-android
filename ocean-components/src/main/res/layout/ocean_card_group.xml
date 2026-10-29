@@ -78,11 +78,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/ocean_spacing_stack_xs"
+                    android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
                     android:text="@{headerTitle}"
                     android:textColor="@color/ocean_color_interface_dark_deep"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
                     app:layout_constraintEnd_toStartOf="@id/layout_action_header"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -93,11 +93,11 @@
                     style="@style/Ocean.Description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/ocean_spacing_stack_xxs"
                     android:gravity="center_vertical"
                     android:text="@{headerSubtitle}"
                     android:textColor="@color/ocean_color_interface_dark_down"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
                     app:layout_constraintEnd_toStartOf="@id/layout_action_header"
                     app:layout_constraintStart_toStartOf="@id/text_header"
                     app:layout_constraintTop_toBottomOf="@id/text_header"
@@ -112,7 +112,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="@id/text_view_subtitle"
                     app:layout_constraintTop_toTopOf="@id/text_header"
-                    android:layout_marginEnd="16dp">
+                    android:layout_marginEnd="@dimen/ocean_spacing_inline_xs">
 
                     <include
                         layout="@layout/ocean_badge"
@@ -128,7 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/text_view_subtitle"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_marginTop="@dimen/ocean_spacing_stack_xs"/>
 
                 <include
                     android:id="@+id/group_cta"
@@ -150,7 +150,7 @@
             android:background="@drawable/ocean_balance_others_placeholder"
             android:paddingHorizontal="6dp"
             android:gravity="center"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             ocean_visible_or_gone="@{label != null}">

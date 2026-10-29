@@ -3,8 +3,8 @@
     android:shape="rectangle">
 
     <padding
-        android:top="4dp"
-        android:bottom="4dp" />
+        android:top="@dimen/ocean_spacing_stack_xxxs"
+        android:bottom="@dimen/ocean_spacing_stack_xxxs" />
     <corners android:radius="8dp" />
     <solid android:color="@color/ocean_color_interface_light_pure" />
     <stroke

@@ -51,7 +51,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="@dimen/ocean_spacing_inline_xxxs"
             app:ocean_icon="@{icon}"
             android:tint="@color/ocean_color_brand_primary_pure"
             app:ocean_visible_or_gone="@{icon != null}"

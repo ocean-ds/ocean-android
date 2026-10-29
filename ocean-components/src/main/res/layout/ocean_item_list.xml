@@ -37,7 +37,7 @@
             style="@style/Ocean.Heading.4.Interface.DarkDown"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/ocean_spacing_inline_xxs"
             android:drawablePadding="@dimen/ocean_spacing_stack_xxs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView18"

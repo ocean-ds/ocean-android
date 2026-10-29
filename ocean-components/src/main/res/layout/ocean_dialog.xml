@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:paddingStart="6dp"
-            android:paddingEnd="16dp"
+            android:paddingEnd="@dimen/ocean_spacing_inline_xs"
             app:contentInsetStartWithNavigation="0dp"
             android:theme="@style/Ocean.ToolBar"
             app:titleTextColor="@color/ocean_color_brand_primary_pure"

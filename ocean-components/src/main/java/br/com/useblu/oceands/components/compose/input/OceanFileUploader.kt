@@ -123,7 +123,7 @@ fun OceanFileUploader(
                     drawRoundRect(
                         color = borderColor,
                         style = stroke,
-                        cornerRadius = CornerRadius(8.dp.toPx())
+                        cornerRadius = CornerRadius(OceanBorderRadius.SM.allCorners.value.toPx())
                     )
                 },
             colors = CardDefaults.cardColors(

@@ -125,7 +125,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/ocean_spacing_stack_sm"
                 android:orientation="horizontal"
-                android:padding="8dp"
+                android:padding="@dimen/ocean_spacing_inline_xxs"
                 app:ocean_visible_or_gone="@{image != null || icon != null}">
 
                 <ImageView

@@ -16,7 +16,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanButton
 import br.com.useblu.oceands.components.compose.OceanButtonModel
 import br.com.useblu.oceands.components.compose.OceanDivider
@@ -33,6 +32,7 @@ import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemIn
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemType
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -50,7 +50,7 @@ fun OceanCardBalance(
 ) {
     Column(
         modifier = modifier.borderWithBackground(
-            borderWidth = 1.dp,
+            borderWidth = OceanBorderWidth.Hairline.value,
             borderColor = OceanColors.interfaceLightDown,
             backgroundColor = OceanColors.interfaceLightPure,
             borderRadius = OceanBorderRadius.MD.allCorners

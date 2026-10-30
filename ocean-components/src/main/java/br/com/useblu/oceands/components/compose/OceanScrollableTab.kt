@@ -16,6 +16,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
@@ -171,7 +172,27 @@ fun OceanScrollableTab(
             }
         }
 
+        // Enquanto a lista anima até a seção tocada, o scroll-spy fica suspenso: senão ele
+        // selecionaria as abas do meio e o indicador pararia antes da aba tocada.
+        var tapScrollToken by remember { mutableIntStateOf(0) }
+        var isTapScrolling by remember { mutableStateOf(false) }
+
+        val onTabTapped: (Int) -> Unit = { index ->
+            currentItemIndex = index
+            onSelectedTab(index)
+            val token = ++tapScrollToken
+            isTapScrolling = true
+            coroutineScope.launch {
+                try {
+                    lazyListState.animateScrollToItem(index + headerOffset)
+                } finally {
+                    if (tapScrollToken == token) isTapScrolling = false
+                }
+            }
+        }
+
         LaunchedEffect(key1 = firstVisibleIndex) {
+            if (isTapScrolling) return@LaunchedEffect
             currentItemIndex = (firstVisibleIndex - headerOffset)
                 .coerceIn(tabs.indices)
             onSelectedTab(currentItemIndex)
@@ -200,12 +221,7 @@ fun OceanScrollableTab(
                             OceanTabScrollable(
                                 tabs = tabs,
                                 defaultSelectedTab = currentItemIndex,
-                                onSelectedTab = {
-                                    onSelectedTab(it)
-                                    coroutineScope.launch {
-                                        lazyListState.animateScrollToItem(it + headerOffset)
-                                    }
-                                }
+                                onSelectedTab = onTabTapped
                             )
                         }
                     }
@@ -224,12 +240,7 @@ fun OceanScrollableTab(
                 OceanTabScrollable(
                     tabs = tabs,
                     defaultSelectedTab = currentItemIndex,
-                    onSelectedTab = {
-                        onSelectedTab(it)
-                        coroutineScope.launch {
-                            lazyListState.animateScrollToItem(it + headerOffset)
-                        }
-                    },
+                    onSelectedTab = onTabTapped,
                     modifier = Modifier.align(Alignment.TopStart)
                 )
             }

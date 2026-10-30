@@ -78,6 +78,7 @@ import br.com.useblu.oceands.client.ui.statuslistitem.StatusListItemActivity
 import br.com.useblu.oceands.client.ui.step.StepViewActivity
 import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.tab.TabActivity
+import br.com.useblu.oceands.client.ui.tab.TabComposeActivity
 import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.textlistaction.OceanTextListActionActivity
@@ -242,6 +243,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Step", onClick = { stepview() })
                         textAction(text = "Switch", onClick = { onClickSwitch() })
                         textAction(text = "Tab", onClick = { onClickTab() })
+                        textAction(text = "Tab (Compose)", onClick = { open<TabComposeActivity>() })
                         textAction(text = "Tag", onClick = { onClickTags() })
                         textAction(text = "Text Link", onClick = { onClickTextLink() })
                         textAction(text = "Text List Action", onClick = { onClickTextListAction() })

@@ -16,6 +16,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
@@ -124,6 +125,22 @@ private fun OceanScrollableTabPreview() {
     }
 }
 
+/**
+ * Tela com seções roladas por uma [OceanTabScrollable] que gruda no topo.
+ *
+ * Cada item de [content] é uma seção, na mesma ordem de [tabs]: tocar numa aba rola a lista até a
+ * seção, e rolar a lista troca a aba selecionada. Depois que [headerContent] sai da tela, a barra
+ * fica presa no topo. A barra tem o visual de [OceanTabScrollable] (56dp de altura, linha de baixo
+ * em [br.com.useblu.oceands.ui.compose.OceanColors.interfaceLightDown], 32dp de margem lateral).
+ *
+ * @param modifier [Modifier] aplicado à tela.
+ * @param tabs abas, uma por seção de [content]. Ver [OceanTabItemModel].
+ * @param defaultSelectedTab índice da aba selecionada ao compor.
+ * @param onSelectedTab chamado com o índice da aba selecionada, por toque ou por rolagem.
+ * @param headerContent conteúdo opcional acima da barra, que rola junto da lista.
+ * @param content seções da lista, um item por aba.
+ * @param footerContent conteúdo opcional depois da última seção.
+ */
 @Composable
 fun OceanScrollableTab(
     modifier: Modifier = Modifier,
@@ -155,7 +172,27 @@ fun OceanScrollableTab(
             }
         }
 
+        // Enquanto a lista anima até a seção tocada, o scroll-spy fica suspenso: senão ele
+        // selecionaria as abas do meio e o indicador pararia antes da aba tocada.
+        var tapScrollToken by remember { mutableIntStateOf(0) }
+        var isTapScrolling by remember { mutableStateOf(false) }
+
+        val onTabTapped: (Int) -> Unit = { index ->
+            currentItemIndex = index
+            onSelectedTab(index)
+            val token = ++tapScrollToken
+            isTapScrolling = true
+            coroutineScope.launch {
+                try {
+                    lazyListState.animateScrollToItem(index + headerOffset)
+                } finally {
+                    if (tapScrollToken == token) isTapScrolling = false
+                }
+            }
+        }
+
         LaunchedEffect(key1 = firstVisibleIndex) {
+            if (isTapScrolling) return@LaunchedEffect
             currentItemIndex = (firstVisibleIndex - headerOffset)
                 .coerceIn(tabs.indices)
             onSelectedTab(currentItemIndex)
@@ -167,6 +204,7 @@ fun OceanScrollableTab(
                     .fillMaxWidth()
                     .run {
                         if (headerIsSticky.value) {
+                            // Altura da barra (item de 56dp do Figma, sem token de tamanho).
                             padding(top = 56.dp)
                         } else this
                     },
@@ -183,12 +221,7 @@ fun OceanScrollableTab(
                             OceanTabScrollable(
                                 tabs = tabs,
                                 defaultSelectedTab = currentItemIndex,
-                                onSelectedTab = {
-                                    onSelectedTab(it)
-                                    coroutineScope.launch {
-                                        lazyListState.animateScrollToItem(it + headerOffset)
-                                    }
-                                }
+                                onSelectedTab = onTabTapped
                             )
                         }
                     }
@@ -207,12 +240,7 @@ fun OceanScrollableTab(
                 OceanTabScrollable(
                     tabs = tabs,
                     defaultSelectedTab = currentItemIndex,
-                    onSelectedTab = {
-                        onSelectedTab(it)
-                        coroutineScope.launch {
-                            lazyListState.animateScrollToItem(it + headerOffset)
-                        }
-                    },
+                    onSelectedTab = onTabTapped,
                     modifier = Modifier.align(Alignment.TopStart)
                 )
             }

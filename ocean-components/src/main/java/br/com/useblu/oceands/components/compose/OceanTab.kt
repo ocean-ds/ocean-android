@@ -55,14 +55,13 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 // Ocean ganhar um token de altura de componente.
 private val TabItemHeight = 56.dp
 
-// Espessura da linha de seleção no Figma. Sem token de stroke/border width no Ocean: literal.
+// Espessura da linha de seleção no Figma. O Ocean não tem token de border/stroke width
+// (OceanSpacing, OceanBorderRadius e tokens.xml conferidos): literal.
 private val TabIndicatorHeight = 2.dp
 
-// Espessura da linha de baixo da barra no Figma. Sem token de stroke/border width no Ocean: literal.
+// Espessura da linha de baixo da barra no Figma. O Ocean não tem token de border/stroke width
+// (OceanSpacing, OceanBorderRadius e tokens.xml conferidos): literal.
 private val TabDividerThickness = 1.dp
-
-// Margem mínima entre a aba selecionada e a borda da barra antes de rolar (movimento da web).
-private val TabScrollEdgeMargin = 24.dp
 
 // Movimento aprovado na web (MR-980): sem token de motion no Ocean Android, valores literais.
 private val OceanTabEasing = CubicBezierEasing(0.65f, 0f, 0.35f, 1f)
@@ -329,7 +328,9 @@ private fun OceanTabRowImpl(
 ) {
     val scrollState = rememberScrollState()
     var positions by remember { mutableStateOf<List<OceanTabPosition>>(emptyList()) }
-    val edgeMarginPx = with(LocalDensity.current) { TabScrollEdgeMargin.roundToPx() }
+    // Margem mínima entre a aba selecionada e a borda da barra antes de rolar (movimento da web).
+    val edgeMargin = OceanSpacing.sm
+    val edgeMarginPx = with(LocalDensity.current) { edgeMargin.roundToPx() }
 
     if (scrollable) {
         // Rola até a aba selecionada. A primeira vez é um salto (sem animação).

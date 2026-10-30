@@ -13,8 +13,10 @@ import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.getUnclippedBoundsInRoot
+import androidx.compose.ui.test.hasScrollToIndexAction
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollToIndex
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.compose.OceanTabItemModel
 import org.junit.Assert.assertEquals
@@ -86,10 +88,13 @@ class OceanScrollableTabTapTest {
         setContent { selections += it }
         composeTestRule.onAllNodes(isTab)[3].performClick()
         composeTestRule.waitForIdle()
+        selections.clear()
 
-        composeTestRule.onAllNodes(isTab)[1].performClick()
+        // Rolagem da lista (não um toque): item 0 é a barra, a seção 2 (aba 1) é o item 2.
+        composeTestRule.onNode(hasScrollToIndexAction()).performScrollToIndex(2)
         composeTestRule.waitForIdle()
 
+        assertEquals("o scroll-spy precisa voltar a reportar a seção", 1, selections.lastOrNull())
         composeTestRule.onAllNodes(isTab)[1].assertIsSelected()
     }
 

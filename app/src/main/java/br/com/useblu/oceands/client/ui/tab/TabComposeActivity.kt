@@ -152,7 +152,8 @@ class TabComposeActivity : AppCompatActivity() {
                             repeat(12) { line ->
                                 OceanText(
                                     text = "${tab.label} · linha ${line + 1}",
-                                    modifier = Modifier.padding(vertical = OceanSpacing.xxs)
+                                    modifier = Modifier.padding(vertical = OceanSpacing.xxs),
+                                    style = OceanTextStyle.paragraph
                                 )
                             }
                         }

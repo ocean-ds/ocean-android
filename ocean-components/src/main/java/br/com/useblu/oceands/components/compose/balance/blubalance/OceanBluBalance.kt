@@ -26,8 +26,10 @@ import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemIn
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemModel
 import br.com.useblu.oceands.components.compose.balance.model.OceanBalanceItemType
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanOpacity
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
@@ -127,10 +129,10 @@ private fun ItemActionBadgesInteraction(
             style = BadgeStyle(
                 size = 24.dp,
                 shape = OceanBorderRadius.Circle.allCorners.shape(),
-                iconBorderWidth = 1.dp,
+                iconBorderWidth = OceanBorderWidth.Hairline.value,
                 iconBorderColor = OceanColors.interfaceLightDown,
                 fallbackBackgroundColor = OceanColors.interfaceLightPure,
-                fallbackBorderWidth = 1.dp,
+                fallbackBorderWidth = OceanBorderWidth.Hairline.value,
                 fallbackBorderColor = OceanColors.interfaceLightDown,
                 fallbackTextColor = OceanColors.brandPrimaryDown
             ),
@@ -147,7 +149,7 @@ private fun ItemActionBadgesInteraction(
 @Composable
 private fun BluBalanceDivider() {
     HorizontalDivider(
-        color = OceanColors.brandPrimaryUp.copy(alpha = 0.4f)
+        color = OceanColors.brandPrimaryUp.copy(alpha = OceanOpacity.Medium.value)
     )
 }
 

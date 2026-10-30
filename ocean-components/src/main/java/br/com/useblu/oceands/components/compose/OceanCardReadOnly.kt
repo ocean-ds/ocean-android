@@ -14,8 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -38,7 +38,7 @@ fun OceanCardReadOnly(
             disabledContainerColor = backgroundColor
         ),
         shape = OceanBorderRadius.SM.allCorners.shape(),
-        border = BorderStroke(1.dp, borderColor),
+        border = BorderStroke(OceanBorderWidth.Hairline.value, borderColor),
         enabled = enabled,
         onClick = { /* No-op */ }
     ) {

@@ -20,6 +20,7 @@ import androidx.core.graphics.ColorUtils
 import androidx.core.view.ViewCompat
 import br.com.useblu.oceands.R
 import br.com.useblu.oceands.extensions.dp
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.utils.AnimatorListener
 import java.util.*
 import kotlin.math.max
@@ -606,7 +607,7 @@ class OceanStepView @JvmOverloads constructor(
         val isSelected = step == currentStep
         val isDone = if (done) step <= currentStep else step < currentStep
         val number = (step + 1).toString()
-        val strokeWidth = 2.dp.toFloat()
+        val strokeWidth = OceanBorderWidth.Thin.value.value.dp.toFloat()
         if (isSelected && !isDone) {
             paint.color = selectedCircleColor
             val radius: Int

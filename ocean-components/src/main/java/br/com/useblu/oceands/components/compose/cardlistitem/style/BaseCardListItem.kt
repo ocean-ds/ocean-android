@@ -7,13 +7,13 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanTag
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemStyle
 import br.com.useblu.oceands.components.compose.cardlistitem.model.OceanCardListItemType
 import br.com.useblu.oceands.extensions.compose.disabledOverlay
 import br.com.useblu.oceands.model.compose.OceanCardCornerTag
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 
 @Composable
 internal fun BaseCardListItem(
@@ -56,7 +56,7 @@ internal fun BaseCardListItem(
             modifier = cardModifier,
             colors = cardColors,
             shape = borderRadius.shape(),
-            border = BorderStroke(1.dp, borderColor),
+            border = BorderStroke(OceanBorderWidth.Hairline.value, borderColor),
             enabled = (disabled && onDisabledClick == null).not(),
             onClick = {
                 if (disabled) {
@@ -73,7 +73,7 @@ internal fun BaseCardListItem(
             modifier = cardModifier,
             colors = cardColors,
             shape = borderRadius.shape(),
-            border = BorderStroke(1.dp, borderColor)
+            border = BorderStroke(OceanBorderWidth.Hairline.value, borderColor)
         ) {
             CardContentWithCornerTag(cornerTag = cornerTag, content = content)
         }

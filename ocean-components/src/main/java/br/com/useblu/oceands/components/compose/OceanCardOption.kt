@@ -27,6 +27,7 @@ import br.com.useblu.oceands.extensions.compose.iconContainerBackground
 import br.com.useblu.oceands.model.OceanOptionCardItem
 import br.com.useblu.oceands.model.OceanOptionCardSize
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -171,7 +172,7 @@ fun OceanCardOption(
         colors = CardDefaults.cardColors(
             containerColor = cardBackgroundColor
         ),
-        border = BorderStroke(1.dp, borderColor),
+        border = BorderStroke(OceanBorderWidth.Hairline.value, borderColor),
         onClick = onClick
     ) {
         Box(

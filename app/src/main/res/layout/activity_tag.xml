@@ -22,7 +22,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content">
 
             <!--Custom-->
 
@@ -306,6 +306,16 @@
                     app:type="@{OceanTagType.Complementary}" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/translucent_tags"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tag11" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

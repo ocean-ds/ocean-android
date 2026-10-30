@@ -124,6 +124,22 @@ private fun OceanScrollableTabPreview() {
     }
 }
 
+/**
+ * Tela com seções roladas por uma [OceanTabScrollable] que gruda no topo.
+ *
+ * Cada item de [content] é uma seção, na mesma ordem de [tabs]: tocar numa aba rola a lista até a
+ * seção, e rolar a lista troca a aba selecionada. Depois que [headerContent] sai da tela, a barra
+ * fica presa no topo. A barra tem o visual de [OceanTabScrollable] (56dp de altura, linha de baixo
+ * em [br.com.useblu.oceands.ui.compose.OceanColors.interfaceLightDown], 32dp de margem lateral).
+ *
+ * @param modifier [Modifier] aplicado à tela.
+ * @param tabs abas, uma por seção de [content]. Ver [OceanTabItemModel].
+ * @param defaultSelectedTab índice da aba selecionada ao compor.
+ * @param onSelectedTab chamado com o índice da aba selecionada, por toque ou por rolagem.
+ * @param headerContent conteúdo opcional acima da barra, que rola junto da lista.
+ * @param content seções da lista, um item por aba.
+ * @param footerContent conteúdo opcional depois da última seção.
+ */
 @Composable
 fun OceanScrollableTab(
     modifier: Modifier = Modifier,
@@ -167,6 +183,7 @@ fun OceanScrollableTab(
                     .fillMaxWidth()
                     .run {
                         if (headerIsSticky.value) {
+                            // Altura da barra (item de 56dp do Figma, sem token de tamanho).
                             padding(top = 56.dp)
                         } else this
                     },

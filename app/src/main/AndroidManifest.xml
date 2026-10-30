@@ -15,6 +15,7 @@
         <activity android:name=".ui.bottomnavigation.BottomNavigationActivity" />
         <activity android:name=".ui.donut.DonutActivity" />
         <activity android:name=".ui.tab.TabActivity" />
+        <activity android:name=".ui.tab.TabComposeActivity" />
         <activity android:name=".ui.step.StepViewActivity" />
         <activity android:name=".ui.listsubheader.ListSubheaderActivity" />
         <activity android:name=".ui.cardgroup.CardGroupActivity" />

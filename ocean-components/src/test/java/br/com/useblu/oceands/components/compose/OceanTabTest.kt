@@ -1,7 +1,11 @@
 package br.com.useblu.oceands.components.compose
 
+import android.view.View
 import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.SemanticsActions
@@ -26,8 +30,10 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.unit.dp
+import androidx.core.view.drawToBitmap
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.compose.OceanTabItemModel
+import br.com.useblu.oceands.ui.compose.OceanColors
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -233,6 +239,75 @@ class OceanTabTest {
         composeTestRule.onAllNodes(isTab)[0].assert(hasText("Vendas") and hasText("3")).assertIsDisplayed()
         composeTestRule.onAllNodes(isTab)[1].assert(hasText("Pendências") and hasText("12")).assertIsDisplayed()
         composeTestRule.onAllNodes(isTab)[2].assert(hasText("Sem contador"))
+    }
+
+    // Pixel da última linha da barra no meio de cada aba: a linha de baixo tem que aparecer sob a
+    // aba inativa (o fundo do item não pode cobri-la) e o indicador fica por cima dela na
+    // selecionada. Vale para a fixa, a fixa que rola e a com rolagem.
+    private fun assertContinuousDivider(content: @Composable (Modifier) -> Unit) {
+        var dividerColor = Color.Unspecified
+        var indicatorColor = Color.Unspecified
+        var rootView: View? = null
+        composeTestRule.setContent {
+            rootView = LocalView.current
+            dividerColor = OceanColors.interfaceLightDown
+            indicatorColor = OceanColors.brandPrimaryPure
+            content(Modifier.testTag(barTag).width(barWidth))
+        }
+
+        composeTestRule.waitForIdle()
+        // captureToImage não termina no Robolectric (espera o PixelCopy): desenha a View raiz num
+        // Bitmap em software, que o modo NATIVE renderiza de verdade.
+        val image = rootView!!.drawToBitmap()
+        val density = composeTestRule.density.density
+        val barBottom = composeTestRule.onNodeWithTag(barTag).getUnclippedBoundsInRoot().bottom
+        val bottomY = (barBottom.value * density).toInt() - 1
+        val tabs = composeTestRule.onAllNodes(isTab)
+
+        fun bottomPixelUnder(index: Int): Color {
+            val bounds = tabs[index].getBoundsInRoot()
+            val centerX = ((bounds.left + bounds.right) / 2).value * density
+            return Color(image.getPixel(centerX.toInt(), bottomY))
+        }
+
+        assertEquals("indicador sob a aba selecionada", indicatorColor, bottomPixelUnder(0))
+        assertEquals("linha de baixo sob a aba inativa", dividerColor, bottomPixelUnder(1))
+    }
+
+    @Test
+    fun dividerIsContinuousUnderTheItemsOfTheFixedBar() {
+        assertContinuousDivider { modifier ->
+            OceanTab(
+                modifier = modifier,
+                tabs = listOf(OceanTabItemModel("Vendas"), OceanTabItemModel("Recebíveis")),
+                selectedTabIndex = 0,
+                onSelectedTab = {}
+            )
+        }
+    }
+
+    @Test
+    fun dividerIsContinuousUnderTheItemsOfTheOverflowingFixedBar() {
+        assertContinuousDivider { modifier ->
+            OceanTab(
+                modifier = modifier,
+                tabs = listOf(OceanTabItemModel(longLabel), OceanTabItemModel("Antecipação")),
+                selectedTabIndex = 0,
+                onSelectedTab = {}
+            )
+        }
+    }
+
+    @Test
+    fun dividerIsContinuousUnderTheItemsOfTheScrollableBar() {
+        assertContinuousDivider { modifier ->
+            OceanTabScrollable(
+                modifier = modifier,
+                tabs = (1..5).map { OceanTabItemModel("Tab $it", counter = it) },
+                defaultSelectedTab = 0,
+                onSelectedTab = {}
+            )
+        }
     }
 
     private fun SemanticsNodeInteraction.lineCount(): Int {

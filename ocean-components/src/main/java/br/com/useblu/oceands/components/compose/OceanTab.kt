@@ -343,9 +343,9 @@ private fun OceanTabItems(
         Tab(
             selected = selected,
             onClick = { onClickTab(index) },
-            modifier = Modifier
-                .background(color = OceanColors.interfaceLightPure)
-                .height(TabItemHeight),
+            // Sem fundo no item: o fundo branco vem da barra (containerColor). Um fundo aqui cobre a
+            // linha de baixo, que o SecondaryScrollableTabRow desenha ATRÁS dos itens.
+            modifier = Modifier.height(TabItemHeight),
             selectedContentColor = OceanColors.brandPrimaryPure,
             unselectedContentColor = OceanColors.interfaceDarkUp,
             interactionSource = interactionSource

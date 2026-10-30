@@ -1,36 +1,49 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.CubicBezierEasing
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SecondaryScrollableTabRow
-import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabIndicatorScope
-import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.SubcomposeLayout
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.compose.OceanTabItemModel
@@ -48,7 +61,17 @@ private val TabIndicatorHeight = 2.dp
 // Espessura da linha de baixo da barra no Figma. Sem token de stroke/border width no Ocean: literal.
 private val TabDividerThickness = 1.dp
 
+// Margem mínima entre a aba selecionada e a borda da barra antes de rolar (movimento da web).
+private val TabScrollEdgeMargin = 24.dp
+
+// Movimento aprovado na web (MR-980): sem token de motion no Ocean Android, valores literais.
+private val OceanTabEasing = CubicBezierEasing(0.65f, 0f, 0.35f, 1f)
+private const val TAB_INDICATOR_DURATION_MILLIS = 300
+private const val TAB_SCROLL_DURATION_MILLIS = 400
+private const val TAB_COLOR_DURATION_MILLIS = 150
+
 internal const val OCEAN_TAB_DIVIDER_TAG = "oceanTabDivider"
+internal const val OCEAN_TAB_INDICATOR_TAG = "oceanTabIndicator"
 
 private enum class OceanTabSlot { Measure, Content }
 
@@ -201,21 +224,13 @@ fun OceanTab(
         val allLabelsFit = itemWidths.all { it <= equalItemWidth }
 
         val placeables = subcompose(OceanTabSlot.Content) {
-            if (allLabelsFit) {
-                OceanFixedTabRow(
-                    tabs = tabs,
-                    selectedTabIndex = selectedTabIndexInternal,
-                    onClickTab = onClickTab
-                )
-            } else {
-                OceanScrollingTabRow(
-                    tabs = tabs,
-                    selectedTabIndex = selectedTabIndexInternal,
-                    edgePadding = edgePadding,
-                    minTabWidth = 0.dp,
-                    onClickTab = onClickTab
-                )
-            }
+            OceanTabRowImpl(
+                tabs = tabs,
+                selectedTabIndex = selectedTabIndexInternal,
+                scrollable = !allLabelsFit,
+                edgePadding = edgePadding,
+                onClickTab = onClickTab
+            )
         }.map {
             it.measure(
                 constraints.copy(minWidth = rowWidth, maxWidth = rowWidth)
@@ -251,77 +266,197 @@ fun OceanTabScrollable(
     defaultSelectedTab: Int,
     onSelectedTab: (Int) -> Unit
 ) {
-    OceanScrollingTabRow(
-        modifier = modifier
-            .background(color = OceanColors.interfaceLightPure)
-            .fillMaxWidth(),
+    OceanTabRowImpl(
+        modifier = modifier,
         tabs = tabs,
         selectedTabIndex = defaultSelectedTab,
+        scrollable = true,
         edgePadding = OceanSpacing.md,
-        // Item do tamanho do conteúdo (16 + texto + 16), como o _Tab Item do Figma: sem o
-        // mínimo de 90dp do Material.
-        minTabWidth = 0.dp,
         onClickTab = onSelectedTab
     )
 }
 
-@Composable
-private fun OceanFixedTabRow(
-    tabs: List<OceanTabItemModel>,
-    selectedTabIndex: Int,
-    onClickTab: (Int) -> Unit
-) {
-    SecondaryTabRow(
-        selectedTabIndex = selectedTabIndex,
-        modifier = Modifier.fillMaxWidth(),
-        containerColor = OceanColors.interfaceLightPure,
-        contentColor = OceanColors.brandPrimaryPure,
-        indicator = { OceanTabIndicator(selectedTabIndex, tabs.size) },
-        divider = { OceanTabDivider() }
-    ) {
-        OceanTabItems(tabs, selectedTabIndex, onClickTab)
-    }
+/** Posição de uma aba no conteúdo da barra (inclui a margem lateral), em px. */
+@Immutable
+private data class OceanTabPosition(val left: Int, val width: Int) {
+    val right: Int get() = left + width
 }
 
+/**
+ * Para onde rolar a barra para mostrar a aba [tabLeft]..[tabRight] (px, no conteúdo).
+ *
+ * Só rola quando a aba não está inteira na tela ou está a menos de [edgeMarginPx] de uma borda;
+ * nesse caso leva a aba para o centro, limitado a 0..[maxScroll]. Devolve `null` quando não precisa
+ * rolar (ou quando o centro limitado é a posição atual).
+ */
+internal fun oceanTabScrollTarget(
+    tabLeft: Int,
+    tabRight: Int,
+    scrollValue: Int,
+    viewportWidth: Int,
+    maxScroll: Int,
+    edgeMarginPx: Int
+): Int? {
+    if (viewportWidth <= 0) return null
+    val visibleLeft = scrollValue
+    val visibleRight = scrollValue + viewportWidth
+    val needsScroll = tabLeft < visibleLeft + edgeMarginPx || tabRight > visibleRight - edgeMarginPx
+    if (!needsScroll) return null
+
+    val centered = (tabLeft + tabRight) / 2 - viewportWidth / 2
+    val target = centered.coerceIn(0, maxOf(0, maxScroll))
+    return target.takeIf { it != scrollValue }
+}
+
+/**
+ * Barra de abas do Ocean, com indicador e rolagem próprios (no lugar do TabRow do Material) para
+ * seguir o movimento aprovado na web: indicador desliza em 300ms e a rolagem até a aba leva 400ms,
+ * ambos com [OceanTabEasing]. Na primeira composição nada anima.
+ *
+ * - [scrollable] `false`: as abas dividem a largura em partes iguais.
+ * - [scrollable] `true`: cada aba do tamanho do conteúdo, [edgePadding] nas laterais e rolagem.
+ *
+ * A linha de baixo fica atrás dos itens e o indicador por cima dela.
+ */
 @Composable
-private fun OceanScrollingTabRow(
+private fun OceanTabRowImpl(
     modifier: Modifier = Modifier,
     tabs: List<OceanTabItemModel>,
     selectedTabIndex: Int,
+    scrollable: Boolean,
     edgePadding: Dp,
-    minTabWidth: Dp,
     onClickTab: (Int) -> Unit
 ) {
-    SecondaryScrollableTabRow(
-        selectedTabIndex = selectedTabIndex,
-        modifier = modifier,
-        scrollState = rememberScrollState(),
-        containerColor = OceanColors.interfaceLightPure,
-        contentColor = OceanColors.brandPrimaryPure,
-        edgePadding = edgePadding,
-        indicator = { OceanTabIndicator(selectedTabIndex, tabs.size) },
-        divider = { OceanTabDivider() },
-        minTabWidth = minTabWidth
+    val scrollState = rememberScrollState()
+    var positions by remember { mutableStateOf<List<OceanTabPosition>>(emptyList()) }
+    val edgeMarginPx = with(LocalDensity.current) { TabScrollEdgeMargin.roundToPx() }
+
+    if (scrollable) {
+        // Rola até a aba selecionada. A primeira vez é um salto (sem animação).
+        var hasSettled by remember { mutableStateOf(false) }
+        LaunchedEffect(selectedTabIndex, positions) {
+            val position = positions.getOrNull(selectedTabIndex) ?: return@LaunchedEffect
+            val target = oceanTabScrollTarget(
+                tabLeft = position.left,
+                tabRight = position.right,
+                scrollValue = scrollState.value,
+                viewportWidth = scrollState.viewportSize,
+                maxScroll = scrollState.maxValue,
+                edgeMarginPx = edgeMarginPx
+            )
+            if (target != null) {
+                if (hasSettled) {
+                    scrollState.animateScrollTo(
+                        target,
+                        tween(durationMillis = TAB_SCROLL_DURATION_MILLIS, easing = OceanTabEasing)
+                    )
+                } else {
+                    scrollState.scrollTo(target)
+                }
+            }
+            hasSettled = true
+        }
+    }
+
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(color = OceanColors.interfaceLightPure)
     ) {
-        OceanTabItems(tabs, selectedTabIndex, onClickTab)
+        OceanTabDivider(modifier = Modifier.align(Alignment.BottomStart))
+
+        Layout(
+            contents = listOf(
+                { OceanTabItems(tabs, selectedTabIndex, onClickTab) },
+                { OceanTabIndicator(positions.getOrNull(selectedTabIndex)) }
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .then(if (scrollable) Modifier.horizontalScroll(scrollState) else Modifier)
+                .selectableGroup()
+        ) { (tabMeasurables, indicatorMeasurables), constraints ->
+            val padding = if (scrollable) edgePadding.roundToPx() else 0
+            val equalWidth = if (!scrollable && tabMeasurables.isNotEmpty()) {
+                constraints.maxWidth / tabMeasurables.size
+            } else {
+                0
+            }
+
+            val tabPlaceables = tabMeasurables.map {
+                it.measure(
+                    if (scrollable) {
+                        Constraints()
+                    } else {
+                        Constraints.fixedWidth(equalWidth)
+                    }
+                )
+            }
+
+            var left = padding
+            val newPositions = tabPlaceables.map { placeable ->
+                OceanTabPosition(left = left, width = placeable.width).also { left += placeable.width }
+            }
+            if (newPositions != positions) positions = newPositions
+
+            val layoutWidth = if (scrollable) {
+                maxOf(left + padding, constraints.minWidth)
+            } else {
+                constraints.maxWidth
+            }
+            val layoutHeight = tabPlaceables.maxOfOrNull { it.height } ?: 0
+
+            val indicatorPlaceables = indicatorMeasurables.map {
+                it.measure(Constraints.fixed(layoutWidth, layoutHeight))
+            }
+
+            layout(layoutWidth, layoutHeight) {
+                tabPlaceables.forEachIndexed { index, placeable ->
+                    placeable.placeRelative(newPositions[index].left, 0)
+                }
+                indicatorPlaceables.forEach { it.placeRelative(0, 0) }
+            }
+        }
     }
 }
 
+/**
+ * Linha de seleção (2dp, [OceanColors.brandPrimaryPure]) da largura da aba. Desliza entre as abas
+ * em [TAB_INDICATOR_DURATION_MILLIS] com [OceanTabEasing]; aparece sem animação na primeira posição.
+ */
 @Composable
-private fun TabIndicatorScope.OceanTabIndicator(selectedTabIndex: Int, tabCount: Int) {
-    if (selectedTabIndex in 0 until tabCount) {
-        TabRowDefaults.SecondaryIndicator(
-            modifier = Modifier.tabIndicatorOffset(selectedTabIndex, matchContentSize = false),
-            height = TabIndicatorHeight,
-            color = OceanColors.brandPrimaryPure
+private fun OceanTabIndicator(position: OceanTabPosition?) {
+    if (position == null) return
+
+    val density = LocalDensity.current
+    val spec = tween<Dp>(durationMillis = TAB_INDICATOR_DURATION_MILLIS, easing = OceanTabEasing)
+    val left by animateDpAsState(
+        targetValue = with(density) { position.left.toDp() },
+        animationSpec = spec,
+        label = "oceanTabIndicatorLeft"
+    )
+    val width by animateDpAsState(
+        targetValue = with(density) { position.width.toDp() },
+        animationSpec = spec,
+        label = "oceanTabIndicatorWidth"
+    )
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .offset { IntOffset(left.roundToPx(), 0) }
+                .width(width)
+                .height(TabIndicatorHeight)
+                .background(color = OceanColors.brandPrimaryPure)
+                .testTag(OCEAN_TAB_INDICATOR_TAG)
         )
     }
 }
 
 @Composable
-private fun OceanTabDivider() {
+private fun OceanTabDivider(modifier: Modifier = Modifier) {
     HorizontalDivider(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .testTag(OCEAN_TAB_DIVIDER_TAG),
         thickness = TabDividerThickness,
@@ -343,8 +478,8 @@ private fun OceanTabItems(
         Tab(
             selected = selected,
             onClick = { onClickTab(index) },
-            // Sem fundo no item: o fundo branco vem da barra (containerColor). Um fundo aqui cobre a
-            // linha de baixo, que o SecondaryScrollableTabRow desenha ATRÁS dos itens.
+            // Sem fundo no item: o fundo branco vem da barra, e a linha de baixo fica atrás dos
+            // itens.
             modifier = Modifier.height(TabItemHeight),
             selectedContentColor = OceanColors.brandPrimaryPure,
             unselectedContentColor = OceanColors.interfaceDarkUp,
@@ -369,6 +504,12 @@ private fun OceanTabItemContent(
     highlighted: Boolean,
     modifier: Modifier = Modifier
 ) {
+    val labelColor by animateColorAsState(
+        targetValue = if (highlighted) OceanColors.brandPrimaryPure else OceanColors.interfaceDarkUp,
+        animationSpec = tween(durationMillis = TAB_COLOR_DURATION_MILLIS),
+        label = "oceanTabLabelColor"
+    )
+
     Row(
         modifier = modifier.padding(horizontal = OceanSpacing.xs),
         verticalAlignment = Alignment.CenterVertically
@@ -376,7 +517,7 @@ private fun OceanTabItemContent(
         Text(
             text = tab.label,
             style = OceanTextStyle.heading4,
-            color = if (highlighted) OceanColors.brandPrimaryPure else OceanColors.interfaceDarkUp,
+            color = labelColor,
             maxLines = 1,
             softWrap = false,
             overflow = TextOverflow.Visible
@@ -385,11 +526,18 @@ private fun OceanTabItemContent(
         if (tab.counter != null) {
             OceanSpacing.StackXXS()
 
-            OceanBadge(
-                text = tab.counter.toString(),
-                type = if (highlighted) tab.badgeType else OceanBadgeType.DISABLED,
-                size = OceanBadgeSize.Small
-            )
+            // O OceanBadge recebe o tipo, não a cor: a troca de cor é um crossfade de 150ms.
+            Crossfade(
+                targetState = if (highlighted) tab.badgeType else OceanBadgeType.DISABLED,
+                animationSpec = tween(durationMillis = TAB_COLOR_DURATION_MILLIS),
+                label = "oceanTabBadgeType"
+            ) { badgeType ->
+                OceanBadge(
+                    text = tab.counter.toString(),
+                    type = badgeType,
+                    size = OceanBadgeSize.Small
+                )
+            }
         }
     }
 }

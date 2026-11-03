@@ -1,6 +1,9 @@
 package br.com.useblu.oceands.ui.compose
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
+import br.com.useblu.oceands.R
 
 sealed interface OceanBorderWidth {
     /** 0dp */
@@ -19,11 +22,13 @@ sealed interface OceanBorderWidth {
     data object Heavy : OceanBorderWidth
 
     val value: Dp
-        get() = when (this) {
-            None -> Dp(0f)
-            Hairline -> Dp(1f)
-            Thin -> Dp(2f)
-            Thick -> Dp(4f)
-            Heavy -> Dp(8f)
-        }
+        @Composable get() = dimensionResource(
+            id = when (this) {
+                None -> R.dimen.ocean_border_width_none
+                Hairline -> R.dimen.ocean_border_width_hairline
+                Thin -> R.dimen.ocean_border_width_thin
+                Thick -> R.dimen.ocean_border_width_thick
+                Heavy -> R.dimen.ocean_border_width_heavy
+            }
+        )
 }

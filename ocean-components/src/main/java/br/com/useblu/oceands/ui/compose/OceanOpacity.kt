@@ -1,5 +1,10 @@
 package br.com.useblu.oceands.ui.compose
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.res.ResourcesCompat
+import br.com.useblu.oceands.R
+
 sealed interface OceanOpacity {
     /** 0.8f */
     data object Semiopaque : OceanOpacity
@@ -17,11 +22,14 @@ sealed interface OceanOpacity {
     data object Semitransparent : OceanOpacity
 
     val value: Float
-        get() = when (this) {
-            Semiopaque -> 0.8f
-            Intense -> 0.64f
-            Medium -> 0.4f
-            Light -> 0.16f
-            Semitransparent -> 0.08f
-        }
+        @Composable get() = ResourcesCompat.getFloat(
+            LocalContext.current.resources,
+            when (this) {
+                Semiopaque -> R.dimen.ocean_opacity_level_semiopaque
+                Intense -> R.dimen.ocean_opacity_level_intense
+                Medium -> R.dimen.ocean_opacity_level_medium
+                Light -> R.dimen.ocean_opacity_level_light
+                Semitransparent -> R.dimen.ocean_opacity_level_semitransparent
+            }
+        )
 }

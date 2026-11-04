@@ -1,11 +1,14 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,6 +23,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.model.OceanTagAppearance
 import br.com.useblu.oceands.model.OceanTagType
 import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
@@ -28,6 +32,8 @@ import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
+
+private const val TRANSLUCENT_ALPHA = 0.24f
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
@@ -240,6 +246,73 @@ fun OceanTagPreviewV2() {
     }
 }
 
+@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Composable
+fun OceanTagTranslucentPreview() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(OceanColors.brandPrimaryPure)
+            .padding(OceanSpacing.xxs),
+        verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
+    ) {
+        Text(
+            text = "Translucent",
+            color = OceanColors.interfaceLightPure,
+            fontSize = 14.sp
+        )
+
+        OceanTag(
+            style = OceanTagStyle.Default(
+                label = "Paid",
+                layout = OceanTagLayout.Medium(icon = OceanIcons.CHECK_CIRCLE_SOLID),
+                type = OceanTagType.Positive,
+                appearance = OceanTagAppearance.Translucent
+            )
+        )
+        OceanTag(
+            style = OceanTagStyle.Default(
+                label = "Due soon",
+                layout = OceanTagLayout.Medium(icon = OceanIcons.EXCLAMATION_CIRCLE_SOLID),
+                type = OceanTagType.Warning,
+                appearance = OceanTagAppearance.Translucent
+            )
+        )
+        OceanTag(
+            style = OceanTagStyle.Default(
+                label = "Overdue",
+                layout = OceanTagLayout.Medium(icon = OceanIcons.X_CIRCLE_SOLID),
+                type = OceanTagType.Negative,
+                appearance = OceanTagAppearance.Translucent
+            )
+        )
+        OceanTag(
+            style = OceanTagStyle.Default(
+                label = "Scheduled",
+                layout = OceanTagLayout.Medium(icon = OceanIcons.PLACEHOLDER_SOLID),
+                type = OceanTagType.Complementary,
+                appearance = OceanTagAppearance.Translucent
+            )
+        )
+        OceanTag(
+            style = OceanTagStyle.Default(
+                label = "Processing",
+                layout = OceanTagLayout.Medium(icon = OceanIcons.PLACEHOLDER_SOLID),
+                type = OceanTagType.Neutral,
+                appearance = OceanTagAppearance.Translucent
+            )
+        )
+        OceanTag(
+            style = OceanTagStyle.Default(
+                label = "In review",
+                layout = OceanTagLayout.Medium(icon = OceanIcons.PLACEHOLDER_SOLID),
+                type = OceanTagType.NeutralPrimary,
+                appearance = OceanTagAppearance.Translucent
+            )
+        )
+    }
+}
+
 @Composable
 fun OceanTag(
     modifier: Modifier = Modifier,
@@ -310,12 +383,19 @@ private fun DefaultTag(
     enabled: Boolean,
     ellipsize: Boolean = false
 ) {
+    val useTranslucentAppearance = shouldUseTranslucentAppearance(
+        style = style,
+        layout = layout,
+        enabled = enabled
+    )
+
     when (layout) {
         is OceanTagLayout.Medium -> DefaultMediumTag(
             modifier = modifier,
             style = style,
             layout = layout,
             enabled = enabled,
+            useTranslucentAppearance = useTranslucentAppearance,
             ellipsize = ellipsize
         )
 
@@ -377,19 +457,25 @@ private fun DefaultMediumTag(
     style: OceanTagStyle.Default,
     layout: OceanTagLayout.Medium,
     enabled: Boolean,
+    useTranslucentAppearance: Boolean,
     ellipsize: Boolean = false
 ) {
+    val tagType = if (enabled) style.type else OceanTagType.Neutral
     val textColor = getTextColor(
-        type = if (enabled) style.type else OceanTagType.Neutral
+        type = tagType
     )
     val backgroundColor = getBackgroundColor(
-        type = if (enabled) style.type else OceanTagType.Neutral
+        type = tagType
     )
+    val resolvedTextColor =
+        if (useTranslucentAppearance) getTranslucentTextColor(style.type) else textColor
+    val resolvedBackgroundColor =
+        if (useTranslucentAppearance) getTranslucentBackgroundColor(style.type) else backgroundColor
 
     Row(
         modifier = modifier
             .borderBackground(
-                color = backgroundColor,
+                color = resolvedBackgroundColor,
                 borderRadius = OceanBorderRadius.LG.allCorners
             )
             .height(layout.height)
@@ -399,7 +485,11 @@ private fun DefaultMediumTag(
         layout.icon?.let {
             OceanIcon(
                 iconType = layout.icon,
-                tint = textColor,
+                tint = if (useTranslucentAppearance) {
+                    getTranslucentIconColor(style.type)
+                } else {
+                    textColor
+                },
                 modifier = Modifier
                     .padding(end = OceanSpacing.xxxs)
                     .size(16.dp)
@@ -408,7 +498,7 @@ private fun DefaultMediumTag(
 
         TagText(
             label = style.label,
-            color = textColor,
+            color = resolvedTextColor,
             fallbackFontSize = layout.fontSize,
             fallbackFontFamily = OceanFontFamily.BaseMedium,
             textStyleOverride = style.textStyle,
@@ -585,6 +675,60 @@ fun getIconDefault(
     else -> null
 }
 
+internal fun shouldUseTranslucentAppearance(
+    style: OceanTagStyle.Default,
+    layout: OceanTagLayout,
+    enabled: Boolean
+): Boolean {
+    val supportedType = when (style.type) {
+        OceanTagType.Positive,
+        OceanTagType.Warning,
+        OceanTagType.Negative,
+        OceanTagType.Complementary,
+        OceanTagType.Neutral,
+        OceanTagType.NeutralPrimary -> true
+        else -> false
+    }
+
+    return style.appearance == OceanTagAppearance.Translucent &&
+        enabled &&
+        layout is OceanTagLayout.Medium &&
+        supportedType
+}
+
+@Composable
+internal fun getTranslucentBackgroundColor(type: OceanTagType): Color = when (type) {
+    OceanTagType.Positive -> OceanColors.statusPositiveDown.copy(alpha = TRANSLUCENT_ALPHA)
+    OceanTagType.Warning -> OceanColors.statusWarningDown.copy(alpha = TRANSLUCENT_ALPHA)
+    OceanTagType.Negative -> OceanColors.statusNegativeDown.copy(alpha = TRANSLUCENT_ALPHA)
+    OceanTagType.Complementary -> OceanColors.complementaryDown.copy(alpha = TRANSLUCENT_ALPHA)
+    OceanTagType.Neutral -> OceanColors.interfaceDarkUp.copy(alpha = TRANSLUCENT_ALPHA)
+    OceanTagType.NeutralPrimary -> OceanColors.brandPrimaryUp.copy(alpha = TRANSLUCENT_ALPHA)
+    else -> getBackgroundColor(type)
+}
+
+@Composable
+internal fun getTranslucentTextColor(type: OceanTagType): Color = when (type) {
+    OceanTagType.Positive,
+    OceanTagType.Warning,
+    OceanTagType.Negative,
+    OceanTagType.Complementary,
+    OceanTagType.Neutral -> OceanColors.interfaceLightPure
+    OceanTagType.NeutralPrimary -> OceanColors.interfaceDarkDeep
+    else -> getTextColor(type)
+}
+
+@Composable
+internal fun getTranslucentIconColor(type: OceanTagType): Color = when (type) {
+    OceanTagType.Positive -> OceanColors.statusPositiveUp
+    OceanTagType.Warning -> OceanColors.statusWarningUp
+    OceanTagType.Negative -> OceanColors.statusNegativeUp
+    OceanTagType.Complementary -> OceanColors.complementaryUp
+    OceanTagType.Neutral -> OceanColors.interfaceLightPure
+    OceanTagType.NeutralPrimary -> OceanColors.brandPrimaryDown
+    else -> getTextColor(type)
+}
+
 @Composable
 fun getBackgroundColor(type: OceanTagType): Color {
     return when (type) {
@@ -672,7 +816,12 @@ sealed interface OceanTagStyle {
          * layout's `fontSize` and the platform default `OceanText` typography
          * are applied. When set, the provided style takes precedence.
          */
-        val textStyle: TextStyle? = null
+        val textStyle: TextStyle? = null,
+        /**
+         * Translucent is for coloured surfaces, never white, and is available only for Medium
+         * Tags with an icon.
+         */
+        val appearance: OceanTagAppearance = OceanTagAppearance.Default
     ) : OceanTagStyle
 
     /**

@@ -21,12 +21,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.extensions.whenNotBlank
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -52,7 +52,7 @@ fun OceanCardListExpandable(
             containerColor = OceanColors.interfaceLightPure
         ),
         shape = OceanBorderRadius.SM.allCorners.shape(),
-        border = BorderStroke(1.dp, OceanColors.interfaceLightDown),
+        border = BorderStroke(OceanBorderWidth.Hairline.value, OceanColors.interfaceLightDown),
         onClick = {
             isExpanded = !isExpanded
         }

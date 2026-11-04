@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+  <dimen name="ocean_border_width_none" category="border-width">0dp</dimen>
+  <dimen name="ocean_border_width_hairline" category="border-width">1dp</dimen>
+  <dimen name="ocean_border_width_thin" category="border-width">2dp</dimen>
+  <dimen name="ocean_border_width_thick" category="border-width">4dp</dimen>
+  <dimen name="ocean_border_width_heavy" category="border-width">8dp</dimen>
   <color name="ocean_color_brand_primary_pure" category="background-color">#0025E0</color>
   <color name="ocean_color_brand_primary_up" category="background-color">#B8C3FF</color>
   <color name="ocean_color_brand_primary_down" category="background-color">#5872F5</color>
@@ -32,6 +37,11 @@
   <color name="ocean_color_status_negative_up" category="background-color">#FFF1F4</color>
   <color name="ocean_color_status_negative_down" category="background-color">#F27592</color>
   <color name="ocean_color_status_negative_deep" category="background-color">#D31441</color>
+  <item name="ocean_opacity_level_semiopaque" type="dimen" format="float" category="opacity">0.8</item>
+  <item name="ocean_opacity_level_intense" type="dimen" format="float" category="opacity">0.64</item>
+  <item name="ocean_opacity_level_medium" type="dimen" format="float" category="opacity">0.4</item>
+  <item name="ocean_opacity_level_light" type="dimen" format="float" category="opacity">0.16</item>
+  <item name="ocean_opacity_level_semitransparent" type="dimen" format="float" category="opacity">0.08</item>
   <dimen name="ocean_spacing_inline_xxxs" category="spacing">4dp</dimen>
   <dimen name="ocean_spacing_inline_xxs" category="spacing">8dp</dimen>
   <dimen name="ocean_spacing_inline_xxs_extra" category="spacing">12dp</dimen>

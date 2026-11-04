@@ -42,6 +42,7 @@ import br.com.useblu.oceands.model.compose.AlertStyle
 import br.com.useblu.oceands.model.compose.OceanAlertType
 import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
@@ -75,7 +76,7 @@ fun OceanCardGroup(
             disabledContainerColor = backgroundColor
         ),
         shape = OceanBorderRadius.SM.allCorners.shape(),
-        border = BorderStroke(1.dp, OceanColors.interfaceLightDown),
+        border = BorderStroke(OceanBorderWidth.Hairline.value, OceanColors.interfaceLightDown),
         onClick = { /* No-op */ }
     ) {
         Header(

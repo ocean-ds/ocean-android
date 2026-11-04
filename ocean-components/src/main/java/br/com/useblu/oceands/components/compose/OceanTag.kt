@@ -25,6 +25,7 @@ import br.com.useblu.oceands.model.compose.OceanTagModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
+import br.com.useblu.oceands.ui.compose.OceanOpacity
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
@@ -597,7 +598,7 @@ fun getBackgroundColor(type: OceanTagType): Color {
         }
 
         OceanTagType.Complementary -> {
-            OceanColors.complementaryPure.copy(alpha = 0.08f)
+            OceanColors.complementaryPure.copy(alpha = OceanOpacity.Semitransparent.value)
         }
 
         OceanTagType.Negative -> {

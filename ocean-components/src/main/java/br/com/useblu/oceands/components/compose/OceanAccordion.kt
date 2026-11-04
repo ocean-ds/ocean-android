@@ -22,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.R
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
@@ -101,7 +102,7 @@ fun OceanAccordion(
         }
 
         HorizontalDivider(
-            thickness = 1.dp,
+            thickness = OceanBorderWidth.Hairline.value,
             color = OceanColors.interfaceLightDown
         )
     }

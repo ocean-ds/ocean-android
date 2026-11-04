@@ -26,6 +26,7 @@ import br.com.useblu.oceands.model.OceanChip
 import br.com.useblu.oceands.model.OceanChipFilterOptions
 import br.com.useblu.oceands.model.OceanChipItemState
 import br.com.useblu.oceands.model.OceanFilterChip
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -105,7 +106,7 @@ fun OceanFilterBar(
                         modifier = Modifier
                             .width(1.dp)
                             .fillMaxHeight(),
-                        thickness = 1.dp,
+                        thickness = OceanBorderWidth.Hairline.value,
                         color = colorResource(R.color.ocean_color_interface_light_down)
                     )
                 }

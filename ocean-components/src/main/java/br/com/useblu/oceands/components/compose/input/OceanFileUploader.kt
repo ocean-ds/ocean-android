@@ -36,6 +36,7 @@ import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.model.compose.FileStatus
 import br.com.useblu.oceands.model.compose.UploadFileModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -220,7 +221,7 @@ private fun SelectedFile(
                             .padding(start = OceanSpacing.xxsExtra)
                             .padding(2.dp)
                             .size(16.dp),
-                        strokeWidth = 2.dp
+                        strokeWidth = OceanBorderWidth.Thin.value
                     )
                 }
 

@@ -72,6 +72,7 @@ import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.orderedlistitem.OrderedListItemActivity
 import br.com.useblu.oceands.client.ui.progressbar.ProgressBarActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
+import br.com.useblu.oceands.client.ui.segmentedcontrol.SegmentedControlComposeActivity
 import br.com.useblu.oceands.client.ui.settingslistitem.SettingsListItemActivity
 import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
 import br.com.useblu.oceands.client.ui.statuslistitem.StatusListItemActivity
@@ -236,6 +237,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "PinPad", onClick = { onClickPinPad() })
                         textAction(text = "Progress Bar", onClick = { clickProgressBar() })
                         textAction(text = "Radio", onClick = { onClickRadio() })
+                        textAction(text = "Segmented Control (Compose)", onClick = { open<SegmentedControlComposeActivity>() })
                         textAction(text = "Shortcuts", onClick = { shortcuts() })
                         textAction(text = "SnackBar", onClick = { onClickSnackBar(view) })
                         textAction(text = "SnackBar + Action", onClick = { onClickSnackBarAction(view) })

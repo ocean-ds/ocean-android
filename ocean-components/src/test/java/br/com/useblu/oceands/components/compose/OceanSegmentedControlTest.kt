@@ -22,6 +22,7 @@ import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.getBoundsInRoot
 import androidx.compose.ui.test.getUnclippedBoundsInRoot
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -136,10 +137,11 @@ class OceanSegmentedControlTest {
 
     /**
      * Fundo do Badge do contador: 2dp antes do número (no padding de 4-5dp do Badge, que fica fora
-     * dos limites do nó de texto), na altura do meio.
+     * dos limites do nó de texto), na altura do meio. Durante o crossfade há dois Badges no mesmo
+     * lugar: o pixel é a mistura dos dois.
      */
     private fun counterBackgroundPixel(counter: String): Color {
-        val bounds = composeTestRule.onNodeWithText(counter, useUnmergedTree = true).getBoundsInRoot()
+        val bounds = composeTestRule.onAllNodesWithText(counter, useUnmergedTree = true)[0].getBoundsInRoot()
         return pixelAt(bounds.left - 2.dp, (bounds.top + bounds.bottom) / 2)
     }
 
@@ -316,6 +318,53 @@ class OceanSegmentedControlTest {
         assertEquals(second.left.value, end.left.value, 0.5f)
         assertEquals((second.right - second.left).value, (end.right - end.left).value, 0.5f)
     }
+
+    @Test
+    fun contentColorAndCounterChangeAtThePaceOfTheSelectionBackground() {
+        setControl(
+            options = listOf(
+                OceanSegmentedControlOption("Loja", counter = 3),
+                OceanSegmentedControlOption("Rede", counter = 7)
+            ),
+            modifier = Modifier.width(360.dp)
+        )
+
+        val selection = composeTestRule.onNodeWithTag(OCEAN_SEGMENTED_CONTROL_SELECTION_TAG)
+        val first = composeTestRule.onAllNodes(isButton)[0].getBoundsInRoot().left.value
+        val second = composeTestRule.onAllNodes(isButton)[1].getBoundsInRoot().left.value
+
+        composeTestRule.mainClock.autoAdvance = false
+        composeTestRule.onNodeWithText("Rede").performClick()
+        composeTestRule.mainClock.advanceTimeBy(150)
+
+        // Quanto cada coisa já andou (0 = início, 1 = fim): a pílula e o texto da nova opção têm que
+        // estar no mesmo ponto (mesma duração e mesma curva). Com os 150ms antigos, o texto já
+        // estaria quase branco com a pílula ainda no começo.
+        val slide = (selection.getBoundsInRoot().left.value - first) / (second - first)
+        val label = progress(palette.brandPrimaryPure, palette.interfaceLightPure, labelColor("Rede"))
+        assertTrue("pílula no meio do caminho ($slide)", slide > 0.2f && slide < 0.8f)
+        assertEquals("texto anda junto com a pílula", slide, label, 0.1f)
+
+        // Aos 230ms a pílula ainda não chegou: o crossfade do contador também não pode ter acabado
+        // (os dois Badges ainda estão desenhados). O de 150ms já teria acabado aqui.
+        composeTestRule.mainClock.advanceTimeBy(80)
+        assertTrue(
+            "pílula ainda deslizando",
+            selection.getBoundsInRoot().left.value < second - 0.5f
+        )
+        composeTestRule.onAllNodesWithText("7", useUnmergedTree = true).assertCountEquals(2)
+
+        composeTestRule.mainClock.advanceTimeBy(300)
+
+        composeTestRule.onAllNodesWithText("7", useUnmergedTree = true).assertCountEquals(1)
+        assertEquals(palette.interfaceLightPure, labelColor("Rede"))
+        assertEquals(palette.brandPrimaryPure, labelColor("Loja"))
+        assertEquals(palette.interfaceLightPure, counterBackgroundPixel("7"))
+        assertEquals(palette.brandPrimaryPure, counterBackgroundPixel("3"))
+    }
+
+    /** Fração da troca de [from] para [to] em que [color] está (pelo canal vermelho, o que mais muda). */
+    private fun progress(from: Color, to: Color, color: Color): Float = (color.red - from.red) / (to.red - from.red)
 
     @Test
     fun optionWidthsKeepTheContentWhenItFits() {

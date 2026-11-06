@@ -64,7 +64,19 @@ private val SegmentedControlIconSize = 16.dp
 // Sem token de motion no Ocean Android, valores literais.
 private val OceanSegmentedControlEasing = CubicBezierEasing(0.65f, 0f, 0.35f, 1f)
 private const val SELECTION_SLIDE_DURATION_MILLIS = 300
+
+// Só para o fundo do controle (pressionado) e a cor da seleção: não dependem da troca de opção.
 private const val COLOR_DURATION_MILLIS = 150
+
+/**
+ * Tudo o que muda com a seleção (pílula, cor do texto/ícone e o contador) anda junto: mesma duração
+ * e mesma curva, começando no mesmo quadro. Com as animações do sistema desligadas, o Compose
+ * aplica a escala de animação e tudo troca no mesmo quadro.
+ */
+private fun <T> selectionTween() = tween<T>(
+    durationMillis = SELECTION_SLIDE_DURATION_MILLIS,
+    easing = OceanSegmentedControlEasing
+)
 
 internal const val OCEAN_SEGMENTED_CONTROL_SELECTION_TAG = "oceanSegmentedControlSelection"
 
@@ -361,10 +373,7 @@ private fun OceanSegmentedControlSelection(
     if (position == null) return
 
     val density = LocalDensity.current
-    val spec = tween<Dp>(
-        durationMillis = SELECTION_SLIDE_DURATION_MILLIS,
-        easing = OceanSegmentedControlEasing
-    )
+    val spec = selectionTween<Dp>()
     val left by animateDpAsState(
         targetValue = with(density) { position.left.toDp() },
         animationSpec = spec,
@@ -410,7 +419,7 @@ private fun OceanSegmentedControlItem(
             selected -> OceanColors.interfaceLightPure
             else -> OceanColors.brandPrimaryPure
         },
-        animationSpec = tween(durationMillis = COLOR_DURATION_MILLIS),
+        animationSpec = selectionTween(),
         label = "oceanSegmentedControlContentColor"
     )
     val badgeType = when {
@@ -455,10 +464,10 @@ private fun OceanSegmentedControlItem(
         )
 
         if (option.counter != null) {
-            // O OceanBadge recebe o tipo, não a cor: a troca é um crossfade de 150ms (como no OceanTab).
+            // O OceanBadge recebe o tipo, não a cor: a troca é um crossfade no ritmo da pílula.
             Crossfade(
                 targetState = badgeType,
-                animationSpec = tween(durationMillis = COLOR_DURATION_MILLIS),
+                animationSpec = selectionTween(),
                 label = "oceanSegmentedControlBadgeType"
             ) { type ->
                 OceanBadge(

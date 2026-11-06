@@ -1,12 +1,11 @@
 package br.com.useblu.oceands.components.compose
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
@@ -32,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
@@ -44,7 +44,6 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.OceanBadgeType
 import br.com.useblu.oceands.model.compose.OceanSegmentedControlOption
-import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 import br.com.useblu.oceands.ui.compose.OceanTextStyle
@@ -61,11 +60,6 @@ private val SegmentedControlOptionHeight = 32.dp
 // também usam 16dp literal): literal.
 private val SegmentedControlIconSize = 16.dp
 
-// Opacidade do fundo de seleção no Figma: 32% no padrão e 48% pressionado. O OceanOpacity não tem
-// esses níveis (0.08, 0.16, 0.4, 0.64, 0.8): literal até existir o token.
-private const val SELECTION_ALPHA_DEFAULT = 0.32f
-private const val SELECTION_ALPHA_PRESSED = 0.48f
-
 // Movimento aprovado (MR-990): a mesma curva e as mesmas durações da linha de seleção do OceanTab.
 // Sem token de motion no Ocean Android, valores literais.
 private val OceanSegmentedControlEasing = CubicBezierEasing(0.65f, 0f, 0.35f, 1f)
@@ -73,6 +67,18 @@ private const val SELECTION_SLIDE_DURATION_MILLIS = 300
 private const val COLOR_DURATION_MILLIS = 150
 
 internal const val OCEAN_SEGMENTED_CONTROL_SELECTION_TAG = "oceanSegmentedControlSelection"
+
+/**
+ * Fundo do [OceanSegmentedControl] (Figma: propriedade *Background*).
+ *
+ * - [Default]: [OceanColors.interfaceLightUp], para telas de fundo branco;
+ * - [White]: [OceanColors.interfaceLightPure], para superfícies azul-claras
+ *   ([OceanColors.interfaceLightUp]), como cards e heros, onde o [Default] sumiria.
+ */
+enum class OceanSegmentedControlBackground {
+    Default,
+    White
+}
 
 @Preview
 @Composable
@@ -102,6 +108,28 @@ private fun OceanSegmentedControlPreview() {
             selectedIndex = 1,
             onSelectedOption = {}
         )
+
+        OceanSegmentedControl(
+            options = listOf(
+                OceanSegmentedControlOption("Loja", counter = 3),
+                OceanSegmentedControlOption("Rede", counter = 12)
+            ),
+            selectedIndex = 0,
+            enabled = false,
+            onSelectedOption = {}
+        )
+
+        Box(modifier = Modifier.background(OceanColors.interfaceLightUp).padding(OceanSpacing.xs)) {
+            OceanSegmentedControl(
+                options = listOf(
+                    OceanSegmentedControlOption("Loja"),
+                    OceanSegmentedControlOption("Rede")
+                ),
+                selectedIndex = 0,
+                background = OceanSegmentedControlBackground.White,
+                onSelectedOption = {}
+            )
+        }
     }
 }
 
@@ -124,7 +152,9 @@ private fun OceanSegmentedControlLongLabelPreview() {
  *
  * Troca o escopo ou a visão do mesmo conteúdo entre **duas** opções (ex.: Loja | Rede). Uma opção
  * está sempre selecionada. Não é aba ([OceanTab]), filtro nem liga/desliga ([OceanSwitch]). Não
- * existe estado desabilitado nem carregando: se a troca não está disponível, não mostre o controle.
+ * existe estado carregando: quem carrega é o conteúdo abaixo do controle. Use [enabled] `false`
+ * quando a troca existe mas está bloqueada no momento; se a troca não faz sentido para a pessoa
+ * (ex.: loja sem rede), não mostre o controle.
  *
  * Quantidade de opções: o controle desenha **exatamente 2**. Com mais de 2, só as 2 primeiras
  * aparecem; com 1, só ela aparece (selecionada); com a lista vazia, nada é desenhado.
@@ -134,40 +164,56 @@ private fun OceanSegmentedControlLongLabelPreview() {
  * resto (ou as duas dividem ao meio, se as duas forem longas). O texto fica sempre em **uma linha** e
  * é cortado com "…" quando não cabe; ícone e contador continuam visíveis.
  *
- * Visual (tokens do Figma):
- * - controle: fundo [OceanColors.interfaceLightPure], borda de 1dp ([OceanBorderWidth.Hairline]) em
- *   [OceanColors.interfaceLightDown], forma circular, 4dp ([OceanSpacing.xxxs]) de padding em volta
- *   e entre as opções, 40dp de altura;
+ * Visual (tokens do Figma, versão 1.1.0):
+ * - controle: sem borda, fundo pelo [background] ([OceanColors.interfaceLightUp] no
+ *   [OceanSegmentedControlBackground.Default], [OceanColors.interfaceLightPure] no
+ *   [OceanSegmentedControlBackground.White]), forma circular, 4dp ([OceanSpacing.xxxs]) de padding
+ *   em volta e entre as opções, 40dp de altura;
  * - opção: 32dp de altura, 12dp ([OceanSpacing.xxsExtra]) nas laterais, 4dp ([OceanSpacing.xxxs])
- *   em cima/embaixo e entre ícone, texto e contador;
- * - ícone opcional de 16dp, texto [OceanTextStyle.heading5] e contador (Badge Count Small,
- *   [OceanBadgeType.PRIMARY]) — ícone e texto em [OceanColors.brandPrimaryPure] nas duas opções;
- * - fundo de seleção: [OceanColors.brandPrimaryUp] com 32% de opacidade, do tamanho da opção
- *   selecionada.
+ *   em cima/embaixo e entre ícone, texto e contador; ícone opcional de 16dp, texto
+ *   [OceanTextStyle.heading5] e contador opcional (Badge Count Small);
+ * - opção selecionada: fundo de seleção [OceanColors.brandPrimaryPure] (cor cheia, do tamanho da
+ *   opção), ícone e texto [OceanColors.interfaceLightPure], contador
+ *   [OceanBadgeType.PRIMARY_INVERTED] (o *Primary Inverse* do Figma);
+ * - opção não selecionada: sem fundo, ícone e texto [OceanColors.brandPrimaryPure], contador
+ *   [OceanBadgeType.PRIMARY].
  *
- * Pressionado (o *Hover* do Figma no app): enquanto o dedo está sobre o controle, o fundo passa a
- * [OceanColors.interfaceLightUp] e a seleção a 48%. Sem ripple.
+ * Pressionado (o *Hover* do Figma no app): enquanto o dedo está sobre o controle, só o fundo do
+ * controle muda, para [OceanColors.interfaceLightDown], nos dois [background]s. Seleção e textos
+ * não mudam. Sem ripple.
+ *
+ * Desabilitado ([enabled] `false`, vale para o controle inteiro): fundo do controle igual ao do
+ * [background], fundo de seleção [OceanColors.interfaceLightDown], ícones e textos das duas opções
+ * [OceanColors.interfaceDarkUp] e contadores neutros ([OceanBadgeType.DISABLED], o *Neutral* do
+ * Figma). Sem pressionado; o toque não troca a opção e [onSelectedOption] não é chamado.
  *
  * Movimento: ao trocar de opção, o fundo de seleção desliza (posição e largura) em 300ms com
- * `cubic-bezier(0.65, 0, 0.35, 1)`, a mesma curva do [OceanTab]; as cores mudam em 150ms. Na
- * primeira composição nada anima. Com "Remover animações" ligado no sistema (escala de animação 0),
- * o Compose termina as animações na hora: a troca é imediata.
+ * `cubic-bezier(0.65, 0, 0.35, 1)`, a mesma curva do [OceanTab]; as cores (fundo, texto, ícone e
+ * contador) mudam em 150ms. Na primeira composição nada anima. Com "Remover animações" ligado no
+ * sistema (escala de animação 0), o Compose termina as animações na hora: a troca é imediata.
  *
  * Acessibilidade: o controle é um grupo selecionável e cada opção é anunciada como botão
- * ([Role.Button]) com o estado "selecionado" na opção atual.
+ * ([Role.Button]) com o estado "selecionado" na opção atual; desabilitado, as opções são anunciadas
+ * como desabilitadas.
  *
  * @param modifier [Modifier] aplicado ao controle.
  * @param options opções, na ordem de exibição. Só as 2 primeiras são desenhadas. Ver
  * [OceanSegmentedControlOption].
  * @param selectedIndex índice da opção selecionada ao compor (0 ou 1; fora do intervalo é limitado
  * às opções desenhadas). O controle guarda a seleção feita pelo toque até o valor mudar.
- * @param onSelectedOption chamado com o índice da opção tocada quando ela não é a selecionada.
+ * @param enabled `false` desabilita o controle inteiro (nenhuma opção troca). Padrão `true`.
+ * @param background fundo do controle. Padrão [OceanSegmentedControlBackground.Default]; use
+ * [OceanSegmentedControlBackground.White] sobre superfícies [OceanColors.interfaceLightUp].
+ * @param onSelectedOption chamado com o índice da opção tocada quando ela não é a selecionada (e o
+ * controle está habilitado).
  */
 @Composable
 fun OceanSegmentedControl(
     modifier: Modifier = Modifier,
     options: List<OceanSegmentedControlOption>,
     selectedIndex: Int,
+    enabled: Boolean = true,
+    background: OceanSegmentedControlBackground = OceanSegmentedControlBackground.Default,
     onSelectedOption: (Int) -> Unit
 ) {
     val visibleOptions = options.take(OCEAN_SEGMENTED_CONTROL_OPTION_COUNT)
@@ -177,7 +223,7 @@ fun OceanSegmentedControl(
     val selected = selectedIndexInternal.coerceIn(0, visibleOptions.lastIndex)
 
     val onClickOption: (Int) -> Unit = { index ->
-        if (index != selected) {
+        if (enabled && index != selected) {
             selectedIndexInternal = index
             onSelectedOption(index)
         }
@@ -188,14 +234,18 @@ fun OceanSegmentedControl(
     val pressed by interactionSource.collectIsPressedAsState()
 
     val containerColor by animateColorAsState(
-        targetValue = if (pressed) OceanColors.interfaceLightUp else OceanColors.interfaceLightPure,
+        targetValue = when {
+            enabled && pressed -> OceanColors.interfaceLightDown
+            background == OceanSegmentedControlBackground.White -> OceanColors.interfaceLightPure
+            else -> OceanColors.interfaceLightUp
+        },
         animationSpec = tween(durationMillis = COLOR_DURATION_MILLIS),
         label = "oceanSegmentedControlContainerColor"
     )
-    val selectionAlpha by animateFloatAsState(
-        targetValue = if (pressed) SELECTION_ALPHA_PRESSED else SELECTION_ALPHA_DEFAULT,
+    val selectionColor by animateColorAsState(
+        targetValue = if (enabled) OceanColors.brandPrimaryPure else OceanColors.interfaceLightDown,
         animationSpec = tween(durationMillis = COLOR_DURATION_MILLIS),
-        label = "oceanSegmentedControlSelectionAlpha"
+        label = "oceanSegmentedControlSelectionColor"
     )
 
     val gapPx = with(LocalDensity.current) { OceanSpacing.xxxs.roundToPx() }
@@ -206,7 +256,7 @@ fun OceanSegmentedControl(
             {
                 OceanSegmentedControlSelection(
                     position = positions.getOrNull(selected),
-                    alpha = selectionAlpha
+                    color = selectionColor
                 )
             },
             {
@@ -214,6 +264,7 @@ fun OceanSegmentedControl(
                     OceanSegmentedControlItem(
                         option = option,
                         selected = index == selected,
+                        enabled = enabled,
                         interactionSource = interactionSource,
                         onClick = { onClickOption(index) }
                     )
@@ -222,11 +273,6 @@ fun OceanSegmentedControl(
         ),
         modifier = modifier
             .background(color = containerColor, shape = CircleShape)
-            .border(
-                width = OceanBorderWidth.Hairline.value,
-                color = OceanColors.interfaceLightDown,
-                shape = CircleShape
-            )
             .selectableGroup()
             .padding(OceanSpacing.xxxs)
     ) { (selectionMeasurables, optionMeasurables), constraints ->
@@ -303,14 +349,14 @@ internal fun oceanSegmentedControlOptionWidths(
 }
 
 /**
- * Fundo de seleção ([OceanColors.brandPrimaryUp] com [alpha]) do tamanho da opção selecionada.
+ * Fundo de seleção ([color]) do tamanho da opção selecionada.
  * Desliza entre as opções em [SELECTION_SLIDE_DURATION_MILLIS] com [OceanSegmentedControlEasing];
  * aparece sem animação na primeira posição.
  */
 @Composable
 private fun OceanSegmentedControlSelection(
     position: OceanSegmentedControlPosition?,
-    alpha: Float
+    color: Color
 ) {
     if (position == null) return
 
@@ -338,7 +384,7 @@ private fun OceanSegmentedControlSelection(
                 .width(width)
                 .height(SegmentedControlOptionHeight)
                 .background(
-                    color = OceanColors.brandPrimaryUp.copy(alpha = alpha),
+                    color = color,
                     shape = CircleShape
                 )
                 .testTag(OCEAN_SEGMENTED_CONTROL_SELECTION_TAG)
@@ -346,19 +392,39 @@ private fun OceanSegmentedControlSelection(
     }
 }
 
-/** Opção: ícone opcional + texto em uma linha (com "…") + contador opcional. */
+/**
+ * Opção: ícone opcional + texto em uma linha (com "…") + contador opcional, nas cores do estado
+ * (selecionada, não selecionada ou desabilitada).
+ */
 @Composable
 private fun OceanSegmentedControlItem(
     option: OceanSegmentedControlOption,
     selected: Boolean,
+    enabled: Boolean,
     interactionSource: MutableInteractionSource,
     onClick: () -> Unit
 ) {
+    val contentColor by animateColorAsState(
+        targetValue = when {
+            !enabled -> OceanColors.interfaceDarkUp
+            selected -> OceanColors.interfaceLightPure
+            else -> OceanColors.brandPrimaryPure
+        },
+        animationSpec = tween(durationMillis = COLOR_DURATION_MILLIS),
+        label = "oceanSegmentedControlContentColor"
+    )
+    val badgeType = when {
+        !enabled -> OceanBadgeType.DISABLED
+        selected -> OceanBadgeType.PRIMARY_INVERTED
+        else -> OceanBadgeType.PRIMARY
+    }
+
     Row(
         modifier = Modifier
             .height(SegmentedControlOptionHeight)
             .selectable(
                 selected = selected,
+                enabled = enabled,
                 interactionSource = interactionSource,
                 // Sem ripple: o retorno do toque é o estado pressionado do controle inteiro.
                 indication = null,
@@ -372,7 +438,7 @@ private fun OceanSegmentedControlItem(
         if (option.icon != null) {
             OceanIcon(
                 iconType = option.icon,
-                tint = OceanColors.brandPrimaryPure,
+                tint = contentColor,
                 modifier = Modifier.size(SegmentedControlIconSize)
             )
         }
@@ -383,17 +449,24 @@ private fun OceanSegmentedControlItem(
             // contador quando a opção é mais estreita que o conteúdo.
             modifier = Modifier.weight(1f, fill = false),
             style = OceanTextStyle.heading5,
-            color = OceanColors.brandPrimaryPure,
+            color = contentColor,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
 
         if (option.counter != null) {
-            OceanBadge(
-                text = option.counter.toString(),
-                type = OceanBadgeType.PRIMARY,
-                size = OceanBadgeSize.Small
-            )
+            // O OceanBadge recebe o tipo, não a cor: a troca é um crossfade de 150ms (como no OceanTab).
+            Crossfade(
+                targetState = badgeType,
+                animationSpec = tween(durationMillis = COLOR_DURATION_MILLIS),
+                label = "oceanSegmentedControlBadgeType"
+            ) { type ->
+                OceanBadge(
+                    text = option.counter.toString(),
+                    type = type,
+                    size = OceanBadgeSize.Small
+                )
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -19,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanSegmentedControl
+import br.com.useblu.oceands.components.compose.OceanSegmentedControlBackground
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.model.compose.OceanSegmentedControlOption
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -29,8 +31,8 @@ import br.com.useblu.oceands.utils.OceanIcons
 /**
  * Amostra do [OceanSegmentedControl] em Compose. Cada exemplo tem uma linha `propriedade: valor`.
  *
- * Toque e segure sobre um controle para ver o estado pressionado (fundo e seleção mais fortes); ao
- * trocar de opção, o fundo de seleção desliza. Com "Remover animações" ligado no sistema, a troca é
+ * Toque e segure sobre um controle para ver o estado pressionado (só o fundo do controle escurece);
+ * ao trocar de opção, o fundo de seleção desliza. Com "Remover animações" ligado no sistema, a troca é
  * imediata.
  */
 class SegmentedControlComposeActivity : AppCompatActivity() {
@@ -114,6 +116,41 @@ class SegmentedControlComposeActivity : AppCompatActivity() {
                         OceanSegmentedControlOption("Mês")
                     )
                 )
+
+                SampleLabel(text = "background: White · sobre superfície interfaceLightUp")
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(OceanColors.interfaceLightUp)
+                        .padding(vertical = OceanSpacing.xs)
+                ) {
+                    Sample(
+                        options = listOf(
+                            OceanSegmentedControlOption("Loja", icon = OceanIcons.SHOPPING_BAG_OUTLINE, counter = 5),
+                            OceanSegmentedControlOption("Rede", icon = OceanIcons.OFFICE_BUILDING_OUTLINE, counter = 12)
+                        ),
+                        background = OceanSegmentedControlBackground.White
+                    )
+                }
+
+                SampleLabel(text = "enabled: false · selectedIndex: 0")
+                Sample(
+                    options = listOf(
+                        OceanSegmentedControlOption("Loja", icon = OceanIcons.SHOPPING_BAG_OUTLINE, counter = 5),
+                        OceanSegmentedControlOption("Rede", icon = OceanIcons.OFFICE_BUILDING_OUTLINE, counter = 12)
+                    ),
+                    enabled = false
+                )
+
+                SampleLabel(text = "enabled: false · selectedIndex: 1")
+                Sample(
+                    options = listOf(
+                        OceanSegmentedControlOption("Loja", icon = OceanIcons.SHOPPING_BAG_OUTLINE, counter = 5),
+                        OceanSegmentedControlOption("Rede", icon = OceanIcons.OFFICE_BUILDING_OUTLINE, counter = 12)
+                    ),
+                    initialSelectedIndex = 1,
+                    enabled = false
+                )
             }
         }
     }
@@ -132,7 +169,9 @@ class SegmentedControlComposeActivity : AppCompatActivity() {
     private fun Sample(
         options: List<OceanSegmentedControlOption>,
         modifier: Modifier = Modifier,
-        initialSelectedIndex: Int = 0
+        initialSelectedIndex: Int = 0,
+        enabled: Boolean = true,
+        background: OceanSegmentedControlBackground = OceanSegmentedControlBackground.Default
     ) {
         var selected by remember { mutableIntStateOf(initialSelectedIndex) }
         // O controle fica do tamanho do conteúdo; [modifier] limita a largura disponível.
@@ -140,6 +179,8 @@ class SegmentedControlComposeActivity : AppCompatActivity() {
             OceanSegmentedControl(
                 options = options,
                 selectedIndex = selected,
+                enabled = enabled,
+                background = background,
                 onSelectedOption = { selected = it }
             )
         }

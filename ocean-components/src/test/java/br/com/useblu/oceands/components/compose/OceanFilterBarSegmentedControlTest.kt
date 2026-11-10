@@ -240,6 +240,38 @@ class OceanFilterBarSegmentedControlTest {
         composeTestRule.onNodeWithText("Rede").assertIsSelected()
     }
 
+    // --- toque nos chips ---
+
+    // O toque chega ao chip dentro da área rolável (o chip chama onClick; quem guarda a seleção é a
+    // tela). Com e sem Segmented, para provar que a área com weight não bloqueia o toque.
+    private fun assertTappingChipsCallsOnClick(segmentedControl: OceanFilterBarSegmentedControl?) {
+        val clicked = mutableListOf<String>()
+        val chips = listOf("Todos", "Abertos").mapIndexed { index, label ->
+            OceanBasicChip(
+                id = "$index",
+                label = label,
+                state = OceanChipItemState.DEFAULT_INACTIVE,
+                onClick = { clicked += label }
+            )
+        }
+        setBar(filterList = chips, segmentedControl = segmentedControl)
+
+        composeTestRule.onNodeWithText("Abertos").performClick()
+        composeTestRule.onNodeWithText("Todos").performClick()
+
+        assertEquals(listOf("Abertos", "Todos"), clicked)
+    }
+
+    @Test
+    fun tappingAChipCallsItsOnClickWithTheSegmentedControl() {
+        assertTappingChipsCallsOnClick(segmented())
+    }
+
+    @Test
+    fun tappingAChipCallsItsOnClickWithoutTheSegmentedControl() {
+        assertTappingChipsCallsOnClick(null)
+    }
+
     // --- só texto ---
 
     @Test

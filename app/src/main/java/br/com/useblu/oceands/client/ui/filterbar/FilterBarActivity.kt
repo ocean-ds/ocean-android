@@ -12,6 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -57,11 +58,13 @@ class FilterBarActivity : AppCompatActivity() {
                 verticalArrangement = Arrangement.spacedBy(OceanSpacing.sm)
             ) {
                 SampleLabel(text = "segmentedControl: null · showDividerBeforeLastItem: true (com overflow)")
-                OceanFilterBar(filterList = overflowingChips)
+                OceanFilterBar(
+                    filterList = rememberToggleableChips(overflowingChips, OceanChipItemState.HOVER_INACTIVE)
+                )
 
                 SampleLabel(text = "segmentedControl: null · showDividerBeforeLastItem: false (sem overflow)")
                 OceanFilterBar(
-                    filterList = shortChips,
+                    filterList = rememberToggleableChips(shortChips, OceanChipItemState.HOVER_INACTIVE),
                     showDividerBeforeLastItem = false
                 )
 
@@ -104,7 +107,7 @@ class FilterBarActivity : AppCompatActivity() {
         var selectedIndex by remember { mutableIntStateOf(0) }
 
         OceanFilterBar(
-            filterList = filterList,
+            filterList = rememberToggleableChips(filterList, OceanChipItemState.DEFAULT_INACTIVE),
             segmentedControl = OceanFilterBarSegmentedControl(
                 options = options,
                 selectedIndex = selectedIndex,
@@ -112,6 +115,42 @@ class FilterBarActivity : AppCompatActivity() {
                 onSelectedOption = { selectedIndex = it }
             )
         )
+    }
+
+    /**
+     * Guarda a seleção dos chips da amostra: o toque num [OceanBasicChip] liga e desliga o chip
+     * ([OceanChipItemState.DEFAULT_ACTIVE] ↔ estado inativo), como na demo do iOS. O chip não guarda
+     * estado sozinho (ele só chama `onClick`); quem guarda é a tela. Desligado, o chip volta ao estado
+     * inativo da própria lista, ou a [inactiveState] se começou ligado. O [OceanFilterChip] continua
+     * abrindo as opções.
+     */
+    @Composable
+    private fun rememberToggleableChips(
+        chips: List<OceanChip>,
+        inactiveState: OceanChipItemState
+    ): List<OceanChip> {
+        val selected = remember(chips) {
+            mutableStateMapOf<String, Boolean>().apply {
+                chips.forEach { put(it.id, it.state == OceanChipItemState.DEFAULT_ACTIVE) }
+            }
+        }
+
+        return chips.map { chip ->
+            if (chip !is OceanBasicChip) return@map chip
+
+            val isSelected = selected[chip.id] == true
+            chip.copy(
+                state = when {
+                    isSelected -> OceanChipItemState.DEFAULT_ACTIVE
+                    chip.state != OceanChipItemState.DEFAULT_ACTIVE -> chip.state
+                    else -> inactiveState
+                },
+                badge = chip.badge?.copy(
+                    type = if (isSelected) OceanBadgeType.PRIMARY_INVERTED else OceanBadgeType.PRIMARY
+                ),
+                onClick = { selected[chip.id] = !isSelected }
+            )
+        }
     }
 
     @Composable

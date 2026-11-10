@@ -8,6 +8,7 @@ import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.assertHeightIsEqualTo
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.assertLeftPositionInRootIsEqualTo
 import androidx.compose.ui.test.getBoundsInRoot
@@ -93,10 +94,12 @@ class OceanFilterBarSegmentedControlTest {
     private fun segmented(
         options: List<OceanSegmentedControlOption> = storeAndNetwork,
         selectedIndex: Int = 0,
+        enabled: Boolean = true,
         onSelectedOption: (Int) -> Unit = {}
     ) = OceanFilterBarSegmentedControl(
         options = options,
         selectedIndex = selectedIndex,
+        enabled = enabled,
         onSelectedOption = onSelectedOption
     )
 
@@ -238,6 +241,18 @@ class OceanFilterBarSegmentedControlTest {
 
         assertEquals(1, selected)
         composeTestRule.onNodeWithText("Rede").assertIsSelected()
+    }
+
+    @Test
+    fun disabledSegmentedControlDoesNotSelectNorCallBack() {
+        var calls = 0
+        setBar(segmentedControl = segmented(enabled = false, onSelectedOption = { calls++ }))
+
+        composeTestRule.onNodeWithText("Rede").performClick()
+
+        assertEquals(0, calls)
+        composeTestRule.onNodeWithText("Loja").assertIsSelected()
+        composeTestRule.onNodeWithText("Rede").assertIsNotSelected()
     }
 
     // --- toque nos chips ---

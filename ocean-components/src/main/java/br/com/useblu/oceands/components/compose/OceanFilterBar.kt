@@ -135,7 +135,7 @@ private val FilterBarRowHeight = 32.dp
  * ([segmentedControl]) para trocar o escopo da mesma lista (ex.: Loja | Rede). A barra deve ter pelo
  * menos um chip (regra de uso: a API aceita a lista vazia por compatibilidade).
  *
- * **Sem [segmentedControl]** (padrão, como antes da versão 1.1.0 do Figma): todos os chips rolam
+ * **Sem [segmentedControl]** (padrão): todos os chips rolam
  * juntos na horizontal, com 16dp ([OceanSpacing.xs]) de respiro nas duas pontas do conteúdo rolável
  * e 8dp ([OceanSpacing.xxs]) entre os chips. Com [showDividerBeforeLastItem] `true`, há um divisor
  * antes do último chip.
@@ -164,8 +164,8 @@ private val FilterBarRowHeight = 32.dp
  * @param filterList chips, na ordem de exibição.
  * @param showDividerBeforeLastItem `true` (padrão) mostra um divisor antes do último chip. Ignorado
  * quando há [segmentedControl].
- * @param segmentedControl Segmented Control fixo à direita. `null` (padrão) não mostra o Segmented e
- * mantém a barra como antes. Ver [OceanFilterBarSegmentedControl].
+ * @param segmentedControl Segmented Control fixo à direita. `null` (padrão) não mostra o Segmented:
+ * todos os chips rolam juntos e vale [showDividerBeforeLastItem]. Ver [OceanFilterBarSegmentedControl].
  */
 @Composable
 fun OceanFilterBar(
@@ -189,7 +189,7 @@ fun OceanFilterBar(
     }
 }
 
-/** Barra sem Segmented: o layout de antes da versão 1.1.0, sem nenhuma mudança. */
+/** Barra sem Segmented: todos os chips rolam juntos, com divisor opcional antes do último. */
 @Composable
 private fun OceanFilterBarScrollingChips(
     modifier: Modifier,

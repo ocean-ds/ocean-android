@@ -136,7 +136,8 @@ class FilterBarActivity : AppCompatActivity() {
         }
 
         return chips.map { chip ->
-            if (chip !is OceanBasicChip) return@map chip
+            // "Todos os filtros" é um botão (abre os filtros na tela), não um chip que fica marcado.
+            if (chip !is OceanBasicChip || chip.icon == OceanIcons.ADJUSTMENTS_OUTLINE) return@map chip
 
             val isSelected = selected[chip.id] == true
             chip.copy(

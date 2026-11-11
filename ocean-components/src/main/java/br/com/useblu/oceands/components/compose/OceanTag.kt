@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,6 +30,7 @@ import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanOpacity
 import br.com.useblu.oceands.ui.compose.OceanSpacing
+import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
@@ -257,10 +257,10 @@ fun OceanTagTranslucentPreview() {
             .padding(OceanSpacing.xxs),
         verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
     ) {
-        Text(
-            text = "Translucent",
-            color = OceanColors.interfaceLightPure,
-            fontSize = 14.sp
+        OceanText(
+            text = "appearance: Translucent",
+            style = OceanTextStyle.description,
+            color = OceanColors.interfaceLightPure
         )
 
         OceanTag(
@@ -819,8 +819,9 @@ sealed interface OceanTagStyle {
          */
         val textStyle: TextStyle? = null,
         /**
-         * Translucent is for coloured surfaces, never white, and is available only for Medium
-         * Tags with an icon.
+         * Translucent is for coloured surfaces, never white. It applies only to enabled
+         * [OceanTagLayout.Medium] Tags of type Positive, Warning, Negative, Complementary,
+         * Neutral or NeutralPrimary; any other combination renders as [OceanTagAppearance.Default].
          */
         val appearance: OceanTagAppearance = OceanTagAppearance.Default
     ) : OceanTagStyle

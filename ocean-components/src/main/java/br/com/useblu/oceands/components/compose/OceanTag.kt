@@ -34,8 +34,6 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
-private const val TRANSLUCENT_ALPHA = 0.24f
-
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
 fun OceanTagPreviewV2() {
@@ -698,14 +696,17 @@ internal fun shouldUseTranslucentAppearance(
 }
 
 @Composable
-internal fun getTranslucentBackgroundColor(type: OceanTagType): Color = when (type) {
-    OceanTagType.Positive -> OceanColors.statusPositiveDown.copy(alpha = TRANSLUCENT_ALPHA)
-    OceanTagType.Warning -> OceanColors.statusWarningDown.copy(alpha = TRANSLUCENT_ALPHA)
-    OceanTagType.Negative -> OceanColors.statusNegativeDown.copy(alpha = TRANSLUCENT_ALPHA)
-    OceanTagType.Complementary -> OceanColors.complementaryDown.copy(alpha = TRANSLUCENT_ALPHA)
-    OceanTagType.Neutral -> OceanColors.interfaceDarkUp.copy(alpha = TRANSLUCENT_ALPHA)
-    OceanTagType.NeutralPrimary -> OceanColors.brandPrimaryUp.copy(alpha = TRANSLUCENT_ALPHA)
-    else -> getBackgroundColor(type)
+internal fun getTranslucentBackgroundColor(type: OceanTagType): Color {
+    val alpha = OceanOpacity.Soft.value
+    return when (type) {
+        OceanTagType.Positive -> OceanColors.statusPositiveDown.copy(alpha = alpha)
+        OceanTagType.Warning -> OceanColors.statusWarningDown.copy(alpha = alpha)
+        OceanTagType.Negative -> OceanColors.statusNegativeDown.copy(alpha = alpha)
+        OceanTagType.Complementary -> OceanColors.complementaryDown.copy(alpha = alpha)
+        OceanTagType.Neutral -> OceanColors.interfaceDarkUp.copy(alpha = alpha)
+        OceanTagType.NeutralPrimary -> OceanColors.brandPrimaryUp.copy(alpha = alpha)
+        else -> getBackgroundColor(type)
+    }
 }
 
 @Composable

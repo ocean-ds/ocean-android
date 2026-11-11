@@ -33,6 +33,13 @@ class OceanOpacityTest {
     }
 
     @Test
+    fun softHasPointTwoFourValue() {
+        var value = 0f
+        composeTestRule.setContent { value = OceanOpacity.Soft.value }
+        assertEquals(0.24f, value, 0f)
+    }
+
+    @Test
     fun lightHasPointOneSixValue() {
         var value = 0f
         composeTestRule.setContent { value = OceanOpacity.Light.value }

@@ -15,6 +15,9 @@ sealed interface OceanOpacity {
     /** 0.4f */
     data object Medium : OceanOpacity
 
+    /** 0.24f */
+    data object Soft : OceanOpacity
+
     /** 0.16f */
     data object Light : OceanOpacity
 
@@ -28,6 +31,7 @@ sealed interface OceanOpacity {
                 Semiopaque -> R.dimen.ocean_opacity_level_semiopaque
                 Intense -> R.dimen.ocean_opacity_level_intense
                 Medium -> R.dimen.ocean_opacity_level_medium
+                Soft -> R.dimen.ocean_opacity_level_soft
                 Light -> R.dimen.ocean_opacity_level_light
                 Semitransparent -> R.dimen.ocean_opacity_level_semitransparent
             }

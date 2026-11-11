@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
@@ -59,7 +60,7 @@ fun OceanGroupCta(
             CircularProgressIndicator(
                 color = OceanColors.brandPrimaryPure,
                 modifier = Modifier.size(24.dp),
-                strokeWidth = 2.dp
+                strokeWidth = OceanBorderWidth.Thin.value
             )
         } else {
             Text(

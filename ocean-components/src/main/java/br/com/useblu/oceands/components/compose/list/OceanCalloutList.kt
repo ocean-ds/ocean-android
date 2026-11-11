@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.model.compose.OceanUnorderedListItemModel
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
 import br.com.useblu.oceands.ui.compose.OceanColors
@@ -53,7 +52,7 @@ fun OceanCalloutList(
                 borderRadius = OceanBorderRadius.SM.allCorners
             )
             .padding(
-                vertical = 12.dp
+                vertical = OceanSpacing.xxsExtra
             ),
         verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxs)
     ) {

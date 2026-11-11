@@ -27,7 +27,7 @@
             android:id="@+id/imageViewIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
             android:src="@{item.drawableIcon}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout2"

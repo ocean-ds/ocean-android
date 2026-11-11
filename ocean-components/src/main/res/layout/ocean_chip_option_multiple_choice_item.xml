@@ -21,8 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="16dp"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
+            android:layout_marginHorizontal="@dimen/ocean_spacing_inline_xs"
             android:gravity="center_vertical">
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="@dimen/ocean_spacing_inline_xxs"
                 app:isSmall="@{true}"
                 app:text="@{item.badgeCounter != null ? Integer.toString(item.badgeCounter) : @string/empty}"
                 app:type="@{OceanBadgeType.WARNING}"
@@ -67,8 +67,8 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginHorizontal="@dimen/ocean_spacing_inline_xs"
+            android:layout_marginBottom="@dimen/ocean_spacing_stack_xs"
             android:background="@color/ocean_color_interface_light_down"/>
     </LinearLayout>
 </layout>

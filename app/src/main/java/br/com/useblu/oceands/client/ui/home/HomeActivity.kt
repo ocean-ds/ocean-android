@@ -57,6 +57,7 @@ import br.com.useblu.oceands.client.ui.datepicker.DatePickerActivity
 import br.com.useblu.oceands.client.ui.descriptorlistitem.DescriptorListActivity
 import br.com.useblu.oceands.client.ui.detailed.DetailedCardActivity
 import br.com.useblu.oceands.client.ui.donut.DonutActivity
+import br.com.useblu.oceands.client.ui.dropdownmenu.DropdownMenuActivity
 import br.com.useblu.oceands.client.ui.fileuploader.FileUploaderActivity
 import br.com.useblu.oceands.client.ui.filterbar.FilterBarActivity
 import br.com.useblu.oceands.client.ui.footer.FooterBluActivity
@@ -71,12 +72,14 @@ import br.com.useblu.oceands.client.ui.optionscard.OptionsCardActivity
 import br.com.useblu.oceands.client.ui.orderedlistitem.OrderedListItemActivity
 import br.com.useblu.oceands.client.ui.progressbar.ProgressBarActivity
 import br.com.useblu.oceands.client.ui.radio.RadioActivity
+import br.com.useblu.oceands.client.ui.segmentedcontrol.SegmentedControlComposeActivity
 import br.com.useblu.oceands.client.ui.settingslistitem.SettingsListItemActivity
 import br.com.useblu.oceands.client.ui.shortcuts.ShortcutsActivity
 import br.com.useblu.oceands.client.ui.statuslistitem.StatusListItemActivity
 import br.com.useblu.oceands.client.ui.step.StepViewActivity
 import br.com.useblu.oceands.client.ui.switchs.SwitchsActivity
 import br.com.useblu.oceands.client.ui.tab.TabActivity
+import br.com.useblu.oceands.client.ui.tab.TabComposeActivity
 import br.com.useblu.oceands.client.ui.tag.TagActivity
 import br.com.useblu.oceands.client.ui.textlink.TextLinkActivity
 import br.com.useblu.oceands.client.ui.textlistaction.OceanTextListActionActivity
@@ -218,6 +221,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Descriptor List Item", onClick = { descriptorList() })
                         textAction(text = "Detailed Card", onClick = { detailedCardClick() })
                         textAction(text = "Donut", onClick = { donutView() })
+                        textAction(text = "Dropdown Menu", onClick = { open<DropdownMenuActivity>() })
                         textAction(text = "File Uploader", onClick = { goToFileUploader() })
                         textAction(text = "Filter Bar", onClick = { onClickFilterBar() })
                         textAction(text = "Footer Blu", onClick = { onFooterBlu() })
@@ -233,6 +237,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "PinPad", onClick = { onClickPinPad() })
                         textAction(text = "Progress Bar", onClick = { clickProgressBar() })
                         textAction(text = "Radio", onClick = { onClickRadio() })
+                        textAction(text = "Segmented Control (Compose)", onClick = { open<SegmentedControlComposeActivity>() })
                         textAction(text = "Shortcuts", onClick = { shortcuts() })
                         textAction(text = "SnackBar", onClick = { onClickSnackBar(view) })
                         textAction(text = "SnackBar + Action", onClick = { onClickSnackBarAction(view) })
@@ -240,6 +245,7 @@ class HomeActivity : AppCompatActivity() {
                         textAction(text = "Step", onClick = { stepview() })
                         textAction(text = "Switch", onClick = { onClickSwitch() })
                         textAction(text = "Tab", onClick = { onClickTab() })
+                        textAction(text = "Tab (Compose)", onClick = { open<TabComposeActivity>() })
                         textAction(text = "Tag", onClick = { onClickTags() })
                         textAction(text = "Text Link", onClick = { onClickTextLink() })
                         textAction(text = "Text List Action", onClick = { onClickTextListAction() })

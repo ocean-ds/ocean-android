@@ -16,8 +16,8 @@
         android:clickable="@{item.state.clickable}"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingStart="12dp"
-        android:paddingEnd="8dp"
+        android:paddingStart="@dimen/ocean_spacing_inline_xxs_extra"
+        android:paddingEnd="@dimen/ocean_spacing_inline_xxs"
         android:layout_marginEnd="@dimen/ocean_spacing_stack_xxs"
         tools:background="@drawable/ocean_chip_inactive_hover">
 

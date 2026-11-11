@@ -31,10 +31,10 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.components.compose.OceanTheme
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
 import br.com.useblu.oceands.ui.compose.OceanFontSize
@@ -166,7 +166,7 @@ private fun TokenBox(
         else -> OceanColors.interfaceLightPure
     }
 
-    val borderWidth = if (isFocused) 2.dp else 1.dp
+    val borderWidth = if (isFocused) OceanBorderWidth.Thin.value else OceanBorderWidth.Hairline.value
 
     Box(
         modifier = Modifier

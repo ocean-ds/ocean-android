@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -382,7 +383,7 @@ fun OceanButton(
             CircularProgressIndicator(
                 color = buttonStyle.getLoadingColor(),
                 modifier = Modifier.size(buttonStyle.getHorizontalPadding()),
-                strokeWidth = 2.dp
+                strokeWidth = OceanBorderWidth.Thin.value
             )
         }
     }

@@ -38,6 +38,7 @@ import br.com.useblu.oceands.components.compose.OceanIcon
 import br.com.useblu.oceands.components.compose.OceanText
 import br.com.useblu.oceands.extensions.compose.oceanInputKeyHandler
 import br.com.useblu.oceands.ui.compose.OceanBorderRadius
+import br.com.useblu.oceands.ui.compose.OceanBorderWidth
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontFamily
@@ -414,8 +415,8 @@ private fun OceanTextInputDecorationBox(
                 interactionSource = interactionSource,
                 colors = textFieldColors,
                 shape = OceanBorderRadius.SM.allCorners.shape(),
-                focusedBorderThickness = 2.dp,
-                unfocusedBorderThickness = 1.dp
+                focusedBorderThickness = OceanBorderWidth.Thin.value,
+                unfocusedBorderThickness = OceanBorderWidth.Hairline.value
             )
         }
     )

@@ -68,7 +68,7 @@
             android:id="@+id/container_texts"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
             android:gravity="start"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/container_icon"

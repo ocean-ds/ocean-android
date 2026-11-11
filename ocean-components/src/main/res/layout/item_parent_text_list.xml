@@ -23,7 +23,7 @@
             android:focusable="true"
             android:src="@{item.image}"
             tools:tint="#5872F5"
-            app:tint="#5872F5"
+            app:tint="@color/ocean_color_brand_primary_down"
             app:ocean_visible_or_gone="@{item.image != null}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

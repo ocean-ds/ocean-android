@@ -231,7 +231,7 @@ private fun footerNotice(
 
             Column(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
+                verticalArrangement = Arrangement.spacedBy(OceanSpacing.xxxs)
             ) {
                 notice.title?.let { title ->
                     OceanText(

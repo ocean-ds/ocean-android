@@ -6,10 +6,4 @@
     <file name="src/main/java/br/com/useblu/oceands/components/OceanTooltip.kt">
         <error line="8" column="1" source="standard:no-wildcard-imports" />
     </file>
-    <file name="src/test/java/br/com/useblu/oceands/ui/compose/input/OceanTextInputTest.kt">
-        <error line="1" column="1" source="standard:final-newline" />
-    </file>
-    <file name="src/test/java/br/com/useblu/oceands/ui/compose/stringmask/CurrencyMaskVisualTransformationTest.kt">
-        <error line="1" column="1" source="standard:final-newline" />
-    </file>
 </baseline>

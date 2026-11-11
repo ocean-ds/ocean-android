@@ -44,7 +44,7 @@
                         android:id="@+id/text_view_title"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
                         android:fontFamily="@font/font_family_base_medium"
                         android:paddingTop="@dimen/ocean_spacing_stack_xxs"
                         android:paddingBottom="@dimen/ocean_spacing_stack_xxs"

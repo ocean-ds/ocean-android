@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginStart="@dimen/ocean_spacing_inline_xxxs"
+        android:layout_marginEnd="@dimen/ocean_spacing_inline_xxxs"
         android:orientation="horizontal"
         android:background="@{isSelected ? @drawable/ocean_list_selected_item_hover : @drawable/ocean_list_item_hover }">
 
@@ -21,8 +21,8 @@
                 android:id="@+id/textOceanParagraph"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/ocean_spacing_inline_xs"
+                android:layout_marginEnd="@dimen/ocean_spacing_inline_xs"
                 android:ellipsize="end"
                 android:fontFamily="@font/font_family_base_regular"
                 android:lineSpacingMultiplier="@dimen/ocean_line_height_comfy_android"

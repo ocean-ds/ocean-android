@@ -15,6 +15,8 @@
         <activity android:name=".ui.bottomnavigation.BottomNavigationActivity" />
         <activity android:name=".ui.donut.DonutActivity" />
         <activity android:name=".ui.tab.TabActivity" />
+        <activity android:name=".ui.tab.TabComposeActivity" />
+        <activity android:name=".ui.segmentedcontrol.SegmentedControlComposeActivity" />
         <activity android:name=".ui.step.StepViewActivity" />
         <activity android:name=".ui.listsubheader.ListSubheaderActivity" />
         <activity android:name=".ui.cardgroup.CardGroupActivity" />
@@ -27,6 +29,7 @@
         <activity android:name=".ui.transactionlist.ChildTransactionListReadOnlyActivity" />
         <activity android:name=".ui.badges.BadgesActivity" />
         <activity android:name=".ui.tag.TagActivity" />
+        <activity android:name=".ui.dropdownmenu.DropdownMenuActivity" />
         <activity android:name=".ui.balance.BalanceActivity" />
         <activity android:name=".ui.shortcuts.ShortcutsActivity" />
         <activity android:name=".ui.carousel.CarouselActivity" />

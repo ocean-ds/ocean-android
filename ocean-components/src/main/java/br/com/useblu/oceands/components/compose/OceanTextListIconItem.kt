@@ -185,7 +185,8 @@ fun OceanTextListIconItem(
         badgeText = model.badge,
         leadingIcon = model.leadingIconToken,
         trailingIcon = model.trailingIconToken,
-        onClick = model.onClick
+        onClick = model.onClick,
+        leadingContent = model.leadingContent
     )
 }
 
@@ -201,7 +202,8 @@ fun OceanTextListIconItem(
     leadingIcon: OceanIcons? = null,
     trailingIcon: OceanIcons? = null,
     showIconBackground: Boolean = true,
-    onClick: (() -> Unit)? = null
+    onClick: (() -> Unit)? = null,
+    leadingContent: (@Composable () -> Unit)? = null
 ) {
     Row(
         modifier = modifier
@@ -213,22 +215,43 @@ fun OceanTextListIconItem(
             .padding(OceanSpacing.xs),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        leadingIcon?.let {
+        // `leadingContent` (default null) ocupa o lugar do ícone do catálogo, no mesmo contêiner
+        // e com o mesmo quadro de 24dp — slot para um avatar de iniciais, por exemplo. Com null,
+        // nada muda para quem já usa o componente: `leadingIcon` segue desenhado pelo OceanIcon.
+        if (leadingContent != null) {
             Box(
                 modifier = Modifier
                     .size(if (showIconBackground) 40.dp else 24.dp)
                     .iconContainerBackground(showIconBackground)
             ) {
-                OceanIcon(
-                    iconType = it,
+                Box(
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .size(24.dp),
-                    tint = OceanColors.brandPrimaryDown
-                )
+                        .size(24.dp)
+                ) {
+                    leadingContent()
+                }
             }
 
             OceanSpacing.StackXS()
+        } else {
+            leadingIcon?.let {
+                Box(
+                    modifier = Modifier
+                        .size(if (showIconBackground) 40.dp else 24.dp)
+                        .iconContainerBackground(showIconBackground)
+                ) {
+                    OceanIcon(
+                        iconType = it,
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .size(24.dp),
+                        tint = OceanColors.brandPrimaryDown
+                    )
+                }
+
+                OceanSpacing.StackXS()
+            }
         }
 
         Column(

@@ -301,7 +301,7 @@ fun OceanChartLegendItem(
             .clickable {
                 onClick()
             }
-            .padding(vertical = 8.dp),
+            .padding(vertical = OceanSpacing.xxs),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -338,7 +338,7 @@ fun OceanChartLegendItem(
             if (model.subtitle.isNotBlank()) {
                 OceanSpacing.StackXXXS()
                 OceanText(
-                    modifier = Modifier.padding(start = 16.dp),
+                    modifier = Modifier.padding(start = OceanSpacing.xs),
                     text = model.subtitle,
                     style = OceanTextStyle.caption
                 )

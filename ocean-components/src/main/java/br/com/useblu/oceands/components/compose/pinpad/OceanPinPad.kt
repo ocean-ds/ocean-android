@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
@@ -54,6 +55,8 @@ import br.com.useblu.oceands.utils.OceanIcons
  * @param messageFontSize tamanho da linha de dica/erro abaixo do visor. O padrão é
  * [OceanFontSize.xxxs]; a altura de linha acompanha o tamanho (1,5x). Mensagem longa quebra em
  * quantas linhas precisar, centralizada, sem truncar.
+ * @param hintColor cor da dica, quando não há erro. O padrão é [OceanColors.interfaceLightDeep]; o
+ * erro segue em [OceanColors.statusNegativePure].
  */
 @Composable
 fun <Result> OceanPinPad(
@@ -62,7 +65,8 @@ fun <Result> OceanPinPad(
     isLoading: Boolean = false,
     isEnabled: Boolean = true,
     haptics: OceanPinPadhapticsDelegate? = null,
-    messageFontSize: TextUnit = OceanFontSize.xxxs
+    messageFontSize: TextUnit = OceanFontSize.xxxs,
+    hintColor: Color = OceanColors.interfaceLightDeep
 ) {
     val focusRequester = remember { FocusRequester() }
     val usesPhysicalKeyboard = OceanDS.usesPhysicalNumericKeyboard()
@@ -100,7 +104,8 @@ fun <Result> OceanPinPad(
             modifier = Modifier.weight(1F),
             handler = handler,
             isEnabled = isEnabled,
-            messageFontSize = messageFontSize
+            messageFontSize = messageFontSize,
+            hintColor = hintColor
         )
 
         if (usesPhysicalKeyboard) return@Column
@@ -132,7 +137,8 @@ private fun <Result> InputInfo(
     modifier: Modifier = Modifier,
     handler: OceanPinPadHandler<Result>,
     isEnabled: Boolean,
-    messageFontSize: TextUnit
+    messageFontSize: TextUnit,
+    hintColor: Color
 ) {
     val uiState = handler.uiState
     val oceanTextStyle = OceanTextStyle.display2.copy(
@@ -154,7 +160,7 @@ private fun <Result> InputInfo(
         val color = if (handler.getErrorMessage().isNotBlank()) {
             OceanColors.statusNegativePure
         } else {
-            OceanColors.interfaceLightDeep
+            hintColor
         }
         OceanTextResizable(
             modifier = Modifier.fillMaxWidth(),

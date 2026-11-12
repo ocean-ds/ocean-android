@@ -1,11 +1,13 @@
 package br.com.useblu.oceands.components.compose.pinpad
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.unit.sp
+import br.com.useblu.oceands.ui.compose.OceanColors
 import br.com.useblu.oceands.ui.compose.OceanFontSize
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -43,6 +45,21 @@ class OceanPinPadMessageFontSizeTest {
     }
 
     @Test
+    fun hintUsesInterfaceLightDeepByDefault() {
+        var expected = Color.Unspecified
+        setContent(hint = HINT, onComposed = { expected = OceanColors.interfaceLightDeep })
+
+        assertEquals(expected, layoutOf(HINT).layoutInput.style.color)
+    }
+
+    @Test
+    fun hintUsesTheGivenColor() {
+        setContent(hint = HINT, hintColor = Color.Magenta)
+
+        assertEquals(Color.Magenta, layoutOf(HINT).layoutInput.style.color)
+    }
+
+    @Test
     fun longMessageWrapsWithoutTruncating() {
         setContent(hint = LONG_HINT, useFontSizeXs = true)
 
@@ -53,7 +70,9 @@ class OceanPinPadMessageFontSizeTest {
 
     private fun setContent(
         hint: String,
-        useFontSizeXs: Boolean = false
+        useFontSizeXs: Boolean = false,
+        hintColor: Color? = null,
+        onComposed: @Composable () -> Unit = {}
     ) {
         val handler = object : OceanPinPadHandler<Unit> {
             override var uiState = OceanPinPadUIState(placeholder = "0", hint = hint)
@@ -70,10 +89,11 @@ class OceanPinPadMessageFontSizeTest {
             override fun getErrorMessage(): String = ""
         }
         composeTestRule.setContent {
-            if (useFontSizeXs) {
-                OceanPinPad(handler = handler, messageFontSize = OceanFontSize.xs)
-            } else {
-                OceanPinPad(handler = handler)
+            onComposed()
+            when {
+                hintColor != null -> OceanPinPad(handler = handler, hintColor = hintColor)
+                useFontSizeXs -> OceanPinPad(handler = handler, messageFontSize = OceanFontSize.xs)
+                else -> OceanPinPad(handler = handler)
             }
         }
     }

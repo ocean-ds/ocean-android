@@ -118,14 +118,14 @@ private fun PinPadExample(toast: OceanToast) {
                             )
                         }
 
-                        PinPadKnownType.InstallmentsMessageFontSizeXs -> {
+                        PinPadKnownType.InstallmentsMessageXsHintDarkUp -> {
                             val installmentsHandler = OceanInstallmentsPinPadHandler(
                                 maxInstallments = 12,
                                 textSetup = object : OceanInstallmentsPinPadTextSetup {
                                     override fun getPlaceholder(): String = "0"
 
                                     override fun getHint(maxInstallments: Int): String =
-                                        "messageFontSize: OceanFontSize.xs — dica longa que quebra em mais de uma linha"
+                                        "messageFontSize: OceanFontSize.xs · hintColor: OceanColors.interfaceDarkUp — dica longa que quebra em mais de uma linha"
 
                                     override fun getErrorEmpty(): String =
                                         "messageFontSize: OceanFontSize.xs — erro de campo vazio"
@@ -139,7 +139,8 @@ private fun PinPadExample(toast: OceanToast) {
                                 handler = installmentsHandler,
                                 isEnabled = isEnabled,
                                 isLoading = isLoading,
-                                messageFontSize = OceanFontSize.xs
+                                messageFontSize = OceanFontSize.xs,
+                                hintColor = OceanColors.interfaceDarkUp
                             )
                         }
 
@@ -236,5 +237,5 @@ private enum class PinPadKnownType {
     Password,
 
     Installments,
-    InstallmentsMessageFontSizeXs
+    InstallmentsMessageXsHintDarkUp
 }

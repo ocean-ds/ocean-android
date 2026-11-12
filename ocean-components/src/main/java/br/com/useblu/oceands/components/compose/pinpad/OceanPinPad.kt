@@ -25,6 +25,7 @@ import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.useblu.oceands.OceanDS
@@ -43,13 +44,25 @@ import br.com.useblu.oceands.ui.compose.OceanTextStyle
 import br.com.useblu.oceands.ui.compose.borderBackground
 import br.com.useblu.oceands.utils.OceanIcons
 
+/**
+ * Teclado numérico com o visor do valor e a linha de dica/erro logo abaixo dele.
+ *
+ * @param handler controla o valor digitado, a dica, o erro e o resultado.
+ * @param isLoading mostra o skeleton no lugar do visor e do teclado.
+ * @param isEnabled desabilita o teclado e escurece o componente.
+ * @param haptics recebe os toques nas teclas.
+ * @param messageFontSize tamanho da linha de dica/erro abaixo do visor. O padrão é
+ * [OceanFontSize.xxxs]; a altura de linha acompanha o tamanho (1,5x). Mensagem longa quebra em
+ * quantas linhas precisar, centralizada, sem truncar.
+ */
 @Composable
 fun <Result> OceanPinPad(
     modifier: Modifier = Modifier,
     handler: OceanPinPadHandler<Result>,
     isLoading: Boolean = false,
     isEnabled: Boolean = true,
-    haptics: OceanPinPadhapticsDelegate? = null
+    haptics: OceanPinPadhapticsDelegate? = null,
+    messageFontSize: TextUnit = OceanFontSize.xxxs
 ) {
     val focusRequester = remember { FocusRequester() }
     val usesPhysicalKeyboard = OceanDS.usesPhysicalNumericKeyboard()
@@ -86,7 +99,8 @@ fun <Result> OceanPinPad(
         InputInfo(
             modifier = Modifier.weight(1F),
             handler = handler,
-            isEnabled = isEnabled
+            isEnabled = isEnabled,
+            messageFontSize = messageFontSize
         )
 
         if (usesPhysicalKeyboard) return@Column
@@ -117,7 +131,8 @@ fun <Result> OceanPinPad(
 private fun <Result> InputInfo(
     modifier: Modifier = Modifier,
     handler: OceanPinPadHandler<Result>,
-    isEnabled: Boolean
+    isEnabled: Boolean,
+    messageFontSize: TextUnit
 ) {
     val uiState = handler.uiState
     val oceanTextStyle = OceanTextStyle.display2.copy(
@@ -155,7 +170,8 @@ private fun <Result> InputInfo(
             text = handler.getErrorMessage().ifBlank { uiState.hint },
             color = color,
             fontFamily = OceanFontFamily.BaseMedium,
-            fontSize = OceanFontSize.xxxs,
+            fontSize = messageFontSize,
+            lineHeight = messageFontSize * 1.5f,
             textAlign = TextAlign.Center
         )
     }

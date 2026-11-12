@@ -32,6 +32,7 @@ import br.com.useblu.oceands.components.compose.pinpad.handlers.password.OceanPa
 import br.com.useblu.oceands.components.compose.pinpad.handlers.password.models.OceanPasswordPinPadType
 import br.com.useblu.oceands.ui.compose.OceanButtonStyle
 import br.com.useblu.oceands.ui.compose.OceanColors
+import br.com.useblu.oceands.ui.compose.OceanFontSize
 import br.com.useblu.oceands.ui.compose.OceanSpacing
 
 class PinPadActivity : AppCompatActivity() {
@@ -114,6 +115,31 @@ private fun PinPadExample(toast: OceanToast) {
                                 handler = passwordHandler,
                                 isEnabled = isEnabled,
                                 isLoading = isLoading
+                            )
+                        }
+
+                        PinPadKnownType.InstallmentsMessageFontSizeXs -> {
+                            val installmentsHandler = OceanInstallmentsPinPadHandler(
+                                maxInstallments = 12,
+                                textSetup = object : OceanInstallmentsPinPadTextSetup {
+                                    override fun getPlaceholder(): String = "0"
+
+                                    override fun getHint(maxInstallments: Int): String =
+                                        "messageFontSize: OceanFontSize.xs — dica longa que quebra em mais de uma linha"
+
+                                    override fun getErrorEmpty(): String =
+                                        "messageFontSize: OceanFontSize.xs — erro de campo vazio"
+
+                                    override fun getErrorMax(maxInstallments: Int): String =
+                                        "messageFontSize: OceanFontSize.xs — o máximo é ${maxInstallments}x"
+                                }
+                            )
+                            handler = installmentsHandler
+                            OceanPinPad(
+                                handler = installmentsHandler,
+                                isEnabled = isEnabled,
+                                isLoading = isLoading,
+                                messageFontSize = OceanFontSize.xs
                             )
                         }
 
@@ -209,5 +235,6 @@ private enum class PinPadKnownType {
     CurrencyEditInPlace,
     Password,
 
-    Installments
+    Installments,
+    InstallmentsMessageFontSizeXs
 }

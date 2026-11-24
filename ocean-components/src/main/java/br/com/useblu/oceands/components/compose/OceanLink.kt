@@ -73,14 +73,14 @@ fun OceanLink(
 }
 
 /**
- * Cor do texto e do ícone do [OceanLink].
+ * Text and icon color of an [OceanLink].
  *
- * - [PRIMARY]: cor primária da marca (padrão).
- * - [INVERSE]: para fundos escuros.
- * - [NEUTRAL]: cinza neutro.
- * - [WARNING]: cor de aviso.
- * - [POSITIVE]: cor de status positivo, para links dentro de um Alert positivo.
- * - [NEGATIVE]: cor de status negativo, para links dentro de um Alert negativo.
+ * - [PRIMARY]: brand primary color (default).
+ * - [INVERSE]: for dark backgrounds.
+ * - [NEUTRAL]: neutral gray.
+ * - [WARNING]: warning status color.
+ * - [POSITIVE]: positive status color, for links inside a positive Alert.
+ * - [NEGATIVE]: negative status color, for links inside a negative Alert.
  */
 enum class OceanLinkType {
     PRIMARY,

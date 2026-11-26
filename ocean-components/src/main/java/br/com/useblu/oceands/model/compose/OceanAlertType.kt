@@ -37,6 +37,12 @@ sealed interface OceanAlertType {
         val description: String
     ) : OceanAlertType
 
+    /**
+     * Alert with a link below the description.
+     *
+     * @param linkType link color; use [OceanLinkType.POSITIVE] or [OceanLinkType.NEGATIVE] to
+     * match the alert status. Defaults to [OceanLinkType.PRIMARY].
+     */
     class Labeled(
         val alertType: AlertStyle = AlertStyle.StyleInfo(),
         val title: String = "",

@@ -67,6 +67,26 @@ fun OceanAlertPreview() {
 
         OceanAlert(
             modifier = Modifier.fillMaxWidth(),
+            type = OceanAlertType.Labeled(
+                description = "linkType: POSITIVE",
+                link = "Label",
+                linkType = OceanLinkType.POSITIVE,
+                alertType = AlertStyle.StylePositive()
+            )
+        )
+
+        OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
+            type = OceanAlertType.Labeled(
+                description = "linkType: NEGATIVE",
+                link = "Label",
+                linkType = OceanLinkType.NEGATIVE,
+                alertType = AlertStyle.StyleNegative()
+            )
+        )
+
+        OceanAlert(
+            modifier = Modifier.fillMaxWidth(),
             type = OceanAlertType.WithAction(
                 description = "Alert With Action and long text to validate spacing and breakline",
                 alertType = AlertStyle.StyleWarning(

@@ -72,11 +72,23 @@ fun OceanLink(
     }
 }
 
+/**
+ * Text and icon color of an [OceanLink].
+ *
+ * - [PRIMARY]: brand primary color (default).
+ * - [INVERSE]: for dark backgrounds.
+ * - [NEUTRAL]: neutral gray.
+ * - [WARNING]: warning status color.
+ * - [POSITIVE]: positive status color, for links inside a positive Alert.
+ * - [NEGATIVE]: negative status color, for links inside a negative Alert.
+ */
 enum class OceanLinkType {
     PRIMARY,
     INVERSE,
     NEUTRAL,
-    WARNING;
+    WARNING,
+    POSITIVE,
+    NEGATIVE;
 
     @Composable
     fun getTextColor(): Color {
@@ -85,6 +97,8 @@ enum class OceanLinkType {
             INVERSE -> OceanColors.complementaryDown
             NEUTRAL -> OceanColors.interfaceDarkDown
             WARNING -> OceanColors.statusWarningDeep
+            POSITIVE -> OceanColors.statusPositiveDeep
+            NEGATIVE -> OceanColors.statusNegativePure
         }
     }
 }
